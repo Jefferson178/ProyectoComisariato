@@ -89,14 +89,14 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     if (resultado == "Datos Guardados")
                     {
                         MessageBox.Show("Producto Registrado Correctamente ", "Exito", MessageBoxButtons.OK);
-                        //rbtActivosEmpresa.Checked = true;
-                        inicializarDatos();
-                        cargarDatos("1");
+                        //rbtActivosEmpresa.Checked = true;                        
                         if (Program.FormularioLlamado)
                         {
                             FrmCompra.nombreProducto = txtNombreProducto.Text;
                             this.Close();
                         }
+                        inicializarDatos();
+                        cargarDatos("1");
                     }
                     else if (resultado == "Error al Registrar") { MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                     else if (resultado == "Existe") { MessageBox.Show("Ya Existe el Producto", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }
