@@ -893,12 +893,12 @@ namespace Comisariato.Clases
                 cmd.Parameters.AddWithValue("@STOCKMINIMO", ObjProducto.Stockminimo);
                 cmd.Parameters.AddWithValue("@CAJA", ObjProducto.Caja);
                 cmd.Parameters.AddWithValue("@UNIDAD", ObjProducto.Unidad);
-                cmd.Parameters.AddWithValue("@PRECIOPUBLICO_IVA", ObjProducto.Preciopublico_iva);
-                cmd.Parameters.AddWithValue("@PRECIOPUBLICO_SIN_IVA", ObjProducto.Preciopublico_sin_iva);
-                cmd.Parameters.AddWithValue("@PRECIOALMAYOR_IVA", ObjProducto.Precioalmayor_iva);
-                cmd.Parameters.AddWithValue("@PRECIOALMAYOR_SIN_IVA", ObjProducto.Precioalmayor_sin_iva);
-                cmd.Parameters.AddWithValue("@PRECIOPORCAJA_IVA", ObjProducto.Precioporcaja_iva);
-                cmd.Parameters.AddWithValue("@PRECIOPORCAJA_SIN_IVA", ObjProducto.Precioporcaja_sin_iva);
+                cmd.Parameters.AddWithValue("@PRECIOPUBLICO_IVA", Funcion.reemplazarcaracter(ObjProducto.Preciopublico_iva.ToString()));
+                cmd.Parameters.AddWithValue("@PRECIOPUBLICO_SIN_IVA", Funcion.reemplazarcaracter(ObjProducto.Preciopublico_sin_iva.ToString()));
+                cmd.Parameters.AddWithValue("@PRECIOALMAYOR_IVA", Funcion.reemplazarcaracter(ObjProducto.Precioalmayor_iva.ToString()));
+                cmd.Parameters.AddWithValue("@PRECIOALMAYOR_SIN_IVA", Funcion.reemplazarcaracter(ObjProducto.Precioalmayor_sin_iva.ToString()));
+                cmd.Parameters.AddWithValue("@PRECIOPORCAJA_IVA", Funcion.reemplazarcaracter(ObjProducto.Precioporcaja_iva.ToString()));
+                cmd.Parameters.AddWithValue("@PRECIOPORCAJA_SIN_IVA", Funcion.reemplazarcaracter(ObjProducto.Precioporcaja_sin_iva.ToString()));
                 cmd.Parameters.AddWithValue("@IVAESTADO", ObjProducto.Ivaestado);
                 cmd.Parameters.AddWithValue("@OBSERVACIONES", ObjProducto.Observaciones);
                 cmd.Parameters.AddWithValue("@IDCATEGORIA", ObjProducto.Idcategoria);
