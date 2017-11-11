@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcEmpresa = new System.Windows.Forms.TabControl();
             this.tpNuevaEmpresa = new System.Windows.Forms.TabPage();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnLimpiarEmpresa = new System.Windows.Forms.Button();
             this.btnGuardarEmpresa = new System.Windows.Forms.Button();
             this.gbFondoPantallaEmpresa = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnBuscarFondoEmpresa = new System.Windows.Forms.Button();
             this.pbfondoPantallaEmpresa = new System.Windows.Forms.PictureBox();
             this.gbLogoEmpresa = new System.Windows.Forms.GroupBox();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.btnBuscarLogoEmpresa = new System.Windows.Forms.Button();
             this.pbLogoEmpresa = new System.Windows.Forms.PictureBox();
             this.txtNombreEmpresa = new System.Windows.Forms.TextBox();
@@ -112,8 +112,6 @@
             // tpNuevaEmpresa
             // 
             this.tpNuevaEmpresa.BackColor = System.Drawing.Color.Bisque;
-            this.tpNuevaEmpresa.Controls.Add(this.btnCancelar);
-            this.tpNuevaEmpresa.Controls.Add(this.button1);
             this.tpNuevaEmpresa.Controls.Add(this.btnLimpiarEmpresa);
             this.tpNuevaEmpresa.Controls.Add(this.btnGuardarEmpresa);
             this.tpNuevaEmpresa.Controls.Add(this.gbFondoPantallaEmpresa);
@@ -129,6 +127,28 @@
             this.tpNuevaEmpresa.Size = new System.Drawing.Size(930, 475);
             this.tpNuevaEmpresa.TabIndex = 0;
             this.tpNuevaEmpresa.Text = "Nueva Empresa";
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(117, 138);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(87, 44);
+            this.btnCancelar.TabIndex = 26;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(123, 137);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(87, 44);
+            this.button1.TabIndex = 27;
+            this.button1.Text = "Cancelar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnLimpiarEmpresa
             // 
@@ -160,6 +180,7 @@
             // 
             // gbFondoPantallaEmpresa
             // 
+            this.gbFondoPantallaEmpresa.Controls.Add(this.button1);
             this.gbFondoPantallaEmpresa.Controls.Add(this.btnBuscarFondoEmpresa);
             this.gbFondoPantallaEmpresa.Controls.Add(this.pbfondoPantallaEmpresa);
             this.gbFondoPantallaEmpresa.ForeColor = System.Drawing.Color.Teal;
@@ -172,22 +193,11 @@
             this.gbFondoPantallaEmpresa.TabStop = false;
             this.gbFondoPantallaEmpresa.Text = "Fondo de Pantalla";
             // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(469, 418);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(87, 24);
-            this.button1.TabIndex = 27;
-            this.button1.Text = "Cancelar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // btnBuscarFondoEmpresa
             // 
             this.btnBuscarFondoEmpresa.Image = global::Comisariato.Properties.Resources.buscar2;
             this.btnBuscarFondoEmpresa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscarFondoEmpresa.Location = new System.Drawing.Point(50, 136);
+            this.btnBuscarFondoEmpresa.Location = new System.Drawing.Point(13, 137);
             this.btnBuscarFondoEmpresa.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscarFondoEmpresa.Name = "btnBuscarFondoEmpresa";
             this.btnBuscarFondoEmpresa.Size = new System.Drawing.Size(95, 45);
@@ -201,7 +211,7 @@
             // 
             this.pbfondoPantallaEmpresa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbfondoPantallaEmpresa.Image = global::Comisariato.Properties.Resources.contact;
-            this.pbfondoPantallaEmpresa.Location = new System.Drawing.Point(37, 25);
+            this.pbfondoPantallaEmpresa.Location = new System.Drawing.Point(48, 25);
             this.pbfondoPantallaEmpresa.Margin = new System.Windows.Forms.Padding(2);
             this.pbfondoPantallaEmpresa.Name = "pbfondoPantallaEmpresa";
             this.pbfondoPantallaEmpresa.Size = new System.Drawing.Size(118, 107);
@@ -211,6 +221,7 @@
             // 
             // gbLogoEmpresa
             // 
+            this.gbLogoEmpresa.Controls.Add(this.btnCancelar);
             this.gbLogoEmpresa.Controls.Add(this.btnBuscarLogoEmpresa);
             this.gbLogoEmpresa.Controls.Add(this.pbLogoEmpresa);
             this.gbLogoEmpresa.ForeColor = System.Drawing.Color.Teal;
@@ -223,22 +234,11 @@
             this.gbLogoEmpresa.TabStop = false;
             this.gbLogoEmpresa.Text = "Logo";
             // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(469, 381);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(87, 24);
-            this.btnCancelar.TabIndex = 26;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
             // btnBuscarLogoEmpresa
             // 
             this.btnBuscarLogoEmpresa.Image = global::Comisariato.Properties.Resources.buscar2;
             this.btnBuscarLogoEmpresa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscarLogoEmpresa.Location = new System.Drawing.Point(52, 136);
+            this.btnBuscarLogoEmpresa.Location = new System.Drawing.Point(12, 138);
             this.btnBuscarLogoEmpresa.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscarLogoEmpresa.Name = "btnBuscarLogoEmpresa";
             this.btnBuscarLogoEmpresa.Size = new System.Drawing.Size(87, 44);
@@ -252,7 +252,7 @@
             // 
             this.pbLogoEmpresa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbLogoEmpresa.Image = global::Comisariato.Properties.Resources.contact;
-            this.pbLogoEmpresa.Location = new System.Drawing.Point(38, 22);
+            this.pbLogoEmpresa.Location = new System.Drawing.Point(50, 22);
             this.pbLogoEmpresa.Margin = new System.Windows.Forms.Padding(2);
             this.pbLogoEmpresa.Name = "pbLogoEmpresa";
             this.pbLogoEmpresa.Size = new System.Drawing.Size(115, 107);
@@ -644,14 +644,14 @@
             this.dgvDatosEmpresa.AllowUserToOrderColumns = true;
             this.dgvDatosEmpresa.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvDatosEmpresa.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosEmpresa.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosEmpresa.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDatosEmpresa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosEmpresa.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Modificar});
@@ -710,7 +710,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(971, 538);
+            this.ClientSize = new System.Drawing.Size(971, 539);
             this.Controls.Add(this.tcEmpresa);
             this.Font = new System.Drawing.Font("Arial", 10F);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
