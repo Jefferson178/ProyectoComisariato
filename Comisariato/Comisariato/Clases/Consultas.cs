@@ -333,13 +333,22 @@ namespace Comisariato.Clases
         }
         public int ObtenerID(String campoID, String tabla, String condicion)
         {
-            int ID = 0;
-            Objc.conectar();
-            SqlCommand Sentencia;
-            Sentencia = new SqlCommand("SELECT  max(" + campoID + ") AS id from " + tabla + ""+condicion, ConexionBD.connection);
-            ID = Convert.ToInt32(Sentencia.ExecuteScalar());
-            Objc.Cerrar();
-            return ID;
+            try
+            {
+                int ID = 0;
+                Objc.conectar();
+                SqlCommand Sentencia;
+                Sentencia = new SqlCommand("SELECT  max(" + campoID + ") AS id from " + tabla + "" + condicion, ConexionBD.connection);
+                ID = Convert.ToInt32(Sentencia.ExecuteScalar());
+                Objc.Cerrar();
+                return ID;
+            }
+            catch (Exception)
+            {
+                return 0;
+               
+            }
+           
         }
         public Producto Consultarproducto(String codigo)
         {
