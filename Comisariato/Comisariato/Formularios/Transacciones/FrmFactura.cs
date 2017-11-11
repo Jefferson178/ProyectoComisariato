@@ -44,6 +44,7 @@ namespace Comisariato.Formularios.Transacciones
         {
             if (rdbFacturaDatos.Checked)
             {
+                txtIdentidicacion.Text = "";
                 btnGuardar.Enabled = true;
                 txtIdentidicacion.Enabled = true;
                 txtIdentidicacion.Focus();
@@ -51,15 +52,16 @@ namespace Comisariato.Formularios.Transacciones
             else
             {
                 rdbFacturaDatos.Checked = false;
+                txtCodigo.Focus();
             }
-            txtCodigo.Focus();
+            //txtCodigo.Focus();
         }
        /// private String cliente = "", identificacion;
         private void rdbConsumidorFinal_CheckedChanged(object sender, EventArgs e)
         {
             if (rdbConsumidorFinal.Checked)
             {
-                idcliente =5;
+                idcliente =3;
                 btnGuardar.Enabled = false;
                 txtConsumidor.Enabled = false;
                 txtIdentidicacion.Enabled = false;
@@ -507,34 +509,46 @@ namespace Comisariato.Formularios.Transacciones
             {
                 if (e.KeyChar == (char)Keys.Return)
                 {
-                    string datoscliente =objCns.buscarcliente(txtIdentidicacion.Text);
-                    if (datoscliente!=null)
+                    bool cedu=Funcion.VerificarCedula(txtIdentidicacion.Text);
+                    if (cedu)
                     {
-                        string[] vector = datoscliente.Split(';');
-                        txtConsumidor.Text = ""+vector[0];
-                        idcliente = Convert.ToInt32(vector[1]);
-                        comprobarmetodo = true;
-                        txtCodigo.Focus();
-                        //btnBuscar.Text = "Buscar";
-                    }
-                    else
-                    {
-                        txtIdentidicacion.Focus();
-                        comprobarmetodo = false;
-                        idcliente = 6;
-                        //btnBuscar.Text = "Registrar";
-                        if (MessageBox.Show("No existe un cliente registrado con la identificacion: " + txtIdentidicacion.Text + "\n¿Quieres registrarlo?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        string datoscliente = objCns.buscarcliente(txtIdentidicacion.Text);
+                        if (datoscliente != null)
                         {
-                            FrmDatosClientes f = new FrmDatosClientes();
-                            f.comprobarvista = 2;
-                            f.ShowDialog();
+                            string[] vector = datoscliente.Split(';');
+                            txtConsumidor.Text = "" + vector[0];
+                            idcliente = Convert.ToInt32(vector[1]);
+                            comprobarmetodo = true;
+                            txtCodigo.Focus();
+                            //btnBuscar.Text = "Buscar";
                         }
                         else
                         {
-                            rdbConsumidorFinal.Checked = true;
-                            txtCodigo.Focus();
+                            txtIdentidicacion.Focus();
+                            comprobarmetodo = false;
+                            idcliente = 6;
+                            //btnBuscar.Text = "Registrar";
+                            if (MessageBox.Show("No existe un cliente registrado con la identificacion: " + txtIdentidicacion.Text + "\n¿Quieres registrarlo?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+                                FrmDatosClientes f = new FrmDatosClientes();
+                                f.comprobarvista = 2;
+                                f.ShowDialog();
+                            }
+                            else
+                            {
+                                rdbConsumidorFinal.Checked = true;
+                                txtCodigo.Focus();
+                            }
                         }
                     }
+                    else
+                    {
+                        MessageBox.Show("Cedula incorrecta.");
+                        txtIdentidicacion.Focus();
+                        rdbFacturaDatos.Checked = true;
+                        rdbConsumidorFinal.Checked = false;
+                    }
+                   
                 }
             }
         }

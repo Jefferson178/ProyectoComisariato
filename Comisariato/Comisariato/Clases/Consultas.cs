@@ -357,23 +357,30 @@ namespace Comisariato.Clases
             try
             {
                 Objc.conectar();
-                SqlCommand Sentencia = new SqlCommand("select  P.IVA as IVA, U.NOMBREPRODUCTO as DETALLE, U.CANTIDAD, U.PRECIOPUBLICO_SIN_IVA as PRECIOVENTAPUBLICO, U.IVAESTADO, U.PRECIOALMAYOR_SIN_IVA as PRECIOVENTAMAYORISTA,  U.PRECIOPORCAJA_SIN_IVA as PRECIOVENTACAJA from TbProducto U, TbParametrosFactura P where U.CODIGOBARRA = '"+ codigo +"'");
+                SqlCommand Sentencia = new SqlCommand("select  P.IVA as IVA, U.ACTIVO, U.NOMBREPRODUCTO as DETALLE, U.CANTIDAD, U.PRECIOPUBLICO_SIN_IVA as PRECIOVENTAPUBLICO, U.IVAESTADO, U.PRECIOALMAYOR_SIN_IVA as PRECIOVENTAMAYORISTA,  U.PRECIOPORCAJA_SIN_IVA as PRECIOVENTACAJA from TbProducto U, TbParametrosFactura P where U.CODIGOBARRA = '" + codigo +"'");
                     Sentencia.Connection = ConexionBD.connection;
                     SqlDataReader dato = Sentencia.ExecuteReader();
                 if (dato.Read() == true)
                 {
+                    int activo = Convert.ToInt32(dato["ACTIVO"]);
+                    if (activo==1)
+                    {
+                        producto.Nombreproducto = (String)dato["DETALLE"];
 
-                    producto.Nombreproducto = (String)dato["DETALLE"];
+                        //        //producto.Cant = Convert.ToInt32(dato["CANTIDAD"]);
+                        producto.Cantidad = Convert.ToInt32(dato["CANTIDAD"]);
 
-                    //        //producto.Cant = Convert.ToInt32(dato["CANTIDAD"]);
-                    producto.Cantidad = Convert.ToInt32(dato["CANTIDAD"]);
-
-                    producto.Preciopublico_sin_iva = Convert.ToSingle(dato["PRECIOVENTAPUBLICO"]);
-                    producto.Ivaestado = Convert.ToBoolean(dato["IVAESTADO"]);
-                    producto.Iva = Convert.ToInt32(dato["IVA"]);
-                    producto.Precioalmayor_sin_iva = Convert.ToSingle(dato["PRECIOVENTAMAYORISTA"]);
-                    producto.Precioporcaja_sin_iva = Convert.ToSingle(dato["PRECIOVENTACAJA"]);
-
+                        producto.Preciopublico_sin_iva = Convert.ToSingle(dato["PRECIOVENTAPUBLICO"]);
+                        producto.Ivaestado = Convert.ToBoolean(dato["IVAESTADO"]);
+                        producto.Iva = Convert.ToInt32(dato["IVA"]);
+                        producto.Precioalmayor_sin_iva = Convert.ToSingle(dato["PRECIOVENTAMAYORISTA"]);
+                        producto.Precioporcaja_sin_iva = Convert.ToSingle(dato["PRECIOVENTACAJA"]);
+                    }
+                    else
+                    {
+                        MessageBox.Show("El producto no está activo.");
+                        producto = null;
+                    }
                     }
                     else
                     {
@@ -392,6 +399,7 @@ namespace Comisariato.Clases
             Objc.Cerrar();
             return producto;
         }
+
         public EmcabezadoFactura ConsutarFactura(int sucursal, int caja, int numfact, int metodo)
         {
             EmcabezadoFactura encabezado = null;
@@ -649,15 +657,23 @@ namespace Comisariato.Clases
                     float pm = Convert.ToSingle(dato["PRECIOVENTAMAYORISTA"]);
                     float pc = Convert.ToSingle(dato["PRECIOVENTACAJA"]);
                     bool ivaestado = Convert.ToBoolean(dato["IVAESTADO"]);
-                    if (ivaestado)
+                    int activo= Convert.ToInt32(dato["ACTIVO"]);
+                    if (activo==1)
                     {
-                        v = 1;
+                        if (ivaestado)
+                        {
+                            v = 1;
+                            int iva = int.Parse(dato["IVA"].ToString());
+                            dt.Rows.Add((String)dato["CODIGOBARRA"], (String)dato["DETALLE"], (int)dato["CANTIDAD"], pp.ToString("#####0.00"), pm.ToString("#####0.00"), pc.ToString("#####0.00"), v, iva);
+                        }
+                        else
+                        {
+                            v = 0;
+                            dt.Rows.Add((String)dato["CODIGOBARRA"], (String)dato["DETALLE"], (int)dato["CANTIDAD"], pp.ToString("#####0.00"), pm.ToString("#####0.00"), pc.ToString("#####0.00"), v, 0);
+                        }
+                        //dt.Rows.Add((String)dato["CODIGOBARRA"], (String)dato["DETALLE"], (int)dato["CANTIDAD"], pp.ToString("#####0.00"), pm.ToString("#####0.00"), pc.ToString("#####0.00"), v, (int)dato["IVA"]);
+
                     }
-                    else
-                    {
-                        v = 0;
-                    }
-                    dt.Rows.Add((String)dato["CODIGOBARRA"], (String)dato["DETALLE"], (int)dato["CANTIDAD"], pp.ToString("#####0.00"), pm.ToString("#####0.00"), pc.ToString("#####0.00"), v, (int)dato["IVA"]);
 
 
                 }
@@ -669,8 +685,9 @@ namespace Comisariato.Clases
             }
             catch (Exception ex)
             {
+                //MessageBox.Show("" + ex.Message);
                 return false;
-                throw;
+                
             }
 
 
