@@ -253,6 +253,8 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             if (Program.FormularioLlamado)
             {
                 dgvProductosIngresos.CurrentRow.Cells[1].Value = nombreProducto;
+                //dgvProductosIngresos.CurrentCell = dgvDatosProducto.Rows[].Cells[2];
+                //dgvDatosProducto.BeginEdit(true);
             }
         }
         private void btnSalirCompra_Click(object sender, EventArgs e)
