@@ -44,9 +44,9 @@ namespace Comisariato.Formularios.Transacciones
                         string numcaja = "111", sucursal = "2";
 
                         string condicion = " where CAJA = '" + numcaja + "' and SUCURSAL= '" + sucursal + "';";
-                        if (c.ObtenerID("IDFACTURA", "TbEncabezadoFactura", condicion) == 1)
+                        if (c.ObtenerID("IDFACTURA", "TbEncabezadoFactura", condicion) == 0)
                         {
-                            f.numfact = c.ObtenerID("IDFACTURA", "TbEncabezadoFactura", condicion);
+                            f.numfact = 1;
                         }
                         else
                         {

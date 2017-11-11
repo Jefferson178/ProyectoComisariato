@@ -78,6 +78,7 @@ namespace Comisariato.Formularios.Transacciones
         {
             // this.dgvDetalleProductos.CellValidating += new DataGridViewCellValidatingEventHandler(dgv_validating);
             //propiedadesdgv();
+
             txtCodigo.Focus();
             txtNumFact.Text = numfact.ToString("D8");
             txtCaja.Text = "00" + numcaja;
