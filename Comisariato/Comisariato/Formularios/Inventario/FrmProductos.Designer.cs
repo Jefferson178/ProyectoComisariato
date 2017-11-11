@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcProducto = new System.Windows.Forms.TabControl();
             this.tpNuevoProducto = new System.Windows.Forms.TabPage();
             this.btnLimpiarProducto = new System.Windows.Forms.Button();
@@ -384,7 +384,7 @@
             this.CkbIRBP.TabIndex = 18;
             this.CkbIRBP.Text = "IRBP";
             this.CkbIRBP.UseVisualStyleBackColor = true;
-            this.CkbIRBP.CheckedChanged += new System.EventHandler(this.CkbIva_CheckedChanged);
+            this.CkbIRBP.CheckedChanged += new System.EventHandler(this.CkbIRBP_CheckedChanged);
             // 
             // CkbICE
             // 
@@ -398,7 +398,7 @@
             this.CkbICE.TabIndex = 17;
             this.CkbICE.Text = "ICE";
             this.CkbICE.UseVisualStyleBackColor = true;
-            this.CkbICE.CheckedChanged += new System.EventHandler(this.CkbIva_CheckedChanged);
+            this.CkbICE.CheckedChanged += new System.EventHandler(this.CkbICE_CheckedChanged);
             // 
             // CkbIva
             // 
@@ -442,6 +442,7 @@
             this.txtPrecioCajaSinIVAProducto.Location = new System.Drawing.Point(260, 86);
             this.txtPrecioCajaSinIVAProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPrecioCajaSinIVAProducto.Name = "txtPrecioCajaSinIVAProducto";
+            this.txtPrecioCajaSinIVAProducto.ReadOnly = true;
             this.txtPrecioCajaSinIVAProducto.Size = new System.Drawing.Size(100, 22);
             this.txtPrecioCajaSinIVAProducto.TabIndex = 14;
             this.txtPrecioCajaSinIVAProducto.Text = "0";
@@ -453,6 +454,7 @@
             this.txtPrecioMayorSinIVAProducto.Location = new System.Drawing.Point(260, 60);
             this.txtPrecioMayorSinIVAProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPrecioMayorSinIVAProducto.Name = "txtPrecioMayorSinIVAProducto";
+            this.txtPrecioMayorSinIVAProducto.ReadOnly = true;
             this.txtPrecioMayorSinIVAProducto.Size = new System.Drawing.Size(100, 22);
             this.txtPrecioMayorSinIVAProducto.TabIndex = 13;
             this.txtPrecioMayorSinIVAProducto.Text = "0";
@@ -464,6 +466,7 @@
             this.txtPVPSinIVAProducto.Location = new System.Drawing.Point(260, 34);
             this.txtPVPSinIVAProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPVPSinIVAProducto.Name = "txtPVPSinIVAProducto";
+            this.txtPVPSinIVAProducto.ReadOnly = true;
             this.txtPVPSinIVAProducto.Size = new System.Drawing.Size(100, 22);
             this.txtPVPSinIVAProducto.TabIndex = 12;
             this.txtPVPSinIVAProducto.Text = "0";
@@ -475,7 +478,6 @@
             this.txtPrecioCajaConIVAProducto.Location = new System.Drawing.Point(134, 86);
             this.txtPrecioCajaConIVAProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPrecioCajaConIVAProducto.Name = "txtPrecioCajaConIVAProducto";
-            this.txtPrecioCajaConIVAProducto.ReadOnly = true;
             this.txtPrecioCajaConIVAProducto.Size = new System.Drawing.Size(100, 22);
             this.txtPrecioCajaConIVAProducto.TabIndex = 30;
             this.txtPrecioCajaConIVAProducto.Text = "0";
@@ -487,7 +489,6 @@
             this.txtPrecioMayorConIVAProducto.Location = new System.Drawing.Point(134, 60);
             this.txtPrecioMayorConIVAProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPrecioMayorConIVAProducto.Name = "txtPrecioMayorConIVAProducto";
-            this.txtPrecioMayorConIVAProducto.ReadOnly = true;
             this.txtPrecioMayorConIVAProducto.Size = new System.Drawing.Size(100, 22);
             this.txtPrecioMayorConIVAProducto.TabIndex = 29;
             this.txtPrecioMayorConIVAProducto.Text = "0";
@@ -499,7 +500,6 @@
             this.txtPVPConIVAProducto.Location = new System.Drawing.Point(134, 34);
             this.txtPVPConIVAProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPVPConIVAProducto.Name = "txtPVPConIVAProducto";
-            this.txtPVPConIVAProducto.ReadOnly = true;
             this.txtPVPConIVAProducto.Size = new System.Drawing.Size(100, 22);
             this.txtPVPConIVAProducto.TabIndex = 28;
             this.txtPVPConIVAProducto.Text = "0";
@@ -758,14 +758,14 @@
             this.dgvDatosProducto.AllowUserToOrderColumns = true;
             this.dgvDatosProducto.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvDatosProducto.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDatosProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosProducto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Modificar,

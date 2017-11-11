@@ -47,7 +47,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             consultas.ObtenerIDCompra(ref idEncabezadoCompra, "select IDEMCABEZADOCOMPRA as ID FROM TbEncabezadoyPieCompra where ORDEN_COMPRA_NUMERO = '"+txtOrdenCompra.Text+"'");
             for (int i = 0; i < dgvProductosIngresos.RowCount; i++)
             {
-                ObjDetalleCompra = new DetalleCompra(idEncabezadoCompra, Convert.ToString(dgvProductosIngresos.Rows[i].Cells[0].Value), Convert.ToInt32(dgvProductosIngresos.Rows[i].Cells[2].Value), Convert.ToSingle(dgvProductosIngresos.Rows[i].Cells[3].Value),
+                ObjDetalleCompra = new DetalleCompra(Convert.ToSingle(dgvProductosIngresos.Rows[i].Cells[9].Value), Convert.ToSingle(dgvProductosIngresos.Rows[i].Cells[8].Value), idEncabezadoCompra, Convert.ToString(dgvProductosIngresos.Rows[i].Cells[0].Value), Convert.ToInt32(dgvProductosIngresos.Rows[i].Cells[2].Value), Convert.ToSingle(dgvProductosIngresos.Rows[i].Cells[3].Value),
                     Convert.ToSingle(dgvProductosIngresos.Rows[i].Cells[4].Value), Convert.ToSingle(dgvProductosIngresos.Rows[i].Cells[5].Value), Convert.ToSingle(dgvProductosIngresos.Rows[i].Cells[6].Value), Convert.ToSingle(dgvProductosIngresos.Rows[i].Cells[7].Value));
                 String resultadoDetalle = ObjDetalleCompra.InsertarDetalleCompra(ObjDetalleCompra);
                 if (resultadoDetalle == "Datos Guardados")
@@ -106,9 +106,9 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     iva = ((Convert.ToSingle(dgvProductosIngresos.CurrentRow.Cells[2].Value.ToString()) * Convert.ToInt32(dgvProductosIngresos.CurrentRow.Cells[3].Value.ToString())) * 0.12f);
                     subtotal = ((Convert.ToSingle(dgvProductosIngresos.CurrentRow.Cells[2].Value.ToString()) * Convert.ToInt32(dgvProductosIngresos.CurrentRow.Cells[3].Value.ToString())) - iva);
                     total = subtotal + iva;
-                    dgvProductosIngresos.CurrentRow.Cells[9].Value = iva.ToString("#####0.00");
-                    dgvProductosIngresos.CurrentRow.Cells[8].Value = subtotal.ToString("#####0.00");
-                    dgvProductosIngresos.CurrentRow.Cells[10].Value = total.ToString("#####0.00");
+                    dgvProductosIngresos.CurrentRow.Cells[11].Value = iva.ToString("#####0.00");
+                    dgvProductosIngresos.CurrentRow.Cells[10].Value = subtotal.ToString("#####0.00");
+                    dgvProductosIngresos.CurrentRow.Cells[12].Value = total.ToString("#####0.00");
                 }
             }
             catch (Exception)
@@ -120,26 +120,30 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             }
         private void Calcular()
         {
-            float sumasubiva = 0.0f, sumasubcero = 0.0f, totalpagar = 0.0f, ivatotal = 0.0f;
+            float sumasubiva = 0.0f, sumasubcero = 0.0f, totalpagar = 0.0f, ivatotal = 0.0f, sumaice = 0.0f, sumairbp = 0.0f;
             try
             {
                 for (int i = 0; i < dgvProductosIngresos.RowCount; i++)
                 {
-                    if (Convert.ToSingle(dgvProductosIngresos.Rows[i].Cells[9].Value.ToString()) != 0)
+                    if (Convert.ToSingle(dgvProductosIngresos.Rows[i].Cells[11].Value.ToString()) != 0)
                     {
-                        sumasubiva += Convert.ToSingle(dgvProductosIngresos.Rows[i].Cells[10].Value.ToString());
-                        ivatotal += Convert.ToSingle(dgvProductosIngresos.Rows[i].Cells[9].Value.ToString());
+                        sumasubiva += Convert.ToSingle(dgvProductosIngresos.Rows[i].Cells[12].Value.ToString());
+                        ivatotal += Convert.ToSingle(dgvProductosIngresos.Rows[i].Cells[11].Value.ToString());
                     }
-                    if (Convert.ToSingle(dgvProductosIngresos.Rows[i].Cells[9].Value.ToString()) == 0)
+                    if (Convert.ToSingle(dgvProductosIngresos.Rows[i].Cells[11].Value.ToString()) == 0)
                     {
-                        sumasubcero += Convert.ToSingle(dgvProductosIngresos.Rows[i].Cells[10].Value.ToString());
+                        sumasubcero += Convert.ToSingle(dgvProductosIngresos.Rows[i].Cells[12].Value.ToString());
                     }
-                    totalpagar += Convert.ToSingle(dgvProductosIngresos.Rows[i].Cells[10].Value.ToString());
+                    totalpagar += Convert.ToSingle(dgvProductosIngresos.Rows[i].Cells[12].Value.ToString());
+                    sumaice += Convert.ToSingle(dgvProductosIngresos.Rows[i].Cells[8].Value.ToString());
+                    sumairbp += Convert.ToSingle(dgvProductosIngresos.Rows[i].Cells[9].Value.ToString());
                     if (Convert.ToString(dgvProductosIngresos.Rows[i + 1].Cells[0].Value) == "")
                     {
                         break;
                     }
                 }
+                txtIRBP.Text = sumairbp.ToString("#####0.00");
+                txtICE.Text = sumaice.ToString("#####0.00");
                 txtSubtotal0.Text = sumasubcero.ToString("#####0.00");
                 txtSubtotal.Text = totalpagar.ToString("#####0.00");
                 txtSubtutalIVA.Text = sumasubiva.ToString("#####0.00");
@@ -178,6 +182,9 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     e.Handled = true;
                     System.Media.SystemSounds.Beep.Play();
                 }
+            }
+            if (dgvProductosIngresos.CurrentCell == dgvProductosIngresos.CurrentRow.Cells[2])
+            {
             }
         }
         private void dgvProductosIngresos_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)

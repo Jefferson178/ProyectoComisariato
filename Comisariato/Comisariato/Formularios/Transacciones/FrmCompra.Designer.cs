@@ -46,6 +46,8 @@
             this.precioPublico = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precioMayorista = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precioCaja = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iceProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.irbpProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iva = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,6 +68,10 @@
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.BtnGuardar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnProveedor = new System.Windows.Forms.Button();
             this.txtPlazoOC = new System.Windows.Forms.TextBox();
             this.cbImpuesto = new System.Windows.Forms.ComboBox();
@@ -217,6 +223,8 @@
             this.precioPublico,
             this.precioMayorista,
             this.precioCaja,
+            this.iceProducto,
+            this.irbpProducto,
             this.subtotal,
             this.iva,
             this.total});
@@ -241,13 +249,13 @@
             // 
             this.codigo.HeaderText = "Código";
             this.codigo.Name = "codigo";
-            this.codigo.Width = 125;
+            this.codigo.Width = 110;
             // 
             // producto
             // 
             this.producto.HeaderText = "Producto";
             this.producto.Name = "producto";
-            this.producto.Width = 185;
+            this.producto.Width = 160;
             // 
             // cantidad
             // 
@@ -265,13 +273,13 @@
             // 
             this.descuento.HeaderText = "Desc.";
             this.descuento.Name = "descuento";
-            this.descuento.Width = 75;
+            this.descuento.Width = 70;
             // 
             // precioPublico
             // 
             this.precioPublico.HeaderText = "P.V.P";
             this.precioPublico.Name = "precioPublico";
-            this.precioPublico.Width = 75;
+            this.precioPublico.Width = 60;
             // 
             // precioMayorista
             // 
@@ -283,6 +291,19 @@
             // 
             this.precioCaja.HeaderText = "P. Cajas";
             this.precioCaja.Name = "precioCaja";
+            this.precioCaja.Width = 85;
+            // 
+            // iceProducto
+            // 
+            this.iceProducto.HeaderText = "ICE";
+            this.iceProducto.Name = "iceProducto";
+            this.iceProducto.Width = 50;
+            // 
+            // irbpProducto
+            // 
+            this.irbpProducto.HeaderText = "IRBP";
+            this.irbpProducto.Name = "irbpProducto";
+            this.irbpProducto.Width = 50;
             // 
             // subtotal
             // 
@@ -296,14 +317,14 @@
             this.iva.HeaderText = "IVA";
             this.iva.Name = "iva";
             this.iva.ReadOnly = true;
-            this.iva.Width = 50;
+            this.iva.Width = 45;
             // 
             // total
             // 
             this.total.HeaderText = "Total";
             this.total.Name = "total";
             this.total.ReadOnly = true;
-            this.total.Width = 80;
+            this.total.Width = 65;
             // 
             // txtTotal
             // 
@@ -319,6 +340,7 @@
             this.txtIRBP.Font = new System.Drawing.Font("Arial", 10F);
             this.txtIRBP.Location = new System.Drawing.Point(650, 438);
             this.txtIRBP.Name = "txtIRBP";
+            this.txtIRBP.ReadOnly = true;
             this.txtIRBP.Size = new System.Drawing.Size(130, 23);
             this.txtIRBP.TabIndex = 56;
             this.txtIRBP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIRBP_KeyPress);
@@ -419,6 +441,7 @@
             this.txtICE.Font = new System.Drawing.Font("Arial", 10F);
             this.txtICE.Location = new System.Drawing.Point(650, 409);
             this.txtICE.Name = "txtICE";
+            this.txtICE.ReadOnly = true;
             this.txtICE.Size = new System.Drawing.Size(130, 23);
             this.txtICE.TabIndex = 45;
             this.txtICE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtICE_KeyPress);
@@ -472,6 +495,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnProveedor);
             this.groupBox1.Controls.Add(this.txtPlazoOC);
             this.groupBox1.Controls.Add(this.cbImpuesto);
@@ -499,6 +526,42 @@
             this.groupBox1.TabIndex = 36;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos de la Orden de Compra";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("Arial", 10F);
+            this.textBox3.Location = new System.Drawing.Point(770, 15);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(156, 23);
+            this.textBox3.TabIndex = 51;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Arial", 10F);
+            this.textBox2.Location = new System.Drawing.Point(619, 15);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(56, 23);
+            this.textBox2.TabIndex = 50;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Arial", 10F);
+            this.textBox1.Location = new System.Drawing.Point(689, 15);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(56, 23);
+            this.textBox1.TabIndex = 49;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.label1.Location = new System.Drawing.Point(482, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(131, 16);
+            this.label1.TabIndex = 48;
+            this.label1.Text = "N° Factura Proveedor";
             // 
             // btnProveedor
             // 
@@ -556,7 +619,7 @@
             this.txtOrdenCompra.Font = new System.Drawing.Font("Arial", 10F);
             this.txtOrdenCompra.Location = new System.Drawing.Point(152, 24);
             this.txtOrdenCompra.Name = "txtOrdenCompra";
-            this.txtOrdenCompra.Size = new System.Drawing.Size(214, 23);
+            this.txtOrdenCompra.Size = new System.Drawing.Size(50, 23);
             this.txtOrdenCompra.TabIndex = 42;
             this.txtOrdenCompra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtOrdenCompra_KeyPress);
             // 
@@ -589,7 +652,7 @@
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.Teal;
-            this.label20.Location = new System.Drawing.Point(373, 27);
+            this.label20.Location = new System.Drawing.Point(202, 27);
             this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(75, 16);
@@ -673,9 +736,9 @@
             // 
             this.dtpFechaOC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpFechaOC.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaOC.Location = new System.Drawing.Point(502, 22);
+            this.dtpFechaOC.Location = new System.Drawing.Point(277, 24);
             this.dtpFechaOC.Name = "dtpFechaOC";
-            this.dtpFechaOC.Size = new System.Drawing.Size(96, 22);
+            this.dtpFechaOC.Size = new System.Drawing.Size(89, 22);
             this.dtpFechaOC.TabIndex = 37;
             // 
             // label4
@@ -876,6 +939,11 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.DataGridView dgvProductosIngresos;
         private System.Windows.Forms.Button btnProveedor;
+        private System.Windows.Forms.Button btnSalirCompra;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn producto;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
@@ -884,9 +952,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn precioPublico;
         private System.Windows.Forms.DataGridViewTextBoxColumn precioMayorista;
         private System.Windows.Forms.DataGridViewTextBoxColumn precioCaja;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iceProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn irbpProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn subtotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn iva;
         private System.Windows.Forms.DataGridViewTextBoxColumn total;
-        private System.Windows.Forms.Button btnSalirCompra;
     }
 }

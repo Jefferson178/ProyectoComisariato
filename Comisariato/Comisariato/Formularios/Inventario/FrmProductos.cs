@@ -79,7 +79,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     bitDataImagen = Funcion.imgToByteArray(img);
                 //}
                 //Objconsul.BoolDataTable("SELECT [CANTIDAD]  FROM [dbo].[TbProducto] where IDPRODUCTO = ''")
-                Producto ObjProducto = new Producto(txtNombreProducto.Text, ckbActivoProducto.Checked, txtCodigoBarraProducto.Text, cbTipoProducto.Text, cbUnidadMedidaProducto.Text, cbPeso.Text, Convert.ToInt32(txtStockMaximoProducto.Text), Convert.ToInt32(txtStockMinimoProducto.Text), Convert.ToInt32(txtCajaProducto.Text), Convert.ToInt32(txtUnidadProducto.Text),Convert.ToSingle(txtPVPConIVAProducto.Text), Convert.ToSingle(txtPVPSinIVAProducto.Text), Convert.ToSingle(txtPrecioMayorConIVAProducto.Text), Convert.ToSingle(txtPrecioMayorSinIVAProducto.Text), Convert.ToSingle(txtPrecioCajaConIVAProducto.Text), Convert.ToSingle(txtPrecioCajaSinIVAProducto.Text), bitDataImagen, CkbIva.Checked, txtObservacionesProducto.Text, Convert.ToInt32(cbTipoProducto.SelectedValue), 0);
+                Producto ObjProducto = new Producto(txtNombreProducto.Text, ckbActivoProducto.Checked, txtCodigoBarraProducto.Text, cbTipoProducto.Text, cbUnidadMedidaProducto.Text, cbPeso.Text, Convert.ToInt32(txtStockMaximoProducto.Text), Convert.ToInt32(txtStockMinimoProducto.Text), Convert.ToInt32(txtCajaProducto.Text), Convert.ToInt32(txtUnidadProducto.Text), Convert.ToSingle(txtPVPConIVAProducto.Text), Convert.ToSingle(txtPVPSinIVAProducto.Text), Convert.ToSingle(txtPrecioMayorConIVAProducto.Text), Convert.ToSingle(txtPrecioMayorSinIVAProducto.Text), Convert.ToSingle(txtPrecioCajaConIVAProducto.Text), Convert.ToSingle(txtPrecioCajaSinIVAProducto.Text), bitDataImagen, CkbIva.Checked, txtObservacionesProducto.Text, Convert.ToInt32(cbTipoProducto.SelectedValue), 0);
 
                 if (!bandera_Estado) // Para identificar si se va ingresar
                 {
@@ -145,49 +145,52 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
 
 
 
+        bool banderaCheckError = false;
 
         private void CkbIva_CheckedChanged(object sender, EventArgs e)
         {
-            if (txtPVPSinIVAProducto.Text != "" && txtPrecioMayorSinIVAProducto.Text != "" && txtPrecioCajaSinIVAProducto.Text != "")
+            float PVPSinIva = 0.0f, PrecioMayorSinIva = 0.0f, PrecioCajaSinIva = 0.0f;
+            if ((txtPVPConIVAProducto.Text != "" && txtPrecioMayorConIVAProducto.Text != "" && txtPrecioCajaConIVAProducto.Text != "") && (Convert.ToInt32(txtPVPConIVAProducto.Text) != 0 && Convert.ToInt32(txtPrecioMayorConIVAProducto.Text) != 0 && Convert.ToInt32(txtPrecioCajaConIVAProducto.Text) != 0))
             {
                 if (CkbIva.Checked)
                 {
-                    //Objconsul.BoolDataTable("select ")
                     
+                    PVPSinIva = Convert.ToSingle(txtPVPConIVAProducto.Text) / 1.12f;
+                    PrecioMayorSinIva = Convert.ToSingle(txtPrecioMayorConIVAProducto.Text) / 1.12f;
+                    PrecioCajaSinIva = Convert.ToSingle(txtPrecioCajaConIVAProducto.Text)/ 1.12f;
+                    banderaCheckError = false;
                 }
                 else {
-                    //TxtIVA.Enabled = false;
+                    
                 }
-
-                //if (CkbICE.Checked && CkbIva.Checked) /*Con base en PVP: Base Imponible ICE 1 = PVP / ((1 +% IVA) * (1 +% ICE vigente))*/
-                //{
-
-                //    TxtIce.Enabled = true;
-                //    TxtIce.Focus();
-                //}
-                //else { TxtIce.Enabled = false; }
-
-                //if (CkbIRBP.Checked)
-                //{
-
-                //    TxtIRBP.Enabled = true;
-                //    TxtIRBP.Focus();
-                //}
-                //else { TxtIRBP.Enabled = false; }
             }
             else
             {
-                if (CkbIva.Checked || CkbICE.Checked || CkbIRBP.Checked)
-                {
-                    MessageBox.Show("Ingrese los Precios Sin Iva", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (!banderaCheckError)
+                {//if (CkbIva.Checked || CkbICE.Checked || CkbIRBP.Checked)
+                    //{
+                    MessageBox.Show("Ingrese los Precios Con Iva", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    banderaCheckError = true;
                     CkbIva.Checked = false;
+                    banderaCheckError = false;
                     //CkbICE.Checked = false;
                     //CkbIRBP.Checked = false;
-                    txtPVPSinIVAProducto.Focus();
+                    txtPVPConIVAProducto.Focus();
                     //TxtIVA.Text = "";
                     //TxtIce.Text = "";
                     //TxtIRBP.Text = "";
+                    //}
                 }
+            }
+            if (PVPSinIva != 0 && PrecioMayorSinIva != 0 && PrecioCajaSinIva != 0)
+            {
+                
+                txtPVPSinIVAProducto.Text = PVPSinIva.ToString("#####0.00");
+                txtPrecioMayorSinIVAProducto.Text = PrecioMayorSinIva.ToString("#####0.00");
+                txtPrecioCajaSinIVAProducto.Text = PrecioCajaSinIva.ToString("#####0.00");
+                txtPVPSinIVAProducto.Text  = Funcion.reemplazarcaracter(txtPVPSinIVAProducto.Text);
+                txtPrecioMayorSinIVAProducto.Text = Funcion.reemplazarcaracter(txtPrecioMayorSinIVAProducto.Text);
+                txtPrecioCajaSinIVAProducto.Text = Funcion.reemplazarcaracter(txtPrecioCajaSinIVAProducto.Text);
             }
         }
 
@@ -401,6 +404,26 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         private void txtObservacionesProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.validar_Num_Letras(e);
+        }
+
+        private void CkbICE_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CkbICE.Checked)
+            {
+                TxtIce.Enabled = true;
+            }
+            else
+                TxtIce.Enabled = false;
+        }
+
+        private void CkbIRBP_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CkbIRBP.Checked)
+            {
+                TxtIRBP.Enabled = true;
+            }
+            else
+                TxtIRBP.Enabled = false;
         }
     }
 }
