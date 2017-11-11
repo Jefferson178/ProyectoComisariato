@@ -530,8 +530,7 @@ namespace Comisariato.Formularios.Transacciones
                             //btnBuscar.Text = "Registrar";
                             if (MessageBox.Show("No existe un cliente registrado con la identificacion: " + txtIdentidicacion.Text + "\n¿Quieres registrarlo?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
-                                FrmDatosClientes f = new FrmDatosClientes();
-                                f.comprobarvista = 2;
+                               FrmClientes f = new FrmClientes();
                                 f.ShowDialog();
                             }
                             else
