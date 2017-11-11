@@ -5,11 +5,6 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comisariato", "Comisariato\Comisariato.csproj", "{3DDB403C-4678-46A4-B233-526A49C98493}"
 EndProject
-<<<<<<< HEAD
-=======
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comisariato2", "..\..\..\..\Desktop\Comisariato\Comisariato\Comisariato2.csproj", "{C4A929CD-82A5-4D73-B622-561E241AF810}"
-EndProject
->>>>>>> 6074c57589413c76fc146a3a4b700da6b9730c44
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,13 +15,6 @@ Global
 		{3DDB403C-4678-46A4-B233-526A49C98493}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DDB403C-4678-46A4-B233-526A49C98493}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DDB403C-4678-46A4-B233-526A49C98493}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< HEAD
-=======
-		{C4A929CD-82A5-4D73-B622-561E241AF810}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C4A929CD-82A5-4D73-B622-561E241AF810}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C4A929CD-82A5-4D73-B622-561E241AF810}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C4A929CD-82A5-4D73-B622-561E241AF810}.Release|Any CPU.Build.0 = Release|Any CPU
->>>>>>> 6074c57589413c76fc146a3a4b700da6b9730c44
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
