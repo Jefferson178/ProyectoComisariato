@@ -438,6 +438,7 @@
             // 
             // txtPrecioCajaSinIVAProducto
             // 
+            this.txtPrecioCajaSinIVAProducto.Enabled = false;
             this.txtPrecioCajaSinIVAProducto.Font = new System.Drawing.Font("Arial", 9.75F);
             this.txtPrecioCajaSinIVAProducto.Location = new System.Drawing.Point(260, 86);
             this.txtPrecioCajaSinIVAProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -450,6 +451,7 @@
             // 
             // txtPrecioMayorSinIVAProducto
             // 
+            this.txtPrecioMayorSinIVAProducto.Enabled = false;
             this.txtPrecioMayorSinIVAProducto.Font = new System.Drawing.Font("Arial", 9.75F);
             this.txtPrecioMayorSinIVAProducto.Location = new System.Drawing.Point(260, 60);
             this.txtPrecioMayorSinIVAProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -462,6 +464,7 @@
             // 
             // txtPVPSinIVAProducto
             // 
+            this.txtPVPSinIVAProducto.Enabled = false;
             this.txtPVPSinIVAProducto.Font = new System.Drawing.Font("Arial", 9.75F);
             this.txtPVPSinIVAProducto.Location = new System.Drawing.Point(260, 34);
             this.txtPVPSinIVAProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -482,6 +485,9 @@
             this.txtPrecioCajaConIVAProducto.TabIndex = 30;
             this.txtPrecioCajaConIVAProducto.Text = "0";
             this.txtPrecioCajaConIVAProducto.TextChanged += new System.EventHandler(this.txtPrecioCajaConIVAProducto_TextChanged);
+            this.txtPrecioCajaConIVAProducto.Enter += new System.EventHandler(this.txtPrecioCajaConIVAProducto_Enter);
+            this.txtPrecioCajaConIVAProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioCajaConIVAProducto_KeyPress);
+            this.txtPrecioCajaConIVAProducto.Leave += new System.EventHandler(this.txtPVPConIVAProducto_Leave);
             // 
             // txtPrecioMayorConIVAProducto
             // 
@@ -493,6 +499,9 @@
             this.txtPrecioMayorConIVAProducto.TabIndex = 29;
             this.txtPrecioMayorConIVAProducto.Text = "0";
             this.txtPrecioMayorConIVAProducto.TextChanged += new System.EventHandler(this.txtPrecioMayorConIVAProducto_TextChanged);
+            this.txtPrecioMayorConIVAProducto.Enter += new System.EventHandler(this.txtPrecioMayorConIVAProducto_Enter);
+            this.txtPrecioMayorConIVAProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioMayorConIVAProducto_KeyPress);
+            this.txtPrecioMayorConIVAProducto.Leave += new System.EventHandler(this.txtPVPConIVAProducto_Leave);
             // 
             // txtPVPConIVAProducto
             // 
@@ -504,6 +513,9 @@
             this.txtPVPConIVAProducto.TabIndex = 28;
             this.txtPVPConIVAProducto.Text = "0";
             this.txtPVPConIVAProducto.TextChanged += new System.EventHandler(this.txtPVPConIVAProducto_TextChanged);
+            this.txtPVPConIVAProducto.Enter += new System.EventHandler(this.txtPVPConIVAProducto_Enter);
+            this.txtPVPConIVAProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPVPConIVAProducto_KeyPress_1);
+            this.txtPVPConIVAProducto.Leave += new System.EventHandler(this.txtPVPConIVAProducto_Leave);
             // 
             // label17
             // 
@@ -594,6 +606,7 @@
             this.txtStockMinimoProducto.Size = new System.Drawing.Size(143, 22);
             this.txtStockMinimoProducto.TabIndex = 8;
             this.txtStockMinimoProducto.Text = "0";
+            this.txtStockMinimoProducto.Enter += new System.EventHandler(this.txtStockMinimoProducto_Enter);
             this.txtStockMinimoProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStockMaximoProducto_KeyPress);
             // 
             // txtStockMaximoProducto
@@ -605,6 +618,7 @@
             this.txtStockMaximoProducto.Size = new System.Drawing.Size(143, 22);
             this.txtStockMaximoProducto.TabIndex = 7;
             this.txtStockMaximoProducto.Text = "0";
+            this.txtStockMaximoProducto.Enter += new System.EventHandler(this.txtStockMaximoProducto_Enter);
             this.txtStockMaximoProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStockMaximoProducto_KeyPress);
             // 
             // txtUnidadProducto
@@ -616,6 +630,7 @@
             this.txtUnidadProducto.Size = new System.Drawing.Size(143, 22);
             this.txtUnidadProducto.TabIndex = 10;
             this.txtUnidadProducto.Text = "0";
+            this.txtUnidadProducto.Enter += new System.EventHandler(this.txtUnidadProducto_Enter);
             this.txtUnidadProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStockMaximoProducto_KeyPress);
             // 
             // label11
@@ -647,6 +662,7 @@
             this.txtCajaProducto.Size = new System.Drawing.Size(143, 22);
             this.txtCajaProducto.TabIndex = 9;
             this.txtCajaProducto.Text = "0";
+            this.txtCajaProducto.Enter += new System.EventHandler(this.txtCajaProducto_Enter);
             this.txtCajaProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStockMaximoProducto_KeyPress);
             // 
             // label14
@@ -822,7 +838,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(1052, 572);
+            this.ClientSize = new System.Drawing.Size(1052, 573);
             this.Controls.Add(this.tcProducto);
             this.Font = new System.Drawing.Font("Arial", 10F);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
