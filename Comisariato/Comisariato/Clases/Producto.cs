@@ -406,9 +406,9 @@ namespace Comisariato.Clases
             ObjConsulta = new Consultas();
 
             if (ObjConsulta.EjecutarSQL("UPDATE [dbo].[TbProducto] SET[NOMBREPRODUCTO] = '"+nombreproducto+ "',[ACTIVO] = '"+activo+ "' ,[CODIGOBARRA] = '"+codigobarra+ "',[TIPOPRODUCTO] ='"+tipoproducto+"'"
-                + " ,[UNIDAMEDIDA] = '"+unidamedida+ "'  ,[PESO] = '"+peso+ "' ,[STOCKMAXIMO] = "+stockmaximo+ " ,[STOCKMINIMO] = "+stockminimo+ " ,[CAJA] = "+caja+ " ,[UNIDAD] = "+unidad+ " ,[PRECIOPUBLICO_IVA] = "+preciopublico_iva+""
-                + " ,[PRECIOPUBLICO_SIN_IVA] = "+preciopublico_sin_iva+ " ,[PRECIOALMAYOR_IVA] = "+precioalmayor_iva+ " ,[PRECIOALMAYOR_SIN_IVA] = "+precioalmayor_sin_iva+ ",[PRECIOPORCAJA_IVA] = "+precioporcaja_iva+""
-                + " ,[PRECIOPORCAJA_SIN_IVA] = "+precioporcaja_sin_iva+ " ,[IVAESTADO] = '"+ivaestado+ "'"
+                + " ,[UNIDAMEDIDA] = '"+unidamedida+ "'  ,[PESO] = '"+peso+ "' ,[STOCKMAXIMO] = "+stockmaximo+ " ,[STOCKMINIMO] = "+stockminimo+ " ,[CAJA] = "+caja+ " ,[UNIDAD] = "+unidad+ " ,[PRECIOPUBLICO_IVA] = "+ Funcion.reemplazarcaracter(preciopublico_iva.ToString()) +""
+                + " ,[PRECIOPUBLICO_SIN_IVA] = "+ Funcion.reemplazarcaracter(preciopublico_sin_iva.ToString()) + " ,[PRECIOALMAYOR_IVA] = "+ Funcion.reemplazarcaracter(precioalmayor_iva.ToString()) + " ,[PRECIOALMAYOR_SIN_IVA] = "+ Funcion.reemplazarcaracter(precioalmayor_sin_iva.ToString()) + ",[PRECIOPORCAJA_IVA] = "+ Funcion.reemplazarcaracter(precioporcaja_iva.ToString()) +""
+                + " ,[PRECIOPORCAJA_SIN_IVA] = "+ Funcion.reemplazarcaracter(precioporcaja_sin_iva.ToString()) + " ,[IVAESTADO] = '"+ivaestado+ "'"
                 + " ,[OBSERVACIONES] = '"+observaciones+ "' ,[IDCATEGORIA] = "+idcategoria+""
                 + " WHERE CODIGOBARRA ='"+ CodigoBarra + "' "))
             {
