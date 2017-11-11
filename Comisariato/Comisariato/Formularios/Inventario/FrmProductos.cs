@@ -73,11 +73,11 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             byte[] bitDataImagen = null;
             if (txtNombreProducto.Text != "" && txtCodigoBarraProducto.Text != "" && txtPVPSinIVAProducto.Text != "" && txtPrecioMayorSinIVAProducto.Text != "" && txtPrecioCajaSinIVAProducto.Text != "")
             {
-                //if (nameImagen != "")
-                //{
+                if (nameImagen != "")
+                {
                     Image img = pbImagenProducto.Image;
                     bitDataImagen = Funcion.imgToByteArray(img);
-                //}
+                }
                 //Objconsul.BoolDataTable("SELECT [CANTIDAD]  FROM [dbo].[TbProducto] where IDPRODUCTO = ''")
                 Producto ObjProducto = new Producto(txtNombreProducto.Text, ckbActivoProducto.Checked, txtCodigoBarraProducto.Text, cbTipoProducto.Text, cbUnidadMedidaProducto.Text, cbPeso.Text, Convert.ToInt32(txtStockMaximoProducto.Text), Convert.ToInt32(txtStockMinimoProducto.Text), Convert.ToInt32(txtCajaProducto.Text), Convert.ToInt32(txtUnidadProducto.Text),Convert.ToSingle(txtPVPConIVAProducto.Text), Convert.ToSingle(txtPVPSinIVAProducto.Text), Convert.ToSingle(txtPrecioMayorConIVAProducto.Text), Convert.ToSingle(txtPrecioMayorSinIVAProducto.Text), Convert.ToSingle(txtPrecioCajaConIVAProducto.Text), Convert.ToSingle(txtPrecioCajaSinIVAProducto.Text), bitDataImagen, CkbIva.Checked, txtObservacionesProducto.Text, Convert.ToInt32(cbTipoProducto.SelectedValue), 0);
 

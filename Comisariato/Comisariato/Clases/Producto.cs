@@ -409,7 +409,7 @@ namespace Comisariato.Clases
                 + " ,[UNIDAMEDIDA] = '"+unidamedida+ "'  ,[PESO] = '"+peso+ "' ,[STOCKMAXIMO] = "+stockmaximo+ " ,[STOCKMINIMO] = "+stockminimo+ " ,[CAJA] = "+caja+ " ,[UNIDAD] = "+unidad+ " ,[PRECIOPUBLICO_IVA] = "+preciopublico_iva+""
                 + " ,[PRECIOPUBLICO_SIN_IVA] = "+preciopublico_sin_iva+ " ,[PRECIOALMAYOR_IVA] = "+precioalmayor_iva+ " ,[PRECIOALMAYOR_SIN_IVA] = "+precioalmayor_sin_iva+ ",[PRECIOPORCAJA_IVA] = "+precioporcaja_iva+""
                 + " ,[PRECIOPORCAJA_SIN_IVA] = "+precioporcaja_sin_iva+ " ,[IVAESTADO] = '"+ivaestado+ "'"
-                + "' ,[OBSERVACIONES] = '"+observaciones+ "' ,[IDCATEGORIA] = "+idcategoria+""
+                + " ,[OBSERVACIONES] = '"+observaciones+ "' ,[IDCATEGORIA] = "+idcategoria+""
                 + " WHERE CODIGOBARRA ='"+ CodigoBarra + "' "))
             {
                 ObjConsulta.EditarFoto(Imagenproducto, CodigoBarra, "[TbProducto]", "IMAGENPRODUCTO", "CODIGOBARRA");
