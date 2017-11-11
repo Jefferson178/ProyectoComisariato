@@ -267,7 +267,7 @@ namespace Comisariato.Formularios
                     FrmOrdenDeGiro.BringToFront();
                 }
             }
-            else if (nombre == "Devolución Venta")
+            else if (nombre == "Devolución en Venta")
             {
                 if (FrmDevolucionVenta == null || FrmDevolucionVenta.IsDisposed)
                 {

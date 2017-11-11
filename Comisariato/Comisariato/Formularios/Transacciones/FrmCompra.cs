@@ -17,10 +17,14 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         {
             InitializeComponent();
         }
+
+        public static string nombreProducto;
+
         Consultas consultas;
         EmcabezadoCompra ObjEncabezadoCompra;
         DetalleCompra ObjDetalleCompra;
         Producto objProducto;
+        int ordenCompra = 0, idOrdenComrpa;
         private void FrmCompra_Load(object sender, EventArgs e)
         {
             for (int i = 0; i < 8; i++)
@@ -31,6 +35,9 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             consultas = new Consultas();
             consultas.BoolLlenarComboBox(cbSucursal, "select IDSUCURSAL AS Id, NOMBRESUCURSAL as Texto from TbSucursal");
             consultas.BoolLlenarComboBox(cbProveedor, "select IDPROVEEDOR AS Id, NOMBRES AS Texto from TbProveedor");
+            idOrdenComrpa = consultas.ObtenerID("IDEMCABEZADOCOMPRA", "TbEncabezadoyPieCompra", "");
+            ordenCompra = 1 + consultas.ObtenerID("ORDEN_COMPRA_NUMERO", "TbEncabezadoyPieCompra", " where IDEMCABEZADOCOMPRA ="+ idOrdenComrpa + "");
+            txtOrdenCompra.Text = Convert.ToString(ordenCompra);
             //consultas.BoolLlenarComboBox(cbImpuesto, "select IDPARAMETROSFACTURA");
             cbSucursal.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbSucursal.AutoCompleteSource = AutoCompleteSource.CustomSource;
@@ -87,6 +94,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         {
                             FrmProductos frmProducto = new FrmProductos();
                             Program.FormularioLlamado = true;
+                            FrmProductos.codigo = Convert.ToString(dgvProductosIngresos.CurrentRow.Cells[0].Value);
                             objFuncion.AddFormInPanel(frmProducto, Program.panelPrincipalVariable);
                         }
                     }
@@ -169,8 +177,8 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         private void btnProveedor_Click(object sender, EventArgs e)
         {
             FrmProveedores frmProveedor = new FrmProveedores();
-            objFuncion.AddFormInPanel(frmProveedor, Program.panelPrincipalVariable);
             Program.FormularioLlamado = true;
+            objFuncion.AddFormInPanel(frmProveedor, Program.panelPrincipalVariable);            
         }
 
         private void OnlyNumbersdgvcheque_KeyPress(object sender, KeyPressEventArgs e)
@@ -194,11 +202,6 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 TextBox txt = e.Control as TextBox;
                 txt.KeyPress += OnlyNumbersdgvcheque_KeyPress;
             }
-        }
-
-        private void FrmCompra_Activated(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void cbProveedor_Enter(object sender, EventArgs e)
@@ -243,6 +246,14 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         private void txtIRBP_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.SoloValores(e, txtIRBP);
+        }
+
+        private void FrmCompra_MouseEnter(object sender, EventArgs e)
+        {
+            if (Program.FormularioLlamado)
+            {
+                dgvProductosIngresos.CurrentRow.Cells[1].Value = nombreProducto;
+            }
         }
         private void btnSalirCompra_Click(object sender, EventArgs e)
         {
