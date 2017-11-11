@@ -720,8 +720,6 @@
             this.cbProveedor.Name = "cbProveedor";
             this.cbProveedor.Size = new System.Drawing.Size(111, 24);
             this.cbProveedor.TabIndex = 31;
-            this.cbProveedor.Enter += new System.EventHandler(this.cbProveedor_Enter);
-            this.cbProveedor.Leave += new System.EventHandler(this.cbProveedor_Leave);
             // 
             // label3
             // 

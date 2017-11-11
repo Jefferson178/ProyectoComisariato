@@ -1,5 +1,5 @@
 ﻿using Comisariato.Clases;
-
+using Comisariato.Formularios.Mantenimiento.Inventario;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -118,6 +118,8 @@ namespace Comisariato.Formularios
                         {
                             Program.FormularioLlamado = false;
                             Program.FormularioProveedorCompra = true;
+                            consultas.BoolLlenarComboBox(FrmCompra.datosProveedor, "select IDPROVEEDOR AS Id, NOMBRES AS Texto from TbProveedor");
+                            FrmCompra.datosProveedor.SelectedValue = consultas.ObtenerID("IDPROVEEDOR", "TbProveedor", "");
                             this.Close();
                         }
                     }

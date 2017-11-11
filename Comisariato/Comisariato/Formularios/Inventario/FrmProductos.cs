@@ -89,12 +89,17 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     if (resultado == "Datos Guardados")
                     {
                         MessageBox.Show("Producto Registrado Correctamente ", "Exito", MessageBoxButtons.OK);
-                        //rbtActivosEmpresa.Checked = true;                        
+                        //rbtActivosEmpresa.Checked = true;                  
+                        //No hagan nada aqui meco      
                         if (Program.FormularioLlamado)
                         {
-                            FrmCompra.nombreProducto = txtNombreProducto.Text;
+                            FrmCompra.datosProductoCompra.CurrentRow.Cells[1].Value = txtNombreProducto.Text;
+                            FrmCompra.datosProductoCompra.CurrentCell = FrmCompra.datosProductoCompra.CurrentRow.Cells[2];
+                            FrmCompra.datosProductoCompra.BeginEdit(true);
+                            Program.FormularioLlamado = false;
                             this.Close();
                         }
+                        //----------------------------------------------------------
                         inicializarDatos();
                         cargarDatos("1");
                     }
