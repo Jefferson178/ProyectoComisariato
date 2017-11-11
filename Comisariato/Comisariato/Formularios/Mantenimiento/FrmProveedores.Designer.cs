@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcProveedor = new System.Windows.Forms.TabControl();
             this.tpNuevoProveedor = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.cbCuentaContableProveedor = new System.Windows.Forms.ComboBox();
@@ -105,6 +106,8 @@
             this.txtNumeroIdentificacionProveedor = new System.Windows.Forms.TextBox();
             this.cbIdentificacionProveedor = new System.Windows.Forms.ComboBox();
             this.cbNacionalidadProveedor = new System.Windows.Forms.ComboBox();
+            this.btnLimpiarProveedor = new System.Windows.Forms.Button();
+            this.btnGuardarProveedor = new System.Windows.Forms.Button();
             this.tpConsultarModificarProveedor = new System.Windows.Forms.TabPage();
             this.rbtInactivosProveedor = new System.Windows.Forms.RadioButton();
             this.rbtActivosProveedor = new System.Windows.Forms.RadioButton();
@@ -113,9 +116,6 @@
             this.DeshabilitarProveedor = new System.Windows.Forms.DataGridViewButtonColumn();
             this.txtConsultarProveedor = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnLimpiarProveedor = new System.Windows.Forms.Button();
-            this.btnGuardarProveedor = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.tcProveedor.SuspendLayout();
             this.tpNuevoProveedor.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -157,6 +157,18 @@
             this.tpNuevoProveedor.Size = new System.Drawing.Size(1058, 538);
             this.tpNuevoProveedor.TabIndex = 0;
             this.tpNuevoProveedor.Text = "Nuevo Proveedor";
+            // 
+            // button1
+            // 
+            this.button1.Image = global::Comisariato.Properties.Resources.salir2;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(23, 428);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(92, 62);
+            this.button1.TabIndex = 32;
+            this.button1.Text = "Salir";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // tabControl1
             // 
@@ -921,6 +933,32 @@
             this.cbNacionalidadProveedor.Size = new System.Drawing.Size(152, 24);
             this.cbNacionalidadProveedor.TabIndex = 5;
             // 
+            // btnLimpiarProveedor
+            // 
+            this.btnLimpiarProveedor.Image = global::Comisariato.Properties.Resources.limpiar;
+            this.btnLimpiarProveedor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLimpiarProveedor.Location = new System.Drawing.Point(526, 429);
+            this.btnLimpiarProveedor.Name = "btnLimpiarProveedor";
+            this.btnLimpiarProveedor.Size = new System.Drawing.Size(134, 84);
+            this.btnLimpiarProveedor.TabIndex = 31;
+            this.btnLimpiarProveedor.Text = "&Limpiar";
+            this.btnLimpiarProveedor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLimpiarProveedor.UseVisualStyleBackColor = true;
+            this.btnLimpiarProveedor.Click += new System.EventHandler(this.BtnLimpiar_Click);
+            // 
+            // btnGuardarProveedor
+            // 
+            this.btnGuardarProveedor.Image = global::Comisariato.Properties.Resources.guardar11;
+            this.btnGuardarProveedor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGuardarProveedor.Location = new System.Drawing.Point(386, 429);
+            this.btnGuardarProveedor.Name = "btnGuardarProveedor";
+            this.btnGuardarProveedor.Size = new System.Drawing.Size(133, 84);
+            this.btnGuardarProveedor.TabIndex = 30;
+            this.btnGuardarProveedor.Text = "&Guardar";
+            this.btnGuardarProveedor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGuardarProveedor.UseVisualStyleBackColor = true;
+            this.btnGuardarProveedor.Click += new System.EventHandler(this.BtnGuardar_Click);
+            // 
             // tpConsultarModificarProveedor
             // 
             this.tpConsultarModificarProveedor.BackColor = System.Drawing.Color.Bisque;
@@ -986,6 +1024,8 @@
             this.dgvDatosProveedor.Size = new System.Drawing.Size(1013, 308);
             this.dgvDatosProveedor.TabIndex = 5;
             this.dgvDatosProveedor.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosProveedor_CellClick);
+            this.dgvDatosProveedor.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvDatosProveedor_CellFormatting);
+            this.dgvDatosProveedor.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvDatosProveedor_CellPainting);
             // 
             // modificarProveedor
             // 
@@ -1020,51 +1060,13 @@
             this.label8.TabIndex = 3;
             this.label8.Text = "Consultar:";
             // 
-            // btnLimpiarProveedor
-            // 
-            this.btnLimpiarProveedor.Image = global::Comisariato.Properties.Resources.limpiar;
-            this.btnLimpiarProveedor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLimpiarProveedor.Location = new System.Drawing.Point(526, 429);
-            this.btnLimpiarProveedor.Name = "btnLimpiarProveedor";
-            this.btnLimpiarProveedor.Size = new System.Drawing.Size(134, 84);
-            this.btnLimpiarProveedor.TabIndex = 31;
-            this.btnLimpiarProveedor.Text = "&Limpiar";
-            this.btnLimpiarProveedor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnLimpiarProveedor.UseVisualStyleBackColor = true;
-            this.btnLimpiarProveedor.Click += new System.EventHandler(this.BtnLimpiar_Click);
-            // 
-            // btnGuardarProveedor
-            // 
-            this.btnGuardarProveedor.Image = global::Comisariato.Properties.Resources.guardar11;
-            this.btnGuardarProveedor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardarProveedor.Location = new System.Drawing.Point(386, 429);
-            this.btnGuardarProveedor.Name = "btnGuardarProveedor";
-            this.btnGuardarProveedor.Size = new System.Drawing.Size(133, 84);
-            this.btnGuardarProveedor.TabIndex = 30;
-            this.btnGuardarProveedor.Text = "&Guardar";
-            this.btnGuardarProveedor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnGuardarProveedor.UseVisualStyleBackColor = true;
-            this.btnGuardarProveedor.Click += new System.EventHandler(this.BtnGuardar_Click);
-            // 
-            // button1
-            // 
-            this.button1.Image = global::Comisariato.Properties.Resources.salir2;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(23, 428);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(92, 62);
-            this.button1.TabIndex = 32;
-            this.button1.Text = "Salir";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // FrmProveedores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(1089, 591);
+            this.ClientSize = new System.Drawing.Size(1089, 592);
             this.Controls.Add(this.tcProveedor);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.KeyPreview = true;

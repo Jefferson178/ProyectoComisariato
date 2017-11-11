@@ -31,11 +31,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcCliente = new System.Windows.Forms.TabControl();
             this.tpNuevoCliente = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnLimpiarCliente = new System.Windows.Forms.Button();
             this.btnGuardarCliente = new System.Windows.Forms.Button();
             this.gbDatosPersonalesClientes = new System.Windows.Forms.GroupBox();
             this.txtRazonSocialCliente = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.LblRazonSocial = new System.Windows.Forms.Label();
             this.dtpFechaNacimientoCliente = new System.Windows.Forms.DateTimePicker();
             this.txtApellidosCliente = new System.Windows.Forms.TextBox();
             this.cbIdentificacionCliente = new System.Windows.Forms.ComboBox();
@@ -44,9 +45,9 @@
             this.txtNombresCliente = new System.Windows.Forms.TextBox();
             this.ckClienteActivo = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.LblApellidos = new System.Windows.Forms.Label();
+            this.lblNombre = new System.Windows.Forms.Label();
+            this.LblIdentificacion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tcDatosCliente = new System.Windows.Forms.TabControl();
             this.tpInformacionGeneralCliente = new System.Windows.Forms.TabPage();
@@ -126,7 +127,6 @@
             this.rbtActivosCliente = new System.Windows.Forms.RadioButton();
             this.txtConsultarCliente = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.tcCliente.SuspendLayout();
             this.tpNuevoCliente.SuspendLayout();
             this.gbDatosPersonalesClientes.SuspendLayout();
@@ -171,6 +171,18 @@
             this.tpNuevoCliente.TabIndex = 0;
             this.tpNuevoCliente.Text = "Nuevo Cliente";
             // 
+            // button1
+            // 
+            this.button1.Image = global::Comisariato.Properties.Resources.salir2;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(38, 374);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(97, 60);
+            this.button1.TabIndex = 41;
+            this.button1.Text = "Salir";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // btnLimpiarCliente
             // 
             this.btnLimpiarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -202,7 +214,7 @@
             // gbDatosPersonalesClientes
             // 
             this.gbDatosPersonalesClientes.Controls.Add(this.txtRazonSocialCliente);
-            this.gbDatosPersonalesClientes.Controls.Add(this.label12);
+            this.gbDatosPersonalesClientes.Controls.Add(this.LblRazonSocial);
             this.gbDatosPersonalesClientes.Controls.Add(this.dtpFechaNacimientoCliente);
             this.gbDatosPersonalesClientes.Controls.Add(this.txtApellidosCliente);
             this.gbDatosPersonalesClientes.Controls.Add(this.cbIdentificacionCliente);
@@ -211,9 +223,9 @@
             this.gbDatosPersonalesClientes.Controls.Add(this.txtNombresCliente);
             this.gbDatosPersonalesClientes.Controls.Add(this.ckClienteActivo);
             this.gbDatosPersonalesClientes.Controls.Add(this.label5);
-            this.gbDatosPersonalesClientes.Controls.Add(this.label4);
-            this.gbDatosPersonalesClientes.Controls.Add(this.label3);
-            this.gbDatosPersonalesClientes.Controls.Add(this.label2);
+            this.gbDatosPersonalesClientes.Controls.Add(this.LblApellidos);
+            this.gbDatosPersonalesClientes.Controls.Add(this.lblNombre);
+            this.gbDatosPersonalesClientes.Controls.Add(this.LblIdentificacion);
             this.gbDatosPersonalesClientes.Controls.Add(this.label1);
             this.gbDatosPersonalesClientes.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbDatosPersonalesClientes.ForeColor = System.Drawing.Color.Teal;
@@ -229,23 +241,23 @@
             // txtRazonSocialCliente
             // 
             this.txtRazonSocialCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRazonSocialCliente.Location = new System.Drawing.Point(576, 84);
+            this.txtRazonSocialCliente.Location = new System.Drawing.Point(585, 84);
             this.txtRazonSocialCliente.Margin = new System.Windows.Forms.Padding(2);
             this.txtRazonSocialCliente.Name = "txtRazonSocialCliente";
             this.txtRazonSocialCliente.Size = new System.Drawing.Size(367, 22);
             this.txtRazonSocialCliente.TabIndex = 6;
             this.txtRazonSocialCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRazonSocialCliente_KeyPress);
             // 
-            // label12
+            // LblRazonSocial
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(483, 87);
-            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(91, 16);
-            this.label12.TabIndex = 14;
-            this.label12.Text = "Razón Social:";
+            this.LblRazonSocial.AutoSize = true;
+            this.LblRazonSocial.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblRazonSocial.Location = new System.Drawing.Point(483, 87);
+            this.LblRazonSocial.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblRazonSocial.Name = "LblRazonSocial";
+            this.LblRazonSocial.Size = new System.Drawing.Size(99, 16);
+            this.LblRazonSocial.TabIndex = 14;
+            this.LblRazonSocial.Text = "Razón Social: *";
             // 
             // dtpFechaNacimientoCliente
             // 
@@ -259,7 +271,7 @@
             // txtApellidosCliente
             // 
             this.txtApellidosCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApellidosCliente.Location = new System.Drawing.Point(577, 57);
+            this.txtApellidosCliente.Location = new System.Drawing.Point(586, 57);
             this.txtApellidosCliente.Margin = new System.Windows.Forms.Padding(2);
             this.txtApellidosCliente.Name = "txtApellidosCliente";
             this.txtApellidosCliente.Size = new System.Drawing.Size(366, 22);
@@ -309,7 +321,7 @@
             // txtNombresCliente
             // 
             this.txtNombresCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombresCliente.Location = new System.Drawing.Point(576, 29);
+            this.txtNombresCliente.Location = new System.Drawing.Point(585, 29);
             this.txtNombresCliente.Margin = new System.Windows.Forms.Padding(2);
             this.txtNombresCliente.Name = "txtNombresCliente";
             this.txtNombresCliente.Size = new System.Drawing.Size(367, 22);
@@ -342,38 +354,38 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Fecha de Nacimiento:";
             // 
-            // label4
+            // LblApellidos
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(483, 60);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 16);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Apellidos:";
+            this.LblApellidos.AutoSize = true;
+            this.LblApellidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblApellidos.Location = new System.Drawing.Point(483, 60);
+            this.LblApellidos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblApellidos.Name = "LblApellidos";
+            this.LblApellidos.Size = new System.Drawing.Size(76, 16);
+            this.LblApellidos.TabIndex = 3;
+            this.LblApellidos.Text = "Apellidos: *";
             // 
-            // label3
+            // lblNombre
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(483, 32);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 16);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Nombres:";
+            this.lblNombre.AutoSize = true;
+            this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombre.Location = new System.Drawing.Point(483, 32);
+            this.lblNombre.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(75, 16);
+            this.lblNombre.TabIndex = 2;
+            this.lblNombre.Text = "Nombres: *";
             // 
-            // label2
+            // LblIdentificacion
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(18, 60);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 16);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Identificación:";
+            this.LblIdentificacion.AutoSize = true;
+            this.LblIdentificacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblIdentificacion.Location = new System.Drawing.Point(18, 60);
+            this.LblIdentificacion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblIdentificacion.Name = "LblIdentificacion";
+            this.LblIdentificacion.Size = new System.Drawing.Size(97, 16);
+            this.LblIdentificacion.TabIndex = 1;
+            this.LblIdentificacion.Text = "Identificación: *";
             // 
             // label1
             // 
@@ -505,6 +517,8 @@
             this.txtCasillaCliente.Name = "txtCasillaCliente";
             this.txtCasillaCliente.Size = new System.Drawing.Size(160, 22);
             this.txtCasillaCliente.TabIndex = 13;
+            this.txtCasillaCliente.Text = "0";
+            this.txtCasillaCliente.Enter += new System.EventHandler(this.txtCasillaCliente_Enter);
             // 
             // label35
             // 
@@ -1337,25 +1351,13 @@
             this.label25.TabIndex = 4;
             this.label25.Text = "Consultar:";
             // 
-            // button1
-            // 
-            this.button1.Image = global::Comisariato.Properties.Resources.salir2;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(38, 374);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(97, 60);
-            this.button1.TabIndex = 41;
-            this.button1.Text = "Salir";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // FrmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(1089, 588);
+            this.ClientSize = new System.Drawing.Size(1089, 589);
             this.Controls.Add(this.tcCliente);
             this.Font = new System.Drawing.Font("Arial", 10F);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -1398,9 +1400,9 @@
         private System.Windows.Forms.GroupBox gbDatosPersonalesClientes;
         private System.Windows.Forms.CheckBox ckClienteActivo;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label LblApellidos;
+        private System.Windows.Forms.Label lblNombre;
+        private System.Windows.Forms.Label LblIdentificacion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tcDatosCliente;
         private System.Windows.Forms.TabPage tpInformacionGeneralCliente;
@@ -1419,7 +1421,7 @@
         private System.Windows.Forms.TabPage tpInformacionFinancieraCliente;
         private System.Windows.Forms.TabPage tbOtraInformacionCliente;
         private System.Windows.Forms.TextBox txtRazonSocialCliente;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label LblRazonSocial;
         private System.Windows.Forms.DateTimePicker dtpFechaNacimientoCliente;
         private System.Windows.Forms.ComboBox cbIdentificacionCliente;
         private System.Windows.Forms.ComboBox cbTipoCliente;

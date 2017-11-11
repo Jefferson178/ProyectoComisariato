@@ -67,7 +67,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         private void cargarDatos(string condicion)
         {
             Objconsul = new Consultas();
-            Objconsul.boolLlenarDataGridView(dgvDatosProducto, "Select IDPRODUCTO AS ID, CODIGOBARRA AS 'CODIGO BARRA',NOMBREPRODUCTO as PRODUCTO,STOCKMAXIMO AS 'STOCK MAXIMO',TIPOPRODUCTO AS CATEGORIA,PRECIOPUBLICO_IVA as 'P.V.P.' , PRECIOALMAYOR_IVA as 'PRECIO MAYOR.',PRECIOPORCAJA_IVA AS 'PRECIO CAJA',IVAESTADO AS 'TIENE IVA' from TbProducto WHERE ACTIVO =" + condicion + ";");
+            Objconsul.boolLlenarDataGridView(dgvDatosProducto, "Select IDPRODUCTO AS ID, CODIGOBARRA AS 'CODIGO BARRA',NOMBREPRODUCTO as PRODUCTO,STOCKMAXIMO AS 'STOCK MAXIMO',TIPOPRODUCTO AS CATEGORIA,PRECIOPUBLICO_IVA as 'P.V.P.' , PRECIOALMAYOR_IVA as 'PRECIO MAYOR.',PRECIOPORCAJA_IVA AS 'PRECIO CAJA',IVAESTADO AS 'IVA' from TbProducto WHERE ACTIVO =" + condicion + ";");
             dgvDatosProducto.Columns["ID"].Visible = false;
         }
         private void btnGuardarProducto_Click(object sender, EventArgs e)

@@ -48,6 +48,18 @@ namespace Comisariato.Formularios
             txtCupoCreditoCliente.Text = "0";
             txtDescuentoCliente.Text = "0";
             cargarDatos("1");
+            cbProvinciaCliente.SelectedValue = 9;
+            cbCantonCliente.SelectedValue = 80;
+            cbParroquiaCliente.SelectedValue = 41;
+            txtCasillaCliente.Text = "0";
+
+
+            LblIdentificacion.ForeColor = Color.Teal;
+            lblNombre.ForeColor = Color.Teal;
+            LblApellidos.ForeColor = Color.Teal;
+            LblRazonSocial.ForeColor = Color.Teal;
+
+
         }
 
         private void FrmClientes_Load(object sender, EventArgs e)
@@ -72,6 +84,8 @@ namespace Comisariato.Formularios
             cbProvinciaCliente.DropDownHeight = cbProvinciaCliente.ItemHeight = 150;
             cbCantonCliente.DropDownHeight = cbCantonCliente.ItemHeight = 150;
             cbParroquiaCliente.DropDownHeight = cbParroquiaCliente.ItemHeight = 150;
+
+            inicializarDatos();
 
         }
 
@@ -161,25 +175,29 @@ namespace Comisariato.Formularios
 
         private void btnGuardarCliente_Click(object sender, EventArgs e)
         {
-            if (cbTipoCliente.Text != "" && cbIdentificacionCliente.Text != "" && txtIdentificacionCliente.Text != "" && txtNombresCliente.Text != "" && txtApellidosCliente.Text != "" && txtDireccion.Text != "")
+            if (txtIdentificacionCliente.Text != "" && txtNombresCliente.Text != "" && txtApellidosCliente.Text != "" && txtRazonSocialCliente.Text != "")
             {
                 String categoriaChequeada = obtenerCategoriaChequeada();
                 Cliente Objcliente = new Cliente(cbTipoCliente.Text, cbIdentificacionCliente.Text, txtIdentificacionCliente.Text, ckClienteActivo.Checked, txtNombresCliente.Text, txtApellidosCliente.Text,
                     dtpFechaNacimientoCliente.Value, txtRazonSocialCliente.Text, txtEmailCliente.Text, txtDireccion.Text, cbActividadEconomicaCliente.Text,
                      Convert.ToInt32(cbParroquiaCliente.SelectedValue), Convert.ToInt32(txtCasillaCliente.Text.ToString()), txtFaxCliente.Text, txtCelular1Cliente.Text, txtCelular2Cliente.Text, txtObservacionCliente.Text,
                      cbCategoriaCliente.Text, categoriaChequeada, txtCreditoAsignadoCliente.Text, txtCupoCreditoCliente.Text, txtDescuentoCliente.Text);
-                int idcliente = consultas.ObtenerID("IDCLIENTE", "TbCliente","");
+                int idcliente = consultas.ObtenerID("IDCLIENTE", "TbCliente", "");
                 if (!bandera_Estado) // Para identificar si se va ingresar
                 {
                     String resultado = Objcliente.InsertarCliente(); // retorna true si esta correcto todo
                     if (resultado == "Datos Guardados")
                     {
-
+                        inicializarDatos();
+                        cargarDatos("1");
                         InsertarOtraInfCliente(idcliente);
                         MessageBox.Show("Cliente Registrado Correctamente ", "Exito", MessageBoxButtons.OK);
                         rbtActivosCliente.Checked = true;
                     }
-                    else if (resultado == "Error al Registrar") { MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                    else if (resultado == "Error al Registrar")
+                    {
+                        MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                     else if (resultado == "Existe") { MessageBox.Show("Ya Existe el Cliente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }
                 }
                 else if (bandera_Estado) // Para identificar si se va modificar
@@ -189,8 +207,10 @@ namespace Comisariato.Formularios
                     if (Resultado == "Correcto")
                     {
                         MessageBox.Show("Cliente Actualizado", "Exito");
+                        cargarDatos("1");
                         rbtActivosCliente.Checked = true;
                         identificacion = "";
+                        inicializarDatos();
                     }
                     else { MessageBox.Show("Error al actualizar Cliente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                     inicializarDatos();
@@ -198,7 +218,15 @@ namespace Comisariato.Formularios
                     btnGuardarCliente.Text = "&Guardar";
                 }
             }
-            else { MessageBox.Show("Ingrese los datos del Cliente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            else
+            {
+                MessageBox.Show("Ingrese los datos del Cliente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LblIdentificacion.ForeColor = Color.Red;
+                lblNombre.ForeColor = Color.Red;
+                LblApellidos.ForeColor = Color.Red;
+                LblRazonSocial.ForeColor = Color.Red;
+            }
+
         }
 
         private void btnLimpiarCliente_Click(object sender, EventArgs e)
@@ -427,6 +455,11 @@ namespace Comisariato.Formularios
                     txtIdentificacionCliente.Select(0, txtIdentificacionCliente.Text.Length);
                 }
             }
+        }
+
+        private void txtCasillaCliente_Enter(object sender, EventArgs e)
+        {
+            txtCasillaCliente.SelectAll();
         }
     }
 }

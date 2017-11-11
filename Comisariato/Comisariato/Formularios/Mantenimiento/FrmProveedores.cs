@@ -31,7 +31,7 @@ namespace Comisariato.Formularios
             cbNaturalezaProveedor.SelectedIndex = 0;
             //CmbPais.SelectedIndex = 1;
             //CmbParroquia.SelectedIndex = 1;
-            cbProvinciaProveedor.SelectedIndex = 1;
+            //cbProvinciaProveedor.SelectedIndex = 1;
             cbTipoGastoProveedor.SelectedIndex = 0;
             //CmbTipoServicio.SelectedIndex = 1;
 
@@ -53,6 +53,13 @@ namespace Comisariato.Formularios
             txtConsultarProveedor.Text = "";
 
             cargarDatos("1");
+
+            //cbPaisProveedor.SelectedIndex = 0;
+            cbProvinciaProveedor.SelectedValue = 9;
+            cbCantonProveedor.SelectedValue = 80;
+            cbParroquiaProveedor.SelectedValue = 41;
+            
+
         }
 
         private void FrmProveedores_Load(object sender, EventArgs e)
@@ -65,10 +72,10 @@ namespace Comisariato.Formularios
             consultas.BoolLlenarComboBox(cbPaisProveedor, "Select IDPAIS as ID, NOMBRE AS Texto from TbPais");
 
             //consul.boolLlenarDataGridView(dgvDatosProveedor, "");
-            for (int i = 0; i < 20; i++)
-            {
-                dgvDatosProveedor.Rows.Add();
-            }
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    dgvDatosProveedor.Rows.Add();
+            //}
             
             for (int i = 0; i < 3; i++)
             {
@@ -77,6 +84,7 @@ namespace Comisariato.Formularios
             }
             cargarDatos("1");
 
+            inicializarDatos();
             // Dimensionar lista combo
 
             cbPaisProveedor.DropDownHeight = cbPaisProveedor.ItemHeight = 150;
@@ -325,6 +333,39 @@ namespace Comisariato.Formularios
                     MessageBox.Show("Ingrese el RUC Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); txtNumeroIdentificacionProveedor.Focus();
                     txtNumeroIdentificacionProveedor.Select(0, txtNumeroIdentificacionProveedor.Text.Length);
                 }
+            }
+        }
+
+        private void dgvDatosProveedor_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex == 0 && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+                DataGridViewButtonCell bc = dgvDatosProveedor[0, e.RowIndex] as DataGridViewButtonCell;
+                bool x;
+                if (modificarProveedor.Tag == null)
+                {
+                    x = false;
+                }
+                else
+                {
+                    x = (bool)modificarProveedor.Tag;
+                }
+                if (x)
+                {
+                    Icon ico = new Icon("repair.ico");
+                    e.Graphics.DrawIcon(ico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
+                }
+                e.Handled = true;
+            }
+        }
+
+        private void dgvDatosProveedor_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                e.Value = "Repair";
+                e.FormattingApplied = true;
             }
         }
     }

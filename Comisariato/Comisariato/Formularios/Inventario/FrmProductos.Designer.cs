@@ -298,7 +298,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(240, 165);
+            this.btnCancelar.Location = new System.Drawing.Point(213, 165);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(107, 48);
             this.btnCancelar.TabIndex = 24;
@@ -311,7 +311,7 @@
             this.btnBuscarImagenProducto.Font = new System.Drawing.Font("Arial", 9.75F);
             this.btnBuscarImagenProducto.Image = global::Comisariato.Properties.Resources.buscar2;
             this.btnBuscarImagenProducto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscarImagenProducto.Location = new System.Drawing.Point(78, 165);
+            this.btnBuscarImagenProducto.Location = new System.Drawing.Point(51, 165);
             this.btnBuscarImagenProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnBuscarImagenProducto.Name = "btnBuscarImagenProducto";
             this.btnBuscarImagenProducto.Size = new System.Drawing.Size(102, 47);
@@ -325,7 +325,7 @@
             // 
             this.pbImagenProducto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbImagenProducto.Image = global::Comisariato.Properties.Resources.boxProducto;
-            this.pbImagenProducto.Location = new System.Drawing.Point(78, 19);
+            this.pbImagenProducto.Location = new System.Drawing.Point(81, 19);
             this.pbImagenProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pbImagenProducto.Name = "pbImagenProducto";
             this.pbImagenProducto.Size = new System.Drawing.Size(209, 139);
