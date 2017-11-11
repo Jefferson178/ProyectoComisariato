@@ -19,6 +19,8 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             InitializeComponent();
         }
 
+        public static string codigo;
+
         Consultas Objconsul;
         String GlobalCodigoBarra = "";
         bool bandera_Estado = false;
@@ -92,7 +94,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         cargarDatos("1");
                         if (Program.FormularioLlamado)
                         {
-                            Program.FormularioLlamado = false;
+                            FrmCompra.nombreProducto = txtNombreProducto.Text;
                             this.Close();
                         }
                     }
@@ -141,9 +143,11 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             cbUnidadMedidaProducto.SelectedIndex = 0;
             cbPeso.SelectedIndex = 0;
             inicializarDatos();
+            if (Program.FormularioLlamado)
+            {
+                txtCodigoBarraProducto.Text = codigo;
+            }
         }
-
-
 
         bool banderaCheckError = false;
 
