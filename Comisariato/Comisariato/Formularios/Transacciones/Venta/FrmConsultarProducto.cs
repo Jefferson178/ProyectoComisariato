@@ -24,14 +24,16 @@ namespace Comisariato.Formularios.Transacciones
         {
             txtconsultar.Focus();
             ObjConsul = new Consultas();
+
+            
             //ObjConsul.boolLlenarDataGridView(dgvProductos, "Select TbProducto.CODIGOBARRA AS CODIGO, TbProducto.DETALLE,TbProducto.CANTIDAD, TbProducto.PRECIOVENTAPUBLICO AS PRECIOPUBLICO, TbProducto.PRECIOVENTAMAYORISTA AS PRECIOMAY, TbProducto.PRECIOVENTACAJA AS PRECIOCAJA from TbProducto;");
-            ObjConsul.BoolCrearDateTable(dgvProductos, "Select TbProducto.CODIGOBARRA, TbProducto.DETALLE,TbProducto.CANTIDAD, TbProducto.PRECIOVENTAPUBLICO, TbProducto.PRECIOVENTAMAYORISTA, TbProducto.PRECIOVENTACAJA, TbProducto.IVAESTADO, TbProducto.IVA from TbProducto;");
+            ObjConsul.BoolCrearDateTable(dgvProductos, "Select  P.IVA as IVA, TbProducto.CODIGOBARRA, TbProducto.ACTIVO, TbProducto.NOMBREPRODUCTO AS DETALLE,TbProducto.CANTIDAD, TbProducto.PRECIOPUBLICO_SIN_IVA AS PRECIOVENTAPUBLICO, TbProducto.PRECIOALMAYOR_SIN_IVA AS PRECIOVENTAMAYORISTA, TbProducto.PRECIOPORCAJA_SIN_IVA AS PRECIOVENTACAJA, TbProducto.IVAESTADO from TbProducto , TbParametrosFactura P; ");
         }
 
         private void txtconsultar_TextChanged(object sender, EventArgs e)
         {
             ObjConsul = new Consultas();
-            ObjConsul.BoolCrearDateTable(dgvProductos, "Select TbProducto.CODIGOBARRA, TbProducto.DETALLE,TbProducto.CANTIDAD, TbProducto.PRECIOVENTAPUBLICO, TbProducto.PRECIOVENTAMAYORISTA, TbProducto.PRECIOVENTACAJA, TbProducto.IVAESTADO, TbProducto.IVA from TbProducto where DETALLE like '%" + txtconsultar.Text + "%' or CODIGOBARRA like '%" + txtconsultar.Text +"%';");
+            ObjConsul.BoolCrearDateTable(dgvProductos, "Select  P.IVA as IVA, TbProducto.CODIGOBARRA, TbProducto.ACTIVO, TbProducto.NOMBREPRODUCTO AS DETALLE,TbProducto.CANTIDAD, TbProducto.PRECIOPUBLICO_SIN_IVA AS PRECIOVENTAPUBLICO, TbProducto.PRECIOALMAYOR_SIN_IVA AS PRECIOVENTAMAYORISTA, TbProducto.PRECIOPORCAJA_SIN_IVA AS PRECIOVENTACAJA, TbProducto.IVAESTADO from TbProducto , TbParametrosFactura P where NOMBREPRODUCTO like '%" + txtconsultar.Text + "%' or CODIGOBARRA like '%" + txtconsultar.Text +"%';");
         }
 
         private void FrmConsultarProducto_KeyUp(object sender, KeyEventArgs e)
