@@ -531,7 +531,7 @@ namespace Comisariato.Formularios.Transacciones
                             if (MessageBox.Show("No existe un cliente registrado con la identificacion: " + txtIdentidicacion.Text + "\n¿Quieres registrarlo?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
                                FrmClientes f = new FrmClientes();
-                                f.ShowDialog();
+                               f.ShowDialog();
                             }
                             else
                             {
