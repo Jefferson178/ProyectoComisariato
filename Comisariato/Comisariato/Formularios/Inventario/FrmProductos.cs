@@ -472,7 +472,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         private void txtPVPConIVAProducto_KeyPress_1(object sender, KeyPressEventArgs e)
         {
             Funcion.SoloValores(e,txtPVPConIVAProducto);
-            txtPVPConIVAProducto.Select();
+            //txtPVPConIVAProducto.Select();
         }
 
         private void txtPrecioMayorConIVAProducto_KeyPress(object sender, KeyPressEventArgs e)
