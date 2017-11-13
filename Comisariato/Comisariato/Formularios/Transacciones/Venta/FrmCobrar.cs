@@ -592,7 +592,7 @@ namespace Comisariato.Formularios.Transacciones
             }
             else
             {
-                Funcion.SoloValores(e, txtEfectivo);
+                Funcion.SoloValores(e, txtEfectivo.Text);
             }
         }
 

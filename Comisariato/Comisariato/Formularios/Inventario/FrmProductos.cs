@@ -348,17 +348,17 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
 
         private void txtPVPSinIVAProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.SoloValores(e, txtPVPSinIVAProducto);
+            Funcion.SoloValores(e, txtPVPSinIVAProducto.Text);
         }
 
         private void txtPrecioMayorSinIVAProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.SoloValores(e, txtPrecioMayorSinIVAProducto);
+            Funcion.SoloValores(e, txtPrecioMayorSinIVAProducto.Text);
         }
 
         private void txtPrecioCajaSinIVAProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.SoloValores(e, txtPrecioCajaSinIVAProducto);
+            Funcion.SoloValores(e, txtPrecioCajaSinIVAProducto.Text);
         }
         
 
@@ -476,18 +476,18 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
 
         private void txtPVPConIVAProducto_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            Funcion.SoloValores(e,txtPVPConIVAProducto);
+            Funcion.SoloValores(e,txtPVPConIVAProducto.Text);
             //txtPVPConIVAProducto.Select();
         }
 
         private void txtPrecioMayorConIVAProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.SoloValores(e, txtPrecioMayorConIVAProducto);
+            Funcion.SoloValores(e, txtPrecioMayorConIVAProducto.Text);
         }
 
         private void txtPrecioCajaConIVAProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.SoloValores(e, txtPrecioCajaConIVAProducto);
+            Funcion.SoloValores(e, txtPrecioCajaConIVAProducto.Text);
         }
 
         private void txtStockMaximoProducto_Enter(object sender, EventArgs e)
