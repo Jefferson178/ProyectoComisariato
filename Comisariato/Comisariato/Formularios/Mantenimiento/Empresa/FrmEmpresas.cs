@@ -311,5 +311,19 @@ namespace Comisariato.Formularios
 
             pbfondoPantallaEmpresa.Image = Comisariato.Properties.Resources.contact;
         }
+
+        private void dgvDatosEmpresa_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex >= 0 && dgvDatosEmpresa.Columns[e.ColumnIndex].Name == "Modificar" && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+                DataGridViewButtonCell celBoton = dgvDatosEmpresa.Rows[e.RowIndex].Cells["Modificar"] as DataGridViewButtonCell;
+                Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\modificarDgv.ico");
+                e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
+                dgvDatosEmpresa.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
+                dgvDatosEmpresa.Columns[e.ColumnIndex].Width = icoAtomico.Width + 10;
+                e.Handled = true;
+            }
+        }
     }
 }

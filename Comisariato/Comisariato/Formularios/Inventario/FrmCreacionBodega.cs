@@ -43,12 +43,12 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             if (rbActivosBodega.Checked)
             {
                 cargarDatos("1");
-                dgvDatosBodega.Columns[1].HeaderText = "Desabilitar";
+                //dgvDatosBodega.Columns[1].HeaderText = "Desabilitar";
             }
             else if (rbInactivoBodega.Checked)
             {
                 cargarDatos("0");
-                dgvDatosBodega.Columns[1].HeaderText = "Habilitar";
+                //dgvDatosBodega.Columns[1].HeaderText = "Habilitar";
             }
         }
 
@@ -116,12 +116,12 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             if (rbActivosBodega.Checked)
             {
                 ObjConsul.boolLlenarDataGridView(dgvDatosBodega, "SELECT TbBodega.NOMBRE as DESCRIPCION, TbBodega.UBICACION, (TbEmpleado.APELLIDOS +' '+ TbEmpleado.NOMBRES) as NOMBRE from TbBodega INNER JOIN TbEmpleado ON (TbEmpleado.IDEMPLEADO=TbBodega.IDEMPLEADO) AND (TbEmpleado.NOMBRES != 'ADMINISTRADOR')  AND (TbBodega.Estado= 1) and TbBodega.NOMBRE like '%" + txtConsultarBodega.Text + "%';");
-                dgvDatosBodega.Columns[1].HeaderText = "Desabilitar";
+                //dgvDatosBodega.Columns[1].HeaderText = "Desabilitar";
             }
             else if (rbInactivoBodega.Checked)
             {
                 ObjConsul.boolLlenarDataGridView(dgvDatosBodega, "SELECT TbBodega.NOMBRE as DESCRIPCION, TbBodega.UBICACION, (TbEmpleado.APELLIDOS +' '+ TbEmpleado.NOMBRES) as NOMBRE from TbBodega INNER JOIN TbEmpleado ON (TbEmpleado.IDEMPLEADO=TbBodega.IDEMPLEADO) AND (TbEmpleado.NOMBRES != 'ADMINISTRADOR') AND (TbBodega.Estado= 0) and TbBodega.NOMBRE like '%" + txtConsultarBodega.Text + "%' ;");
-                dgvDatosBodega.Columns[1].HeaderText = "Habilitar";
+                //dgvDatosBodega.Columns[1].HeaderText = "Habilitar";
             }
         }
 
@@ -129,6 +129,11 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         {
             //Funcion.Limpiarobjetos(gbNuevaBodega);
             //Funcion.Limpiarobjetos(gbConsultarModificarDeshabilitarBodega);
+            inicializar();
+        }
+
+        public void inicializar()
+        {
             txtConsultarBodega.Text = "";
             txtDescripcionBodega.Text = "";
             txtUbicacionBodega.Text = "";
@@ -150,6 +155,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         MessageBox.Show("Bodega Correctamente Registrada", "Exito");
                         cargarDatos("1");
                         rbActivosBodega.Checked = true;
+                        inicializar();
                     }
                     else if (resultado == "Error al Registrar") { MessageBox.Show("Error al guardar la Bodega", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                     else if (resultado == "Existe") { MessageBox.Show("Ya Existe la Bodega", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }
@@ -163,6 +169,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         cargarDatos("1");
                         rbActivosBodega.Checked = true;
                         nombreBodega = "";
+                        inicializar();
                     }
                     else { MessageBox.Show("Error al modificar la Bodega", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                     bandera_Estado = false;
@@ -178,6 +185,49 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         private void TxtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.validar_Num_Letras(e);
+        }
+
+        private void dgvDatosBodega_CellPainting_1(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex >= 0 && dgvDatosBodega.Columns[e.ColumnIndex].Name == "modificarDatosBodega" && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+                DataGridViewButtonCell celBoton = dgvDatosBodega.Rows[e.RowIndex].Cells["modificarDatosBodega"] as DataGridViewButtonCell;
+                Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\modificarDgv.ico");
+                e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
+                dgvDatosBodega.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
+                dgvDatosBodega.Columns[e.ColumnIndex].Width = icoAtomico.Width + 10;
+                e.Handled = true;
+            }
+
+            if (rbInactivoBodega.Checked)
+            {
+                if (e.ColumnIndex >= 1 && this.dgvDatosBodega.Columns[e.ColumnIndex].Name == "DeshabilitarDatosBodega" && e.RowIndex >= 0)
+                {
+                    e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                    DataGridViewButtonCell celBoton = this.dgvDatosBodega.Rows[e.RowIndex].Cells["DeshabilitarDatosBodega"] as DataGridViewButtonCell;
+                    Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\Habilitar.ico");
+                    e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
+                    this.dgvDatosBodega.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
+                    this.dgvDatosBodega.Columns[e.ColumnIndex].Width = icoAtomico.Width + 10;
+                    e.Handled = true;
+                }
+            }
+            else
+            {
+                if (e.ColumnIndex >= 1 && this.dgvDatosBodega.Columns[e.ColumnIndex].Name == "DeshabilitarDatosBodega" && e.RowIndex >= 0)
+                {
+                    e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                    DataGridViewButtonCell celBoton = this.dgvDatosBodega.Rows[e.RowIndex].Cells["DeshabilitarDatosBodega"] as DataGridViewButtonCell;
+                    Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\EliminarDgv.ico");
+                    e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
+                    this.dgvDatosBodega.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
+                    this.dgvDatosBodega.Columns[e.ColumnIndex].Width = icoAtomico.Width + 10;
+                    e.Handled = true;
+                }
+            }
         }
     }
 }
