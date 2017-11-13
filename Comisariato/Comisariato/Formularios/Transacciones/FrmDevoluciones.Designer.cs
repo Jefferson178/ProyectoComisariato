@@ -81,6 +81,7 @@
             this.txtNumFact.Name = "txtNumFact";
             this.txtNumFact.Size = new System.Drawing.Size(168, 22);
             this.txtNumFact.TabIndex = 2;
+            this.txtNumFact.TextChanged += new System.EventHandler(this.txtNumFact_TextChanged);
             this.txtNumFact.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
             // groupBox1

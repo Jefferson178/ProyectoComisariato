@@ -24,6 +24,7 @@ namespace Comisariato.Formularios.Transacciones
         public DataGridView dg;
         Consultas c;
         public List<String> pedidos;
+        public List<String> ivas;
         public string subtotal, subtotaconiva, descuento, ivasuma, totalapagar;
         //private bool chequear;
         public FrmCobrar()
@@ -694,7 +695,7 @@ namespace Comisariato.Formularios.Transacciones
                     detallepago.Add(txtRecibido.Text);
                     detallepago.Add(txtCambio.Text);
 
-                    bool b = c.GuardarFact(totalfilas, dg, encabezadofact, detallepago);
+                    bool b = c.GuardarFact(totalfilas, dg, encabezadofact, detallepago,ivas);
                     if (b)
                     {
                         

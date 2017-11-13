@@ -24,6 +24,7 @@ namespace Comisariato.Formularios.Transacciones
         public int numfact=0;
         List<String> listatipo = new List<String>();
         List<String> pedidos = new List<String>();
+        List<String> Ivas = new List<String>();
         List<int> indezp = new List<int>();
         List<Producto> retencionfact;
         List<string> codigos;
@@ -138,6 +139,7 @@ namespace Comisariato.Formularios.Transacciones
                     {
                         dgvDetalleProductos.Rows.RemoveAt(fila);
                         codigos.RemoveAt(fila);
+                        Ivas.RemoveAt(fila);
                         if (codigos.Count>0)
                         {
                             Calcular();
@@ -173,7 +175,7 @@ namespace Comisariato.Formularios.Transacciones
                 {
                     if (DatosCliente.Count>0 && verificadorfrm==2)
                     {
-                        
+                        Producto = new Producto();
                         if (rdbPublico.Checked)
                         {
                             txtPrecio.Text = DatosCliente[3];
@@ -195,8 +197,9 @@ namespace Comisariato.Formularios.Transacciones
                         if (verificariva==1)
                         {
                             estadoiva = true;
+                            //Producto.Iva = Convert.ToInt32(DatosCliente[7]);
                             ivaporcentaje = Convert.ToInt32( DatosCliente[7]);
-
+                            Producto.Iva = ivaporcentaje;
                         }
                         else
                         {
@@ -379,7 +382,8 @@ namespace Comisariato.Formularios.Transacciones
             dgvDetalleProductos.Rows[fila].Cells[4].Value = txtPrecio.Text;
             dgvDetalleProductos.Rows[fila].Cells[5].Value = txtIvaPrecio.Text;
             dgvDetalleProductos.Rows[fila].Cells[6].Value = total;
-
+            Ivas.Add("" + Producto.Iva);
+            LimpiarTexbox();
         }
 
         private void LimpiarTexbox()
@@ -526,7 +530,7 @@ namespace Comisariato.Formularios.Transacciones
                         {
                             txtIdentidicacion.Focus();
                             comprobarmetodo = false;
-                            idcliente = 6;
+                            idcliente = 3;
                             //btnBuscar.Text = "Registrar";
                             if (MessageBox.Show("No existe un cliente registrado con la identificacion: " + txtIdentidicacion.Text + "\n¿Quieres registrarlo?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
@@ -697,6 +701,7 @@ namespace Comisariato.Formularios.Transacciones
                                 if (verificariva)
                                 {
                                     ivaporcentaje = Producto.Iva;
+                                    
 
                                 }
                                 else
@@ -823,6 +828,7 @@ namespace Comisariato.Formularios.Transacciones
 
                                     }
                                 }
+                               // Ivas.Add("" + Producto.Iva);
 
                             }
                             else
@@ -894,12 +900,12 @@ namespace Comisariato.Formularios.Transacciones
                 {
                     Funcion.Validar_Numeros(e);
                 }
-
+               // LimpiarTexbox();
             }
-            catch (Exception)
+            catch (Exception EX)
             {
 
-                // throw;
+                //MessageBox.Show(EX.Message);
             }
 
         }
@@ -1185,6 +1191,7 @@ namespace Comisariato.Formularios.Transacciones
                         else
                         {
                             txtCodigo.Focus();
+                            LimpiarTexbox();
                         }
                     }
                     
@@ -1290,6 +1297,7 @@ namespace Comisariato.Formularios.Transacciones
             frmcobrar.totalfilas = codigos.Count;
             ObtenerPedidos();
             frmcobrar.pedidos = pedidos;
+            frmcobrar.ivas = Ivas;
             frmcobrar.ShowDialog();
             //nuevafact();
         }
@@ -1301,7 +1309,8 @@ namespace Comisariato.Formularios.Transacciones
             if (factEspe!=1)
             {
                 numfact += 1;
-                DatosCliente.Clear();
+                //DatosCliente.Clear();
+                //Ivas.Clear();
             }
             
             txtNumFact.Text = numfact.ToString("D8");
@@ -1316,6 +1325,9 @@ namespace Comisariato.Formularios.Transacciones
             txtSubTotal.Text = "0.00";
             txtIva.Text = "0.00";
             codigos.Clear();
+            DatosCliente.Clear();
+            Ivas.Clear();
+
             btnFactEspera.Enabled = false;
             //btnEliminarFact.Enabled = false;
             factenter = 0;

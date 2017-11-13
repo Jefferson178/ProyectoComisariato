@@ -251,7 +251,7 @@ namespace Comisariato.Clases
                 return false;
             }
         }
-        public bool GuardarFact(int nfilas, DataGridView dg, List<string> encabezado, List<string> detallepago)
+        public bool GuardarFact(int nfilas, DataGridView dg, List<string> encabezado, List<string> detallepago, List<string> ivas)
         {
             try
             {
@@ -285,6 +285,7 @@ namespace Comisariato.Clases
                     cmd.Parameters.AddWithValue("@recibido", detalle[5]);
                     cmd.Parameters.AddWithValue("@cambio", detalle[6]);
                     cmd.Parameters.AddWithValue("@estado", 1);
+                    cmd.Parameters.AddWithValue("@ivat", ivas[i]);
                     result = cmd.ExecuteNonQuery();
                 }
 
@@ -467,7 +468,7 @@ namespace Comisariato.Clases
             {
                 List<Producto> lista = new List<Producto>();
                 Objc.conectar();
-                string sql = " SELECT U.PRECIO, U.CANTIDAD, U.CODIGOBARRAPRODUCTO, U.ESTADO, P.DETALLE, P.IVA from TbDetalleFactura U INNER JOIN TbProducto P  ON(U.NFACTURA = '" + nfact + "') AND(P.CODIGOBARRA = U.CODIGOBARRAPRODUCTO)";
+                string sql = " SELECT U.PRECIO, U.CANTIDAD, U.CODIGOBARRAPRODUCTO, U.ESTADO, U.IVA, P.NOMBREPRODUCTO, P.IVAESTADO from TbDetalleFactura U INNER JOIN TbProducto P  ON(U.NFACTURA = '" + nfact + "') AND(P.CODIGOBARRA = U.CODIGOBARRAPRODUCTO)";
                 SqlCommand comando = new SqlCommand(sql);
                 comando.Connection = ConexionBD.connection;
                 SqlDataReader dato = comando.ExecuteReader();
@@ -478,7 +479,7 @@ namespace Comisariato.Clases
                     p.Preciopublico_sin_iva = Convert.ToSingle(dato["PRECIO"].ToString());
                     p.Cantidad = Convert.ToInt32(dato["CANTIDAD"].ToString());
                     p.Codigobarra = (String)dato["CODIGOBARRAPRODUCTO"];
-                    p.Nombreproducto = (String)dato["DETALLE"];
+                    p.Nombreproducto = (String)dato["NOMBREPRODUCTO"];
                     p.Iva = Convert.ToInt32(dato["IVA"].ToString());
                     if (verimetodo == 1)
                     {
@@ -500,7 +501,7 @@ namespace Comisariato.Clases
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("Error al buscar cliente: " + ex);
+                MessageBox.Show("Error al buscar cliente: " + ex);
                 return null;
             }
         }
@@ -593,7 +594,7 @@ namespace Comisariato.Clases
                 Objc.Cerrar();
                 if (dato.Read() == true)
                 {
-                    return (String)dato["NOMBRES"] + " " + (String)dato["APELLIDOS"] + ";" + (String)dato["IDCLIENTE"];
+                    return (String)dato["NOMBRES"] + " " + (String)dato["APELLIDOS"] + ";" + dato["IDCLIENTE"];
                 }
                 else
                 {
@@ -606,6 +607,7 @@ namespace Comisariato.Clases
             }
             catch (Exception ex)
             {
+                MessageBox.Show(""+ex.Message);
                 return null;
             }
 

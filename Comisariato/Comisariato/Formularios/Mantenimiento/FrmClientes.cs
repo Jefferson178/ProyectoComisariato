@@ -1,4 +1,5 @@
 ﻿using Comisariato.Clases;
+using Comisariato.Formularios.Transacciones;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -193,6 +194,15 @@ namespace Comisariato.Formularios
                         InsertarOtraInfCliente(idcliente);
                         MessageBox.Show("Cliente Registrado Correctamente ", "Exito", MessageBoxButtons.OK);
                         rbtActivosCliente.Checked = true;
+
+                        if (FrmFactura.DatosCliente.Count > 0)
+                        {
+                            FrmFactura.DatosCliente.Clear();
+                        }
+                        FrmFactura.verificadorfrm = 0;
+                        FrmFactura.DatosCliente.Add(txtIdentificacionCliente.Text);
+                        FrmFactura.DatosCliente.Add(txtNombresCliente.Text.ToUpper() + " " + txtApellidosCliente.Text.ToUpper());
+                        this.Close();
                     }
                     else if (resultado == "Error al Registrar")
                     {

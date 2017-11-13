@@ -302,5 +302,9 @@ namespace Comisariato.Formularios.Transacciones.Devolucion_Venta
             txtSucursal.Focus();
         }
 
+        private void txtNumFact_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
