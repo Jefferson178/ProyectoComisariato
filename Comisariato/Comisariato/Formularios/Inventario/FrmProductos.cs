@@ -367,12 +367,12 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             if (rbtActivos.Checked)
             {
                 cargarDatos("1");
-                dgvDatosProducto.Columns[1].HeaderText = "Desabilitar";
+                //dgvDatosProducto.Columns[1].HeaderText = "Desabilitar";
             }
             else if (rbtInactivos.Checked)
             {
                 cargarDatos("0");
-                dgvDatosProducto.Columns[1].HeaderText = "Habilitar";
+                //dgvDatosProducto.Columns[1].HeaderText = "Habilitar";
             }
         }
 
@@ -523,6 +523,49 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         private void txtPrecioCajaConIVAProducto_Enter(object sender, EventArgs e)
         {
             txtPrecioCajaConIVAProducto.Select(0, txtPrecioCajaConIVAProducto.TextLength);
+        }
+
+        private void dgvDatosProducto_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex >= 0 && dgvDatosProducto.Columns[e.ColumnIndex].Name == "Modificar" && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+                DataGridViewButtonCell celBoton = dgvDatosProducto.Rows[e.RowIndex].Cells["Modificar"] as DataGridViewButtonCell;
+                Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\modificarDgv.ico");
+                e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
+                dgvDatosProducto.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
+                dgvDatosProducto.Columns[e.ColumnIndex].Width = icoAtomico.Width + 10;
+                e.Handled = true;
+            }
+
+            if (rbtInactivos.Checked)
+            {
+                if (e.ColumnIndex >= 1 && this.dgvDatosProducto.Columns[e.ColumnIndex].Name == "Deshabilitar" && e.RowIndex >= 0)
+                {
+                    e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                    DataGridViewButtonCell celBoton = this.dgvDatosProducto.Rows[e.RowIndex].Cells["Deshabilitar"] as DataGridViewButtonCell;
+                    Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\Habilitar.ico");
+                    e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
+                    this.dgvDatosProducto.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
+                    this.dgvDatosProducto.Columns[e.ColumnIndex].Width = icoAtomico.Width + 10;
+                    e.Handled = true;
+                }
+            }
+            else
+            {
+                if (e.ColumnIndex >= 1 && this.dgvDatosProducto.Columns[e.ColumnIndex].Name == "Deshabilitar" && e.RowIndex >= 0)
+                {
+                    e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                    DataGridViewButtonCell celBoton = this.dgvDatosProducto.Rows[e.RowIndex].Cells["Deshabilitar"] as DataGridViewButtonCell;
+                    Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\EliminarDgv.ico");
+                    e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
+                    this.dgvDatosProducto.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
+                    this.dgvDatosProducto.Columns[e.ColumnIndex].Width = icoAtomico.Width + 10;
+                    e.Handled = true;
+                }
+            }
         }
     }
 }

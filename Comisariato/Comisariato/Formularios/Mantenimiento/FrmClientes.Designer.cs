@@ -121,12 +121,12 @@
             this.label18 = new System.Windows.Forms.Label();
             this.tpConsultarModificarCliente = new System.Windows.Forms.TabPage();
             this.dgvDatosCliente = new System.Windows.Forms.DataGridView();
-            this.modificarCliente = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.DeshabilitarCliente = new System.Windows.Forms.DataGridViewButtonColumn();
             this.rbtInactivosCliente = new System.Windows.Forms.RadioButton();
             this.rbtActivosCliente = new System.Windows.Forms.RadioButton();
             this.txtConsultarCliente = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
+            this.modificarCliente = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.DeshabilitarCliente = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tcCliente.SuspendLayout();
             this.tpNuevoCliente.SuspendLayout();
             this.gbDatosPersonalesClientes.SuspendLayout();
@@ -1283,24 +1283,11 @@
             this.DeshabilitarCliente});
             this.dgvDatosCliente.Location = new System.Drawing.Point(16, 86);
             this.dgvDatosCliente.Name = "dgvDatosCliente";
+            this.dgvDatosCliente.ReadOnly = true;
             this.dgvDatosCliente.Size = new System.Drawing.Size(1011, 460);
             this.dgvDatosCliente.TabIndex = 10;
             this.dgvDatosCliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosCliente_CellClick);
-            // 
-            // modificarCliente
-            // 
-            this.modificarCliente.Frozen = true;
-            this.modificarCliente.HeaderText = "Modificar";
-            this.modificarCliente.Name = "modificarCliente";
-            this.modificarCliente.Text = "";
-            this.modificarCliente.Width = 73;
-            // 
-            // DeshabilitarCliente
-            // 
-            this.DeshabilitarCliente.Frozen = true;
-            this.DeshabilitarCliente.HeaderText = "Desabilitar";
-            this.DeshabilitarCliente.Name = "DeshabilitarCliente";
-            this.DeshabilitarCliente.Width = 82;
+            this.dgvDatosCliente.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvDatosCliente_CellPainting);
             // 
             // rbtInactivosCliente
             // 
@@ -1351,13 +1338,30 @@
             this.label25.TabIndex = 4;
             this.label25.Text = "Consultar:";
             // 
+            // modificarCliente
+            // 
+            this.modificarCliente.Frozen = true;
+            this.modificarCliente.HeaderText = "";
+            this.modificarCliente.Name = "modificarCliente";
+            this.modificarCliente.ReadOnly = true;
+            this.modificarCliente.Text = "";
+            this.modificarCliente.Width = 5;
+            // 
+            // DeshabilitarCliente
+            // 
+            this.DeshabilitarCliente.Frozen = true;
+            this.DeshabilitarCliente.HeaderText = "";
+            this.DeshabilitarCliente.Name = "DeshabilitarCliente";
+            this.DeshabilitarCliente.ReadOnly = true;
+            this.DeshabilitarCliente.Width = 5;
+            // 
             // FrmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(1089, 589);
+            this.ClientSize = new System.Drawing.Size(1089, 588);
             this.Controls.Add(this.tcCliente);
             this.Font = new System.Drawing.Font("Arial", 10F);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -1489,8 +1493,8 @@
         private System.Windows.Forms.TextBox txtCelular1Cliente;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewButtonColumn modificarCliente;
         private System.Windows.Forms.DataGridViewButtonColumn DeshabilitarCliente;
-        private System.Windows.Forms.Button button1;
     }
 }
