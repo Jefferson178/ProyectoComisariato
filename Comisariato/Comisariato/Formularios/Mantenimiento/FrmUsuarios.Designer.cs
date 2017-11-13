@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcUsuario = new System.Windows.Forms.TabControl();
             this.tpNuevoUsuario = new System.Windows.Forms.TabPage();
             this.btnLimpiarProveedor = new System.Windows.Forms.Button();
@@ -49,17 +49,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnGuardarUsuario = new System.Windows.Forms.Button();
             this.tpConsultarModificarUsuario = new System.Windows.Forms.TabPage();
+            this.rbtInactivos = new System.Windows.Forms.RadioButton();
+            this.rbtActivos = new System.Windows.Forms.RadioButton();
             this.dgvDatosUsuario = new System.Windows.Forms.DataGridView();
             this.txtConsultarUsuario = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Deshabilitar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.usuarioUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contraseñaUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.facturaUsuario = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.empresaUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rbtInactivos = new System.Windows.Forms.RadioButton();
-            this.rbtActivos = new System.Windows.Forms.RadioButton();
             this.tcUsuario.SuspendLayout();
             this.tpNuevoUsuario.SuspendLayout();
             this.gbDatosUsuario.SuspendLayout();
@@ -246,6 +242,7 @@
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(133, 22);
             this.txtUsuario.TabIndex = 5;
+            this.txtUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUsuario_KeyPress);
             // 
             // cbPersonaUsuario
             // 
@@ -322,6 +319,34 @@
             this.tpConsultarModificarUsuario.TabIndex = 1;
             this.tpConsultarModificarUsuario.Text = "Consultar - Modificar Usuario";
             // 
+            // rbtInactivos
+            // 
+            this.rbtInactivos.AutoSize = true;
+            this.rbtInactivos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtInactivos.ForeColor = System.Drawing.Color.Teal;
+            this.rbtInactivos.Location = new System.Drawing.Point(329, 52);
+            this.rbtInactivos.Name = "rbtInactivos";
+            this.rbtInactivos.Size = new System.Drawing.Size(79, 20);
+            this.rbtInactivos.TabIndex = 15;
+            this.rbtInactivos.Text = "Inactivos";
+            this.rbtInactivos.UseVisualStyleBackColor = true;
+            this.rbtInactivos.CheckedChanged += new System.EventHandler(this.rbtActivos_CheckedChanged);
+            // 
+            // rbtActivos
+            // 
+            this.rbtActivos.AutoSize = true;
+            this.rbtActivos.Checked = true;
+            this.rbtActivos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtActivos.ForeColor = System.Drawing.Color.Teal;
+            this.rbtActivos.Location = new System.Drawing.Point(241, 52);
+            this.rbtActivos.Name = "rbtActivos";
+            this.rbtActivos.Size = new System.Drawing.Size(70, 20);
+            this.rbtActivos.TabIndex = 14;
+            this.rbtActivos.TabStop = true;
+            this.rbtActivos.Text = "Activos";
+            this.rbtActivos.UseVisualStyleBackColor = true;
+            this.rbtActivos.CheckedChanged += new System.EventHandler(this.rbtActivos_CheckedChanged);
+            // 
             // dgvDatosUsuario
             // 
             this.dgvDatosUsuario.AllowUserToAddRows = false;
@@ -329,28 +354,25 @@
             this.dgvDatosUsuario.AllowUserToOrderColumns = true;
             this.dgvDatosUsuario.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDatosUsuario.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosUsuario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosUsuario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvDatosUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosUsuario.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Modificar,
-            this.Deshabilitar,
-            this.usuarioUsuario,
-            this.contraseñaUsuario,
-            this.facturaUsuario,
-            this.empresaUsuario});
+            this.Deshabilitar});
             this.dgvDatosUsuario.Location = new System.Drawing.Point(18, 82);
             this.dgvDatosUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.dgvDatosUsuario.Name = "dgvDatosUsuario";
             this.dgvDatosUsuario.ReadOnly = true;
             this.dgvDatosUsuario.Size = new System.Drawing.Size(586, 289);
             this.dgvDatosUsuario.TabIndex = 2;
+            this.dgvDatosUsuario.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosUsuario_CellClick);
             this.dgvDatosUsuario.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvDatosUsuario_CellPainting);
             // 
             // txtConsultarUsuario
@@ -361,6 +383,7 @@
             this.txtConsultarUsuario.Name = "txtConsultarUsuario";
             this.txtConsultarUsuario.Size = new System.Drawing.Size(325, 22);
             this.txtConsultarUsuario.TabIndex = 1;
+            this.txtConsultarUsuario.TextChanged += new System.EventHandler(this.txtConsultarUsuario_TextChanged);
             // 
             // label4
             // 
@@ -385,65 +408,13 @@
             this.Deshabilitar.Name = "Deshabilitar";
             this.Deshabilitar.ReadOnly = true;
             // 
-            // usuarioUsuario
-            // 
-            this.usuarioUsuario.HeaderText = "Usuario";
-            this.usuarioUsuario.Name = "usuarioUsuario";
-            this.usuarioUsuario.ReadOnly = true;
-            // 
-            // contraseñaUsuario
-            // 
-            this.contraseñaUsuario.HeaderText = "Contraseña";
-            this.contraseñaUsuario.Name = "contraseñaUsuario";
-            this.contraseñaUsuario.ReadOnly = true;
-            // 
-            // facturaUsuario
-            // 
-            this.facturaUsuario.HeaderText = "Factura";
-            this.facturaUsuario.Name = "facturaUsuario";
-            this.facturaUsuario.ReadOnly = true;
-            // 
-            // empresaUsuario
-            // 
-            this.empresaUsuario.HeaderText = "Empresas";
-            this.empresaUsuario.Name = "empresaUsuario";
-            this.empresaUsuario.ReadOnly = true;
-            this.empresaUsuario.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.empresaUsuario.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // rbtInactivos
-            // 
-            this.rbtInactivos.AutoSize = true;
-            this.rbtInactivos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtInactivos.ForeColor = System.Drawing.Color.Teal;
-            this.rbtInactivos.Location = new System.Drawing.Point(329, 52);
-            this.rbtInactivos.Name = "rbtInactivos";
-            this.rbtInactivos.Size = new System.Drawing.Size(79, 20);
-            this.rbtInactivos.TabIndex = 15;
-            this.rbtInactivos.Text = "Inactivos";
-            this.rbtInactivos.UseVisualStyleBackColor = true;
-            // 
-            // rbtActivos
-            // 
-            this.rbtActivos.AutoSize = true;
-            this.rbtActivos.Checked = true;
-            this.rbtActivos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtActivos.ForeColor = System.Drawing.Color.Teal;
-            this.rbtActivos.Location = new System.Drawing.Point(241, 52);
-            this.rbtActivos.Name = "rbtActivos";
-            this.rbtActivos.Size = new System.Drawing.Size(70, 20);
-            this.rbtActivos.TabIndex = 14;
-            this.rbtActivos.TabStop = true;
-            this.rbtActivos.Text = "Activos";
-            this.rbtActivos.UseVisualStyleBackColor = true;
-            // 
             // FrmUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(647, 443);
+            this.ClientSize = new System.Drawing.Size(647, 444);
             this.Controls.Add(this.tcUsuario);
             this.Font = new System.Drawing.Font("Arial", 9.75F);
             this.ForeColor = System.Drawing.Color.Teal;
@@ -491,13 +462,9 @@
         private System.Windows.Forms.CheckBox ckMostrarContra;
         private System.Windows.Forms.ComboBox cbTipoUsuario;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridViewButtonColumn Modificar;
-        private System.Windows.Forms.DataGridViewButtonColumn Deshabilitar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn usuarioUsuario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn contraseñaUsuario;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn facturaUsuario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn empresaUsuario;
         private System.Windows.Forms.RadioButton rbtInactivos;
         private System.Windows.Forms.RadioButton rbtActivos;
+        private System.Windows.Forms.DataGridViewButtonColumn Modificar;
+        private System.Windows.Forms.DataGridViewButtonColumn Deshabilitar;
     }
 }
