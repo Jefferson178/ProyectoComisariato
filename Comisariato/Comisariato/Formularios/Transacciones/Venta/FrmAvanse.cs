@@ -23,7 +23,7 @@ namespace Comisariato.Formularios.Transacciones
             }
             else
             {
-                Funcion.SoloValores(e, txtDinero);
+                Funcion.SoloValores(e, txtDinero.Text);
             }
         }
 

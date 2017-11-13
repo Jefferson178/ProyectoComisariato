@@ -25,6 +25,9 @@ namespace Comisariato.Clases
         float subtotal0;
         float subtotal;
         float total;
+        string serie1;
+        string serie2;
+        string numero;
 
         public string OrdenCompra
         {
@@ -223,12 +226,51 @@ namespace Comisariato.Clases
             }
         }
 
+        public string Serie1
+        {
+            get
+            {
+                return serie1;
+            }
+
+            set
+            {
+                serie1 = value;
+            }
+        }
+
+        public string Serie2
+        {
+            get
+            {
+                return serie2;
+            }
+
+            set
+            {
+                serie2 = value;
+            }
+        }
+
+        public string Numero
+        {
+            get
+            {
+                return numero;
+            }
+
+            set
+            {
+                numero = value;
+            }
+        }
+
         Consultas ObjConsulta;
         public EmcabezadoCompra()
         {
 
         }
-        public EmcabezadoCompra(float subtotalIva,float subtotal0,float subtotal,float total, string ordenCompra, int sucursal, float flete, DateTime fechaOrdenCompra, int proveedor, string terminoPago, string plazo, string impuesto, string observacion, float iva, float ice, float irbp)
+        public EmcabezadoCompra(string serie1, string serie2, string numero, float subtotalIva,float subtotal0,float subtotal,float total, string ordenCompra, int sucursal, float flete, DateTime fechaOrdenCompra, int proveedor, string terminoPago, string plazo, string impuesto, string observacion, float iva, float ice, float irbp)
         {
             this.OrdenCompra = ordenCompra;
             this.Sucursal = sucursal;
@@ -246,6 +288,9 @@ namespace Comisariato.Clases
             this.Subtotal0 = subtotal0;
             this.Subtotal = subtotal;
             this.Total = total;
+            this.Serie1 = serie1;
+            this.Serie2 = serie2;
+            this.Numero = numero;
         }
         
         public string InsertarEncabezadoyPieCompra(EmcabezadoCompra objEncabezadoCompra)

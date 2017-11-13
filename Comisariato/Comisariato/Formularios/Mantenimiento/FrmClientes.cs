@@ -112,17 +112,17 @@ namespace Comisariato.Formularios
 
         private void txtCreditoAsignadoCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.SoloValores(e, txtCreditoAsignadoCliente);
+            Funcion.SoloValores(e, txtCreditoAsignadoCliente.Text);
         }
 
         private void txtCupoCreditoCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.SoloValores(e, txtCupoCreditoCliente);
+            Funcion.SoloValores(e, txtCupoCreditoCliente.Text);
         }
 
         private void txtDescuentoCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.SoloValores(e, txtDescuentoCliente);
+            Funcion.SoloValores(e, txtDescuentoCliente.Text);
         }
 
         public string obtenerCategoriaChequeada()
