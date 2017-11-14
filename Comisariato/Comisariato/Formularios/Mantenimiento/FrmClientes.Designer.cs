@@ -120,11 +120,11 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.tpConsultarModificarCliente = new System.Windows.Forms.TabPage();
-            this.dgvDatosCliente = new System.Windows.Forms.DataGridView();
             this.rbtInactivosCliente = new System.Windows.Forms.RadioButton();
             this.rbtActivosCliente = new System.Windows.Forms.RadioButton();
             this.txtConsultarCliente = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
+            this.dgvDatosCliente = new System.Windows.Forms.DataGridView();
             this.modificarCliente = new System.Windows.Forms.DataGridViewButtonColumn();
             this.DeshabilitarCliente = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tcCliente.SuspendLayout();
@@ -1262,33 +1262,6 @@
             this.tpConsultarModificarCliente.TabIndex = 1;
             this.tpConsultarModificarCliente.Text = "Consultar - Modificar Cliente";
             // 
-            // dgvDatosCliente
-            // 
-            this.dgvDatosCliente.AllowUserToAddRows = false;
-            this.dgvDatosCliente.AllowUserToDeleteRows = false;
-            this.dgvDatosCliente.AllowUserToOrderColumns = true;
-            this.dgvDatosCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvDatosCliente.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvDatosCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDatosCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.modificarCliente,
-            this.DeshabilitarCliente});
-            this.dgvDatosCliente.Location = new System.Drawing.Point(16, 86);
-            this.dgvDatosCliente.Name = "dgvDatosCliente";
-            this.dgvDatosCliente.ReadOnly = true;
-            this.dgvDatosCliente.Size = new System.Drawing.Size(1011, 460);
-            this.dgvDatosCliente.TabIndex = 10;
-            this.dgvDatosCliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosCliente_CellClick);
-            this.dgvDatosCliente.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvDatosCliente_CellPainting);
-            // 
             // rbtInactivosCliente
             // 
             this.rbtInactivosCliente.AutoSize = true;
@@ -1338,22 +1311,48 @@
             this.label25.TabIndex = 4;
             this.label25.Text = "Consultar:";
             // 
+            // dgvDatosCliente
+            // 
+            this.dgvDatosCliente.AllowUserToAddRows = false;
+            this.dgvDatosCliente.AllowUserToDeleteRows = false;
+            this.dgvDatosCliente.AllowUserToOrderColumns = true;
+            this.dgvDatosCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvDatosCliente.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvDatosCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDatosCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.modificarCliente,
+            this.DeshabilitarCliente});
+            this.dgvDatosCliente.Location = new System.Drawing.Point(16, 86);
+            this.dgvDatosCliente.Name = "dgvDatosCliente";
+            this.dgvDatosCliente.ReadOnly = true;
+            this.dgvDatosCliente.Size = new System.Drawing.Size(1011, 460);
+            this.dgvDatosCliente.TabIndex = 10;
+            this.dgvDatosCliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosCliente_CellClick);
+            this.dgvDatosCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosCliente_CellContentClick);
+            this.dgvDatosCliente.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvDatosCliente_CellPainting);
+            // 
             // modificarCliente
             // 
-            this.modificarCliente.Frozen = true;
+            this.modificarCliente.FillWeight = 105F;
             this.modificarCliente.HeaderText = "";
             this.modificarCliente.Name = "modificarCliente";
             this.modificarCliente.ReadOnly = true;
             this.modificarCliente.Text = "";
-            this.modificarCliente.Width = 5;
             // 
             // DeshabilitarCliente
             // 
-            this.DeshabilitarCliente.Frozen = true;
+            this.DeshabilitarCliente.FillWeight = 105F;
             this.DeshabilitarCliente.HeaderText = "";
             this.DeshabilitarCliente.Name = "DeshabilitarCliente";
             this.DeshabilitarCliente.ReadOnly = true;
-            this.DeshabilitarCliente.Width = 5;
             // 
             // FrmClientes
             // 
@@ -1361,7 +1360,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(1089, 588);
+            this.ClientSize = new System.Drawing.Size(1089, 589);
             this.Controls.Add(this.tcCliente);
             this.Font = new System.Drawing.Font("Arial", 10F);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -1476,7 +1475,6 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.RadioButton rbtInactivosCliente;
         private System.Windows.Forms.RadioButton rbtActivosCliente;
-        private System.Windows.Forms.DataGridView dgvDatosCliente;
         private System.Windows.Forms.TextBox txtIdentificacionGerenteGeneralCliente;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtIdentificacionRepresentanteLegalCliente;
@@ -1494,6 +1492,7 @@
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridView dgvDatosCliente;
         private System.Windows.Forms.DataGridViewButtonColumn modificarCliente;
         private System.Windows.Forms.DataGridViewButtonColumn DeshabilitarCliente;
     }

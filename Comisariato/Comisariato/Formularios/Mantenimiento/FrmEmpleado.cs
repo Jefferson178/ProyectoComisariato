@@ -125,17 +125,17 @@ namespace Comisariato.Formularios.Mantenimiento
 
         private void TxtMovimientoQuincenal_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.SoloValores(e,TxtMovimientoQuincenal);
+            Funcion.SoloValores(e,TxtMovimientoQuincenal.Text);
         }
 
         private void TxtSueldoExtra_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.SoloValores(e, TxtSueldoExtra);
+            Funcion.SoloValores(e, TxtSueldoExtra.Text);
         }
 
         private void TxtSueldoMensual_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.SoloValores(e, TxtSueldoMensual);
+            Funcion.SoloValores(e, TxtSueldoMensual.Text);
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)

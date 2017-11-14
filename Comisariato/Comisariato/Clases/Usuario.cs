@@ -14,19 +14,21 @@ namespace Comisariato.Clases
         string password;
         int tipoUsario;
         int idEmpresa;
+        bool factura;
 
 
         public Usuario()
         {
         }
 
-        public Usuario(int idEmpleado, string usuarioname, string password, int tipoUsario, int idEmpresa)
+        public Usuario(int idEmpleado, string usuarioname, string password, int tipoUsario, int idEmpresa, bool factura)
         {
             this.idEmpleado = idEmpleado;
             this.Usuarioname = usuarioname;
             this.password = password;
             this.tipoUsario = tipoUsario;
             this.idEmpresa = idEmpresa;
+            this.Factura = factura;
         }
 
         public int IdEmpleado
@@ -95,7 +97,18 @@ namespace Comisariato.Clases
             }
         }
 
+        public bool Factura
+        {
+            get
+            {
+                return factura;
+            }
 
+            set
+            {
+                factura = value;
+            }
+        }
 
         public string InsertarUsuario()
         {
@@ -103,8 +116,8 @@ namespace Comisariato.Clases
 
             if (!ObjConsulta.Existe("USUARIO", usuarioname, "TbUsuario"))
             {
-                if (ObjConsulta.EjecutarSQL("INSERT INTO [dbo].[TbUsuario]  ([IDEMPLEADO] ,[USUARIO]   ,[CONTRASEÑA] ,[IDTIPOUSUARIO],[IDEMPRESA],[ACTIVO])"
-                        + "VALUES(" + idEmpleado + ",'" + usuarioname + "','" + password + "'," + tipoUsario + "," + idEmpresa + " )")) 
+                if (ObjConsulta.EjecutarSQL("INSERT INTO [dbo].[TbUsuario]  ([IDEMPLEADO] ,[USUARIO] ,[CONTRASEÑA] ,[IDTIPOUSUARIO],[IDEMPRESA],[ACTIVO],[FACTURA])"
+                        + "VALUES(" + idEmpleado + ",'" + usuarioname + "','" + password + "'," + tipoUsario + "," + idEmpresa + " ,1,'"+factura+"')")) 
                 {
                     return "Datos Guardados";
                 }
@@ -117,25 +130,25 @@ namespace Comisariato.Clases
         {
             ObjConsulta = new Consultas();
 
-            if (ObjConsulta.EjecutarSQL("UPDATE [dbo].[TbUsuario] SET[IDEMPLEADO] = "+idEmpleado+",[USUARIO] = '"+usuarioname+"' ,[CONTRASEÑA] = '"+password+"' ,[IDTIPOUSUARIO] = "+tipoUsario+" ,[IDEMPRESA] = "+idEmpresa+",[ACTIVO] = 1 WHERE IDUSUARIO = "+ idusuario + ""))
+            if (ObjConsulta.EjecutarSQL("UPDATE [dbo].[TbUsuario] SET[IDEMPLEADO] = "+idEmpleado+",[USUARIO] = '"+usuarioname+"' ,[CONTRASEÑA] = '"+password+"' ,[IDTIPOUSUARIO] = "+tipoUsario+" ,[IDEMPRESA] = "+idEmpresa+ ",[ACTIVO] = 1, [FACTURA] = '"+factura+"' WHERE IDUSUARIO = " + idusuario + ""))
             {
                 return "Correcto";
             }
             else { return "Error al Modificar"; }
         }
 
-        public string EstadoUsuario(string usuarioname, int estado)
+        public string EstadoUsuario(string usuarioID, int estado)
         {
             ObjConsulta = new Consultas();
             if (estado == 1)
-                if (ObjConsulta.EjecutarSQL("UPDATE TbUsuario SET ACTIVO = 1 WHERE USUARIO = '" + usuarioname + "'"))
+                if (ObjConsulta.EjecutarSQL("UPDATE TbUsuario SET ACTIVO = 1 WHERE IDUSUARIO = '" + usuarioID + "'"))
                 {
                     return "Habilitado";
                 }
                 else { return "Error"; }
             else if (estado == 2)
             {
-                if (ObjConsulta.EjecutarSQL("UPDATE TbUsuario SET ACTIVO = 0 WHERE USUARIO = '" + usuarioname + "'"))
+                if (ObjConsulta.EjecutarSQL("UPDATE TbUsuario SET ACTIVO = 0 WHERE IDUSUARIO = '" + usuarioID + "'"))
                 {
                     return "Correcto";
                 }

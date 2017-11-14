@@ -30,7 +30,7 @@ namespace Comisariato.Formularios
             inicializarDatos();
         }
 
-        
+
 
         private void ckMostrarContra_CheckedChanged(object sender, EventArgs e)
         {
@@ -39,7 +39,9 @@ namespace Comisariato.Formularios
             {
                 txtContraseñaUsuario.UseSystemPasswordChar = false;
                 txtContraseñaUsuario.Text = text;
-            }else {
+            }
+            else
+            {
                 txtContraseñaUsuario.UseSystemPasswordChar = true;
                 txtContraseñaUsuario.Text = text;
             }
@@ -47,6 +49,10 @@ namespace Comisariato.Formularios
 
         public void inicializarDatos()
         {
+            for (int i = 0; i < CheckListBEmpresas.Items.Count; i++)
+            {
+                CheckListBEmpresas.SetItemChecked(i, false);
+            }
             txtConsultarUsuario.Text = "";
             TxtConfirmarContraUsuario.Text = "";
             txtContraseñaUsuario.Text = "";
@@ -56,13 +62,21 @@ namespace Comisariato.Formularios
                 cbPersonaUsuario.SelectedIndex = 0;
             }
             objConsul.BoolLlenarCheckListBox(CheckListBEmpresas, "Select IDEMPRESA as ID, NOMBRE as 'Texto' from TbEmpresa;");
-            objConsul.BoolLlenarComboBox(cbPersonaUsuario, "Select IDEMPLEADO as ID,(E.APELLIDOS +' '+ E.NOMBRES) as Texto from TbEmpleado E  WHERE (E.NOMBRES != 'ADMINISTRADOR');");
+            objConsul.BoolLlenarComboBox(cbPersonaUsuario, "Select IDEMPLEADO as ID,(E.APELLIDOS +' '+ E.NOMBRES) as Texto from TbEmpleado E  ;");/*WHERE (E.NOMBRES != 'ADMINISTRADOR')*/
             objConsul.BoolLlenarComboBox(cbTipoUsuario, "Select IDTIPOUSUARIO as ID,TIPO as Texto from TbTipousuario;");
             ckbFacturaUsuario.Checked = false;
             ckMostrarContra.Checked = false;
             cbPersonaUsuario.DropDownHeight = cbPersonaUsuario.ItemHeight = 150;
             cbTipoUsuario.DropDownHeight = cbTipoUsuario.ItemHeight = 150;
+            cargarDatos("1");
 
+
+        }
+
+        private void cargarDatos(string condicion)
+        {
+            objConsul.boolLlenarDataGridView(dgvDatosUsuario, "Select IDUSUARIO as ID, USUARIO,CONTRASEÑA,FACTURA, E.NOMBRE from TbUsuario U, TbEmpresa E where U.IDEMPRESA= E.IDEMPRESA AND ACTIVO = '" + condicion + "';");
+            dgvDatosUsuario.Columns["ID"].Visible = false;
         }
 
         private void btnGuardarUsuario_Click(object sender, EventArgs e)
@@ -71,17 +85,19 @@ namespace Comisariato.Formularios
             {
                 if (txtContraseñaUsuario.Text == TxtConfirmarContraUsuario.Text)
                 {
-                    Usuario ObjUsuario = new Usuario(Convert.ToInt32(cbPersonaUsuario.SelectedValue), txtUsuario.Text, txtContraseñaUsuario.Text, Convert.ToInt32(cbTipoUsuario.SelectedValue), Convert.ToInt32(CheckListBEmpresas.SelectedValue));
-
-                    String resultado = ObjUsuario.InsertarUsuario(); // retorna true si esta correcto todo
-                    if (resultado == "Datos Guardados")
+                    Usuario ObjUsuario = new Usuario(Convert.ToInt32(cbPersonaUsuario.SelectedValue), txtUsuario.Text, txtContraseñaUsuario.Text, Convert.ToInt32(cbTipoUsuario.SelectedValue), Convert.ToInt32(CheckListBEmpresas.SelectedValue), ckbFacturaUsuario.Checked);
+                    if (!bandera_Estado)
                     {
-                        MessageBox.Show("Usuario Registrado Correctamente ", "Exito", MessageBoxButtons.OK);
-                        //rbtActivosEmpleado.Checked = true;
-                        inicializarDatos();
+                        String resultado = ObjUsuario.InsertarUsuario(); // retorna true si esta correcto todo
+                        if (resultado == "Datos Guardados")
+                        {
+                            MessageBox.Show("Usuario Registrado Correctamente ", "Exito", MessageBoxButtons.OK);
+                            rbtActivos.Checked = true;
+                            inicializarDatos();
+                        }
+                        else if (resultado == "Error al Registrar") { MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                        else if (resultado == "Existe") { MessageBox.Show("Ya Existe el Nombre de Usuario", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }
                     }
-                    else if (resultado == "Error al Registrar") { MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-                    else if (resultado == "Existe") { MessageBox.Show("Ya Existe el Nombre de Usuario", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }
                     else if (bandera_Estado) // Para identificar si se va modificar
                     {
 
@@ -89,7 +105,7 @@ namespace Comisariato.Formularios
                         if (Resultado == "Correcto")
                         {
                             MessageBox.Show("Usuario Actualizado", "Exito");
-                            //rbtActivosEmpleado.Checked = true;
+                            rbtActivos.Checked = true;
                             GlovalIDUsuario = "";
                         }
                         else { MessageBox.Show("Error al actualizar Usuario", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
@@ -158,6 +174,97 @@ namespace Comisariato.Formularios
                     e.Handled = true;
                 }
             }
+        }
+
+        private void dgvDatosUsuario_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Usuario ObjUsuario = new Usuario();
+            if (rbtActivos.Checked)
+            {
+                if (this.dgvDatosUsuario.Columns[e.ColumnIndex].Name == "Deshabilitar")
+                {
+                    ObjUsuario.EstadoUsuario(dgvDatosUsuario.CurrentRow.Cells[2].Value.ToString(), 2);
+                    cargarDatos("1");
+                }
+            }
+            else if (rbtInactivos.Checked)
+            {
+                if (this.dgvDatosUsuario.Columns[e.ColumnIndex].Name == "Deshabilitar")
+                {
+                    ObjUsuario.EstadoUsuario(dgvDatosUsuario.CurrentRow.Cells[2].Value.ToString(), 1);
+                    cargarDatos("0");
+                }
+            }
+
+            if (this.dgvDatosUsuario.Columns[e.ColumnIndex].Name == "Modificar")
+            {
+                GlovalIDUsuario = dgvDatosUsuario.CurrentRow.Cells[2].Value.ToString();
+                tcUsuario.SelectedIndex = 0;
+                bandera_Estado = true;
+                //Llenar el DataTable
+                DataTable dt = objConsul.BoolDataTable("Select * from TbUsuario where IDUSUARIO = " + GlovalIDUsuario + "");
+                //Verificar si tiene Datos
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow myRow = dt.Rows[0];
+
+
+                    cbPersonaUsuario.SelectedValue = Convert.ToInt32(myRow["IDEMPLEADO"]);
+                    int indexUSUARIO = cbPersonaUsuario.SelectedIndex;
+                    cbPersonaUsuario.SelectedIndex = indexUSUARIO;
+
+                    cbTipoUsuario.SelectedValue = Convert.ToInt32(myRow["IDTIPOUSUARIO"]);
+                    int indexTIPOUSUARIO = cbTipoUsuario.SelectedIndex;
+                    cbTipoUsuario.SelectedIndex = indexTIPOUSUARIO;
+
+                    CheckListBEmpresas.SelectedValue = Convert.ToInt32(myRow["IDEMPRESA"]);
+                    int indexIDEMPRESA = CheckListBEmpresas.SelectedIndex;
+                    CheckListBEmpresas.SetItemChecked(indexIDEMPRESA, true);
+
+                    txtUsuario.Text = myRow["USUARIO"].ToString();
+                    txtContraseñaUsuario.Text = myRow["CONTRASEÑA"].ToString();
+                    ckbFacturaUsuario.Checked = Convert.ToBoolean(myRow["FACTURA"]);
+                    
+                }
+
+                btnLimpiarProveedor.Text = "&Cancelar";
+                btnGuardarUsuario.Text = "&Modificar";
+            }
+        }
+
+        private void rbtActivos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtActivos.Checked)
+            {
+                cargarDatos("1");
+                //dgvDatosProveedor.Columns[1].HeaderText = "Desabilitar";
+            }
+            else if (rbtInactivos.Checked)
+            {
+                cargarDatos("0");
+                //dgvDatosProveedor.Columns[1].HeaderText = "Habilitar";
+            }
+        }
+
+        private void txtConsultarUsuario_TextChanged(object sender, EventArgs e)
+        {
+            if (rbtActivos.Checked)
+            {
+                objConsul.boolLlenarDataGridView(dgvDatosUsuario, "Select IDUSUARIO as ID, USUARIO,CONTRASEÑA,FACTURA, E.NOMBRE from TbUsuario U, TbEmpresa E where U.IDEMPRESA= E.IDEMPRESA AND  ACTIVO = 1 and USUARIO like '%" + txtConsultarUsuario.Text + "%' or E.NOMBRE like '%" + txtConsultarUsuario.Text + "%';");
+                //dgvDatosProveedor.Columns[1].HeaderText = "Desabilitar";
+                dgvDatosUsuario.Columns["ID"].Visible = false;
+            }
+            else if (rbtInactivos.Checked)
+            {
+                objConsul.boolLlenarDataGridView(dgvDatosUsuario, "Select IDUSUARIO as ID, USUARIO,CONTRASEÑA,FACTURA, E.NOMBRE from TbUsuario U, TbEmpresa E where U.IDEMPRESA= E.IDEMPRESA AND  ACTIVO = 0 and USUARIO like '%" + txtConsultarUsuario.Text + "%' or E.NOMBRE like '%" + txtConsultarUsuario.Text + "%';");
+                //dgvDatosProveedor.Columns[1].HeaderText = "Habilitar";
+                dgvDatosUsuario.Columns["ID"].Visible = false;
+            }
+        }
+
+        private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Funcion.validar_Num_Letras(e);
         }
     }
 }

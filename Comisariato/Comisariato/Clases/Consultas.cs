@@ -941,13 +941,16 @@ namespace Comisariato.Clases
                 cmd.Parameters.AddWithValue("@PLAZOORDENCOMPRA", ObjCompra.Plazo.ToUpper());
                 cmd.Parameters.AddWithValue("@IMPUESTO", ObjCompra.Impuesto);
                 cmd.Parameters.AddWithValue("@OBSERVACION", ObjCompra.Observacion.ToUpper());
-                cmd.Parameters.AddWithValue("@IVA", ObjCompra.Iva);
-                cmd.Parameters.AddWithValue("@ICE", ObjCompra.Ice);
-                cmd.Parameters.AddWithValue("@IRBP", ObjCompra.Irbp);
-                cmd.Parameters.AddWithValue("@SUBTOTALIVA", ObjCompra.SubtotalIva);
-                cmd.Parameters.AddWithValue("@SUBTOTAL0", ObjCompra.Subtotal0);
-                cmd.Parameters.AddWithValue("@SUBTOTAL", ObjCompra.Subtotal);
-                cmd.Parameters.AddWithValue("@TOTAL", ObjCompra.Total);
+                cmd.Parameters.AddWithValue("@IVA", Funcion.reemplazarcaracter(ObjCompra.Iva.ToString()));
+                cmd.Parameters.AddWithValue("@ICE", Funcion.reemplazarcaracter(ObjCompra.Ice.ToString()));
+                cmd.Parameters.AddWithValue("@IRBP", Funcion.reemplazarcaracter(ObjCompra.Irbp.ToString()));
+                cmd.Parameters.AddWithValue("@SUBTOTALIVA", Funcion.reemplazarcaracter(ObjCompra.SubtotalIva.ToString()));
+                cmd.Parameters.AddWithValue("@SUBTOTAL0", Funcion.reemplazarcaracter(ObjCompra.Subtotal0.ToString()));
+                cmd.Parameters.AddWithValue("@SUBTOTAL", Funcion.reemplazarcaracter(ObjCompra.Subtotal.ToString()));
+                cmd.Parameters.AddWithValue("@TOTAL", Funcion.reemplazarcaracter(ObjCompra.Total.ToString()));
+                cmd.Parameters.AddWithValue("@SERIE1", ObjCompra.Serie1);
+                cmd.Parameters.AddWithValue("@SERIE2", ObjCompra.Serie2);
+                cmd.Parameters.AddWithValue("@NUMERO", ObjCompra.Numero);
 
                 int result = cmd.ExecuteNonQuery();
                 Objc.Cerrar();
@@ -985,6 +988,8 @@ namespace Comisariato.Clases
                 cmd.Parameters.AddWithValue("@PRECIOVENTAPUBLICO", ObjCompra.PrecioVentaPublico);
                 cmd.Parameters.AddWithValue("@PRECIOMAYORISTA", ObjCompra.PrecioMayorista);
                 cmd.Parameters.AddWithValue("@PRECIOCAJAS", ObjCompra.PrecioCajas);
+                cmd.Parameters.AddWithValue("@ICE", ObjCompra.Ice);
+                cmd.Parameters.AddWithValue("@IRBP", ObjCompra.Irbp);
                 int result = cmd.ExecuteNonQuery();
                 Objc.Cerrar();
                 if (result > 0)

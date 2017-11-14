@@ -113,17 +113,17 @@ namespace Comisariato.Formularios
 
         private void txtCreditoAsignadoCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.SoloValores(e, txtCreditoAsignadoCliente);
+            Funcion.SoloValores(e, txtCreditoAsignadoCliente.Text);
         }
 
         private void txtCupoCreditoCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.SoloValores(e, txtCupoCreditoCliente);
+            Funcion.SoloValores(e, txtCupoCreditoCliente.Text);
         }
 
         private void txtDescuentoCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.SoloValores(e, txtDescuentoCliente);
+            Funcion.SoloValores(e, txtDescuentoCliente.Text);
         }
 
         public string obtenerCategoriaChequeada()
@@ -395,13 +395,13 @@ namespace Comisariato.Formularios
             if (rbtActivosCliente.Checked)
             {
                 consultas.boolLlenarDataGridView(dgvDatosCliente, "Select IDCLIENTE as ID,  RAZONSOCIAL as 'RAZON SOCIAL', TIPOCLIENTE as 'TIPO' , ESPECIFICACIONES_TIPOCREDITO AS 'CREDITO',DIRECCION, APELLIDOS,NOMBRES,IDENTIFICACION AS 'CEDULA/RUC' ,CELULAR1,CELULAR2 from TbCliente where ACTIVO = 1 and IDENTIFICACION like '%" + txtConsultarCliente.Text + "%' or NOMBRES like '%" + txtConsultarCliente.Text + "%' or APELLIDOS like '%" + txtConsultarCliente.Text + "%'");
-                dgvDatosCliente.Columns[1].HeaderText = "Desabilitar";
+                //dgvDatosCliente.Columns[1].HeaderText = "Desabilitar";
                 dgvDatosCliente.Columns["ID"].Visible = false;
             }
             else if (rbtInactivosCliente.Checked)
             {
                 consultas.boolLlenarDataGridView(dgvDatosCliente, "Select IDCLIENTE as ID,  RAZONSOCIAL as 'RAZON SOCIAL', TIPOCLIENTE as 'TIPO' , ESPECIFICACIONES_TIPOCREDITO AS 'CREDITO',DIRECCION, APELLIDOS,NOMBRES,IDENTIFICACION AS 'CEDULA/RUC',CELULAR1,CELULAR2 from TbCliente where ACTIVO = 0 and IDENTIFICACION like '%" + txtConsultarCliente.Text + "%' or NOMBRES like '%" + txtConsultarCliente.Text + "%' or APELLIDOS like '%" + txtConsultarCliente.Text + "%'");
-                dgvDatosCliente.Columns[1].HeaderText = "Habilitar";
+                //dgvDatosCliente.Columns[1].HeaderText = "Habilitar";
                 dgvDatosCliente.Columns["ID"].Visible = false;
             }
         }
@@ -513,6 +513,11 @@ namespace Comisariato.Formularios
                     e.Handled = true;
                 }
             }
+        }
+
+        private void dgvDatosCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
