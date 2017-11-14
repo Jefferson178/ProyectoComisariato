@@ -165,7 +165,6 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
 
         private void dgvProductosIngresos_KeyDown(object sender, KeyEventArgs e)
         {
-            //DataGridViewCellEventArgs vacio = new DataGridViewCellEventArgs(dgvProductosIngresos.Rows[vacio.ColumnIndex]);
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true;
@@ -246,16 +245,6 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         private void txtIRBP_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.SoloValores(e, txtIRBP.Text);
-        }
-
-        private void FrmCompra_MouseEnter(object sender, EventArgs e)
-        {
-            //if (Program.FormularioLlamado)
-            //{
-            //    dgvProductosIngresos.CurrentRow.Cells[1].Value = nombreProducto;
-            //    //dgvProductosIngresos.CurrentCell = dgvDatosProducto.Rows[].Cells[2];
-            //    //dgvDatosProducto.BeginEdit(true);
-            //}
         }
 
         private void txtSerie1_KeyPress(object sender, KeyPressEventArgs e)
