@@ -870,7 +870,6 @@
             this.Name = "FrmCompra";
             this.Text = "Compras";
             this.Load += new System.EventHandler(this.FrmCompra_Load);
-            this.MouseEnter += new System.EventHandler(this.FrmCompra_MouseEnter);
             this.tabControl1.ResumeLayout(false);
             this.pcOrdenCompra.ResumeLayout(false);
             this.pcOrdenCompra.PerformLayout();
