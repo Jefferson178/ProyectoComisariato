@@ -39,13 +39,16 @@ namespace Comisariato.Clases
             try
             {
                 Objc.conectar();
-                SqlCommand Sentencia = new SqlCommand("select U.CONTRASEÑA from TbUsuario U where U.CONTRASEÑA='" + Contraseña + "'");
+                SqlCommand Sentencia = new SqlCommand("SELECT TbUsuario.CONTRASEÑA, TbUsuario.USUARIO, TbTipousuario.TIPO, TbUsuario.IDTIPOUSUARIO, TbEmpresa.NOMBRECOMERCIAL, TbEmpresa.RUC, TbEmpresa.DIRECCION from TbUsuario INNER JOIN TbTipousuario ON(TbUsuario.USUARIO = '" + Program.Usuario + "' and TbUsuario.CONTRASEÑA= '" + Contraseña + "')" + " AND (TbTipousuario.IDTIPOUSUARIO = '" + Program.IDTIPOUSUARIO + "' and TbTipousuario.TIPO='CAJERO') INNER JOIN TbEmpresa ON (TbEmpresa.IDEMPRESA='"+Program.IDEMPRESA+ " )");
                 Sentencia.Connection = ConexionBD.connection;
-                int valor = Convert.ToInt32(Sentencia.ExecuteScalar());
-                if (valor == 0)
+                SqlDataReader dato = Sentencia.ExecuteReader();
+                Objc.Cerrar();
+                if (dato.Read() == true)
                 {
-                    return false;
+                    Program.nombreempresa=(String)dato["NOMBRECOMERCIAL"];
+                    return true;
                 }
+                else { return false; }
             }
             catch (Exception ex)
             {
@@ -54,12 +57,13 @@ namespace Comisariato.Clases
             }
             return true;
         }
+
         public bool AutenticacionUsuario(String Usuario, String Contraseña)
         {
             try
             {
                 Objc.conectar();
-                string sql = "select U.IDEMPLEADO, U.USUARIO, U.CONTRASEÑA, U.IDTIPOUSUARIO from TbUsuario U where U.USUARIO='" + Usuario + "' and  U.CONTRASEÑA='" + Contraseña + "'";
+                string sql = "select U.IDEMPLEADO, U.USUARIO, U.CONTRASEÑA, U.IDTIPOUSUARIO, U.IDEMPRESA, U.ACTIVO from TbUsuario U where U.USUARIO='" + Usuario + "' and  U.CONTRASEÑA='" + Contraseña + "'";
                 SqlCommand Sentencia = new SqlCommand(sql);
                 Sentencia.Connection = ConexionBD.connection;
                 //int valor = Convert.ToInt32(Sentencia.ExecuteScalar());
@@ -67,8 +71,10 @@ namespace Comisariato.Clases
                 Objc.Cerrar();
                 if (dato.Read() == true)
                 {
+                    Program.estado = Convert.ToBoolean(dato["ACTIVO"]);
                     Program.IDUsuario = "" + (int)dato["IDEMPLEADO"];
                     Program.IDTIPOUSUARIO = "" + (int)dato["IDTIPOUSUARIO"];
+                    Program.IDEMPRESA = "" + (int)dato["IDEMPRESA"];
                     datosiniciosesion("" + (int)dato["IDEMPLEADO"]);
                     return true;
                 }
@@ -261,6 +267,7 @@ namespace Comisariato.Clases
                 List<string> enca = encabezado;
                 List<string> detalle = detallepago;
                 SqlCommand cmd = null;
+                string idempresa = Program.IDEMPRESA;
                 for (int i = 0; i < nfilas; i++)
                 {
                     precio = Funcion.reemplazarcaracter(dg.Rows[i].Cells[4].Value.ToString());
@@ -286,6 +293,7 @@ namespace Comisariato.Clases
                     cmd.Parameters.AddWithValue("@cambio", detalle[6]);
                     cmd.Parameters.AddWithValue("@estado", 1);
                     cmd.Parameters.AddWithValue("@ivat", ivas[i]);
+                    cmd.Parameters.AddWithValue("@idempresa", idempresa);
                     result = cmd.ExecuteNonQuery();
                 }
 
@@ -298,6 +306,7 @@ namespace Comisariato.Clases
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 return false;
             }
         }
@@ -581,25 +590,31 @@ namespace Comisariato.Clases
                 return null;
             }
         }
-        public String buscarcliente(string identificacion)
+
+        public Cliente buscarcliente(string identificacion)
         {
-
-
+            Cliente datos;
             try
             {
+                datos = new Cliente();
                 Objc.conectar();
-                SqlCommand Sentencia = new SqlCommand("select U.IDCLIENTE, U.IDENTIFICACION, U.NOMBRES, U.APELLIDOS from TbCliente U where U.IDENTIFICACION='" + identificacion + "';");
+                SqlCommand Sentencia = new SqlCommand("select U.IDCLIENTE, U.IDENTIFICACION, U.NOMBRES, U.APELLIDOS, U.ACTIVO, U.DIRECCION, U.RAZONSOCIAL from TbCliente U where U.IDENTIFICACION='" + identificacion + "';");
                 Sentencia.Connection = ConexionBD.connection;
                 SqlDataReader dato = Sentencia.ExecuteReader();
                 Objc.Cerrar();
                 if (dato.Read() == true)
                 {
-                    return (String)dato["NOMBRES"] + " " + (String)dato["APELLIDOS"] + ";" + dato["IDCLIENTE"];
+                    datos.Nombres = (String)dato["NOMBRES"];// + " " + (String)dato["APELLIDOS"] + ";" + dato["IDCLIENTE"];
+                    datos.Apellidos = (String)dato["APELLIDOS"];
+                    datos.Casilla =Convert.ToInt32(dato["IDCLIENTE"]);
+                    datos.Direccion= (String)dato["DIRECCION"];
+                    datos.RazonSocial = (String)dato["RAZONSOCIAL"];
+                    datos.Activo = Convert.ToBoolean(dato["ACTIVO"]);
                 }
                 else
                 {
                     //producto = null;
-                    return null;
+                    datos = null;
                     // MessageBox.Show("No se encontró ningun producto con ese codigo.");
                     //DgvDetalle.Rows.RemoveAt(e.RowIndex);
                 }
@@ -607,10 +622,10 @@ namespace Comisariato.Clases
             }
             catch (Exception ex)
             {
-                MessageBox.Show(""+ex.Message);
-                return null;
+                //MessageBox.Show(""+ex.Message);
+                datos = null;
             }
-
+            return datos;
 
         }
         public bool Existe(string campo, string parametro, string tabla)

@@ -49,15 +49,15 @@
             this.PanelSesion.Controls.Add(this.BtnIniciar);
             this.PanelSesion.Controls.Add(this.txtContraseña);
             this.PanelSesion.Controls.Add(this.txtUsuario);
-            this.PanelSesion.Location = new System.Drawing.Point(193, 125);
+            this.PanelSesion.Location = new System.Drawing.Point(168, 125);
             this.PanelSesion.Name = "PanelSesion";
-            this.PanelSesion.Size = new System.Drawing.Size(249, 283);
+            this.PanelSesion.Size = new System.Drawing.Size(313, 283);
             this.PanelSesion.TabIndex = 1;
             // 
             // lblError
             // 
             this.lblError.AutoSize = true;
-            this.lblError.Location = new System.Drawing.Point(42, 190);
+            this.lblError.Location = new System.Drawing.Point(45, 190);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(35, 13);
             this.lblError.TabIndex = 6;
@@ -89,7 +89,7 @@
             // BtnIniciar
             // 
             this.BtnIniciar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnIniciar.Location = new System.Drawing.Point(83, 214);
+            this.BtnIniciar.Location = new System.Drawing.Point(114, 229);
             this.BtnIniciar.Name = "BtnIniciar";
             this.BtnIniciar.Size = new System.Drawing.Size(88, 23);
             this.BtnIniciar.TabIndex = 2;
@@ -103,7 +103,7 @@
             this.txtContraseña.Location = new System.Drawing.Point(45, 153);
             this.txtContraseña.Name = "txtContraseña";
             this.txtContraseña.PasswordChar = '*';
-            this.txtContraseña.Size = new System.Drawing.Size(165, 24);
+            this.txtContraseña.Size = new System.Drawing.Size(231, 24);
             this.txtContraseña.TabIndex = 1;
             this.txtContraseña.Text = "ADMINISTRADOR";
             this.txtContraseña.TextChanged += new System.EventHandler(this.txtUsuario_TextChanged);
@@ -114,7 +114,7 @@
             this.txtUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsuario.Location = new System.Drawing.Point(45, 99);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(165, 24);
+            this.txtUsuario.Size = new System.Drawing.Size(231, 24);
             this.txtUsuario.TabIndex = 0;
             this.txtUsuario.Text = "ADMIN";
             this.txtUsuario.TextChanged += new System.EventHandler(this.txtUsuario_TextChanged);
@@ -137,7 +137,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Comisariato.Properties.Resources.Splashaircontrol;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(635, 489);
+            this.ClientSize = new System.Drawing.Size(637, 489);
             this.Controls.Add(this.PboxSalir);
             this.Controls.Add(this.PanelSesion);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

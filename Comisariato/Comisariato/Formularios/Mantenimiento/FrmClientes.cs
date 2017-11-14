@@ -14,6 +14,7 @@ namespace Comisariato.Formularios
 {
     public partial class FrmClientes : Form
     {
+        public int VerifiMetodo;
         public FrmClientes()
         {
             InitializeComponent();
@@ -187,28 +188,43 @@ namespace Comisariato.Formularios
                 if (!bandera_Estado) // Para identificar si se va ingresar
                 {
                     String resultado = Objcliente.InsertarCliente(); // retorna true si esta correcto todo
-                    if (resultado == "Datos Guardados")
+                    if (VerifiMetodo==1)
                     {
-                        inicializarDatos();
-                        cargarDatos("1");
-                        InsertarOtraInfCliente(idcliente);
-                        MessageBox.Show("Cliente Registrado Correctamente ", "Exito", MessageBoxButtons.OK);
-                        rbtActivosCliente.Checked = true;
-
-                        if (FrmFactura.DatosCliente.Count > 0)
+                        if (resultado == "Datos Guardados")
                         {
-                            FrmFactura.DatosCliente.Clear();
+                            inicializarDatos();
+                            cargarDatos("1");
+                            InsertarOtraInfCliente(idcliente);
+                            MessageBox.Show("Cliente Registrado Correctamente ", "Exito", MessageBoxButtons.OK);
+                            rbtActivosCliente.Checked = true;
+
+                           
                         }
-                        FrmFactura.verificadorfrm = 0;
-                        FrmFactura.DatosCliente.Add(txtIdentificacionCliente.Text);
-                        FrmFactura.DatosCliente.Add(txtNombresCliente.Text.ToUpper() + " " + txtApellidosCliente.Text.ToUpper());
-                        this.Close();
+                        else if (resultado == "Error al Registrar")
+                        {
+                            MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else if (resultado == "Existe") { MessageBox.Show("Ya Existe el Cliente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }
                     }
-                    else if (resultado == "Error al Registrar")
+                    else
                     {
-                        MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        if (resultado == "Datos Guardados")
+                        {
+                            if (FrmFactura.DatosCliente.Count > 0)
+                            {
+                                FrmFactura.DatosCliente.Clear();
+                            }
+                            FrmFactura.verificadorfrm = 0;
+                            FrmFactura.DatosCliente.Add(txtIdentificacionCliente.Text);
+                            FrmFactura.DatosCliente.Add(txtNombresCliente.Text.ToUpper() + " " + txtApellidosCliente.Text.ToUpper());
+                            this.Close();
+                        }
+                        else if (resultado == "Error al Registrar")
+                        {
+                            MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
-                    else if (resultado == "Existe") { MessageBox.Show("Ya Existe el Cliente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+                    
                 }
                 else if (bandera_Estado) // Para identificar si se va modificar
                 {

@@ -34,16 +34,17 @@ namespace Comisariato.Formularios.Transacciones
                     //bool b = c.VerificarClave("SELECT TbUsuario.CONTRASEÑA, TbUsuario.USUARIO, TbTipousuario.TIPO, TbUsuario.IDTIPOUSUARIO from TbUsuario INNER JOIN TbTipousuario ON(TbUsuario.USUARIO = '" + Program.Usuario + "' and TbUsuario.CONTRASEÑA= '" + txtClave.Text + "')" + " AND (TbTipousuario.IDTIPOUSUARIO = '" + Program.IDTIPOUSUARIO + "' and TbTipousuario.TIPO='CAJERO')");
                     if (verificarMetodo == 1)
                     {
-
-                        //if (b)
-                        //{
-                        FrmFactura f = new FrmFactura();
+                        bool b = c.VerificarClave(txtClave.Text);
+                        if (b)
+                        {
+                            Program.contraseñausuarioactual = txtClave.Text;
+                            FrmFactura f = new FrmFactura();
                         bitacora = new Bitacora("00:00:00", "Venta");
                         bitacora.insertarBitacora();
                         
                         string numcaja = "111", sucursal = "2";
 
-                        string condicion = " where CAJA = '" + numcaja + "' and SUCURSAL= '" + sucursal + "';";
+                        string condicion = " where CAJA = '" + numcaja + "' and SUCURSAL= '" + sucursal + "' and IDEMPRESA= '"+  Program.IDEMPRESA + "';";
                         if (c.ObtenerID("IDFACTURA", "TbEncabezadoFactura", condicion) == 0)
                         {
                             f.numfact = 1;
@@ -56,11 +57,11 @@ namespace Comisariato.Formularios.Transacciones
                         f.numcaja = numcaja;
                         this.Close();
                         f.ShowDialog();
-                        //}
-                        //else
-                        //{
-                        //    MessageBox.Show("Clave incorrecta. O quizas no tenga permiso para ingresar a esta opcion.");
-                        //}
+                        }
+                        else
+                        {
+                            MessageBox.Show("Clave incorrecta. O quizas no tenga permiso para ingresar a esta opcion.");
+                        }
                     }
                     else
                     {

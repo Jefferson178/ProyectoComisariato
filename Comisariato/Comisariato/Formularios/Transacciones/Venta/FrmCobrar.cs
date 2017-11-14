@@ -699,7 +699,7 @@ namespace Comisariato.Formularios.Transacciones
                     if (b)
                     {
                         
-                        string condicion = " where CAJA = '" + caja + "' and SUCURSAL= '" + sucursal+"';";
+                        string condicion = " where CAJA = '" + caja + "' and SUCURSAL= '" + sucursal+"' and IDEMPRESA='"+ Program.IDEMPRESA +"';";
                         if (ckbCheque.Checked)
                         {
                             int ult = c.ObtenerID("IDFACTURA", "TbEncabezadoFactura",condicion);
