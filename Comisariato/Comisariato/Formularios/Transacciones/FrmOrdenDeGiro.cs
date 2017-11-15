@@ -18,10 +18,15 @@ namespace Comisariato.Formularios.Transacciones
             InitializeComponent();
         }
 
-        Consultas ObjConsul;
+        Consultas ObjConsul = new Consultas();
 
         private void FrmOrdenDeGiro_Load(object sender, EventArgs e)
         {
+
+            ObjConsul.BoolLlenarComboBox(cbCuentaDeudoraCero, "select IdctaCble AS ID, '[' +IdctaCble +']' + ' ' + pc_Cuenta AS Texto FROM dbo.TbPlanCuenta");
+            ObjConsul.BoolLlenarComboBox(cbCuentaDeudora12, "select IdctaCble AS ID, '[' +IdctaCble +']' + ' ' + pc_Cuenta AS Texto FROM dbo.TbPlanCuenta");
+            ObjConsul.BoolLlenarComboBox(cbCuentaDeudoraIRBP, "select IdctaCble AS ID, '[' +IdctaCble +']' + ' ' + pc_Cuenta AS Texto FROM dbo.TbPlanCuenta");
+            ObjConsul.BoolLlenarComboBox(cbIvaPagar, "select IdctaCble AS ID, '[' +IdctaCble +']' + ' ' + pc_Cuenta AS Texto FROM dbo.TbPlanCuenta");
             for (int i = 0; i < 7; i++)
             {
                 dgvDatosLibroDiario.Rows.Add();
