@@ -931,7 +931,7 @@
             this.DgvDatosEmpleado.AllowUserToAddRows = false;
             this.DgvDatosEmpleado.AllowUserToDeleteRows = false;
             this.DgvDatosEmpleado.AllowUserToOrderColumns = true;
-            this.DgvDatosEmpleado.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.DgvDatosEmpleado.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvDatosEmpleado.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -951,22 +951,21 @@
             this.DgvDatosEmpleado.Size = new System.Drawing.Size(995, 418);
             this.DgvDatosEmpleado.TabIndex = 0;
             this.DgvDatosEmpleado.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDatosEmpleado_CellClick);
+            this.DgvDatosEmpleado.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DgvDatosEmpleado_CellPainting);
             // 
             // Modificar
             // 
-            this.Modificar.HeaderText = "Modificar";
+            this.Modificar.HeaderText = "";
             this.Modificar.Name = "Modificar";
             this.Modificar.ReadOnly = true;
             this.Modificar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Modificar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Modificar.Width = 92;
             // 
             // Deshabilitar
             // 
-            this.Deshabilitar.HeaderText = "Deshabilitar";
+            this.Deshabilitar.HeaderText = "";
             this.Deshabilitar.Name = "Deshabilitar";
             this.Deshabilitar.ReadOnly = true;
-            this.Deshabilitar.Width = 90;
             // 
             // FrmEmpleado
             // 
@@ -1071,8 +1070,8 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.RadioButton rbtInactivosEmpleado;
         private System.Windows.Forms.RadioButton rbtActivosEmpleado;
+        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.DataGridViewButtonColumn Modificar;
         private System.Windows.Forms.DataGridViewButtonColumn Deshabilitar;
-        private System.Windows.Forms.Button btnCancelar;
     }
 }

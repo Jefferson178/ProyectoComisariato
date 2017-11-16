@@ -135,7 +135,7 @@ namespace Comisariato.Clases
             }
         }
 
-        public static void SoloValores(KeyPressEventArgs e, TextBox textBox1)
+        public static void SoloValores(KeyPressEventArgs e, string textBox1)
         {
             if (Char.IsControl(e.KeyChar))
             {
@@ -145,15 +145,15 @@ namespace Comisariato.Clases
             {
                 if (e.KeyChar == '.')
                 {
-                    if (textBox1.Text.Contains(".") || textBox1.Text == "")
+                    if (textBox1.Contains(".") || textBox1 == "")
                     {
                         e.Handled = true;
                     }
                 }
                 else
                 {
-                    if (textBox1.Text.Contains("."))
-                        if (textBox1.Text.Substring(textBox1.Text.IndexOf('.') + 1).Length >= 2)
+                    if (textBox1.Contains("."))
+                        if (textBox1.Substring(textBox1.IndexOf('.') + 1).Length >= 2)
                         {
                             e.Handled = true;
                         }

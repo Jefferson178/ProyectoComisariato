@@ -112,10 +112,10 @@
             this.rbtInactivosProveedor = new System.Windows.Forms.RadioButton();
             this.rbtActivosProveedor = new System.Windows.Forms.RadioButton();
             this.dgvDatosProveedor = new System.Windows.Forms.DataGridView();
-            this.modificarProveedor = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.DeshabilitarProveedor = new System.Windows.Forms.DataGridViewButtonColumn();
             this.txtConsultarProveedor = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.modificarProveedor = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.DeshabilitarProveedor = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tcProveedor.SuspendLayout();
             this.tpNuevoProveedor.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -596,7 +596,7 @@
             // 
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -663,7 +663,7 @@
             // 
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -1004,8 +1004,8 @@
             this.dgvDatosProveedor.AllowUserToAddRows = false;
             this.dgvDatosProveedor.AllowUserToDeleteRows = false;
             this.dgvDatosProveedor.AllowUserToOrderColumns = true;
-            this.dgvDatosProveedor.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvDatosProveedor.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
+            this.dgvDatosProveedor.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvDatosProveedor.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1027,21 +1027,6 @@
             this.dgvDatosProveedor.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvDatosProveedor_CellFormatting);
             this.dgvDatosProveedor.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvDatosProveedor_CellPainting);
             // 
-            // modificarProveedor
-            // 
-            this.modificarProveedor.HeaderText = "Modificar";
-            this.modificarProveedor.Name = "modificarProveedor";
-            this.modificarProveedor.ReadOnly = true;
-            this.modificarProveedor.Text = "";
-            this.modificarProveedor.Width = 66;
-            // 
-            // DeshabilitarProveedor
-            // 
-            this.DeshabilitarProveedor.HeaderText = "Desabilitar";
-            this.DeshabilitarProveedor.Name = "DeshabilitarProveedor";
-            this.DeshabilitarProveedor.ReadOnly = true;
-            this.DeshabilitarProveedor.Width = 75;
-            // 
             // txtConsultarProveedor
             // 
             this.txtConsultarProveedor.Location = new System.Drawing.Point(315, 16);
@@ -1059,6 +1044,21 @@
             this.label8.Size = new System.Drawing.Size(67, 16);
             this.label8.TabIndex = 3;
             this.label8.Text = "Consultar:";
+            // 
+            // modificarProveedor
+            // 
+            this.modificarProveedor.FillWeight = 105F;
+            this.modificarProveedor.HeaderText = "";
+            this.modificarProveedor.Name = "modificarProveedor";
+            this.modificarProveedor.ReadOnly = true;
+            this.modificarProveedor.Text = "";
+            // 
+            // DeshabilitarProveedor
+            // 
+            this.DeshabilitarProveedor.FillWeight = 105F;
+            this.DeshabilitarProveedor.HeaderText = "";
+            this.DeshabilitarProveedor.Name = "DeshabilitarProveedor";
+            this.DeshabilitarProveedor.ReadOnly = true;
             // 
             // FrmProveedores
             // 
@@ -1165,8 +1165,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn porcentajeProveedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn cuentaContableProveedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn validesProveedor;
-        private System.Windows.Forms.DataGridViewButtonColumn modificarProveedor;
-        private System.Windows.Forms.DataGridViewButtonColumn DeshabilitarProveedor;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TabControl tabControl1;
@@ -1185,5 +1183,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn facturaFinProveedor;
         private System.Windows.Forms.ComboBox cbCuentaContableProveedor;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewButtonColumn modificarProveedor;
+        private System.Windows.Forms.DataGridViewButtonColumn DeshabilitarProveedor;
     }
 }

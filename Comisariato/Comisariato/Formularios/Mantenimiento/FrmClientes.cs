@@ -1,4 +1,5 @@
 ﻿using Comisariato.Clases;
+using Comisariato.Formularios.Transacciones;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ namespace Comisariato.Formularios
 {
     public partial class FrmClientes : Form
     {
+        public int VerifiMetodo;
         public FrmClientes()
         {
             InitializeComponent();
@@ -112,17 +114,17 @@ namespace Comisariato.Formularios
 
         private void txtCreditoAsignadoCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.SoloValores(e, txtCreditoAsignadoCliente);
+            Funcion.SoloValores(e, txtCreditoAsignadoCliente.Text);
         }
 
         private void txtCupoCreditoCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.SoloValores(e, txtCupoCreditoCliente);
+            Funcion.SoloValores(e, txtCupoCreditoCliente.Text);
         }
 
         private void txtDescuentoCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.SoloValores(e, txtDescuentoCliente);
+            Funcion.SoloValores(e, txtDescuentoCliente.Text);
         }
 
         public string obtenerCategoriaChequeada()
@@ -186,19 +188,43 @@ namespace Comisariato.Formularios
                 if (!bandera_Estado) // Para identificar si se va ingresar
                 {
                     String resultado = Objcliente.InsertarCliente(); // retorna true si esta correcto todo
-                    if (resultado == "Datos Guardados")
+                    if (VerifiMetodo==1)
                     {
-                        inicializarDatos();
-                        cargarDatos("1");
-                        InsertarOtraInfCliente(idcliente);
-                        MessageBox.Show("Cliente Registrado Correctamente ", "Exito", MessageBoxButtons.OK);
-                        rbtActivosCliente.Checked = true;
+                        if (resultado == "Datos Guardados")
+                        {
+                            inicializarDatos();
+                            cargarDatos("1");
+                            InsertarOtraInfCliente(idcliente);
+                            MessageBox.Show("Cliente Registrado Correctamente ", "Exito", MessageBoxButtons.OK);
+                            rbtActivosCliente.Checked = true;
+
+                           
+                        }
+                        else if (resultado == "Error al Registrar")
+                        {
+                            MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else if (resultado == "Existe") { MessageBox.Show("Ya Existe el Cliente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }
                     }
-                    else if (resultado == "Error al Registrar")
+                    else
                     {
-                        MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        if (resultado == "Datos Guardados")
+                        {
+                            if (FrmFactura.DatosCliente.Count > 0)
+                            {
+                                FrmFactura.DatosCliente.Clear();
+                            }
+                            FrmFactura.verificadorfrm = 0;
+                            FrmFactura.DatosCliente.Add(txtIdentificacionCliente.Text);
+                            FrmFactura.DatosCliente.Add(txtNombresCliente.Text.ToUpper() + " " + txtApellidosCliente.Text.ToUpper());
+                            this.Close();
+                        }
+                        else if (resultado == "Error al Registrar")
+                        {
+                            MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
-                    else if (resultado == "Existe") { MessageBox.Show("Ya Existe el Cliente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+                    
                 }
                 else if (bandera_Estado) // Para identificar si se va modificar
                 {
@@ -362,7 +388,7 @@ namespace Comisariato.Formularios
         private void cargarDatos(string condicion)
         {
             consultas = new Consultas();
-            consultas.boolLlenarDataGridView(dgvDatosCliente, "Select IDCLIENTE as ID, RAZONSOCIAL as 'RAZON SOCIAL', TIPOCLIENTE as 'TIPO CLIENTE' , ESPECIFICACIONES_TIPOCREDITO AS 'TIPO CREDITO',DIRECCION, APELLIDOS,NOMBRES,IDENTIFICACION AS 'CEDULA/RUC',CELULAR1,CELULAR2 from TbCliente WHERE ACTIVO=" + condicion + ";");
+            consultas.boolLlenarDataGridView(dgvDatosCliente, "Select IDCLIENTE as ID, RAZONSOCIAL as 'RAZON SOCIAL', TIPOCLIENTE as 'TIPO' , ESPECIFICACIONES_TIPOCREDITO AS 'CREDITO',DIRECCION, APELLIDOS,NOMBRES,IDENTIFICACION AS 'CEDULA/RUC',CELULAR1,CELULAR2 from TbCliente WHERE ACTIVO=" + condicion + ";");
             dgvDatosCliente.Columns["ID"].Visible = false;
         }
 
@@ -371,12 +397,12 @@ namespace Comisariato.Formularios
             if (rbtActivosCliente.Checked)
             {
                 cargarDatos("1");
-                dgvDatosCliente.Columns[1].HeaderText = "Desabilitar";
+                //dgvDatosCliente.Columns[1].HeaderText = "Desabilitar";
             }
             else if (rbtInactivosCliente.Checked)
             {
                 cargarDatos("0");
-                dgvDatosCliente.Columns[1].HeaderText = "Habilitar";
+                //dgvDatosCliente.Columns[1].HeaderText = "Habilitar";
             }
         }
 
@@ -384,14 +410,14 @@ namespace Comisariato.Formularios
         {
             if (rbtActivosCliente.Checked)
             {
-                consultas.boolLlenarDataGridView(dgvDatosCliente, "Select IDCLIENTE as ID,  RAZONSOCIAL as 'RAZON SOCIAL', TIPOCLIENTE as 'TIPO CLIENTE' , ESPECIFICACIONES_TIPOCREDITO AS 'TIPO CREDITO',DIRECCION, APELLIDOS,NOMBRES,IDENTIFICACION AS 'CEDULA/RUC' ,CELULAR1,CELULAR2 from TbCliente where ACTIVO = 1 and IDENTIFICACION like '%" + txtConsultarCliente.Text + "%' or NOMBRES like '%" + txtConsultarCliente.Text + "%' or APELLIDOS like '%" + txtConsultarCliente.Text + "%'");
-                dgvDatosCliente.Columns[1].HeaderText = "Desabilitar";
+                consultas.boolLlenarDataGridView(dgvDatosCliente, "Select IDCLIENTE as ID,  RAZONSOCIAL as 'RAZON SOCIAL', TIPOCLIENTE as 'TIPO' , ESPECIFICACIONES_TIPOCREDITO AS 'CREDITO',DIRECCION, APELLIDOS,NOMBRES,IDENTIFICACION AS 'CEDULA/RUC' ,CELULAR1,CELULAR2 from TbCliente where ACTIVO = 1 and IDENTIFICACION like '%" + txtConsultarCliente.Text + "%' or NOMBRES like '%" + txtConsultarCliente.Text + "%' or APELLIDOS like '%" + txtConsultarCliente.Text + "%'");
+                //dgvDatosCliente.Columns[1].HeaderText = "Desabilitar";
                 dgvDatosCliente.Columns["ID"].Visible = false;
             }
             else if (rbtInactivosCliente.Checked)
             {
-                consultas.boolLlenarDataGridView(dgvDatosCliente, "Select IDCLIENTE as ID,  RAZONSOCIAL as 'RAZON SOCIAL', TIPOCLIENTE as 'TIPO CLIENTE' , ESPECIFICACIONES_TIPOCREDITO AS 'TIPO CREDITO',DIRECCION, APELLIDOS,NOMBRES,IDENTIFICACION AS 'CEDULA/RUC',CELULAR1,CELULAR2 from TbCliente where ACTIVO = 0 and IDENTIFICACION like '%" + txtConsultarCliente.Text + "%' or NOMBRES like '%" + txtConsultarCliente.Text + "%' or APELLIDOS like '%" + txtConsultarCliente.Text + "%'");
-                dgvDatosCliente.Columns[1].HeaderText = "Habilitar";
+                consultas.boolLlenarDataGridView(dgvDatosCliente, "Select IDCLIENTE as ID,  RAZONSOCIAL as 'RAZON SOCIAL', TIPOCLIENTE as 'TIPO' , ESPECIFICACIONES_TIPOCREDITO AS 'CREDITO',DIRECCION, APELLIDOS,NOMBRES,IDENTIFICACION AS 'CEDULA/RUC',CELULAR1,CELULAR2 from TbCliente where ACTIVO = 0 and IDENTIFICACION like '%" + txtConsultarCliente.Text + "%' or NOMBRES like '%" + txtConsultarCliente.Text + "%' or APELLIDOS like '%" + txtConsultarCliente.Text + "%'");
+                //dgvDatosCliente.Columns[1].HeaderText = "Habilitar";
                 dgvDatosCliente.Columns["ID"].Visible = false;
             }
         }
@@ -460,6 +486,54 @@ namespace Comisariato.Formularios
         private void txtCasillaCliente_Enter(object sender, EventArgs e)
         {
             txtCasillaCliente.SelectAll();
+        }
+
+        private void dgvDatosCliente_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex >= 0 && dgvDatosCliente.Columns[e.ColumnIndex].Name == "modificarCliente" && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+                DataGridViewButtonCell celBoton = dgvDatosCliente.Rows[e.RowIndex].Cells["modificarCliente"] as DataGridViewButtonCell;
+                Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\modificarDgv.ico");
+                e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
+                dgvDatosCliente.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
+                dgvDatosCliente.Columns[e.ColumnIndex].Width = icoAtomico.Width + 10;
+                e.Handled = true;
+            }
+
+            if (rbtInactivosCliente.Checked)
+            {
+                if (e.ColumnIndex >= 1 && this.dgvDatosCliente.Columns[e.ColumnIndex].Name == "DeshabilitarCliente" && e.RowIndex >= 0)
+                {
+                    e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                    DataGridViewButtonCell celBoton = this.dgvDatosCliente.Rows[e.RowIndex].Cells["DeshabilitarCliente"] as DataGridViewButtonCell;
+                    Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\Habilitar.ico");
+                    e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
+                    this.dgvDatosCliente.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
+                    this.dgvDatosCliente.Columns[e.ColumnIndex].Width = icoAtomico.Width + 10;
+                    e.Handled = true;
+                }
+            }
+            else
+            {
+                if (e.ColumnIndex >= 1 && this.dgvDatosCliente.Columns[e.ColumnIndex].Name == "DeshabilitarCliente" && e.RowIndex >= 0)
+                {
+                    e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                    DataGridViewButtonCell celBoton = this.dgvDatosCliente.Rows[e.RowIndex].Cells["DeshabilitarCliente"] as DataGridViewButtonCell;
+                    Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\EliminarDgv.ico");
+                    e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
+                    this.dgvDatosCliente.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
+                    this.dgvDatosCliente.Columns[e.ColumnIndex].Width = icoAtomico.Width + 10;
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void dgvDatosCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

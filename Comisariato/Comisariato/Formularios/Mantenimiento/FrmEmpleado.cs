@@ -125,17 +125,17 @@ namespace Comisariato.Formularios.Mantenimiento
 
         private void TxtMovimientoQuincenal_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.SoloValores(e,TxtMovimientoQuincenal);
+            Funcion.SoloValores(e,TxtMovimientoQuincenal.Text);
         }
 
         private void TxtSueldoExtra_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.SoloValores(e, TxtSueldoExtra);
+            Funcion.SoloValores(e, TxtSueldoExtra.Text);
         }
 
         private void TxtSueldoMensual_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.SoloValores(e, TxtSueldoMensual);
+            Funcion.SoloValores(e, TxtSueldoMensual.Text);
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
@@ -186,12 +186,12 @@ namespace Comisariato.Formularios.Mantenimiento
             if (rbtActivosEmpleado.Checked)
             {
                 cargarDatos("1");
-                DgvDatosEmpleado.Columns[1].HeaderText = "Desabilitar";
+                //DgvDatosEmpleado.Columns[1].HeaderText = "Desabilitar";
             }
             else if (rbtInactivosEmpleado.Checked)
             {
                 cargarDatos("0");
-                DgvDatosEmpleado.Columns[1].HeaderText = "Habilitar";
+                //DgvDatosEmpleado.Columns[1].HeaderText = "Habilitar";
             }
         }
 
@@ -287,85 +287,88 @@ namespace Comisariato.Formularios.Mantenimiento
             }
         }
         //convert image to bytearray
-        
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             byte[] bitDataFoto;
-            
+
             if (TxtCelular1.Text == "")
             {
                 MessageBox.Show("Ingrese al menos un numero de telefono", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-                if (TxtIdentidad.Text != "" && TxtNombres.Text != "" && TxtApellidos.Text != "" && TxtDireccion.Text != "" && TxtCelular1.Text != "")
+            if (TxtIdentidad.Text != "" && TxtNombres.Text != "" && TxtApellidos.Text != "" && TxtDireccion.Text != "" && TxtCelular1.Text != "")
+            {
+
+                if (!bandera_Estado) // Para identificar si se va ingresar
                 {
-                
-                    if (!bandera_Estado) // Para identificar si se va ingresar
+                    //Preguntar si tiene una foto  cargada
+                    if (nameFoto == "")
                     {
-                        //Preguntar si tiene una foto  cargada
-                        if (nameFoto == "")
-                        {
-                            Image img = PictureFoto.Image;
-                            bitDataFoto = Funcion.imgToByteArray(img);
+                        Image img = PictureFoto.Image;
+                        bitDataFoto = Funcion.imgToByteArray(img);
 
-                        }
-                        else
-                        {
-                            bitDataFoto = Funcion.ConvertImg_Bytes(nameFoto);
-                        }
-                        Empleado ObjEmpleado = new Empleado(cmbTipoDocumento.Text, TxtIdentidad.Text, TxtNombres.Text, TxtApellidos.Text,
-                            ckbActivo.Checked, TxtDireccion.Text, bitDataFoto, Convert.ToInt32(CmbParroquia.SelectedValue), TxtEmail.Text,
-                            DtpFechaNacimiento.Value, CmbTipoLicencia.Text, CmbTipoSangre.Text, TxtLibretaMilitar.Text, CkbDiscapacidad.Checked,
-                            Convert.ToInt32(NupDiscapacidad.Value), Convert.ToSingle(TxtMovimientoQuincenal.Text), CmbGenero.Text, CmbEstadoCivil.Text, Convert.ToSingle(TxtSueldoMensual.Text),
-                            Convert.ToSingle(TxtSueldoExtra.Text), TxtCelular1.Text, TxtCelular2.Text);
-
-                        String resultado = ObjEmpleado.InsertarEmpleado(ObjEmpleado); // retorna true si esta correcto todo
-                        if (resultado == "Datos Guardados")
-                        {
-                            MessageBox.Show("Cliente Registrado Correctamente ", "Exito", MessageBoxButtons.OK);
-                            rbtActivosEmpleado.Checked = true;
-                            inicializarDatos();
-                        }
-                        else if (resultado == "Error al Registrar") { MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-                        else if (resultado == "Existe") { MessageBox.Show("Ya Existe el Empleado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }
                     }
-                    else if (bandera_Estado) // Para identificar si se va modificar
+                    else
                     {
-                        if (nameFoto != "") // si esta cargada alguna foto guarde la imagen en el arreglo
-                        {
-                            bitDataFoto = Funcion.ConvertImg_Bytes(nameFoto);
-                        }else if (imgenDefault) // Para que se guarde la imgen por defecto si desea cancelar la imagen 
-                        {
-                            imgenDefault = false;
-                            bitDataFoto = MyDataImagen;
-                        }
-                        else // si no modifica la imagen, que quede la misma
-                        {
+                        bitDataFoto = Funcion.ConvertImg_Bytes(nameFoto);
+                    }
+                    Empleado ObjEmpleado = new Empleado(cmbTipoDocumento.Text, TxtIdentidad.Text, TxtNombres.Text, TxtApellidos.Text,
+                        ckbActivo.Checked, TxtDireccion.Text, bitDataFoto, Convert.ToInt32(CmbParroquia.SelectedValue), TxtEmail.Text,
+                        DtpFechaNacimiento.Value, CmbTipoLicencia.Text, CmbTipoSangre.Text, TxtLibretaMilitar.Text, CkbDiscapacidad.Checked,
+                        Convert.ToInt32(NupDiscapacidad.Value), Convert.ToSingle(TxtMovimientoQuincenal.Text), CmbGenero.Text, CmbEstadoCivil.Text, Convert.ToSingle(TxtSueldoMensual.Text),
+                        Convert.ToSingle(TxtSueldoExtra.Text), TxtCelular1.Text, TxtCelular2.Text);
 
-                            bitDataFoto = MyDataImagen;
-                        }
-
-                        Empleado ObjEmpleado = new Empleado(cmbTipoDocumento.Text, TxtIdentidad.Text, TxtNombres.Text, TxtApellidos.Text,
-                            ckbActivo.Checked, TxtDireccion.Text, bitDataFoto, Convert.ToInt32(CmbParroquia.SelectedValue), TxtEmail.Text,
-                            DtpFechaNacimiento.Value, CmbTipoLicencia.Text, CmbTipoSangre.Text, TxtLibretaMilitar.Text, CkbDiscapacidad.Checked,
-                            Convert.ToInt32(NupDiscapacidad.Value), Convert.ToSingle(TxtMovimientoQuincenal.Text), CmbGenero.Text, CmbEstadoCivil.Text, Convert.ToSingle(TxtSueldoMensual.Text),
-                            Convert.ToSingle(TxtSueldoExtra.Text), TxtCelular1.Text, TxtCelular2.Text);
-
-                        String Resultado = ObjEmpleado.ModificarEmpleado(identificacion, bitDataFoto); // retorna true si esta correcto todo
-                        if (Resultado == "Correcto")
-                        {
-                            MessageBox.Show("Empleado Actualizado", "Exito");
-                            rbtActivosEmpleado.Checked = true;
-                            identificacion = "";
-                        }
-                        else { MessageBox.Show("Error al actualizar Empleado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                    String resultado = ObjEmpleado.InsertarEmpleado(ObjEmpleado); // retorna true si esta correcto todo
+                    if (resultado == "Datos Guardados")
+                    {
+                        MessageBox.Show("Cliente Registrado Correctamente ", "Exito", MessageBoxButtons.OK);
+                        cargarDatos("1");
+                        rbtActivosEmpleado.Checked = true;
                         inicializarDatos();
-                        bandera_Estado = false;
-                        btnGuardar.Text = "&Guardar";
-                        MyDataImagen = null;
+                    }
+                    else if (resultado == "Error al Registrar") { MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                    else if (resultado == "Existe") { MessageBox.Show("Ya Existe el Empleado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+                }
+                else if (bandera_Estado) // Para identificar si se va modificar
+                {
+                    if (nameFoto != "") // si esta cargada alguna foto guarde la imagen en el arreglo
+                    {
+                        bitDataFoto = Funcion.ConvertImg_Bytes(nameFoto);
+                    }
+                    else if (imgenDefault) // Para que se guarde la imgen por defecto si desea cancelar la imagen 
+                    {
+                        imgenDefault = false;
+                        bitDataFoto = MyDataImagen;
+                    }
+                    else // si no modifica la imagen, que quede la misma
+                    {
+
+                        bitDataFoto = MyDataImagen;
                     }
 
+                    Empleado ObjEmpleado = new Empleado(cmbTipoDocumento.Text, TxtIdentidad.Text, TxtNombres.Text, TxtApellidos.Text,
+                        ckbActivo.Checked, TxtDireccion.Text, bitDataFoto, Convert.ToInt32(CmbParroquia.SelectedValue), TxtEmail.Text,
+                        DtpFechaNacimiento.Value, CmbTipoLicencia.Text, CmbTipoSangre.Text, TxtLibretaMilitar.Text, CkbDiscapacidad.Checked,
+                        Convert.ToInt32(NupDiscapacidad.Value), Convert.ToSingle(TxtMovimientoQuincenal.Text), CmbGenero.Text, CmbEstadoCivil.Text, Convert.ToSingle(TxtSueldoMensual.Text),
+                        Convert.ToSingle(TxtSueldoExtra.Text), TxtCelular1.Text, TxtCelular2.Text);
+
+                    String Resultado = ObjEmpleado.ModificarEmpleado(identificacion, bitDataFoto); // retorna true si esta correcto todo
+                    if (Resultado == "Correcto")
+                    {
+                        MessageBox.Show("Empleado Actualizado", "Exito");
+                        cargarDatos("1");
+                        rbtActivosEmpleado.Checked = true;
+                        identificacion = "";
+                    }
+                    else { MessageBox.Show("Error al actualizar Empleado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                    inicializarDatos();
+                    bandera_Estado = false;
+                    btnGuardar.Text = "&Guardar";
+                    MyDataImagen = null;
                 }
-                else { MessageBox.Show("Ingrese los datos del Empleado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+
+            }
+            else { MessageBox.Show("Ingrese los datos del Empleado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -413,6 +416,50 @@ namespace Comisariato.Formularios.Mantenimiento
                 {
                     MessageBox.Show("Ingrese el RUC Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); TxtIdentidad.Focus();
                     TxtIdentidad.Select(0, TxtIdentidad.Text.Length);
+                }
+            }
+        }
+
+        private void DgvDatosEmpleado_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex >= 0 && DgvDatosEmpleado.Columns[e.ColumnIndex].Name == "Modificar" && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+                DataGridViewButtonCell celBoton = DgvDatosEmpleado.Rows[e.RowIndex].Cells["Modificar"] as DataGridViewButtonCell;
+                Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\modificarDgv.ico");
+                e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
+                DgvDatosEmpleado.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
+                DgvDatosEmpleado.Columns[e.ColumnIndex].Width = icoAtomico.Width + 10;
+                e.Handled = true;
+            }
+
+           
+            if (rbtInactivosEmpleado.Checked)
+            {
+                if (e.ColumnIndex >= 1 && this.DgvDatosEmpleado.Columns[e.ColumnIndex].Name == "Deshabilitar" && e.RowIndex >= 0)
+                {
+                    e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                    DataGridViewButtonCell celBoton = this.DgvDatosEmpleado.Rows[e.RowIndex].Cells["Deshabilitar"] as DataGridViewButtonCell;
+                    Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\Habilitar.ico");
+                    e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
+                    this.DgvDatosEmpleado.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
+                    this.DgvDatosEmpleado.Columns[e.ColumnIndex].Width = icoAtomico.Width + 10;
+                    e.Handled = true;
+                }
+            }
+            else
+            {
+                if (e.ColumnIndex >= 1 && this.DgvDatosEmpleado.Columns[e.ColumnIndex].Name == "Deshabilitar" && e.RowIndex >= 0)
+                {
+                    e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                    DataGridViewButtonCell celBoton = this.DgvDatosEmpleado.Rows[e.RowIndex].Cells["Deshabilitar"] as DataGridViewButtonCell;
+                    Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\EliminarDgv.ico");
+                    e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
+                    this.DgvDatosEmpleado.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
+                    this.DgvDatosEmpleado.Columns[e.ColumnIndex].Width = icoAtomico.Width + 10;
+                    e.Handled = true;
                 }
             }
         }

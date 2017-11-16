@@ -47,10 +47,10 @@
             this.debe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.haber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.concepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comboBox14 = new System.Windows.Forms.ComboBox();
-            this.comboBox13 = new System.Windows.Forms.ComboBox();
-            this.comboBox12 = new System.Windows.Forms.ComboBox();
-            this.comboBox11 = new System.Windows.Forms.ComboBox();
+            this.cbCuentaDeudora12 = new System.Windows.Forms.ComboBox();
+            this.cbIvaPagar = new System.Windows.Forms.ComboBox();
+            this.cbCuentaDeudoraCero = new System.Windows.Forms.ComboBox();
+            this.cbCuentaDeudoraIRBP = new System.Windows.Forms.ComboBox();
             this.label36 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
@@ -279,10 +279,10 @@
             this.groupBox4.Controls.Add(this.textBox25);
             this.groupBox4.Controls.Add(this.textBox24);
             this.groupBox4.Controls.Add(this.dgvDatosLibroDiario);
-            this.groupBox4.Controls.Add(this.comboBox14);
-            this.groupBox4.Controls.Add(this.comboBox13);
-            this.groupBox4.Controls.Add(this.comboBox12);
-            this.groupBox4.Controls.Add(this.comboBox11);
+            this.groupBox4.Controls.Add(this.cbCuentaDeudora12);
+            this.groupBox4.Controls.Add(this.cbIvaPagar);
+            this.groupBox4.Controls.Add(this.cbCuentaDeudoraCero);
+            this.groupBox4.Controls.Add(this.cbCuentaDeudoraIRBP);
             this.groupBox4.Controls.Add(this.label36);
             this.groupBox4.Controls.Add(this.label38);
             this.groupBox4.Controls.Add(this.label35);
@@ -377,37 +377,41 @@
             this.concepto.Name = "concepto";
             this.concepto.Width = 295;
             // 
-            // comboBox14
+            // cbCuentaDeudora12
             // 
-            this.comboBox14.FormattingEnabled = true;
-            this.comboBox14.Location = new System.Drawing.Point(8, 86);
-            this.comboBox14.Name = "comboBox14";
-            this.comboBox14.Size = new System.Drawing.Size(347, 24);
-            this.comboBox14.TabIndex = 36;
+            this.cbCuentaDeudora12.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbCuentaDeudora12.FormattingEnabled = true;
+            this.cbCuentaDeudora12.Location = new System.Drawing.Point(8, 86);
+            this.cbCuentaDeudora12.Name = "cbCuentaDeudora12";
+            this.cbCuentaDeudora12.Size = new System.Drawing.Size(347, 24);
+            this.cbCuentaDeudora12.TabIndex = 36;
             // 
-            // comboBox13
+            // cbIvaPagar
             // 
-            this.comboBox13.FormattingEnabled = true;
-            this.comboBox13.Location = new System.Drawing.Point(382, 86);
-            this.comboBox13.Name = "comboBox13";
-            this.comboBox13.Size = new System.Drawing.Size(347, 24);
-            this.comboBox13.TabIndex = 35;
+            this.cbIvaPagar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbIvaPagar.FormattingEnabled = true;
+            this.cbIvaPagar.Location = new System.Drawing.Point(382, 86);
+            this.cbIvaPagar.Name = "cbIvaPagar";
+            this.cbIvaPagar.Size = new System.Drawing.Size(347, 24);
+            this.cbIvaPagar.TabIndex = 35;
             // 
-            // comboBox12
+            // cbCuentaDeudoraCero
             // 
-            this.comboBox12.FormattingEnabled = true;
-            this.comboBox12.Location = new System.Drawing.Point(8, 37);
-            this.comboBox12.Name = "comboBox12";
-            this.comboBox12.Size = new System.Drawing.Size(347, 24);
-            this.comboBox12.TabIndex = 34;
+            this.cbCuentaDeudoraCero.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbCuentaDeudoraCero.FormattingEnabled = true;
+            this.cbCuentaDeudoraCero.Location = new System.Drawing.Point(8, 37);
+            this.cbCuentaDeudoraCero.Name = "cbCuentaDeudoraCero";
+            this.cbCuentaDeudoraCero.Size = new System.Drawing.Size(347, 24);
+            this.cbCuentaDeudoraCero.TabIndex = 34;
             // 
-            // comboBox11
+            // cbCuentaDeudoraIRBP
             // 
-            this.comboBox11.FormattingEnabled = true;
-            this.comboBox11.Location = new System.Drawing.Point(382, 37);
-            this.comboBox11.Name = "comboBox11";
-            this.comboBox11.Size = new System.Drawing.Size(347, 24);
-            this.comboBox11.TabIndex = 33;
+            this.cbCuentaDeudoraIRBP.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbCuentaDeudoraIRBP.FormattingEnabled = true;
+            this.cbCuentaDeudoraIRBP.Location = new System.Drawing.Point(382, 37);
+            this.cbCuentaDeudoraIRBP.Name = "cbCuentaDeudoraIRBP";
+            this.cbCuentaDeudoraIRBP.Size = new System.Drawing.Size(347, 24);
+            this.cbCuentaDeudoraIRBP.TabIndex = 33;
             // 
             // label36
             // 
@@ -1776,10 +1780,10 @@
         private System.Windows.Forms.TextBox textBox25;
         private System.Windows.Forms.TextBox textBox24;
         private System.Windows.Forms.DataGridView dgvDatosLibroDiario;
-        private System.Windows.Forms.ComboBox comboBox14;
-        private System.Windows.Forms.ComboBox comboBox13;
-        private System.Windows.Forms.ComboBox comboBox12;
-        private System.Windows.Forms.ComboBox comboBox11;
+        private System.Windows.Forms.ComboBox cbCuentaDeudora12;
+        private System.Windows.Forms.ComboBox cbIvaPagar;
+        private System.Windows.Forms.ComboBox cbCuentaDeudoraCero;
+        private System.Windows.Forms.ComboBox cbCuentaDeudoraIRBP;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.DataGridViewTextBoxColumn planCuenta;

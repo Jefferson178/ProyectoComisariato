@@ -23,8 +23,32 @@ namespace Comisariato.Formularios.Transacciones
             this.MaximizeBox = false;
             this.MinimizeBox = false;
         }
+
         Bitacora bitacora;
+
         private void button1_Click(object sender, EventArgs e)
+        {
+
+
+            Auntenticar();
+
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void txtClave_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                Auntenticar();
+            }
+        }
+
+        private void Auntenticar()
         {
             try
             {
@@ -34,49 +58,50 @@ namespace Comisariato.Formularios.Transacciones
                     //bool b = c.VerificarClave("SELECT TbUsuario.CONTRASEÑA, TbUsuario.USUARIO, TbTipousuario.TIPO, TbUsuario.IDTIPOUSUARIO from TbUsuario INNER JOIN TbTipousuario ON(TbUsuario.USUARIO = '" + Program.Usuario + "' and TbUsuario.CONTRASEÑA= '" + txtClave.Text + "')" + " AND (TbTipousuario.IDTIPOUSUARIO = '" + Program.IDTIPOUSUARIO + "' and TbTipousuario.TIPO='CAJERO')");
                     if (verificarMetodo == 1)
                     {
-
-                        //if (b)
-                        //{
-                        FrmFactura f = new FrmFactura();
-                        bitacora = new Bitacora("00:00:00", "Venta");
-                        bitacora.insertarBitacora();
-                        
-                        string numcaja = "111", sucursal = "2";
-
-                        string condicion = " where CAJA = '" + numcaja + "' and SUCURSAL= '" + sucursal + "';";
-                        if (c.ObtenerID("IDFACTURA", "TbEncabezadoFactura", condicion) == 0)
+                        bool b = c.VerificarClave(txtClave.Text);
+                        if (b)
                         {
-                            f.numfact = 1;
+                            Program.contraseñausuarioactual = txtClave.Text;
+                            FrmFactura f = new FrmFactura();
+                            bitacora = new Bitacora("00:00:00", "Venta");
+                            bitacora.insertarBitacora();
+
+                            string numcaja = "111", sucursal = "2";
+
+                            string condicion = " where CAJA = '" + numcaja + "' and SUCURSAL= '" + sucursal + "' and IDEMPRESA= '" + Program.IDEMPRESA + "';";
+                            if (c.ObtenerID("IDFACTURA", "TbEncabezadoFactura", condicion) == 0)
+                            {
+                                f.numfact = 1;
+                            }
+                            else
+                            {
+                                f.numfact = c.ObtenerID("IDFACTURA", "TbEncabezadoFactura", condicion) + 1;
+                            }
+
+                            f.numcaja = numcaja;
+                            this.Close();
+                            f.ShowDialog();
                         }
                         else
                         {
-                            f.numfact = c.ObtenerID("IDFACTURA", "TbEncabezadoFactura", condicion) + 1;
+                            MessageBox.Show("Clave incorrecta. O quizas no tenga permiso para ingresar a esta opcion.");
                         }
-
-                        f.numcaja = numcaja;
-                        this.Close();
-                        f.ShowDialog();
-                        //}
-                        //else
-                        //{
-                        //    MessageBox.Show("Clave incorrecta. O quizas no tenga permiso para ingresar a esta opcion.");
-                        //}
                     }
                     else
                     {
-                        //if (b)
-                        //{
-                        FrmAvanse s = new FrmAvanse();
-                        s.cajero = Program.NOMBRES + " " + Program.APELLIDOS;
-                        s.fecha = Program.FecaInicio;
-                        s.caja = "" + Program.numfact;
-                        s.ShowDialog();
-                        this.Close();
-                        //}
-                        //else
-                        //{
-                        //    MessageBox.Show("Clave incorrecta. O quizas no tenga permiso para ingresar a esta opcion.");
-                        //}
+                        if (txtClave.Text == Program.contraseñausuarioactual)
+                        {
+                            FrmAvanse s = new FrmAvanse();
+                            s.cajero = Program.NOMBRES + " " + Program.APELLIDOS;
+                            s.fecha = Program.FecaInicio;
+                            s.caja = "" + Program.numfact;
+                            s.ShowDialog();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Clave incorrecta. O quizas no tenga permiso para ingresar a esta opcion.");
+                        }
 
                     }
 
@@ -89,10 +114,6 @@ namespace Comisariato.Formularios.Transacciones
 
                 // MessageBox.Show(""+ex.Message);
             }
-
-
-
-
 
 
         }

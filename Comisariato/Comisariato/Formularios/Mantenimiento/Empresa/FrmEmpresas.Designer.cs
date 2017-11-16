@@ -32,14 +32,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcEmpresa = new System.Windows.Forms.TabControl();
             this.tpNuevaEmpresa = new System.Windows.Forms.TabPage();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnLimpiarEmpresa = new System.Windows.Forms.Button();
             this.btnGuardarEmpresa = new System.Windows.Forms.Button();
             this.gbFondoPantallaEmpresa = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnBuscarFondoEmpresa = new System.Windows.Forms.Button();
             this.pbfondoPantallaEmpresa = new System.Windows.Forms.PictureBox();
             this.gbLogoEmpresa = new System.Windows.Forms.GroupBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.btnBuscarLogoEmpresa = new System.Windows.Forms.Button();
             this.pbLogoEmpresa = new System.Windows.Forms.PictureBox();
             this.txtNombreEmpresa = new System.Windows.Forms.TextBox();
@@ -78,11 +78,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tpConsultarModificarDeshabilitarEmpresa = new System.Windows.Forms.TabPage();
             this.dgvDatosEmpresa = new System.Windows.Forms.DataGridView();
-            this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.txtConsultarEmpresa = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
+            this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tcEmpresa.SuspendLayout();
             this.tpNuevaEmpresa.SuspendLayout();
             this.gbFondoPantallaEmpresa.SuspendLayout();
@@ -128,28 +128,6 @@
             this.tpNuevaEmpresa.TabIndex = 0;
             this.tpNuevaEmpresa.Text = "Nueva Empresa";
             // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(117, 138);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(87, 44);
-            this.btnCancelar.TabIndex = 26;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(123, 137);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(87, 44);
-            this.button1.TabIndex = 27;
-            this.button1.Text = "Cancelar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // btnLimpiarEmpresa
             // 
             this.btnLimpiarEmpresa.Image = global::Comisariato.Properties.Resources.limpiar;
@@ -193,6 +171,17 @@
             this.gbFondoPantallaEmpresa.TabStop = false;
             this.gbFondoPantallaEmpresa.Text = "Fondo de Pantalla";
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(123, 137);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(87, 44);
+            this.button1.TabIndex = 27;
+            this.button1.Text = "Cancelar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // btnBuscarFondoEmpresa
             // 
             this.btnBuscarFondoEmpresa.Image = global::Comisariato.Properties.Resources.buscar2;
@@ -233,6 +222,17 @@
             this.gbLogoEmpresa.TabIndex = 3;
             this.gbLogoEmpresa.TabStop = false;
             this.gbLogoEmpresa.Text = "Logo";
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(117, 138);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(87, 44);
+            this.btnCancelar.TabIndex = 26;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnBuscarLogoEmpresa
             // 
@@ -642,7 +642,7 @@
             this.dgvDatosEmpresa.AllowUserToAddRows = false;
             this.dgvDatosEmpresa.AllowUserToDeleteRows = false;
             this.dgvDatosEmpresa.AllowUserToOrderColumns = true;
-            this.dgvDatosEmpresa.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvDatosEmpresa.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDatosEmpresa.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -661,15 +661,7 @@
             this.dgvDatosEmpresa.Size = new System.Drawing.Size(899, 379);
             this.dgvDatosEmpresa.TabIndex = 14;
             this.dgvDatosEmpresa.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosEmpresa_CellClick);
-            // 
-            // Modificar
-            // 
-            this.Modificar.HeaderText = "Modificar";
-            this.Modificar.Name = "Modificar";
-            this.Modificar.ReadOnly = true;
-            this.Modificar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Modificar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Modificar.Width = 92;
+            this.dgvDatosEmpresa.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvDatosEmpresa_CellPainting);
             // 
             // txtConsultarEmpresa
             // 
@@ -704,13 +696,21 @@
             this.imageList2.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // Modificar
+            // 
+            this.Modificar.HeaderText = "";
+            this.Modificar.Name = "Modificar";
+            this.Modificar.ReadOnly = true;
+            this.Modificar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Modificar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // FrmEmpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(971, 539);
+            this.ClientSize = new System.Drawing.Size(971, 538);
             this.Controls.Add(this.tcEmpresa);
             this.Font = new System.Drawing.Font("Arial", 10F);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -792,8 +792,8 @@
         private System.Windows.Forms.TextBox txtCelular1ContadorEmpresa;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.DataGridView dgvDatosEmpresa;
-        private System.Windows.Forms.DataGridViewButtonColumn Modificar;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.DataGridViewButtonColumn Modificar;
     }
 }

@@ -39,27 +39,33 @@ namespace Comisariato.Clases
             try
             {
                 Objc.conectar();
-                SqlCommand Sentencia = new SqlCommand("select U.CONTRASEÑA from TbUsuario U where U.CONTRASEÑA='" + Contraseña + "'");
+                SqlCommand Sentencia = new SqlCommand("SELECT TbUsuario.CONTRASEÑA, TbUsuario.USUARIO, TbTipousuario.TIPO, TbUsuario.IDTIPOUSUARIO, TbEmpresa.NOMBRECOMERCIAL, TbEmpresa.RUC, TbEmpresa.DIRECCION from TbUsuario  INNER JOIN TbTipousuario ON(TbTipousuario.IDTIPOUSUARIO = '"+Program.IDTIPOUSUARIO+"' and TbTipousuario.TIPO='CAJERO') and TbUsuario.USUARIO = '"+Program.Usuario+"' and TbUsuario.CONTRASEÑA= '"+Contraseña+"' INNER JOIN TbEmpresa ON (TbEmpresa.IDEMPRESA='"+Program.IDEMPRESA+"' );");
                 Sentencia.Connection = ConexionBD.connection;
-                int valor = Convert.ToInt32(Sentencia.ExecuteScalar());
-                if (valor == 0)
+                SqlDataReader dato = Sentencia.ExecuteReader();
+                Objc.Cerrar();
+                if (dato.Read() == true)
                 {
-                    return false;
+                    Program.nombreempresa=(String)dato["NOMBRECOMERCIAL"];
+                    Program.rucempresa= (String)dato["RUC"];
+                    Program.direccionempresa= (String)dato["DIRECCION"];
+                    return true;
                 }
+                else { return false; }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al conectar la base de Datos " + ex.Message, "Comprobar usuario", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
                 return false;
             }
-            return true;
+           // return true;
         }
+
         public bool AutenticacionUsuario(String Usuario, String Contraseña)
         {
             try
             {
                 Objc.conectar();
-                string sql = "select U.IDEMPLEADO, U.USUARIO, U.CONTRASEÑA, U.IDTIPOUSUARIO from TbUsuario U where U.USUARIO='" + Usuario + "' and  U.CONTRASEÑA='" + Contraseña + "'";
+                string sql = "select U.IDEMPLEADO, U.USUARIO, U.CONTRASEÑA, U.IDTIPOUSUARIO, U.IDEMPRESA, U.ACTIVO from TbUsuario U where U.USUARIO='" + Usuario + "' and  U.CONTRASEÑA='" + Contraseña + "'";
                 SqlCommand Sentencia = new SqlCommand(sql);
                 Sentencia.Connection = ConexionBD.connection;
                 //int valor = Convert.ToInt32(Sentencia.ExecuteScalar());
@@ -67,8 +73,11 @@ namespace Comisariato.Clases
                 Objc.Cerrar();
                 if (dato.Read() == true)
                 {
+                    Program.Usuario = Usuario;
+                    Program.estado = Convert.ToBoolean(dato["ACTIVO"]);
                     Program.IDUsuario = "" + (int)dato["IDEMPLEADO"];
                     Program.IDTIPOUSUARIO = "" + (int)dato["IDTIPOUSUARIO"];
+                    Program.IDEMPRESA = "" + (int)dato["IDEMPRESA"];
                     datosiniciosesion("" + (int)dato["IDEMPLEADO"]);
                     return true;
                 }
@@ -251,7 +260,7 @@ namespace Comisariato.Clases
                 return false;
             }
         }
-        public bool GuardarFact(int nfilas, DataGridView dg, List<string> encabezado, List<string> detallepago)
+        public bool GuardarFact(int nfilas, DataGridView dg, List<string> encabezado, List<string> detallepago, List<string> ivas)
         {
             try
             {
@@ -261,6 +270,7 @@ namespace Comisariato.Clases
                 List<string> enca = encabezado;
                 List<string> detalle = detallepago;
                 SqlCommand cmd = null;
+                string idempresa = Program.IDEMPRESA;
                 for (int i = 0; i < nfilas; i++)
                 {
                     precio = Funcion.reemplazarcaracter(dg.Rows[i].Cells[4].Value.ToString());
@@ -285,6 +295,8 @@ namespace Comisariato.Clases
                     cmd.Parameters.AddWithValue("@recibido", detalle[5]);
                     cmd.Parameters.AddWithValue("@cambio", detalle[6]);
                     cmd.Parameters.AddWithValue("@estado", 1);
+                    cmd.Parameters.AddWithValue("@ivat", ivas[i]);
+                    cmd.Parameters.AddWithValue("@idempresa", idempresa);
                     result = cmd.ExecuteNonQuery();
                 }
 
@@ -297,6 +309,7 @@ namespace Comisariato.Clases
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 return false;
             }
         }
@@ -467,7 +480,7 @@ namespace Comisariato.Clases
             {
                 List<Producto> lista = new List<Producto>();
                 Objc.conectar();
-                string sql = " SELECT U.PRECIO, U.CANTIDAD, U.CODIGOBARRAPRODUCTO, U.ESTADO, P.DETALLE, P.IVA from TbDetalleFactura U INNER JOIN TbProducto P  ON(U.NFACTURA = '" + nfact + "') AND(P.CODIGOBARRA = U.CODIGOBARRAPRODUCTO)";
+                string sql = " SELECT U.PRECIO, U.CANTIDAD, U.CODIGOBARRAPRODUCTO, U.ESTADO, U.IVA, P.NOMBREPRODUCTO, P.IVAESTADO from TbDetalleFactura U INNER JOIN TbProducto P  ON(U.NFACTURA = '" + nfact + "') AND(P.CODIGOBARRA = U.CODIGOBARRAPRODUCTO)";
                 SqlCommand comando = new SqlCommand(sql);
                 comando.Connection = ConexionBD.connection;
                 SqlDataReader dato = comando.ExecuteReader();
@@ -478,7 +491,7 @@ namespace Comisariato.Clases
                     p.Preciopublico_sin_iva = Convert.ToSingle(dato["PRECIO"].ToString());
                     p.Cantidad = Convert.ToInt32(dato["CANTIDAD"].ToString());
                     p.Codigobarra = (String)dato["CODIGOBARRAPRODUCTO"];
-                    p.Nombreproducto = (String)dato["DETALLE"];
+                    p.Nombreproducto = (String)dato["NOMBREPRODUCTO"];
                     p.Iva = Convert.ToInt32(dato["IVA"].ToString());
                     if (verimetodo == 1)
                     {
@@ -500,7 +513,7 @@ namespace Comisariato.Clases
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("Error al buscar cliente: " + ex);
+                MessageBox.Show("Error al buscar cliente: " + ex);
                 return null;
             }
         }
@@ -580,25 +593,31 @@ namespace Comisariato.Clases
                 return null;
             }
         }
-        public String buscarcliente(string identificacion)
+
+        public Cliente buscarcliente(string identificacion)
         {
-
-
+            Cliente datos;
             try
             {
+                datos = new Cliente();
                 Objc.conectar();
-                SqlCommand Sentencia = new SqlCommand("select U.IDCLIENTE, U.IDENTIFICACION, U.NOMBRES, U.APELLIDOS from TbCliente U where U.IDENTIFICACION='" + identificacion + "';");
+                SqlCommand Sentencia = new SqlCommand("select U.IDCLIENTE, U.IDENTIFICACION, U.NOMBRES, U.APELLIDOS, U.ACTIVO, U.DIRECCION, U.RAZONSOCIAL from TbCliente U where U.IDENTIFICACION='" + identificacion + "';");
                 Sentencia.Connection = ConexionBD.connection;
                 SqlDataReader dato = Sentencia.ExecuteReader();
                 Objc.Cerrar();
                 if (dato.Read() == true)
                 {
-                    return (String)dato["NOMBRES"] + " " + (String)dato["APELLIDOS"] + ";" + (String)dato["IDCLIENTE"];
+                    datos.Nombres = (String)dato["NOMBRES"];// + " " + (String)dato["APELLIDOS"] + ";" + dato["IDCLIENTE"];
+                    datos.Apellidos = (String)dato["APELLIDOS"];
+                    datos.Casilla =Convert.ToInt32(dato["IDCLIENTE"]);
+                    datos.Direccion= (String)dato["DIRECCION"];
+                    datos.RazonSocial = (String)dato["RAZONSOCIAL"];
+                    datos.Activo = Convert.ToBoolean(dato["ACTIVO"]);
                 }
                 else
                 {
                     //producto = null;
-                    return null;
+                    datos = null;
                     // MessageBox.Show("No se encontró ningun producto con ese codigo.");
                     //DgvDetalle.Rows.RemoveAt(e.RowIndex);
                 }
@@ -606,9 +625,10 @@ namespace Comisariato.Clases
             }
             catch (Exception ex)
             {
-                return null;
+                //MessageBox.Show(""+ex.Message);
+                datos = null;
             }
-
+            return datos;
 
         }
         public bool Existe(string campo, string parametro, string tabla)
@@ -939,13 +959,16 @@ namespace Comisariato.Clases
                 cmd.Parameters.AddWithValue("@PLAZOORDENCOMPRA", ObjCompra.Plazo.ToUpper());
                 cmd.Parameters.AddWithValue("@IMPUESTO", ObjCompra.Impuesto);
                 cmd.Parameters.AddWithValue("@OBSERVACION", ObjCompra.Observacion.ToUpper());
-                cmd.Parameters.AddWithValue("@IVA", ObjCompra.Iva);
-                cmd.Parameters.AddWithValue("@ICE", ObjCompra.Ice);
-                cmd.Parameters.AddWithValue("@IRBP", ObjCompra.Irbp);
-                cmd.Parameters.AddWithValue("@SUBTOTALIVA", ObjCompra.SubtotalIva);
-                cmd.Parameters.AddWithValue("@SUBTOTAL0", ObjCompra.Subtotal0);
-                cmd.Parameters.AddWithValue("@SUBTOTAL", ObjCompra.Subtotal);
-                cmd.Parameters.AddWithValue("@TOTAL", ObjCompra.Total);
+                cmd.Parameters.AddWithValue("@IVA", Funcion.reemplazarcaracter(ObjCompra.Iva.ToString()));
+                cmd.Parameters.AddWithValue("@ICE", Funcion.reemplazarcaracter(ObjCompra.Ice.ToString()));
+                cmd.Parameters.AddWithValue("@IRBP", Funcion.reemplazarcaracter(ObjCompra.Irbp.ToString()));
+                cmd.Parameters.AddWithValue("@SUBTOTALIVA", Funcion.reemplazarcaracter(ObjCompra.SubtotalIva.ToString()));
+                cmd.Parameters.AddWithValue("@SUBTOTAL0", Funcion.reemplazarcaracter(ObjCompra.Subtotal0.ToString()));
+                cmd.Parameters.AddWithValue("@SUBTOTAL", Funcion.reemplazarcaracter(ObjCompra.Subtotal.ToString()));
+                cmd.Parameters.AddWithValue("@TOTAL", Funcion.reemplazarcaracter(ObjCompra.Total.ToString()));
+                cmd.Parameters.AddWithValue("@SERIE1", ObjCompra.Serie1);
+                cmd.Parameters.AddWithValue("@SERIE2", ObjCompra.Serie2);
+                cmd.Parameters.AddWithValue("@NUMERO", ObjCompra.Numero);
 
                 int result = cmd.ExecuteNonQuery();
                 Objc.Cerrar();
@@ -983,6 +1006,8 @@ namespace Comisariato.Clases
                 cmd.Parameters.AddWithValue("@PRECIOVENTAPUBLICO", ObjCompra.PrecioVentaPublico);
                 cmd.Parameters.AddWithValue("@PRECIOMAYORISTA", ObjCompra.PrecioMayorista);
                 cmd.Parameters.AddWithValue("@PRECIOCAJAS", ObjCompra.PrecioCajas);
+                cmd.Parameters.AddWithValue("@ICE", ObjCompra.Ice);
+                cmd.Parameters.AddWithValue("@IRBP", ObjCompra.Irbp);
                 int result = cmd.ExecuteNonQuery();
                 Objc.Cerrar();
                 if (result > 0)

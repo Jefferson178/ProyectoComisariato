@@ -57,12 +57,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tpConsultarModificarSucursal = new System.Windows.Forms.TabPage();
             this.DgvDatosSucursal = new System.Windows.Forms.DataGridView();
-            this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Deshabilitar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.rbtInactivos = new System.Windows.Forms.RadioButton();
             this.rbtActivos = new System.Windows.Forms.RadioButton();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Deshabilitar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tcSucursal.SuspendLayout();
             this.tpNuevaSucursal.SuspendLayout();
             this.gbDatosSucursal.SuspendLayout();
@@ -406,7 +406,7 @@
             this.DgvDatosSucursal.AllowUserToAddRows = false;
             this.DgvDatosSucursal.AllowUserToDeleteRows = false;
             this.DgvDatosSucursal.AllowUserToOrderColumns = true;
-            this.DgvDatosSucursal.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.DgvDatosSucursal.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvDatosSucursal.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -426,22 +426,7 @@
             this.DgvDatosSucursal.Size = new System.Drawing.Size(661, 282);
             this.DgvDatosSucursal.TabIndex = 1;
             this.DgvDatosSucursal.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDatosSucursal_CellClick);
-            // 
-            // Modificar
-            // 
-            this.Modificar.HeaderText = "Editar";
-            this.Modificar.Name = "Modificar";
-            this.Modificar.ReadOnly = true;
-            this.Modificar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Modificar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Modificar.Width = 70;
-            // 
-            // Deshabilitar
-            // 
-            this.Deshabilitar.HeaderText = "Deshabilitar";
-            this.Deshabilitar.Name = "Deshabilitar";
-            this.Deshabilitar.ReadOnly = true;
-            this.Deshabilitar.Width = 90;
+            this.DgvDatosSucursal.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DgvDatosSucursal_CellPainting);
             // 
             // rbtInactivos
             // 
@@ -492,6 +477,20 @@
             this.label8.Size = new System.Drawing.Size(67, 16);
             this.label8.TabIndex = 0;
             this.label8.Text = "Consultar:";
+            // 
+            // Modificar
+            // 
+            this.Modificar.HeaderText = "";
+            this.Modificar.Name = "Modificar";
+            this.Modificar.ReadOnly = true;
+            this.Modificar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Modificar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Deshabilitar
+            // 
+            this.Deshabilitar.HeaderText = "";
+            this.Deshabilitar.Name = "Deshabilitar";
+            this.Deshabilitar.ReadOnly = true;
             // 
             // FrmSucursal
             // 

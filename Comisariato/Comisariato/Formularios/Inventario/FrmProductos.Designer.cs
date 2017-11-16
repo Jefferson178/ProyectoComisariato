@@ -81,10 +81,10 @@
             this.rbtInactivos = new System.Windows.Forms.RadioButton();
             this.rbtActivos = new System.Windows.Forms.RadioButton();
             this.dgvDatosProducto = new System.Windows.Forms.DataGridView();
-            this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Deshabilitar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.txtConsultarProducto = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
+            this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Deshabilitar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tcProducto.SuspendLayout();
             this.tpNuevoProducto.SuspendLayout();
             this.gbDescripcionProducto.SuspendLayout();
@@ -772,7 +772,7 @@
             this.dgvDatosProducto.AllowUserToAddRows = false;
             this.dgvDatosProducto.AllowUserToDeleteRows = false;
             this.dgvDatosProducto.AllowUserToOrderColumns = true;
-            this.dgvDatosProducto.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvDatosProducto.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDatosProducto.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -792,22 +792,7 @@
             this.dgvDatosProducto.Size = new System.Drawing.Size(985, 423);
             this.dgvDatosProducto.TabIndex = 9;
             this.dgvDatosProducto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosProducto_CellClick);
-            // 
-            // Modificar
-            // 
-            this.Modificar.HeaderText = "Modificar";
-            this.Modificar.Name = "Modificar";
-            this.Modificar.ReadOnly = true;
-            this.Modificar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Modificar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Modificar.Width = 92;
-            // 
-            // Deshabilitar
-            // 
-            this.Deshabilitar.HeaderText = "Deshabilitar";
-            this.Deshabilitar.Name = "Deshabilitar";
-            this.Deshabilitar.ReadOnly = true;
-            this.Deshabilitar.Width = 90;
+            this.dgvDatosProducto.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvDatosProducto_CellPainting);
             // 
             // txtConsultarProducto
             // 
@@ -832,13 +817,27 @@
             this.label25.TabIndex = 7;
             this.label25.Text = "Consultar:";
             // 
+            // Modificar
+            // 
+            this.Modificar.HeaderText = "";
+            this.Modificar.Name = "Modificar";
+            this.Modificar.ReadOnly = true;
+            this.Modificar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Modificar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Deshabilitar
+            // 
+            this.Deshabilitar.HeaderText = "";
+            this.Deshabilitar.Name = "Deshabilitar";
+            this.Deshabilitar.ReadOnly = true;
+            // 
             // FrmProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(1052, 573);
+            this.ClientSize = new System.Drawing.Size(1052, 572);
             this.Controls.Add(this.tcProducto);
             this.Font = new System.Drawing.Font("Arial", 10F);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -919,9 +918,9 @@
         private System.Windows.Forms.ComboBox cbPeso;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.DataGridView dgvDatosProducto;
-        private System.Windows.Forms.DataGridViewButtonColumn Modificar;
-        private System.Windows.Forms.DataGridViewButtonColumn Deshabilitar;
         private System.Windows.Forms.RadioButton rbtInactivos;
         private System.Windows.Forms.RadioButton rbtActivos;
+        private System.Windows.Forms.DataGridViewButtonColumn Modificar;
+        private System.Windows.Forms.DataGridViewButtonColumn Deshabilitar;
     }
 }

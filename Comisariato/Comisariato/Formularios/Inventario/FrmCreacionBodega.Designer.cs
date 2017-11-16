@@ -245,8 +245,8 @@
             this.dgvDatosBodega.AllowUserToAddRows = false;
             this.dgvDatosBodega.AllowUserToDeleteRows = false;
             this.dgvDatosBodega.AllowUserToOrderColumns = true;
-            this.dgvDatosBodega.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvDatosBodega.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
+            this.dgvDatosBodega.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvDatosBodega.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -266,20 +266,19 @@
             this.dgvDatosBodega.Size = new System.Drawing.Size(633, 177);
             this.dgvDatosBodega.TabIndex = 5;
             this.dgvDatosBodega.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosBodega_CellClick);
+            this.dgvDatosBodega.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvDatosBodega_CellPainting_1);
             // 
             // modificarDatosBodega
             // 
-            this.modificarDatosBodega.HeaderText = "Modificar";
+            this.modificarDatosBodega.HeaderText = "";
             this.modificarDatosBodega.Name = "modificarDatosBodega";
             this.modificarDatosBodega.ReadOnly = true;
-            this.modificarDatosBodega.Width = 73;
             // 
             // DeshabilitarDatosBodega
             // 
-            this.DeshabilitarDatosBodega.HeaderText = "Desabilitar";
+            this.DeshabilitarDatosBodega.HeaderText = "";
             this.DeshabilitarDatosBodega.Name = "DeshabilitarDatosBodega";
             this.DeshabilitarDatosBodega.ReadOnly = true;
-            this.DeshabilitarDatosBodega.Width = 82;
             // 
             // FrmCreacionBodega
             // 

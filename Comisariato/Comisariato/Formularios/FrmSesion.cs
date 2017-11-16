@@ -60,15 +60,23 @@ namespace Comisariato
                     bool b = c.AutenticacionUsuario(txtUsuario.Text, txtContraseña.Text);
                     if (b)
                     {
-                        Program.Usuario = txtUsuario.Text;
-                        //Program.IDUsuario=
-                        Program.FecaInicio = DateTime.Now.Date.ToShortDateString();
-                        Program.horainicio = DateTime.Now.TimeOfDay.ToString();
-                        FrmPrincipal p = new FrmPrincipal();
-                        Bitacora ObjBitacora = new Bitacora("00:00:00", "Inicio de Sessión");
-                        ObjBitacora.insertarBitacora();
-                        p.Show();
-                        this.Visible = false;
+                        if (Program.estado)
+                        {
+                           // Program.Usuario = txtUsuario.Text;
+                            //Program.IDUsuario=
+                            Program.FecaInicio = DateTime.Now.Date.ToShortDateString();
+                            Program.horainicio = DateTime.Now.TimeOfDay.ToString();
+                            FrmPrincipal p = new FrmPrincipal();
+                            Bitacora ObjBitacora = new Bitacora("00:00:00", "Inicio de Sessión");
+                            ObjBitacora.insertarBitacora();
+                            p.Show();
+                            this.Visible = false;
+                        }
+                        else
+                        {
+                            lblError.Text = "Su usuario por el momento se encuentra desabilitado.\nContactate con el administrador del sistema.";
+                        }
+                      
                     }
                     else
                     {

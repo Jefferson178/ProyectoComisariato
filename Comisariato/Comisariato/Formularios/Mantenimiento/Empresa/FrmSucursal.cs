@@ -75,12 +75,12 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
             if (rbtActivos.Checked)
             {
                 cargarDatos("1");
-                DgvDatosSucursal.Columns[1].HeaderText = "Desabilitar";
+                //DgvDatosSucursal.Columns[1].HeaderText = "Desabilitar";
             }
             else if (rbtInactivos.Checked)
             {
                 cargarDatos("0");
-                DgvDatosSucursal.Columns[1].HeaderText = "Habilitar";
+                //DgvDatosSucursal.Columns[1].HeaderText = "Habilitar";
             }
         }
 
@@ -89,13 +89,13 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
             if (rbtActivos.Checked)
             {
                 consultas.boolLlenarDataGridView(DgvDatosSucursal, "Select IDEMPRESA as ID, CODIGO, NOMBRESUCURSAL AS 'SUCURSAL',RUC,TELEFONO,JEFESUCURSAL,EMAIL,DIRECCION from TbSucursal WHERE ESTADO  = 1 and RUC like '%" + TxtBuscar.Text + "%' or NOMBRESUCURSAL like '%" + TxtBuscar.Text + "%' or CODIGO like '%" + TxtBuscar.Text + "%' ;");
-                DgvDatosSucursal.Columns[1].HeaderText = "Desabilitar";
+                //DgvDatosSucursal.Columns[1].HeaderText = "Desabilitar";
                 DgvDatosSucursal.Columns["ID"].Visible = false;
             }
             else if (rbtInactivos.Checked)
             {
                 consultas.boolLlenarDataGridView(DgvDatosSucursal, "Select IDEMPRESA as ID, CODIGO, NOMBRESUCURSAL AS 'SUCURSAL',RUC,TELEFONO,JEFESUCURSAL,EMAIL,DIRECCION from TbSucursal WHERE ESTADO  = 0 and RUC like '%" + TxtBuscar + "%' or NOMBRESUCURSAL like '%" + TxtBuscar.Text + "%' or CODIGO like '%" + TxtBuscar.Text + "%' ;");
-                DgvDatosSucursal.Columns[1].HeaderText = "Habilitar";
+                //DgvDatosSucursal.Columns[1].HeaderText = "Habilitar";
                 DgvDatosSucursal.Columns["ID"].Visible = false;
             }
         }
@@ -144,7 +144,7 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
                     bandera_Estado = false;
                     btnGuardar.Text = "&Guardar";
                 }
-
+                cargarDatos("1");
             }
             else { MessageBox.Show("Ingrese los datos del Empleado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
@@ -202,6 +202,49 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
                 btnLimpiar.Text = "&Cancelar";
                 btnGuardar.Text = "&Modificar";
 
+            }
+        }
+
+        private void DgvDatosSucursal_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex >= 0 && DgvDatosSucursal.Columns[e.ColumnIndex].Name == "Modificar" && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+                DataGridViewButtonCell celBoton = DgvDatosSucursal.Rows[e.RowIndex].Cells["Modificar"] as DataGridViewButtonCell;
+                Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\modificarDgv.ico");
+                e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
+                DgvDatosSucursal.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
+                DgvDatosSucursal.Columns[e.ColumnIndex].Width = icoAtomico.Width + 10;
+                e.Handled = true;
+            }
+
+            if (rbtInactivos.Checked)
+            {
+                if (e.ColumnIndex >= 1 && this.DgvDatosSucursal.Columns[e.ColumnIndex].Name == "Deshabilitar" && e.RowIndex >= 0)
+                {
+                    e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                    DataGridViewButtonCell celBoton = this.DgvDatosSucursal.Rows[e.RowIndex].Cells["Deshabilitar"] as DataGridViewButtonCell;
+                    Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\Habilitar.ico");
+                    e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
+                    this.DgvDatosSucursal.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
+                    this.DgvDatosSucursal.Columns[e.ColumnIndex].Width = icoAtomico.Width + 10;
+                    e.Handled = true;
+                }
+            }
+            else
+            {
+                if (e.ColumnIndex >= 1 && this.DgvDatosSucursal.Columns[e.ColumnIndex].Name == "Deshabilitar" && e.RowIndex >= 0)
+                {
+                    e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                    DataGridViewButtonCell celBoton = this.DgvDatosSucursal.Rows[e.RowIndex].Cells["Deshabilitar"] as DataGridViewButtonCell;
+                    Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\EliminarDgv.ico");
+                    e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
+                    this.DgvDatosSucursal.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
+                    this.DgvDatosSucursal.Columns[e.ColumnIndex].Width = icoAtomico.Width + 10;
+                    e.Handled = true;
+                }
             }
         }
     }

@@ -94,6 +94,8 @@ namespace Comisariato.Formularios
 
             cbCuentaContableProveedor.DropDownHeight = cbCuentaContableProveedor.ItemHeight = 150;
             cbTipoServicioProveedor.DropDownHeight = cbTipoServicioProveedor.ItemHeight = 150;
+
+            
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
@@ -111,7 +113,7 @@ namespace Comisariato.Formularios
                     if (resultado == "Datos Guardados")
                     {
                         MessageBox.Show("Proveedor Registrado Correctamente ", "Exito",MessageBoxButtons.OK);
-                        //cargarDatos("1");
+                        cargarDatos("1");
                         rbtActivosProveedor.Checked = true;
                         inicializarDatos();
                         if (Program.FormularioLlamado)
@@ -132,7 +134,7 @@ namespace Comisariato.Formularios
                     if (Resultado == "Correcto")
                     {
                         MessageBox.Show("Proveedor Actualizado", "Exito");
-                        //cargarDatos("1");
+                        cargarDatos("1");
                         rbtActivosProveedor.Checked = true;
                         identificacion = "";
                     }
@@ -182,12 +184,12 @@ namespace Comisariato.Formularios
             if (rbtActivosProveedor.Checked)
             {
                 cargarDatos("1");
-                dgvDatosProveedor.Columns[1].HeaderText = "Desabilitar";
+                //dgvDatosProveedor.Columns[1].HeaderText = "Desabilitar";
             }
             else if (rbtInactivosProveedor.Checked)
             {
                 cargarDatos("0");
-                dgvDatosProveedor.Columns[1].HeaderText = "Habilitar";
+                //dgvDatosProveedor.Columns[1].HeaderText = "Habilitar";
             }
         }
 
@@ -204,13 +206,15 @@ namespace Comisariato.Formularios
 
             if (rbtActivosProveedor.Checked)
             {
-                consultas.boolLlenarDataGridView(dgvDatosProveedor, "Select identificacion,NOMBRES AS 'NOMBRE PROVEEDOR', NACIONALIDAD,RAZONSOCIAL,GIRACHEQUEA as 'GIRA CHEQUE' from TbProveedor where ESTADO = 1 and IDENTIFICACION like '%"+ txtConsultarProveedor.Text + "%' or NOMBRES like '%"+txtConsultarProveedor.Text+"%'");
-                dgvDatosProveedor.Columns[1].HeaderText = "Desabilitar";
+                consultas.boolLlenarDataGridView(dgvDatosProveedor, "Select IDProveedor AS ID, identificacion,NOMBRES AS 'NOMBRE PROVEEDOR', NACIONALIDAD,RAZONSOCIAL,GIRACHEQUEA as 'GIRA CHEQUE' from TbProveedor where ESTADO = 1 and IDENTIFICACION like '%" + txtConsultarProveedor.Text + "%' or NOMBRES like '%"+txtConsultarProveedor.Text+"%'");
+                //dgvDatosProveedor.Columns[1].HeaderText = "Desabilitar";
+                dgvDatosProveedor.Columns["ID"].Visible = false;
             }
             else if (rbtInactivosProveedor.Checked)
             {
-                consultas.boolLlenarDataGridView(dgvDatosProveedor, "Select identificacion,NOMBRES AS 'NOMBRE PROVEEDOR', NACIONALIDAD,RAZONSOCIAL,GIRACHEQUEA as 'GIRA CHEQUE' from TbProveedor where ESTADO = 0 and IDENTIFICACION like '%" + txtConsultarProveedor.Text + "%' or NOMBRES like '%" + txtConsultarProveedor.Text + "%'");
-                dgvDatosProveedor.Columns[1].HeaderText = "Habilitar";
+                consultas.boolLlenarDataGridView(dgvDatosProveedor, "Select IDProveedor AS ID, identificacion,NOMBRES AS 'NOMBRE PROVEEDOR', NACIONALIDAD,RAZONSOCIAL,GIRACHEQUEA as 'GIRA CHEQUE' from TbProveedor where ESTADO = 0 and IDENTIFICACION like '%" + txtConsultarProveedor.Text + "%' or NOMBRES like '%" + txtConsultarProveedor.Text + "%'");
+                //dgvDatosProveedor.Columns[1].HeaderText = "Habilitar";
+                dgvDatosProveedor.Columns["ID"].Visible = false;
             }
         }
 
@@ -221,7 +225,7 @@ namespace Comisariato.Formularios
             {
                 if (this.dgvDatosProveedor.Columns[e.ColumnIndex].Name == "DeshabilitarProveedor")
                 {
-                    ObjProvee.EstadoProveedor(dgvDatosProveedor.CurrentRow.Cells[2].Value.ToString(), 2);
+                    ObjProvee.EstadoProveedor(dgvDatosProveedor.CurrentRow.Cells[3].Value.ToString(), 2);
                     cargarDatos("1");
                 }
             }
@@ -229,7 +233,7 @@ namespace Comisariato.Formularios
             {
                 if (this.dgvDatosProveedor.Columns[e.ColumnIndex].Name == "DeshabilitarProveedor")
                 {
-                    ObjProvee.EstadoProveedor(dgvDatosProveedor.CurrentRow.Cells[2].Value.ToString(), 1);
+                    ObjProvee.EstadoProveedor(dgvDatosProveedor.CurrentRow.Cells[3].Value.ToString(), 1);
                     cargarDatos("0");
                 }
             }
@@ -340,35 +344,50 @@ namespace Comisariato.Formularios
 
         private void dgvDatosProveedor_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.ColumnIndex == 0 && e.RowIndex >= 0)
+            if (e.ColumnIndex >= 0 && dgvDatosProveedor.Columns[e.ColumnIndex].Name == "modificarProveedor" && e.RowIndex >= 0)
             {
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All);
-                DataGridViewButtonCell bc = dgvDatosProveedor[0, e.RowIndex] as DataGridViewButtonCell;
-                bool x;
-                if (modificarProveedor.Tag == null)
-                {
-                    x = false;
-                }
-                else
-                {
-                    x = (bool)modificarProveedor.Tag;
-                }
-                if (x)
-                {
-                    Icon ico = new Icon("repair.ico");
-                    e.Graphics.DrawIcon(ico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
-                }
+                DataGridViewButtonCell celBoton = dgvDatosProveedor.Rows[e.RowIndex].Cells["modificarProveedor"] as DataGridViewButtonCell;
+                Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\modificarDgv.ico");
+                e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
+                dgvDatosProveedor.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
+                dgvDatosProveedor.Columns[e.ColumnIndex].Width = icoAtomico.Width + 10;
                 e.Handled = true;
+            }
+
+            if (rbtInactivosProveedor.Checked)
+            {
+                if (e.ColumnIndex >= 1 && this.dgvDatosProveedor.Columns[e.ColumnIndex].Name == "DeshabilitarProveedor" && e.RowIndex >= 0)
+                {
+                    e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                    DataGridViewButtonCell celBoton = this.dgvDatosProveedor.Rows[e.RowIndex].Cells["DeshabilitarProveedor"] as DataGridViewButtonCell;
+                    Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\Habilitar.ico");
+                    e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
+                    this.dgvDatosProveedor.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
+                    this.dgvDatosProveedor.Columns[e.ColumnIndex].Width = icoAtomico.Width + 10;
+                    e.Handled = true;
+                }
+            }
+            else
+            {
+                if (e.ColumnIndex >= 1 && this.dgvDatosProveedor.Columns[e.ColumnIndex].Name == "DeshabilitarProveedor" && e.RowIndex >= 0)
+                {
+                    e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                    DataGridViewButtonCell celBoton = this.dgvDatosProveedor.Rows[e.RowIndex].Cells["DeshabilitarProveedor"] as DataGridViewButtonCell;
+                    Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\EliminarDgv.ico");
+                    e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
+                    this.dgvDatosProveedor.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
+                    this.dgvDatosProveedor.Columns[e.ColumnIndex].Width = icoAtomico.Width + 10;
+                    e.Handled = true;
+                }
             }
         }
 
         private void dgvDatosProveedor_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == 0)
-            {
-                e.Value = "Repair";
-                e.FormattingApplied = true;
-            }
+            
         }
     }
 }
