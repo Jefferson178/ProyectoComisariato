@@ -163,6 +163,9 @@
             // 
             // DgvDetalleFact
             // 
+            this.DgvDetalleFact.AllowUserToAddRows = false;
+            this.DgvDetalleFact.AllowUserToDeleteRows = false;
+            this.DgvDetalleFact.AllowUserToOrderColumns = true;
             this.DgvDetalleFact.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvDetalleFact.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CODIGO,
@@ -174,7 +177,7 @@
             this.Anular});
             this.DgvDetalleFact.Location = new System.Drawing.Point(53, 171);
             this.DgvDetalleFact.Name = "DgvDetalleFact";
-            this.DgvDetalleFact.Size = new System.Drawing.Size(744, 363);
+            this.DgvDetalleFact.Size = new System.Drawing.Size(747, 363);
             this.DgvDetalleFact.TabIndex = 5;
             this.DgvDetalleFact.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDetalleFact_CellClick);
             // 
@@ -224,7 +227,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(700, 598);
+            this.button1.Location = new System.Drawing.Point(685, 598);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(97, 38);
             this.button1.TabIndex = 6;
@@ -245,7 +248,7 @@
             // txtTotalFactura
             // 
             this.txtTotalFactura.Enabled = false;
-            this.txtTotalFactura.Location = new System.Drawing.Point(466, 552);
+            this.txtTotalFactura.Location = new System.Drawing.Point(449, 552);
             this.txtTotalFactura.Name = "txtTotalFactura";
             this.txtTotalFactura.Size = new System.Drawing.Size(100, 20);
             this.txtTotalFactura.TabIndex = 8;
@@ -253,7 +256,7 @@
             // txtTotalDevolucion
             // 
             this.txtTotalDevolucion.Enabled = false;
-            this.txtTotalDevolucion.Location = new System.Drawing.Point(697, 552);
+            this.txtTotalDevolucion.Location = new System.Drawing.Point(680, 552);
             this.txtTotalDevolucion.Name = "txtTotalDevolucion";
             this.txtTotalDevolucion.Size = new System.Drawing.Size(100, 20);
             this.txtTotalDevolucion.TabIndex = 9;
@@ -261,7 +264,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(605, 555);
+            this.label5.Location = new System.Drawing.Point(588, 555);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(91, 13);
             this.label5.TabIndex = 10;
@@ -270,7 +273,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(393, 555);
+            this.label6.Location = new System.Drawing.Point(376, 555);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(73, 13);
             this.label6.TabIndex = 11;
@@ -280,7 +283,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(846, 665);
+            this.ClientSize = new System.Drawing.Size(839, 665);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtTotalDevolucion);
@@ -290,9 +293,10 @@
             this.Controls.Add(this.DgvDetalleFact);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(855, 704);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(855, 704);
             this.Name = "FrmDevolucionVenta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Devoluciones";

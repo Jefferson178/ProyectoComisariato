@@ -609,7 +609,6 @@ namespace Comisariato.Formularios.Transacciones
 
         private void button3_Click(object sender, EventArgs e)
         {
-
             FrmClaveUsuario u = new FrmClaveUsuario();
             u.verificarMetodo = 2;
             u.ShowDialog();

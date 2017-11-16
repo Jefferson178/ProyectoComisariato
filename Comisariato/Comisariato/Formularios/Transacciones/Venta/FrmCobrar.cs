@@ -757,9 +757,9 @@ namespace Comisariato.Formularios.Transacciones
             int numcaja = Program.em.Caja;
             int numfac = Program.em.Numfact;
             //Datos de la cabecera del Ticket.
-            ticket.TextoCentro("EMPRESA: COMISARIATO SUPER DOS");
-            ticket.TextoCentro("RUC: 1802114429001");
-            ticket.TextoIzquierda("Direccion: AV LA GUAYAS 207 Y ABDON CALD");
+            ticket.TextoCentro("EMPRESA: "+Program.nombreempresa);
+            ticket.TextoCentro("RUC: "+Program.rucempresa);
+            ticket.TextoIzquierda("Direccion: "+Program.direccionempresa);
             ticket.TextoIzquierda("Valido: "+ fechaf+" Hasta: " +fechaf);
             ticket.TextoIzquierda("Clave: 4530000");
             ticket.TextoIzquierda("        Factura: "+sucursal.ToString("D4") + "-"+numcaja.ToString("D4") + "-"+numfac.ToString("D8"));
@@ -930,7 +930,7 @@ namespace Comisariato.Formularios.Transacciones
             //pd.PrinterSettings = new PrinterSettings();
             //if (DialogResult.OK == pd.ShowDialog(this))
             //{
-                ticket.TextoCentro("COMISARIATO SUPER2");
+                ticket.TextoCentro(""+Program.nombreempresa);
             ticket.TextoCentro("              ");
             ticket.TextoCentro("PEDIDO A BODEGA");
             ticket.TextoCentro("              ");
