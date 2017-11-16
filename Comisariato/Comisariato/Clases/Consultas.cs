@@ -73,6 +73,7 @@ namespace Comisariato.Clases
                 Objc.Cerrar();
                 if (dato.Read() == true)
                 {
+                    Program.Usuario = Usuario;
                     Program.estado = Convert.ToBoolean(dato["ACTIVO"]);
                     Program.IDUsuario = "" + (int)dato["IDEMPLEADO"];
                     Program.IDTIPOUSUARIO = "" + (int)dato["IDTIPOUSUARIO"];

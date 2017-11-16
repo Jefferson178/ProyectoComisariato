@@ -235,11 +235,11 @@ namespace Comisariato.Formularios
                     FrmClaveUsuario.verificarMetodo = 1;
                     FrmClaveUsuario.ShowDialog();
                 }
-                else
-                {
-                    int index = panelPrincipal.Controls.GetChildIndex(FrmClaveUsuario);
-                    FrmClaveUsuario.BringToFront();
-                }
+                //else
+                //{
+                //    int index = panelPrincipal.Controls.GetChildIndex(FrmClaveUsuario);
+                //    FrmClaveUsuario.BringToFront();
+                //}
             }
             else if (nombre == "Compras")
             {

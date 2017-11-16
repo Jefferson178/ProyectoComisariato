@@ -22,13 +22,19 @@ namespace Comisariato.Formularios.Transacciones
         private string codactual = "",cantactual="";
         public string numcaja;
         public int numfact=0;
+
         List<String> listatipo = new List<String>();
         List<String> pedidos = new List<String>();
         List<String> Ivas = new List<String>();
         List<String> Ivas1 = new List<String>();
         List<int> indezp = new List<int>();
+        List<int> indezpfactespe = new List<int>();
+
         List<Producto> retencionfact;
         List<string> codigos;
+        List<string> codigosfactespe = new List<string>();
+        List<string> DatosClientefactespe = new List<string>();
+
         private bool estadoiva, pr, escribiendo = false;
         Producto Producto;
         FrmClaveSupervisor s;
@@ -146,22 +152,21 @@ namespace Comisariato.Formularios.Transacciones
                         if (codigos.Count>0)
                         {
                             Calcular();
-                            //dgvDetalleProductos.Rows[codigos.Count-1].Selected = true;
                         }
-                        else
-                        {
-                            factEspe = 1;
-                            nuevafact();
-                            if (codigos.Count>0)
-                            {
-                                dgvDetalleProductos.Rows[codigos.Count - 1].Selected = true;
-                            }
-                            else
-                            {
-                                dgvDetalleProductos.Rows[0].Selected = true;
-                            }
+                        //else
+                        //{
+                        //    factEspe = 1;
+                        //    nuevafact();
+                        //    if (codigos.Count>0)
+                        //    {
+                        //        dgvDetalleProductos.Rows[codigos.Count - 1].Selected = true;
+                        //    }
+                        //    else
+                        //    {
+                        //        dgvDetalleProductos.Rows[0].Selected = true;
+                        //    }
                             
-                        }
+                        //}
                        
                         
                         //ClicFila = false;
@@ -220,14 +225,14 @@ namespace Comisariato.Formularios.Transacciones
                     {
                         if (verificadorfrm==3)
                         {
-                                factEspe = 0;
+                                //factEspe = 0;
                                 nuevafact();
                             
                         }
                         else
                         {
-                            factEspe = 1;
-                            nuevafact();
+                            //factEspe = 1;
+                            //nuevafact();
                             escribiendo = false;
                             factenter = 0;
                         }
@@ -459,8 +464,7 @@ namespace Comisariato.Formularios.Transacciones
                 {
                     if (codigos.Count > 0)
                     {
-                        factEspe = 1;
-                        nuevafact();
+                        FacturaenEspera();
                     }
                 }
                 else
@@ -1080,6 +1084,10 @@ namespace Comisariato.Formularios.Transacciones
                     }
                 }
                 Ivas = Ivas1;
+                codigos =  codigosfactespe;
+                indezp  = indezpfactespe;
+                DatosCliente = DatosClientefactespe;
+               
                 Calcular();
                 btnActivarFact.Enabled = false;
                 btnFactEspera.Enabled = true;
@@ -1139,10 +1147,10 @@ namespace Comisariato.Formularios.Transacciones
             {
                 if (codigos.Count > 0)
                 {
-                    if (retencionfact.Count>0)
-                    {
-                        retencionfact.Clear();
-                    }
+                    //if (retencionfact.Count>0)
+                    //{
+                    //    retencionfact.Clear();
+                    //}
                     retencionfact = new List<Producto>();
                     for (int i = 0; i < codigos.Count; i++)
                     {
@@ -1161,16 +1169,31 @@ namespace Comisariato.Formularios.Transacciones
                         }
 
                     }
+                    if (rdbConsumidorFinal.Checked)
+                    {
+                        DatosClientefactespe.Add("9999999999999");
+                       DatosClientefactespe.Add("Consumidor Final");
+                    }
+                    else
+                    {
+                        DatosClientefactespe.Add(txtIdentidicacion.Text);
+                        DatosClientefactespe.Add(txtConsumidor.Text);
+                    }
                     Ivas1 = Ivas;
-                    Ivas.Clear();
+                    codigosfactespe = codigos;
+                    indezpfactespe = indezp;
+
+
                     btnActivarFact.Enabled = true;
                     btnFactEspera.Enabled = false;
-                    nuevafact();
+                    factEspe = 0;
+                    //nuevafact();
                     tipoprecio1 = tipoprecio;
                     contador=1;
                 }
+                FacturaenEspera();
                 txtCodigo.Focus();
-                factEspe = 1;
+                //factEspe = 0;
                
             }
             catch (Exception ex)
@@ -1178,6 +1201,34 @@ namespace Comisariato.Formularios.Transacciones
 
                 MessageBox.Show("" + ex.Message);
             }
+        }
+
+        private void FacturaenEspera()
+        {
+            txtNumFact.Text = numfact.ToString("D8");
+            rdbPublico.Checked = true;
+            rdbConsumidorFinal.Checked = true;
+            //ckbEfectivo.Checked = true;
+            //ckbCredito.Checked = false;
+            dgvDetalleProductos.Rows.Clear();
+            lblTotalPagar.Text = "$ 0.00";
+            txtSubTotalcero.Text = "0.00";
+            txtSubTotalIva.Text = "0.00";
+            txtSubTotal.Text = "0.00";
+            txtIva.Text = "0.00";
+
+            codigos.Clear();
+            DatosCliente.Clear();
+            Ivas.Clear();
+            indezp.Clear();
+            listatipo.Clear();
+
+
+            for (int i = 0; i < 21; i++)
+            {
+                dgvDetalleProductos.Rows.Add();
+            }
+            txtCodigo.Focus();
         }
 
         private void rdbPublico_CheckedChanged(object sender, EventArgs e)
@@ -1324,13 +1375,13 @@ namespace Comisariato.Formularios.Transacciones
         {
             verificadorfrm = 0;
             //MessageBox.Show("" + codigos.Count);
-            if (factEspe!=1)
-            {
+            //if (factEspe == 1)
+            //{
                 numfact += 1;
                 //DatosCliente.Clear();
                 //Ivas.Clear();
-            }
-            
+            //}
+
             txtNumFact.Text = numfact.ToString("D8");
             rdbPublico.Checked = true;
             rdbConsumidorFinal.Checked = true;
@@ -1342,9 +1393,13 @@ namespace Comisariato.Formularios.Transacciones
             txtSubTotalIva.Text = "0.00";
             txtSubTotal.Text = "0.00";
             txtIva.Text = "0.00";
+
+            Ivas1.Clear();
             codigos.Clear();
             DatosCliente.Clear();
             Ivas.Clear();
+            indezp.Clear();
+            listatipo.Clear();
 
             btnFactEspera.Enabled = false;
             //btnEliminarFact.Enabled = false;
