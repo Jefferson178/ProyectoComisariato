@@ -57,12 +57,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tpConsultarModificarSucursal = new System.Windows.Forms.TabPage();
             this.DgvDatosSucursal = new System.Windows.Forms.DataGridView();
+            this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Deshabilitar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.rbtInactivos = new System.Windows.Forms.RadioButton();
             this.rbtActivos = new System.Windows.Forms.RadioButton();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Deshabilitar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tcSucursal.SuspendLayout();
             this.tpNuevaSucursal.SuspendLayout();
             this.gbDatosSucursal.SuspendLayout();
@@ -263,6 +263,7 @@
             this.txtRUCSucursal.Size = new System.Drawing.Size(172, 22);
             this.txtRUCSucursal.TabIndex = 4;
             this.txtRUCSucursal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoSucursal_KeyPress);
+            this.txtRUCSucursal.Leave += new System.EventHandler(this.txtRUCSucursal_Leave);
             // 
             // txtSucursal
             // 
@@ -428,6 +429,20 @@
             this.DgvDatosSucursal.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDatosSucursal_CellClick);
             this.DgvDatosSucursal.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DgvDatosSucursal_CellPainting);
             // 
+            // Modificar
+            // 
+            this.Modificar.HeaderText = "";
+            this.Modificar.Name = "Modificar";
+            this.Modificar.ReadOnly = true;
+            this.Modificar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Modificar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Deshabilitar
+            // 
+            this.Deshabilitar.HeaderText = "";
+            this.Deshabilitar.Name = "Deshabilitar";
+            this.Deshabilitar.ReadOnly = true;
+            // 
             // rbtInactivos
             // 
             this.rbtInactivos.AutoSize = true;
@@ -477,20 +492,6 @@
             this.label8.Size = new System.Drawing.Size(67, 16);
             this.label8.TabIndex = 0;
             this.label8.Text = "Consultar:";
-            // 
-            // Modificar
-            // 
-            this.Modificar.HeaderText = "";
-            this.Modificar.Name = "Modificar";
-            this.Modificar.ReadOnly = true;
-            this.Modificar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Modificar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Deshabilitar
-            // 
-            this.Deshabilitar.HeaderText = "";
-            this.Deshabilitar.Name = "Deshabilitar";
-            this.Deshabilitar.ReadOnly = true;
             // 
             // FrmSucursal
             // 
