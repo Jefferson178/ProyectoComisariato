@@ -96,10 +96,10 @@ namespace Comisariato.Formularios.Mantenimiento
 
         private void dgvDatosCaja_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.ColumnIndex >= 0 && dgvDatosCaja.Columns[e.ColumnIndex].Name == "modificarCliente" && e.RowIndex >= 0)
+            if (e.ColumnIndex >= 0 && dgvDatosCaja.Columns[e.ColumnIndex].Name == "Modificar" && e.RowIndex >= 0)
             {
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All);
-                DataGridViewButtonCell celBoton = dgvDatosCaja.Rows[e.RowIndex].Cells["modificarCliente"] as DataGridViewButtonCell;
+                DataGridViewButtonCell celBoton = dgvDatosCaja.Rows[e.RowIndex].Cells["Modificar"] as DataGridViewButtonCell;
                 Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\modificarDgv.ico");
                 e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
                 dgvDatosCaja.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
@@ -109,11 +109,11 @@ namespace Comisariato.Formularios.Mantenimiento
 
             if (rbtInactivos.Checked)
             {
-                if (e.ColumnIndex >= 1 && this.dgvDatosCaja.Columns[e.ColumnIndex].Name == "DeshabilitarCliente" && e.RowIndex >= 0)
+                if (e.ColumnIndex >= 1 && this.dgvDatosCaja.Columns[e.ColumnIndex].Name == "Deshabilitar" && e.RowIndex >= 0)
                 {
                     e.Paint(e.CellBounds, DataGridViewPaintParts.All);
 
-                    DataGridViewButtonCell celBoton = this.dgvDatosCaja.Rows[e.RowIndex].Cells["DeshabilitarCliente"] as DataGridViewButtonCell;
+                    DataGridViewButtonCell celBoton = this.dgvDatosCaja.Rows[e.RowIndex].Cells["Deshabilitar"] as DataGridViewButtonCell;
                     Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\Habilitar.ico");
                     e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
                     this.dgvDatosCaja.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
