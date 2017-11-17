@@ -67,18 +67,20 @@ namespace Comisariato.Formularios.Transacciones
                             bitacora.insertarBitacora();
 
                             string numcaja = "111", sucursal = "2";
-
+                          
                             string condicion = " where CAJA = '" + numcaja + "' and SUCURSAL= '" + sucursal + "' and IDEMPRESA= '" + Program.IDEMPRESA + "';";
-                            if (c.ObtenerID("IDFACTURA", "TbEncabezadoFactura", condicion) == 0)
+                            int numero = c.ObtenerID("IDFACTURA", "TbEncabezadoFactura", condicion);
+                            if (numero == 0)
                             {
                                 f.numfact = 1;
                             }
                             else
                             {
-                                f.numfact = c.ObtenerID("IDFACTURA", "TbEncabezadoFactura", condicion) + 1;
+                                f.numfact = numero + 1;
                             }
-
+                            f.sucursal = sucursal;
                             f.numcaja = numcaja;
+                            //f.numcaja = numcaja;
                             this.Close();
                             f.ShowDialog();
                         }

@@ -21,7 +21,9 @@ namespace Comisariato.Formularios.Transacciones
         private int cantidadanterior = 0, posicion, ivaporcentaje, tipoprecio = 0, cantmayorita = 20, fila,contador=0,factenter, tipoprecio1 = 0, formapago = 0,idcliente,fr;
         private string codactual = "",cantactual="";
         public string numcaja;
+        public string sucursal;
         public int numfact=0;
+
 
         List<String> listatipo = new List<String>();
         List<String> pedidos = new List<String>();
@@ -94,6 +96,7 @@ namespace Comisariato.Formularios.Transacciones
             txtCodigo.Focus();
             txtNumFact.Text = numfact.ToString("D8");
             txtCaja.Text = "00" + numcaja;
+            txtSucursal.Text = "00" + sucursal;
             lblCajero.Text = "Cajero:  " + Program.NOMBRES + "  " + Program.APELLIDOS;
             dgvDetalleProductos.Columns[2].DefaultCellStyle.BackColor = Color.LightCyan;
             dgvDetalleProductos.Columns[3].DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
@@ -1084,32 +1087,32 @@ namespace Comisariato.Formularios.Transacciones
                     }
                 }
 
-                //Ivas = Ivas1;
-                //codigos =  codigosfactespe;
-                //indezp  = indezpfactespe;
+                Ivas = Ivas1;
+                codigos = codigosfactespe;
+                indezp  = indezpfactespe;
 
 
-                if (Ivas1.Count > 0)
-                {
-                    for (int i = 0; i < Ivas1.Count; i++)
-                    {
-                        Ivas.Add(Ivas1[i]);
-                    }
-                }
-                if (codigosfactespe.Count > 0)
-                {
-                    for (int i = 0; i < codigosfactespe.Count; i++)
-                    {
-                        codigos.Add(codigosfactespe[i]);
-                    }
-                }
-                if (indezpfactespe.Count > 0)
-                {
-                    for (int i = 0; i < indezpfactespe.Count; i++)
-                    {
-                        indezp.Add(indezpfactespe[i]);
-                    }
-                }
+                //if (Ivas1.Count > 0)
+                //{
+                //    for (int i = 0; i < Ivas1.Count; i++)
+                //    {
+                //        Ivas.Add(Ivas1[i]);
+                //    }
+                //}
+                //if (codigosfactespe.Count > 0)
+                //{
+                //    for (int i = 0; i < codigosfactespe.Count; i++)
+                //    {
+                //        codigos.Add(codigosfactespe[i]);
+                //    }
+                //}
+                //if (indezpfactespe.Count > 0)
+                //{
+                //    for (int i = 0; i < indezpfactespe.Count; i++)
+                //    {
+                //        indezp.Add(indezpfactespe[i]);
+                //    }
+                //}
 
 
                 DatosCliente = DatosClientefactespe;
@@ -1404,9 +1407,9 @@ namespace Comisariato.Formularios.Transacciones
         private void grabarfact()
         {
             Program.em = new EmcabezadoFactura();
-            //Program.em.Sucursal = int.Parse(txtSucursal.Text);
+            Program.em.Sucursal = int.Parse(txtSucursal.Text);
             //Program.em.Descuento = Convert.ToSingle(txtDescuento.Text);
-            //Program.em.Caja = int.Parse(txtCaja.Text);
+            Program.em.Caja = int.Parse(txtCaja.Text);
             Program.em.Fecha = DateTime.Now.Date.ToShortDateString();
             Program.em.Hora = DateTime.Now.TimeOfDay.ToString();
             //Program.em.Iva = Convert.ToSingle(txtIva.Text);
