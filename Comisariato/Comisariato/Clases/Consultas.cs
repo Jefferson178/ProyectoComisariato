@@ -39,13 +39,15 @@ namespace Comisariato.Clases
             try
             {
                 Objc.conectar();
-                SqlCommand Sentencia = new SqlCommand("SELECT TbUsuario.CONTRASEÑA, TbUsuario.USUARIO, TbTipousuario.TIPO, TbUsuario.IDTIPOUSUARIO, TbEmpresa.NOMBRECOMERCIAL, TbEmpresa.RUC, TbEmpresa.DIRECCION from TbUsuario INNER JOIN TbTipousuario ON(TbUsuario.USUARIO = '" + Program.Usuario + "' and TbUsuario.CONTRASEÑA= '" + Contraseña + "')" + " AND (TbTipousuario.IDTIPOUSUARIO = '" + Program.IDTIPOUSUARIO + "' and TbTipousuario.TIPO='CAJERO') INNER JOIN TbEmpresa ON (TbEmpresa.IDEMPRESA='"+Program.IDEMPRESA+ " )");
+                SqlCommand Sentencia = new SqlCommand("SELECT TbUsuario.CONTRASEÑA, TbUsuario.USUARIO, TbTipousuario.TIPO, TbUsuario.IDTIPOUSUARIO, TbEmpresa.NOMBRECOMERCIAL, TbEmpresa.RUC, TbEmpresa.DIRECCION from TbUsuario  INNER JOIN TbTipousuario ON(TbTipousuario.IDTIPOUSUARIO = '"+Program.IDTIPOUSUARIO+"' and TbTipousuario.TIPO='CAJERO') and TbUsuario.USUARIO = '"+Program.Usuario+"' and TbUsuario.CONTRASEÑA= '"+Contraseña+"' INNER JOIN TbEmpresa ON (TbEmpresa.IDEMPRESA='"+Program.IDEMPRESA+"' );");
                 Sentencia.Connection = ConexionBD.connection;
                 SqlDataReader dato = Sentencia.ExecuteReader();
                 Objc.Cerrar();
                 if (dato.Read() == true)
                 {
                     Program.nombreempresa=(String)dato["NOMBRECOMERCIAL"];
+                    Program.rucempresa= (String)dato["RUC"];
+                    Program.direccionempresa= (String)dato["DIRECCION"];
                     return true;
                 }
                 else { return false; }
@@ -55,7 +57,7 @@ namespace Comisariato.Clases
                 MessageBox.Show("Error al conectar la base de Datos " + ex.Message, "Comprobar usuario", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
                 return false;
             }
-            return true;
+           // return true;
         }
 
         public bool AutenticacionUsuario(String Usuario, String Contraseña)
@@ -71,6 +73,7 @@ namespace Comisariato.Clases
                 Objc.Cerrar();
                 if (dato.Read() == true)
                 {
+                    Program.Usuario = Usuario;
                     Program.estado = Convert.ToBoolean(dato["ACTIVO"]);
                     Program.IDUsuario = "" + (int)dato["IDEMPLEADO"];
                     Program.IDTIPOUSUARIO = "" + (int)dato["IDTIPOUSUARIO"];

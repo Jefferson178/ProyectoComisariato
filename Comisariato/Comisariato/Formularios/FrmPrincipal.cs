@@ -235,11 +235,11 @@ namespace Comisariato.Formularios
                     FrmClaveUsuario.verificarMetodo = 1;
                     FrmClaveUsuario.ShowDialog();
                 }
-                else
-                {
-                    int index = panelPrincipal.Controls.GetChildIndex(FrmClaveUsuario);
-                    FrmClaveUsuario.BringToFront();
-                }
+                //else
+                //{
+                //    int index = panelPrincipal.Controls.GetChildIndex(FrmClaveUsuario);
+                //    FrmClaveUsuario.BringToFront();
+                //}
             }
             else if (nombre == "Compras")
             {
@@ -272,13 +272,13 @@ namespace Comisariato.Formularios
                 if (FrmDevolucionVenta == null || FrmDevolucionVenta.IsDisposed)
                 {
                     FrmDevolucionVenta = new FrmDevolucionVenta();
-                    objFuncion.AddFormInPanel(FrmDevolucionVenta, Program.panelPrincipalVariable);
+                    FrmDevolucionVenta.ShowDialog();
                 }
-                else
-                {
-                    int index = panelPrincipal.Controls.GetChildIndex(FrmDevolucionVenta);
-                    FrmDevolucionVenta.BringToFront();
-                }
+                //else
+                //{
+                //    int index = panelPrincipal.Controls.GetChildIndex(FrmDevolucionVenta);
+                //    FrmDevolucionVenta.BringToFront();
+                //}
             }
 
         }

@@ -62,7 +62,7 @@ namespace Comisariato
                     {
                         if (Program.estado)
                         {
-                            Program.Usuario = txtUsuario.Text;
+                           // Program.Usuario = txtUsuario.Text;
                             //Program.IDUsuario=
                             Program.FecaInicio = DateTime.Now.Date.ToShortDateString();
                             Program.horainicio = DateTime.Now.TimeOfDay.ToString();
