@@ -215,6 +215,7 @@ namespace Comisariato.Clases
                 return false;
             }
         }
+
         public bool RegistrarTarjeta(DataGridView dg, int utl)
         {
             try
@@ -243,6 +244,7 @@ namespace Comisariato.Clases
                 return false;
             }
         }
+
         public bool EjecutarSQL(string SQL)
         {
             try
@@ -547,6 +549,7 @@ namespace Comisariato.Clases
         //    }
 
         //}
+
         public bool boolLlenarDataGridView(DataGridView data, String SQL)
         {
             Objc.conectar();
@@ -565,6 +568,7 @@ namespace Comisariato.Clases
                 return false;
             }
         }
+
         public List<string> DatosCliente(string parametro)
         {
             try
@@ -1049,5 +1053,57 @@ namespace Comisariato.Clases
                 Parroquia.SelectedIndex = indexParroquia;
             }
         }
+
+        public void CargarProductoCombo(String sql,DataGridView dg)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                dt.Columns.Add("CODIGO", typeof(String));
+                dt.Columns.Add("NOMBRE PRODUCTO", typeof(String));
+                dt.Columns.Add("CATEGORIA.", typeof(String));
+                dt.Columns.Add("BODEGA", typeof(String));
+                dt.Columns.Add("CANTIDAD", typeof(String));
+                dt.Columns.Add("P. PUBLICO", typeof(String));
+                dt.Columns.Add(" ", typeof(bool));
+                
+                // dt.Columns.Add("IVA", typeof(bool));
+                //List<Producto> lista = new List<Producto>();
+                Objc.conectar();
+                SqlCommand comando = new SqlCommand(sql) ;
+                comando.Connection = ConexionBD.connection;
+                SqlDataReader dato = comando.ExecuteReader();
+                Objc.Cerrar();
+                while (dato.Read() == true)
+                {
+                    //Producto p = new Producto();
+                    //p.Codigobarra = dato["CODIGOBARRA"].ToString();
+                    //p.Nombreproducto = dato["NOMBREPRODUCTO"].ToString();
+                    //p.Observaciones = dato["DESCRIPCION"].ToString();
+                    //p.Cantidad = Convert.ToInt32(dato["CANTIDAD"]);
+                    //p.Peso = dato["NOMBRE"].ToString();
+                    //p.Preciopublico_sin_iva = Convert.ToSingle(dato["PRECIOPUBLICO_SIN_IVA"]);
+                    dt.Rows.Add(dato["CODIGOBARRA"].ToString(), dato["NOMBREPRODUCTO"].ToString(), dato["DESCRIPCION"].ToString(), dato["NOMBRE"].ToString(), dato["CANTIDAD"].ToString(), dato["PRECIOPUBLICO_SIN_IVA"],false);
+                    
+                }
+                dg.DataSource = dt;
+                dg.Columns[0].Width = 150;
+                dg.Columns[1].Width = 150;
+                dg.Columns[2].Width = 100;
+                dg.Columns[3].Width = 100;
+                dg.Columns[4].Width = 80;
+                dg.Columns[5].Width = 80;
+                dg.Columns[6].Width = 50;
+                //return lista;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar cliente: " + ex);
+               // return null;
+            }
+        }
+
+
+
     }
 }
