@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.btnAsignarProducto = new System.Windows.Forms.Button();
@@ -49,11 +49,12 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtBuscarProducto = new System.Windows.Forms.TextBox();
             this.dgvDatosProductoParaAsignacionBodega = new System.Windows.Forms.DataGridView();
+            this.agregarProductosAbodega = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txtConsultarAsginacionProducto = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.dgvDatosAsignacionProducto = new System.Windows.Forms.DataGridView();
-            this.agregarProductosAbodega = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.QuitarProductosAbodega = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.tcAsignarProductoBodega.SuspendLayout();
             this.tpNuevaAsignacionProducto.SuspendLayout();
@@ -97,6 +98,7 @@
             this.btnNoAsiganrProducto.TabIndex = 6;
             this.btnNoAsiganrProducto.Text = "<";
             this.btnNoAsiganrProducto.UseVisualStyleBackColor = true;
+            this.btnNoAsiganrProducto.Click += new System.EventHandler(this.btnNoAsiganrProducto_Click);
             // 
             // btnLimpiarAsignacionProducto
             // 
@@ -206,20 +208,23 @@
             this.dgvDatosProductosAsignadosABodega.AllowUserToAddRows = false;
             this.dgvDatosProductosAsignadosABodega.AllowUserToDeleteRows = false;
             this.dgvDatosProductosAsignadosABodega.AllowUserToOrderColumns = true;
+            this.dgvDatosProductosAsignadosABodega.AllowUserToResizeColumns = false;
+            this.dgvDatosProductosAsignadosABodega.AllowUserToResizeRows = false;
             this.dgvDatosProductosAsignadosABodega.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosProductosAsignadosABodega.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosProductosAsignadosABodega.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvDatosProductosAsignadosABodega.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDatosProductosAsignadosABodega.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.QuitarProductosAbodega});
             this.dgvDatosProductosAsignadosABodega.Location = new System.Drawing.Point(0, 95);
             this.dgvDatosProductosAsignadosABodega.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvDatosProductosAsignadosABodega.Name = "dgvDatosProductosAsignadosABodega";
-            this.dgvDatosProductosAsignadosABodega.ReadOnly = true;
             this.dgvDatosProductosAsignadosABodega.RowHeadersVisible = false;
             this.dgvDatosProductosAsignadosABodega.Size = new System.Drawing.Size(484, 342);
             this.dgvDatosProductosAsignadosABodega.TabIndex = 4;
@@ -264,14 +269,14 @@
             this.dgvDatosProductoParaAsignacionBodega.AllowUserToResizeColumns = false;
             this.dgvDatosProductoParaAsignacionBodega.AllowUserToResizeRows = false;
             this.dgvDatosProductoParaAsignacionBodega.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosProductoParaAsignacionBodega.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosProductoParaAsignacionBodega.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvDatosProductoParaAsignacionBodega.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosProductoParaAsignacionBodega.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.agregarProductosAbodega});
@@ -282,6 +287,11 @@
             this.dgvDatosProductoParaAsignacionBodega.RowHeadersVisible = false;
             this.dgvDatosProductoParaAsignacionBodega.Size = new System.Drawing.Size(482, 342);
             this.dgvDatosProductoParaAsignacionBodega.TabIndex = 4;
+            // 
+            // agregarProductosAbodega
+            // 
+            this.agregarProductosAbodega.HeaderText = "";
+            this.agregarProductosAbodega.Name = "agregarProductosAbodega";
             // 
             // tabPage2
             // 
@@ -319,14 +329,14 @@
             // 
             // dgvDatosAsignacionProducto
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosAsignacionProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosAsignacionProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvDatosAsignacionProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosAsignacionProducto.Location = new System.Drawing.Point(46, 69);
             this.dgvDatosAsignacionProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -334,10 +344,12 @@
             this.dgvDatosAsignacionProducto.Size = new System.Drawing.Size(957, 440);
             this.dgvDatosAsignacionProducto.TabIndex = 3;
             // 
-            // agregarProductosAbodega
+            // QuitarProductosAbodega
             // 
-            this.agregarProductosAbodega.HeaderText = "";
-            this.agregarProductosAbodega.Name = "agregarProductosAbodega";
+            this.QuitarProductosAbodega.HeaderText = "";
+            this.QuitarProductosAbodega.Name = "QuitarProductosAbodega";
+            this.QuitarProductosAbodega.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.QuitarProductosAbodega.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // FrmAsignacionProductoBodega
             // 
@@ -394,5 +406,6 @@
         private System.Windows.Forms.TextBox txtBuscarProducto;
         private System.Windows.Forms.DataGridView dgvDatosProductoParaAsignacionBodega;
         private System.Windows.Forms.DataGridViewCheckBoxColumn agregarProductosAbodega;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn QuitarProductosAbodega;
     }
 }
