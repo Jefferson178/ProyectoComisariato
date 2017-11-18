@@ -61,6 +61,7 @@ namespace Comisariato.Formularios
             LblApellidos.ForeColor = Color.Teal;
             LblRazonSocial.ForeColor = Color.Teal;
 
+            consultas.BoolLlenarComboBox(cbCuentaContable, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta ");
 
         }
 
