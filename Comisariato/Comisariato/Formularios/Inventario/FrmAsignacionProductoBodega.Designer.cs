@@ -45,23 +45,15 @@
             this.cbEscogerBodega = new System.Windows.Forms.ComboBox();
             this.txtUbicacionBodegaAsignacionProducto = new System.Windows.Forms.TextBox();
             this.dgvDatosProductosAsignadosABodega = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtBuscarProducto = new System.Windows.Forms.TextBox();
             this.dgvDatosProductoParaAsignacionBodega = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.agregarProductosAbodega = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txtConsultarAsginacionProducto = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.dgvDatosAsignacionProducto = new System.Windows.Forms.DataGridView();
+            this.agregarProductosAbodega = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.tcAsignarProductoBodega.SuspendLayout();
             this.tpNuevaAsignacionProducto.SuspendLayout();
@@ -93,6 +85,7 @@
             this.btnAsignarProducto.TabIndex = 3;
             this.btnAsignarProducto.Text = ">";
             this.btnAsignarProducto.UseVisualStyleBackColor = true;
+            this.btnAsignarProducto.Click += new System.EventHandler(this.btnAsignarProducto_Click);
             // 
             // btnNoAsiganrProducto
             // 
@@ -196,6 +189,7 @@
             this.cbEscogerBodega.Name = "cbEscogerBodega";
             this.cbEscogerBodega.Size = new System.Drawing.Size(330, 24);
             this.cbEscogerBodega.TabIndex = 3;
+            this.cbEscogerBodega.SelectedIndexChanged += new System.EventHandler(this.cbEscogerBodega_SelectedIndexChanged);
             // 
             // txtUbicacionBodegaAsignacionProducto
             // 
@@ -209,6 +203,10 @@
             // 
             // dgvDatosProductosAsignadosABodega
             // 
+            this.dgvDatosProductosAsignadosABodega.AllowUserToAddRows = false;
+            this.dgvDatosProductosAsignadosABodega.AllowUserToDeleteRows = false;
+            this.dgvDatosProductosAsignadosABodega.AllowUserToOrderColumns = true;
+            this.dgvDatosProductosAsignadosABodega.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -218,40 +216,13 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvDatosProductosAsignadosABodega.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDatosProductosAsignadosABodega.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDatosProductosAsignadosABodega.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4});
             this.dgvDatosProductosAsignadosABodega.Location = new System.Drawing.Point(0, 95);
             this.dgvDatosProductosAsignadosABodega.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvDatosProductosAsignadosABodega.Name = "dgvDatosProductosAsignadosABodega";
+            this.dgvDatosProductosAsignadosABodega.ReadOnly = true;
+            this.dgvDatosProductosAsignadosABodega.RowHeadersVisible = false;
             this.dgvDatosProductosAsignadosABodega.Size = new System.Drawing.Size(484, 342);
             this.dgvDatosProductosAsignadosABodega.TabIndex = 4;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Código";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 70;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Nombre";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 175;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Cant";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Categoria";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 125;
             // 
             // label3
             // 
@@ -287,6 +258,12 @@
             // 
             // dgvDatosProductoParaAsignacionBodega
             // 
+            this.dgvDatosProductoParaAsignacionBodega.AllowUserToAddRows = false;
+            this.dgvDatosProductoParaAsignacionBodega.AllowUserToDeleteRows = false;
+            this.dgvDatosProductoParaAsignacionBodega.AllowUserToOrderColumns = true;
+            this.dgvDatosProductoParaAsignacionBodega.AllowUserToResizeColumns = false;
+            this.dgvDatosProductoParaAsignacionBodega.AllowUserToResizeRows = false;
+            this.dgvDatosProductoParaAsignacionBodega.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -297,45 +274,14 @@
             this.dgvDatosProductoParaAsignacionBodega.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDatosProductoParaAsignacionBodega.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosProductoParaAsignacionBodega.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
             this.agregarProductosAbodega});
             this.dgvDatosProductoParaAsignacionBodega.Location = new System.Drawing.Point(0, 95);
             this.dgvDatosProductoParaAsignacionBodega.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvDatosProductoParaAsignacionBodega.MultiSelect = false;
             this.dgvDatosProductoParaAsignacionBodega.Name = "dgvDatosProductoParaAsignacionBodega";
+            this.dgvDatosProductoParaAsignacionBodega.RowHeadersVisible = false;
             this.dgvDatosProductoParaAsignacionBodega.Size = new System.Drawing.Size(482, 342);
             this.dgvDatosProductoParaAsignacionBodega.TabIndex = 4;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Código";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 70;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Nombre";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Width = 175;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "Cant";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.HeaderText = "Categoria";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            // 
-            // agregarProductosAbodega
-            // 
-            this.agregarProductosAbodega.HeaderText = "";
-            this.agregarProductosAbodega.Name = "agregarProductosAbodega";
-            this.agregarProductosAbodega.Width = 25;
             // 
             // tabPage2
             // 
@@ -388,6 +334,11 @@
             this.dgvDatosAsignacionProducto.Size = new System.Drawing.Size(957, 440);
             this.dgvDatosAsignacionProducto.TabIndex = 3;
             // 
+            // agregarProductosAbodega
+            // 
+            this.agregarProductosAbodega.HeaderText = "";
+            this.agregarProductosAbodega.Name = "agregarProductosAbodega";
+            // 
             // FrmAsignacionProductoBodega
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -438,18 +389,10 @@
         private System.Windows.Forms.ComboBox cbEscogerBodega;
         private System.Windows.Forms.TextBox txtUbicacionBodegaAsignacionProducto;
         private System.Windows.Forms.DataGridView dgvDatosProductosAsignadosABodega;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtBuscarProducto;
         private System.Windows.Forms.DataGridView dgvDatosProductoParaAsignacionBodega;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewCheckBoxColumn agregarProductosAbodega;
     }
 }
