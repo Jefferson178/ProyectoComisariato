@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcCliente = new System.Windows.Forms.TabControl();
             this.tpNuevoCliente = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
@@ -61,7 +61,7 @@
             this.label35 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbCuentaContable = new System.Windows.Forms.ComboBox();
             this.label31 = new System.Windows.Forms.Label();
             this.cbActividadEconomicaCliente = new System.Windows.Forms.ComboBox();
             this.txtEmailCliente = new System.Windows.Forms.TextBox();
@@ -120,13 +120,13 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.tpConsultarModificarCliente = new System.Windows.Forms.TabPage();
+            this.dgvDatosCliente = new System.Windows.Forms.DataGridView();
+            this.modificarCliente = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.DeshabilitarCliente = new System.Windows.Forms.DataGridViewButtonColumn();
             this.rbtInactivosCliente = new System.Windows.Forms.RadioButton();
             this.rbtActivosCliente = new System.Windows.Forms.RadioButton();
             this.txtConsultarCliente = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
-            this.dgvDatosCliente = new System.Windows.Forms.DataGridView();
-            this.modificarCliente = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.DeshabilitarCliente = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tcCliente.SuspendLayout();
             this.tpNuevoCliente.SuspendLayout();
             this.gbDatosPersonalesClientes.SuspendLayout();
@@ -424,7 +424,7 @@
             this.tpInformacionGeneralCliente.Controls.Add(this.label35);
             this.tpInformacionGeneralCliente.Controls.Add(this.label33);
             this.tpInformacionGeneralCliente.Controls.Add(this.label32);
-            this.tpInformacionGeneralCliente.Controls.Add(this.comboBox1);
+            this.tpInformacionGeneralCliente.Controls.Add(this.cbCuentaContable);
             this.tpInformacionGeneralCliente.Controls.Add(this.label31);
             this.tpInformacionGeneralCliente.Controls.Add(this.cbActividadEconomicaCliente);
             this.tpInformacionGeneralCliente.Controls.Add(this.txtEmailCliente);
@@ -556,18 +556,19 @@
             this.label32.TabIndex = 19;
             this.label32.Text = "Casilla:";
             // 
-            // comboBox1
+            // cbCuentaContable
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbCuentaContable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCuentaContable.DropDownWidth = 600;
+            this.cbCuentaContable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbCuentaContable.FormattingEnabled = true;
+            this.cbCuentaContable.Items.AddRange(new object[] {
             "Normal"});
-            this.comboBox1.Location = new System.Drawing.Point(674, 38);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(264, 24);
-            this.comboBox1.TabIndex = 18;
+            this.cbCuentaContable.Location = new System.Drawing.Point(674, 38);
+            this.cbCuentaContable.Margin = new System.Windows.Forms.Padding(2);
+            this.cbCuentaContable.Name = "cbCuentaContable";
+            this.cbCuentaContable.Size = new System.Drawing.Size(264, 24);
+            this.cbCuentaContable.TabIndex = 18;
             // 
             // label31
             // 
@@ -1262,6 +1263,49 @@
             this.tpConsultarModificarCliente.TabIndex = 1;
             this.tpConsultarModificarCliente.Text = "Consultar - Modificar Cliente";
             // 
+            // dgvDatosCliente
+            // 
+            this.dgvDatosCliente.AllowUserToAddRows = false;
+            this.dgvDatosCliente.AllowUserToDeleteRows = false;
+            this.dgvDatosCliente.AllowUserToOrderColumns = true;
+            this.dgvDatosCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvDatosCliente.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvDatosCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDatosCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.modificarCliente,
+            this.DeshabilitarCliente});
+            this.dgvDatosCliente.Location = new System.Drawing.Point(16, 86);
+            this.dgvDatosCliente.Name = "dgvDatosCliente";
+            this.dgvDatosCliente.ReadOnly = true;
+            this.dgvDatosCliente.Size = new System.Drawing.Size(1011, 460);
+            this.dgvDatosCliente.TabIndex = 10;
+            this.dgvDatosCliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosCliente_CellClick);
+            this.dgvDatosCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosCliente_CellContentClick);
+            this.dgvDatosCliente.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvDatosCliente_CellPainting);
+            // 
+            // modificarCliente
+            // 
+            this.modificarCliente.FillWeight = 105F;
+            this.modificarCliente.HeaderText = "";
+            this.modificarCliente.Name = "modificarCliente";
+            this.modificarCliente.ReadOnly = true;
+            this.modificarCliente.Text = "";
+            // 
+            // DeshabilitarCliente
+            // 
+            this.DeshabilitarCliente.FillWeight = 105F;
+            this.DeshabilitarCliente.HeaderText = "";
+            this.DeshabilitarCliente.Name = "DeshabilitarCliente";
+            this.DeshabilitarCliente.ReadOnly = true;
+            // 
             // rbtInactivosCliente
             // 
             this.rbtInactivosCliente.AutoSize = true;
@@ -1310,49 +1354,6 @@
             this.label25.Size = new System.Drawing.Size(67, 16);
             this.label25.TabIndex = 4;
             this.label25.Text = "Consultar:";
-            // 
-            // dgvDatosCliente
-            // 
-            this.dgvDatosCliente.AllowUserToAddRows = false;
-            this.dgvDatosCliente.AllowUserToDeleteRows = false;
-            this.dgvDatosCliente.AllowUserToOrderColumns = true;
-            this.dgvDatosCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvDatosCliente.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvDatosCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDatosCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.modificarCliente,
-            this.DeshabilitarCliente});
-            this.dgvDatosCliente.Location = new System.Drawing.Point(16, 86);
-            this.dgvDatosCliente.Name = "dgvDatosCliente";
-            this.dgvDatosCliente.ReadOnly = true;
-            this.dgvDatosCliente.Size = new System.Drawing.Size(1011, 460);
-            this.dgvDatosCliente.TabIndex = 10;
-            this.dgvDatosCliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosCliente_CellClick);
-            this.dgvDatosCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosCliente_CellContentClick);
-            this.dgvDatosCliente.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvDatosCliente_CellPainting);
-            // 
-            // modificarCliente
-            // 
-            this.modificarCliente.FillWeight = 105F;
-            this.modificarCliente.HeaderText = "";
-            this.modificarCliente.Name = "modificarCliente";
-            this.modificarCliente.ReadOnly = true;
-            this.modificarCliente.Text = "";
-            // 
-            // DeshabilitarCliente
-            // 
-            this.DeshabilitarCliente.FillWeight = 105F;
-            this.DeshabilitarCliente.HeaderText = "";
-            this.DeshabilitarCliente.Name = "DeshabilitarCliente";
-            this.DeshabilitarCliente.ReadOnly = true;
             // 
             // FrmClientes
             // 
@@ -1485,7 +1486,7 @@
         private System.Windows.Forms.TextBox txtCasillaCliente;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbCuentaContable;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.TextBox txtCelular2Cliente;
         private System.Windows.Forms.TextBox txtCelular1Cliente;
