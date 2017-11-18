@@ -229,5 +229,39 @@ namespace Comisariato.Clases
             else { return "Existe"; }
         }
 
+
+        public string EstadoCajaTalo(string ID, int estado)
+        {
+            ObjConsulta = new Consultas();
+            if (estado == 1)
+                if (ObjConsulta.EjecutarSQL("UPDATE [dbo].[TbCajasTalonario] SET ESTADO = 1 WHERE IDCAJATALONARIO = " + ID + ";"))
+                {
+                    return "Habilitado";
+                }
+                else { return "Error"; }
+            else if (estado == 2)
+            {
+                if (ObjConsulta.EjecutarSQL("UPDATE [dbo].[TbCajasTalonario] SET ESTADO = 0 WHERE IDCAJATALONARIO = " + ID + ";"))
+                {
+                    return "Correcto";
+                }
+                else { return "Error"; }
+            }
+            else { return "Sin Accion"; }
+        }
+
+        public string Modificar(string IDCajaTalonario)
+        {
+            ObjConsulta = new Consultas();
+
+            if (ObjConsulta.EjecutarSQL("UPDATE [dbo].[TbCajasTalonario] SET[TIPODOCUMENTO] = '" + tipoDocumento + "' ,[SERIE1] = '" + serie1 + "' ,[SERIE2] = '" + serie2 + "',[DOCUMENTOINICIAL] = '" + documentoInicial + "',[DOCUMENTOFINAL] = '" + documentoFinal + "'"
+                + ",[DOCUMENTOACTUAL] = '" + documentoActual + "',[AUTORIZACION] ='" + autorizacion + "' ,[FECHACADUCIDAD] = '" + fechaCaducidad + "' ,[ESTACION] = '" + Estacion + "' ,[IPESTACION] = '" + ipEstacion + "'  ,[IDSUCURSAL] = " + IDsucursal + ""
+                + ",[IDBODEGA] = " + IDBodega + ",[ESTADO] = '" + estado + "' WHERE IDCAJATALONARIO = " + IDCajaTalonario + " ; "))
+            {
+                return "Correcto";
+            }
+            else { return "Error al Modificar"; }
+        }
+
     }
 }
