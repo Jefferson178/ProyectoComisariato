@@ -233,13 +233,13 @@ namespace Comisariato.Formularios
                 {
                     FrmClaveUsuario = new FrmClaveUsuario();
                     FrmClaveUsuario.verificarMetodo = 1;
-                    FrmClaveUsuario.ShowDialog();
+                    objFuncion.AddFormInPanel(FrmClaveUsuario, Program.panelPrincipalVariable);
                 }
-                //else
-                //{
-                //    int index = panelPrincipal.Controls.GetChildIndex(FrmClaveUsuario);
-                //    FrmClaveUsuario.BringToFront();
-                //}
+                else
+                {
+                    int index = panelPrincipal.Controls.GetChildIndex(FrmClaveUsuario);
+                    FrmClaveUsuario.BringToFront();
+                }
             }
             else if (nombre == "Compras")
             {
