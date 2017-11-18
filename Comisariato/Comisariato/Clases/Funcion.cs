@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.IO;
+using System.Net;
+
 namespace Comisariato.Clases
 {
      public class Funcion
@@ -271,6 +273,16 @@ namespace Comisariato.Clases
                 return false;
             }
             return false;
+        }
+
+        public static bool ValidaIP(string direccionIP)
+        {
+            try
+            { IPAddress ip = IPAddress.Parse(direccionIP); }
+            catch
+            { return false; }
+
+            return true;
         }
 
     }

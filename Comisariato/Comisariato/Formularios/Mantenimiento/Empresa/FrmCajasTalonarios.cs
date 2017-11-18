@@ -56,40 +56,61 @@ namespace Comisariato.Formularios.Mantenimiento
 
         private void dgvDatosCaja_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //Empleado ObjEmpleado = new Empleado();
+            CajaTalonarioEmpresa ObjCajaTalonarioEmpresa = new CajaTalonarioEmpresa();
+
+            if (rbtActivos.Checked)
+            {
+                if (this.dgvDatosCaja.Columns[e.ColumnIndex].Name == "Deshabilitar")
+                {
+                    ObjCajaTalonarioEmpresa.EstadoCajaTalo(dgvDatosCaja.CurrentRow.Cells[2].Value.ToString(), 2);
+                    cargarDatos("1");
+                }
+            }
+            else if (rbtInactivos.Checked)
+            {
+                if (this.dgvDatosCaja.Columns[e.ColumnIndex].Name == "Deshabilitar")
+                {
+                    ObjCajaTalonarioEmpresa.EstadoCajaTalo(dgvDatosCaja.CurrentRow.Cells[2].Value.ToString(), 1);
+                    cargarDatos("0");
+                }
+            }
 
             if (this.dgvDatosCaja.Columns[e.ColumnIndex].Name == "Modificar")
             {
                 //MessageBox.Show("modificar toca " + DgvDatosEmpleado.CurrentRow.Cells[3].Value.ToString());
-                GlobalIDCajaTalonario = dgvDatosCaja.CurrentRow.Cells[4].Value.ToString();
+                GlobalIDCajaTalonario = dgvDatosCaja.CurrentRow.Cells[2].Value.ToString();
                 inicializarDatos();
                 tcCajaTalonario.SelectedIndex = 0;
                 bandera_Estado = true;
                 //Llenar el DataTable
-                DataTable dt = consultas.BoolDataTable("Select * from TbEmpresa where RUC = '" + GlobalIDCajaTalonario + "'");
+                DataTable dt = consultas.BoolDataTable("Select * from TbCajasTalonario where IDCAJATALONARIO = '" + GlobalIDCajaTalonario + "'");
                 //Verificar si tiene Datos
                 if (dt.Rows.Count > 0)
                 {
+                    DataRow myRow = dt.Rows[0];
                     ////Cargar los demas Datos
-                    //txtNombreEmpresa.Text = myRow["NOMBRE"].ToString();
-                    //txtRUCEmpresa.Text = myRow["RUC"].ToString();
-                    //txtNombreComercialEmpresa.Text = myRow["NOMBRECOMERCIAL"].ToString();
-                    //txtRazonSocialEmpresa.Text = myRow["RAZONSOCIAL"].ToString();
-                    //txtGerenteEmpresa.Text = myRow["GERENTE"].ToString();
-                    //txtDireccionEmpresa.Text = myRow["DIRECCION"].ToString();
-                    //txtEmailEmpresa.Text = myRow["EMAIL"].ToString();
-                    //dtpFechaInicioContableEmpresa.Value = Convert.ToDateTime(myRow["FECHAINICIOCONTABLE"]);
-                    //txtCeluar1Empresa.Text = myRow["CELULAR1"].ToString();
-                    //txtCelular2Empresa.Text = myRow["CELULAR2"].ToString();
-                    //txtRUCContadorEmpresa.Text = myRow["RUCCONTADOR"].ToString();
-                    //txtNombreContadorempresa.Text = myRow["NOMBRECONTADOR"].ToString();
-                    //txtEmailContadorEmpresa.Text = myRow["EMAILCONTADOR"].ToString();
-                    //txtCelular1ContadorEmpresa.Text = myRow["CELULAR1CONTADOR"].ToString();
-                    //txtCelular2ContadorEmpresa.Text = myRow["CELULAR2CONTADOR"].ToString();
+                    txtSerie1Caja.Text = myRow["SERIE1"].ToString();
+                    txtSerie2Caja.Text = myRow["SERIE2"].ToString();
+                    txtDocumentoInicialCaja.Text = myRow["DOCUMENTOINICIAL"].ToString();
+                    txtDocumentoFinalCaja.Text = myRow["DOCUMENTOFINAL"].ToString();
+                    txtDocumentoActualCaja.Text = myRow["DOCUMENTOACTUAL"].ToString();
+                    dtpFechaCaducidadCaja.Value = Convert.ToDateTime(myRow["FECHACADUCIDAD"].ToString());
+                    ckbActivoCaja.Checked = Convert.ToBoolean(myRow["ESTADO"]);
+                    txtEstacionCaja.Text = myRow["ESTACION"].ToString();
+                    TxtIP.Text = myRow["IPESTACION"].ToString();
+                    txtAutorizacionCaja.Text = myRow["AUTORIZACION"].ToString();
+
+                    cbSucursalCaja.SelectedValue = Convert.ToInt32(myRow["IDSUCURSAL"]);
+                    int indexSUCURSAL = cbSucursalCaja.SelectedIndex;
+                    cbSucursalCaja.SelectedIndex = indexSUCURSAL;
+
+                    cbBodegaCaja.SelectedValue = Convert.ToInt32(myRow["IDBODEGA"]);
+                    int indexBODEGA = cbBodegaCaja.SelectedIndex;
+                    cbBodegaCaja.SelectedIndex = indexBODEGA;
 
                 }
-                btnLimpiarProveedor.Text = "&Cancelar";
-                btnGuardarUsuario.Text = "&Modificar";
+                btnLimpiar.Text = "&Cancelar";
+                btnGuardar.Text = "&Modificar";
 
             }
         }
@@ -123,11 +144,11 @@ namespace Comisariato.Formularios.Mantenimiento
             }
             else
             {
-                if (e.ColumnIndex >= 1 && this.dgvDatosCaja.Columns[e.ColumnIndex].Name == "DeshabilitarCliente" && e.RowIndex >= 0)
+                if (e.ColumnIndex >= 1 && this.dgvDatosCaja.Columns[e.ColumnIndex].Name == "Deshabilitar" && e.RowIndex >= 0)
                 {
                     e.Paint(e.CellBounds, DataGridViewPaintParts.All);
 
-                    DataGridViewButtonCell celBoton = this.dgvDatosCaja.Rows[e.RowIndex].Cells["DeshabilitarCliente"] as DataGridViewButtonCell;
+                    DataGridViewButtonCell celBoton = this.dgvDatosCaja.Rows[e.RowIndex].Cells["Deshabilitar"] as DataGridViewButtonCell;
                     Icon icoAtomico = new Icon(Environment.CurrentDirectory + "\\EliminarDgv.ico");
                     e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
                     this.dgvDatosCaja.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
@@ -167,29 +188,89 @@ namespace Comisariato.Formularios.Mantenimiento
                     }
                     else if (resultado == "Existe") { MessageBox.Show("Ya Existe la Serie", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }
                 }
-
-            }
-            else if (bandera_Estado) // Para identificar si se va modificar
-            {
-                //String Resultado = Objcliente.ModificarCliente(identificacion); // retorna true si esta correcto todo
-                //ModificarOtraInfCliente(idcliente);
-                //if (Resultado == "Correcto")
-                ////{
-                //MessageBox.Show("Cliente Actualizado", "Exito");
-                //cargarDatos("1");
-                //rbtActivosCliente.Checked = true;
-                //identificacion = "";
-                //inicializarDatos();
-                ////}
-                //else { MessageBox.Show("Error al actualizar Cliente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-                //inicializarDatos();
-                //bandera_Estado = false;
-                //btnGuardarCliente.Text = "&Guardar";
-                //}
+                else if (bandera_Estado) // Para identificar si se va modificar
+                {
+                    String Resultado = ObjCajaTalonarioEmpresa.Modificar(GlobalIDCajaTalonario); // retorna true si esta correcto todo
+                    if (Resultado == "Correcto")
+                    {
+                        MessageBox.Show("Actualizado", "Exito");
+                        rbtActivos.Checked = true;
+                        GlobalIDCajaTalonario = "";
+                    }
+                    else { MessageBox.Show("Error al actualizar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                    inicializarDatos();
+                    bandera_Estado = false;
+                    btnGuardar.Text = "&Guardar";
+                }
             }
             else
             {
                 MessageBox.Show("Ingrese los datos ", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void rbtInactivos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtActivos.Checked)
+            {
+                cargarDatos("1");
+            }
+            else if (rbtInactivos.Checked)
+            {
+                cargarDatos("0");
+            }
+        }
+
+        private void btnLimpiarProveedor_Click(object sender, EventArgs e)
+        {
+            if (btnLimpiar.Text == "&Cancelar")
+            {
+                inicializarDatos();
+                btnLimpiar.Text = "&Limpiar";
+                btnGuardar.Text = "&Guardar";
+            }
+            else { inicializarDatos(); }
+        }
+
+        private void TxtIP_Leave(object sender, EventArgs e)
+        {
+            if (!Funcion.ValidaIP(TxtIP.Text))
+            {
+                MessageBox.Show("Ingrese una Dirección IP Correca", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                TxtIP.Focus();
+                TxtIP.SelectAll();
+            }
+        }
+
+        private void txtDocumentoInicialCaja_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Funcion.Validar_Numeros(e);
+        }
+
+        private void txtEstacionCaja_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Funcion.validar_Num_Letras(e);
+        }
+
+        private void TxtIP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Funcion.Validar_Numeros(e);
+        }
+
+        private void txtConsultarCaja_TextChanged(object sender, EventArgs e)
+        {
+            if (rbtActivos.Checked)
+            {
+                consultas.boolLlenarDataGridView(dgvDatosCaja, "Select IDCAJATALONARIO AS ID, TIPODOCUMENTO as 'TIPO DOC.', TbSucursal.NOMBRESUCURSAL as 'SUCURSAL', TbBodega.NOMBRE,TbCajasTalonario.SERIE1,TbCajasTalonario.SERIE2, TbCajasTalonario.FECHACADUCIDAD as 'Fecha Caducidad', TbCajasTalonario.AUTORIZACION,TbCajasTalonario.DOCUMENTOINICIAL as 'DOC. I.',TbCajasTalonario.DOCUMENTOFINAL AS 'DOC. F.',TbCajasTalonario.DOCUMENTOACTUAL AS 'DOC. A.',TbCajasTalonario.ESTACION , TbCajasTalonario.IPESTACION from TbCajasTalonario INNER JOIN TbBodega ON (TbCajasTalonario.IDBODEGA = TbBodega.IDBODEGA) INNER JOIN  TbSucursal  ON (TbCajasTalonario.IDSUCURSAL = TbSucursal.IDSUCURSAL)  where   TbCajasTalonario.ESTADO = 1 and TIPODOCUMENTO like '%" + txtConsultarCaja.Text + "%' or AUTORIZACION like '%" + txtConsultarCaja.Text + "%'  or ESTACION like '%" + txtConsultarCaja.Text + "%';");
+                //dgvDatosProveedor.Columns[1].HeaderText = "Desabilitar";
+                dgvDatosCaja.Columns["ID"].Visible = false;
+            }
+            else if (rbtInactivos.Checked)
+            {
+                consultas.boolLlenarDataGridView(dgvDatosCaja, "Select IDCAJATALONARIO AS ID, TIPODOCUMENTO as 'TIPO DOC.', TbSucursal.NOMBRESUCURSAL as 'SUCURSAL', TbBodega.NOMBRE,TbCajasTalonario.SERIE1,TbCajasTalonario.SERIE2, TbCajasTalonario.FECHACADUCIDAD as 'Fecha Caducidad', TbCajasTalonario.AUTORIZACION,TbCajasTalonario.DOCUMENTOINICIAL as 'DOC. I.',TbCajasTalonario.DOCUMENTOFINAL AS 'DOC. F.',TbCajasTalonario.DOCUMENTOACTUAL AS 'DOC. A.',TbCajasTalonario.ESTACION , TbCajasTalonario.IPESTACION from TbCajasTalonario INNER JOIN TbBodega ON (TbCajasTalonario.IDBODEGA = TbBodega.IDBODEGA) INNER JOIN  TbSucursal  ON (TbCajasTalonario.IDSUCURSAL = TbSucursal.IDSUCURSAL)  where   TbCajasTalonario.ESTADO = 0 and TIPODOCUMENTO like '%" + txtConsultarCaja.Text + "%' or AUTORIZACION like '%" + txtConsultarCaja.Text + "%'  or ESTACION like '%" + txtConsultarCaja.Text + "%';");
+                //dgvDatosProveedor.Columns[1].HeaderText = "Habilitar";
+                dgvDatosCaja.Columns["ID"].Visible = false;
             }
         }
     }
