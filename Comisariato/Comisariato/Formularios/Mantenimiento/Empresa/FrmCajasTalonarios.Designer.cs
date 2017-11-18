@@ -34,6 +34,8 @@
             this.btnLimpiarProveedor = new System.Windows.Forms.Button();
             this.btnGuardarUsuario = new System.Windows.Forms.Button();
             this.gbDatosGeneralesCaja = new System.Windows.Forms.GroupBox();
+            this.TxtIP = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.txtEstacionCaja = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.ckbActivoCaja = new System.Windows.Forms.CheckBox();
@@ -59,9 +61,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tpConsultarModificarDeshabilitarCaja = new System.Windows.Forms.TabPage();
+            this.rbtInactivos = new System.Windows.Forms.RadioButton();
+            this.rbtActivos = new System.Windows.Forms.RadioButton();
             this.dgvDatosCaja = new System.Windows.Forms.DataGridView();
+            this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.txtConsultarCaja = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.Deshabilitar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tcCajaTalonario.SuspendLayout();
             this.tpNuevaCajaTalonario.SuspendLayout();
             this.gbDatosGeneralesCaja.SuspendLayout();
@@ -119,9 +125,12 @@
             this.btnGuardarUsuario.Text = "&Guardar";
             this.btnGuardarUsuario.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardarUsuario.UseVisualStyleBackColor = true;
+            this.btnGuardarUsuario.Click += new System.EventHandler(this.btnGuardarUsuario_Click);
             // 
             // gbDatosGeneralesCaja
             // 
+            this.gbDatosGeneralesCaja.Controls.Add(this.TxtIP);
+            this.gbDatosGeneralesCaja.Controls.Add(this.label13);
             this.gbDatosGeneralesCaja.Controls.Add(this.txtEstacionCaja);
             this.gbDatosGeneralesCaja.Controls.Add(this.label11);
             this.gbDatosGeneralesCaja.Controls.Add(this.ckbActivoCaja);
@@ -148,6 +157,24 @@
             this.gbDatosGeneralesCaja.TabIndex = 1;
             this.gbDatosGeneralesCaja.TabStop = false;
             this.gbDatosGeneralesCaja.Text = "Datos Generales";
+            // 
+            // TxtIP
+            // 
+            this.TxtIP.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.TxtIP.Location = new System.Drawing.Point(491, 129);
+            this.TxtIP.Name = "TxtIP";
+            this.TxtIP.Size = new System.Drawing.Size(204, 22);
+            this.TxtIP.TabIndex = 20;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.label13.Location = new System.Drawing.Point(375, 132);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(79, 16);
+            this.label13.TabIndex = 19;
+            this.label13.Text = "IP Estación:";
             // 
             // txtEstacionCaja
             // 
@@ -246,6 +273,7 @@
             // 
             // cbTipoDocumentoCaja
             // 
+            this.cbTipoDocumentoCaja.DropDownWidth = 555;
             this.cbTipoDocumentoCaja.Font = new System.Drawing.Font("Arial", 9.75F);
             this.cbTipoDocumentoCaja.FormattingEnabled = true;
             this.cbTipoDocumentoCaja.Location = new System.Drawing.Point(179, 23);
@@ -378,6 +406,8 @@
             // tpConsultarModificarDeshabilitarCaja
             // 
             this.tpConsultarModificarDeshabilitarCaja.BackColor = System.Drawing.Color.Bisque;
+            this.tpConsultarModificarDeshabilitarCaja.Controls.Add(this.rbtInactivos);
+            this.tpConsultarModificarDeshabilitarCaja.Controls.Add(this.rbtActivos);
             this.tpConsultarModificarDeshabilitarCaja.Controls.Add(this.dgvDatosCaja);
             this.tpConsultarModificarDeshabilitarCaja.Controls.Add(this.txtConsultarCaja);
             this.tpConsultarModificarDeshabilitarCaja.Controls.Add(this.label12);
@@ -388,8 +418,39 @@
             this.tpConsultarModificarDeshabilitarCaja.TabIndex = 1;
             this.tpConsultarModificarDeshabilitarCaja.Text = "Consultar - Modificar Caja";
             // 
+            // rbtInactivos
+            // 
+            this.rbtInactivos.AutoSize = true;
+            this.rbtInactivos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtInactivos.ForeColor = System.Drawing.Color.Teal;
+            this.rbtInactivos.Location = new System.Drawing.Point(385, 54);
+            this.rbtInactivos.Name = "rbtInactivos";
+            this.rbtInactivos.Size = new System.Drawing.Size(79, 20);
+            this.rbtInactivos.TabIndex = 17;
+            this.rbtInactivos.Text = "Inactivos";
+            this.rbtInactivos.UseVisualStyleBackColor = true;
+            // 
+            // rbtActivos
+            // 
+            this.rbtActivos.AutoSize = true;
+            this.rbtActivos.Checked = true;
+            this.rbtActivos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtActivos.ForeColor = System.Drawing.Color.Teal;
+            this.rbtActivos.Location = new System.Drawing.Point(297, 54);
+            this.rbtActivos.Name = "rbtActivos";
+            this.rbtActivos.Size = new System.Drawing.Size(70, 20);
+            this.rbtActivos.TabIndex = 16;
+            this.rbtActivos.TabStop = true;
+            this.rbtActivos.Text = "Activos";
+            this.rbtActivos.UseVisualStyleBackColor = true;
+            // 
             // dgvDatosCaja
             // 
+            this.dgvDatosCaja.AllowUserToAddRows = false;
+            this.dgvDatosCaja.AllowUserToDeleteRows = false;
+            this.dgvDatosCaja.AllowUserToOrderColumns = true;
+            this.dgvDatosCaja.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvDatosCaja.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -399,15 +460,29 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvDatosCaja.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDatosCaja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDatosCaja.Location = new System.Drawing.Point(19, 74);
+            this.dgvDatosCaja.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Modificar,
+            this.Deshabilitar});
+            this.dgvDatosCaja.Location = new System.Drawing.Point(19, 77);
             this.dgvDatosCaja.Name = "dgvDatosCaja";
-            this.dgvDatosCaja.Size = new System.Drawing.Size(699, 244);
-            this.dgvDatosCaja.TabIndex = 2;
+            this.dgvDatosCaja.ReadOnly = true;
+            this.dgvDatosCaja.Size = new System.Drawing.Size(699, 274);
+            this.dgvDatosCaja.TabIndex = 15;
+            this.dgvDatosCaja.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosCaja_CellClick);
+            this.dgvDatosCaja.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvDatosCaja_CellPainting);
+            // 
+            // Modificar
+            // 
+            this.Modificar.HeaderText = "";
+            this.Modificar.Name = "Modificar";
+            this.Modificar.ReadOnly = true;
+            this.Modificar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Modificar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // txtConsultarCaja
             // 
             this.txtConsultarCaja.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.txtConsultarCaja.Location = new System.Drawing.Point(180, 27);
+            this.txtConsultarCaja.Location = new System.Drawing.Point(180, 23);
             this.txtConsultarCaja.Name = "txtConsultarCaja";
             this.txtConsultarCaja.Size = new System.Drawing.Size(444, 22);
             this.txtConsultarCaja.TabIndex = 1;
@@ -417,11 +492,17 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Arial", 9.75F);
             this.label12.ForeColor = System.Drawing.Color.Teal;
-            this.label12.Location = new System.Drawing.Point(93, 30);
+            this.label12.Location = new System.Drawing.Point(93, 26);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(67, 16);
             this.label12.TabIndex = 0;
             this.label12.Text = "Consultar:";
+            // 
+            // Deshabilitar
+            // 
+            this.Deshabilitar.HeaderText = "";
+            this.Deshabilitar.Name = "Deshabilitar";
+            this.Deshabilitar.ReadOnly = true;
             // 
             // FrmCajasTalonario
             // 
@@ -436,6 +517,7 @@
             this.MaximumSize = new System.Drawing.Size(795, 561);
             this.Name = "FrmCajasTalonario";
             this.Text = "Administrar Cajas/Talonarios";
+            this.Load += new System.EventHandler(this.FrmCajasTalonario_Load);
             this.tcCajaTalonario.ResumeLayout(false);
             this.tpNuevaCajaTalonario.ResumeLayout(false);
             this.gbDatosGeneralesCaja.ResumeLayout(false);
@@ -481,8 +563,14 @@
         private System.Windows.Forms.TextBox txtDocumentoActualCaja;
         private System.Windows.Forms.Button btnLimpiarProveedor;
         private System.Windows.Forms.Button btnGuardarUsuario;
-        private System.Windows.Forms.DataGridView dgvDatosCaja;
         private System.Windows.Forms.TextBox txtConsultarCaja;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox TxtIP;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.DataGridView dgvDatosCaja;
+        private System.Windows.Forms.DataGridViewButtonColumn Modificar;
+        private System.Windows.Forms.RadioButton rbtInactivos;
+        private System.Windows.Forms.RadioButton rbtActivos;
+        private System.Windows.Forms.DataGridViewButtonColumn Deshabilitar;
     }
 }

@@ -14,7 +14,7 @@ namespace Comisariato.Formularios
 {
     public partial class FrmClientes : Form
     {
-        public int VerifiMetodo;
+        public int VerifiMetodo = 1;
         public FrmClientes()
         {
             InitializeComponent();
@@ -188,7 +188,7 @@ namespace Comisariato.Formularios
                 if (!bandera_Estado) // Para identificar si se va ingresar
                 {
                     String resultado = Objcliente.InsertarCliente(); // retorna true si esta correcto todo
-                    if (VerifiMetodo==1)
+                    if (VerifiMetodo == 1)
                     {
                         if (resultado == "Datos Guardados")
                         {
@@ -198,7 +198,7 @@ namespace Comisariato.Formularios
                             MessageBox.Show("Cliente Registrado Correctamente ", "Exito", MessageBoxButtons.OK);
                             rbtActivosCliente.Checked = true;
 
-                           
+
                         }
                         else if (resultado == "Error al Registrar")
                         {
@@ -224,7 +224,7 @@ namespace Comisariato.Formularios
                             MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
-                    
+
                 }
                 else if (bandera_Estado) // Para identificar si se va modificar
                 {
