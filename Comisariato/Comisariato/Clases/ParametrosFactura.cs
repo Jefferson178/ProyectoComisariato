@@ -29,6 +29,7 @@ namespace Comisariato.Clases
 
         //relacion 
         int idParametrosFactura;
+        int idempresa;
 
 
 
@@ -38,7 +39,7 @@ namespace Comisariato.Clases
         public ParametrosFactura()
         { }
 
-        public ParametrosFactura(string montoMinimoFactura, int iva, bool contribuyenteEspecial, bool obligadoContabilida, string ancho, string largo, int numeroItems, string pie1, string pie2, string pie3, string pie4)
+        public ParametrosFactura(string montoMinimoFactura, int iva, bool contribuyenteEspecial, bool obligadoContabilida, string ancho, string largo, int numeroItems, string pie1, string pie2, string pie3, string pie4, int idempresa)
         {
             MontoMinimoFactura = montoMinimoFactura;
             this.iva = iva;
@@ -51,6 +52,7 @@ namespace Comisariato.Clases
             this.pie2 = pie2;
             this.pie3 = pie3;
             this.pie4 = pie4;
+            this.idempresa = idempresa;
         }
 
         public string MontoMinimoFactura1
@@ -195,10 +197,19 @@ namespace Comisariato.Clases
                 pie4 = value;
             }
         }
-        
 
+        public int Idempresa
+        {
+            get
+            {
+                return idempresa;
+            }
 
-
+            set
+            {
+                idempresa = value;
+            }
+        }
 
         public string InsertarParametrosFactura()
         {
@@ -206,8 +217,8 @@ namespace Comisariato.Clases
 
             if (!ObjConsulta.Existe("IVA", iva.ToString(), "TbParametrosFactura"))
             {
-                if (ObjConsulta.EjecutarSQL("INSERT INTO [BDComisariato].[dbo].[TbParametrosFactura]  ([MONTO_MINIMO_FACTURA]  ,[IVA] ,[CONTRIBUYENTEESPECIAL]  ,[OBLIGADOLLEVARCONTABILIDAD])"
-                    + " VALUES(" + MontoMinimoFactura + ",'" + iva + "','" + contribuyenteEspecial + "','" + obligadoContabilida + "')"))
+                if (ObjConsulta.EjecutarSQL("INSERT INTO [BDComisariato].[dbo].[TbParametrosFactura]  ([MONTO_MINIMO_FACTURA]  ,[IVA] ,[CONTRIBUYENTEESPECIAL]  ,[OBLIGADOLLEVARCONTABILIDAD], [IDEMPRESA])"
+                    + " VALUES(" + MontoMinimoFactura + ",'" + iva + "','" + contribuyenteEspecial + "','" + obligadoContabilida + "',"+ idempresa +")"))
                 {
                     idParametrosFactura = ObjConsulta.ObtenerID("IDPARAMETROSFACTURA", "TbParametrosFactura","");
                     InsertarPreimpresa();
