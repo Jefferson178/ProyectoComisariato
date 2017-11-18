@@ -403,5 +403,37 @@ namespace Comisariato.Formularios
         {
             
         }
+        bool apareceDataDeCombos = false;
+        private void cbCreditoProveedor_Click(object sender, EventArgs e)
+        {
+            if (!apareceDataDeCombos)
+            {
+                dgvCredito.Visible = true;
+                consultas.boolLlenarDataGridView(dgvCredito, "select '[' + CS.CODIGOSRI + '] - ' + CS.DESCRIPCION as CODIGO_SRI, TCS.CODIGO AS TIPO, CS.RETENCION AS RETENCION, CS.FECHAVALIDODESDE AS DESDE, CS.FECHAVALIDOHASTA AS HASTA from TbCodigoSRI CS, TbTipoCodigoSRI TCS WHERE TCS.IDTIPOCODIGOSRI = CS.IDTIPOCODIGOSRI AND TCS.CODIGO = 'COD_IDCREDITO'");
+                dgvCredito.Columns["CODIGO_SRI"].Width = 400;
+                dgvCredito.Columns["TIPO"].Width = 125;
+                apareceDataDeCombos = true;
+            }
+            else
+            {
+                dgvCredito.Visible = false;
+                apareceDataDeCombos = false;
+            }
+        }
+
+        private void dgvCredito_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //if (this.dgvCredito.Columns[e.ColumnIndex].HeaderText == "APELLIDOS")
+            //{
+            //    consultas.BoolLlenarComboBox(cbCreditoProveedor, "SELECT IDCLIENTE as ID, APELLIDOS as Texto FROM TbCliente where IDCLIENTE =" + Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value));
+            //    dgvCredito.Visible = false;
+            //}
+        }
+
+        private void dgvCredito_MouseLeave(object sender, EventArgs e)
+        {
+            dgvCredito.Visible = false;
+            apareceDataDeCombos = false;
+        }
     }
 }
