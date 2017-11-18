@@ -97,7 +97,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvProductosParaCombo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvProductosParaCombo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProductosParaCombo.Location = new System.Drawing.Point(85, 49);
+            this.dgvProductosParaCombo.Location = new System.Drawing.Point(94, 49);
             this.dgvProductosParaCombo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvProductosParaCombo.Name = "dgvProductosParaCombo";
             this.dgvProductosParaCombo.RowHeadersVisible = false;
