@@ -18,7 +18,7 @@ namespace Comisariato.Formularios.Transacciones
         internal static List<string> DatosCliente = new List<string>();
         internal static int  correcta;
         internal static int verificadorfrm;
-        private int cantidadanterior = 0, posicion, ivaporcentaje, tipoprecio = 0, cantmayorita = 20, fila,contador=0,factenter, tipoprecio1 = 0, formapago = 0,idcliente,fr;
+        private int cantidadanterior = 0, posicion, ivaporcentaje, tipoprecio = 0, cantmayorita = 20, fila,contador=0,factenter, tipoprecio1 = 0, formapago = 0,idcliente=1,fr;
         private string codactual = "",cantactual="";
         public string numcaja;
         public string sucursal;
@@ -73,7 +73,7 @@ namespace Comisariato.Formularios.Transacciones
         {
             if (rdbConsumidorFinal.Checked)
             {
-                idcliente =3;
+                //idcliente =1;
                 btnGuardar.Enabled = false;
                 txtConsumidor.Enabled = false;
                 txtIdentidicacion.Enabled = false;
@@ -184,45 +184,53 @@ namespace Comisariato.Formularios.Transacciones
                 }
                 else
                 {
-                    if (DatosCliente.Count>0 && verificadorfrm==2)
+                    if (verificadorfrm==2)
                     {
-                        Producto = new Producto();
-                        if (rdbPublico.Checked)
+                        if (DatosCliente.Count>0)
                         {
-                            txtPrecio.Text = DatosCliente[3];
-                        }
-                        else
-                        {
-                            if (rdbMayorista.Checked)
+                            Producto = new Producto();
+                            if (rdbPublico.Checked)
                             {
-                                txtPrecio.Text = DatosCliente[4];
+                                txtPrecio.Text = DatosCliente[3];
                             }
                             else
                             {
-                                txtPrecio.Text = DatosCliente[5];
+                                if (rdbMayorista.Checked)
+                                {
+                                    txtPrecio.Text = DatosCliente[4];
+                                }
+                                else
+                                {
+                                    txtPrecio.Text = DatosCliente[5];
+                                }
                             }
-                        }
 
-                        int verificariva = Convert.ToInt32(DatosCliente[6]);
-                        //estadoiva = verificariva;
-                        if (verificariva==1)
-                        {
-                            estadoiva = true;
-                            //Producto.Iva = Convert.ToInt32(DatosCliente[7]);
-                            ivaporcentaje = Convert.ToInt32( DatosCliente[7]);
-                            Producto.Iva = ivaporcentaje;
+                            int verificariva = Convert.ToInt32(DatosCliente[6]);
+                            //estadoiva = verificariva;
+                            if (verificariva == 1)
+                            {
+                                estadoiva = true;
+                                //Producto.Iva = Convert.ToInt32(DatosCliente[7]);
+                                ivaporcentaje = Convert.ToInt32(DatosCliente[7]);
+                                Producto.Iva = ivaporcentaje;
+                            }
+                            else
+                            {
+                                estadoiva = false;
+                                float prueba = 0.0f;
+                                txtIvaPrecio.Text = prueba.ToString("#####0.00");
+                            }
+
+                            txtCodigo.Text = DatosCliente[0];
+                            txtDetalle.Text = DatosCliente[1];
+                            txtBodega.Text = DatosCliente[2];
+                            txtCantidad.Focus();
                         }
                         else
                         {
-                            estadoiva = false;
-                            float prueba = 0.0f;
-                            txtIvaPrecio.Text = prueba.ToString("#####0.00");
+                            txtCodigo.Focus();
                         }
-
-                        txtCodigo.Text = DatosCliente[0];
-                        txtDetalle.Text = DatosCliente[1];
-                        txtBodega.Text = DatosCliente[2];
-                        txtCantidad.Focus();
+                       
                     }
                     else
                     {
@@ -571,13 +579,15 @@ namespace Comisariato.Formularios.Transacciones
                         {
                             txtIdentidicacion.Focus();
                             comprobarmetodo = false;
-                            idcliente = 3;
+                            //idcliente = 1;
                             //btnBuscar.Text = "Registrar";
                             if (MessageBox.Show("No existe un cliente registrado con la identificacion: " + txtIdentidicacion.Text + "\n¿Quieres registrarlo?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
                                FrmClientes f = new FrmClientes();
                                 f.VerifiMetodo = 2;
                                f.ShowDialog();
+                                rdbFacturaDatos.Checked = true;
+                                txtCodigo.Focus();
                             }
                             else
                             {
@@ -646,7 +656,8 @@ namespace Comisariato.Formularios.Transacciones
         {
             FrmConsultarProducto p = new FrmConsultarProducto();
             p.ShowDialog();
-            
+            txtCodigo.Focus();
+
         }
 
         private void dgvDetalleProductos_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -1233,8 +1244,10 @@ namespace Comisariato.Formularios.Transacciones
                     contador=1;
                     FacturaenEspera();
                 }
-               // FacturaenEspera();
+                // FacturaenEspera();
+                rdbConsumidorFinal.Focus();
                 txtCodigo.Focus();
+                
                 //factEspe = 0;
                
             }
