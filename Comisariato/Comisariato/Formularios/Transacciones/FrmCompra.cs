@@ -81,6 +81,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             }
             else
                 MessageBox.Show("Ingrese los datos necesarios.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            
         }
 
         private void dgvProductosIngresos_CellEndEdit(object sender, DataGridViewCellEventArgs e)
