@@ -262,6 +262,9 @@ namespace Comisariato.Clases
                 return false;
             }
         }
+
+
+
         public bool GuardarFact(int nfilas, DataGridView dg, List<string> encabezado, List<string> detallepago, List<string> ivas)
         {
             try
@@ -364,6 +367,34 @@ namespace Comisariato.Clases
                
             }
            
+        }
+
+
+        public string ObtenerValorCampo(String campo, String tabla, String condicion)
+        {
+            try
+            {
+                SqlDataAdapter objDA;
+                string valor="";
+                DataTable dt = new DataTable();
+                Objc.conectar();
+                string sentencia = "SELECT  " + campo + " from " + tabla + " " + condicion;
+                objDA = new SqlDataAdapter(sentencia, ConexionBD.connection);
+                objDA.Fill(dt);
+                Objc.Cerrar();
+                objDA.Dispose();
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];
+                    valor = row[campo].ToString();
+                }
+                return valor;
+            }
+            catch (Exception ex)
+            {
+                return "error";
+
+            }
         }
         public Producto Consultarproducto(String codigo)
         {
@@ -944,6 +975,29 @@ namespace Comisariato.Clases
             catch (Exception ex)
             {
 
+                return false;
+            }
+        }
+
+        public bool EjecutarPROCEDUREAsignarProductoBodega(int parametro1,int parametro2)
+        {
+            try
+            {
+                Objc.conectar();
+                SqlCommand cmd = new SqlCommand("ASIGNAR_PRODUCTO_BODEGA", ConexionBD.connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@IDPRODUCTO", parametro1);
+                cmd.Parameters.AddWithValue("@IDBODEGA", parametro2);
+                cmd.Parameters.AddWithValue("@ESTADO", 1);
+                int result = cmd.ExecuteNonQuery();
+                Objc.Cerrar();
+                if (result > 0)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
                 return false;
             }
         }
