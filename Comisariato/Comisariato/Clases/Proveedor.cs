@@ -449,12 +449,12 @@ namespace Comisariato.Clases
             {
                 for (int i = 0; i < dgv.RowCount; i++)
                 {
-                    if (dgv.Rows[i].Cells[0].Value.ToString() != "" && dgv.Rows[i].Cells[1].Value.ToString() != "" && dgv.Rows[i].Cells[2].Value.ToString() != "" && dgv.Rows[i].Cells[3].Value.ToString() != "" && dgv.Rows[i].Cells[4].Value.ToString() != "" && dgv.Rows[i].Cells[5].Value.ToString() != "")
+                    if (dgv.Rows[i].Cells[0].Value != null && dgv.Rows[i].Cells[1].Value != null && dgv.Rows[i].Cells[2].Value != null && dgv.Rows[i].Cells[3].Value != null && dgv.Rows[i].Cells[4].Value != null && dgv.Rows[i].Cells[5] != null)
                     {
                         InsertarTablaAutorizacionProveedor(dgv.Rows[i].Cells[0].Value.ToString(), dgv.Rows[i].Cells[1].Value.ToString(), dgv.Rows[i].Cells[2].Value.ToString(), dgv.Rows[i].Cells[3].Value.ToString(), dgv.Rows[i].Cells[4].Value.ToString(), dgv.Rows[i].Cells[5].Value.ToString(), idproveedor);
                     }
                     else {
-                        MessageBox.Show("Ingrese los Datos de Autorizacion Completos");
+                        //MessageBox.Show("Ingrese los Datos de Autorizacion Completos");
                     }
                     
                 }
