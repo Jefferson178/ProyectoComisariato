@@ -23,6 +23,7 @@ namespace Comisariato.Formularios
         Consultas consultas;
         bool bandera_Estado = false;
         String identificacion = "";
+        String GlobalCodigoProveedor = "0";
 
         public void inicializarDatos()
         {
@@ -63,6 +64,19 @@ namespace Comisariato.Formularios
             consultas.BoolLlenarComboBox(cbCuentaContableProveedor, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta ");
             consultas.BoolLlenarComboBox(cbTipoServicioProveedor, "Select IDSERVICIO as ID, DESCRIPCION AS Texto from TbTipoServicio");
 
+            GlobalCodigoProveedor = consultas.ObtenerID("IDProveedor", "TbProveedor", "").ToString();
+            switch (GlobalCodigoProveedor.Length)
+            {
+                case 1:
+                    GlobalCodigoProveedor = "00" + GlobalCodigoProveedor;
+                    break;
+                case 2:
+                    GlobalCodigoProveedor = "0" + GlobalCodigoProveedor;
+                    break;
+                default:
+                    break;
+            }
+            txtCodigo.Text = GlobalCodigoProveedor;
         }
 
         private void FrmProveedores_Load(object sender, EventArgs e)
@@ -104,7 +118,7 @@ namespace Comisariato.Formularios
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            if (txtNombreProveedor.Text != "" && txtNumeroIdentificacionProveedor.Text != "" && txtDireccionProveedor.Text != "" && txtCelularProveedor.Text != "" && txtGiraChequeProveedor.Text != "" && cbTipoGastoProveedor.Text != "" && Convert.ToInt32(cbParroquiaProveedor.SelectedValue) >= 1)
+            if (txtNombreProveedor.Text != "" && txtNumeroIdentificacionProveedor.Text != "" && txtDireccionProveedor.Text != "" && cbCreditoProveedor.Text!="" && cbICEProveedor.Text  != "" && cbCodigo101Proveedor.Text !="" )
             {
                 Proveedor ObjProvee = new Proveedor(txtFax.Text, ckbEstado.Checked, txtPlazo.Text, txtCodigo.Text, cbIdentificacionProveedor.Text, 
                     txtNombreProveedor.Text, txtNumeroIdentificacionProveedor.Text, cbNacionalidadProveedor.Text, cbNaturalezaProveedor.Text,
