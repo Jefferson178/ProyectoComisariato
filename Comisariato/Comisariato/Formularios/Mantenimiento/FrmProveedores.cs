@@ -403,37 +403,180 @@ namespace Comisariato.Formularios
         {
             
         }
-        bool apareceDataDeCombos = false;
-        private void cbCreditoProveedor_Click(object sender, EventArgs e)
+        //--------------------------------------------------------------COMBOMULTICOLUMN CREDITO--------------------------------------------------------------
+        bool apareceDataDeCombos = true;
+
+        private void dgvCredito_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (!apareceDataDeCombos)
+            consultas.BoolLlenarComboBox(cbCreditoProveedor, "SELECT IDCODIGOSRI as ID, '[' + CODIGOSRI + '] - ' + DESCRIPCION as Texto FROM TbCodigoSRI where IDCODIGOSRI =" + Convert.ToInt32(dgvCredito.CurrentRow.Cells[0].Value));
+            dgvCredito.Visible = false;
+            apareceDataDeCombos = true;
+            cbICEProveedor.Focus();
+            
+        }
+        private void cbCreditoProveedor_Enter(object sender, EventArgs e)
+        {
+            if (apareceDataDeCombos)
             {
                 dgvCredito.Visible = true;
-                consultas.boolLlenarDataGridView(dgvCredito, "select '[' + CS.CODIGOSRI + '] - ' + CS.DESCRIPCION as CODIGO_SRI, TCS.CODIGO AS TIPO, CS.RETENCION AS RETENCION, CS.FECHAVALIDODESDE AS DESDE, CS.FECHAVALIDOHASTA AS HASTA from TbCodigoSRI CS, TbTipoCodigoSRI TCS WHERE TCS.IDTIPOCODIGOSRI = CS.IDTIPOCODIGOSRI AND TCS.CODIGO = 'COD_IDCREDITO'");
+                consultas.boolLlenarDataGridView(dgvCredito, "select CS.IDCODIGOSRI, '[' + CS.CODIGOSRI + '] - ' + CS.DESCRIPCION as CODIGO_SRI, TCS.CODIGO AS TIPO, CS.RETENCION AS RETENCION, CS.FECHAVALIDODESDE AS DESDE, CS.FECHAVALIDOHASTA AS HASTA from TbCodigoSRI CS, TbTipoCodigoSRI TCS WHERE TCS.IDTIPOCODIGOSRI = CS.IDTIPOCODIGOSRI AND TCS.CODIGO = 'COD_IDCREDITO'");
+                dgvCredito.Columns["IDCODIGOSRI"].Visible = false;
                 dgvCredito.Columns["CODIGO_SRI"].Width = 400;
                 dgvCredito.Columns["TIPO"].Width = 125;
-                apareceDataDeCombos = true;
+                dgvCredito.Focus();
+                dgvCredito.CurrentCell = dgvCredito.Rows[0].Cells[1];
             }
             else
             {
                 dgvCredito.Visible = false;
-                apareceDataDeCombos = false;
+                apareceDataDeCombos = true;
+                if (cbCreditoProveedor.SelectedText != "")
+                {
+                    cbICEProveedor.Focus();
+                }
+                else
+                    dgvCodigoRetencionProveedor.Focus();
+            }
+            
+        }
+
+        private void dgvCredito_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                consultas.BoolLlenarComboBox(cbCreditoProveedor, "SELECT IDCODIGOSRI as ID, '[' + CODIGOSRI + '] - ' + DESCRIPCION as Texto FROM TbCodigoSRI where IDCODIGOSRI =" + Convert.ToInt32(dgvCredito.CurrentRow.Cells[0].Value));
+                dgvCredito.Visible = false;
+                //----Si no funciona es esto
+                apareceDataDeCombos = true;
+                //-------------------------
+                cbICEProveedor.Focus();
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                dgvCredito.Visible = false;
+                cbICEProveedor.Focus();
             }
         }
 
-        private void dgvCredito_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvCredito_Enter(object sender, EventArgs e)
         {
-            //if (this.dgvCredito.Columns[e.ColumnIndex].HeaderText == "APELLIDOS")
-            //{
-            //    consultas.BoolLlenarComboBox(cbCreditoProveedor, "SELECT IDCLIENTE as ID, APELLIDOS as Texto FROM TbCliente where IDCLIENTE =" + Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value));
-            //    dgvCredito.Visible = false;
-            //}
+            apareceDataDeCombos = false;
+            dgvCredito.BringToFront();
+        }
+        //--------------------------------------------------------------COMBOMULTICOLUMN ICE--------------------------------------------------------------
+        private void cbICEProveedor_Enter(object sender, EventArgs e)
+        {
+            if (apareceDataDeCombos)
+            {
+                dgvICE.Visible = true;
+                consultas.boolLlenarDataGridView(dgvICE, "select CS.IDCODIGOSRI, '[' + CS.CODIGOSRI + '] - ' + CS.DESCRIPCION as CODIGO_SRI, TCS.CODIGO AS TIPO, CS.RETENCION AS RETENCION, CS.FECHAVALIDODESDE AS DESDE, CS.FECHAVALIDOHASTA AS HASTA from TbCodigoSRI CS, TbTipoCodigoSRI TCS WHERE TCS.IDTIPOCODIGOSRI = CS.IDTIPOCODIGOSRI AND TCS.CODIGO = 'COD_ICE'");
+                dgvICE.Columns["IDCODIGOSRI"].Visible = false;
+                dgvICE.Columns["CODIGO_SRI"].Width = 400;
+                dgvICE.Columns["TIPO"].Width = 125;
+                dgvICE.Focus();
+                dgvICE.CurrentCell = dgvICE.Rows[0].Cells[1];
+            }
+            else
+            {
+                dgvICE.Visible = false;
+                apareceDataDeCombos = true;
+                if (cbICEProveedor.SelectedText != "")
+                {
+                    cbCodigo101Proveedor.Focus();
+                }
+                else
+                    dgvCodigoRetencionProveedor.Focus();
+
+            }
+            
         }
 
-        private void dgvCredito_MouseLeave(object sender, EventArgs e)
+        private void dgvICE_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            dgvCredito.Visible = false;
+            consultas.BoolLlenarComboBox(cbICEProveedor, "SELECT IDCODIGOSRI as ID, '[' + CODIGOSRI + '] - ' + DESCRIPCION as Texto FROM TbCodigoSRI where IDCODIGOSRI =" + Convert.ToInt32(dgvICE.CurrentRow.Cells[0].Value));
+            dgvICE.Visible = false;
+            apareceDataDeCombos = true;
+            cbCodigo101Proveedor.Focus();
+        }
+
+        private void dgvICE_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                consultas.BoolLlenarComboBox(cbICEProveedor, "SELECT IDCODIGOSRI as ID, '[' + CODIGOSRI + '] - ' + DESCRIPCION as Texto FROM TbCodigoSRI where IDCODIGOSRI =" + Convert.ToInt32(dgvICE.CurrentRow.Cells[0].Value));
+                dgvICE.Visible = false;
+                //----Si no funciona es esto
+                apareceDataDeCombos = true;
+                //-------------------------
+                cbCodigo101Proveedor.Focus();
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                dgvICE.Visible = false;
+                cbCodigo101Proveedor.Focus();
+            }
+        }
+
+        private void dgvICE_Enter(object sender, EventArgs e)
+        {
             apareceDataDeCombos = false;
+            dgvICE.BringToFront();
+        }
+        //--------------------------------------------------------------COMBOMULTICOLUMN 101--------------------------------------------------------------
+        private void cbCodigo101Proveedor_Enter(object sender, EventArgs e)
+        {
+            if (apareceDataDeCombos)
+            {
+                dgvCodigo101.Visible = true;
+                consultas.boolLlenarDataGridView(dgvCodigo101, "select CS.IDCODIGOSRI, '[' + CS.CODIGOSRI + '] - ' + CS.DESCRIPCION as CODIGO_SRI, TCS.CODIGO AS TIPO, CS.RETENCION AS RETENCION, CS.FECHAVALIDODESDE AS DESDE, CS.FECHAVALIDOHASTA AS HASTA from TbCodigoSRI CS, TbTipoCodigoSRI TCS WHERE TCS.IDTIPOCODIGOSRI = CS.IDTIPOCODIGOSRI AND TCS.CODIGO = 'COD_101'");
+                dgvCodigo101.Columns["IDCODIGOSRI"].Visible = false;
+                dgvCodigo101.Columns["CODIGO_SRI"].Width = 400;
+                dgvCodigo101.Columns["TIPO"].Width = 125;
+                dgvCodigo101.Focus();
+                dgvCodigo101.CurrentCell = dgvCodigo101.Rows[0].Cells[1];
+            }
+            else
+            {
+                dgvCodigo101.Visible = false;
+                apareceDataDeCombos = true;
+                dgvCodigoRetencionProveedor.Focus();
+
+            }
+        }
+
+        private void dgvCodigo101_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            consultas.BoolLlenarComboBox(cbCodigo101Proveedor, "SELECT IDCODIGOSRI as ID, '[' + CODIGOSRI + '] - ' + DESCRIPCION as Texto FROM TbCodigoSRI where IDCODIGOSRI =" + Convert.ToInt32(dgvCodigo101.CurrentRow.Cells[0].Value));
+            dgvCodigo101.Visible = false;
+            apareceDataDeCombos = true;
+            dgvCodigoRetencionProveedor.Focus();
+        }
+
+        private void dgvCodigo101_Enter(object sender, EventArgs e)
+        {
+            apareceDataDeCombos = false;
+            dgvCodigo101.BringToFront();
+        }
+
+        private void dgvCodigo101_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                consultas.BoolLlenarComboBox(cbCodigo101Proveedor, "SELECT IDCODIGOSRI as ID, '[' + CODIGOSRI + '] - ' + DESCRIPCION as Texto FROM TbCodigoSRI where IDCODIGOSRI =" + Convert.ToInt32(dgvCodigo101.CurrentRow.Cells[0].Value));
+                dgvCodigo101.Visible = false;
+                //----Si no funciona es esto
+                apareceDataDeCombos = true;
+                //-------------------------
+                cbCodigo101Proveedor.Focus();
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                dgvCodigo101.Visible = false;
+                dgvCodigoRetencionProveedor.Focus();
+            }
         }
     }
 }

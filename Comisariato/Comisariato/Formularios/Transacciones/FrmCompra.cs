@@ -132,6 +132,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             SendKeys.Send("{UP}");
             SendKeys.Send("{TAB}");
             }
+        string PrecioCompra;
         private void Calcular()
         {
             float sumasubiva = 0.0f, sumasubcero = 0.0f, totalpagar = 0.0f, ivatotal = 0.0f, sumaice = 0.0f, sumairbp = 0.0f;
@@ -209,11 +210,6 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             {
                 Funcion.validar_Num_Letras(e);
             }
-            if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[3])
-            {
-                Convert.ToSingle(datosProductoCompra.CurrentRow.Cells[3].Value);
-                Funcion.SoloValores(e, Convert.ToString(datosProductoCompra.CurrentRow.Cells[3].Value));
-            }
         }
         private void dgvProductosIngresos_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
@@ -271,16 +267,15 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         string valor;
         private void dgvProductosIngresos_KeyUp(object sender, KeyEventArgs e)
         {
-            
+            if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[3])
+            {
+                valor = Convert.ToString(dgvProductosIngresos.CurrentRow.Cells[3].Value);
+            }
         }
 
         private void dgvProductosIngresos_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[3])
-            {
-
-                valor = Convert.ToString(dgvProductosIngresos.CurrentRow.Cells[3].Value);
-            }
+            
         }
 
         private void btnSalirCompra_Click(object sender, EventArgs e)
