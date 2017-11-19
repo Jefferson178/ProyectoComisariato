@@ -28,15 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-<<<<<<< HEAD
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-=======
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
->>>>>>> 123f5f48f6c17d66ccf2c3708f31ebcdb854f34e
             this.tcProveedor = new System.Windows.Forms.TabControl();
             this.tpNuevoProveedor = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
@@ -614,7 +611,6 @@
             // 
             // dgvDatosAutorizacionProveedor
             // 
-<<<<<<< HEAD
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -623,7 +619,6 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvDatosAutorizacionProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-=======
             dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle13.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -632,7 +627,6 @@
             dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvDatosAutorizacionProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
->>>>>>> 123f5f48f6c17d66ccf2c3708f31ebcdb854f34e
             this.dgvDatosAutorizacionProveedor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosAutorizacionProveedor.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.serie1Proveedor,
@@ -692,7 +686,6 @@
             // 
             // dgvCodigoRetencionProveedor
             // 
-<<<<<<< HEAD
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -701,7 +694,6 @@
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvCodigoRetencionProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-=======
             dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle14.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -710,7 +702,6 @@
             dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvCodigoRetencionProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
->>>>>>> 123f5f48f6c17d66ccf2c3708f31ebcdb854f34e
             this.dgvCodigoRetencionProveedor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCodigoRetencionProveedor.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.retencionSRIProveedor,
@@ -831,17 +822,14 @@
             // 
             // dgvCredito
             // 
-<<<<<<< HEAD
             this.dgvCredito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCredito.Location = new System.Drawing.Point(99, 45);
-=======
             this.dgvCredito.AllowUserToAddRows = false;
             this.dgvCredito.AllowUserToDeleteRows = false;
             this.dgvCredito.AllowUserToResizeColumns = false;
             this.dgvCredito.AllowUserToResizeRows = false;
             this.dgvCredito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCredito.Location = new System.Drawing.Point(103, 45);
->>>>>>> 123f5f48f6c17d66ccf2c3708f31ebcdb854f34e
             this.dgvCredito.Name = "dgvCredito";
             this.dgvCredito.ReadOnly = true;
             this.dgvCredito.RowHeadersVisible = false;
@@ -855,17 +843,14 @@
             // 
             // dgvICE
             // 
-<<<<<<< HEAD
             this.dgvICE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvICE.Location = new System.Drawing.Point(99, 71);
-=======
             this.dgvICE.AllowUserToAddRows = false;
             this.dgvICE.AllowUserToDeleteRows = false;
             this.dgvICE.AllowUserToResizeColumns = false;
             this.dgvICE.AllowUserToResizeRows = false;
             this.dgvICE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvICE.Location = new System.Drawing.Point(103, 71);
->>>>>>> 123f5f48f6c17d66ccf2c3708f31ebcdb854f34e
             this.dgvICE.Name = "dgvICE";
             this.dgvICE.ReadOnly = true;
             this.dgvICE.RowHeadersVisible = false;
@@ -879,17 +864,14 @@
             // 
             // dgvCodigo101
             // 
-<<<<<<< HEAD
             this.dgvCodigo101.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCodigo101.Location = new System.Drawing.Point(99, 97);
-=======
             this.dgvCodigo101.AllowUserToAddRows = false;
             this.dgvCodigo101.AllowUserToDeleteRows = false;
             this.dgvCodigo101.AllowUserToResizeColumns = false;
             this.dgvCodigo101.AllowUserToResizeRows = false;
             this.dgvCodigo101.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCodigo101.Location = new System.Drawing.Point(103, 97);
->>>>>>> 123f5f48f6c17d66ccf2c3708f31ebcdb854f34e
             this.dgvCodigo101.Name = "dgvCodigo101";
             this.dgvCodigo101.ReadOnly = true;
             this.dgvCodigo101.RowHeadersVisible = false;
@@ -1128,7 +1110,6 @@
             this.dgvDatosProveedor.AllowUserToOrderColumns = true;
             this.dgvDatosProveedor.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDatosProveedor.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-<<<<<<< HEAD
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1137,7 +1118,6 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvDatosProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
-=======
             dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle15.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1146,7 +1126,6 @@
             dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvDatosProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
->>>>>>> 123f5f48f6c17d66ccf2c3708f31ebcdb854f34e
             this.dgvDatosProveedor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosProveedor.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.modificarProveedor,
