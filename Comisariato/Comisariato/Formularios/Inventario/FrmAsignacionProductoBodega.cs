@@ -66,6 +66,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             {
                 llenardatos();
             }
+            objconsul.boolLlenarDataGridView(dgvDatosProductosAsignadosABodega, "Select P.CODIGOBARRA as 'Código', P.NOMBREPRODUCTO as 'Nombre',P.CANTIDAD as Cantidad, C.DESCRIPCION as 'Categoria' from TbProducto P inner join TbAsignacionProdcutoBodega Asig on (Asig.IDPRODUCTO = P.IDPRODUCTO) inner join TbBodega B on ( Asig.IDBODEGA = B.IDBODEGA) inner join TbCategoria C on (P.IDCATEGORIA = C.IDCATEGORIA) where Asig.IDBODEGA = " + Convert.ToInt32(cbEscogerBodega.SelectedValue) + ";");
         }
 
         private void btnAsignarProducto_Click(object sender, EventArgs e)
