@@ -23,6 +23,7 @@ namespace Comisariato.Formularios
         Consultas consultas;
         bool bandera_Estado = false;
         String identificacion = "";
+        String GlobalCodigoProveedor = "0";
 
         public void inicializarDatos()
         {
@@ -62,6 +63,24 @@ namespace Comisariato.Formularios
 
             consultas.BoolLlenarComboBox(cbCuentaContableProveedor, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta ");
             consultas.BoolLlenarComboBox(cbTipoServicioProveedor, "Select IDSERVICIO as ID, DESCRIPCION AS Texto from TbTipoServicio");
+
+            GlobalCodigoProveedor = consultas.ObtenerID("IDProveedor", "TbProveedor", "").ToString();
+            switch (GlobalCodigoProveedor.Length)
+            {
+                case 1:
+                    GlobalCodigoProveedor = "00" + GlobalCodigoProveedor;
+                    break;
+                case 2:
+                    GlobalCodigoProveedor = "0" + GlobalCodigoProveedor;
+                    break;
+                default:
+                    break;
+            }
+            txtCodigo.Text = GlobalCodigoProveedor;
+
+            cbCreditoProveedor.DataSource = null;
+            cbICEProveedor.DataSource = null;
+            cbCodigo101Proveedor.DataSource = null;
 
         }
 
@@ -104,13 +123,13 @@ namespace Comisariato.Formularios
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            if (txtNombreProveedor.Text != "" && txtNumeroIdentificacionProveedor.Text != "" && txtDireccionProveedor.Text != "" && txtCelularProveedor.Text != "" && txtGiraChequeProveedor.Text != "" && cbTipoGastoProveedor.Text != "" && Convert.ToInt32(cbParroquiaProveedor.SelectedValue) >= 1)
+            if (txtNombreProveedor.Text != "" && txtNumeroIdentificacionProveedor.Text != "" && txtDireccionProveedor.Text != "" && cbCreditoProveedor.Text!="" && cbICEProveedor.Text  != "" && cbCodigo101Proveedor.Text !="" )
             {
                 Proveedor ObjProvee = new Proveedor(txtFax.Text, ckbEstado.Checked, txtPlazo.Text, txtCodigo.Text, cbIdentificacionProveedor.Text, 
                     txtNombreProveedor.Text, txtNumeroIdentificacionProveedor.Text, cbNacionalidadProveedor.Text, cbNaturalezaProveedor.Text,
                     txtDireccionProveedor.Text, txtRazonSocialProveedor.Text, txtEmailProveedor.Text, txtTelefonoProveedor.Text, txtCelularProveedor.Text, 
                     txtGiraChequeProveedor.Text, txtResponsableProveedor.Text, cbTipoGastoProveedor.Text, cbTipoServicioProveedor.Text, 
-                    Convert.ToInt32(cbParroquiaProveedor.SelectedValue), ckbRISEProveedor.Checked,Convert.ToInt32(cbCuentaContableProveedor.SelectedValue));
+                    Convert.ToInt32(cbParroquiaProveedor.SelectedValue), ckbRISEProveedor.Checked,Convert.ToInt32(cbCuentaContableProveedor.SelectedValue), Convert.ToInt32(cbCreditoProveedor.SelectedValue), Convert.ToInt32(cbICEProveedor.SelectedValue), Convert.ToInt32(cbCodigo101Proveedor.SelectedValue));
                 if (!bandera_Estado)
                 {
                     String resultado = ObjProvee.InsertarProveedor();
@@ -288,6 +307,21 @@ namespace Comisariato.Formularios
                     int indexcuenta = cbCuentaContableProveedor.SelectedIndex;
                     cbCuentaContableProveedor.SelectedIndex = indexcuenta;
 
+                    //cbCreditoProveedor.SelectedValue = Convert.ToInt32(myRow["CREDITO"]);
+                    //int indexcredito = cbCreditoProveedor.SelectedIndex;
+                    //cbCreditoProveedor.SelectedIndex = indexcredito;
+                    consultas.BoolLlenarComboBox(cbCreditoProveedor, "Select IDCODIGOSRI as ID, '[' + CODIGOSRI + '] - ' + DESCRIPCION as TEXTO from TbCodigoSRI where IDCODIGOSRI =" + Convert.ToInt32(myRow["CREDITO"]));
+                    consultas.BoolLlenarComboBox(cbICEProveedor, "Select IDCODIGOSRI as ID, '[' + CODIGOSRI + '] - ' + DESCRIPCION as TEXTO from TbCodigoSRI where IDCODIGOSRI =" + Convert.ToInt32(myRow["ICE"]));
+                    consultas.BoolLlenarComboBox(cbCodigo101Proveedor, "Select IDCODIGOSRI as ID, '[' + CODIGOSRI + '] - ' + DESCRIPCION as TEXTO from TbCodigoSRI where IDCODIGOSRI =" + Convert.ToInt32(myRow["CODIGO_101"]));
+
+                    //cbICEProveedor.SelectedValue = Convert.ToInt32(myRow["ICE"]);
+                    //int indexcIce = cbICEProveedor.SelectedIndex;
+                    //cbICEProveedor.SelectedIndex = indexcIce;
+
+                    //cbCodigo101Proveedor.SelectedValue = Convert.ToInt32(myRow["CODIGO_101"]);
+                    //int indexCodigo101 = cbCodigo101Proveedor.SelectedIndex;
+                    //cbCodigo101Proveedor.SelectedIndex = indexCodigo101;
+
                     consultas.LLenarCombosUbicacion(Convert.ToInt32(myRow["IDPARROQUIA"]), ref cbPaisProveedor, ref cbProvinciaProveedor, ref cbCantonProveedor, ref cbParroquiaProveedor);
                 }
 
@@ -419,6 +453,8 @@ namespace Comisariato.Formularios
             if (apareceDataDeCombos)
             {
                 dgvCredito.Visible = true;
+                dgvICE.Visible = false;
+                dgvCodigo101.Visible = false;
                 consultas.boolLlenarDataGridView(dgvCredito, "select CS.IDCODIGOSRI, '[' + CS.CODIGOSRI + '] - ' + CS.DESCRIPCION as CODIGO_SRI, TCS.CODIGO AS TIPO, CS.RETENCION AS RETENCION, CS.FECHAVALIDODESDE AS DESDE, CS.FECHAVALIDOHASTA AS HASTA from TbCodigoSRI CS, TbTipoCodigoSRI TCS WHERE TCS.IDTIPOCODIGOSRI = CS.IDTIPOCODIGOSRI AND TCS.CODIGO = 'COD_IDCREDITO'");
                 dgvCredito.Columns["IDCODIGOSRI"].Visible = false;
                 dgvCredito.Columns["CODIGO_SRI"].Width = 400;
@@ -470,6 +506,8 @@ namespace Comisariato.Formularios
             if (apareceDataDeCombos)
             {
                 dgvICE.Visible = true;
+                dgvCredito.Visible = false;
+                dgvCodigo101.Visible = false;
                 consultas.boolLlenarDataGridView(dgvICE, "select CS.IDCODIGOSRI, '[' + CS.CODIGOSRI + '] - ' + CS.DESCRIPCION as CODIGO_SRI, TCS.CODIGO AS TIPO, CS.RETENCION AS RETENCION, CS.FECHAVALIDODESDE AS DESDE, CS.FECHAVALIDOHASTA AS HASTA from TbCodigoSRI CS, TbTipoCodigoSRI TCS WHERE TCS.IDTIPOCODIGOSRI = CS.IDTIPOCODIGOSRI AND TCS.CODIGO = 'COD_ICE'");
                 dgvICE.Columns["IDCODIGOSRI"].Visible = false;
                 dgvICE.Columns["CODIGO_SRI"].Width = 400;
@@ -530,6 +568,8 @@ namespace Comisariato.Formularios
             if (apareceDataDeCombos)
             {
                 dgvCodigo101.Visible = true;
+                dgvCredito.Visible = false;
+                dgvICE.Visible = false;
                 consultas.boolLlenarDataGridView(dgvCodigo101, "select CS.IDCODIGOSRI, '[' + CS.CODIGOSRI + '] - ' + CS.DESCRIPCION as CODIGO_SRI, TCS.CODIGO AS TIPO, CS.RETENCION AS RETENCION, CS.FECHAVALIDODESDE AS DESDE, CS.FECHAVALIDOHASTA AS HASTA from TbCodigoSRI CS, TbTipoCodigoSRI TCS WHERE TCS.IDTIPOCODIGOSRI = CS.IDTIPOCODIGOSRI AND TCS.CODIGO = 'COD_101'");
                 dgvCodigo101.Columns["IDCODIGOSRI"].Visible = false;
                 dgvCodigo101.Columns["CODIGO_SRI"].Width = 400;
@@ -570,7 +610,7 @@ namespace Comisariato.Formularios
                 //----Si no funciona es esto
                 apareceDataDeCombos = true;
                 //-------------------------
-                cbCodigo101Proveedor.Focus();
+                dgvCodigoRetencionProveedor.Focus();
             }
             if (e.KeyCode == Keys.Escape)
             {
