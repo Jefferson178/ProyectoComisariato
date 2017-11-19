@@ -77,6 +77,11 @@ namespace Comisariato.Formularios
                     break;
             }
             txtCodigo.Text = GlobalCodigoProveedor;
+
+            cbCreditoProveedor.DataSource = null;
+            cbICEProveedor.DataSource = null;
+            cbCodigo101Proveedor.DataSource = null;
+
         }
 
         private void FrmProveedores_Load(object sender, EventArgs e)
@@ -124,7 +129,7 @@ namespace Comisariato.Formularios
                     txtNombreProveedor.Text, txtNumeroIdentificacionProveedor.Text, cbNacionalidadProveedor.Text, cbNaturalezaProveedor.Text,
                     txtDireccionProveedor.Text, txtRazonSocialProveedor.Text, txtEmailProveedor.Text, txtTelefonoProveedor.Text, txtCelularProveedor.Text, 
                     txtGiraChequeProveedor.Text, txtResponsableProveedor.Text, cbTipoGastoProveedor.Text, cbTipoServicioProveedor.Text, 
-                    Convert.ToInt32(cbParroquiaProveedor.SelectedValue), ckbRISEProveedor.Checked,Convert.ToInt32(cbCuentaContableProveedor.SelectedValue));
+                    Convert.ToInt32(cbParroquiaProveedor.SelectedValue), ckbRISEProveedor.Checked,Convert.ToInt32(cbCuentaContableProveedor.SelectedValue), Convert.ToInt32(cbCreditoProveedor.SelectedValue), Convert.ToInt32(cbICEProveedor.SelectedValue), Convert.ToInt32(cbCodigo101Proveedor.SelectedValue));
                 if (!bandera_Estado)
                 {
                     String resultado = ObjProvee.InsertarProveedor();
@@ -301,6 +306,21 @@ namespace Comisariato.Formularios
                     cbCuentaContableProveedor.SelectedValue = Convert.ToInt32(myRow["IDCuentaContable"]);
                     int indexcuenta = cbCuentaContableProveedor.SelectedIndex;
                     cbCuentaContableProveedor.SelectedIndex = indexcuenta;
+
+                    //cbCreditoProveedor.SelectedValue = Convert.ToInt32(myRow["CREDITO"]);
+                    //int indexcredito = cbCreditoProveedor.SelectedIndex;
+                    //cbCreditoProveedor.SelectedIndex = indexcredito;
+                    consultas.BoolLlenarComboBox(cbCreditoProveedor, "Select IDCODIGOSRI as ID, '[' + CODIGOSRI + '] - ' + DESCRIPCION as TEXTO from TbCodigoSRI where IDCODIGOSRI =" + Convert.ToInt32(myRow["CREDITO"]));
+                    consultas.BoolLlenarComboBox(cbICEProveedor, "Select IDCODIGOSRI as ID, '[' + CODIGOSRI + '] - ' + DESCRIPCION as TEXTO from TbCodigoSRI where IDCODIGOSRI =" + Convert.ToInt32(myRow["ICE"]));
+                    consultas.BoolLlenarComboBox(cbCodigo101Proveedor, "Select IDCODIGOSRI as ID, '[' + CODIGOSRI + '] - ' + DESCRIPCION as TEXTO from TbCodigoSRI where IDCODIGOSRI =" + Convert.ToInt32(myRow["CODIGO_101"]));
+
+                    //cbICEProveedor.SelectedValue = Convert.ToInt32(myRow["ICE"]);
+                    //int indexcIce = cbICEProveedor.SelectedIndex;
+                    //cbICEProveedor.SelectedIndex = indexcIce;
+
+                    //cbCodigo101Proveedor.SelectedValue = Convert.ToInt32(myRow["CODIGO_101"]);
+                    //int indexCodigo101 = cbCodigo101Proveedor.SelectedIndex;
+                    //cbCodigo101Proveedor.SelectedIndex = indexCodigo101;
 
                     consultas.LLenarCombosUbicacion(Convert.ToInt32(myRow["IDPARROQUIA"]), ref cbPaisProveedor, ref cbProvinciaProveedor, ref cbCantonProveedor, ref cbParroquiaProveedor);
                 }
