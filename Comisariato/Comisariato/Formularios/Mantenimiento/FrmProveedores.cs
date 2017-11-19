@@ -113,16 +113,12 @@ namespace Comisariato.Formularios
             //{
             //    dgvDatosProveedor.Rows.Add();
             //}
-<<<<<<< HEAD
-
-=======
             dgvCodigoRetencionProveedor.Rows.Add();
             for (int i = 0; i < 3; i++)
             {
                 //dgvCodigoRetencionProveedor.Rows.Add();
                 dgvDatosAutorizacionProveedor.Rows.Add();
             }
->>>>>>> 0e26af5b1eb99a32dee495bad3ef5da8d9395214
             // Dimensionar lista combo
 
             cbPaisProveedor.DropDownHeight = cbPaisProveedor.ItemHeight = 150;
@@ -133,8 +129,7 @@ namespace Comisariato.Formularios
             cbCuentaContableProveedor.DropDownHeight = cbCuentaContableProveedor.ItemHeight = 150;
             cbTipoServicioProveedor.DropDownHeight = cbTipoServicioProveedor.ItemHeight = 150;
 
-
-<<<<<<< HEAD
+            
             /// Para poner del DATETIMEPICKER
             dtpOrder = new DateTimePicker();
             dtpOrder.Format = DateTimePickerFormat.Short;
@@ -146,9 +141,7 @@ namespace Comisariato.Formularios
             dgvDatosAutorizacionProveedor.CellBeginEdit += this.dgvDatosAutorizacionProveedor_CellBeginEdit;
             dgvDatosAutorizacionProveedor.CellEndEdit += this.dgvDatosAutorizacionProveedor_CellEndEdit;
 
-
-=======
->>>>>>> 0e26af5b1eb99a32dee495bad3ef5da8d9395214
+            
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
@@ -803,11 +796,11 @@ namespace Comisariato.Formularios
                 dgvRetencionFuenteIva.Visible = false;
                 cbCreditoProveedor.Focus();
 
-<<<<<<< HEAD
-        //--------------------------------------------------------------DATAGRIDVIEW CON DATETIMEPICKER--------------------------------------------------------------
-=======
+        
             }
         }
+
+        //--------------------------------------------------------------DATAGRIDVIEW CON DATETIMEPICKER--------------------------------------------------------------
         private void dgvDatosAutorizacionProveedor_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //if (dgvDatosAutorizacionProveedor.CurrentCell == this.dgvDatosAutorizacionProveedor.CurrentRow.Cells[3] )
@@ -820,8 +813,7 @@ namespace Comisariato.Formularios
 
             //    // Setting the format (i.e. 2014-10-10)  
             //    oDateTimePicker.Format = DateTimePickerFormat.Short;
->>>>>>> 0e26af5b1eb99a32dee495bad3ef5da8d9395214
-
+        }
         DateTimePicker dtpOrder;
 
         private void dgvDatosAutorizacionProveedor_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
