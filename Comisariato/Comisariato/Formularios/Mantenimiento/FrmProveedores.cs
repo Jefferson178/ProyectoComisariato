@@ -85,6 +85,14 @@ namespace Comisariato.Formularios
             cbICEProveedor.DataSource = null;
             cbCodigo101Proveedor.DataSource = null;
 
+            dgvDatosAutorizacionProveedor.Rows.Clear();
+            dgvCodigoRetencionProveedor.Rows.Clear();
+
+            for (int i = 0; i < 3; i++)
+            {
+                dgvCodigoRetencionProveedor.Rows.Add();
+                dgvDatosAutorizacionProveedor.Rows.Add();
+            }
         }
 
         private void FrmProveedores_Load(object sender, EventArgs e)
@@ -106,11 +114,6 @@ namespace Comisariato.Formularios
             //    dgvDatosProveedor.Rows.Add();
             //}
 
-            for (int i = 0; i < 3; i++)
-            {
-                dgvCodigoRetencionProveedor.Rows.Add();
-                dgvDatosAutorizacionProveedor.Rows.Add();
-            }
             // Dimensionar lista combo
 
             cbPaisProveedor.DropDownHeight = cbPaisProveedor.ItemHeight = 150;
@@ -121,7 +124,19 @@ namespace Comisariato.Formularios
             cbCuentaContableProveedor.DropDownHeight = cbCuentaContableProveedor.ItemHeight = 150;
             cbTipoServicioProveedor.DropDownHeight = cbTipoServicioProveedor.ItemHeight = 150;
 
+
+            /// Para poner del DATETIMEPICKER
+            dtpOrder = new DateTimePicker();
+            dtpOrder.Format = DateTimePickerFormat.Short;
             
+            dtpOrder.Visible = false;
+            dtpOrder.Width = 100;
+            dgvDatosAutorizacionProveedor.Controls.Add(dtpOrder);
+            dtpOrder.ValueChanged += this.dtpOrden_ValueChanged;
+            dgvDatosAutorizacionProveedor.CellBeginEdit += this.dgvDatosAutorizacionProveedor_CellBeginEdit;
+            dgvDatosAutorizacionProveedor.CellEndEdit += this.dgvDatosAutorizacionProveedor_CellEndEdit;
+
+
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
@@ -647,70 +662,57 @@ namespace Comisariato.Formularios
             }
         }
 
-        private void dgvDatosAutorizacionProveedor_CellClick(object sender, DataGridViewCellEventArgs e)
+        //--------------------------------------------------------------DATAGRIDVIEW CON DATETIMEPICKER--------------------------------------------------------------
+
+        DateTimePicker dtpOrder;
+
+        private void dgvDatosAutorizacionProveedor_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            //if (dgvDatosAutorizacionProveedor.CurrentCell == this.dgvDatosAutorizacionProveedor.CurrentRow.Cells[3] )
-            //{
-            //    //Initialized a new DateTimePicker Control  
-            //    oDateTimePicker = new DateTimePicker();
+            try
+            {
+                if ((dgvDatosAutorizacionProveedor.Focused) && (dgvDatosAutorizacionProveedor.CurrentCell.ColumnIndex == 3))
+                {
+                    dtpOrder.Location = dgvDatosAutorizacionProveedor.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false).Location;
+                    dtpOrder.Visible = true;
+                    if (dgvDatosAutorizacionProveedor.CurrentCell.Value != null)
+                    {
+                        dtpOrder.Value = (DateTime)dgvDatosAutorizacionProveedor.CurrentCell.Value;
+                    }
+                    else { dtpOrder.Value = DateTime.Today; }
 
-            //    //Adding DateTimePicker control into DataGridView   
-            //    dgvDatosAutorizacionProveedor.Controls.Add(oDateTimePicker);
+                }
+                else
+                {
+                    dtpOrder.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
 
-            //    // Setting the format (i.e. 2014-10-10)  
-            //    oDateTimePicker.Format = DateTimePickerFormat.Short;
-
-            //    // It returns the retangular area that represents the Display area for a cell  
-            //    Rectangle oRectangle = dgvDatosAutorizacionProveedor.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
-
-            //    //Setting area for DateTimePicker Control  
-            //    oDateTimePicker.Size = new Size(oRectangle.Width, oRectangle.Height);
-
-            //    // Setting Location  
-            //    oDateTimePicker.Location = new Point(oRectangle.X, oRectangle.Y);
-
-            //    // An event attached to dateTimePicker Control which is fired when DateTimeControl is closed  
-            //    oDateTimePicker.CloseUp += new EventHandler(oDateTimePickerdgvtarjeta_CloseUp);
-
-            //    // An event attached to dateTimePicker Control which is fired when any date is selected  
-            //    oDateTimePicker.TextChanged += new EventHandler(dateTimePickerdgvtarjeta_OnTextChange);
-
-            //    // Now make it visible  
-            //    oDateTimePicker.Visible = true;
-            //}
+                //MessageBox.Show(ex.Message);
+            }
         }
 
-        private void dgvDatosAutorizacionProveedor_CellEnter(object sender, DataGridViewCellEventArgs e)
+        private void dgvDatosAutorizacionProveedor_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            //if (dgvDatosAutorizacionProveedor.CurrentCell == this.dgvDatosAutorizacionProveedor.CurrentRow.Cells[3])
-            //{
-            //    //Initialized a new DateTimePicker Control  
-            //    oDateTimePicker = new DateTimePicker();
+            try
+            {
+                if ((dgvDatosAutorizacionProveedor.Focused) && (dgvDatosAutorizacionProveedor.CurrentCell.ColumnIndex == 3))
+                {
+                    dgvDatosAutorizacionProveedor.CurrentCell.Value = dtpOrder.Value.Date.ToShortDateString();
 
-            //    //Adding DateTimePicker control into DataGridView   
-            //    dgvDatosAutorizacionProveedor.Controls.Add(oDateTimePicker);
+                }
+            }
+            catch (Exception ex)
+            {
 
-            //    // Setting the format (i.e. 2014-10-10)  
-            //    oDateTimePicker.Format = DateTimePickerFormat.Short;
+                MessageBox.Show(ex.Message);
+            }
+        }
 
-            //    // It returns the retangular area that represents the Display area for a cell  
-            //    Rectangle oRectangle = dgvDatosAutorizacionProveedor.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
-
-            //    //Setting area for DateTimePicker Control  
-            //    oDateTimePicker.Size = new Size(oRectangle.Width, oRectangle.Height);
-
-            //    // Setting Location  
-            //    oDateTimePicker.Location = new Point(oRectangle.X, oRectangle.Y);
-
-            //    // An event attached to dateTimePicker Control which is fired when DateTimeControl is closed  
-            //    oDateTimePicker.CloseUp += new EventHandler(oDateTimePickerdgvtarjeta_CloseUp);
-
-            //    // An event attached to dateTimePicker Control which is fired when any date is selected  
-            //    oDateTimePicker.TextChanged += new EventHandler(dateTimePickerdgvtarjeta_OnTextChange);
-
-            //    // Now make it visible  
-            //    oDateTimePicker.Visible = true;
-            //}
+        private void dtpOrden_ValueChanged(object sender, EventArgs e)
+        {
+            dgvDatosAutorizacionProveedor.CurrentCell.Value = dtpOrder.Text;
         }
     }
 }
