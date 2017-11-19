@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -316,6 +317,29 @@ namespace Comisariato.Formularios
 
                 throw;
             }
+        }
+
+        private void FrmPrincipal_Load(object sender, EventArgs e)
+        {
+            Consultas consultas = new Consultas();
+            DataTable dt = consultas.BoolDataTable("Select FONDOPANTALLA from TbEmpresa where IDEMPRESA = 1");
+            //Arreglo de byte en donde se almacenara la foto en bytes
+            byte[] MyData = new byte[0];
+            //Verificar si tiene Datos
+            if (dt.Rows.Count > 0)
+            {
+                DataRow myRow = dt.Rows[0];
+
+                //Se almacena el campo foto de la tabla en el arreglo de bytes
+                MyData = (byte[])myRow["FONDOPANTALLA"];
+                //Se inicializa un flujo en memoria del arreglo de bytes
+                MemoryStream stream = new MemoryStream(MyData);
+                //En el picture box se muestra la imagen que esta almacenada en el flujo en memoria 
+                //el cual contiene el arreglo de bytes
+                this.panelPrincipal.BackgroundImage = Image.FromStream(stream);
+
+            }
+                //this.panelPrincipal.BackgroundImage = global::Comisariato.Properties.Resources.logo1098x585;
         }
     }
 }

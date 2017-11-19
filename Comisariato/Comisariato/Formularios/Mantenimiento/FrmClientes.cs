@@ -184,7 +184,7 @@ namespace Comisariato.Formularios
                 Cliente Objcliente = new Cliente(cbTipoCliente.Text, cbIdentificacionCliente.Text, txtIdentificacionCliente.Text, ckClienteActivo.Checked, txtNombresCliente.Text, txtApellidosCliente.Text,
                     dtpFechaNacimientoCliente.Value, txtRazonSocialCliente.Text, txtEmailCliente.Text, txtDireccion.Text, cbActividadEconomicaCliente.Text,
                      Convert.ToInt32(cbParroquiaCliente.SelectedValue), Convert.ToInt32(txtCasillaCliente.Text.ToString()), txtFaxCliente.Text, txtCelular1Cliente.Text, txtCelular2Cliente.Text, txtObservacionCliente.Text,
-                     cbCategoriaCliente.Text, categoriaChequeada, txtCreditoAsignadoCliente.Text, txtCupoCreditoCliente.Text, txtDescuentoCliente.Text);
+                     cbCategoriaCliente.Text, categoriaChequeada, txtCreditoAsignadoCliente.Text, txtCupoCreditoCliente.Text, txtDescuentoCliente.Text, Convert.ToInt32(cbCuentaContable.SelectedValue));
                 int idcliente = consultas.ObtenerID("IDCLIENTE", "TbCliente", "");
                 if (!bandera_Estado) // Para identificar si se va ingresar
                 {
@@ -343,6 +343,12 @@ namespace Comisariato.Formularios
                     txtCelular1Cliente.Text = myRow["CELULAR1"].ToString();
                     txtCelular2Cliente.Text = myRow["CELULAR2"].ToString();
                     txtObservacionCliente.Text = myRow["OBSERVACION"].ToString();
+
+                    cbCuentaContable.SelectedValue = Convert.ToInt32(myRow["IDCuentaContable"]);
+                    int indexcuenta = cbCuentaContable.SelectedIndex;
+                    cbCuentaContable.SelectedIndex = indexcuenta;
+
+
 
                     //cargar lista OTRA INFORMACION Cliente
                     DataTable DTOtrainformacion = consultas.BoolDataTable("Select * from TbOtraInformacionCliente where IDCLIENTE = " + dgvDatosCliente.CurrentRow.Cells[2].Value.ToString() + "");
