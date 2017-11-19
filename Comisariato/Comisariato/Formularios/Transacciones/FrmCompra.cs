@@ -47,7 +47,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         }
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            if (txtFlete.Text != "" && txtObservacion.Text != "" && txtPlazoOC.Text != "" && txtSerie1.Text != "" && txtSerie2.Text != "" && txtNumero.Text != "")
+            if (txtFlete.Text != "" && && txtPlazoOC.Text != "" && txtSerie1.Text != "" && txtSerie2.Text != "" && txtNumero.Text != "")
             {
                 int idEncabezadoCompra = 0;
                 ObjEncabezadoCompra = new EmcabezadoCompra(txtSerie1.Text, txtSerie2.Text, txtNumero.Text, Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtSubtutalIVA.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtSubtotal0.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtSubtotal.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtTotal.Text)), txtOrdenCompra.Text, Convert.ToInt32(cbSucursal.SelectedValue), Convert.ToSingle(txtFlete.Text), dtpFechaOC.Value, Convert.ToInt32(datosProveedor.SelectedValue), cbTerminoPago.Text, txtPlazoOC.Text, cbImpuesto.Text
@@ -114,8 +114,8 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioCompra" || datosProductoCompra.Columns[e.ColumnIndex].Name == "cantidad")
                 {
-                    iva = ((Convert.ToSingle(datosProductoCompra.CurrentRow.Cells[2].Value.ToString()) * Convert.ToInt32(datosProductoCompra.CurrentRow.Cells[3].Value.ToString())) * 0.12f);
-                    subtotal = ((Convert.ToSingle(datosProductoCompra.CurrentRow.Cells[2].Value.ToString()) * Convert.ToInt32(datosProductoCompra.CurrentRow.Cells[3].Value.ToString())) - iva);
+                    iva = ((Convert.ToSingle(datosProductoCompra.CurrentRow.Cells[3].Value.ToString()) * Convert.ToInt32(datosProductoCompra.CurrentRow.Cells[2].Value.ToString())) * 0.12f);
+                    subtotal = ((Convert.ToSingle(datosProductoCompra.CurrentRow.Cells[3].Value.ToString()) * Convert.ToInt32(datosProductoCompra.CurrentRow.Cells[2].Value.ToString())) - iva);
                     total = subtotal + iva;
                     datosProductoCompra.CurrentRow.Cells[11].Value = iva.ToString("#####0.00");
                     datosProductoCompra.CurrentRow.Cells[10].Value = subtotal.ToString("#####0.00");
@@ -208,7 +208,8 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             }
             if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[3])
             {
-                string textBox1 = Convert.ToString(datosProductoCompra.CurrentRow.Cells[3].Value);
+                Convert.ToSingle(datosProductoCompra.CurrentRow.Cells[3].Value);
+                Funcion.SoloValores(e, Convert.ToString(datosProductoCompra.CurrentRow.Cells[3].Value));
             }
         }
         private void dgvProductosIngresos_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -263,6 +264,20 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         private void txtNumero_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.Validar_Numeros(e);
+        }
+        string valor;
+        private void dgvProductosIngresos_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void dgvProductosIngresos_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[3])
+            {
+
+                valor = Convert.ToString(dgvProductosIngresos.CurrentRow.Cells[3].Value);
+            }
         }
 
         private void btnSalirCompra_Click(object sender, EventArgs e)
