@@ -76,9 +76,9 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             try
             {
 
-                if (indezp.Count>0)
+                if (indezp.Count>2)
                 {
-                    
+                    dgvProductosEnCombo.Rows.Clear();
                     for (int i = 0; i < indezp.Count; i++)
                     {
                         dgvProductosEnCombo.Rows.Add(" ");
@@ -90,19 +90,23 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         dgvProductosEnCombo.Rows[i].Cells[5].Value = dgvProductosParaCombo.Rows[indezp[i]].Cells[4].Value;
                         dgvProductosEnCombo.Rows[i].Cells[6].Value = dgvProductosParaCombo.Rows[indezp[i]].Cells[5].Value;
                         dgvProductosEnCombo.Rows[i].Cells[7].Value = dgvProductosParaCombo.Rows[indezp[i]].Cells[7].Value;
-                        dgvProductosParaCombo.Rows.RemoveAt(indezp[i]);
-                        dgvProductosParaCombo.Rows.Add(" ");
+                        //dgvProductosParaCombo.Rows.RemoveAt(indezp[i]);
+                        //dgvProductosParaCombo.Rows.Add(" ");
 
                     }
                     dgvProductosEnCombo.CurrentCell = dgvProductosEnCombo.Rows[0].Cells[3];
                     dgvProductosEnCombo.BeginEdit(true);
                 }
+                else
+                {
+                    MessageBox.Show("Selecciona al menos tres productos para poder formar un combo");
+                }
                 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                //throw;
+                MessageBox.Show(ex.Message);
             }
 
         }
