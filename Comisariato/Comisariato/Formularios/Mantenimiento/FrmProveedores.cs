@@ -453,6 +453,8 @@ namespace Comisariato.Formularios
             if (apareceDataDeCombos)
             {
                 dgvCredito.Visible = true;
+                dgvICE.Visible = false;
+                dgvCodigo101.Visible = false;
                 consultas.boolLlenarDataGridView(dgvCredito, "select CS.IDCODIGOSRI, '[' + CS.CODIGOSRI + '] - ' + CS.DESCRIPCION as CODIGO_SRI, TCS.CODIGO AS TIPO, CS.RETENCION AS RETENCION, CS.FECHAVALIDODESDE AS DESDE, CS.FECHAVALIDOHASTA AS HASTA from TbCodigoSRI CS, TbTipoCodigoSRI TCS WHERE TCS.IDTIPOCODIGOSRI = CS.IDTIPOCODIGOSRI AND TCS.CODIGO = 'COD_IDCREDITO'");
                 dgvCredito.Columns["IDCODIGOSRI"].Visible = false;
                 dgvCredito.Columns["CODIGO_SRI"].Width = 400;
@@ -504,6 +506,8 @@ namespace Comisariato.Formularios
             if (apareceDataDeCombos)
             {
                 dgvICE.Visible = true;
+                dgvCredito.Visible = false;
+                dgvCodigo101.Visible = false;
                 consultas.boolLlenarDataGridView(dgvICE, "select CS.IDCODIGOSRI, '[' + CS.CODIGOSRI + '] - ' + CS.DESCRIPCION as CODIGO_SRI, TCS.CODIGO AS TIPO, CS.RETENCION AS RETENCION, CS.FECHAVALIDODESDE AS DESDE, CS.FECHAVALIDOHASTA AS HASTA from TbCodigoSRI CS, TbTipoCodigoSRI TCS WHERE TCS.IDTIPOCODIGOSRI = CS.IDTIPOCODIGOSRI AND TCS.CODIGO = 'COD_ICE'");
                 dgvICE.Columns["IDCODIGOSRI"].Visible = false;
                 dgvICE.Columns["CODIGO_SRI"].Width = 400;
@@ -564,6 +568,8 @@ namespace Comisariato.Formularios
             if (apareceDataDeCombos)
             {
                 dgvCodigo101.Visible = true;
+                dgvCredito.Visible = false;
+                dgvICE.Visible = false;
                 consultas.boolLlenarDataGridView(dgvCodigo101, "select CS.IDCODIGOSRI, '[' + CS.CODIGOSRI + '] - ' + CS.DESCRIPCION as CODIGO_SRI, TCS.CODIGO AS TIPO, CS.RETENCION AS RETENCION, CS.FECHAVALIDODESDE AS DESDE, CS.FECHAVALIDOHASTA AS HASTA from TbCodigoSRI CS, TbTipoCodigoSRI TCS WHERE TCS.IDTIPOCODIGOSRI = CS.IDTIPOCODIGOSRI AND TCS.CODIGO = 'COD_101'");
                 dgvCodigo101.Columns["IDCODIGOSRI"].Visible = false;
                 dgvCodigo101.Columns["CODIGO_SRI"].Width = 400;
@@ -604,7 +610,7 @@ namespace Comisariato.Formularios
                 //----Si no funciona es esto
                 apareceDataDeCombos = true;
                 //-------------------------
-                cbCodigo101Proveedor.Focus();
+                dgvCodigoRetencionProveedor.Focus();
             }
             if (e.KeyCode == Keys.Escape)
             {
