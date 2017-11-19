@@ -144,7 +144,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         {
             Objconsul = new Consultas();
             SendKeys.Send("{TAB}");
-            Objconsul.BoolLlenarComboBox(cbTipoProducto, "Select IDCATEGORIA as ID , DESCRIPCION AS TEXTO from TbCategoria;");
+            Objconsul.BoolLlenarComboBox(cbTipoProducto, "Select IDCATEGORIA as ID , DESCRIPCION AS TEXTO from TbCategoria where DESCRIPCION != 'COMBO' ;");
             cbUnidadMedidaProducto.SelectedIndex = 0;
             cbPeso.SelectedIndex = 0;
             inicializarDatos();
