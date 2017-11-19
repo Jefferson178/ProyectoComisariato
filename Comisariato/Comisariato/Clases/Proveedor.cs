@@ -427,6 +427,21 @@ namespace Comisariato.Clases
             }
             else { return "Existe"; }
         }
+        public string InsertarTablaRetencion(int IDPROVEEDOR, int IDRETENCION)
+        {
+            ObjConsulta = new Consultas();
+
+            if (!ObjConsulta.Existe("IDRETENCION", IDRETENCION + "' and IDPROVEEDOR = '" + IDPROVEEDOR, "TbRetencionProveedor"))
+            {
+                if (ObjConsulta.EjecutarSQL("INSERT INTO [dbo].[TbRetencionProveedor] ([IDRETENCION], [IDPROVEEDOR])"
+                + " VALUES(" + IDRETENCION + "," + IDPROVEEDOR + ")"))
+                {
+                    return "Datos Guardados";
+                }
+                else { return "Error al Registrar"; }
+            }
+            else { return "Existe"; }
+        }
 
         public void InsertarAutorizacionProveedor(DataGridView dgv, int idproveedor)
         {
@@ -447,10 +462,32 @@ namespace Comisariato.Clases
             catch (Exception ex)
             {
 
-                throw;
+                //throw;
             }
         }
+        public void InsertarRetencion(DataGridView dgv, int idproveedor)
+        {
+            try
+            {
+                for (int i = 0; i < dgv.RowCount; i++)
+                {
+                    if (dgv.Rows[i].Cells[0].Value.ToString() != "")
+                    {
+                        InsertarTablaRetencion(idproveedor, Convert.ToInt32(dgv.Rows[i].Cells[0].Value));
+                    }
+                    else
+                    {
+                        break;
+                    }
 
+                }
+            }
+            catch (Exception ex)
+            {
+
+                // throw;
+            }
+        }
 
     }
 

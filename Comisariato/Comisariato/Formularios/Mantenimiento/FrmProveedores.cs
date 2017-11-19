@@ -138,13 +138,10 @@ namespace Comisariato.Formularios
                     String resultado = ObjProvee.InsertarProveedor();
                     if (resultado == "Datos Guardados")
                     {
-<<<<<<< HEAD
-                        MessageBox.Show("Proveedor Registrado Correctamente ", "Exito", MessageBoxButtons.OK);
-=======
                         //string res = ObjProvee.InsertarAutorizacionProveedor()
                         ObjProvee.InsertarAutorizacionProveedor(dgvDatosAutorizacionProveedor, IDProveedor + 1);
+                        ObjProvee.InsertarRetencion(dgvCodigoRetencionProveedor, IDProveedor + 1);
                         MessageBox.Show("Proveedor Registrado Correctamente ", "Exito",MessageBoxButtons.OK);
->>>>>>> 7c48897daf0b5f4dcc663d02fde6d488963f2d8b
                         cargarDatos("1");
                         rbtActivosProveedor.Checked = true;
                         inicializarDatos();
@@ -771,8 +768,6 @@ namespace Comisariato.Formularios
                 dgvCodigoRetencionProveedor.Focus();
             }
         }
-
-<<<<<<< HEAD
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabControl1.SelectedIndex == 1)
@@ -780,9 +775,9 @@ namespace Comisariato.Formularios
                 dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.Rows[dgvCodigoRetencionProveedor.Rows.Count - 2].Cells[2];
                 dgvRetencionFuenteIva.Visible = false;
                 cbCreditoProveedor.Focus();
-                
+
             }
-=======
+        }
         private void dgvDatosAutorizacionProveedor_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //if (dgvDatosAutorizacionProveedor.CurrentCell == this.dgvDatosAutorizacionProveedor.CurrentRow.Cells[3] )
@@ -847,7 +842,6 @@ namespace Comisariato.Formularios
             //    // Now make it visible  
             //    oDateTimePicker.Visible = true;
             //}
->>>>>>> 7c48897daf0b5f4dcc663d02fde6d488963f2d8b
         }
     }
 }
