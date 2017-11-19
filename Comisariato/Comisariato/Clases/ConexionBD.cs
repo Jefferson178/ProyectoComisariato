@@ -16,7 +16,15 @@ namespace Comisariato.Clases
         {
             try
             {
+<<<<<<< HEAD
                 connection = new SqlConnection("data source = AIRCONTROL, 1433; initial catalog = BDComisariato; user id = COMI; password = server@1;");
+=======
+                connection = new SqlConnection("data source = AIRC0NTROL, 1433; initial catalog = BDComisariato; user id = COMI; password = server@1;");
+
+                connection = new SqlConnection("data source = AIRC0NTROL, 1433; initial catalog = BDComisariato; user id = COMI; password = server@1;");
+                
+                connection = new SqlConnection("Data Source=DJSERATO\\SQLEXPRESS;Initial Catalog=BDComisariato;Integrated Security=True");
+>>>>>>> b816f6c0035b717af4925bdd29bd79139856bf42
                 //connection = new SqlConnection("Data Source=DESKTOP-SI5M9C5;Initial Catalog=BDComisariato;Integrated Security=True");
                 connection.Open();
                
@@ -29,7 +37,17 @@ namespace Comisariato.Clases
         }
         public void Cerrar()
         {
+<<<<<<< HEAD
             connection = new SqlConnection("data source = AIRCONTROL, 1433; initial catalog = BDComisariato; user id = COMI; password = server@1;");
+=======
+            connection = new SqlConnection("data source = AIRC0NTROL, 1433; initial catalog = BDComisariato; user id = COMI; password = server@1;");
+            connection = new SqlConnection("data source = AIRC0NTROL, 1433; initial catalog = BDComisariato; user id = COMI; password = server@1;");
+
+            connection = new SqlConnection("data source = AIRC0NTROL, 1433; initial catalog = BDComisariato; user id = COMI; password = server@1;");
+ 
+            connection = new SqlConnection("Data Source=DJSERATO\\SQLEXPRESS;Initial Catalog=BDComisariato;Integrated Security=True");
+
+>>>>>>> b816f6c0035b717af4925bdd29bd79139856bf42
             connection.Close();
         }
     }

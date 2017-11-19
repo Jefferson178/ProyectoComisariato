@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.gbproductosParaCombo = new System.Windows.Forms.GroupBox();
             this.dgvProductosParaCombo = new System.Windows.Forms.DataGridView();
@@ -38,6 +38,10 @@
             this.label25 = new System.Windows.Forms.Label();
             this.tcComboProducto = new System.Windows.Forms.TabControl();
             this.tpNuevoCombo = new System.Windows.Forms.TabPage();
+            this.txtPrecioCombo = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtCantCombo = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.txtCodigoCombo = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,14 +52,6 @@
             this.btnAgregarProductoACombo = new System.Windows.Forms.Button();
             this.gbComboProductos = new System.Windows.Forms.GroupBox();
             this.dgvProductosEnCombo = new System.Windows.Forms.DataGridView();
-            this.tpConsultarModificarCombo = new System.Windows.Forms.TabPage();
-            this.txtConsultarCombo = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dgvDatosCombo = new System.Windows.Forms.DataGridView();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtCantCombo = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtPrecioCombo = new System.Windows.Forms.TextBox();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoriaCombo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,6 +60,10 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tpConsultarModificarCombo = new System.Windows.Forms.TabPage();
+            this.txtConsultarCombo = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dgvDatosCombo = new System.Windows.Forms.DataGridView();
             this.gbproductosParaCombo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductosParaCombo)).BeginInit();
             this.tcComboProducto.SuspendLayout();
@@ -85,7 +85,7 @@
             this.gbproductosParaCombo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbproductosParaCombo.Name = "gbproductosParaCombo";
             this.gbproductosParaCombo.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbproductosParaCombo.Size = new System.Drawing.Size(895, 178);
+            this.gbproductosParaCombo.Size = new System.Drawing.Size(895, 185);
             this.gbproductosParaCombo.TabIndex = 3;
             this.gbproductosParaCombo.TabStop = false;
             this.gbproductosParaCombo.Text = "Productos para Combos";
@@ -93,20 +93,20 @@
             // dgvProductosParaCombo
             // 
             this.dgvProductosParaCombo.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProductosParaCombo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProductosParaCombo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvProductosParaCombo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProductosParaCombo.Location = new System.Drawing.Point(94, 49);
+            this.dgvProductosParaCombo.Location = new System.Drawing.Point(83, 49);
             this.dgvProductosParaCombo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvProductosParaCombo.Name = "dgvProductosParaCombo";
             this.dgvProductosParaCombo.RowHeadersVisible = false;
-            this.dgvProductosParaCombo.Size = new System.Drawing.Size(717, 119);
+            this.dgvProductosParaCombo.Size = new System.Drawing.Size(737, 119);
             this.dgvProductosParaCombo.TabIndex = 3;
             this.dgvProductosParaCombo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductosParaCombo_CellClick);
             // 
@@ -168,6 +168,40 @@
             this.tpNuevoCombo.Size = new System.Drawing.Size(1035, 544);
             this.tpNuevoCombo.TabIndex = 0;
             this.tpNuevoCombo.Text = "Nuevo Combo";
+            // 
+            // txtPrecioCombo
+            // 
+            this.txtPrecioCombo.Location = new System.Drawing.Point(594, 483);
+            this.txtPrecioCombo.Name = "txtPrecioCombo";
+            this.txtPrecioCombo.Size = new System.Drawing.Size(100, 22);
+            this.txtPrecioCombo.TabIndex = 16;
+            this.txtPrecioCombo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioCombo_KeyPress);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(486, 487);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(102, 16);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Precio Combo:";
+            // 
+            // txtCantCombo
+            // 
+            this.txtCantCombo.Location = new System.Drawing.Point(594, 455);
+            this.txtCantCombo.Name = "txtCantCombo";
+            this.txtCantCombo.Size = new System.Drawing.Size(100, 22);
+            this.txtCantCombo.TabIndex = 14;
+            this.txtCantCombo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantCombo_KeyPress);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(470, 456);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(118, 16);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Cantidad Combo:";
             // 
             // button1
             // 
@@ -279,14 +313,14 @@
             // dgvProductosEnCombo
             // 
             this.dgvProductosEnCombo.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProductosEnCombo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProductosEnCombo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvProductosEnCombo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductosEnCombo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -303,91 +337,6 @@
             this.dgvProductosEnCombo.RowHeadersVisible = false;
             this.dgvProductosEnCombo.Size = new System.Drawing.Size(935, 137);
             this.dgvProductosEnCombo.TabIndex = 2;
-            // 
-            // tpConsultarModificarCombo
-            // 
-            this.tpConsultarModificarCombo.BackColor = System.Drawing.Color.Bisque;
-            this.tpConsultarModificarCombo.Controls.Add(this.txtConsultarCombo);
-            this.tpConsultarModificarCombo.Controls.Add(this.label2);
-            this.tpConsultarModificarCombo.Controls.Add(this.dgvDatosCombo);
-            this.tpConsultarModificarCombo.Location = new System.Drawing.Point(4, 25);
-            this.tpConsultarModificarCombo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tpConsultarModificarCombo.Name = "tpConsultarModificarCombo";
-            this.tpConsultarModificarCombo.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tpConsultarModificarCombo.Size = new System.Drawing.Size(1035, 544);
-            this.tpConsultarModificarCombo.TabIndex = 1;
-            this.tpConsultarModificarCombo.Text = "Consultar - Modificar Combo";
-            // 
-            // txtConsultarCombo
-            // 
-            this.txtConsultarCombo.Location = new System.Drawing.Point(296, 25);
-            this.txtConsultarCombo.Margin = new System.Windows.Forms.Padding(2);
-            this.txtConsultarCombo.Name = "txtConsultarCombo";
-            this.txtConsultarCombo.Size = new System.Drawing.Size(571, 22);
-            this.txtConsultarCombo.TabIndex = 8;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label2.ForeColor = System.Drawing.Color.Teal;
-            this.label2.Location = new System.Drawing.Point(182, 28);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 16);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Consultar:";
-            // 
-            // dgvDatosCombo
-            // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosCombo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
-            this.dgvDatosCombo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDatosCombo.Location = new System.Drawing.Point(19, 63);
-            this.dgvDatosCombo.Margin = new System.Windows.Forms.Padding(2);
-            this.dgvDatosCombo.Name = "dgvDatosCombo";
-            this.dgvDatosCombo.Size = new System.Drawing.Size(977, 458);
-            this.dgvDatosCombo.TabIndex = 6;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(470, 456);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(118, 16);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Cantidad Combo:";
-            // 
-            // txtCantCombo
-            // 
-            this.txtCantCombo.Location = new System.Drawing.Point(594, 455);
-            this.txtCantCombo.Name = "txtCantCombo";
-            this.txtCantCombo.Size = new System.Drawing.Size(100, 22);
-            this.txtCantCombo.TabIndex = 14;
-            this.txtCantCombo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantCombo_KeyPress);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(486, 487);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(102, 16);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "Precio Combo:";
-            // 
-            // txtPrecioCombo
-            // 
-            this.txtPrecioCombo.Location = new System.Drawing.Point(594, 483);
-            this.txtPrecioCombo.Name = "txtPrecioCombo";
-            this.txtPrecioCombo.Size = new System.Drawing.Size(100, 22);
-            this.txtPrecioCombo.TabIndex = 16;
-            this.txtPrecioCombo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioCombo_KeyPress);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -440,6 +389,57 @@
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
             this.ID.Visible = false;
+            // 
+            // tpConsultarModificarCombo
+            // 
+            this.tpConsultarModificarCombo.BackColor = System.Drawing.Color.Bisque;
+            this.tpConsultarModificarCombo.Controls.Add(this.txtConsultarCombo);
+            this.tpConsultarModificarCombo.Controls.Add(this.label2);
+            this.tpConsultarModificarCombo.Controls.Add(this.dgvDatosCombo);
+            this.tpConsultarModificarCombo.Location = new System.Drawing.Point(4, 25);
+            this.tpConsultarModificarCombo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tpConsultarModificarCombo.Name = "tpConsultarModificarCombo";
+            this.tpConsultarModificarCombo.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tpConsultarModificarCombo.Size = new System.Drawing.Size(1035, 544);
+            this.tpConsultarModificarCombo.TabIndex = 1;
+            this.tpConsultarModificarCombo.Text = "Consultar - Modificar Combo";
+            // 
+            // txtConsultarCombo
+            // 
+            this.txtConsultarCombo.Location = new System.Drawing.Point(296, 25);
+            this.txtConsultarCombo.Margin = new System.Windows.Forms.Padding(2);
+            this.txtConsultarCombo.Name = "txtConsultarCombo";
+            this.txtConsultarCombo.Size = new System.Drawing.Size(571, 22);
+            this.txtConsultarCombo.TabIndex = 8;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.label2.ForeColor = System.Drawing.Color.Teal;
+            this.label2.Location = new System.Drawing.Point(182, 28);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 16);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Consultar:";
+            // 
+            // dgvDatosCombo
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosCombo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvDatosCombo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDatosCombo.Location = new System.Drawing.Point(19, 63);
+            this.dgvDatosCombo.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvDatosCombo.Name = "dgvDatosCombo";
+            this.dgvDatosCombo.Size = new System.Drawing.Size(977, 458);
+            this.dgvDatosCombo.TabIndex = 6;
             // 
             // FrmComboProductos
             // 
