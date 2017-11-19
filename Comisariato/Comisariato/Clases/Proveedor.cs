@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Comisariato.Clases
 {
@@ -411,5 +412,47 @@ namespace Comisariato.Clases
             }
             else { return "Sin Accion"; }
         }
+        public string InsertarTablaAutorizacionProveedor(string serie1, string serie2, string AUTORIZACION,string VALIDO_HASTA,string FAC_INICIO, string FAC_FIN,int IDPROVEEDOR)
+        {
+            ObjConsulta = new Consultas();
+
+            if (!ObjConsulta.Existe("SERIE1", serie1 + "' and SERIE2 = '"+ serie2 , "TbAutorizacionProveedor"))
+            {
+                if (ObjConsulta.EjecutarSQL("INSERT INTO [dbo].[TbAutorizacionProveedor] ([SERIE1] ,[SERIE2] ,[AUTORIZACION] ,[VALIDO_HASTA] ,[FAC_INICIO] ,[FAC_FIN] ,[IDPROVEEDOR])"
+                +" VALUES('"+serie1+"','"+serie2+ "','"+AUTORIZACION+ "','"+VALIDO_HASTA+ "','"+FAC_INICIO+ "','"+FAC_FIN+"',"+IDPROVEEDOR+")"))
+                {
+                    return "Datos Guardados";
+                }
+                else { return "Error al Registrar"; }
+            }
+            else { return "Existe"; }
+        }
+
+        public void InsertarAutorizacionProveedor(DataGridView dgv, int idproveedor)
+        {
+            try
+            {
+                for (int i = 0; i < dgv.RowCount; i++)
+                {
+                    if (dgv.Rows[i].Cells[0].Value.ToString() != "" && dgv.Rows[i].Cells[1].Value.ToString() != "" && dgv.Rows[i].Cells[2].Value.ToString() != "" && dgv.Rows[i].Cells[3].Value.ToString() != "" && dgv.Rows[i].Cells[4].Value.ToString() != "" && dgv.Rows[i].Cells[5].Value.ToString() != "")
+                    {
+                        InsertarTablaAutorizacionProveedor(dgv.Rows[i].Cells[0].Value.ToString(), dgv.Rows[i].Cells[1].Value.ToString(), dgv.Rows[i].Cells[2].Value.ToString(), dgv.Rows[i].Cells[3].Value.ToString(), dgv.Rows[i].Cells[4].Value.ToString(), dgv.Rows[i].Cells[5].Value.ToString(), idproveedor);
+                    }
+                    else {
+                        MessageBox.Show("Ingrese los Datos de Autorizacion Completos");
+                    }
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+
     }
+
+   
 }
