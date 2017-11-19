@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.gbproductosParaCombo = new System.Windows.Forms.GroupBox();
             this.dgvProductosParaCombo = new System.Windows.Forms.DataGridView();
@@ -52,6 +52,10 @@
             this.txtConsultarCombo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvDatosCombo = new System.Windows.Forms.DataGridView();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtCantCombo = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtPrecioCombo = new System.Windows.Forms.TextBox();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoriaCombo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,6 +63,7 @@
             this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbproductosParaCombo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductosParaCombo)).BeginInit();
             this.tcComboProducto.SuspendLayout();
@@ -88,14 +93,14 @@
             // dgvProductosParaCombo
             // 
             this.dgvProductosParaCombo.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProductosParaCombo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProductosParaCombo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvProductosParaCombo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductosParaCombo.Location = new System.Drawing.Point(94, 49);
             this.dgvProductosParaCombo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -141,6 +146,10 @@
             // tpNuevoCombo
             // 
             this.tpNuevoCombo.BackColor = System.Drawing.Color.Bisque;
+            this.tpNuevoCombo.Controls.Add(this.txtPrecioCombo);
+            this.tpNuevoCombo.Controls.Add(this.label5);
+            this.tpNuevoCombo.Controls.Add(this.txtCantCombo);
+            this.tpNuevoCombo.Controls.Add(this.label4);
             this.tpNuevoCombo.Controls.Add(this.button1);
             this.tpNuevoCombo.Controls.Add(this.txtCodigoCombo);
             this.tpNuevoCombo.Controls.Add(this.label3);
@@ -180,6 +189,7 @@
             this.txtCodigoCombo.Name = "txtCodigoCombo";
             this.txtCodigoCombo.Size = new System.Drawing.Size(157, 22);
             this.txtCodigoCombo.TabIndex = 11;
+            this.txtCodigoCombo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoCombo_KeyPress);
             // 
             // label3
             // 
@@ -269,14 +279,14 @@
             // dgvProductosEnCombo
             // 
             this.dgvProductosEnCombo.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProductosEnCombo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProductosEnCombo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dgvProductosEnCombo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductosEnCombo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -285,7 +295,8 @@
             this.dataGridViewTextBoxColumn3,
             this.Cant,
             this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5});
+            this.dataGridViewTextBoxColumn5,
+            this.ID});
             this.dgvProductosEnCombo.Location = new System.Drawing.Point(30, 25);
             this.dgvProductosEnCombo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvProductosEnCombo.Name = "dgvProductosEnCombo";
@@ -303,7 +314,7 @@
             this.tpConsultarModificarCombo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tpConsultarModificarCombo.Name = "tpConsultarModificarCombo";
             this.tpConsultarModificarCombo.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tpConsultarModificarCombo.Size = new System.Drawing.Size(1015, 544);
+            this.tpConsultarModificarCombo.Size = new System.Drawing.Size(1035, 544);
             this.tpConsultarModificarCombo.TabIndex = 1;
             this.tpConsultarModificarCombo.Text = "Consultar - Modificar Combo";
             // 
@@ -329,20 +340,54 @@
             // 
             // dgvDatosCombo
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosCombo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosCombo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvDatosCombo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosCombo.Location = new System.Drawing.Point(19, 63);
             this.dgvDatosCombo.Margin = new System.Windows.Forms.Padding(2);
             this.dgvDatosCombo.Name = "dgvDatosCombo";
             this.dgvDatosCombo.Size = new System.Drawing.Size(977, 458);
             this.dgvDatosCombo.TabIndex = 6;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(470, 456);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(118, 16);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Cantidad Combo:";
+            // 
+            // txtCantCombo
+            // 
+            this.txtCantCombo.Location = new System.Drawing.Point(594, 455);
+            this.txtCantCombo.Name = "txtCantCombo";
+            this.txtCantCombo.Size = new System.Drawing.Size(100, 22);
+            this.txtCantCombo.TabIndex = 14;
+            this.txtCantCombo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantCombo_KeyPress);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(486, 487);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(102, 16);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Precio Combo:";
+            // 
+            // txtPrecioCombo
+            // 
+            this.txtPrecioCombo.Location = new System.Drawing.Point(594, 483);
+            this.txtPrecioCombo.Name = "txtPrecioCombo";
+            this.txtPrecioCombo.Size = new System.Drawing.Size(100, 22);
+            this.txtPrecioCombo.TabIndex = 16;
+            this.txtPrecioCombo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioCombo_KeyPress);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -389,6 +434,12 @@
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
             this.dataGridViewTextBoxColumn5.Width = 75;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.Visible = false;
             // 
             // FrmComboProductos
             // 
@@ -441,6 +492,10 @@
         private System.Windows.Forms.DataGridView dgvProductosEnCombo;
         private System.Windows.Forms.DataGridView dgvProductosParaCombo;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtPrecioCombo;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtCantCombo;
+        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn categoriaCombo;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -448,5 +503,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cant;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
     }
 }
