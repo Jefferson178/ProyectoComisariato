@@ -58,7 +58,11 @@ namespace Comisariato.Formularios
             cbProvinciaProveedor.SelectedValue = 9;
             cbCantonProveedor.SelectedValue = 80;
             cbParroquiaProveedor.SelectedValue = 41;
-            
+
+
+            consultas.BoolLlenarComboBox(cbPaisProveedor, "Select IDPAIS as ID, NOMBRE AS Texto from TbPais");
+            consultas.BoolLlenarComboBox(cbCuentaContableProveedor, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta ");
+            consultas.BoolLlenarComboBox(cbTipoServicioProveedor, "Select IDSERVICIO as ID, DESCRIPCION AS Texto from TbTipoServicio");
 
         }
 
@@ -69,22 +73,22 @@ namespace Comisariato.Formularios
             cbNaturalezaProveedor.SelectedIndex = 0;
             cbTipoGastoProveedor.SelectedIndex = 0;
             consultas = new Consultas();
-            consultas.BoolLlenarComboBox(cbPaisProveedor, "Select IDPAIS as ID, NOMBRE AS Texto from TbPais");
 
+
+
+
+            inicializarDatos();
             //consul.boolLlenarDataGridView(dgvDatosProveedor, "");
-            //for (int i = 0; i < 20; i++)
+            //for (int i = dgvDatosProveedor.Rows.Count; i < 20; i++)
             //{
             //    dgvDatosProveedor.Rows.Add();
             //}
-            
+
             for (int i = 0; i < 3; i++)
             {
                 dgvCodigoRetencionProveedor.Rows.Add();
                 dgvDatosAutorizacionProveedor.Rows.Add();
             }
-            cargarDatos("1");
-
-            inicializarDatos();
             // Dimensionar lista combo
 
             cbPaisProveedor.DropDownHeight = cbPaisProveedor.ItemHeight = 150;
@@ -106,7 +110,7 @@ namespace Comisariato.Formularios
                     txtNombreProveedor.Text, txtNumeroIdentificacionProveedor.Text, cbNacionalidadProveedor.Text, cbNaturalezaProveedor.Text,
                     txtDireccionProveedor.Text, txtRazonSocialProveedor.Text, txtEmailProveedor.Text, txtTelefonoProveedor.Text, txtCelularProveedor.Text, 
                     txtGiraChequeProveedor.Text, txtResponsableProveedor.Text, cbTipoGastoProveedor.Text, cbTipoServicioProveedor.Text, 
-                    Convert.ToInt32(cbParroquiaProveedor.SelectedValue), ckbRISEProveedor.Checked);
+                    Convert.ToInt32(cbParroquiaProveedor.SelectedValue), ckbRISEProveedor.Checked,Convert.ToInt32(cbCuentaContableProveedor.SelectedValue));
                 if (!bandera_Estado)
                 {
                     String resultado = ObjProvee.InsertarProveedor();
@@ -271,8 +275,18 @@ namespace Comisariato.Formularios
                     cbIdentificacionProveedor.SelectedItem = myRow["TIPOIDENTIFICACION"].ToString();
                     cbNacionalidadProveedor.SelectedItem = myRow["NACIONALIDAD"].ToString();
                     cbNaturalezaProveedor.SelectedItem = myRow["NATURALEZA"].ToString();
-                    cbTipoServicioProveedor.SelectedItem = myRow["TIPOSERVICIO"].ToString();
                     cbTipoGastoProveedor.SelectedItem = myRow["TIPOGASTO"].ToString();
+
+
+                    int idservicion = consultas.ObtenerID("IDSERVICIO", "TbTipoServicio", " where DESCRIPCION = '" + myRow["TIPOSERVICIO"].ToString() + "' ");
+
+                    cbTipoServicioProveedor.SelectedValue = idservicion;
+                    int indexservicio = cbTipoServicioProveedor.SelectedIndex;
+                    cbTipoServicioProveedor.SelectedIndex = indexservicio;
+
+                    cbCuentaContableProveedor.SelectedValue = Convert.ToInt32(myRow["IDCuentaContable"]);
+                    int indexcuenta = cbCuentaContableProveedor.SelectedIndex;
+                    cbCuentaContableProveedor.SelectedIndex = indexcuenta;
 
                     consultas.LLenarCombosUbicacion(Convert.ToInt32(myRow["IDPARROQUIA"]), ref cbPaisProveedor, ref cbProvinciaProveedor, ref cbCantonProveedor, ref cbParroquiaProveedor);
                 }
@@ -388,6 +402,38 @@ namespace Comisariato.Formularios
         private void dgvDatosProveedor_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             
+        }
+        bool apareceDataDeCombos = false;
+        private void cbCreditoProveedor_Click(object sender, EventArgs e)
+        {
+            if (!apareceDataDeCombos)
+            {
+                dgvCredito.Visible = true;
+                consultas.boolLlenarDataGridView(dgvCredito, "select '[' + CS.CODIGOSRI + '] - ' + CS.DESCRIPCION as CODIGO_SRI, TCS.CODIGO AS TIPO, CS.RETENCION AS RETENCION, CS.FECHAVALIDODESDE AS DESDE, CS.FECHAVALIDOHASTA AS HASTA from TbCodigoSRI CS, TbTipoCodigoSRI TCS WHERE TCS.IDTIPOCODIGOSRI = CS.IDTIPOCODIGOSRI AND TCS.CODIGO = 'COD_IDCREDITO'");
+                dgvCredito.Columns["CODIGO_SRI"].Width = 400;
+                dgvCredito.Columns["TIPO"].Width = 125;
+                apareceDataDeCombos = true;
+            }
+            else
+            {
+                dgvCredito.Visible = false;
+                apareceDataDeCombos = false;
+            }
+        }
+
+        private void dgvCredito_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //if (this.dgvCredito.Columns[e.ColumnIndex].HeaderText == "APELLIDOS")
+            //{
+            //    consultas.BoolLlenarComboBox(cbCreditoProveedor, "SELECT IDCLIENTE as ID, APELLIDOS as Texto FROM TbCliente where IDCLIENTE =" + Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value));
+            //    dgvCredito.Visible = false;
+            //}
+        }
+
+        private void dgvCredito_MouseLeave(object sender, EventArgs e)
+        {
+            dgvCredito.Visible = false;
+            apareceDataDeCombos = false;
         }
     }
 }

@@ -121,32 +121,32 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
                     String resultado = ObjSucursal.InsertarSucursal(); // retorna true si esta correcto todo
                     if (resultado == "Datos Guardados")
                     {
-                        MessageBox.Show("Cliente Registrado Correctamente ", "Exito", MessageBoxButtons.OK);
+                        MessageBox.Show("Sucursal Registrada Correctamente ", "Exito", MessageBoxButtons.OK);
                         rbtActivos.Checked = true;
                         inicializarDatos();
 
                         btnLimpiar.Text = "&Limpiar";
                     }
                     else if (resultado == "Error al Registrar") { MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-                    else if (resultado == "Existe") { MessageBox.Show("Ya Existe el Empleado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+                    else if (resultado == "Existe") { MessageBox.Show("Ya Existe la Sucursal", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }
                 }
                 else if (bandera_Estado) // Para identificar si se va modificar
                 {
                     String Resultado = ObjSucursal.ModificarSucursal(GlovalRUC); // retorna true si esta correcto todo
                     if (Resultado == "Correcto")
                     {
-                        MessageBox.Show("Empleado Actualizado", "Exito");
+                        MessageBox.Show("Sucursal Actualizada", "Exito");
                         rbtActivos.Checked = true;
                         GlovalRUC = "";
                     }
-                    else { MessageBox.Show("Error al actualizar Empleado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                    else { MessageBox.Show("Error al actualizar Sucursal", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                     inicializarDatos();
                     bandera_Estado = false;
                     btnGuardar.Text = "&Guardar";
                 }
                 cargarDatos("1");
             }
-            else { MessageBox.Show("Ingrese los datos del Empleado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            else { MessageBox.Show("Ingrese los datos de la Sucursal", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void DgvDatosSucursal_CellClick(object sender, DataGridViewCellEventArgs e)

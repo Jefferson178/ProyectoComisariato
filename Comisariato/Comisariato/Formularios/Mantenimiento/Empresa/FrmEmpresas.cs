@@ -108,11 +108,11 @@ namespace Comisariato.Formularios
                     Image img1 = pbLogoEmpresa.Image;
                     bitDataLogo = Funcion.imgToByteArray(img1);
                 //}
-                //if (nameFondo != "")
-                //{
+                if (nameFondo != "")
+                {
                     Image img2 = pbfondoPantallaEmpresa.Image;
                     bitDataFondo = Funcion.imgToByteArray(img2);
-                //}
+                }
                 //if (nameLogo != "")
                 //{
                 //    bitDataLogo = Funcion.ConvertImg_Bytes(nameLogo);

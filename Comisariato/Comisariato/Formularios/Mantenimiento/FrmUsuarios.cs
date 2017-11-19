@@ -62,7 +62,7 @@ namespace Comisariato.Formularios
                 cbPersonaUsuario.SelectedIndex = 0;
             }
             objConsul.BoolLlenarCheckListBox(CheckListBEmpresas, "Select IDEMPRESA as ID, NOMBRE as 'Texto' from TbEmpresa;");
-            objConsul.BoolLlenarComboBox(cbPersonaUsuario, "Select IDEMPLEADO as ID,(E.APELLIDOS +' '+ E.NOMBRES) as Texto from TbEmpleado E  ;");/*WHERE (E.NOMBRES != 'ADMINISTRADOR')*/
+            objConsul.BoolLlenarComboBox(cbPersonaUsuario, "Select IDEMPLEADO as ID,(E.APELLIDOS +' '+ E.NOMBRES) as Texto from TbEmpleado E  WHERE (E.NOMBRES != 'ADMINISTRADOR');");
             objConsul.BoolLlenarComboBox(cbTipoUsuario, "Select IDTIPOUSUARIO as ID,TIPO as Texto from TbTipousuario;");
             ckbFacturaUsuario.Checked = false;
             ckMostrarContra.Checked = false;
