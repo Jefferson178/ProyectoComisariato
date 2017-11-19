@@ -209,6 +209,11 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             {
                 Funcion.validar_Num_Letras(e);
             }
+            if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[3])
+            {
+                Convert.ToSingle(datosProductoCompra.CurrentRow.Cells[3].Value);
+                Funcion.SoloValores(e, Convert.ToString(datosProductoCompra.CurrentRow.Cells[3].Value));
+            }
         }
         private void dgvProductosIngresos_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
@@ -262,6 +267,20 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         private void txtNumero_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.Validar_Numeros(e);
+        }
+        string valor;
+        private void dgvProductosIngresos_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void dgvProductosIngresos_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[3])
+            {
+
+                valor = Convert.ToString(dgvProductosIngresos.CurrentRow.Cells[3].Value);
+            }
         }
 
         private void btnSalirCompra_Click(object sender, EventArgs e)
