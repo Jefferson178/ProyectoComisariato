@@ -31,6 +31,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+<<<<<<< HEAD
+=======
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+>>>>>>> 0e26af5b1eb99a32dee495bad3ef5da8d9395214
             this.tcProveedor = new System.Windows.Forms.TabControl();
             this.tpNuevoProveedor = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
@@ -71,6 +80,7 @@
             this.cbParroquiaProveedor = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dgvRetencionFuenteIva = new System.Windows.Forms.DataGridView();
             this.gbDatosAutorizacionProveedor = new System.Windows.Forms.GroupBox();
             this.dgvDatosAutorizacionProveedor = new System.Windows.Forms.DataGridView();
             this.serie1Proveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -81,11 +91,6 @@
             this.facturaFinProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbCodigoRetencionProveedor = new System.Windows.Forms.GroupBox();
             this.dgvCodigoRetencionProveedor = new System.Windows.Forms.DataGridView();
-            this.retencionSRIProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipoProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.porcentajeProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cuentaContableProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.validesProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ckbContribuyenteEspecialProveedor = new System.Windows.Forms.CheckBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -119,11 +124,18 @@
             this.DeshabilitarProveedor = new System.Windows.Forms.DataGridViewButtonColumn();
             this.txtConsultarProveedor = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.IDCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.retencionSRIProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipoProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.porcentajeProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cuentaContableProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.validesProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcProveedor.SuspendLayout();
             this.tpNuevoProveedor.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRetencionFuenteIva)).BeginInit();
             this.gbDatosAutorizacionProveedor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatosAutorizacionProveedor)).BeginInit();
             this.gbCodigoRetencionProveedor.SuspendLayout();
@@ -168,7 +180,7 @@
             // 
             this.button1.Image = global::Comisariato.Properties.Resources.salir2;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(23, 428);
+            this.button1.Location = new System.Drawing.Point(932, 23);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(92, 62);
             this.button1.TabIndex = 32;
@@ -184,8 +196,9 @@
             this.tabControl1.Location = new System.Drawing.Point(17, 140);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1007, 277);
+            this.tabControl1.Size = new System.Drawing.Size(1007, 381);
             this.tabControl1.TabIndex = 29;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -227,7 +240,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(999, 248);
+            this.tabPage1.Size = new System.Drawing.Size(999, 352);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Datos Generales";
             // 
@@ -237,7 +250,7 @@
             this.cbCuentaContableProveedor.DropDownWidth = 600;
             this.cbCuentaContableProveedor.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCuentaContableProveedor.FormattingEnabled = true;
-            this.cbCuentaContableProveedor.Location = new System.Drawing.Point(105, 141);
+            this.cbCuentaContableProveedor.Location = new System.Drawing.Point(107, 165);
             this.cbCuentaContableProveedor.Name = "cbCuentaContableProveedor";
             this.cbCuentaContableProveedor.Size = new System.Drawing.Size(383, 24);
             this.cbCuentaContableProveedor.TabIndex = 11;
@@ -245,7 +258,7 @@
             // txtPlazo
             // 
             this.txtPlazo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPlazo.Location = new System.Drawing.Point(342, 207);
+            this.txtPlazo.Location = new System.Drawing.Point(344, 231);
             this.txtPlazo.Name = "txtPlazo";
             this.txtPlazo.Size = new System.Drawing.Size(146, 22);
             this.txtPlazo.TabIndex = 14;
@@ -254,7 +267,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(272, 210);
+            this.label24.Location = new System.Drawing.Point(274, 234);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(45, 16);
             this.label24.TabIndex = 34;
@@ -264,7 +277,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(6, 44);
+            this.label6.Location = new System.Drawing.Point(8, 68);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(75, 16);
             this.label6.TabIndex = 0;
@@ -273,7 +286,7 @@
             // txtFax
             // 
             this.txtFax.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFax.Location = new System.Drawing.Point(844, 174);
+            this.txtFax.Location = new System.Drawing.Point(846, 198);
             this.txtFax.Name = "txtFax";
             this.txtFax.Size = new System.Drawing.Size(146, 22);
             this.txtFax.TabIndex = 22;
@@ -282,7 +295,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(6, 77);
+            this.label7.Location = new System.Drawing.Point(8, 101);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(89, 16);
             this.label7.TabIndex = 1;
@@ -292,7 +305,7 @@
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(774, 177);
+            this.label26.Location = new System.Drawing.Point(776, 201);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(34, 16);
             this.label26.TabIndex = 33;
@@ -302,7 +315,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(505, 44);
+            this.label9.Location = new System.Drawing.Point(507, 68);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(49, 16);
             this.label9.TabIndex = 2;
@@ -312,7 +325,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(505, 77);
+            this.label10.Location = new System.Drawing.Point(507, 101);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(96, 16);
             this.label10.TabIndex = 3;
@@ -322,7 +335,7 @@
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(6, 144);
+            this.label25.Location = new System.Drawing.Point(8, 168);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(66, 16);
             this.label25.TabIndex = 30;
@@ -332,7 +345,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(505, 111);
+            this.label11.Location = new System.Drawing.Point(507, 135);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(38, 16);
             this.label11.TabIndex = 4;
@@ -341,7 +354,7 @@
             // txtTelefonoProveedor
             // 
             this.txtTelefonoProveedor.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefonoProveedor.Location = new System.Drawing.Point(342, 108);
+            this.txtTelefonoProveedor.Location = new System.Drawing.Point(344, 132);
             this.txtTelefonoProveedor.Name = "txtTelefonoProveedor";
             this.txtTelefonoProveedor.Size = new System.Drawing.Size(146, 22);
             this.txtTelefonoProveedor.TabIndex = 10;
@@ -351,7 +364,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(774, 111);
+            this.label12.Location = new System.Drawing.Point(776, 135);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(64, 16);
             this.label12.TabIndex = 5;
@@ -361,7 +374,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(272, 111);
+            this.label22.Location = new System.Drawing.Point(274, 135);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(59, 16);
             this.label22.TabIndex = 27;
@@ -371,7 +384,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(505, 144);
+            this.label13.Location = new System.Drawing.Point(507, 168);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(53, 16);
             this.label13.TabIndex = 6;
@@ -380,7 +393,7 @@
             // txtCelularProveedor
             // 
             this.txtCelularProveedor.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCelularProveedor.Location = new System.Drawing.Point(105, 108);
+            this.txtCelularProveedor.Location = new System.Drawing.Point(107, 132);
             this.txtCelularProveedor.Name = "txtCelularProveedor";
             this.txtCelularProveedor.Size = new System.Drawing.Size(146, 22);
             this.txtCelularProveedor.TabIndex = 9;
@@ -390,7 +403,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(774, 144);
+            this.label14.Location = new System.Drawing.Point(776, 168);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(67, 16);
             this.label14.TabIndex = 7;
@@ -400,7 +413,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(6, 111);
+            this.label21.Location = new System.Drawing.Point(8, 135);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(52, 16);
             this.label21.TabIndex = 25;
@@ -409,7 +422,7 @@
             // txtDireccionProveedor
             // 
             this.txtDireccionProveedor.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDireccionProveedor.Location = new System.Drawing.Point(105, 41);
+            this.txtDireccionProveedor.Location = new System.Drawing.Point(107, 65);
             this.txtDireccionProveedor.Name = "txtDireccionProveedor";
             this.txtDireccionProveedor.Size = new System.Drawing.Size(383, 22);
             this.txtDireccionProveedor.TabIndex = 7;
@@ -421,7 +434,7 @@
             this.ckbEstado.Checked = true;
             this.ckbEstado.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ckbEstado.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckbEstado.Location = new System.Drawing.Point(774, 208);
+            this.ckbEstado.Location = new System.Drawing.Point(776, 232);
             this.ckbEstado.Name = "ckbEstado";
             this.ckbEstado.Size = new System.Drawing.Size(68, 20);
             this.ckbEstado.TabIndex = 24;
@@ -431,7 +444,7 @@
             // txtRazonSocialProveedor
             // 
             this.txtRazonSocialProveedor.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRazonSocialProveedor.Location = new System.Drawing.Point(105, 74);
+            this.txtRazonSocialProveedor.Location = new System.Drawing.Point(107, 98);
             this.txtRazonSocialProveedor.Name = "txtRazonSocialProveedor";
             this.txtRazonSocialProveedor.Size = new System.Drawing.Size(383, 22);
             this.txtRazonSocialProveedor.TabIndex = 8;
@@ -441,7 +454,7 @@
             // 
             this.ckbRISEProveedor.AutoSize = true;
             this.ckbRISEProveedor.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckbRISEProveedor.Location = new System.Drawing.Point(505, 208);
+            this.ckbRISEProveedor.Location = new System.Drawing.Point(507, 232);
             this.ckbRISEProveedor.Name = "ckbRISEProveedor";
             this.ckbRISEProveedor.Size = new System.Drawing.Size(118, 20);
             this.ckbRISEProveedor.TabIndex = 23;
@@ -451,7 +464,7 @@
             // txtEmailProveedor
             // 
             this.txtEmailProveedor.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmailProveedor.Location = new System.Drawing.Point(607, 41);
+            this.txtEmailProveedor.Location = new System.Drawing.Point(609, 65);
             this.txtEmailProveedor.Name = "txtEmailProveedor";
             this.txtEmailProveedor.Size = new System.Drawing.Size(383, 22);
             this.txtEmailProveedor.TabIndex = 15;
@@ -463,7 +476,7 @@
             this.cbTipoServicioProveedor.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbTipoServicioProveedor.FormattingEnabled = true;
             this.cbTipoServicioProveedor.IntegralHeight = false;
-            this.cbTipoServicioProveedor.Location = new System.Drawing.Point(105, 206);
+            this.cbTipoServicioProveedor.Location = new System.Drawing.Point(107, 230);
             this.cbTipoServicioProveedor.Name = "cbTipoServicioProveedor";
             this.cbTipoServicioProveedor.Size = new System.Drawing.Size(151, 24);
             this.cbTipoServicioProveedor.TabIndex = 13;
@@ -471,7 +484,7 @@
             // txtGiraChequeProveedor
             // 
             this.txtGiraChequeProveedor.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGiraChequeProveedor.Location = new System.Drawing.Point(607, 74);
+            this.txtGiraChequeProveedor.Location = new System.Drawing.Point(609, 98);
             this.txtGiraChequeProveedor.Name = "txtGiraChequeProveedor";
             this.txtGiraChequeProveedor.Size = new System.Drawing.Size(383, 22);
             this.txtGiraChequeProveedor.TabIndex = 16;
@@ -487,7 +500,7 @@
             "Gastos Locales",
             "Gastos Exteriores",
             "Gastos Pago a Empleados"});
-            this.cbTipoGastoProveedor.Location = new System.Drawing.Point(607, 173);
+            this.cbTipoGastoProveedor.Location = new System.Drawing.Point(609, 197);
             this.cbTipoGastoProveedor.Name = "cbTipoGastoProveedor";
             this.cbTipoGastoProveedor.Size = new System.Drawing.Size(145, 24);
             this.cbTipoGastoProveedor.TabIndex = 21;
@@ -497,7 +510,7 @@
             this.cbPaisProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPaisProveedor.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbPaisProveedor.FormattingEnabled = true;
-            this.cbPaisProveedor.Location = new System.Drawing.Point(607, 107);
+            this.cbPaisProveedor.Location = new System.Drawing.Point(609, 131);
             this.cbPaisProveedor.Name = "cbPaisProveedor";
             this.cbPaisProveedor.Size = new System.Drawing.Size(145, 24);
             this.cbPaisProveedor.TabIndex = 17;
@@ -506,7 +519,7 @@
             // txtResponsableProveedor
             // 
             this.txtResponsableProveedor.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtResponsableProveedor.Location = new System.Drawing.Point(105, 174);
+            this.txtResponsableProveedor.Location = new System.Drawing.Point(107, 198);
             this.txtResponsableProveedor.Name = "txtResponsableProveedor";
             this.txtResponsableProveedor.Size = new System.Drawing.Size(383, 22);
             this.txtResponsableProveedor.TabIndex = 12;
@@ -517,7 +530,7 @@
             this.cbCantonProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCantonProveedor.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCantonProveedor.FormattingEnabled = true;
-            this.cbCantonProveedor.Location = new System.Drawing.Point(607, 140);
+            this.cbCantonProveedor.Location = new System.Drawing.Point(609, 164);
             this.cbCantonProveedor.Name = "cbCantonProveedor";
             this.cbCantonProveedor.Size = new System.Drawing.Size(145, 24);
             this.cbCantonProveedor.TabIndex = 19;
@@ -527,7 +540,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(4, 210);
+            this.label17.Location = new System.Drawing.Point(6, 234);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(101, 16);
             this.label17.TabIndex = 18;
@@ -538,7 +551,7 @@
             this.cbProvinciaProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbProvinciaProveedor.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbProvinciaProveedor.FormattingEnabled = true;
-            this.cbProvinciaProveedor.Location = new System.Drawing.Point(844, 107);
+            this.cbProvinciaProveedor.Location = new System.Drawing.Point(846, 131);
             this.cbProvinciaProveedor.Name = "cbProvinciaProveedor";
             this.cbProvinciaProveedor.Size = new System.Drawing.Size(146, 24);
             this.cbProvinciaProveedor.TabIndex = 18;
@@ -548,7 +561,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(505, 177);
+            this.label16.Location = new System.Drawing.Point(507, 201);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(93, 16);
             this.label16.TabIndex = 17;
@@ -559,7 +572,7 @@
             this.cbParroquiaProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbParroquiaProveedor.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbParroquiaProveedor.FormattingEnabled = true;
-            this.cbParroquiaProveedor.Location = new System.Drawing.Point(844, 140);
+            this.cbParroquiaProveedor.Location = new System.Drawing.Point(846, 164);
             this.cbParroquiaProveedor.Name = "cbParroquiaProveedor";
             this.cbParroquiaProveedor.Size = new System.Drawing.Size(146, 24);
             this.cbParroquiaProveedor.TabIndex = 20;
@@ -568,7 +581,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(6, 177);
+            this.label15.Location = new System.Drawing.Point(8, 201);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(87, 16);
             this.label15.TabIndex = 16;
@@ -590,20 +603,37 @@
             this.tabPage2.Controls.Add(this.dgvCredito);
             this.tabPage2.Controls.Add(this.dgvICE);
             this.tabPage2.Controls.Add(this.dgvCodigo101);
+            this.tabPage2.Controls.Add(this.dgvRetencionFuenteIva);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(999, 248);
+            this.tabPage2.Size = new System.Drawing.Size(999, 352);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Información SRI";
+            // 
+            // dgvRetencionFuenteIva
+            // 
+            this.dgvRetencionFuenteIva.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRetencionFuenteIva.Location = new System.Drawing.Point(44, 74);
+            this.dgvRetencionFuenteIva.Name = "dgvRetencionFuenteIva";
+            this.dgvRetencionFuenteIva.ReadOnly = true;
+            this.dgvRetencionFuenteIva.RowHeadersVisible = false;
+            this.dgvRetencionFuenteIva.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvRetencionFuenteIva.Size = new System.Drawing.Size(847, 150);
+            this.dgvRetencionFuenteIva.TabIndex = 31;
+            this.dgvRetencionFuenteIva.Visible = false;
+            this.dgvRetencionFuenteIva.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRetencionFuenteIva_CellDoubleClick);
+            this.dgvRetencionFuenteIva.Click += new System.EventHandler(this.dgvRetencionFuenteIva_Click);
+            this.dgvRetencionFuenteIva.DoubleClick += new System.EventHandler(this.dgvRetencionFuenteIva_DoubleClick);
+            this.dgvRetencionFuenteIva.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvRetencionFuenteIva_KeyDown);
             // 
             // gbDatosAutorizacionProveedor
             // 
             this.gbDatosAutorizacionProveedor.Controls.Add(this.dgvDatosAutorizacionProveedor);
             this.gbDatosAutorizacionProveedor.ForeColor = System.Drawing.Color.Teal;
-            this.gbDatosAutorizacionProveedor.Location = new System.Drawing.Point(183, 131);
+            this.gbDatosAutorizacionProveedor.Location = new System.Drawing.Point(182, 165);
             this.gbDatosAutorizacionProveedor.Name = "gbDatosAutorizacionProveedor";
-            this.gbDatosAutorizacionProveedor.Size = new System.Drawing.Size(632, 141);
+            this.gbDatosAutorizacionProveedor.Size = new System.Drawing.Size(632, 181);
             this.gbDatosAutorizacionProveedor.TabIndex = 10;
             this.gbDatosAutorizacionProveedor.TabStop = false;
             this.gbDatosAutorizacionProveedor.Text = "Datos Autorización";
@@ -618,6 +648,25 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvDatosAutorizacionProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+<<<<<<< HEAD
+=======
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosAutorizacionProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosAutorizacionProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+>>>>>>> 0e26af5b1eb99a32dee495bad3ef5da8d9395214
             this.dgvDatosAutorizacionProveedor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosAutorizacionProveedor.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.serie1Proveedor,
@@ -628,7 +677,7 @@
             this.facturaFinProveedor});
             this.dgvDatosAutorizacionProveedor.Location = new System.Drawing.Point(12, 25);
             this.dgvDatosAutorizacionProveedor.Name = "dgvDatosAutorizacionProveedor";
-            this.dgvDatosAutorizacionProveedor.Size = new System.Drawing.Size(608, 109);
+            this.dgvDatosAutorizacionProveedor.Size = new System.Drawing.Size(608, 140);
             this.dgvDatosAutorizacionProveedor.TabIndex = 29;
             this.dgvDatosAutorizacionProveedor.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvDatosAutorizacionProveedor_CellBeginEdit);
             this.dgvDatosAutorizacionProveedor.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosAutorizacionProveedor_CellEndEdit);
@@ -672,7 +721,7 @@
             this.gbCodigoRetencionProveedor.ForeColor = System.Drawing.Color.Teal;
             this.gbCodigoRetencionProveedor.Location = new System.Drawing.Point(493, 3);
             this.gbCodigoRetencionProveedor.Name = "gbCodigoRetencionProveedor";
-            this.gbCodigoRetencionProveedor.Size = new System.Drawing.Size(489, 132);
+            this.gbCodigoRetencionProveedor.Size = new System.Drawing.Size(489, 175);
             this.gbCodigoRetencionProveedor.TabIndex = 9;
             this.gbCodigoRetencionProveedor.TabStop = false;
             this.gbCodigoRetencionProveedor.Text = "Código Retención Fuente/IVA";
@@ -687,8 +736,28 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvCodigoRetencionProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+<<<<<<< HEAD
+=======
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCodigoRetencionProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCodigoRetencionProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+>>>>>>> 0e26af5b1eb99a32dee495bad3ef5da8d9395214
             this.dgvCodigoRetencionProveedor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCodigoRetencionProveedor.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IDCodigo,
             this.retencionSRIProveedor,
             this.tipoProveedor,
             this.porcentajeProveedor,
@@ -696,6 +765,7 @@
             this.validesProveedor});
             this.dgvCodigoRetencionProveedor.Location = new System.Drawing.Point(6, 25);
             this.dgvCodigoRetencionProveedor.Name = "dgvCodigoRetencionProveedor";
+<<<<<<< HEAD
             this.dgvCodigoRetencionProveedor.ReadOnly = true;
             this.dgvCodigoRetencionProveedor.Size = new System.Drawing.Size(477, 98);
             this.dgvCodigoRetencionProveedor.TabIndex = 28;
@@ -733,6 +803,11 @@
             this.validesProveedor.HeaderText = "Valides";
             this.validesProveedor.Name = "validesProveedor";
             this.validesProveedor.ReadOnly = true;
+=======
+            this.dgvCodigoRetencionProveedor.Size = new System.Drawing.Size(477, 131);
+            this.dgvCodigoRetencionProveedor.TabIndex = 28;
+            this.dgvCodigoRetencionProveedor.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCodigoRetencionProveedor_CellEnter);
+>>>>>>> 0e26af5b1eb99a32dee495bad3ef5da8d9395214
             // 
             // ckbContribuyenteEspecialProveedor
             // 
@@ -813,6 +888,11 @@
             // 
             // dgvCredito
             // 
+<<<<<<< HEAD
+=======
+            this.dgvCredito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCredito.Location = new System.Drawing.Point(99, 45);
+>>>>>>> 0e26af5b1eb99a32dee495bad3ef5da8d9395214
             this.dgvCredito.AllowUserToAddRows = false;
             this.dgvCredito.AllowUserToDeleteRows = false;
             this.dgvCredito.AllowUserToResizeColumns = false;
@@ -832,6 +912,11 @@
             // 
             // dgvICE
             // 
+<<<<<<< HEAD
+=======
+            this.dgvICE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvICE.Location = new System.Drawing.Point(99, 71);
+>>>>>>> 0e26af5b1eb99a32dee495bad3ef5da8d9395214
             this.dgvICE.AllowUserToAddRows = false;
             this.dgvICE.AllowUserToDeleteRows = false;
             this.dgvICE.AllowUserToResizeColumns = false;
@@ -851,6 +936,11 @@
             // 
             // dgvCodigo101
             // 
+<<<<<<< HEAD
+=======
+            this.dgvCodigo101.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCodigo101.Location = new System.Drawing.Point(99, 97);
+>>>>>>> 0e26af5b1eb99a32dee495bad3ef5da8d9395214
             this.dgvCodigo101.AllowUserToAddRows = false;
             this.dgvCodigo101.AllowUserToDeleteRows = false;
             this.dgvCodigo101.AllowUserToResizeColumns = false;
@@ -1026,7 +1116,7 @@
             // 
             this.btnLimpiarProveedor.Image = global::Comisariato.Properties.Resources.limpiar;
             this.btnLimpiarProveedor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLimpiarProveedor.Location = new System.Drawing.Point(526, 429);
+            this.btnLimpiarProveedor.Location = new System.Drawing.Point(734, 36);
             this.btnLimpiarProveedor.Name = "btnLimpiarProveedor";
             this.btnLimpiarProveedor.Size = new System.Drawing.Size(134, 84);
             this.btnLimpiarProveedor.TabIndex = 31;
@@ -1039,7 +1129,7 @@
             // 
             this.btnGuardarProveedor.Image = global::Comisariato.Properties.Resources.guardar11;
             this.btnGuardarProveedor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardarProveedor.Location = new System.Drawing.Point(386, 429);
+            this.btnGuardarProveedor.Location = new System.Drawing.Point(594, 36);
             this.btnGuardarProveedor.Name = "btnGuardarProveedor";
             this.btnGuardarProveedor.Size = new System.Drawing.Size(133, 84);
             this.btnGuardarProveedor.TabIndex = 30;
@@ -1103,6 +1193,25 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvDatosProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+<<<<<<< HEAD
+=======
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+>>>>>>> 0e26af5b1eb99a32dee495bad3ef5da8d9395214
             this.dgvDatosProveedor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosProveedor.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.modificarProveedor,
@@ -1149,6 +1258,42 @@
             this.label8.TabIndex = 3;
             this.label8.Text = "Consultar:";
             // 
+            // IDCodigo
+            // 
+            this.IDCodigo.HeaderText = "ID";
+            this.IDCodigo.Name = "IDCodigo";
+            this.IDCodigo.Visible = false;
+            // 
+            // retencionSRIProveedor
+            // 
+            this.retencionSRIProveedor.HeaderText = "Retención SRI";
+            this.retencionSRIProveedor.Name = "retencionSRIProveedor";
+            this.retencionSRIProveedor.Width = 125;
+            // 
+            // tipoProveedor
+            // 
+            this.tipoProveedor.HeaderText = "Tipo";
+            this.tipoProveedor.Name = "tipoProveedor";
+            this.tipoProveedor.Width = 55;
+            // 
+            // porcentajeProveedor
+            // 
+            this.porcentajeProveedor.HeaderText = "%";
+            this.porcentajeProveedor.Name = "porcentajeProveedor";
+            this.porcentajeProveedor.Width = 25;
+            // 
+            // cuentaContableProveedor
+            // 
+            this.cuentaContableProveedor.HeaderText = "Cta. Contable";
+            this.cuentaContableProveedor.Name = "cuentaContableProveedor";
+            this.cuentaContableProveedor.Width = 120;
+            // 
+            // validesProveedor
+            // 
+            this.validesProveedor.HeaderText = "Valides";
+            this.validesProveedor.Name = "validesProveedor";
+            this.validesProveedor.Width = 90;
+            // 
             // FrmProveedores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1175,6 +1320,7 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRetencionFuenteIva)).EndInit();
             this.gbDatosAutorizacionProveedor.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatosAutorizacionProveedor)).EndInit();
             this.gbCodigoRetencionProveedor.ResumeLayout(false);
@@ -1252,11 +1398,6 @@
         private System.Windows.Forms.RadioButton rbtActivosProveedor;
         private System.Windows.Forms.GroupBox gbInformcionGeneralProveedor;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.DataGridViewTextBoxColumn retencionSRIProveedor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tipoProveedor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn porcentajeProveedor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cuentaContableProveedor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn validesProveedor;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TabControl tabControl1;
@@ -1280,5 +1421,12 @@
         private System.Windows.Forms.DataGridView dgvCredito;
         private System.Windows.Forms.DataGridView dgvICE;
         private System.Windows.Forms.DataGridView dgvCodigo101;
+        private System.Windows.Forms.DataGridView dgvRetencionFuenteIva;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IDCodigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn retencionSRIProveedor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tipoProveedor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn porcentajeProveedor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cuentaContableProveedor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn validesProveedor;
     }
 }

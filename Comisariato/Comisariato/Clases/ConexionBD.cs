@@ -17,7 +17,10 @@ namespace Comisariato.Clases
             try
             {
                 connection = new SqlConnection("data source = AIRCONTROL, 1433; initial catalog = BDComisariato; user id = COMI; password = server@1;");
+<<<<<<< HEAD
                 //connection = new SqlConnection("Data Source=DESKTOP-SI5M9C5;Initial Catalog=BDComisariato;Integrated Security=True");
+=======
+>>>>>>> 0e26af5b1eb99a32dee495bad3ef5da8d9395214
                 connection.Open();
                
             }

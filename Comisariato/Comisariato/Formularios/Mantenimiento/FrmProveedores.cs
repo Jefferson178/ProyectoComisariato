@@ -113,7 +113,16 @@ namespace Comisariato.Formularios
             //{
             //    dgvDatosProveedor.Rows.Add();
             //}
+<<<<<<< HEAD
 
+=======
+            dgvCodigoRetencionProveedor.Rows.Add();
+            for (int i = 0; i < 3; i++)
+            {
+                //dgvCodigoRetencionProveedor.Rows.Add();
+                dgvDatosAutorizacionProveedor.Rows.Add();
+            }
+>>>>>>> 0e26af5b1eb99a32dee495bad3ef5da8d9395214
             // Dimensionar lista combo
 
             cbPaisProveedor.DropDownHeight = cbPaisProveedor.ItemHeight = 150;
@@ -125,6 +134,7 @@ namespace Comisariato.Formularios
             cbTipoServicioProveedor.DropDownHeight = cbTipoServicioProveedor.ItemHeight = 150;
 
 
+<<<<<<< HEAD
             /// Para poner del DATETIMEPICKER
             dtpOrder = new DateTimePicker();
             dtpOrder.Format = DateTimePickerFormat.Short;
@@ -137,17 +147,19 @@ namespace Comisariato.Formularios
             dgvDatosAutorizacionProveedor.CellEndEdit += this.dgvDatosAutorizacionProveedor_CellEndEdit;
 
 
+=======
+>>>>>>> 0e26af5b1eb99a32dee495bad3ef5da8d9395214
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            if (txtNombreProveedor.Text != "" && txtNumeroIdentificacionProveedor.Text != "" && txtDireccionProveedor.Text != "" && cbCreditoProveedor.Text!="" && cbICEProveedor.Text  != "" && cbCodigo101Proveedor.Text !="" )
+            if (txtNombreProveedor.Text != "" && txtNumeroIdentificacionProveedor.Text != "" && txtDireccionProveedor.Text != "" && cbCreditoProveedor.Text != "" && cbICEProveedor.Text != "" && cbCodigo101Proveedor.Text != "")
             {
-                Proveedor ObjProvee = new Proveedor(txtFax.Text, ckbEstado.Checked, txtPlazo.Text, txtCodigo.Text, cbIdentificacionProveedor.Text, 
+                Proveedor ObjProvee = new Proveedor(txtFax.Text, ckbEstado.Checked, txtPlazo.Text, txtCodigo.Text, cbIdentificacionProveedor.Text,
                     txtNombreProveedor.Text, txtNumeroIdentificacionProveedor.Text, cbNacionalidadProveedor.Text, cbNaturalezaProveedor.Text,
-                    txtDireccionProveedor.Text, txtRazonSocialProveedor.Text, txtEmailProveedor.Text, txtTelefonoProveedor.Text, txtCelularProveedor.Text, 
-                    txtGiraChequeProveedor.Text, txtResponsableProveedor.Text, cbTipoGastoProveedor.Text, cbTipoServicioProveedor.Text, 
-                    Convert.ToInt32(cbParroquiaProveedor.SelectedValue), ckbRISEProveedor.Checked,Convert.ToInt32(cbCuentaContableProveedor.SelectedValue), Convert.ToInt32(cbCreditoProveedor.SelectedValue), Convert.ToInt32(cbICEProveedor.SelectedValue), Convert.ToInt32(cbCodigo101Proveedor.SelectedValue));
+                    txtDireccionProveedor.Text, txtRazonSocialProveedor.Text, txtEmailProveedor.Text, txtTelefonoProveedor.Text, txtCelularProveedor.Text,
+                    txtGiraChequeProveedor.Text, txtResponsableProveedor.Text, cbTipoGastoProveedor.Text, cbTipoServicioProveedor.Text,
+                    Convert.ToInt32(cbParroquiaProveedor.SelectedValue), ckbRISEProveedor.Checked, Convert.ToInt32(cbCuentaContableProveedor.SelectedValue), Convert.ToInt32(cbCreditoProveedor.SelectedValue), Convert.ToInt32(cbICEProveedor.SelectedValue), Convert.ToInt32(cbCodigo101Proveedor.SelectedValue));
                 if (!bandera_Estado)
                 {
                     String resultado = ObjProvee.InsertarProveedor();
@@ -155,6 +167,7 @@ namespace Comisariato.Formularios
                     {
                         //string res = ObjProvee.InsertarAutorizacionProveedor()
                         ObjProvee.InsertarAutorizacionProveedor(dgvDatosAutorizacionProveedor, IDProveedor + 1);
+                        ObjProvee.InsertarRetencion(dgvCodigoRetencionProveedor, IDProveedor + 1);
                         MessageBox.Show("Proveedor Registrado Correctamente ", "Exito",MessageBoxButtons.OK);
                         cargarDatos("1");
                         rbtActivosProveedor.Checked = true;
@@ -189,7 +202,7 @@ namespace Comisariato.Formularios
                     inicializarDatos();
                 }
             }
-            else { MessageBox.Show("Ingrese los datos del Proveedor", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error); }            
+            else { MessageBox.Show("Ingrese los datos del Proveedor", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
         //string dato = "";
         //private DateTimePicker oDateTimePicker;
@@ -225,9 +238,9 @@ namespace Comisariato.Formularios
             }
             else { inicializarDatos(); }
         }
-        
 
-        
+
+
 
         private void TxtNombreProveedor_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -243,7 +256,7 @@ namespace Comisariato.Formularios
         {
             Funcion.validar_Num_Letras(e);
         }
-        
+
 
         private void RbtActivos_CheckedChanged(object sender, EventArgs e)
         {
@@ -263,7 +276,7 @@ namespace Comisariato.Formularios
         private void cargarDatos(string condicion)
         {
             consultas = new Consultas();
-            consultas.boolLlenarDataGridView(dgvDatosProveedor, "Select IDProveedor AS ID, Identificacion,NOMBRES AS 'Nombre Proveedor', Nacionalidad,RAZONSOCIAL as 'Razón Social',GIRACHEQUEA as 'Gira Cheque' from TbProveedor WHERE ESTADO = "+condicion+";");
+            consultas.boolLlenarDataGridView(dgvDatosProveedor, "Select IDProveedor AS ID, Identificacion,NOMBRES AS 'Nombre Proveedor', Nacionalidad,RAZONSOCIAL as 'Razón Social',GIRACHEQUEA as 'Gira Cheque' from TbProveedor WHERE ESTADO = " + condicion + ";");
             dgvDatosProveedor.Columns["ID"].Visible = false;
         }
 
@@ -272,7 +285,7 @@ namespace Comisariato.Formularios
 
             if (rbtActivosProveedor.Checked)
             {
-                consultas.boolLlenarDataGridView(dgvDatosProveedor, "Select IDProveedor AS ID, identificacion,NOMBRES AS 'NOMBRE PROVEEDOR', NACIONALIDAD,RAZONSOCIAL,GIRACHEQUEA as 'GIRA CHEQUE' from TbProveedor where ESTADO = 1 and IDENTIFICACION like '%" + txtConsultarProveedor.Text + "%' or NOMBRES like '%"+txtConsultarProveedor.Text+"%'");
+                consultas.boolLlenarDataGridView(dgvDatosProveedor, "Select IDProveedor AS ID, identificacion,NOMBRES AS 'NOMBRE PROVEEDOR', NACIONALIDAD,RAZONSOCIAL,GIRACHEQUEA as 'GIRA CHEQUE' from TbProveedor where ESTADO = 1 and IDENTIFICACION like '%" + txtConsultarProveedor.Text + "%' or NOMBRES like '%" + txtConsultarProveedor.Text + "%'");
                 //dgvDatosProveedor.Columns[1].HeaderText = "Desabilitar";
                 dgvDatosProveedor.Columns["ID"].Visible = false;
             }
@@ -478,7 +491,7 @@ namespace Comisariato.Formularios
 
         private void dgvDatosProveedor_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            
+
         }
         //--------------------------------------------------------------COMBOMULTICOLUMN CREDITO--------------------------------------------------------------
         bool apareceDataDeCombos = true;
@@ -489,7 +502,7 @@ namespace Comisariato.Formularios
             dgvCredito.Visible = false;
             apareceDataDeCombos = true;
             cbICEProveedor.Focus();
-            
+
         }
         private void cbCreditoProveedor_Enter(object sender, EventArgs e)
         {
@@ -516,8 +529,9 @@ namespace Comisariato.Formularios
                 else
                     dgvCodigoRetencionProveedor.Focus();
             }
-            
         }
+
+    
 
         private void dgvCredito_KeyDown(object sender, KeyEventArgs e)
         {
@@ -624,7 +638,7 @@ namespace Comisariato.Formularios
             {
                 dgvCodigo101.Visible = false;
                 apareceDataDeCombos = true;
-                dgvCodigoRetencionProveedor.Focus();
+                dgvDatosAutorizacionProveedor.Focus();
 
             }
         }
@@ -634,7 +648,7 @@ namespace Comisariato.Formularios
             consultas.BoolLlenarComboBox(cbCodigo101Proveedor, "SELECT IDCODIGOSRI as ID, '[' + CODIGOSRI + '] - ' + DESCRIPCION as Texto FROM TbCodigoSRI where IDCODIGOSRI =" + Convert.ToInt32(dgvCodigo101.CurrentRow.Cells[0].Value));
             dgvCodigo101.Visible = false;
             apareceDataDeCombos = true;
-            dgvCodigoRetencionProveedor.Focus();
+            dgvDatosAutorizacionProveedor.Focus();
         }
 
         private void dgvCodigo101_Enter(object sender, EventArgs e)
@@ -653,16 +667,160 @@ namespace Comisariato.Formularios
                 //----Si no funciona es esto
                 apareceDataDeCombos = true;
                 //-------------------------
-                dgvCodigoRetencionProveedor.Focus();
+                dgvDatosAutorizacionProveedor.Focus();
             }
             if (e.KeyCode == Keys.Escape)
             {
                 dgvCodigo101.Visible = false;
-                dgvCodigoRetencionProveedor.Focus();
+                dgvDatosAutorizacionProveedor.Focus();
+            }
+        }
+        //--------------------------------------------------------------DataGridVieRetencion--------------------------------------------------------------
+        private void dgvCodigoRetencionProveedor_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView Grid = (DataGridView)sender;
+            Rectangle Rec = default(Rectangle);
+            // Si la coolumna es la que quiero
+            if (e.ColumnIndex == 1)
+            {
+                Rec = Grid.GetCellDisplayRectangle(Grid.CurrentCell.ColumnIndex, Grid.CurrentCell.RowIndex, false);
+                dgvRetencionFuenteIva.Visible = true;
+                dgvRetencionFuenteIva.BringToFront();
+                dgvRetencionFuenteIva.Location = new Point(Rec.X + 78, Rec.Y + 50);
+
+                if (dgvRetencionFuenteIva.Visible)
+                {
+                    consultas.boolLlenarDataGridView(dgvRetencionFuenteIva, "select CS.IDCODIGOSRI, '[' + CS.CODIGOSRI + '] - ' + CS.DESCRIPCION as CODIGO_SRI, TCS.CODIGO AS TIPO, CS.RETENCION AS RETENCION, CS.FECHAVALIDODESDE AS DESDE, CS.FECHAVALIDOHASTA AS HASTA from TbCodigoSRI CS, TbTipoCodigoSRI TCS WHERE TCS.IDTIPOCODIGOSRI = CS.IDTIPOCODIGOSRI AND TCS.CODIGO = 'COD_RET_FUE' or TCS.CODIGO = 'COD_RET_IVA'");
+                    dgvRetencionFuenteIva.Columns["IDCODIGOSRI"].Visible = false;
+                    dgvRetencionFuenteIva.Columns["CODIGO_SRI"].Width = 400;
+                    dgvRetencionFuenteIva.Columns["TIPO"].Width = 125;
+                    dgvRetencionFuenteIva.Focus();
+                    dgvRetencionFuenteIva.CurrentCell = dgvRetencionFuenteIva.Rows[0].Cells[1];
+                }
             }
         }
 
+        private void dgvRetencionFuenteIva_DoubleClick(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void dgvRetencionFuenteIva_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (this.dgvRetencionFuenteIva.Columns[e.ColumnIndex].HeaderText == "CODIGO_SRI")
+            {
+                dgvCodigoRetencionProveedor.Rows.Add();
+                dgvCodigoRetencionProveedor.CurrentRow.Cells[0].Value = dgvRetencionFuenteIva.CurrentRow.Cells[0].Value;
+                dgvCodigoRetencionProveedor.CurrentRow.Cells[1].Value = dgvRetencionFuenteIva.CurrentRow.Cells[1].Value;
+                if (Convert.ToString(dgvRetencionFuenteIva.CurrentRow.Cells[2].Value) == "COD_RET_IVA")
+                {
+                    tipoRetencion = "IVA";
+                }
+                else if (Convert.ToString(dgvRetencionFuenteIva.CurrentRow.Cells[2].Value) == "COD_RET_FUE")
+                {
+                    tipoRetencion = "FUENTE";
+                }
+                dgvCodigoRetencionProveedor.CurrentRow.Cells[2].Value = tipoRetencion;
+                dgvCodigoRetencionProveedor.CurrentRow.Cells[3].Value = dgvRetencionFuenteIva.CurrentRow.Cells[3].Value;
+                string [] s = dgvRetencionFuenteIva.CurrentRow.Cells[5].Value.ToString().Split(' ');
+                dgvCodigoRetencionProveedor.CurrentRow.Cells[5].Value = s[0];
+                dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.Rows[dgvCodigoRetencionProveedor.Rows.Count - 2].Cells[1];
+
+                dgvRetencionFuenteIva.Visible = false;
+                dgvCodigoRetencionProveedor.Focus();
+            }
+        }
+        string tipoRetencion;
+        private void dgvRetencionFuenteIva_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                dgvCodigoRetencionProveedor.Rows.Add();
+                e.SuppressKeyPress = true;
+                dgvCodigoRetencionProveedor.CurrentRow.Cells[0].Value = dgvRetencionFuenteIva.CurrentRow.Cells[0].Value;
+                dgvCodigoRetencionProveedor.CurrentRow.Cells[1].Value = dgvRetencionFuenteIva.CurrentRow.Cells[1].Value;
+                if (Convert.ToString(dgvRetencionFuenteIva.CurrentRow.Cells[2].Value) == "COD_RET_IVA")
+                {
+                    tipoRetencion = "IVA";
+                }
+                else if (Convert.ToString(dgvRetencionFuenteIva.CurrentRow.Cells[2].Value) == "COD_RET_FUE")
+                {
+                    tipoRetencion = "FUENTE";
+                }
+                dgvCodigoRetencionProveedor.CurrentRow.Cells[2].Value = tipoRetencion;
+                dgvCodigoRetencionProveedor.CurrentRow.Cells[3].Value = dgvRetencionFuenteIva.CurrentRow.Cells[3].Value;
+                string[] s = dgvRetencionFuenteIva.CurrentRow.Cells[5].Value.ToString().Split(' ');
+                dgvCodigoRetencionProveedor.CurrentRow.Cells[5].Value = s[0];
+                dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.Rows[dgvCodigoRetencionProveedor.Rows.Count - 2].Cells[1];
+                dgvRetencionFuenteIva.Visible = false;
+                //----Si no funciona es esto
+                //apareceDataDeCombos = true;
+                //-------------------------
+                dgvCodigoRetencionProveedor.Focus();
+            }
+            if (e.KeyCode == Keys.Escape && Convert.ToString(dgvCodigoRetencionProveedor.CurrentRow.Cells[1].Value) == "")
+            {
+                dgvCodigoRetencionProveedor.Focus();
+                try
+                {
+                    dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.Rows[dgvCodigoRetencionProveedor.Rows.Count - 3].Cells[2];
+                }
+                catch { }
+                dgvRetencionFuenteIva.Visible = false;
+                try
+                {
+                    dgvCodigoRetencionProveedor.Rows.Remove(dgvCodigoRetencionProveedor.Rows[dgvCodigoRetencionProveedor.RowCount - 2]);
+                    dgvCodigoRetencionProveedor.Focus();
+                }
+                catch { }
+            }
+            else if (e.KeyCode == Keys.Escape && Convert.ToString(dgvCodigoRetencionProveedor.CurrentRow.Cells[1].Value) != "")
+            {
+                try
+                {
+                    dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.CurrentRow.Cells[2];
+                    dgvRetencionFuenteIva.Visible = false;
+                    dgvCodigoRetencionProveedor.Focus();
+                }
+                catch { }
+            }
+        }
+
+        private void dgvRetencionFuenteIva_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToString(dgvCodigoRetencionProveedor.CurrentRow.Cells[1].Value) == "" && dgvCodigoRetencionProveedor.CurrentCell == dgvCodigoRetencionProveedor.Rows[dgvCodigoRetencionProveedor.RowCount - 1].Cells[1])
+            {
+                dgvCodigoRetencionProveedor.Rows.Add();
+                dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.Rows[dgvCodigoRetencionProveedor.Rows.Count - 2].Cells[1];
+                dgvCodigoRetencionProveedor.Focus();
+            }
+        }
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 1)
+            {
+                dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.Rows[dgvCodigoRetencionProveedor.Rows.Count - 2].Cells[2];
+                dgvRetencionFuenteIva.Visible = false;
+                cbCreditoProveedor.Focus();
+
+<<<<<<< HEAD
         //--------------------------------------------------------------DATAGRIDVIEW CON DATETIMEPICKER--------------------------------------------------------------
+=======
+            }
+        }
+        private void dgvDatosAutorizacionProveedor_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //if (dgvDatosAutorizacionProveedor.CurrentCell == this.dgvDatosAutorizacionProveedor.CurrentRow.Cells[3] )
+            //{
+            //    //Initialized a new DateTimePicker Control  
+            //    oDateTimePicker = new DateTimePicker();
+
+            //    //Adding DateTimePicker control into DataGridView   
+            //    dgvDatosAutorizacionProveedor.Controls.Add(oDateTimePicker);
+
+            //    // Setting the format (i.e. 2014-10-10)  
+            //    oDateTimePicker.Format = DateTimePickerFormat.Short;
+>>>>>>> 0e26af5b1eb99a32dee495bad3ef5da8d9395214
 
         DateTimePicker dtpOrder;
 
