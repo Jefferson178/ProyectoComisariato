@@ -47,11 +47,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         }
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
-            if (txtFlete.Text != "" && && txtPlazoOC.Text != "" && txtSerie1.Text != "" && txtSerie2.Text != "" && txtNumero.Text != "")
-=======
             if (txtFlete.Text != "" && txtPlazoOC.Text != "" && txtSerie1.Text != "" && txtSerie2.Text != "" && txtNumero.Text != "")
->>>>>>> b8ec5c91136bd61ad13b93a70ba5f795331b9590
             {
                 int idEncabezadoCompra = 0;
                 ObjEncabezadoCompra = new EmcabezadoCompra(txtSerie1.Text, txtSerie2.Text, txtNumero.Text, Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtSubtutalIVA.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtSubtotal0.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtSubtotal.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtTotal.Text)), txtOrdenCompra.Text, Convert.ToInt32(cbSucursal.SelectedValue), Convert.ToSingle(txtFlete.Text), dtpFechaOC.Value, Convert.ToInt32(datosProveedor.SelectedValue), cbTerminoPago.Text, txtPlazoOC.Text, cbImpuesto.Text
@@ -213,14 +209,11 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             {
                 Funcion.validar_Num_Letras(e);
             }
-<<<<<<< HEAD
             if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[3])
             {
                 Convert.ToSingle(datosProductoCompra.CurrentRow.Cells[3].Value);
                 Funcion.SoloValores(e, Convert.ToString(datosProductoCompra.CurrentRow.Cells[3].Value));
             }
-=======
->>>>>>> b8ec5c91136bd61ad13b93a70ba5f795331b9590
         }
         private void dgvProductosIngresos_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
