@@ -18,6 +18,8 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             InitializeComponent();
         }
         Consultas objconsul = new Consultas();
+        List<string> ListaAux = new List<string>();
+        int GlobalfilasProductosAsignadosABodega = 0;
         private void FrmAsignacionProductoBodega_Load(object sender, EventArgs e)
         {
             //for (int i = 0; i < 15; i++)
@@ -34,6 +36,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 dgvDatosProductoParaAsignacionBodega.Columns[i].ReadOnly = true;
                 dgvDatosProductosAsignadosABodega.Columns[i].ReadOnly = true;
             }
+
         }
 
 
@@ -41,11 +44,18 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         public void inicializar()
         {
             objconsul.BoolLlenarComboBox(cbEscogerBodega, "Select IDBODEGA as ID, NOMBRE as TEXTO from TbBodega");
-            objconsul.boolLlenarDataGridView(dgvDatosProductosAsignadosABodega, "Select P.CODIGOBARRA as 'Código', P.NOMBREPRODUCTO as 'Nombre',P.CANTIDAD as Cantidad, C.DESCRIPCION as 'Categoria' from TbProducto P inner join TbAsignacionProdcutoBodega Asig on (Asig.IDPRODUCTO = P.IDPRODUCTO) inner join TbBodega B on ( Asig.IDBODEGA = B.IDBODEGA) inner join TbCategoria C on (P.IDCATEGORIA = C.IDCATEGORIA) where Asig.IDBODEGA = " + Convert.ToInt32(cbEscogerBodega.SelectedValue) + ";");
-            objconsul.boolLlenarDataGridView(dgvDatosProductoParaAsignacionBodega, "Select P.CODIGOBARRA as 'Código', P.NOMBREPRODUCTO as 'Nombre',P.CANTIDAD, C.DESCRIPCION as 'Categoria' from TbProducto P, TbCategoria C where C.IDCATEGORIA= P.IDCATEGORIA and not exists (select * from TbAsignacionProdcutoBodega where TbAsignacionProdcutoBodega.IDPRODUCTO = P.IDPRODUCTO);");
+            objconsul.boolLlenarDataGridView(dgvDatosProductosAsignadosABodega, "Select P.IDPRODUCTO, P.CODIGOBARRA as 'Código', P.NOMBREPRODUCTO as 'Nombre',P.CANTIDAD as Cantidad, C.DESCRIPCION as 'Categoria' from TbProducto P inner join TbAsignacionProdcutoBodega Asig on (Asig.IDPRODUCTO = P.IDPRODUCTO) inner join TbBodega B on ( Asig.IDBODEGA = B.IDBODEGA) inner join TbCategoria C on (P.IDCATEGORIA = C.IDCATEGORIA) where Asig.IDBODEGA = " + Convert.ToInt32(cbEscogerBodega.SelectedValue) + " and Asig.ESTADO = 1;");
+            objconsul.boolLlenarDataGridView(dgvDatosProductoParaAsignacionBodega, "Select P.IDPRODUCTO, P.CODIGOBARRA as 'Código', P.NOMBREPRODUCTO as 'Nombre',P.CANTIDAD, C.DESCRIPCION as 'Categoria' from TbProducto P inner join TbCategoria C on (C.IDCATEGORIA= P.IDCATEGORIA) where  not exists (select * from TbAsignacionProdcutoBodega where TbAsignacionProdcutoBodega.IDPRODUCTO = P.IDPRODUCTO and TbAsignacionProdcutoBodega.ESTADO = 1) ");
+            dgvDatosProductosAsignadosABodega.Columns["IDPRODUCTO"].Visible = false;
+            dgvDatosProductoParaAsignacionBodega.Columns["IDPRODUCTO"].Visible = false;
             txtBuscarProducto.Text = "";
             txtUbicacionBodegaAsignacionProducto.Text = "";
             llenardatos();
+            ListaAux.Clear();
+
+            objconsul.boolLlenarDataGridView(dgvDatosAsignacionProducto, "Select P.IDPRODUCTO, P.CODIGOBARRA as 'Código', P.NOMBREPRODUCTO as 'Nombre',P.CANTIDAD as 'Cantidad', C.DESCRIPCION as 'Categoria', B.NOMBRE as 'Bódega', B.UBICACION as 'Ubicación' from TbAsignacionProdcutoBodega Asig inner join TbProducto P on (Asig.IDPRODUCTO=P.IDPRODUCTO) inner join TbCategoria C on (C.IDCATEGORIA= P.IDCATEGORIA) inner join TbBodega B on (B.IDBODEGA=Asig.IDBODEGA)");
+
+            dgvDatosAsignacionProducto.Columns["IDPRODUCTO"].Visible = false;
         }
 
         public void llenardatos()
@@ -66,11 +76,14 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             {
                 llenardatos();
             }
-            objconsul.boolLlenarDataGridView(dgvDatosProductosAsignadosABodega, "Select P.CODIGOBARRA as 'Código', P.NOMBREPRODUCTO as 'Nombre',P.CANTIDAD as Cantidad, C.DESCRIPCION as 'Categoria' from TbProducto P inner join TbAsignacionProdcutoBodega Asig on (Asig.IDPRODUCTO = P.IDPRODUCTO) inner join TbBodega B on ( Asig.IDBODEGA = B.IDBODEGA) inner join TbCategoria C on (P.IDCATEGORIA = C.IDCATEGORIA) where Asig.IDBODEGA = " + Convert.ToInt32(cbEscogerBodega.SelectedValue) + ";");
+            objconsul.boolLlenarDataGridView(dgvDatosProductosAsignadosABodega, "Select P.IDPRODUCTO, P.CODIGOBARRA as 'Código', P.NOMBREPRODUCTO as 'Nombre',P.CANTIDAD as Cantidad, C.DESCRIPCION as 'Categoria' from TbProducto P inner join TbAsignacionProdcutoBodega Asig on (Asig.IDPRODUCTO = P.IDPRODUCTO) inner join TbBodega B on ( Asig.IDBODEGA = B.IDBODEGA) inner join TbCategoria C on (P.IDCATEGORIA = C.IDCATEGORIA) where Asig.IDBODEGA = " + Convert.ToInt32(cbEscogerBodega.SelectedValue) + " and Asig.ESTADO = 1;");
+            dgvDatosProductosAsignadosABodega.Columns["IDPRODUCTO"].Visible = false;
+            GlobalfilasProductosAsignadosABodega = dgvDatosProductosAsignadosABodega.Rows.Count;
         }
 
         private void btnAsignarProducto_Click(object sender, EventArgs e)
         {
+
             DataTable dataTB = (DataTable)dgvDatosProductosAsignadosABodega.DataSource;
             //objconsul.BoolDataTable("Select P.CODIGOBARRA as 'Código', P.NOMBREPRODUCTO as 'Nombre',P.CANTIDAD as Cantidad, C.DESCRIPCION as 'Categoria' from TbProducto P inner join TbAsignacionProdcutoBodega Asig on (Asig.IDPRODUCTO = P.IDPRODUCTO) inner join TbBodega B on ( Asig.IDBODEGA = B.IDBODEGA) inner join TbCategoria C on (P.IDCATEGORIA = C.IDCATEGORIA) where Asig.IDBODEGA = " + Convert.ToInt32(cbEscogerBodega.SelectedValue) + ";");
 
@@ -78,7 +91,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             {
                 for (int i = 0; i < dgvDatosProductoParaAsignacionBodega.Rows.Count; i++)
                 {
-                    if ( Convert.ToBoolean(dgvDatosProductoParaAsignacionBodega.Rows[i].Cells["agregarProductosAbodega"].Value) == true)
+                    if (Convert.ToBoolean(dgvDatosProductoParaAsignacionBodega.Rows[i].Cells["agregarProductosAbodega"].Value) == true)
                     {
                         //MessageBox.Show(dgvDatosProductoParaAsignacionBodega.Rows[i].Cells[1].Value.ToString());
                         // Creamos un array con los valores que vamos a insertar
@@ -88,7 +101,8 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                                           dgvDatosProductoParaAsignacionBodega.Rows[i].Cells[1].Value,
                                           dgvDatosProductoParaAsignacionBodega.Rows[i].Cells[2].Value,
                                           dgvDatosProductoParaAsignacionBodega.Rows[i].Cells[3].Value,
-                                          dgvDatosProductoParaAsignacionBodega.Rows[i].Cells[4].Value};
+                                          dgvDatosProductoParaAsignacionBodega.Rows[i].Cells[4].Value,
+                                          dgvDatosProductoParaAsignacionBodega.Rows[i].Cells[5].Value};
 
                         // Creamos un nuevo objeto DataGridViewRow.
                         //
@@ -101,12 +115,19 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         // Creamos un array con los valores que vamos a insertar
 
                         // Añadimos la nueva fila al segundo control DataGridView.
+                        string id = objconsul.ObtenerValorCampo("IDPRODUCTO", "TbProducto", " where CODIGOBARRA = '" + dgvDatosProductoParaAsignacionBodega.Rows[i].Cells[2].Value.ToString() + "'");
+
+                        if (objconsul.Existe("IDPRODUCTO", dgvDatosProductoParaAsignacionBodega.Rows[i].Cells[1].Value.ToString(), "TbAsignacionProdcutoBodega"))
+                        {
+                            //objconsul.EjecutarSQL("UPDATE [dbo].[TbAsignacionProdcutoBodega] SET [ESTADO] = 1 WHERE IDPRODUCTO = " + id + "");
+                            ListaAux.Add(id);
+                            ListaAux.Add("1");
+                        }
 
 
-                        
                         dataTB.Rows.Add(values);
                         dgvDatosProductosAsignadosABodega.DataSource = dataTB;
-                        
+
                     }
 
                 }
@@ -126,10 +147,13 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             {
                 //no hay datos en el datagrid
             }
+            GlobalfilasProductosAsignadosABodega = dgvDatosProductosAsignadosABodega.Rows.Count;
         }
 
         private void btnNoAsiganrProducto_Click(object sender, EventArgs e)
         {
+
+
             DataTable dataTB = (DataTable)dgvDatosProductoParaAsignacionBodega.DataSource;
 
             if (dgvDatosProductosAsignadosABodega.Rows.Count > 0)
@@ -146,7 +170,8 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                                           dgvDatosProductosAsignadosABodega.Rows[i].Cells[1].Value,
                                           dgvDatosProductosAsignadosABodega.Rows[i].Cells[2].Value,
                                           dgvDatosProductosAsignadosABodega.Rows[i].Cells[3].Value,
-                                          dgvDatosProductosAsignadosABodega.Rows[i].Cells[4].Value};
+                                          dgvDatosProductosAsignadosABodega.Rows[i].Cells[4].Value,
+                                          dgvDatosProductosAsignadosABodega.Rows[i].Cells[5].Value};
 
                         // Creamos un nuevo objeto DataGridViewRow.
                         //
@@ -159,8 +184,14 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         // Creamos un array con los valores que vamos a insertar
 
                         // Añadimos la nueva fila al segundo control DataGridView.
+                        string id = objconsul.ObtenerValorCampo("IDPRODUCTO", "TbProducto", " where CODIGOBARRA = '" + dgvDatosProductosAsignadosABodega.Rows[i].Cells[2].Value.ToString() + "'");
 
-
+                        if (objconsul.Existe("IDPRODUCTO", dgvDatosProductosAsignadosABodega.Rows[i].Cells[1].Value.ToString(), "TbAsignacionProdcutoBodega"))
+                        {
+                            //objconsul.EjecutarSQL("UPDATE [dbo].[TbAsignacionProdcutoBodega] SET [ESTADO] = 0 WHERE IDPRODUCTO = "+ id + "");
+                            ListaAux.Add(id);
+                            ListaAux.Add("0");
+                        }
 
                         dataTB.Rows.Add(values);
                         dgvDatosProductoParaAsignacionBodega.DataSource = dataTB;
@@ -184,6 +215,58 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             {
                 //no hay datos en el datagrid
             }
+            //GlobalfilasProductosAsignadosABodega = dgvDatosProductosAsignadosABodega.Rows.Count;
+        }
+
+        private void btnGuardarAsignacionProducto_Click(object sender, EventArgs e)
+        {
+            
+            if (dgvDatosProductoParaAsignacionBodega.Rows.Count >= 0 && GlobalfilasProductosAsignadosABodega > 0)
+            {
+                bool result = true;
+                for (int i = 0; i < dgvDatosProductosAsignadosABodega.Rows.Count; i++)
+                {
+                    string codigo = dgvDatosProductosAsignadosABodega.Rows[i].Cells[1].Value.ToString();
+                    if (!objconsul.Existe("IDPRODUCTO", codigo, "TbAsignacionProdcutoBodega"))
+                    {
+                        result = objconsul.EjecutarPROCEDUREAsignarProductoBodega(Convert.ToInt32(codigo), Convert.ToInt32(cbEscogerBodega.SelectedValue));
+                    }
+                    if (!result)
+                    {
+                        MessageBox.Show("Error al Asignar el Producto: " + codigo, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+
+                if (ListaAux.Count > 0)
+                {
+                    for (int i = 1; i < ListaAux.Count; i++)
+                    {
+                        if (i == 1)
+                        { objconsul.EjecutarSQL("UPDATE [dbo].[TbAsignacionProdcutoBodega] SET [ESTADO] = " + ListaAux[i] + " WHERE IDPRODUCTO = " + ListaAux[i - 1] + ""); }
+                        else { objconsul.EjecutarSQL("UPDATE [dbo].[TbAsignacionProdcutoBodega] SET [ESTADO] = " + ListaAux[i + 1] + " WHERE IDPRODUCTO = " + ListaAux[i] + ""); i = i + 1; }
+                    }
+                }
+                if (result) { MessageBox.Show("Productos Asignados Correctamente ", "Exito", MessageBoxButtons.OK); }
+                ListaAux.Clear();
+            }
+            else { MessageBox.Show("Error debe Asignar al menos un Productoa la Bódega", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); }
+        }
+
+        private void btnLimpiarAsignacionProducto_Click(object sender, EventArgs e)
+        {
+            inicializar();
+        }
+
+        private void txtBuscarProducto_TextChanged(object sender, EventArgs e)
+        {
+            objconsul.boolLlenarDataGridView(dgvDatosProductoParaAsignacionBodega, "Select P.IDPRODUCTO, P.CODIGOBARRA as 'Código', P.NOMBREPRODUCTO as 'Nombre',P.CANTIDAD, C.DESCRIPCION as 'Categoria' from TbProducto P inner join TbCategoria C on (C.IDCATEGORIA= P.IDCATEGORIA) where  P.CODIGOBARRA like '%" + txtBuscarProducto.Text + "%' or P.NOMBREPRODUCTO like '%" + txtBuscarProducto.Text + "%' or C.DESCRIPCION like '%" + txtBuscarProducto.Text + "%' and not exists (select * from TbAsignacionProdcutoBodega where TbAsignacionProdcutoBodega.IDPRODUCTO = P.IDPRODUCTO and TbAsignacionProdcutoBodega.ESTADO = 1)");
+            dgvDatosProductoParaAsignacionBodega.Columns["IDPRODUCTO"].Visible = false;
+        }
+
+        private void txtConsultarAsginacionProducto_TextChanged(object sender, EventArgs e)
+        {
+            objconsul.boolLlenarDataGridView(dgvDatosAsignacionProducto, "Select P.IDPRODUCTO, P.CODIGOBARRA as 'Código', P.NOMBREPRODUCTO as 'Nombre',P.CANTIDAD as 'Cantidad', C.DESCRIPCION as 'Categoria', B.NOMBRE as 'Bódega', B.UBICACION as 'Ubicación' from TbAsignacionProdcutoBodega Asig inner join TbProducto P on (Asig.IDPRODUCTO=P.IDPRODUCTO) inner join TbCategoria C on (C.IDCATEGORIA= P.IDCATEGORIA) inner join TbBodega B on (B.IDBODEGA=Asig.IDBODEGA) where  P.CODIGOBARRA like '%" + txtConsultarAsginacionProducto.Text + "%' or P.NOMBREPRODUCTO like '%" + txtConsultarAsginacionProducto.Text + "%' or C.DESCRIPCION like '%" + txtConsultarAsginacionProducto.Text + "%' or B.NOMBRE like '%" + txtConsultarAsginacionProducto.Text + "%' ");
+            dgvDatosAsignacionProducto.Columns["IDPRODUCTO"].Visible = false;
         }
     }
 }

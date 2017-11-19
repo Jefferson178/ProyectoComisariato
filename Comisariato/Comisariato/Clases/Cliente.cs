@@ -30,6 +30,7 @@ namespace Comisariato.Clases
         string celular1;
         string celular2;
         string observacion;
+        int IDCuentaContable;
 
         Consultas ObjConsulta;
 
@@ -297,7 +298,21 @@ namespace Comisariato.Clases
                 especificacionesTipoCredito = value;
             }
         }
-        public Cliente(string tipocliente, string tipoidentificacion, string identificacion, bool activo, string nombres, string apellidos, DateTime fechaNacimiento, string razonSocial, string email, string direccion, string actividadEconimica, int idParroquia, int casilla, string fax, string celula1, string celular2, string observacion, string especificacionesCategoria, string especificacionesTipoCredito, string condicionesComerCreditoAsignado, string condicionesComerCupoCredito, string condicionesComerDescuento)
+
+        public int IDCuentaContable1
+        {
+            get
+            {
+                return IDCuentaContable;
+            }
+
+            set
+            {
+                IDCuentaContable = value;
+            }
+        }
+
+        public Cliente(string tipocliente, string tipoidentificacion, string identificacion, bool activo, string nombres, string apellidos, DateTime fechaNacimiento, string razonSocial, string email, string direccion, string actividadEconimica, int idParroquia, int casilla, string fax, string celula1, string celular2, string observacion, string especificacionesCategoria, string especificacionesTipoCredito, string condicionesComerCreditoAsignado, string condicionesComerCupoCredito, string condicionesComerDescuento, int IDCuentaContable)
         {
             this.Tipocliente = tipocliente;
             this.Tipoidentificacion = tipoidentificacion;
@@ -321,6 +336,7 @@ namespace Comisariato.Clases
             this.CondicionesComerCreditoAsignado = condicionesComerCreditoAsignado;
             this.CondicionesComerCupoCredito = condicionesComerCupoCredito;
             this.CondicionesComerDescuento = condicionesComerDescuento;
+            this.IDCuentaContable = IDCuentaContable;
         }
         public Cliente()
         {
@@ -336,13 +352,13 @@ namespace Comisariato.Clases
            ",[FECHANACIMIENTO],[RAZONSOCIAL],[EMAIL],[DIRECCION],[ACTIVIDADECONOMICA],[IDPARROQUIA]" +
            ",[CASILLA],[FAX],[CELULAR1],[CELULAR2],[OBSERVACION],[ESPECIFICACIONES_CATEGORIA]" +
            ",[ESPECIFICACIONES_TIPOCREDITO],[CONDICIONES_COMERC_CREDITOASIGNADO],[CONDICIONES_COMERC_CUPOCREDITO]" +
-           ",[CONDICIONES_COMERC_DESCUENTO])" +
+           ",[CONDICIONES_COMERC_DESCUENTO],[IDCuentaContable])" +
                     " VALUES " +
                     "('" + tipocliente.ToUpper() + "','" + tipoidentificacion.ToUpper() + "','" + identificacion + "','" + activo + "','" + nombres.ToUpper() + "','" + apellidos.ToUpper() +
                     "','" + fechaNacimiento.Date.ToShortDateString() + "','" + razonSocial.ToUpper() + "','" + email + "','" + direccion.ToUpper() + "','" + actividadEconimica.ToUpper() + "'," + IdParroquia +
                     "," + casilla + ",'" + fax + "','" + celular1 + "','" + celular2 + "','" + observacion + "','" + especificacionesCategoria.ToUpper() +
                     "','" + especificacionesTipoCredito.ToUpper() + "'," + condicionesComerCreditoAsignado + "," + condicionesComerCupoCredito +
-                    "," + condicionesComerDescuento + ");");
+                    "," + condicionesComerDescuento + ","+IDCuentaContable+");");
                 if (resultInsertCliente)
                 {
                     return "Datos Guardados";
@@ -383,7 +399,7 @@ namespace Comisariato.Clases
                 ",[NOMBRES] = '" + nombres.ToUpper() + "',[APELLIDOS] = '" + apellidos.ToUpper() + "' ,[FECHANACIMIENTO] = '" + fechaNacimiento.ToShortDateString() + "' ,[RAZONSOCIAL] = '" + razonSocial.ToUpper() + "' ,[EMAIL] = '" + email + "' ,[DIRECCION] = '" + direccion.ToUpper() + "' ,[ACTIVIDADECONOMICA] = '" + actividadEconimica + "'" +
                 ",[IDPARROQUIA] = " + idParroquia + ",[CASILLA] = " + casilla + ",[FAX] = '" + fax + "' ,[CELULAR1] = '" + celular1 + "' ,[CELULAR2] = '" + celular2 + "' ,[OBSERVACION] = '" + observacion + "' ,[ESPECIFICACIONES_CATEGORIA] ='" + especificacionesCategoria + "'" +
                 ",[ESPECIFICACIONES_TIPOCREDITO] = '"+especificacionesTipoCredito+"' ,[CONDICIONES_COMERC_CREDITOASIGNADO] = "+condicionesComerCreditoAsignado+ ",[CONDICIONES_COMERC_CUPOCREDITO] = "+condicionesComerCupoCredito+"" +
-                ",[CONDICIONES_COMERC_DESCUENTO] = "+condicionesComerDescuento+" WHERE IDENTIFICACION = '" + Identificacion + "';");
+                ",[CONDICIONES_COMERC_DESCUENTO] = "+condicionesComerDescuento+ ", [IDCuentaContable]= "+IDCuentaContable+"  WHERE IDENTIFICACION = '" + Identificacion + "';");
             if (ModificarCliente)
             {
                 return "Correcto";

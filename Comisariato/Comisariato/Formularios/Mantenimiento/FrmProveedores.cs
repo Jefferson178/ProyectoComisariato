@@ -60,7 +60,6 @@ namespace Comisariato.Formularios
             cbParroquiaProveedor.SelectedValue = 41;
 
 
-            consultas.BoolLlenarComboBox(cbPaisProveedor, "Select IDPAIS as ID, NOMBRE AS Texto from TbPais");
             consultas.BoolLlenarComboBox(cbCuentaContableProveedor, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta ");
             consultas.BoolLlenarComboBox(cbTipoServicioProveedor, "Select IDSERVICIO as ID, DESCRIPCION AS Texto from TbTipoServicio");
 
@@ -74,6 +73,7 @@ namespace Comisariato.Formularios
             cbTipoGastoProveedor.SelectedIndex = 0;
             consultas = new Consultas();
 
+            consultas.BoolLlenarComboBox(cbPaisProveedor, "Select IDPAIS as ID, NOMBRE AS Texto from TbPais");
 
 
 

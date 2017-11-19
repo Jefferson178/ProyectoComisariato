@@ -262,6 +262,9 @@ namespace Comisariato.Clases
                 return false;
             }
         }
+
+
+
         public bool GuardarFact(int nfilas, DataGridView dg, List<string> encabezado, List<string> detallepago, List<string> ivas)
         {
             try
@@ -365,6 +368,34 @@ namespace Comisariato.Clases
             }
            
         }
+
+
+        public string ObtenerValorCampo(String campo, String tabla, String condicion)
+        {
+            try
+            {
+                SqlDataAdapter objDA;
+                string valor="";
+                DataTable dt = new DataTable();
+                Objc.conectar();
+                string sentencia = "SELECT  " + campo + " from " + tabla + " " + condicion;
+                objDA = new SqlDataAdapter(sentencia, ConexionBD.connection);
+                objDA.Fill(dt);
+                Objc.Cerrar();
+                objDA.Dispose();
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];
+                    valor = row[campo].ToString();
+                }
+                return valor;
+            }
+            catch (Exception ex)
+            {
+                return "error";
+
+            }
+        }
         public Producto Consultarproducto(String codigo)
         {
             Producto producto = new Producto();
@@ -414,6 +445,8 @@ namespace Comisariato.Clases
             Objc.Cerrar();
             return producto;
         }
+
+
 
         public EmcabezadoFactura ConsutarFactura(int sucursal, int caja, int numfact, int metodo)
         {
@@ -476,6 +509,7 @@ namespace Comisariato.Clases
             Objc.Cerrar();
             return encabezado;
         }
+
         public List<Producto> DetalleFact(int nfact, int verimetodo)
         {
             try
@@ -520,36 +554,7 @@ namespace Comisariato.Clases
             }
         }
 
-        //public int cantidad(String codigo)
-        //{
-
-        //    try
-        //    {
-        //        Objc.conectar();
-        //        SqlCommand Sentencia = new SqlCommand("select U.CANTIDAD from TbProducto U where U.CODIGOBARRA='" + codigo + "' ");
-        //        Sentencia.Connection = ConexionBD.connection;
-        //        SqlDataReader dato = Sentencia.ExecuteReader();
-        //        Objc.Cerrar();
-        //        if (dato.Read() == true)
-        //        {
-        //            return Convert.ToInt32(dato["CANTIDAD"]);
-        //        }
-        //        else
-        //        {
-        //            return 0;
-        //            //MessageBox.Show("No se encontró ningun producto con ese codigo.");
-        //            //DgvDetalle.Rows.RemoveAt(e.RowIndex);
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        return 0;
-        //    }
-
-        //}
-
+       
         public bool boolLlenarDataGridView(DataGridView data, String SQL)
         {
             Objc.conectar();
@@ -947,6 +952,29 @@ namespace Comisariato.Clases
                 return false;
             }
         }
+
+        public bool EjecutarPROCEDUREAsignarProductoBodega(int parametro1,int parametro2)
+        {
+            try
+            {
+                Objc.conectar();
+                SqlCommand cmd = new SqlCommand("ASIGNAR_PRODUCTO_BODEGA", ConexionBD.connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@IDPRODUCTO", parametro1);
+                cmd.Parameters.AddWithValue("@IDBODEGA", parametro2);
+                cmd.Parameters.AddWithValue("@ESTADO", 1);
+                int result = cmd.ExecuteNonQuery();
+                Objc.Cerrar();
+                if (result > 0)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
         public bool EjecutarPROCEDUREEncabezadoCompra(EmcabezadoCompra ObjCompra)
         {
             try
@@ -1059,6 +1087,7 @@ namespace Comisariato.Clases
             try
             {
                 DataTable dt = new DataTable();
+                
                 dt.Columns.Add("CODIGO", typeof(String));
                 dt.Columns.Add("NOMBRE PRODUCTO", typeof(String));
                 dt.Columns.Add("CATEGORIA.", typeof(String));
@@ -1066,7 +1095,7 @@ namespace Comisariato.Clases
                 dt.Columns.Add("CANTIDAD", typeof(String));
                 dt.Columns.Add("P. PUBLICO", typeof(String));
                 dt.Columns.Add(" ", typeof(bool));
-                
+                dt.Columns.Add("ID", typeof(String));
                 // dt.Columns.Add("IVA", typeof(bool));
                 //List<Producto> lista = new List<Producto>();
                 Objc.conectar();
@@ -1076,14 +1105,11 @@ namespace Comisariato.Clases
                 Objc.Cerrar();
                 while (dato.Read() == true)
                 {
-                    //Producto p = new Producto();
-                    //p.Codigobarra = dato["CODIGOBARRA"].ToString();
-                    //p.Nombreproducto = dato["NOMBREPRODUCTO"].ToString();
-                    //p.Observaciones = dato["DESCRIPCION"].ToString();
-                    //p.Cantidad = Convert.ToInt32(dato["CANTIDAD"]);
-                    //p.Peso = dato["NOMBRE"].ToString();
-                    //p.Preciopublico_sin_iva = Convert.ToSingle(dato["PRECIOPUBLICO_SIN_IVA"]);
-                    dt.Rows.Add(dato["CODIGOBARRA"].ToString(), dato["NOMBREPRODUCTO"].ToString(), dato["DESCRIPCION"].ToString(), dato["NOMBRE"].ToString(), dato["CANTIDAD"].ToString(), dato["PRECIOPUBLICO_SIN_IVA"],false);
+                    if (dato["DESCRIPCION"].ToString()!="COMBO")
+                    {
+                        dt.Rows.Add(dato["CODIGOBARRA"].ToString(), dato["NOMBREPRODUCTO"].ToString(), dato["DESCRIPCION"].ToString(), dato["NOMBRE"].ToString(), dato["CANTIDAD"].ToString(), dato["PRECIOPUBLICO_SIN_IVA"], false, dato["IDPRODUCTO"]);
+                    }
+                    
                     
                 }
                 dg.DataSource = dt;
@@ -1103,7 +1129,75 @@ namespace Comisariato.Clases
             }
         }
 
+        public bool GrabarCombo(List<String>encabezadoCombo,DataGridView dg,int nfilas)
+        {
+            try
+            {
+                Objc.conectar();
+                string precio = "";
+                int result = 0;
+                List<string> enca = encabezadoCombo;
+                //List<string> detalle = detallepago;
+                SqlCommand cmd = null;
+                string idempresa = Program.IDEMPRESA;
+                for (int i = 0; i < nfilas; i++)
+                {
+                    precio = Funcion.reemplazarcaracter(dg.Rows[i].Cells[4].Value.ToString());
+                    cmd = new SqlCommand("REGISTRAR_Combo", ConexionBD.connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CONTADOR", i);
+                    cmd.Parameters.AddWithValue("@codigo", encabezadoCombo[0]);
+                    cmd.Parameters.AddWithValue("@nombre", encabezadoCombo[1]);
+                    cmd.Parameters.AddWithValue("@cantcombo", encabezadoCombo[2]);
+                    cmd.Parameters.AddWithValue("@precio", encabezadoCombo[3]);
+                    cmd.Parameters.AddWithValue("@cantidadproducto", dg.Rows[i].Cells[3].Value);
+                    cmd.Parameters.AddWithValue("@idproducto", dg.Rows[i].Cells[7].Value);
 
+                    result = cmd.ExecuteNonQuery();
+                }
+
+                Objc.Cerrar();
+                if (result > 0)
+                    return true;
+                else
+                    return false;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+
+        public bool verificarRepetido(String SQL)
+        {
+            try
+            {
+                Objc.conectar();
+                
+                SqlCommand Sentencia = new SqlCommand(SQL);
+                Sentencia.Connection = ConexionBD.connection;
+                //int valor = Convert.ToInt32(Sentencia.ExecuteScalar());
+                SqlDataReader dato = Sentencia.ExecuteReader();
+                Objc.Cerrar();
+                if (dato.Read() == true)
+                {
+                    
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //  MessageBox.Show("Error al conectar la base de Datos " + ex.Message, "Comprobar usuario", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                return false;
+            }
+        }
 
     }
 }
