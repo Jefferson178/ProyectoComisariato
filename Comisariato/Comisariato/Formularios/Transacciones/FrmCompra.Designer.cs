@@ -242,6 +242,7 @@
             this.dgvProductosIngresos.Size = new System.Drawing.Size(1015, 150);
             this.dgvProductosIngresos.TabIndex = 59;
             this.dgvProductosIngresos.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductosIngresos_CellEndEdit);
+            this.dgvProductosIngresos.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductosIngresos_CellEnter);
             this.dgvProductosIngresos.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvProductosIngresos_EditingControlShowing);
             this.dgvProductosIngresos.Enter += new System.EventHandler(this.dgvProductosIngresos_Enter);
             this.dgvProductosIngresos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvProductosIngresos_KeyDown);
@@ -778,7 +779,6 @@
             // 
             this.codigo.HeaderText = "Código";
             this.codigo.Name = "codigo";
-            this.codigo.ReadOnly = true;
             this.codigo.Width = 110;
             // 
             // producto
