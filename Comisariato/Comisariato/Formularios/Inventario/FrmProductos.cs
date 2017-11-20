@@ -50,10 +50,11 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             ckbActivoProducto.Checked = true;
 
             //iniciar combos
-            cbUnidadMedidaProducto.SelectedIndex = 0;
-            cbTipoProducto.SelectedIndex = 0;
-            cbPeso.SelectedIndex = 0;
-
+            if (cbUnidadMedidaProducto.Items.Count>0 && cbTipoProducto.Items.Count>0) {
+                cbUnidadMedidaProducto.SelectedIndex = 0;
+                cbTipoProducto.SelectedIndex = 0;
+                cbPeso.SelectedIndex = 0;
+            }
 
             // Dimensionar lista combo
             cbTipoProducto.DropDownHeight = cbTipoProducto.ItemHeight = 150;
@@ -62,6 +63,8 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
 
             //// llenar datadrigview solo los activos
             cargarDatos("1");
+
+            CkbIva.Checked = false;
         }
 
         private void cargarDatos(string condicion)
@@ -181,7 +184,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 if (!banderaCheckError)
                 {//if (CkbIva.Checked || CkbICE.Checked || CkbIRBP.Checked)
                     //{
-                    MessageBox.Show("Ingrese los Precios Con Iva", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show("Ingrese los Precios Con Iva", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     banderaCheckError = true;
                     CkbIva.Checked = false;
                     banderaCheckError = false;
@@ -349,16 +352,28 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         private void txtPVPSinIVAProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.SoloValores(e, txtPVPSinIVAProducto.Text);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void txtPrecioMayorSinIVAProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.SoloValores(e, txtPrecioMayorSinIVAProducto.Text);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void txtPrecioCajaSinIVAProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.SoloValores(e, txtPrecioCajaSinIVAProducto.Text);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
         
 
@@ -403,19 +418,25 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             }
         }
 
-        private void txtNombreProducto_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            Funcion.validar_Num_Letras(e);
-        }
+       
 
         private void txtStockMaximoProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.Validar_Numeros(e);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+
         }
 
         private void txtObservacionesProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.validar_Num_Letras(e);
+            //Funcion.validar_Num_Letras(e);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void CkbICE_CheckedChanged(object sender, EventArgs e)
@@ -478,16 +499,28 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         {
             Funcion.SoloValores(e,txtPVPConIVAProducto.Text);
             //txtPVPConIVAProducto.Select();
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void txtPrecioMayorConIVAProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.SoloValores(e, txtPrecioMayorConIVAProducto.Text);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void txtPrecioCajaConIVAProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.SoloValores(e, txtPrecioCajaConIVAProducto.Text);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void txtStockMaximoProducto_Enter(object sender, EventArgs e)
@@ -565,6 +598,72 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     this.dgvDatosProducto.Columns[e.ColumnIndex].Width = icoAtomico.Width + 10;
                     e.Handled = true;
                 }
+            }
+        }
+
+        private void txtNombreProducto_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+            if (txtNombreProducto.Text.Length > 15)
+            {
+                
+                string parte2 = "";
+                int dimension = txtNombreProducto.Text.Length;
+                               
+                for (int i = 15; i < dimension; i++)
+                {
+                    //parte2 = txtNombreProducto.Text.Substring(i, 1);
+                    //txtNombreProducto.SelectionStart = 16;
+                    txtNombreProducto.SelectionColor = Color.Red;
+                }
+            }
+            
+        }
+
+        private void txtPVPSinIVAProducto_Enter(object sender, EventArgs e)
+        {
+            txtPVPSinIVAProducto.SelectAll();
+        }
+
+        private void txtPrecioMayorSinIVAProducto_Enter(object sender, EventArgs e)
+        {
+            txtPrecioMayorSinIVAProducto.SelectAll();
+        }
+
+        private void txtPrecioCajaSinIVAProducto_Enter(object sender, EventArgs e)
+        {
+            txtPrecioCajaSinIVAProducto.SelectAll();
+        }
+
+        private void txtNombreProducto_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            Funcion.validar_Num_Letras(e);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+                cbUnidadMedidaProducto.Focus();
+            }
+        }
+
+        private void cbUnidadMedidaProducto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void CkbIva_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
             }
         }
     }

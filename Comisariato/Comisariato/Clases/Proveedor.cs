@@ -33,6 +33,7 @@ namespace Comisariato.Clases
         bool estado;
         int IDCuentaContable;
         int credito, ice, codigo_101;
+        string celularResponsable;
         public Proveedor()
         {
         }
@@ -333,7 +334,20 @@ namespace Comisariato.Clases
             }
         }
 
-        public Proveedor(string fax, bool estado, string plazo, string codigo, string tipoIdentificacion,string nombres, string identificacion, string nacionalidad, string naturaleza, string direccion, string razosocial, string email, string telefono, string celular, string giracheque, string responsable, string tipogasto, string tiposervicio, int idparroquia, bool riseproveedor, int IDCuentaContable, int credito, int ice, int codigo_101)
+        public string CelularResponsable
+        {
+            get
+            {
+                return celularResponsable;
+            }
+
+            set
+            {
+                celularResponsable = value;
+            }
+        }
+
+        public Proveedor(string fax, bool estado, string plazo, string codigo, string tipoIdentificacion,string nombres, string identificacion, string nacionalidad, string naturaleza, string direccion, string razosocial, string email, string telefono, string celular, string giracheque, string responsable, string tipogasto, string tiposervicio, int idparroquia, bool riseproveedor, int IDCuentaContable, int credito, int ice, int codigo_101, string celularResponsable)
         {
             this.Nombres = nombres;
             this.Identificacion = identificacion;
@@ -359,6 +373,7 @@ namespace Comisariato.Clases
             this.credito = credito;
             this.ice = ice;
             this.codigo_101 = codigo_101;
+            this.celularResponsable = celularResponsable;
         }
         public string InsertarProveedor()
         {
@@ -368,10 +383,10 @@ namespace Comisariato.Clases
             {
                 if (ObjConsulta.EjecutarSQL("Insert into [dbo].[TbProveedor] ([CODIGO],[NOMBRES],[TIPOIDENTIFICACION],[IDENTIFICACION],[NACIONALIDAD],[NATURALEZA],[DIRECCION]" +
            ",[RAZONSOCIAL],[TELEFONO],[CELULAR],[RESPONSABLE],[TIPOSERVICIO],[PLAZO],[EMAIL],[GIRACHEQUEA],[IDPARROQUIA],[TIPOGASTO],[FAX]"+
-           ",[ESTADO],[PROVEEDORRISE],[IDCuentaContable],[CREDITO],[ICE],[CODIGO_101]) " +
+           ",[ESTADO],[PROVEEDORRISE],[IDCuentaContable],[CREDITO],[ICE],[CODIGO_101],[CELULAR_RESPONSABLE]) " +
                     " VALUES ('"+ codigo.ToUpper() +"','" + nombres.ToUpper() + "','"+ tipoIdentificacion.ToUpper() +"','" + identificacion.ToUpper() + "','" + nacionalidad.ToUpper() + "','" + naturaleza.ToUpper() + "','" + direccion.ToUpper() + 
                     "','" + razosocial.ToUpper() + "','" + telefono + "','" + celular + "','" + responsable.ToUpper() + "','" + tiposervicio.ToUpper() + "','" + plazo.ToUpper() +
-                    "','" + email.ToUpper() + "','" + giracheque.ToUpper() + "'," + idparroquia + ",'" + tipogasto.ToUpper() + "','" + fax +  "','" + estado +"','" + riseproveedor + "',"+IDCuentaContable+","+credito+","+ice+","+codigo_101+");"))
+                    "','" + email.ToUpper() + "','" + giracheque.ToUpper() + "'," + idparroquia + ",'" + tipogasto.ToUpper() + "','" + fax +  "','" + estado +"','" + riseproveedor + "',"+IDCuentaContable+","+credito+","+ice+","+codigo_101+",'"+celularResponsable+"');"))
                 {
                     return "Datos Guardados";
                 }
@@ -386,7 +401,7 @@ namespace Comisariato.Clases
 
             if (ObjConsulta.EjecutarSQL("UPDATE [dbo].[TbProveedor] SET[NOMBRES] = '"+nombres.ToUpper()+ "',[IDENTIFICACION] = '"+this.identificacion+ "' ,[NACIONALIDAD] = '"+nacionalidad+"'," +
                 "[NATURALEZA] = '"+naturaleza+ "',[DIRECCION] = '"+direccion.ToUpper() + "',[RAZONSOCIAL] = '"+razosocial.ToUpper() + "',[EMAIL] = '"+email+ "',[TELEFONO] = '"+telefono+ "',[CELULAR] = '"+celular+"' ," +
-                "[GIRACHEQUEA] = '"+giracheque.ToUpper() + "',[RESPONSABLE] = '"+responsable.ToUpper() + "' ,[TIPOGASTO] = '"+tipogasto+ "',[TIPOSERVICIO] = '"+tiposervicio+ "',[IDPARROQUIA] = "+idparroquia+ " , [PROVEEDORRISE] = '"+ riseproveedor + "' , [IDCuentaContable] = "+IDCuentaContable+ " ,[CREDITO] = "+credito+" ,[ICE] = "+ice+" ,[CODIGO_101] = "+codigo_101+" WHERE IDENTIFICACION = '" + Identificacion + "';"))
+                "[GIRACHEQUEA] = '"+giracheque.ToUpper() + "',[RESPONSABLE] = '"+responsable.ToUpper() + "' ,[CELULAR_RESPONSABLE] = '"+celularResponsable+"',[TIPOGASTO] = '" + tipogasto+ "',[TIPOSERVICIO] = '"+tiposervicio+ "',[IDPARROQUIA] = "+idparroquia+ " , [PROVEEDORRISE] = '"+ riseproveedor + "' , [IDCuentaContable] = "+IDCuentaContable+ " ,[CREDITO] = "+credito+" ,[ICE] = "+ice+" ,[CODIGO_101] = "+codigo_101+" WHERE IDENTIFICACION = '" + Identificacion + "';"))
             {
                 return "Correcto";
             }
