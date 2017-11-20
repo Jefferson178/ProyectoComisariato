@@ -38,10 +38,6 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             ordenCompra = 1 + consultas.ObtenerID("ORDEN_COMPRA_NUMERO", "TbEncabezadoyPieCompra", " where IDEMCABEZADOCOMPRA ="+ idOrdenComrpa + "");
             consultas.BoolLlenarComboBox(cbImpuesto, "select IDIVA AS ID, IVA + '%' as TEXTO from tbIva");            
             txtOrdenCompra.Text = Convert.ToString(ordenCompra);
-            //cbProveedor.AutoCompleteMode = AutoCompleteMode.Suggest;
-            //cbProveedor.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            //AutoCompleteStringCollection combData = new AutoCompleteStringCollection();
-            //cbProveedor.AutoCompleteCustomSource = combData;
             datosProductoCompra = dgvProductosIngresos;
             datosProveedor = cbProveedor;
         }
@@ -86,53 +82,133 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
 
         private void dgvProductosIngresos_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            bool banderaTab = false;
             objProducto = new Producto();
             float iva = 0.0f, subtotal = 0.0f, total = 0.0f;
             try
             {
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "codigo")
                 {
-                    objProducto = consultas.Consultarproducto(Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value));                    
+                    for (int i = 0; i < dgvProductosIngresos.RowCount - 1; i++)
+                    {
+                        if (Convert.ToString(dgvProductosIngresos.Rows[i].Cells[0].Value) == "")
+                        {
+                            string auxiliar = Convert.ToString(dgvProductosIngresos.CurrentCell.Value);
+                            dgvProductosIngresos.CurrentCell.Value = "";
+                            dgvProductosIngresos.CurrentCell = dgvProductosIngresos.Rows[i].Cells[0];
+                            dgvProductosIngresos.Rows[i].Cells[0].Value = auxiliar;
+                            break;
+                        }
+                    }
+                    for (int i = 0; i < dgvProductosIngresos.ColumnCount - 3; i++)
+                    {
+                        dgvProductosIngresos.CurrentRow.Cells[i].ReadOnly = false;
+                    }
+                    objProducto = consultas.Consultarproducto(Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value));
                     if (objProducto == null)
                     {
-                        if (MessageBox.Show("¿Desea agregar el producto?", "CONFIRMACIÓN",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        if (MessageBox.Show("¿Desea agregar el producto?", "CONFIRMACIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             FrmProductos frmProducto = new FrmProductos();
                             Program.FormularioLlamado = true;
                             FrmProductos.codigo = Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value);
                             objFuncion.AddFormInPanel(frmProducto, Program.panelPrincipalVariable);
                             datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
+
+                        }
+                        else
+                        {
+                            dgvProductosIngresos.CurrentRow.Cells[0].Value = "";
+                            SendKeys.Send("{LEFT}");
+                            banderaTab = true;
                         }
                     }
                     else
                     {
                         datosProductoCompra.CurrentRow.Cells[1].Value = objProducto.Nombreproducto;
+                        //datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
                         //dgvProductosIngresos.CurrentRow.Cells[3].Value = objProducto.PrecioCompra;
                         //if (objProducto.Ivaestado)
                         //    dgvProductosIngresos.CurrentRow.Cells[3].Value = objProducto.Preciopublico_iva;
                         //else
                         //    dgvProductosIngresos.CurrentRow.Cells[3].Value = objProducto.Preciopublico_sin_iva;
+                        dgvProductosIngresos.CurrentCell = dgvProductosIngresos.CurrentRow.Cells[2];
                         SendKeys.Send("{TAB}");
+                    }
+
+                }
+                if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioCompra")
+                {
+                    try
+                    {
+                        float valor = float.Parse(dgvProductosIngresos.CurrentRow.Cells[3].Value.ToString());
+                        dgvProductosIngresos.CurrentRow.Cells[3].Value = Funcion.reemplazarcaracter(dgvProductosIngresos.CurrentRow.Cells[3].Value.ToString());
+                    }
+                    catch (Exception errorPrecio)
+                    {
+                        MessageBox.Show("Ingresar valores correctos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        SendKeys.Send("{LEFT}");
+                    }
+                }
+                if (datosProductoCompra.Columns[e.ColumnIndex].Name == "descuento")
+                {
+                    try
+                    {
+                        float valor = float.Parse(dgvProductosIngresos.CurrentRow.Cells[4].Value.ToString());
+                        dgvProductosIngresos.CurrentRow.Cells[4].Value = Funcion.reemplazarcaracter(dgvProductosIngresos.CurrentRow.Cells[4].Value.ToString());
+                    }
+                    catch (Exception errorDescuento)
+                    {
+                        MessageBox.Show("Ingresar valores correctos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        SendKeys.Send("{LEFT}");
+                    }
+                }
+                if (datosProductoCompra.Columns[e.ColumnIndex].Name == "iceProducto")
+                {
+                    try
+                    {
+                        float valor = float.Parse(dgvProductosIngresos.CurrentRow.Cells[5].Value.ToString());
+                        dgvProductosIngresos.CurrentRow.Cells[5].Value = Funcion.reemplazarcaracter(dgvProductosIngresos.CurrentRow.Cells[5].Value.ToString());
+                    }
+                    catch (Exception errorDescuento)
+                    {
+                        MessageBox.Show("Ingresar valores correctos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        SendKeys.Send("{LEFT}");
+                    }
+                }
+                if (datosProductoCompra.Columns[e.ColumnIndex].Name == "irbpProducto")
+                {
+                    try
+                    {
+                        float valor = float.Parse(dgvProductosIngresos.CurrentRow.Cells[6].Value.ToString());
+                        dgvProductosIngresos.CurrentRow.Cells[6].Value = Funcion.reemplazarcaracter(dgvProductosIngresos.CurrentRow.Cells[6].Value.ToString());
+                    }
+                    catch (Exception errorDescuento)
+                    {
+                        MessageBox.Show("Ingresar valores correctos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        SendKeys.Send("{LEFT}");
                     }
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioCompra" || datosProductoCompra.Columns[e.ColumnIndex].Name == "cantidad")
                 {
-                    iva = ((Convert.ToSingle(datosProductoCompra.CurrentRow.Cells[3].Value.ToString()) * Convert.ToInt32(datosProductoCompra.CurrentRow.Cells[2].Value.ToString())) * 0.12f);
-                    subtotal = ((Convert.ToSingle(datosProductoCompra.CurrentRow.Cells[3].Value.ToString()) * Convert.ToInt32(datosProductoCompra.CurrentRow.Cells[2].Value.ToString())) - iva);
+                    iva = ((Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.CurrentRow.Cells[3].Value.ToString())) * Convert.ToInt32(datosProductoCompra.CurrentRow.Cells[2].Value.ToString())) * 0.12f);
+                    subtotal = ((Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.CurrentRow.Cells[3].Value.ToString())) * Convert.ToInt32(datosProductoCompra.CurrentRow.Cells[2].Value.ToString())) - iva);
                     total = subtotal + iva;
                     datosProductoCompra.CurrentRow.Cells[11].Value = iva.ToString("#####0.00");
                     datosProductoCompra.CurrentRow.Cells[10].Value = subtotal.ToString("#####0.00");
                     datosProductoCompra.CurrentRow.Cells[12].Value = total.ToString("#####0.00");
                 }
+
             }
-            catch (Exception)
+            catch (Exception otro)
             {
             }
             Calcular();
             SendKeys.Send("{UP}");
-            SendKeys.Send("{TAB}");
-            }
-        string PrecioCompra;
+            if (!banderaTab)
+                SendKeys.Send("{TAB}");
+
+        }
         private void Calcular()
         {
             float sumasubiva = 0.0f, sumasubcero = 0.0f, totalpagar = 0.0f, ivatotal = 0.0f, sumaice = 0.0f, sumairbp = 0.0f;
@@ -210,6 +286,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             {
                 Funcion.validar_Num_Letras(e);
             }
+            
         }
         private void dgvProductosIngresos_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
@@ -264,20 +341,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         {
             Funcion.Validar_Numeros(e);
         }
-        string valor;
-        private void dgvProductosIngresos_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[3])
-            {
-                valor = Convert.ToString(dgvProductosIngresos.CurrentRow.Cells[3].Value);
-            }
-        }
-
-        private void dgvProductosIngresos_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            
-        }
-
+        
         private void btnSalirCompra_Click(object sender, EventArgs e)
         {
             this.Close();

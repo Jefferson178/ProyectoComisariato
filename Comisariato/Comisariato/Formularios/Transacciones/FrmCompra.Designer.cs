@@ -38,19 +38,6 @@
             this.btnSalirCompra = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvProductosIngresos = new System.Windows.Forms.DataGridView();
-            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioPublico = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioMayorista = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioCaja = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iceProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.irbpProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iva = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.txtIRBP = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -98,6 +85,19 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label14 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iceProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.irbpProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioPublico = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioMayorista = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioCaja = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iva = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.pcOrdenCompra.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -220,11 +220,11 @@
             this.cantidad,
             this.precioCompra,
             this.descuento,
+            this.iceProducto,
+            this.irbpProducto,
             this.precioPublico,
             this.precioMayorista,
             this.precioCaja,
-            this.iceProducto,
-            this.irbpProducto,
             this.subtotal,
             this.iva,
             this.total});
@@ -244,89 +244,6 @@
             this.dgvProductosIngresos.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductosIngresos_CellEndEdit);
             this.dgvProductosIngresos.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvProductosIngresos_EditingControlShowing);
             this.dgvProductosIngresos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvProductosIngresos_KeyDown);
-            this.dgvProductosIngresos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvProductosIngresos_KeyPress);
-            this.dgvProductosIngresos.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvProductosIngresos_KeyUp);
-            // 
-            // codigo
-            // 
-            this.codigo.HeaderText = "Código";
-            this.codigo.Name = "codigo";
-            this.codigo.Width = 110;
-            // 
-            // producto
-            // 
-            this.producto.HeaderText = "Producto";
-            this.producto.Name = "producto";
-            this.producto.Width = 160;
-            // 
-            // cantidad
-            // 
-            this.cantidad.HeaderText = "Cant.";
-            this.cantidad.Name = "cantidad";
-            this.cantidad.Width = 50;
-            // 
-            // precioCompra
-            // 
-            this.precioCompra.HeaderText = "P. C.";
-            this.precioCompra.Name = "precioCompra";
-            this.precioCompra.Width = 60;
-            // 
-            // descuento
-            // 
-            this.descuento.HeaderText = "Desc.";
-            this.descuento.Name = "descuento";
-            this.descuento.Width = 70;
-            // 
-            // precioPublico
-            // 
-            this.precioPublico.HeaderText = "P.V.P";
-            this.precioPublico.Name = "precioPublico";
-            this.precioPublico.Width = 60;
-            // 
-            // precioMayorista
-            // 
-            this.precioMayorista.HeaderText = "P. May";
-            this.precioMayorista.Name = "precioMayorista";
-            this.precioMayorista.Width = 75;
-            // 
-            // precioCaja
-            // 
-            this.precioCaja.HeaderText = "P. Cajas";
-            this.precioCaja.Name = "precioCaja";
-            this.precioCaja.Width = 85;
-            // 
-            // iceProducto
-            // 
-            this.iceProducto.HeaderText = "ICE";
-            this.iceProducto.Name = "iceProducto";
-            this.iceProducto.Width = 50;
-            // 
-            // irbpProducto
-            // 
-            this.irbpProducto.HeaderText = "IRBP";
-            this.irbpProducto.Name = "irbpProducto";
-            this.irbpProducto.Width = 50;
-            // 
-            // subtotal
-            // 
-            this.subtotal.HeaderText = "Subtotal";
-            this.subtotal.Name = "subtotal";
-            this.subtotal.ReadOnly = true;
-            this.subtotal.Width = 75;
-            // 
-            // iva
-            // 
-            this.iva.HeaderText = "IVA";
-            this.iva.Name = "iva";
-            this.iva.ReadOnly = true;
-            this.iva.Width = 45;
-            // 
-            // total
-            // 
-            this.total.HeaderText = "Total";
-            this.total.Name = "total";
-            this.total.ReadOnly = true;
-            this.total.Width = 65;
             // 
             // txtTotal
             // 
@@ -856,6 +773,96 @@
             this.label16.TabIndex = 17;
             this.label16.Text = "Desde:";
             // 
+            // codigo
+            // 
+            this.codigo.HeaderText = "Código";
+            this.codigo.Name = "codigo";
+            this.codigo.Width = 110;
+            // 
+            // producto
+            // 
+            this.producto.HeaderText = "Producto";
+            this.producto.Name = "producto";
+            this.producto.ReadOnly = true;
+            this.producto.Width = 160;
+            // 
+            // cantidad
+            // 
+            this.cantidad.HeaderText = "Cant.";
+            this.cantidad.Name = "cantidad";
+            this.cantidad.ReadOnly = true;
+            this.cantidad.Width = 50;
+            // 
+            // precioCompra
+            // 
+            this.precioCompra.HeaderText = "P. C.";
+            this.precioCompra.Name = "precioCompra";
+            this.precioCompra.ReadOnly = true;
+            this.precioCompra.Width = 60;
+            // 
+            // descuento
+            // 
+            this.descuento.HeaderText = "Desc.";
+            this.descuento.Name = "descuento";
+            this.descuento.ReadOnly = true;
+            this.descuento.Width = 70;
+            // 
+            // iceProducto
+            // 
+            this.iceProducto.HeaderText = "ICE";
+            this.iceProducto.Name = "iceProducto";
+            this.iceProducto.ReadOnly = true;
+            this.iceProducto.Width = 50;
+            // 
+            // irbpProducto
+            // 
+            this.irbpProducto.HeaderText = "IRBP";
+            this.irbpProducto.Name = "irbpProducto";
+            this.irbpProducto.ReadOnly = true;
+            this.irbpProducto.Width = 50;
+            // 
+            // precioPublico
+            // 
+            this.precioPublico.HeaderText = "P.V.P";
+            this.precioPublico.Name = "precioPublico";
+            this.precioPublico.ReadOnly = true;
+            this.precioPublico.Width = 60;
+            // 
+            // precioMayorista
+            // 
+            this.precioMayorista.HeaderText = "P. May";
+            this.precioMayorista.Name = "precioMayorista";
+            this.precioMayorista.ReadOnly = true;
+            this.precioMayorista.Width = 75;
+            // 
+            // precioCaja
+            // 
+            this.precioCaja.HeaderText = "P. Cajas";
+            this.precioCaja.Name = "precioCaja";
+            this.precioCaja.ReadOnly = true;
+            this.precioCaja.Width = 85;
+            // 
+            // subtotal
+            // 
+            this.subtotal.HeaderText = "Subtotal";
+            this.subtotal.Name = "subtotal";
+            this.subtotal.ReadOnly = true;
+            this.subtotal.Width = 75;
+            // 
+            // iva
+            // 
+            this.iva.HeaderText = "IVA";
+            this.iva.Name = "iva";
+            this.iva.ReadOnly = true;
+            this.iva.Width = 45;
+            // 
+            // total
+            // 
+            this.total.HeaderText = "Total";
+            this.total.Name = "total";
+            this.total.ReadOnly = true;
+            this.total.Width = 65;
+            // 
             // FrmCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -948,11 +955,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn precioCompra;
         private System.Windows.Forms.DataGridViewTextBoxColumn descuento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iceProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn irbpProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn precioPublico;
         private System.Windows.Forms.DataGridViewTextBoxColumn precioMayorista;
         private System.Windows.Forms.DataGridViewTextBoxColumn precioCaja;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iceProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn irbpProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn subtotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn iva;
         private System.Windows.Forms.DataGridViewTextBoxColumn total;
