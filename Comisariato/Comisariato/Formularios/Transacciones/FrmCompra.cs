@@ -89,17 +89,18 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             {
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "codigo")
                 {
-                    for (int i = 0; i < dgvProductosIngresos.RowCount - 1; i++)
-                    {
-                        if (Convert.ToString(dgvProductosIngresos.Rows[i].Cells[0].Value) == "")
-                        {
-                            string auxiliar = Convert.ToString(dgvProductosIngresos.CurrentCell.Value);
-                            dgvProductosIngresos.CurrentCell.Value = "";
-                            dgvProductosIngresos.CurrentCell = dgvProductosIngresos.Rows[i].Cells[0];
-                            dgvProductosIngresos.Rows[i].Cells[0].Value = auxiliar;
-                            break;
-                        }
-                    }
+                    //for (int i = 0; i < dgvProductosIngresos.RowCount - 1; i++)
+                    //{
+                    //    if (Convert.ToString(dgvProductosIngresos.Rows[i].Cells[0].Value) == "")
+                    //    {
+                    //        string auxiliar = Convert.ToString(dgvProductosIngresos.CurrentCell.Value);
+                    //        dgvProductosIngresos.CurrentCell.Value = "";
+                    //        dgvProductosIngresos.CurrentCell = dgvProductosIngresos.Rows[i].Cells[0];
+                    //        dgvProductosIngresos.Rows[i].Cells[0].Value = auxiliar;
+                    //        break;
+                    //    }
+                    //}
+                    //---------------Desbloquear Celdas
                     for (int i = 0; i < dgvProductosIngresos.ColumnCount - 3; i++)
                     {
                         dgvProductosIngresos.CurrentRow.Cells[i].ReadOnly = false;
@@ -341,7 +342,12 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         {
             Funcion.Validar_Numeros(e);
         }
-        
+
+        private void dgvProductosIngresos_Enter(object sender, EventArgs e)
+        {
+            //dgvProductosIngresos.Rows[0].Cells[0].ReadOnly = false;
+        }
+
         private void btnSalirCompra_Click(object sender, EventArgs e)
         {
             this.Close();

@@ -243,6 +243,7 @@
             this.dgvProductosIngresos.TabIndex = 59;
             this.dgvProductosIngresos.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductosIngresos_CellEndEdit);
             this.dgvProductosIngresos.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvProductosIngresos_EditingControlShowing);
+            this.dgvProductosIngresos.Enter += new System.EventHandler(this.dgvProductosIngresos_Enter);
             this.dgvProductosIngresos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvProductosIngresos_KeyDown);
             // 
             // txtTotal
@@ -777,90 +778,79 @@
             // 
             this.codigo.HeaderText = "Código";
             this.codigo.Name = "codigo";
+            this.codigo.ReadOnly = true;
             this.codigo.Width = 110;
             // 
             // producto
             // 
             this.producto.HeaderText = "Producto";
             this.producto.Name = "producto";
-            this.producto.ReadOnly = true;
             this.producto.Width = 160;
             // 
             // cantidad
             // 
             this.cantidad.HeaderText = "Cant.";
             this.cantidad.Name = "cantidad";
-            this.cantidad.ReadOnly = true;
             this.cantidad.Width = 50;
             // 
             // precioCompra
             // 
             this.precioCompra.HeaderText = "P. C.";
             this.precioCompra.Name = "precioCompra";
-            this.precioCompra.ReadOnly = true;
             this.precioCompra.Width = 60;
             // 
             // descuento
             // 
             this.descuento.HeaderText = "Desc.";
             this.descuento.Name = "descuento";
-            this.descuento.ReadOnly = true;
             this.descuento.Width = 70;
             // 
             // iceProducto
             // 
             this.iceProducto.HeaderText = "ICE";
             this.iceProducto.Name = "iceProducto";
-            this.iceProducto.ReadOnly = true;
             this.iceProducto.Width = 50;
             // 
             // irbpProducto
             // 
             this.irbpProducto.HeaderText = "IRBP";
             this.irbpProducto.Name = "irbpProducto";
-            this.irbpProducto.ReadOnly = true;
             this.irbpProducto.Width = 50;
             // 
             // precioPublico
             // 
             this.precioPublico.HeaderText = "P.V.P";
             this.precioPublico.Name = "precioPublico";
-            this.precioPublico.ReadOnly = true;
             this.precioPublico.Width = 60;
             // 
             // precioMayorista
             // 
             this.precioMayorista.HeaderText = "P. May";
             this.precioMayorista.Name = "precioMayorista";
-            this.precioMayorista.ReadOnly = true;
             this.precioMayorista.Width = 75;
             // 
             // precioCaja
             // 
             this.precioCaja.HeaderText = "P. Cajas";
             this.precioCaja.Name = "precioCaja";
-            this.precioCaja.ReadOnly = true;
             this.precioCaja.Width = 85;
             // 
             // subtotal
             // 
             this.subtotal.HeaderText = "Subtotal";
             this.subtotal.Name = "subtotal";
-            this.subtotal.ReadOnly = true;
             this.subtotal.Width = 75;
             // 
             // iva
             // 
             this.iva.HeaderText = "IVA";
             this.iva.Name = "iva";
-            this.iva.ReadOnly = true;
             this.iva.Width = 45;
             // 
             // total
             // 
             this.total.HeaderText = "Total";
             this.total.Name = "total";
-            this.total.ReadOnly = true;
             this.total.Width = 65;
             // 
             // FrmCompra
