@@ -64,6 +64,8 @@
             this.txtConsultarCombo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvDatosCombo = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dgvDetalleCombo = new System.Windows.Forms.DataGridView();
             this.gbproductosParaCombo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductosParaCombo)).BeginInit();
             this.tcComboProducto.SuspendLayout();
@@ -72,6 +74,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductosEnCombo)).BeginInit();
             this.tpConsultarModificarCombo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatosCombo)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleCombo)).BeginInit();
             this.SuspendLayout();
             // 
             // gbproductosParaCombo
@@ -337,6 +341,7 @@
             this.dgvProductosEnCombo.RowHeadersVisible = false;
             this.dgvProductosEnCombo.Size = new System.Drawing.Size(935, 137);
             this.dgvProductosEnCombo.TabIndex = 2;
+            this.dgvProductosEnCombo.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvProductosEnCombo_EditingControlShowing);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -393,6 +398,7 @@
             // tpConsultarModificarCombo
             // 
             this.tpConsultarModificarCombo.BackColor = System.Drawing.Color.Bisque;
+            this.tpConsultarModificarCombo.Controls.Add(this.groupBox1);
             this.tpConsultarModificarCombo.Controls.Add(this.txtConsultarCombo);
             this.tpConsultarModificarCombo.Controls.Add(this.label2);
             this.tpConsultarModificarCombo.Controls.Add(this.dgvDatosCombo);
@@ -406,18 +412,19 @@
             // 
             // txtConsultarCombo
             // 
-            this.txtConsultarCombo.Location = new System.Drawing.Point(296, 25);
+            this.txtConsultarCombo.Location = new System.Drawing.Point(87, 25);
             this.txtConsultarCombo.Margin = new System.Windows.Forms.Padding(2);
             this.txtConsultarCombo.Name = "txtConsultarCombo";
-            this.txtConsultarCombo.Size = new System.Drawing.Size(571, 22);
+            this.txtConsultarCombo.Size = new System.Drawing.Size(374, 22);
             this.txtConsultarCombo.TabIndex = 8;
+            this.txtConsultarCombo.TextChanged += new System.EventHandler(this.txtConsultarCombo_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 9.75F);
             this.label2.ForeColor = System.Drawing.Color.Teal;
-            this.label2.Location = new System.Drawing.Point(182, 28);
+            this.label2.Location = new System.Drawing.Point(20, 28);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 16);
@@ -438,8 +445,31 @@
             this.dgvDatosCombo.Location = new System.Drawing.Point(19, 63);
             this.dgvDatosCombo.Margin = new System.Windows.Forms.Padding(2);
             this.dgvDatosCombo.Name = "dgvDatosCombo";
-            this.dgvDatosCombo.Size = new System.Drawing.Size(977, 458);
+            this.dgvDatosCombo.ReadOnly = true;
+            this.dgvDatosCombo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDatosCombo.Size = new System.Drawing.Size(517, 458);
             this.dgvDatosCombo.TabIndex = 6;
+            this.dgvDatosCombo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosCombo_CellClick);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dgvDetalleCombo);
+            this.groupBox1.Location = new System.Drawing.Point(564, 54);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(444, 467);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Detalle Combo";
+            // 
+            // dgvDetalleCombo
+            // 
+            this.dgvDetalleCombo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDetalleCombo.Location = new System.Drawing.Point(20, 30);
+            this.dgvDetalleCombo.Name = "dgvDetalleCombo";
+            this.dgvDetalleCombo.ReadOnly = true;
+            this.dgvDetalleCombo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDetalleCombo.Size = new System.Drawing.Size(408, 413);
+            this.dgvDetalleCombo.TabIndex = 0;
             // 
             // FrmComboProductos
             // 
@@ -466,6 +496,8 @@
             this.tpConsultarModificarCombo.ResumeLayout(false);
             this.tpConsultarModificarCombo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatosCombo)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleCombo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -504,5 +536,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.DataGridView dgvDetalleCombo;
     }
 }

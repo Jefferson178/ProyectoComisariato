@@ -28,10 +28,23 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         private void FrmComboProductos_Load(object sender, EventArgs e)
         {
             objc = new Consultas();
-
             objc.CargarProductoCombo("SELECT TbProducto.IDPRODUCTO, TbProducto.PRECIOPUBLICO_SIN_IVA, TbProducto.CANTIDAD, TbProducto.CODIGOBARRA, TbProducto.NOMBREPRODUCTO, TbBodega.NOMBRE, TbCategoria.DESCRIPCION from TbProducto  INNER JOIN TbAsignacionProdcutoBodega ON(TbProducto.IDPRODUCTO=TbAsignacionProdcutoBodega.IDPRODUCTO ) INNER JOIN TbBodega ON (TbAsignacionProdcutoBodega.IDBODEGA=TbBodega.IDBODEGA) INNER JOIN TbCategoria ON (TbProducto.IDCATEGORIA=TbCategoria.IDCATEGORIA);", dgvProductosParaCombo);
-            dgvProductosParaCombo.Columns[7].Visible = false;
+            
+
+
+            objc.CargarCombos("SELECT TbCombo.IDCOMBO, TbCombo.PRECIO, TbCombo.CANTIDAD, TbCombo.CODIGO, TbCombo.NOMBRE from TbCombo", dgvDatosCombo);
             //dgvProductosParaCombo.Columns[0].Width = 150;
+            AnchoColumna();
+        }
+
+        private void AnchoColumna()
+        {
+
+            dgvProductosParaCombo.Columns[7].Visible = false;
+            dgvDatosCombo.Columns[4].Visible = false;
+            dgvProductosParaCombo.Columns[6].Width = 20;
+            dgvProductosParaCombo.Columns[1].Width = 181;
+            dgvProductosParaCombo.Columns[0].Width = 150;
 
         }
 
@@ -51,10 +64,13 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 }
                 else
                 {
+                    dgvProductosParaCombo.Rows[e.RowIndex].Cells[6].Value = true;
                     if (dgvProductosParaCombo.Rows[e.RowIndex].Cells[0].Value != null && dgvProductosParaCombo.Rows[e.RowIndex].Cells[1].Value != null)
                     {
+                        
                         if (verificarindex(e.RowIndex))
                         {
+                            
                             indezp.RemoveAt(posindexp);
                         }
                         else
@@ -135,63 +151,73 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 {
                     if (VerificarCantidades())
                     {
-                        if (txtCodigoCombo.Text!="")
+                        if (verificarCantidadeslimites())
                         {
-                            bool b1 = objc.verificarRepetido("select * from TbCombo U where U.CODIGO='" + txtCodigoCombo.Text + "'");
-                            if (!b1)
+                            if (txtCodigoCombo.Text != "")
                             {
-                                if (txtNombreCombo.Text != "")
+                                bool b1 = objc.verificarRepetido("select * from TbCombo U where U.CODIGO='" + txtCodigoCombo.Text + "'");
+                                if (!b1)
                                 {
-                                    if (txtCantCombo.Text != "")
+                                    if (txtNombreCombo.Text != "")
                                     {
-                                        if (txtPrecioCombo.Text != "")
+                                        if (txtCantCombo.Text != "")
                                         {
-                                            //Consultas c = new Consultas();
-                                            int filas = indezp.Count;
-                                            List<String> encabezadoCombo = new List<String>();
-                                            encabezadoCombo.Add(txtCodigoCombo.Text);
-                                            encabezadoCombo.Add(txtNombreCombo.Text);
-                                            encabezadoCombo.Add(txtCantCombo.Text);
-                                            encabezadoCombo.Add(txtPrecioCombo.Text);
-                                            bool b = objc.GrabarCombo(encabezadoCombo, dgvProductosEnCombo, filas);
-                                            if (b)
+                                            if (txtPrecioCombo.Text != "")
                                             {
-                                                MessageBox.Show("Registro realizado con exito.");
-                                                Limpiar();
+                                                //Consultas c = new Consultas();
+                                                int filas = indezp.Count;
+                                                List<String> encabezadoCombo = new List<String>();
+                                                encabezadoCombo.Add(txtCodigoCombo.Text);
+                                                encabezadoCombo.Add(txtNombreCombo.Text);
+                                                encabezadoCombo.Add(txtCantCombo.Text);
+                                                encabezadoCombo.Add(txtPrecioCombo.Text);
+                                                bool b = objc.GrabarCombo(encabezadoCombo, dgvProductosEnCombo, filas);
+                                                if (b)
+                                                {
+                                                    MessageBox.Show("Registro realizado con exito.");
+                                                    Limpiar();
+                                                }
+                                                else
+                                                {
+                                                    MessageBox.Show("Error al realizar el registro.");
+                                                }
                                             }
                                             else
                                             {
-                                                MessageBox.Show("Error al realizar el registro.");
+                                                MessageBox.Show("Ingresa el precio del combo.");
                                             }
                                         }
                                         else
                                         {
-                                            MessageBox.Show("Ingresa el precio del combo.");
+                                            MessageBox.Show("Ingresa la cantidad del combo.");
+                                            txtCantCombo.Focus();
                                         }
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Ingresa la cantidad del combo.");
-                                        txtCantCombo.Focus();
+                                        MessageBox.Show("Ingresa el nombre del codigo.");
+                                        txtNombreCombo.Focus();
                                     }
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Ingresa el nombre del codigo.");
-                                    txtNombreCombo.Focus();
+                                    MessageBox.Show("Ya existe un combo registrado con ese codigo");
+                                    txtCodigoCombo.Focus();
                                 }
+
                             }
                             else
                             {
-                                MessageBox.Show("Ya existe un combo registrado con ese codigo");
+                                MessageBox.Show("Ingresa el código del combo.");
                                 txtCodigoCombo.Focus();
                             }
-                            
                         }
                         else
                         {
-                            MessageBox.Show("Ingresa el código del combo.");
-                            txtCodigoCombo.Focus();
+                            MessageBox.Show("La cantidad ingresada nunca debe ser mayor a la cantida en bodega\n Errror... Fila: "+posicion+"  Producto: "+producto);
+                            dgvProductosEnCombo.Focus();
+                            dgvProductosEnCombo.CurrentCell = dgvProductosEnCombo.Rows[posicion - 1].Cells[3];
+                            dgvProductosEnCombo.BeginEdit(true);
                         }
                     }
                     else
@@ -227,6 +253,27 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             return b;
         }
 
+        private int posicion = 0;
+        private string producto;
+
+        private bool verificarCantidadeslimites()
+        {
+            bool b = true;
+            for (int i = 0; i < indezp.Count; i++)
+            {
+                int cantidadingresada = Convert.ToInt32(dgvProductosEnCombo.Rows[i].Cells[3].Value);
+                int cantidadbodega= Convert.ToInt32(dgvProductosEnCombo.Rows[i].Cells[5].Value);
+                if ( cantidadingresada>cantidadbodega)
+                {
+                    producto =Convert.ToString(dgvProductosEnCombo.Rows[i].Cells[2].Value);
+                    posicion = i+1;
+                    b = false;
+                    break;
+                }
+            }
+            return b;
+        }
+
         private void txtBuscarProductosParaCombo_TextChanged(object sender, EventArgs e)
         {
             objc = new Consultas();
@@ -248,10 +295,12 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             txtCantCombo.Text = "";
             txtPrecioCombo.Text = "";
             dgvProductosEnCombo.Rows.Clear();
-            objc = new Consultas();
 
+            objc = new Consultas();
             objc.CargarProductoCombo("SELECT TbProducto.IDPRODUCTO, TbProducto.PRECIOPUBLICO_SIN_IVA, TbProducto.CANTIDAD, TbProducto.CODIGOBARRA, TbProducto.NOMBREPRODUCTO, TbBodega.NOMBRE, TbCategoria.DESCRIPCION from TbProducto  INNER JOIN TbAsignacionProdcutoBodega ON(TbProducto.IDPRODUCTO=TbAsignacionProdcutoBodega.IDPRODUCTO ) INNER JOIN TbBodega ON (TbAsignacionProdcutoBodega.IDBODEGA=TbBodega.IDBODEGA) INNER JOIN TbCategoria ON (TbProducto.IDCATEGORIA=TbCategoria.IDCATEGORIA);", dgvProductosParaCombo);
-            dgvProductosParaCombo.Columns[7].Visible = false;
+            objc.CargarCombos("SELECT TbCombo.IDCOMBO, TbCombo.PRECIO, TbCombo.CANTIDAD, TbCombo.CODIGO, TbCombo.NOMBRE from TbCombo", dgvDatosCombo);
+            //dgvProductosParaCombo.Columns[0].Width = 150;
+            AnchoColumna();
             txtCodigoCombo.Focus();
         }
 
@@ -316,6 +365,57 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             else
             {
                 Funcion.SoloValores(e,txtPrecioCombo.Text);
+            }
+        }
+
+        private void dgvProductosEnCombo_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (e.Control is TextBox)
+            {
+                TextBox txt = e.Control as TextBox;
+
+
+                txt.KeyPress += OnlyNumbersdgvcheque_KeyPress;
+                // Funcion.SoloValores(e,txt);
+            }
+        }
+        private void OnlyNumbersdgvcheque_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (dgvProductosEnCombo.CurrentCell == this.dgvProductosEnCombo.CurrentRow.Cells[3])
+            {
+                if (!Char.IsDigit(e.KeyChar) && e.KeyChar != 8) // Si no es numerico y si no es espacio
+                {
+                    // Invalidar la accion
+                    e.Handled = true;
+                    // Enviar el sonido de beep de windows
+                    System.Media.SystemSounds.Beep.Play();
+                }
+
+            }
+
+
+        }
+
+        private void txtConsultarCombo_TextChanged(object sender, EventArgs e)
+        {
+            objc = new Consultas();
+            objc.CargarCombos("SELECT TbCombo.IDCOMBO, TbCombo.PRECIO, TbCombo.CANTIDAD, TbCombo.CODIGO, TbCombo.NOMBRE from TbCombo where TbCombo.NOMBRE like '%" + txtConsultarCombo.Text + "%' or TbCombo.CODIGO like '%" + txtConsultarCombo.Text + "%'", dgvDatosCombo);
+            //datos = objc.CargarProductoCombo("SELECT TbProducto.PRECIOPUBLICO_SIN_IVA, TbProducto.CANTIDAD, TbProducto.CODIGOBARRA, TbProducto.NOMBREPRODUCTO, TbBodega.NOMBRE, TbCategoria.DESCRIPCION from TbProducto  INNER JOIN TbAsignacionProdcutoBodega ON(TbProducto.IDPRODUCTO=TbAsignacionProdcutoBodega.IDPRODUCTO ) INNER JOIN TbBodega ON (TbAsignacionProdcutoBodega.IDBODEGA=TbBodega.IDBODEGA) INNER JOIN TbCategoria ON (TbProducto.IDCATEGORIA=TbCategoria.IDCATEGORIA) where TbProducto.NOMBREPRODUCTO like '%" + txtBuscarProductosParaCombo.Text + "%' or TbProducto.CODIGOBARRA like '%" + txtBuscarProductosParaCombo.Text + "%'");
+            dgvDatosCombo.Columns[4].Visible = false;
+        }
+
+        private void dgvDatosCombo_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                //dgvDetalleCombo.Rows.Clear();
+                objc = new Consultas();
+                objc.CargarProductosdelcombo(Convert.ToString(dgvDatosCombo.Rows[e.RowIndex].Cells[4].Value), dgvDetalleCombo);
+            }
+            catch (Exception)
+            {
+
+                //throw;
             }
         }
     }
