@@ -740,35 +740,7 @@ namespace Comisariato.Clases
             }
         }
 
-        //public String buscarcliente(string identificacion)
-        //{
-
-
-        //    try
-        //    {
-        //        Objc.conectar();
-        //        SqlCommand Sentencia = new SqlCommand("select U.IDENTIFICACION, U.NOMBRES, U.APELLIDOS from TbCliente U where U.IDENTIFICACION='" + identificacion + "';");
-        //        Sentencia.Connection = ConexionBD.connection;
-        //        SqlDataReader dato = Sentencia.ExecuteReader();
-        //        Objc.Cerrar();
-        //        if (dato.Read() == true)
-        //        {
-        //            return (String)dato["NOMBRES"] + " " + (String)dato["APELLIDOS"];
-        //        }
-        //        else
-        //        {
-        //            //producto = null;
-        //            return null;
-        //            // MessageBox.Show("No se encontró ningun producto con ese codigo.");
-        //            //DgvDetalle.Rows.RemoveAt(e.RowIndex);
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return null;
-        //    }
-
+        
 
         //}
         //public bool GuardarImagen(string tablasql, string campo, PictureBox PbImagen, int IDCondicion)
@@ -1119,7 +1091,7 @@ namespace Comisariato.Clases
                 dg.Columns[3].Width = 100;
                 dg.Columns[4].Width = 80;
                 dg.Columns[5].Width = 80;
-                dg.Columns[6].Width = 50;
+                dg.Columns[6].Width = 30;
                 //return lista;
             }
             catch (Exception ex)
@@ -1128,6 +1100,82 @@ namespace Comisariato.Clases
                // return null;
             }
         }
+
+
+        public void CargarCombos(String sql, DataGridView dg)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+
+                dt.Columns.Add("CODIGO", typeof(String));
+                dt.Columns.Add("NOMBRE COMBO", typeof(String));
+                dt.Columns.Add("CANTIDAD", typeof(String));
+                dt.Columns.Add("PRECIO", typeof(String));
+                dt.Columns.Add("ID", typeof(String));
+                // dt.Columns.Add("IVA", typeof(bool));
+                //List<Producto> lista = new List<Producto>();
+                Objc.conectar();
+                SqlCommand comando = new SqlCommand(sql);
+                comando.Connection = ConexionBD.connection;
+                SqlDataReader dato = comando.ExecuteReader();
+                Objc.Cerrar();
+                while (dato.Read() == true)
+                {
+                    
+                  dt.Rows.Add(dato["CODIGO"].ToString(), dato["NOMBRE"].ToString(),  dato["CANTIDAD"].ToString(), dato["PRECIO"], dato["IDCOMBO"]);
+                    
+
+
+                }
+                dg.DataSource = dt;
+                
+                //return lista;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar cliente: " + ex);
+                // return null;
+            }
+        }
+
+        public void CargarProductosdelcombo(String id, DataGridView dg)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+
+                dt.Columns.Add("CODIGO", typeof(String));
+                dt.Columns.Add("NOMBRE", typeof(String));
+                dt.Columns.Add("CANTIDAD", typeof(String));
+                //dt.Columns.Add("PRECIO", typeof(String));
+                //dt.Columns.Add("ID", typeof(String));
+                // dt.Columns.Add("IVA", typeof(bool));
+                //List<Producto> lista = new List<Producto>();
+                Objc.conectar();
+                SqlCommand comando = new SqlCommand("SELECT TbProducto.CODIGOBARRA, TbProducto.NOMBREPRODUCTO, TbRelacionComboProducto.Cant from TbRelacionComboProducto INNER JOIN TbProducto ON(TbRelacionComboProducto.IDCOMBO='"+id+"' and TbProducto.IDPRODUCTO=TbRelacionComboProducto.IDPRODUCTO)");
+                comando.Connection = ConexionBD.connection;
+                SqlDataReader dato = comando.ExecuteReader();
+                Objc.Cerrar();
+                while (dato.Read() == true)
+                {
+
+                    dt.Rows.Add(dato["CODIGOBARRA"].ToString(), dato["NOMBREPRODUCTO"].ToString(), dato["Cant"].ToString());
+
+
+
+                }
+                dg.DataSource = dt;
+
+                //return lista;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar cliente: " + ex);
+                // return null;
+            }
+        }
+
 
         public bool GrabarCombo(List<String>encabezadoCombo,DataGridView dg,int nfilas)
         {
