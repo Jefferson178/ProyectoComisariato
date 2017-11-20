@@ -957,7 +957,7 @@ namespace Comisariato.Clases
                 cmd.Parameters.AddWithValue("@NUMERO_ORDEN_COMPRA", ObjCompra.OrdenCompra);
                 cmd.Parameters.AddWithValue("@IDSUCURSAL", ObjCompra.Sucursal);
                 cmd.Parameters.AddWithValue("@FLETE", ObjCompra.Flete);
-                cmd.Parameters.AddWithValue("@FECHAORDENCOMPRA", ObjCompra.FechaOrdenCompra.Date.ToShortDateString());
+                cmd.Parameters.AddWithValue("@FECHAORDENCOMPRA", ObjCompra.FechaOrdenCompra);
                 cmd.Parameters.AddWithValue("@IDPROVEEDOR", ObjCompra.Proveedor);
                 cmd.Parameters.AddWithValue("@TERMINOPAGO", ObjCompra.TerminoPago.ToUpper());
                 cmd.Parameters.AddWithValue("@PLAZOORDENCOMPRA", ObjCompra.Plazo.ToUpper());

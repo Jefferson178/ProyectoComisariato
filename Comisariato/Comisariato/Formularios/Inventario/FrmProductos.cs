@@ -97,6 +97,9 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         if (Program.FormularioLlamado)
                         {
                             FrmCompra.datosProductoCompra.CurrentRow.Cells[1].Value = txtNombreProducto.Text;
+                            FrmCompra.datosProductoCompra.CurrentRow.Cells[7].Value = txtPVPSinIVAProducto.Text;
+                            FrmCompra.datosProductoCompra.CurrentRow.Cells[8].Value = txtPrecioMayorSinIVAProducto.Text;
+                            FrmCompra.datosProductoCompra.CurrentRow.Cells[9].Value = txtPrecioCajaSinIVAProducto.Text;
                             FrmCompra.datosProductoCompra.CurrentCell = FrmCompra.datosProductoCompra.CurrentRow.Cells[2];
                             FrmCompra.datosProductoCompra.BeginEdit(true);
                             Program.FormularioLlamado = false;
