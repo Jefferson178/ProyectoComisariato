@@ -133,7 +133,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         //    dgvProductosIngresos.CurrentRow.Cells[3].Value = objProducto.Preciopublico_iva;
                         //else
                         //    dgvProductosIngresos.CurrentRow.Cells[3].Value = objProducto.Preciopublico_sin_iva;
-                        dgvProductosIngresos.CurrentCell = dgvProductosIngresos.CurrentRow.Cells[2];
+                        //dgvProductosIngresos.CurrentCell = dgvProductosIngresos.CurrentRow.Cells[2];
                         SendKeys.Send("{TAB}");
                     }
 
@@ -345,7 +345,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
 
         private void dgvProductosIngresos_Enter(object sender, EventArgs e)
         {
-            //dgvProductosIngresos.Rows[0].Cells[0].ReadOnly = false;
+            dgvProductosIngresos.Rows[0].Cells[0].ReadOnly = false;
         }
 
         private void btnSalirCompra_Click(object sender, EventArgs e)
