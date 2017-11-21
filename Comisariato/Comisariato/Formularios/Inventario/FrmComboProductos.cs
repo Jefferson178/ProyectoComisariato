@@ -435,8 +435,9 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
 
                     if (this.dgvDatosCombo.Columns[e.ColumnIndex].Name == "Desabilitar")
                     {
+                        ///"UPDATE TbProveedor SET ESTADO = 1 WHERE IDENTIFICACION = '" + Identificacion + "'"
                         //objc = new Consultas();
-                        //objc.CargarProductosdelcombo(Convert.ToString(dgvDatosCombo.Rows[e.RowIndex].Cells[6].Value), dgvDetalleCombo);
+                        //objc.EjecutarSQL("UPDATE TbCombo SET ESTADO = 1 WHERE IDENTIFICACION = '" + Identificacion + "'");
                         //cargarDatos("1");
                     }
                 }
@@ -444,7 +445,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 {
                     if (this.dgvDatosCombo.Columns[e.ColumnIndex].Name == "Desabilitar")
                     {
-                        //ObjProvee.EstadoProveedor(dgvDatosProveedor.CurrentRow.Cells[3].Value.ToString(), 1);
+                       // objc.EstadoProveedor(dgvDatosProveedor.CurrentRow.Cells[3].Value.ToString(), 1);
                         //cargarDatos("0");
                     }
                 }
