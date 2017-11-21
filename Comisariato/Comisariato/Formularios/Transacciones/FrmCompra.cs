@@ -68,11 +68,16 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             }
             if (dataGridCorrecto)
             {
-                if (txtFlete.Text != "" && txtPlazoOC.Text != "" && txtSerie1.Text != "" && txtSerie2.Text != "" && txtNumero.Text != "")
+                if (txtPlazoOC.Text != "" && txtSerie1.Text != "" && txtSerie2.Text != "" && txtNumero.Text != "")
                 {
                     int idEncabezadoCompra = 0;
-                    ObjEncabezadoCompra = new EmcabezadoCompra(txtSerie1.Text, txtSerie2.Text, txtNumero.Text, Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtSubtutalIVA.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtSubtotal0.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtSubtotal.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtTotal.Text)), txtOrdenCompra.Text, Convert.ToInt32(cbSucursal.SelectedValue), Convert.ToSingle(txtFlete.Text), dtpFechaOC.Value, Convert.ToInt32(datosProveedor.SelectedValue), cbTerminoPago.Text, txtPlazoOC.Text, cbImpuesto.Text
-                        , txtObservacion.Text, Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtIVA.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtICE.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtIRBP.Text)));
+                    ObjEncabezadoCompra = new EmcabezadoCompra(txtSerie1.Text, txtSerie2.Text, txtNumero.Text, Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtSubtutalIVA.Text)), 
+                        Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtSubtotal0.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtSubtotal.Text)), 
+                        Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtTotal.Text)), txtOrdenCompra.Text, Convert.ToInt32(cbSucursal.SelectedValue), Convert.ToSingle(txtFlete.Text), 
+                        dtpFechaOC.Value, Convert.ToInt32(datosProveedor.SelectedValue), cbTerminoPago.Text, txtPlazoOC.Text, cbImpuesto.Text, txtObservacion.Text, 
+                        Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtIVA.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtICE.Text)), 
+                        Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtIRBP.Text)));
+                    //--------------------------------------------------------------------------------
                     String resultadoEncabezado = ObjEncabezadoCompra.InsertarEncabezadoyPieCompra(ObjEncabezadoCompra); // retorna true si esta correcto todo
                     consultas.ObtenerIDCompra(ref idEncabezadoCompra, "select IDEMCABEZADOCOMPRA as ID FROM TbEncabezadoyPieCompra where ORDEN_COMPRA_NUMERO = '" + txtOrdenCompra.Text + "'");
                     for (int i = 0; i < datosProductoCompra.RowCount; i++)
@@ -84,7 +89,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         {
                         }
                         else if (resultadoDetalle == "Error al Registrar")
-                            MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("Error al guardar Producto", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         if (Convert.ToString(datosProductoCompra.Rows[i + 1].Cells[0].Value) == "")
                             break;
                     }
@@ -93,7 +98,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     {
                         MessageBox.Show("Compra Registrada Correctamente ", "Exito", MessageBoxButtons.OK);
                     }
-                    else if (resultadoEncabezado == "Error al Registrar") { MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                    else if (resultadoEncabezado == "Error al Registrar Encabezado") { MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                     else if (resultadoEncabezado == "Existe") { MessageBox.Show("Ya Existe el Empleado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }
                 }
                 else
@@ -150,6 +155,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         {
             bool banderaTab = false;
             objProducto = new Producto();
+            int into = 0;
             float iva = 0.0f, subtotal = 0.0f, total = 0.0f;
             try
             {
