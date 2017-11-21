@@ -107,7 +107,45 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             
             
         }
-
+        bool banderaFocoCelda = false;
+        public void ValidaCeldasPrecios(int posicion)
+        {
+            try
+            {
+                float valor;
+                string validaValores = Convert.ToString(datosProductoCompra.CurrentRow.Cells[posicion].Value);
+                if (validaValores.Substring(0, 1) == "." || validaValores.Substring(0, 1) == ",")
+                {
+                    validaValores = "0" + validaValores;
+                }
+                if (validaValores.Substring(validaValores.Length - 1, 1) == "." || validaValores.Substring(validaValores.Length - 1, 1) == ",")
+                {
+                    validaValores = validaValores + "0";
+                }
+                int ocurrencias, ocurrecias2;
+                ocurrencias = validaValores.Split('.').Length - 1;
+                ocurrecias2 = validaValores.Split(new String[] { ".," }, StringSplitOptions.None).Length - 1;
+                if (ocurrencias > 1 || ocurrecias2 != 0)
+                {
+                    valor = float.Parse("a");
+                }
+                else if (ocurrencias == 0)
+                {
+                    validaValores = validaValores + ".0";
+                }
+                valor = float.Parse(validaValores);
+                datosProductoCompra.CurrentRow.Cells[posicion].Value = Funcion.reemplazarcaracter(validaValores);
+                banderaFocoCelda = false;
+            }
+            catch (Exception errorPrecio)
+            {
+                MessageBox.Show("Ingresar valores correctos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                datosProductoCompra.CurrentRow.Cells[posicion].Value = "";
+                //datosProductoCompra.BeginEdit(true);
+                SendKeys.Send("{LEFT}");
+                banderaFocoCelda = true;
+            }
+        }
         private void dgvProductosIngresos_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             bool banderaTab = false;
@@ -117,17 +155,6 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             {
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "codigo")
                 {
-                    //for (int i = 0; i < datosProductoCompra.RowCount - 1; i++)
-                    //{
-                    //    if (Convert.ToString(datosProductoCompra.Rows[i].Cells[0].Value) == "")
-                    //    {
-                    //        string auxiliar = Convert.ToString(datosProductoCompra.CurrentCell.Value);
-                    //        datosProductoCompra.CurrentCell.Value = "";
-                    //        datosProductoCompra.CurrentCell = datosProductoCompra.Rows[i].Cells[0];
-                    //        datosProductoCompra.Rows[i].Cells[0].Value = auxiliar;
-                    //        break;
-                    //    }
-                    //}
                     //---------------Desbloquear Celdas
                     for (int i = 0; i < datosProductoCompra.ColumnCount - 3; i++)
                     {
@@ -158,111 +185,41 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         datosProductoCompra.CurrentRow.Cells[7].Value = objProducto.Preciopublico_sin_iva;
                         datosProductoCompra.CurrentRow.Cells[8].Value = objProducto.Precioalmayor_sin_iva;
                         datosProductoCompra.CurrentRow.Cells[9].Value = objProducto.Precioporcaja_sin_iva;
-                        //datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
-                        //datosProductoCompra.CurrentRow.Cells[3].Value = objProducto.PrecioCompra;
-                        //if (objProducto.Ivaestado)
-                        //    datosProductoCompra.CurrentRow.Cells[3].Value = objProducto.Preciopublico_iva;
-                        //else
-                        //    datosProductoCompra.CurrentRow.Cells[3].Value = objProducto.Preciopublico_sin_iva;
-                        //datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
                         SendKeys.Send("{TAB}");
                     }
 
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioCompra")
                 {
-                    try
-                    {
-                        float valor = float.Parse(datosProductoCompra.CurrentRow.Cells[3].Value.ToString());
-                        datosProductoCompra.CurrentRow.Cells[3].Value = Funcion.reemplazarcaracter(datosProductoCompra.CurrentRow.Cells[3].Value.ToString());
-                    }
-                    catch (Exception errorPrecio)
-                    {
-                        MessageBox.Show("Ingresar valores correctos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        SendKeys.Send("{LEFT}");
-                    }
+                    ValidaCeldasPrecios(3);
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "descuento")
                 {
-                    try
-                    {
-                        float valor = float.Parse(datosProductoCompra.CurrentRow.Cells[4].Value.ToString());
-                        datosProductoCompra.CurrentRow.Cells[4].Value = Funcion.reemplazarcaracter(datosProductoCompra.CurrentRow.Cells[4].Value.ToString());
-                    }
-                    catch (Exception errorDescuento)
-                    {
-                        MessageBox.Show("Ingresar valores correctos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        SendKeys.Send("{LEFT}");
-                    }
+                    ValidaCeldasPrecios(4);
+                    //SendKeys.Send("{LEFT}");
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "iceProducto")
                 {
-                    try
-                    {
-                        float valor = float.Parse(datosProductoCompra.CurrentRow.Cells[5].Value.ToString());
-                        datosProductoCompra.CurrentRow.Cells[5].Value = Funcion.reemplazarcaracter(datosProductoCompra.CurrentRow.Cells[5].Value.ToString());
-                    }
-                    catch (Exception errorDescuento)
-                    {
-                        MessageBox.Show("Ingresar valores correctos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        SendKeys.Send("{LEFT}");
-                    }
+                    ValidaCeldasPrecios(5);
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "irbpProducto")
                 {
-                    try
-                    {
-                        float valor = float.Parse(datosProductoCompra.CurrentRow.Cells[6].Value.ToString());
-                        datosProductoCompra.CurrentRow.Cells[6].Value = Funcion.reemplazarcaracter(datosProductoCompra.CurrentRow.Cells[6].Value.ToString());
-                        datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[12];
-                    }
-                    catch (Exception errorDescuento)
-                    {
-                        MessageBox.Show("Ingresar valores correctos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        SendKeys.Send("{LEFT}");
-                    }
+                    ValidaCeldasPrecios(6);
+                    datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[12];
+                    datosProductoCompra.Rows[e.RowIndex + 1].Cells[0].ReadOnly = false;
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioPublico")
                 {
-                    try
-                    {
-                        float valor = float.Parse(datosProductoCompra.CurrentRow.Cells[7].Value.ToString());
-                        datosProductoCompra.CurrentRow.Cells[7].Value = Funcion.reemplazarcaracter(datosProductoCompra.CurrentRow.Cells[7].Value.ToString());
-                        datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[12];
-                    }
-                    catch (Exception errorDescuento)
-                    {
-                        MessageBox.Show("Ingresar valores correctos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        SendKeys.Send("{LEFT}");
-                    }
+                    ValidaCeldasPrecios(7);
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioMayorista")
                 {
-                    try
-                    {
-                        float valor = float.Parse(datosProductoCompra.CurrentRow.Cells[8].Value.ToString());
-                        datosProductoCompra.CurrentRow.Cells[7].Value = Funcion.reemplazarcaracter(datosProductoCompra.CurrentRow.Cells[7].Value.ToString());
-                        datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[12];
-                    }
-                    catch (Exception errorDescuento)
-                    {
-                        MessageBox.Show("Ingresar valores correctos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        SendKeys.Send("{LEFT}");
-                    }
+                    ValidaCeldasPrecios(8);
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioCaja")
                 {
-                    try
-                    {
-                        float valor = float.Parse(datosProductoCompra.CurrentRow.Cells[9].Value.ToString());
-                        datosProductoCompra.CurrentRow.Cells[9].Value = Funcion.reemplazarcaracter(datosProductoCompra.CurrentRow.Cells[9].Value.ToString());
-                        datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[12];
-                    }
-                    catch (Exception errorDescuento)
-                    {
-                        MessageBox.Show("Ingresar valores correctos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        SendKeys.Send("{LEFT}");
-                    }
+                    ValidaCeldasPrecios(9);
+                    datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[12];
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioCompra" || datosProductoCompra.Columns[e.ColumnIndex].Name == "cantidad")
                 {
@@ -283,7 +240,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             if (!banderaTab)
                 SendKeys.Send("{TAB}");
 
-        }
+                    }
         private void Calcular()
         {
             float sumasubiva = 0.0f, sumasubcero = 0.0f, totalpagar = 0.0f, ivatotal = 0.0f, sumaice = 0.0f, sumairbp = 0.0f;
@@ -325,7 +282,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         {
             if (e.KeyCode == Keys.Enter)
             {
-                e.SuppressKeyPress = true;
+                e.Handled = true;
                 SendKeys.Send("{TAB}");
             }
         }
@@ -381,12 +338,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         {
             Funcion.SoloValores(e, txtFlete.Text);
         }
-
-        private void txtObservacion_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            Funcion.Validar_Letras(e);
-        }
-
+        
         private void txtPlazoOC_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.validar_Num_Letras(e);
@@ -419,40 +371,54 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
 
         private void dgvProductosIngresos_Enter(object sender, EventArgs e)
         {
-            //datosProductoCompra.Rows[0].Cells[0].ReadOnly = false;
+            try
+            {
+                datosProductoCompra.Rows[0].Cells[0].ReadOnly = false;
+            }
+            catch (Exception)
+            {
+            }
+            
         }
 
         private void dgvProductosIngresos_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            //bool verificaCeldasLlenas = false;
-            //try
-            //{
-            //    if (datosProductoCompra.CurrentRow != datosProductoCompra.Rows[0])
-            //    {
-            //        for (int i = 0; i < datosProductoCompra.ColumnCount - 3; i++)
-            //        {
-            //            if (Convert.ToString(datosProductoCompra.Rows[e.RowIndex - 1].Cells[i].Value) != "")
-            //            {
-            //                verificaCeldasLlenas = true;
-            //            }
-            //            else
-            //                verificaCeldasLlenas = false;
-            //        }
-            //    }
-            //    if (verificaCeldasLlenas && datosProductoCompra.CurrentRow != datosProductoCompra.Rows[0])
-            //    {
-            //        datosProductoCompra.Rows[e.RowIndex].Cells[0].ReadOnly = false;
-            //    }
-            //    else if (!verificaCeldasLlenas && datosProductoCompra.CurrentRow != datosProductoCompra.Rows[0])
-            //    {
-            //        MessageBox.Show("Llene los campos correctamente");
-            //    }
-            //}
-            //catch (Exception)
-            //{
-            //}
+            try
+            {
+                if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[3] && banderaFocoCelda)
+                    datosProductoCompra.BeginEdit(true);
+                if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[4] && banderaFocoCelda)
+                    datosProductoCompra.BeginEdit(true);
+                if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[5] && banderaFocoCelda)
+                    datosProductoCompra.BeginEdit(true);
+                if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[6] && banderaFocoCelda)
+                    datosProductoCompra.BeginEdit(true);
+                if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[7] && banderaFocoCelda)
+                    datosProductoCompra.BeginEdit(true);
+                if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[8] && banderaFocoCelda)
+                    datosProductoCompra.BeginEdit(true);
+            }
+            catch (Exception)
+            {
 
+                //throw;
+            }
+        }
 
+        private void dgvProductosIngresos_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //if (Convert.ToInt32(e.KeyChar) == Convert.ToInt32(Keys.Enter))
+            //{
+            //    e.Handled = true;
+            //}
+        }
+
+        private void dgvProductosIngresos_KeyUp(object sender, KeyEventArgs e)
+        {
+            //if (Convert.ToInt32(e.KeyCode) == Convert.ToInt32(Keys.Enter))
+            //{
+            //    e.Handled = true;
+            //}
         }
 
         private void btnSalirCompra_Click(object sender, EventArgs e)
