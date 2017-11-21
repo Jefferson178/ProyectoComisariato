@@ -27,6 +27,9 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         int ordenCompra = 0, idOrdenComrpa;
         private void FrmCompra_Load(object sender, EventArgs e)
         {
+            SendKeys.Send("{TAB}");
+            SendKeys.Send("{TAB}");
+            txtSerie1.Focus();
             for (int i = 0; i < 8; i++)
             {
                 dgvProductosIngresos.Rows.Add();
@@ -40,6 +43,8 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             txtOrdenCompra.Text = Convert.ToString(ordenCompra);
             datosProductoCompra = dgvProductosIngresos;
             datosProveedor = cbProveedor;
+            txtFlete.Text = "0";
+            cbTerminoPago.SelectedIndex = 0;
         }
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
@@ -188,9 +193,9 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     else
                     {
                         datosProductoCompra.CurrentRow.Cells[1].Value = objProducto.Nombreproducto;
-                        datosProductoCompra.CurrentRow.Cells[7].Value = objProducto.Preciopublico_sin_iva;
-                        datosProductoCompra.CurrentRow.Cells[8].Value = objProducto.Precioalmayor_sin_iva;
-                        datosProductoCompra.CurrentRow.Cells[9].Value = objProducto.Precioporcaja_sin_iva;
+                        datosProductoCompra.CurrentRow.Cells[7].Value = objProducto.Preciopublico_iva;
+                        datosProductoCompra.CurrentRow.Cells[8].Value = objProducto.Precioalmayor_iva;
+                        datosProductoCompra.CurrentRow.Cells[9].Value = objProducto.Precioporcaja_iva;
                         SendKeys.Send("{TAB}");
                     }
 
@@ -227,14 +232,18 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     ValidaCeldasPrecios(9);
                     datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[12];
                 }
-                if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioCompra" || datosProductoCompra.Columns[e.ColumnIndex].Name == "cantidad")
+                if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioCompra" || datosProductoCompra.Columns[e.ColumnIndex].Name == "cantidad" || datosProductoCompra.Columns[e.ColumnIndex].Name == "iceProducto")
                 {
-                    iva = ((Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.CurrentRow.Cells[3].Value.ToString())) * Convert.ToInt32(datosProductoCompra.CurrentRow.Cells[2].Value.ToString())) * 0.12f);
-                    subtotal = ((Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.CurrentRow.Cells[3].Value.ToString())) * Convert.ToInt32(datosProductoCompra.CurrentRow.Cells[2].Value.ToString())) - iva);
+                    float precioCompra = Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.CurrentRow.Cells[3].Value.ToString()));
+                    float cantidad = Convert.ToInt32(datosProductoCompra.CurrentRow.Cells[2].Value.ToString());
+                    float precioICE = Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.CurrentRow.Cells[5].Value.ToString()));
+                    iva = ((cantidad * precioCompra) + precioICE) * 0.12f;
+
+                    subtotal = ((cantidad * precioCompra) + precioICE);
                     total = subtotal + iva;
-                    datosProductoCompra.CurrentRow.Cells[11].Value = iva.ToString("#####0.00");
-                    datosProductoCompra.CurrentRow.Cells[10].Value = subtotal.ToString("#####0.00");
-                    datosProductoCompra.CurrentRow.Cells[12].Value = total.ToString("#####0.00");
+                    datosProductoCompra.CurrentRow.Cells[11].Value = Funcion.reemplazarcaracter(iva.ToString("#####0.00"));
+                    datosProductoCompra.CurrentRow.Cells[10].Value = Funcion.reemplazarcaracter(subtotal.ToString("#####0.00"));
+                    datosProductoCompra.CurrentRow.Cells[12].Value = Funcion.reemplazarcaracter(total.ToString("#####0.00"));
                 }
 
             }
@@ -256,28 +265,28 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 {
                     if (Convert.ToSingle(datosProductoCompra.Rows[i].Cells[11].Value.ToString()) != 0)
                     {
-                        sumasubiva += Convert.ToSingle(datosProductoCompra.Rows[i].Cells[12].Value.ToString());
-                        ivatotal += Convert.ToSingle(datosProductoCompra.Rows[i].Cells[11].Value.ToString());
+                        sumasubiva += Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[12].Value.ToString()));
+                        ivatotal += Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[11].Value.ToString()));
                     }
                     if (Convert.ToSingle(datosProductoCompra.Rows[i].Cells[11].Value.ToString()) == 0)
                     {
-                        sumasubcero += Convert.ToSingle(datosProductoCompra.Rows[i].Cells[12].Value.ToString());
+                        sumasubcero += Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[12].Value.ToString()));
                     }
-                    totalpagar += Convert.ToSingle(datosProductoCompra.Rows[i].Cells[12].Value.ToString());
-                    sumaice += Convert.ToSingle(datosProductoCompra.Rows[i].Cells[8].Value.ToString());
-                    sumairbp += Convert.ToSingle(datosProductoCompra.Rows[i].Cells[9].Value.ToString());
+                    totalpagar += Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[12].Value.ToString()));
+                    sumaice += Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[5].Value.ToString()));
+                    sumairbp += Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[6].Value.ToString()));
                     if (Convert.ToString(datosProductoCompra.Rows[i + 1].Cells[0].Value) == "")
                     {
                         break;
                     }
                 }
-                txtIRBP.Text = Funcion.reemplazarcaracter(sumairbp.ToString("#####0.00"));
-                txtICE.Text = Funcion.reemplazarcaracter(sumaice.ToString("#####0.00"));
-                txtSubtotal0.Text = Funcion.reemplazarcaracter(sumasubcero.ToString("#####0.00"));
-                txtSubtotal.Text = Funcion.reemplazarcaracter(totalpagar.ToString("#####0.00"));
-                txtSubtutalIVA.Text = Funcion.reemplazarcaracter(sumasubiva.ToString("#####0.00"));
-                txtIVA.Text = Funcion.reemplazarcaracter(ivatotal.ToString("#####0.00"));
-                txtTotal.Text = Funcion.reemplazarcaracter(totalpagar.ToString("#####0.00"));
+                txtIRBP.Text = Funcion.reemplazarcaracterViceversa(sumairbp.ToString("#####0.00"));
+                txtICE.Text = Funcion.reemplazarcaracterViceversa(sumaice.ToString("#####0.00"));
+                txtSubtotal0.Text = Funcion.reemplazarcaracterViceversa(sumasubcero.ToString("#####0.00"));
+                txtSubtotal.Text = Funcion.reemplazarcaracterViceversa(totalpagar.ToString("#####0.00"));
+                txtSubtutalIVA.Text = Funcion.reemplazarcaracterViceversa(sumasubiva.ToString("#####0.00"));
+                txtIVA.Text = Funcion.reemplazarcaracterViceversa(ivatotal.ToString("#####0.00"));
+                txtTotal.Text = Funcion.reemplazarcaracterViceversa(totalpagar.ToString("#####0.00"));
             }
             catch (Exception EX)
             {
@@ -425,6 +434,102 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             //{
             //    e.Handled = true;
             //}
+        }
+
+        private void FrmCompra_KeyPress(object sender, KeyPressEventArgs e)
+        {
+        }
+
+        private void txtSerie1_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void txtSerie2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void txtNumero_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void cbSucursal_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void cbProveedor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void txtPlazoOC_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void cbImpuesto_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void txtObservacion_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void dtpFechaOC_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void cbProveedor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //consultas.BoolLlenarComboBox(cbProveedor, "select IDPROVEEDOR AS Id, NOMBRES AS Texto from TbProveedor where IDENTIFICACION like'%" + cbProveedor.Text+ "%' OR NOMBRES like '%" + cbProveedor.Text+"%'");
+        }
+
+        private void cbProveedor_TextChanged(object sender, EventArgs e)
+        {
+            //consultas.BoolLlenarComboBox(cbProveedor, "select IDPROVEEDOR AS Id, NOMBRES AS Texto from TbProveedor where IDENTIFICACION like'%" + cbProveedor.Text + "%' OR NOMBRES like '%" + cbProveedor.Text + "%'");
         }
 
         private void btnSalirCompra_Click(object sender, EventArgs e)

@@ -245,7 +245,7 @@ namespace Comisariato.Formularios
             }
             else if (nombre == "Compras")
             {
-                if (objConsulta.EjecutarSQL("Select * from TbProveedor") && objConsulta.EjecutarSQL("Select * from TbSucursal") && objConsulta.EjecutarSQL("Select * from TbParametrosFactura"))
+                if (objConsulta.ObtenerValorCampo("IDPROVEEDOR","TbProveedor","") != "" && objConsulta.ObtenerValorCampo("IDSUCURSAL", "TbSucursal", "") != "" && objConsulta.ObtenerValorCampo("IDPARAMETROSFACTURA", "TbParametrosFactura", "") !="")
                 {
                     if (FrmCompra == null || FrmCompra.IsDisposed)
                     {
