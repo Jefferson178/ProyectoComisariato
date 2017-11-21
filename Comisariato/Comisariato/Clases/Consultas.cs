@@ -368,8 +368,6 @@ namespace Comisariato.Clases
             }
            
         }
-
-
         public string ObtenerValorCampo(String campo, String tabla, String condicion)
         {
             try
