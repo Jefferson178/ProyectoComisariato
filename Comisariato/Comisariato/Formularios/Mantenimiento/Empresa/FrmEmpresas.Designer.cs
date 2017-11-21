@@ -78,11 +78,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tpConsultarModificarDeshabilitarEmpresa = new System.Windows.Forms.TabPage();
             this.dgvDatosEmpresa = new System.Windows.Forms.DataGridView();
+            this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.txtConsultarEmpresa = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
-            this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tcEmpresa.SuspendLayout();
             this.tpNuevaEmpresa.SuspendLayout();
             this.gbFondoPantallaEmpresa.SuspendLayout();
@@ -591,6 +591,7 @@
             this.txtRUCContadorEmpresa.Size = new System.Drawing.Size(166, 22);
             this.txtRUCContadorEmpresa.TabIndex = 11;
             this.txtRUCContadorEmpresa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRUCEmpresa_KeyPress);
+            this.txtRUCContadorEmpresa.Leave += new System.EventHandler(this.txtRUCContadorEmpresa_Leave);
             // 
             // label10
             // 
@@ -663,6 +664,14 @@
             this.dgvDatosEmpresa.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosEmpresa_CellClick);
             this.dgvDatosEmpresa.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvDatosEmpresa_CellPainting);
             // 
+            // Modificar
+            // 
+            this.Modificar.HeaderText = "";
+            this.Modificar.Name = "Modificar";
+            this.Modificar.ReadOnly = true;
+            this.Modificar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Modificar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // txtConsultarEmpresa
             // 
             this.txtConsultarEmpresa.Location = new System.Drawing.Point(299, 22);
@@ -696,21 +705,13 @@
             this.imageList2.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // Modificar
-            // 
-            this.Modificar.HeaderText = "";
-            this.Modificar.Name = "Modificar";
-            this.Modificar.ReadOnly = true;
-            this.Modificar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Modificar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // FrmEmpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(971, 538);
+            this.ClientSize = new System.Drawing.Size(971, 539);
             this.Controls.Add(this.tcEmpresa);
             this.Font = new System.Drawing.Font("Arial", 10F);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

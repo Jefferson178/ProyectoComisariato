@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcProducto = new System.Windows.Forms.TabControl();
             this.tpNuevoProducto = new System.Windows.Forms.TabPage();
+            this.txtNombreProducto = new System.Windows.Forms.RichTextBox();
             this.btnLimpiarProducto = new System.Windows.Forms.Button();
-            this.txtNombreProducto = new System.Windows.Forms.TextBox();
             this.btnGuardarProducto = new System.Windows.Forms.Button();
             this.ckbActivoProducto = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -81,10 +81,10 @@
             this.rbtInactivos = new System.Windows.Forms.RadioButton();
             this.rbtActivos = new System.Windows.Forms.RadioButton();
             this.dgvDatosProducto = new System.Windows.Forms.DataGridView();
-            this.txtConsultarProducto = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
             this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Deshabilitar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.txtConsultarProducto = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
             this.tcProducto.SuspendLayout();
             this.tpNuevoProducto.SuspendLayout();
             this.gbDescripcionProducto.SuspendLayout();
@@ -112,8 +112,8 @@
             // tpNuevoProducto
             // 
             this.tpNuevoProducto.BackColor = System.Drawing.Color.Bisque;
-            this.tpNuevoProducto.Controls.Add(this.btnLimpiarProducto);
             this.tpNuevoProducto.Controls.Add(this.txtNombreProducto);
+            this.tpNuevoProducto.Controls.Add(this.btnLimpiarProducto);
             this.tpNuevoProducto.Controls.Add(this.btnGuardarProducto);
             this.tpNuevoProducto.Controls.Add(this.ckbActivoProducto);
             this.tpNuevoProducto.Controls.Add(this.label1);
@@ -125,6 +125,18 @@
             this.tpNuevoProducto.Size = new System.Drawing.Size(1026, 525);
             this.tpNuevoProducto.TabIndex = 0;
             this.tpNuevoProducto.Text = "Nuevo Producto";
+            // 
+            // txtNombreProducto
+            // 
+            this.txtNombreProducto.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.txtNombreProducto.Location = new System.Drawing.Point(220, 23);
+            this.txtNombreProducto.Multiline = false;
+            this.txtNombreProducto.Name = "txtNombreProducto";
+            this.txtNombreProducto.Size = new System.Drawing.Size(638, 22);
+            this.txtNombreProducto.TabIndex = 47;
+            this.txtNombreProducto.Text = "";
+            this.txtNombreProducto.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
+            this.txtNombreProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreProducto_KeyPress_1);
             // 
             // btnLimpiarProducto
             // 
@@ -140,16 +152,6 @@
             this.btnLimpiarProducto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLimpiarProducto.UseVisualStyleBackColor = true;
             this.btnLimpiarProducto.Click += new System.EventHandler(this.btnLimpiarProducto_Click);
-            // 
-            // txtNombreProducto
-            // 
-            this.txtNombreProducto.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.txtNombreProducto.Location = new System.Drawing.Point(218, 25);
-            this.txtNombreProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtNombreProducto.Name = "txtNombreProducto";
-            this.txtNombreProducto.Size = new System.Drawing.Size(640, 22);
-            this.txtNombreProducto.TabIndex = 28;
-            this.txtNombreProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreProducto_KeyPress);
             // 
             // btnGuardarProducto
             // 
@@ -259,6 +261,7 @@
             this.cbTipoProducto.Name = "cbTipoProducto";
             this.cbTipoProducto.Size = new System.Drawing.Size(260, 24);
             this.cbTipoProducto.TabIndex = 6;
+            this.cbTipoProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbUnidadMedidaProducto_KeyPress);
             // 
             // label18
             // 
@@ -412,6 +415,7 @@
             this.CkbIva.Text = "IVA";
             this.CkbIva.UseVisualStyleBackColor = true;
             this.CkbIva.CheckedChanged += new System.EventHandler(this.CkbIva_CheckedChanged);
+            this.CkbIva.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CkbIva_KeyPress);
             // 
             // gbPreciosProducto
             // 
@@ -438,41 +442,38 @@
             // 
             // txtPrecioCajaSinIVAProducto
             // 
-            this.txtPrecioCajaSinIVAProducto.Enabled = false;
             this.txtPrecioCajaSinIVAProducto.Font = new System.Drawing.Font("Arial", 9.75F);
             this.txtPrecioCajaSinIVAProducto.Location = new System.Drawing.Point(260, 86);
             this.txtPrecioCajaSinIVAProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPrecioCajaSinIVAProducto.Name = "txtPrecioCajaSinIVAProducto";
-            this.txtPrecioCajaSinIVAProducto.ReadOnly = true;
             this.txtPrecioCajaSinIVAProducto.Size = new System.Drawing.Size(100, 22);
             this.txtPrecioCajaSinIVAProducto.TabIndex = 14;
             this.txtPrecioCajaSinIVAProducto.Text = "0";
+            this.txtPrecioCajaSinIVAProducto.Enter += new System.EventHandler(this.txtPrecioCajaSinIVAProducto_Enter);
             this.txtPrecioCajaSinIVAProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioCajaSinIVAProducto_KeyPress);
             // 
             // txtPrecioMayorSinIVAProducto
             // 
-            this.txtPrecioMayorSinIVAProducto.Enabled = false;
             this.txtPrecioMayorSinIVAProducto.Font = new System.Drawing.Font("Arial", 9.75F);
             this.txtPrecioMayorSinIVAProducto.Location = new System.Drawing.Point(260, 60);
             this.txtPrecioMayorSinIVAProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPrecioMayorSinIVAProducto.Name = "txtPrecioMayorSinIVAProducto";
-            this.txtPrecioMayorSinIVAProducto.ReadOnly = true;
             this.txtPrecioMayorSinIVAProducto.Size = new System.Drawing.Size(100, 22);
             this.txtPrecioMayorSinIVAProducto.TabIndex = 13;
             this.txtPrecioMayorSinIVAProducto.Text = "0";
+            this.txtPrecioMayorSinIVAProducto.Enter += new System.EventHandler(this.txtPrecioMayorSinIVAProducto_Enter);
             this.txtPrecioMayorSinIVAProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioMayorSinIVAProducto_KeyPress);
             // 
             // txtPVPSinIVAProducto
             // 
-            this.txtPVPSinIVAProducto.Enabled = false;
             this.txtPVPSinIVAProducto.Font = new System.Drawing.Font("Arial", 9.75F);
             this.txtPVPSinIVAProducto.Location = new System.Drawing.Point(260, 34);
             this.txtPVPSinIVAProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPVPSinIVAProducto.Name = "txtPVPSinIVAProducto";
-            this.txtPVPSinIVAProducto.ReadOnly = true;
             this.txtPVPSinIVAProducto.Size = new System.Drawing.Size(100, 22);
             this.txtPVPSinIVAProducto.TabIndex = 12;
             this.txtPVPSinIVAProducto.Text = "0";
+            this.txtPVPSinIVAProducto.Enter += new System.EventHandler(this.txtPVPSinIVAProducto_Enter);
             this.txtPVPSinIVAProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPVPSinIVAProducto_KeyPress);
             // 
             // txtPrecioCajaConIVAProducto
@@ -722,6 +723,7 @@
             this.cbUnidadMedidaProducto.Name = "cbUnidadMedidaProducto";
             this.cbUnidadMedidaProducto.Size = new System.Drawing.Size(428, 24);
             this.cbUnidadMedidaProducto.TabIndex = 4;
+            this.cbUnidadMedidaProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbUnidadMedidaProducto_KeyPress);
             // 
             // tpConsultarModificarProducto
             // 
@@ -774,14 +776,14 @@
             this.dgvDatosProducto.AllowUserToOrderColumns = true;
             this.dgvDatosProducto.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDatosProducto.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDatosProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosProducto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Modificar,
@@ -793,29 +795,6 @@
             this.dgvDatosProducto.TabIndex = 9;
             this.dgvDatosProducto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosProducto_CellClick);
             this.dgvDatosProducto.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvDatosProducto_CellPainting);
-            // 
-            // txtConsultarProducto
-            // 
-            this.txtConsultarProducto.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.txtConsultarProducto.Location = new System.Drawing.Point(283, 30);
-            this.txtConsultarProducto.Margin = new System.Windows.Forms.Padding(2);
-            this.txtConsultarProducto.Name = "txtConsultarProducto";
-            this.txtConsultarProducto.Size = new System.Drawing.Size(571, 22);
-            this.txtConsultarProducto.TabIndex = 8;
-            this.txtConsultarProducto.TextChanged += new System.EventHandler(this.txtConsultarProducto_TextChanged);
-            this.txtConsultarProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreProducto_KeyPress);
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label25.ForeColor = System.Drawing.Color.Teal;
-            this.label25.Location = new System.Drawing.Point(169, 33);
-            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(67, 16);
-            this.label25.TabIndex = 7;
-            this.label25.Text = "Consultar:";
             // 
             // Modificar
             // 
@@ -831,13 +810,35 @@
             this.Deshabilitar.Name = "Deshabilitar";
             this.Deshabilitar.ReadOnly = true;
             // 
+            // txtConsultarProducto
+            // 
+            this.txtConsultarProducto.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.txtConsultarProducto.Location = new System.Drawing.Point(283, 30);
+            this.txtConsultarProducto.Margin = new System.Windows.Forms.Padding(2);
+            this.txtConsultarProducto.Name = "txtConsultarProducto";
+            this.txtConsultarProducto.Size = new System.Drawing.Size(571, 22);
+            this.txtConsultarProducto.TabIndex = 8;
+            this.txtConsultarProducto.TextChanged += new System.EventHandler(this.txtConsultarProducto_TextChanged);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.label25.ForeColor = System.Drawing.Color.Teal;
+            this.label25.Location = new System.Drawing.Point(169, 33);
+            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(67, 16);
+            this.label25.TabIndex = 7;
+            this.label25.Text = "Consultar:";
+            // 
             // FrmProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(1052, 572);
+            this.ClientSize = new System.Drawing.Size(1052, 573);
             this.Controls.Add(this.tcProducto);
             this.Font = new System.Drawing.Font("Arial", 10F);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -869,7 +870,6 @@
         private System.Windows.Forms.TabControl tcProducto;
         private System.Windows.Forms.TabPage tpNuevoProducto;
         private System.Windows.Forms.TabPage tpConsultarModificarProducto;
-        private System.Windows.Forms.TextBox txtNombreProducto;
         private System.Windows.Forms.ComboBox cbTipoProducto;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox ckbActivoProducto;
@@ -922,5 +922,6 @@
         private System.Windows.Forms.RadioButton rbtActivos;
         private System.Windows.Forms.DataGridViewButtonColumn Modificar;
         private System.Windows.Forms.DataGridViewButtonColumn Deshabilitar;
+        private System.Windows.Forms.RichTextBox txtNombreProducto;
     }
 }

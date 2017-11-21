@@ -47,6 +47,9 @@ namespace Comisariato.Formularios.Mantenimiento
 
         private void FrmEmpleado_Load(object sender, EventArgs e)
         {
+            SendKeys.Send("{TAB}");
+            SendKeys.Send("{TAB}");
+            SendKeys.Send("{TAB}");
             consultas = new Consultas();
             consultas.BoolLlenarComboBox(CmbPais, "Select IDPAIS as ID, NOMBRE AS Texto from TbPais");
             cmbTipoDocumento.SelectedIndex = 0;
@@ -105,37 +108,65 @@ namespace Comisariato.Formularios.Mantenimiento
 
         private void TxtDireccion_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.validar_Num_Letras(e);
+            //Funcion.validar_Num_Letras(e);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void TxtEmail_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.SinEspaciosEmail(e);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void TxtIdentidad_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.Validar_Numeros(e);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void TxtNombres_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.Validar_Letras(e);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void TxtMovimientoQuincenal_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.SoloValores(e,TxtMovimientoQuincenal.Text);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void TxtSueldoExtra_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.SoloValores(e, TxtSueldoExtra.Text);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void TxtSueldoMensual_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.SoloValores(e, TxtSueldoMensual.Text);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
@@ -392,30 +423,33 @@ namespace Comisariato.Formularios.Mantenimiento
 
         private void TxtIdentidad_Leave(object sender, EventArgs e)
         {
-            if (cmbTipoDocumento.SelectedIndex == 0)
+            if (TxtIdentidad.Text != "")
             {
-                if (!Funcion.VerificarCedula(TxtIdentidad.Text))
+                if (cmbTipoDocumento.SelectedIndex == 0)
                 {
-                    MessageBox.Show("Ingrese la Cédula Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    TxtIdentidad.Focus();
-                    TxtIdentidad.Select(0, TxtIdentidad.Text.Length);
-                }
-            }
-            if (cmbTipoDocumento.SelectedIndex == 1)
-            {
-                if (TxtIdentidad.Text.Length == 13)
-                {
-                    if (TxtIdentidad.Text.Substring(10, 3) != "001" || Funcion.VerificarCedula(TxtIdentidad.Text.Substring(0, 10)) == false)
+                    if (!Funcion.VerificarCedula(TxtIdentidad.Text))
                     {
-                        MessageBox.Show("Ingrese el RUC Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        MessageBox.Show("Ingrese la Cédula Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         TxtIdentidad.Focus();
                         TxtIdentidad.Select(0, TxtIdentidad.Text.Length);
                     }
                 }
-                else
+                if (cmbTipoDocumento.SelectedIndex == 1)
                 {
-                    MessageBox.Show("Ingrese el RUC Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); TxtIdentidad.Focus();
-                    TxtIdentidad.Select(0, TxtIdentidad.Text.Length);
+                    if (TxtIdentidad.Text.Length == 13)
+                    {
+                        if (TxtIdentidad.Text.Substring(10, 3) != "001" || Funcion.VerificarCedula(TxtIdentidad.Text.Substring(0, 10)) == false)
+                        {
+                            MessageBox.Show("Ingrese el RUC Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                            TxtIdentidad.Focus();
+                            TxtIdentidad.Select(0, TxtIdentidad.Text.Length);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ingrese el RUC Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); TxtIdentidad.Focus();
+                        TxtIdentidad.Select(0, TxtIdentidad.Text.Length);
+                    }
                 }
             }
         }
@@ -461,6 +495,60 @@ namespace Comisariato.Formularios.Mantenimiento
                     this.DgvDatosEmpleado.Columns[e.ColumnIndex].Width = icoAtomico.Width + 10;
                     e.Handled = true;
                 }
+            }
+        }
+
+        private void BtnBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void btnCancelar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void DtpFechaNacimiento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void CmbGenero_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void CmbTipoLicencia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void NupDiscapacidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
             }
         }
     }

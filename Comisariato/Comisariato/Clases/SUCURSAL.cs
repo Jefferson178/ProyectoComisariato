@@ -191,8 +191,8 @@ namespace Comisariato.Clases
             {
                 if (ObjConsulta.EjecutarSQL("INSERT INTO [dbo].[TbSucursal] ([CODIGO] ,[NOMBRESUCURSAL] ,[RUC],[TELEFONO],"
                     +"[CELULAR],[JEFESUCURSAL] ,[EMAIL],[DIRECCION],[UBICACION],[ESTADO] ,[IDEMPRESA])"
-                    + " VALUES ('"+codigo+ "','"+nombresucursal.ToUpper() + "','"+ruc+ "', '"+telefono+ "','"+celular+ "','"+jefesucursal.ToUpper() + "',"+
-                    " '"+email+ "','"+direccion.ToUpper() + "','"+ubicacion.ToUpper() + "', '"+estado+ "', "+idempresa+" ) "))
+                    + " VALUES ('"+codigo+ "','"+nombresucursal + "','"+ruc+ "', '"+telefono+ "','"+celular+ "','"+jefesucursal + "',"+
+                    " '"+email+ "','"+direccion + "','"+ubicacion + "', '"+estado+ "', "+idempresa+" ) "))
                 {
                     return "Datos Guardados";
                 }
@@ -205,9 +205,9 @@ namespace Comisariato.Clases
         {
             ObjConsulta = new Consultas();
 
-            if (ObjConsulta.EjecutarSQL("UPDATE [dbo].[TbSucursal] SET [CODIGO] = '"+codigo+ "'  ,[NOMBRESUCURSAL] = '"+nombresucursal.ToUpper() + "',"
-                + "[RUC] = '"+ruc+ "',[TELEFONO] ='"+telefono+ "' ,[CELULAR] ='"+celular+ "' ,[JEFESUCURSAL] = '"+jefesucursal.ToUpper() + "' "
-                + " ,[EMAIL] = '"+email+ "',[DIRECCION] = '"+direccion.ToUpper() + "' ,[UBICACION] = '"+ubicacion.ToUpper() + "'  ,[ESTADO] = '"+estado+ "'  ,[IDEMPRESA] = "+idempresa+"  WHERE RUC = '" + RUC + "' "))
+            if (ObjConsulta.EjecutarSQL("UPDATE [dbo].[TbSucursal] SET [CODIGO] = '"+codigo+ "'  ,[NOMBRESUCURSAL] = '"+nombresucursal + "',"
+                + "[RUC] = '"+ruc+ "',[TELEFONO] ='"+telefono+ "' ,[CELULAR] ='"+celular+ "' ,[JEFESUCURSAL] = '"+jefesucursal + "' "
+                + " ,[EMAIL] = '"+email+ "',[DIRECCION] = '"+direccion + "' ,[UBICACION] = '"+ubicacion + "'  ,[ESTADO] = '"+estado+ "'  ,[IDEMPRESA] = "+idempresa+"  WHERE RUC = '" + RUC + "' "))
             {
                 return "Correcto";
             }

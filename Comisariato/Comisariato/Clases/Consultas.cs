@@ -884,10 +884,10 @@ namespace Comisariato.Clases
                 Objc.conectar();
                 SqlCommand cmd = new SqlCommand("GRABA_PRODUCTO", ConexionBD.connection);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@NOMBREPRODUCTO", ObjProducto.Nombreproducto.ToUpper());
+                cmd.Parameters.AddWithValue("@NOMBREPRODUCTO", ObjProducto.Nombreproducto);
                 cmd.Parameters.AddWithValue("@ACTIVO", ObjProducto.Activo);
                 cmd.Parameters.AddWithValue("@CODIGOBARRA", ObjProducto.Codigobarra);
-                cmd.Parameters.AddWithValue("@TIPOPRODUCTO", ObjProducto.Tipoproducto.ToUpper());
+                cmd.Parameters.AddWithValue("@TIPOPRODUCTO", ObjProducto.Tipoproducto);
                 cmd.Parameters.AddWithValue("@UNIDAMEDIDA", ObjProducto.Unidamedida);
                 cmd.Parameters.AddWithValue("@PESO", ObjProducto.Peso);
                 cmd.Parameters.AddWithValue("@STOCKMAXIMO", ObjProducto.Stockmaximo);
