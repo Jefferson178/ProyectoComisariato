@@ -508,9 +508,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                             dgvProductosEnCombo.Rows[i].Cells[6].Value = dgvProductosParaCombo.Rows[n].Cells[5].Value;
                             dgvProductosParaCombo.Rows[n].Cells[6].Value = true;
                             dgvProductosEnCombo.Rows[i].Cells[7].Value = dgvProductosParaCombo.Rows[n].Cells[6].Value;
-                            //dgvProductosEnCombo.Rows[i].Cells[4].Value = dgvProductosParaCombo.Rows[n].Cells[4].Value;
-                            //dgvProductosEnCombo.Rows[i].Cells[1].Value = dgvProductosParaCombo.Rows[n].Cells[2].Value;
-                            //dgvProductosEnCombo.Rows[i].Cells[5].Value = dgvProductosParaCombo.Rows[n].Cells[3].Value;
+                           
                         }
                     }
 

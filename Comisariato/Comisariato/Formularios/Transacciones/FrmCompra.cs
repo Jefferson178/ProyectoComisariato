@@ -265,12 +265,9 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             SendKeys.Send("{UP}");
             if (!banderaTab)
                 SendKeys.Send("{RIGHT}");
-<<<<<<< HEAD
-=======
             else
                 banderaTab = false;
-            labelprueba1.Text = datosProductoCompra.CurrentCell.ToString() + " CellEndEdit";
->>>>>>> 5b76413ae4766124a3bbc339486f68d13897e8a7
+            //labelprueba1.Text = datosProductoCompra.CurrentCell.ToString() + " CellEndEdit";
         }
         private void Calcular()
         {
