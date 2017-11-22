@@ -17,6 +17,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         Consultas objc;
         List<int> indezp = new List<int>();
         private int posindexp = 0;
+        int bandera=1;
 
 
         //NOMBREPRODUCTO like '%" + txtconsultar.Text + "%' or CODIGOBARRA like '%" + txtconsultar.Text +"%'
@@ -32,7 +33,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             
 
 
-            objc.CargarCombos("SELECT TbCombo.IDCOMBO, TbCombo.PRECIO, TbCombo.CANTIDAD, TbCombo.CODIGO, TbCombo.NOMBRE from TbCombo", dgvDatosCombo);
+            objc.CargarCombos("SELECT TbCombo.IDCOMBO, TbCombo.PRECIO, TbCombo.CANTIDAD, TbCombo.CODIGO, TbCombo.NOMBRE from TbCombo where ESTADO=1", dgvDatosCombo);
             //dgvProductosParaCombo.Columns[0].Width = 150;
             AnchoColumna();
         }
@@ -173,7 +174,12 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         {
                             if (txtCodigoCombo.Text != "")
                             {
-                                bool b1 = objc.verificarRepetido("select * from TbCombo U where U.CODIGO='" + txtCodigoCombo.Text + "'");
+                                bool b1 = false ;
+                                if (bandera==1)
+                                {
+                                    b1 = objc.verificarRepetido("select * from TbCombo U where U.CODIGO='" + txtCodigoCombo.Text + "'");
+                                }
+                                
                                 if (!b1)
                                 {
                                     if (txtNombreCombo.Text != "")
@@ -189,7 +195,10 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                                                 encabezadoCombo.Add(txtNombreCombo.Text);
                                                 encabezadoCombo.Add(txtCantCombo.Text);
                                                 encabezadoCombo.Add(txtPrecioCombo.Text);
-                                                bool b = objc.GrabarCombo(encabezadoCombo, dgvProductosEnCombo, filas);
+                                                bool b = false;
+                                                
+                                                b = objc.GrabarCombo(encabezadoCombo, dgvProductosEnCombo, filas,bandera);
+                                                
                                                 if (b)
                                                 {
                                                     MessageBox.Show("Registro realizado con exito.");
@@ -262,11 +271,19 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             bool b=true;
             for (int i = 0; i < indezp.Count; i++)
             {
-                if (dgvProductosEnCombo.Rows[i].Cells[3].Value==null)
+                if (dgvProductosEnCombo.Rows[i].Cells[0].Value!=null)
                 {
-                    b = false;
+                    if (dgvProductosEnCombo.Rows[i].Cells[3].Value == null)
+                    {
+                        b = false;
+                        break;
+                    }
+                }
+                else
+                {
                     break;
                 }
+                
             }
             return b;
         }
@@ -304,6 +321,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         {
             Limpiar();
         }
+
         private void Limpiar()
         {
             txtBuscarProductosParaCombo.Text = "";
@@ -313,7 +331,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             txtCantCombo.Text = "";
             txtPrecioCombo.Text = "";
             dgvProductosEnCombo.Rows.Clear();
-
+            bandera = 1;
             objc = new Consultas();
             objc.CargarProductoCombo("SELECT TbProducto.IDPRODUCTO, TbProducto.PRECIOPUBLICO_SIN_IVA, TbProducto.CANTIDAD, TbProducto.CODIGOBARRA, TbProducto.NOMBREPRODUCTO, TbBodega.NOMBRE, TbCategoria.DESCRIPCION from TbProducto  INNER JOIN TbAsignacionProdcutoBodega ON(TbProducto.IDPRODUCTO=TbAsignacionProdcutoBodega.IDPRODUCTO ) INNER JOIN TbBodega ON (TbAsignacionProdcutoBodega.IDBODEGA=TbBodega.IDBODEGA) INNER JOIN TbCategoria ON (TbProducto.IDCATEGORIA=TbCategoria.IDCATEGORIA);", dgvProductosParaCombo);
             cargarDatos("1");
@@ -397,6 +415,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 // Funcion.SoloValores(e,txt);
             }
         }
+
         private void OnlyNumbersdgvcheque_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (dgvProductosEnCombo.CurrentCell == this.dgvProductosEnCombo.CurrentRow.Cells[3])
@@ -429,41 +448,73 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 //objc = new Consultas();
                 //objc.CargarProductosdelcombo(Convert.ToString(dgvDatosCombo.Rows[e.RowIndex].Cells[4].Value), dgvDetalleCombo);
 
-
+                objc = new Consultas();
                 if (rdbCombosActivos.Checked)
                 {
 
                     if (this.dgvDatosCombo.Columns[e.ColumnIndex].Name == "Desabilitar")
                     {
                         ///"UPDATE TbProveedor SET ESTADO = 1 WHERE IDENTIFICACION = '" + Identificacion + "'"
-                        //objc = new Consultas();
-                        //objc.EjecutarSQL("UPDATE TbCombo SET ESTADO = 1 WHERE IDENTIFICACION = '" + Identificacion + "'");
-                        //cargarDatos("1");
+                        
+                        objc.EjecutarSQL("UPDATE TbCombo SET ESTADO = 0 WHERE IDCOMBO = '" + Convert.ToString(dgvDatosCombo.Rows[e.RowIndex].Cells[6].Value) + "'");
+                        cargarDatos("1");
+                        if (dgvDetalleCombo.RowCount>0)
+                        {
+                            dgvDetalleCombo.Rows.Clear();
+                        }
+                        
                     }
                 }
                 else if (rdbCombosInactivos.Checked)
                 {
                     if (this.dgvDatosCombo.Columns[e.ColumnIndex].Name == "Desabilitar")
                     {
-                       // objc.EstadoProveedor(dgvDatosProveedor.CurrentRow.Cells[3].Value.ToString(), 1);
-                        //cargarDatos("0");
+                        objc.EjecutarSQL("UPDATE TbCombo SET ESTADO = 1 WHERE IDCOMBO = '" +Convert.ToString(dgvDatosCombo.Rows[e.RowIndex].Cells[6].Value) + "'");
+                        cargarDatos("0");
+                        if (dgvDetalleCombo.RowCount > 0)
+                        {
+                            dgvDetalleCombo.Rows.Clear();
+                        }
                     }
                 }
 
                 if (this.dgvDatosCombo.Columns[e.ColumnIndex].Name == "Modificar")
                 {
-                    //identificacion = dgvDatosProveedor.CurrentRow.Cells[3].Value.ToString();
-                    //tcProveedor.SelectedIndex = 0;
-                    //bandera_Estado = true;
-                    ////Llenar el DataTable
-                    //DataTable dt = consultas.BoolDataTable("Select * from TbProveedor where IDENTIFICACION = '" + identificacion + "'");
-                    ////Arreglo de byte en donde se almacenara la foto en bytes
-                    //byte[] MyData = new byte[0];
-                    ////Verificar si tiene Datos
-                    //if (dt.Rows.Count > 0)
-                    //{
+                    bandera = 2;
+                   //String identificacion = dgvDatosCombo.CurrentRow.Cells[3].Value.ToString();
+                   tcComboProducto.SelectedIndex = 0;
+                    //objc = new Consultas();
+                    txtCodigoCombo.Text = Convert.ToString(dgvDatosCombo.Rows[e.RowIndex].Cells[2].Value);
+                    txtNombreCombo.Text= Convert.ToString(dgvDatosCombo.Rows[e.RowIndex].Cells[3].Value);
+                    txtCantCombo.Text= Convert.ToString(dgvDatosCombo.Rows[e.RowIndex].Cells[4].Value);
+                    txtPrecioCombo.Text= Convert.ToString(dgvDatosCombo.Rows[e.RowIndex].Cells[5].Value);
 
-                    //}
+
+                    objc.CargarProductosdelcombo(Convert.ToString(dgvDatosCombo.Rows[e.RowIndex].Cells[6].Value), dgvDetalleCombo);
+                    
+                    for (int i = 0; i < dgvDetalleCombo.RowCount; i++)
+                    {
+                        indezp.Add(i);
+                        dgvProductosEnCombo.Rows.Add("");
+                        dgvProductosEnCombo.Rows[i].Cells[0].Value = dgvDetalleCombo.Rows[i].Cells[0].Value;
+                        dgvProductosEnCombo.Rows[i].Cells[2].Value = dgvDetalleCombo.Rows[i].Cells[1].Value;
+                        dgvProductosEnCombo.Rows[i].Cells[3].Value = dgvDetalleCombo.Rows[i].Cells[2].Value;
+                        if (fila(Convert.ToString(dgvDetalleCombo.Rows[i].Cells[0].Value)))
+                        {
+                            
+                            dgvProductosEnCombo.Rows[i].Cells[1].Value = dgvProductosParaCombo.Rows[n].Cells[2].Value;
+                            dgvProductosEnCombo.Rows[i].Cells[4].Value = dgvProductosParaCombo.Rows[n].Cells[3].Value;
+                            dgvProductosEnCombo.Rows[i].Cells[5].Value = dgvProductosParaCombo.Rows[n].Cells[4].Value;
+                            dgvProductosEnCombo.Rows[i].Cells[6].Value = dgvProductosParaCombo.Rows[n].Cells[5].Value;
+                            dgvProductosParaCombo.Rows[n].Cells[6].Value = true;
+                            dgvProductosEnCombo.Rows[i].Cells[7].Value = dgvProductosParaCombo.Rows[n].Cells[6].Value;
+                            //dgvProductosEnCombo.Rows[i].Cells[4].Value = dgvProductosParaCombo.Rows[n].Cells[4].Value;
+                            //dgvProductosEnCombo.Rows[i].Cells[1].Value = dgvProductosParaCombo.Rows[n].Cells[2].Value;
+                            //dgvProductosEnCombo.Rows[i].Cells[5].Value = dgvProductosParaCombo.Rows[n].Cells[3].Value;
+                        }
+                    }
+
+
                 }
                 //btnLimpiarProveedor.Text = "&Cancelar";
                 //btnGuardarProveedor.Text = "&Modificar";
@@ -473,6 +524,21 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
 
                 //throw;
             }
+        }
+        int n = 0;
+        private bool fila(String codigo)
+        {
+            bool b=false;
+            for (int i = 0; i < dgvProductosParaCombo.RowCount; i++)
+            {
+               if (Convert.ToString(dgvProductosParaCombo.Rows[i].Cells[0].Value) == codigo)
+               {
+                    n = i;
+                    b = true;
+                    break;
+               }
+            }
+            return b;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -528,11 +594,13 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             if (rdbCombosActivos.Checked)
             {
                cargarDatos("1");
+               // dgvDatosCombo.Columns[1].Visible = true;
                 //dgvDatosProveedor.Columns[1].HeaderText = "Desabilitar";
             }
             else if (rdbCombosInactivos.Checked)
             {
                 cargarDatos("0");
+                //dgvDatosCombo.Columns[1].Visible = false;
                 //dgvDatosProveedor.Columns[1].HeaderText = "Habilitar";
             }
         }
@@ -540,7 +608,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         private void cargarDatos(string condicion)
         {
             objc = new Consultas();
-            objc.boolLlenarDataGridView(dgvDatosCombo, "SELECT TbCombo.IDCOMBO, TbCombo.PRECIO, TbCombo.CANTIDAD, TbCombo.CODIGO, TbCombo.NOMBRE from TbCombo WHERE ESTADO = " + condicion + ";");
+            objc.CargarCombos("SELECT TbCombo.IDCOMBO, TbCombo.PRECIO, TbCombo.CANTIDAD, TbCombo.CODIGO, TbCombo.NOMBRE from TbCombo where ESTADO='"+condicion +"'", dgvDatosCombo);
             dgvDatosCombo.Columns[6].Visible = false;
         }
 
@@ -549,5 +617,11 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             objc = new Consultas();
             objc.CargarProductosdelcombo(Convert.ToString(dgvDatosCombo.Rows[e.RowIndex].Cells[6].Value), dgvDetalleCombo);
         }
+
+        private void rdbCombosInactivos_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

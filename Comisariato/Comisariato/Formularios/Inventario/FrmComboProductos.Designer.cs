@@ -61,13 +61,13 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tpConsultarModificarCombo = new System.Windows.Forms.TabPage();
+            this.rdbCombosInactivos = new System.Windows.Forms.RadioButton();
+            this.rdbCombosActivos = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvDetalleCombo = new System.Windows.Forms.DataGridView();
             this.txtConsultarCombo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvDatosCombo = new System.Windows.Forms.DataGridView();
-            this.rdbCombosActivos = new System.Windows.Forms.RadioButton();
-            this.rdbCombosInactivos = new System.Windows.Forms.RadioButton();
             this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Desabilitar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.gbproductosParaCombo.SuspendLayout();
@@ -417,6 +417,30 @@
             this.tpConsultarModificarCombo.TabIndex = 1;
             this.tpConsultarModificarCombo.Text = "Consultar - Modificar Combo";
             // 
+            // rdbCombosInactivos
+            // 
+            this.rdbCombosInactivos.AutoSize = true;
+            this.rdbCombosInactivos.Location = new System.Drawing.Point(711, 24);
+            this.rdbCombosInactivos.Name = "rdbCombosInactivos";
+            this.rdbCombosInactivos.Size = new System.Drawing.Size(76, 20);
+            this.rdbCombosInactivos.TabIndex = 11;
+            this.rdbCombosInactivos.Text = "Inactivo";
+            this.rdbCombosInactivos.UseVisualStyleBackColor = true;
+            this.rdbCombosInactivos.CheckedChanged += new System.EventHandler(this.rdbCombosInactivos_CheckedChanged);
+            // 
+            // rdbCombosActivos
+            // 
+            this.rdbCombosActivos.AutoSize = true;
+            this.rdbCombosActivos.Checked = true;
+            this.rdbCombosActivos.Location = new System.Drawing.Point(565, 24);
+            this.rdbCombosActivos.Name = "rdbCombosActivos";
+            this.rdbCombosActivos.Size = new System.Drawing.Size(65, 20);
+            this.rdbCombosActivos.TabIndex = 10;
+            this.rdbCombosActivos.TabStop = true;
+            this.rdbCombosActivos.Text = "Activo";
+            this.rdbCombosActivos.UseVisualStyleBackColor = true;
+            this.rdbCombosActivos.CheckedChanged += new System.EventHandler(this.rdbCombosActivos_CheckedChanged);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dgvDetalleCombo);
@@ -483,29 +507,6 @@
             this.dgvDatosCombo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosCombo_CellClick);
             this.dgvDatosCombo.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvDatosCombo_CellPainting);
             this.dgvDatosCombo.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvDatosCombo_RowHeaderMouseClick);
-            // 
-            // rdbCombosActivos
-            // 
-            this.rdbCombosActivos.AutoSize = true;
-            this.rdbCombosActivos.Checked = true;
-            this.rdbCombosActivos.Location = new System.Drawing.Point(565, 24);
-            this.rdbCombosActivos.Name = "rdbCombosActivos";
-            this.rdbCombosActivos.Size = new System.Drawing.Size(65, 20);
-            this.rdbCombosActivos.TabIndex = 10;
-            this.rdbCombosActivos.TabStop = true;
-            this.rdbCombosActivos.Text = "Activo";
-            this.rdbCombosActivos.UseVisualStyleBackColor = true;
-            this.rdbCombosActivos.CheckedChanged += new System.EventHandler(this.rdbCombosActivos_CheckedChanged);
-            // 
-            // rdbCombosInactivos
-            // 
-            this.rdbCombosInactivos.AutoSize = true;
-            this.rdbCombosInactivos.Location = new System.Drawing.Point(711, 24);
-            this.rdbCombosInactivos.Name = "rdbCombosInactivos";
-            this.rdbCombosInactivos.Size = new System.Drawing.Size(76, 20);
-            this.rdbCombosInactivos.TabIndex = 11;
-            this.rdbCombosInactivos.Text = "Inactivo";
-            this.rdbCombosInactivos.UseVisualStyleBackColor = true;
             // 
             // Modificar
             // 

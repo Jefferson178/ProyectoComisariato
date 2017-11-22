@@ -1175,7 +1175,7 @@ namespace Comisariato.Clases
         }
 
 
-        public bool GrabarCombo(List<String>encabezadoCombo,DataGridView dg,int nfilas)
+        public bool GrabarCombo(List<String>encabezadoCombo,DataGridView dg,int nfilas,int bandera)
         {
             try
             {
@@ -1191,6 +1191,8 @@ namespace Comisariato.Clases
                     precio = Funcion.reemplazarcaracter(dg.Rows[i].Cells[4].Value.ToString());
                     cmd = new SqlCommand("REGISTRAR_Combo", ConexionBD.connection);
                     cmd.CommandType = CommandType.StoredProcedure;
+                    
+                        cmd.Parameters.AddWithValue("@bandera", bandera);
                     cmd.Parameters.AddWithValue("@CONTADOR", i);
                     cmd.Parameters.AddWithValue("@codigo", encabezadoCombo[0]);
                     cmd.Parameters.AddWithValue("@nombre", encabezadoCombo[1]);
