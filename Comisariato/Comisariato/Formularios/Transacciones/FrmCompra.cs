@@ -172,7 +172,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     {
                         datosProductoCompra.CurrentRow.Cells[i].ReadOnly = false;
                     }
-                    objProducto = consultas.Consultarproducto(Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value));
+                    objProducto = consultas.ConsultarproductoCompra(Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value));
                     if (objProducto == null)
                     {
                         if (MessageBox.Show("¿Desea agregar el producto?", "CONFIRMACIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -207,8 +207,43 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "descuento")
                 {
-                    ValidaCeldasPrecios(4);
-                    //SendKeys.Send("{LEFT}");
+                    try
+                    {
+                        float valor;
+                        string validaValores = Convert.ToString(datosProductoCompra.CurrentRow.Cells[4].Value);
+                        if (validaValores.Substring(0, 1) == "." || validaValores.Substring(0, 1) == ",")
+                        {
+                            validaValores = "0" + validaValores;
+                        }
+                        if (validaValores.Substring(validaValores.Length - 1, 1) == "." || validaValores.Substring(validaValores.Length - 1, 1) == ",")
+                        {
+                            validaValores = validaValores + "0";
+                        }
+                        int ocurrencias, ocurrecias2, ocurrenciasComas;
+                        ocurrencias = validaValores.Split('.').Length - 1;
+                        ocurrenciasComas = validaValores.Split(',').Length - 1;
+                        ocurrecias2 = validaValores.Split(new String[] { ".," }, StringSplitOptions.None).Length - 1;
+                        if (ocurrencias > 1 || ocurrecias2 != 0)
+                        {
+                            valor = float.Parse("a");
+                        }
+                        else if (ocurrencias == 0 && ocurrenciasComas == 0)
+                        {
+                            validaValores = validaValores + ".0";
+                        }
+                        valor = float.Parse(validaValores);
+                        datosProductoCompra.CurrentRow.Cells[4].Value = Funcion.reemplazarcaracter(validaValores);
+                        banderaFocoCelda = false;
+                    }
+                    catch (Exception errorPrecio)
+                    {
+                        MessageBox.Show("Ingresar valores correctos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        datosProductoCompra.CurrentRow.Cells[4].Value = "";
+                        //datosProductoCompra.BeginEdit(true);
+                        SendKeys.Send("{LEFT}");
+                        SendKeys.Send("{LEFT}");
+                        banderaFocoCelda = true;
+                    }
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "iceProducto")
                 {
