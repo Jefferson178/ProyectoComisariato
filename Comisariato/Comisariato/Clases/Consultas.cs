@@ -444,7 +444,58 @@ namespace Comisariato.Clases
             return producto;
         }
 
+        public Producto ConsultarproductoCompra(String codigo)
+        {
+            Producto producto = new Producto();
 
+            try
+            {
+                Objc.conectar();
+                SqlCommand Sentencia = new SqlCommand("select  U.ACTIVO, U.NOMBREPRODUCTO as DETALLE, U.CANTIDAD, "+
+                    "U.PRECIOPUBLICO_IVA as PRECIOVENTAPUBLICO, U.IVAESTADO, U.PRECIOALMAYOR_IVA as PRECIOVENTAMAYORISTA, "+
+                    "U.PRECIOPORCAJA_IVA as PRECIOVENTACAJA, ICE, IRBP, PRECIOCOMPRA "+
+                    "from TbProducto U where U.CODIGOBARRA = '"+ codigo +"'");
+                Sentencia.Connection = ConexionBD.connection;
+                SqlDataReader dato = Sentencia.ExecuteReader();
+                if (dato.Read() == true)
+                {
+                    int activo = Convert.ToInt32(dato["ACTIVO"]);
+                    if (activo == 1)
+                    {
+                        producto.Nombreproducto = (String)dato["DETALLE"];
+
+                        //        //producto.Cant = Convert.ToInt32(dato["CANTIDAD"]);
+                        producto.Cantidad = Convert.ToInt32(dato["CANTIDAD"]);
+
+                        producto.Preciopublico_iva = Convert.ToSingle(dato["PRECIOVENTAPUBLICO"]);
+                        producto.Ivaestado = Convert.ToBoolean(dato["IVAESTADO"]);
+                        producto.Precioalmayor_iva = Convert.ToSingle(dato["PRECIOVENTAMAYORISTA"]);
+                        producto.Precioporcaja_iva = Convert.ToSingle(dato["PRECIOVENTACAJA"]);
+                        //producto.Pr = Convert.ToSingle(dato["PRECIOCOMPRA"]);
+                    }
+                    else
+                    {
+                        MessageBox.Show("El producto no está activo.");
+                        producto = null;
+                    }
+                }
+                else
+                {
+                    producto = null;
+                    MessageBox.Show("No se encontró ningun producto con ese codigo.");
+                    //DgvDetalle.Rows.RemoveAt(e.RowIndex);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                //throw;
+            }
+
+            Objc.Cerrar();
+            return producto;
+        }
 
         public EmcabezadoFactura ConsutarFactura(int sucursal, int caja, int numfact, int metodo)
         {

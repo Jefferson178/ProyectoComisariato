@@ -34,7 +34,6 @@ namespace Comisariato.Clases
         }
         public void Cerrar()
         {
-
             connection = new SqlConnection("data source = AIRCONTROL, 1433; initial catalog = BDComisariato; user id = COMI; password = server@1;");
             connection.Close();
         }
