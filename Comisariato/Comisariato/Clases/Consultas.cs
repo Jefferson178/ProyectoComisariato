@@ -1226,7 +1226,7 @@ namespace Comisariato.Clases
         }
 
 
-        public bool GrabarCombo(List<String>encabezadoCombo,DataGridView dg,int nfilas,int bandera)
+        public bool GrabarCombo(List<String>encabezadoCombo,DataGridView dg,int bandera)
         {
             try
             {
@@ -1237,23 +1237,32 @@ namespace Comisariato.Clases
                 //List<string> detalle = detallepago;
                 SqlCommand cmd = null;
                 string idempresa = Program.IDEMPRESA;
-                for (int i = 0; i < nfilas; i++)
+                for (int i = 0; i < dg.RowCount; i++)
                 {
-                    precio = Funcion.reemplazarcaracter(dg.Rows[i].Cells[4].Value.ToString());
-                    cmd = new SqlCommand("REGISTRAR_Combo", ConexionBD.connection);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    
-                        cmd.Parameters.AddWithValue("@bandera", bandera);
-                    cmd.Parameters.AddWithValue("@CONTADOR", i);
-                    cmd.Parameters.AddWithValue("@codigo", encabezadoCombo[0]);
-                    cmd.Parameters.AddWithValue("@nombre", encabezadoCombo[1]);
-                    cmd.Parameters.AddWithValue("@cantcombo", encabezadoCombo[2]);
-                    cmd.Parameters.AddWithValue("@precio", encabezadoCombo[3]);
-                    int cantidad= Convert.ToInt32(Convert.ToInt32(dg.Rows[i].Cells[3].Value) *Convert.ToInt32(encabezadoCombo[2]));
-                    cmd.Parameters.AddWithValue("@cantidadproducto", cantidad);
-                    cmd.Parameters.AddWithValue("@idproducto", dg.Rows[i].Cells[7].Value);
+                    if (dg.Rows[i].Cells[0].Value!=null)
+                    {
+                        precio = Funcion.reemplazarcaracter(dg.Rows[i].Cells[4].Value.ToString());
+                        cmd = new SqlCommand("REGISTRAR_Combo", ConexionBD.connection);
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                    result = cmd.ExecuteNonQuery();
+                        cmd.Parameters.AddWithValue("@bandera", bandera);
+                        cmd.Parameters.AddWithValue("@CONTADOR", i);
+                        cmd.Parameters.AddWithValue("@codigo", encabezadoCombo[0]);
+                        cmd.Parameters.AddWithValue("@nombre", encabezadoCombo[1]);
+                        cmd.Parameters.AddWithValue("@cantcombo", encabezadoCombo[2]);
+                        cmd.Parameters.AddWithValue("@precio", encabezadoCombo[3]);
+                        int cantidad = Convert.ToInt32(Convert.ToInt32(dg.Rows[i].Cells[3].Value) * Convert.ToInt32(encabezadoCombo[2]));
+                        cmd.Parameters.AddWithValue("@cantidadproducto", cantidad);
+                        cmd.Parameters.AddWithValue("@idproducto", dg.Rows[i].Cells[7].Value);
+
+                        result = cmd.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    
+                    
                 }
 
                 Objc.Cerrar();

@@ -189,7 +189,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                                             if (txtPrecioCombo.Text != "")
                                             {
                                                 //Consultas c = new Consultas();
-                                                int filas = indezp.Count;
+                                                //int filas = indezp.Count;
                                                 List<String> encabezadoCombo = new List<String>();
                                                 encabezadoCombo.Add(txtCodigoCombo.Text);
                                                 encabezadoCombo.Add(txtNombreCombo.Text);
@@ -197,7 +197,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                                                 encabezadoCombo.Add(txtPrecioCombo.Text);
                                                 bool b = false;
                                                 
-                                                b = objc.GrabarCombo(encabezadoCombo, dgvProductosEnCombo, filas,bandera);
+                                                b = objc.GrabarCombo(encabezadoCombo, dgvProductosEnCombo,bandera);
                                                 
                                                 if (b)
                                                 {

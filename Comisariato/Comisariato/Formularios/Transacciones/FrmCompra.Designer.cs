@@ -35,9 +35,9 @@
             this.cbSucursal = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.pcOrdenCompra = new System.Windows.Forms.TabPage();
-            this.labelprueba2 = new System.Windows.Forms.Label();
-            this.labelprueba1 = new System.Windows.Forms.Label();
-            this.labelprueba = new System.Windows.Forms.Label();
+            //this.labelprueba2 = new System.Windows.Forms.Label();
+            //this.labelprueba1 = new System.Windows.Forms.Label();
+            //this.labelprueba = new System.Windows.Forms.Label();
             this.btnSalirCompra = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvProductosIngresos = new System.Windows.Forms.DataGridView();
@@ -181,36 +181,36 @@
             // 
             // labelprueba2
             // 
-            this.labelprueba2.AutoSize = true;
-            this.labelprueba2.Font = new System.Drawing.Font("Arial", 10F);
-            this.labelprueba2.ForeColor = System.Drawing.Color.DarkCyan;
-            this.labelprueba2.Location = new System.Drawing.Point(36, 518);
-            this.labelprueba2.Name = "labelprueba2";
-            this.labelprueba2.Size = new System.Drawing.Size(141, 16);
-            this.labelprueba2.TabIndex = 62;
-            this.labelprueba2.Text = "sssssssssssssssssss";
-            // 
-            // labelprueba1
-            // 
-            this.labelprueba1.AutoSize = true;
-            this.labelprueba1.Font = new System.Drawing.Font("Arial", 10F);
-            this.labelprueba1.ForeColor = System.Drawing.Color.DarkCyan;
-            this.labelprueba1.Location = new System.Drawing.Point(36, 492);
-            this.labelprueba1.Name = "labelprueba1";
-            this.labelprueba1.Size = new System.Drawing.Size(141, 16);
-            this.labelprueba1.TabIndex = 61;
-            this.labelprueba1.Text = "sssssssssssssssssss";
-            // 
-            // labelprueba
-            // 
-            this.labelprueba.AutoSize = true;
-            this.labelprueba.Font = new System.Drawing.Font("Arial", 10F);
-            this.labelprueba.ForeColor = System.Drawing.Color.DarkCyan;
-            this.labelprueba.Location = new System.Drawing.Point(36, 471);
-            this.labelprueba.Name = "labelprueba";
-            this.labelprueba.Size = new System.Drawing.Size(141, 16);
-            this.labelprueba.TabIndex = 60;
-            this.labelprueba.Text = "sssssssssssssssssss";
+            //this.labelprueba2.AutoSize = true;
+            //this.labelprueba2.Font = new System.Drawing.Font("Arial", 10F);
+            //this.labelprueba2.ForeColor = System.Drawing.Color.DarkCyan;
+            //this.labelprueba2.Location = new System.Drawing.Point(36, 518);
+            //this.labelprueba2.Name = "labelprueba2";
+            //this.labelprueba2.Size = new System.Drawing.Size(141, 16);
+            //this.labelprueba2.TabIndex = 62;
+            //this.labelprueba2.Text = "sssssssssssssssssss";
+            //// 
+            //// labelprueba1
+            //// 
+            //this.labelprueba1.AutoSize = true;
+            //this.labelprueba1.Font = new System.Drawing.Font("Arial", 10F);
+            //this.labelprueba1.ForeColor = System.Drawing.Color.DarkCyan;
+            //this.labelprueba1.Location = new System.Drawing.Point(36, 492);
+            //this.labelprueba1.Name = "labelprueba1";
+            //this.labelprueba1.Size = new System.Drawing.Size(141, 16);
+            //this.labelprueba1.TabIndex = 61;
+            //this.labelprueba1.Text = "sssssssssssssssssss";
+            //// 
+            //// labelprueba
+            //// 
+            //this.labelprueba.AutoSize = true;
+            //this.labelprueba.Font = new System.Drawing.Font("Arial", 10F);
+            //this.labelprueba.ForeColor = System.Drawing.Color.DarkCyan;
+            //this.labelprueba.Location = new System.Drawing.Point(36, 471);
+            //this.labelprueba.Name = "labelprueba";
+            //this.labelprueba.Size = new System.Drawing.Size(141, 16);
+            //this.labelprueba.TabIndex = 60;
+            //this.labelprueba.Text = "sssssssssssssssssss";
             // 
             // btnSalirCompra
             // 
