@@ -241,7 +241,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         datosProductoCompra.CurrentRow.Cells[4].Value = "";
                         //datosProductoCompra.BeginEdit(true);
                         SendKeys.Send("{LEFT}");
-                        SendKeys.Send("{LEFT}");
+                        //SendKeys.Send("{LEFT}");
                         banderaFocoCelda = true;
                     }
                 }
