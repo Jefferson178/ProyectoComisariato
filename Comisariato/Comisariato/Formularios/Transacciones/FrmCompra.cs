@@ -210,11 +210,9 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "descuento")
                 {
-<<<<<<< HEAD
                     posicion = 4;
                     ValidaCeldasPrecios();
                     //SendKeys.Send("{LEFT}");
-=======
                     try
                     {
                         float valor;
@@ -252,7 +250,6 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         SendKeys.Send("{LEFT}");
                         banderaFocoCelda = true;
                     }
->>>>>>> e2b41f5b5781aec441308f0c2bc6b51825ab070a
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "iceProducto")
                 {
