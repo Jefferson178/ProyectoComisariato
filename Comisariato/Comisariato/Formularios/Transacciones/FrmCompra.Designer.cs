@@ -98,9 +98,6 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label14 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.labelprueba = new System.Windows.Forms.Label();
-            this.labelprueba1 = new System.Windows.Forms.Label();
-            this.labelprueba2 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.pcOrdenCompra.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -151,9 +148,6 @@
             // pcOrdenCompra
             // 
             this.pcOrdenCompra.BackColor = System.Drawing.Color.Bisque;
-            this.pcOrdenCompra.Controls.Add(this.labelprueba2);
-            this.pcOrdenCompra.Controls.Add(this.labelprueba1);
-            this.pcOrdenCompra.Controls.Add(this.labelprueba);
             this.pcOrdenCompra.Controls.Add(this.btnSalirCompra);
             this.pcOrdenCompra.Controls.Add(this.groupBox3);
             this.pcOrdenCompra.Controls.Add(this.txtTotal);
@@ -895,39 +889,6 @@
             this.label16.TabIndex = 17;
             this.label16.Text = "Desde:";
             // 
-            // labelprueba
-            // 
-            this.labelprueba.AutoSize = true;
-            this.labelprueba.Font = new System.Drawing.Font("Arial", 10F);
-            this.labelprueba.ForeColor = System.Drawing.Color.DarkCyan;
-            this.labelprueba.Location = new System.Drawing.Point(36, 471);
-            this.labelprueba.Name = "labelprueba";
-            this.labelprueba.Size = new System.Drawing.Size(141, 16);
-            this.labelprueba.TabIndex = 60;
-            this.labelprueba.Text = "sssssssssssssssssss";
-            // 
-            // labelprueba1
-            // 
-            this.labelprueba1.AutoSize = true;
-            this.labelprueba1.Font = new System.Drawing.Font("Arial", 10F);
-            this.labelprueba1.ForeColor = System.Drawing.Color.DarkCyan;
-            this.labelprueba1.Location = new System.Drawing.Point(36, 492);
-            this.labelprueba1.Name = "labelprueba1";
-            this.labelprueba1.Size = new System.Drawing.Size(141, 16);
-            this.labelprueba1.TabIndex = 61;
-            this.labelprueba1.Text = "sssssssssssssssssss";
-            // 
-            // labelprueba2
-            // 
-            this.labelprueba2.AutoSize = true;
-            this.labelprueba2.Font = new System.Drawing.Font("Arial", 10F);
-            this.labelprueba2.ForeColor = System.Drawing.Color.DarkCyan;
-            this.labelprueba2.Location = new System.Drawing.Point(36, 518);
-            this.labelprueba2.Name = "labelprueba2";
-            this.labelprueba2.Size = new System.Drawing.Size(141, 16);
-            this.labelprueba2.TabIndex = 62;
-            this.labelprueba2.Text = "sssssssssssssssssss";
-            // 
             // FrmCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1029,8 +990,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn subtotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn iva;
         private System.Windows.Forms.DataGridViewTextBoxColumn total;
-        private System.Windows.Forms.Label labelprueba;
-        private System.Windows.Forms.Label labelprueba2;
-        private System.Windows.Forms.Label labelprueba1;
     }
 }
