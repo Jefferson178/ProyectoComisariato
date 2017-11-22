@@ -132,14 +132,15 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 {
                     validaValores = validaValores + "0";
                 }
-                int ocurrencias, ocurrecias2;
+                int ocurrencias, ocurrecias2, ocurrenciasComas;
                 ocurrencias = validaValores.Split('.').Length - 1;
+                ocurrenciasComas = validaValores.Split(',').Length - 1;
                 ocurrecias2 = validaValores.Split(new String[] { ".," }, StringSplitOptions.None).Length - 1;
                 if (ocurrencias > 1 || ocurrecias2 != 0)
                 {
                     valor = float.Parse("a");
                 }
-                else if (ocurrencias == 0)
+                else if (ocurrencias == 0 && ocurrenciasComas == 0)
                 {
                     validaValores = validaValores + ".0";
                 }
