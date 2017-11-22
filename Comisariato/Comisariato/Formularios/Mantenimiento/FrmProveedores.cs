@@ -46,6 +46,7 @@ namespace Comisariato.Formularios
             txtGiraChequeProveedor.Text = "";
             txtPlazo.Text = "";
             txtFax.Text = "";
+            TxtCelularResponsable.Text = "";
             ckbRISEProveedor.Checked = false;
             Funcion.Limpiarobjetos(gbDatosAutorizacionProveedor);
             Funcion.Limpiarobjetos(gbInformcionGeneralProveedor);
@@ -65,8 +66,13 @@ namespace Comisariato.Formularios
             consultas.BoolLlenarComboBox(cbCuentaContableProveedor, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta ");
             consultas.BoolLlenarComboBox(cbTipoServicioProveedor, "Select IDSERVICIO as ID, DESCRIPCION AS Texto from TbTipoServicio");
 
+            
             IDProveedor = consultas.ObtenerID("IDProveedor", "TbProveedor", "");
-            GlobalCodigoProveedor = (IDProveedor + 1).ToString();
+            if (IDProveedor > 0)
+            {
+                GlobalCodigoProveedor = (IDProveedor + 1).ToString();
+            }
+            else { GlobalCodigoProveedor = "1"; }
             
             switch (GlobalCodigoProveedor.Length)
             {
@@ -97,6 +103,7 @@ namespace Comisariato.Formularios
 
         private void FrmProveedores_Load(object sender, EventArgs e)
         {
+            SendKeys.Send("{TAB}"); SendKeys.Send("{TAB}");
             cbIdentificacionProveedor.SelectedIndex = 0;
             cbNacionalidadProveedor.SelectedIndex = 0;
             cbNaturalezaProveedor.SelectedIndex = 0;
@@ -152,7 +159,7 @@ namespace Comisariato.Formularios
                     txtNombreProveedor.Text, txtNumeroIdentificacionProveedor.Text, cbNacionalidadProveedor.Text, cbNaturalezaProveedor.Text,
                     txtDireccionProveedor.Text, txtRazonSocialProveedor.Text, txtEmailProveedor.Text, txtTelefonoProveedor.Text, txtCelularProveedor.Text,
                     txtGiraChequeProveedor.Text, txtResponsableProveedor.Text, cbTipoGastoProveedor.Text, cbTipoServicioProveedor.Text,
-                    Convert.ToInt32(cbParroquiaProveedor.SelectedValue), ckbRISEProveedor.Checked, Convert.ToInt32(cbCuentaContableProveedor.SelectedValue), Convert.ToInt32(cbCreditoProveedor.SelectedValue), Convert.ToInt32(cbICEProveedor.SelectedValue), Convert.ToInt32(cbCodigo101Proveedor.SelectedValue));
+                    Convert.ToInt32(cbParroquiaProveedor.SelectedValue), ckbRISEProveedor.Checked, Convert.ToInt32(cbCuentaContableProveedor.SelectedValue), Convert.ToInt32(cbCreditoProveedor.SelectedValue), Convert.ToInt32(cbICEProveedor.SelectedValue), Convert.ToInt32(cbCodigo101Proveedor.SelectedValue),TxtCelularResponsable.Text);
                 if (!bandera_Estado)
                 {
                     String resultado = ObjProvee.InsertarProveedor();
@@ -237,17 +244,30 @@ namespace Comisariato.Formularios
 
         private void TxtNombreProveedor_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.Validar_Letras(e);
+            Funcion.ValidarLetrasPuntoNumero(e,txtNombreProveedor.Text);
+
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void TxtIdentificacion_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.Validar_Numeros(e);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void TxtDireccion_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.validar_Num_Letras(e);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
 
@@ -411,30 +431,41 @@ namespace Comisariato.Formularios
 
         private void txtNumeroIdentificacionProveedor_Leave(object sender, EventArgs e)
         {
-            if (cbIdentificacionProveedor.SelectedIndex == 0)
+            if (txtNumeroIdentificacionProveedor.Text != "")
             {
-                if (!Funcion.VerificarCedula(txtNumeroIdentificacionProveedor.Text))
+                if (cbIdentificacionProveedor.SelectedIndex == 0)
                 {
-                    MessageBox.Show("Ingrese la Cédula Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    txtNumeroIdentificacionProveedor.Focus();
-                    txtNumeroIdentificacionProveedor.Select(0, txtNumeroIdentificacionProveedor.Text.Length);
-                }
-            }
-            if (cbIdentificacionProveedor.SelectedIndex == 1)
-            {
-                if (txtNumeroIdentificacionProveedor.Text.Length == 13)
-                {
-                    if (txtNumeroIdentificacionProveedor.Text.Substring(10, 3) != "001" || Funcion.VerificarCedula(txtNumeroIdentificacionProveedor.Text.Substring(0, 10)) == false)
+                    if (!Funcion.VerificarCedula(txtNumeroIdentificacionProveedor.Text))
                     {
-                        MessageBox.Show("Ingrese el RUC Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        MessageBox.Show("Ingrese la Cédula Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         txtNumeroIdentificacionProveedor.Focus();
                         txtNumeroIdentificacionProveedor.Select(0, txtNumeroIdentificacionProveedor.Text.Length);
                     }
                 }
-                else
+                if (cbIdentificacionProveedor.SelectedIndex == 1 && cbNaturalezaProveedor.SelectedIndex == 0)
                 {
-                    MessageBox.Show("Ingrese el RUC Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); txtNumeroIdentificacionProveedor.Focus();
-                    txtNumeroIdentificacionProveedor.Select(0, txtNumeroIdentificacionProveedor.Text.Length);
+                    if (txtNumeroIdentificacionProveedor.Text.Length == 13)
+                    {
+                        if (txtNumeroIdentificacionProveedor.Text.Substring(10, 3) != "001" || Funcion.VerificarCedula(txtNumeroIdentificacionProveedor.Text.Substring(0, 10)) == false)
+                        {
+                            MessageBox.Show("Ingrese el RUC Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                            txtNumeroIdentificacionProveedor.Focus();
+                            txtNumeroIdentificacionProveedor.Select(0, txtNumeroIdentificacionProveedor.Text.Length);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ingrese el RUC Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); txtNumeroIdentificacionProveedor.Focus();
+                        txtNumeroIdentificacionProveedor.Select(0, txtNumeroIdentificacionProveedor.Text.Length);
+                    }
+                }
+                else if (cbIdentificacionProveedor.SelectedIndex == 1 && cbNaturalezaProveedor.SelectedIndex == 1)
+                {
+                    if (txtNumeroIdentificacionProveedor.Text.Length != 13)
+                    {
+                        MessageBox.Show("Ingrese el RUC Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); txtNumeroIdentificacionProveedor.Focus();
+                        txtNumeroIdentificacionProveedor.Select(0, txtNumeroIdentificacionProveedor.Text.Length);
+                    }
                 }
             }
         }
@@ -863,6 +894,43 @@ namespace Comisariato.Formularios
         private void dtpOrden_ValueChanged(object sender, EventArgs e)
         {
             dgvDatosAutorizacionProveedor.CurrentCell.Value = dtpOrder.Text;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void txtEmailProveedor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void txtPlazo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void txtFax_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Funcion.Validar_Numeros(e);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void rbtInactivosProveedor_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

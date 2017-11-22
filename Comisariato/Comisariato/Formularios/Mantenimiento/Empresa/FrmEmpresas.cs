@@ -290,19 +290,22 @@ namespace Comisariato.Formularios
 
         private void txtRUCEmpresa_Leave(object sender, EventArgs e)
         {
-            if (txtRUCEmpresa.Text.Length == 13)
+            if (txtRUCEmpresa.Text != "")
             {
-                if (txtRUCEmpresa.Text.Substring(10, 3) != "001" || Funcion.VerificarCedula(txtRUCEmpresa.Text.Substring(0, 10)) == false)
+                if (txtRUCEmpresa.Text.Length == 13)
                 {
-                    MessageBox.Show("Ingrese el RUC Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    txtRUCEmpresa.Focus();
+                    if (txtRUCEmpresa.Text.Substring(10, 3) != "001" || Funcion.VerificarCedula(txtRUCEmpresa.Text.Substring(0, 10)) == false)
+                    {
+                        MessageBox.Show("Ingrese el RUC Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        txtRUCEmpresa.Focus();
+                        txtRUCEmpresa.Select(0, txtRUCEmpresa.Text.Length);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ingrese el RUC Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); txtRUCEmpresa.Focus();
                     txtRUCEmpresa.Select(0, txtRUCEmpresa.Text.Length);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Ingrese el RUC Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); txtRUCEmpresa.Focus();
-                txtRUCEmpresa.Select(0, txtRUCEmpresa.Text.Length);
             }
         }
 
@@ -323,6 +326,27 @@ namespace Comisariato.Formularios
                 dgvDatosEmpresa.Rows[e.RowIndex].Height = icoAtomico.Height + 10;
                 dgvDatosEmpresa.Columns[e.ColumnIndex].Width = icoAtomico.Width + 10;
                 e.Handled = true;
+            }
+        }
+
+        private void txtRUCContadorEmpresa_Leave(object sender, EventArgs e)
+        {
+            if (txtRUCContadorEmpresa.Text != "")
+            {
+                if (txtRUCContadorEmpresa.Text.Length == 13)
+                {
+                    if (txtRUCContadorEmpresa.Text.Substring(10, 3) != "001" || Funcion.VerificarCedula(txtRUCContadorEmpresa.Text.Substring(0, 10)) == false)
+                    {
+                        MessageBox.Show("Ingrese el RUC Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        txtRUCContadorEmpresa.Focus();
+                        txtRUCEmpresa.Select(0, txtRUCContadorEmpresa.Text.Length);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ingrese el RUC Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); txtRUCContadorEmpresa.Focus();
+                    txtRUCContadorEmpresa.Select(0, txtRUCContadorEmpresa.Text.Length);
+                }
             }
         }
     }

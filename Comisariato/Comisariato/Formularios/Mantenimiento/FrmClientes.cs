@@ -462,30 +462,33 @@ namespace Comisariato.Formularios
 
         private void txtIdentificacionCliente_Leave(object sender, EventArgs e)
         {
-            if (cbIdentificacionCliente.SelectedIndex == 0)
+            if (txtIdentificacionCliente.Text != "")
             {
-                if (!Funcion.VerificarCedula(txtIdentificacionCliente.Text))
+                if (cbIdentificacionCliente.SelectedIndex == 0)
                 {
-                    MessageBox.Show("Ingrese la Cédula Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    txtIdentificacionCliente.Focus();
-                    txtIdentificacionCliente.Select(0, txtIdentificacionCliente.Text.Length);
-                }
-            }
-            if (cbIdentificacionCliente.SelectedIndex == 1)
-            {
-                if (txtIdentificacionCliente.Text.Length == 13)
-                {
-                    if (txtIdentificacionCliente.Text.Substring(10, 3) != "001" || Funcion.VerificarCedula(txtIdentificacionCliente.Text.Substring(0, 10)) == false)
+                    if (!Funcion.VerificarCedula(txtIdentificacionCliente.Text))
                     {
-                        MessageBox.Show("Ingrese el RUC Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        MessageBox.Show("Ingrese la Cédula Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         txtIdentificacionCliente.Focus();
                         txtIdentificacionCliente.Select(0, txtIdentificacionCliente.Text.Length);
                     }
                 }
-                else
+                if (cbIdentificacionCliente.SelectedIndex == 1)
                 {
-                    MessageBox.Show("Ingrese el RUC Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); txtIdentificacionCliente.Focus();
-                    txtIdentificacionCliente.Select(0, txtIdentificacionCliente.Text.Length);
+                    if (txtIdentificacionCliente.Text.Length == 13)
+                    {
+                        if (txtIdentificacionCliente.Text.Substring(10, 3) != "001" || Funcion.VerificarCedula(txtIdentificacionCliente.Text.Substring(0, 10)) == false)
+                        {
+                            MessageBox.Show("Ingrese el RUC Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                            txtIdentificacionCliente.Focus();
+                            txtIdentificacionCliente.Select(0, txtIdentificacionCliente.Text.Length);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ingrese el RUC Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); txtIdentificacionCliente.Focus();
+                        txtIdentificacionCliente.Select(0, txtIdentificacionCliente.Text.Length);
+                    }
                 }
             }
         }
@@ -541,6 +544,11 @@ namespace Comisariato.Formularios
         private void dgvDatosCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -20,6 +20,8 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
         Consultas consultas;
         bool bandera_Estado = false;
         String GlovalRUC = "";
+        String GlovalCodigoSucursal = "";
+        int IDSucursal;
         private void cargarDatos(string condicion)
         {
             consultas = new Consultas();
@@ -32,42 +34,86 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
         {
 
             Funcion.Limpiarobjetos(gbDatosSucursal);
-            CmbEmpresa.SelectedIndex = 0;
+
+            if (CmbEmpresa.Items.Count > 0)
+            {
+                CmbEmpresa.SelectedIndex = 0;
+            }
             ckbEstadoSucursal.Checked = true;
 
             // llenar datadrigview solo los activos
             cargarDatos("1");
+
+            IDSucursal = consultas.ObtenerID("IDSUCURSAL", "TbSucursal", "");
+            if (IDSucursal > 0)
+            {
+                GlovalCodigoSucursal = (IDSucursal + 1).ToString();
+            }
+            else { GlovalCodigoSucursal = "1"; }
+
+            switch (GlovalCodigoSucursal.Length)
+            {
+                case 1:
+                    GlovalCodigoSucursal = "00" + GlovalCodigoSucursal;
+                    break;
+                case 2:
+                    GlovalCodigoSucursal = "0" + GlovalCodigoSucursal;
+                    break;
+                default:
+                    GlovalCodigoSucursal = "0";
+                    break;
+            }
+            txtCodigoSucursal.Text = GlovalCodigoSucursal;
         }
 
         private void FrmSucursal_Load(object sender, EventArgs e)
         {
-            cargarDatos("1");
-            CmbEmpresa.SelectedIndex = 0;
+            inicializarDatos();
         }
 
         private void txtCodigoSucursal_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.Validar_Numeros(e);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void txtSucursal_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.validar_Num_Letras(e);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void txtJefeSucursal_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.Validar_Letras(e);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.SinEspaciosEmail(e);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void txtUbicacionSucursal_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.validar_Num_Letras(e);
+            //Funcion.validar_Num_Letras(e);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void rbtInactivos_CheckedChanged(object sender, EventArgs e)

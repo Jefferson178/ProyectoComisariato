@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcEmpleado = new System.Windows.Forms.TabControl();
             this.tpNuevoEmpleado = new System.Windows.Forms.TabPage();
             this.btnLimpiar = new System.Windows.Forms.Button();
@@ -227,7 +227,7 @@
             this.TxtCelular2.Location = new System.Drawing.Point(848, 185);
             this.TxtCelular2.Name = "TxtCelular2";
             this.TxtCelular2.Size = new System.Drawing.Size(166, 22);
-            this.TxtCelular2.TabIndex = 26;
+            this.TxtCelular2.TabIndex = 20;
             this.TxtCelular2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIdentidad_KeyPress);
             // 
             // TxtCelular1
@@ -236,7 +236,7 @@
             this.TxtCelular1.Location = new System.Drawing.Point(848, 156);
             this.TxtCelular1.Name = "TxtCelular1";
             this.TxtCelular1.Size = new System.Drawing.Size(166, 22);
-            this.TxtCelular1.TabIndex = 25;
+            this.TxtCelular1.TabIndex = 18;
             this.TxtCelular1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIdentidad_KeyPress);
             // 
             // label23
@@ -268,7 +268,8 @@
             this.NupDiscapacidad.Location = new System.Drawing.Point(532, 155);
             this.NupDiscapacidad.Name = "NupDiscapacidad";
             this.NupDiscapacidad.Size = new System.Drawing.Size(58, 22);
-            this.NupDiscapacidad.TabIndex = 18;
+            this.NupDiscapacidad.TabIndex = 17;
+            this.NupDiscapacidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NupDiscapacidad_KeyPress);
             // 
             // CkbDiscapacidad
             // 
@@ -289,7 +290,7 @@
             this.TxtSueldoExtra.Location = new System.Drawing.Point(848, 127);
             this.TxtSueldoExtra.Name = "TxtSueldoExtra";
             this.TxtSueldoExtra.Size = new System.Drawing.Size(166, 22);
-            this.TxtSueldoExtra.TabIndex = 24;
+            this.TxtSueldoExtra.TabIndex = 16;
             this.TxtSueldoExtra.Text = "0";
             this.TxtSueldoExtra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtSueldoExtra_KeyPress);
             // 
@@ -299,7 +300,7 @@
             this.TxtSueldoMensual.Location = new System.Drawing.Point(848, 96);
             this.TxtSueldoMensual.Name = "TxtSueldoMensual";
             this.TxtSueldoMensual.Size = new System.Drawing.Size(166, 22);
-            this.TxtSueldoMensual.TabIndex = 23;
+            this.TxtSueldoMensual.TabIndex = 14;
             this.TxtSueldoMensual.Text = "0";
             this.TxtSueldoMensual.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtSueldoMensual_KeyPress);
             // 
@@ -309,7 +310,7 @@
             this.TxtMovimientoQuincenal.Location = new System.Drawing.Point(532, 185);
             this.TxtMovimientoQuincenal.Name = "TxtMovimientoQuincenal";
             this.TxtMovimientoQuincenal.Size = new System.Drawing.Size(206, 22);
-            this.TxtMovimientoQuincenal.TabIndex = 20;
+            this.TxtMovimientoQuincenal.TabIndex = 19;
             this.TxtMovimientoQuincenal.Text = "0";
             this.TxtMovimientoQuincenal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMovimientoQuincenal_KeyPress);
             // 
@@ -319,7 +320,7 @@
             this.TxtLibretaMilitar.Location = new System.Drawing.Point(532, 127);
             this.TxtLibretaMilitar.Name = "TxtLibretaMilitar";
             this.TxtLibretaMilitar.Size = new System.Drawing.Size(206, 22);
-            this.TxtLibretaMilitar.TabIndex = 16;
+            this.TxtLibretaMilitar.TabIndex = 15;
             this.TxtLibretaMilitar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDireccion_KeyPress);
             // 
             // CmbGenero
@@ -333,7 +334,8 @@
             this.CmbGenero.Location = new System.Drawing.Point(831, 36);
             this.CmbGenero.Name = "CmbGenero";
             this.CmbGenero.Size = new System.Drawing.Size(183, 24);
-            this.CmbGenero.TabIndex = 21;
+            this.CmbGenero.TabIndex = 10;
+            this.CmbGenero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbGenero_KeyPress);
             // 
             // label19
             // 
@@ -393,7 +395,7 @@
             this.TxtEmail.Location = new System.Drawing.Point(81, 185);
             this.TxtEmail.Name = "TxtEmail";
             this.TxtEmail.Size = new System.Drawing.Size(294, 22);
-            this.TxtEmail.TabIndex = 19;
+            this.TxtEmail.TabIndex = 21;
             this.TxtEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtEmail_KeyPress);
             // 
             // CmbTipoSangre
@@ -413,7 +415,8 @@
             this.CmbTipoSangre.Location = new System.Drawing.Point(532, 96);
             this.CmbTipoSangre.Name = "CmbTipoSangre";
             this.CmbTipoSangre.Size = new System.Drawing.Size(206, 24);
-            this.CmbTipoSangre.TabIndex = 15;
+            this.CmbTipoSangre.TabIndex = 13;
+            this.CmbTipoSangre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbGenero_KeyPress);
             // 
             // CmbTipoLicencia
             // 
@@ -428,7 +431,8 @@
             this.CmbTipoLicencia.Location = new System.Drawing.Point(532, 66);
             this.CmbTipoLicencia.Name = "CmbTipoLicencia";
             this.CmbTipoLicencia.Size = new System.Drawing.Size(206, 24);
-            this.CmbTipoLicencia.TabIndex = 14;
+            this.CmbTipoLicencia.TabIndex = 11;
+            this.CmbTipoLicencia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbTipoLicencia_KeyPress);
             // 
             // CmbEstadoCivil
             // 
@@ -444,7 +448,8 @@
             this.CmbEstadoCivil.Location = new System.Drawing.Point(831, 65);
             this.CmbEstadoCivil.Name = "CmbEstadoCivil";
             this.CmbEstadoCivil.Size = new System.Drawing.Size(183, 24);
-            this.CmbEstadoCivil.TabIndex = 22;
+            this.CmbEstadoCivil.TabIndex = 12;
+            this.CmbEstadoCivil.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbGenero_KeyPress);
             // 
             // DtpFechaNacimiento
             // 
@@ -453,7 +458,8 @@
             this.DtpFechaNacimiento.Location = new System.Drawing.Point(532, 37);
             this.DtpFechaNacimiento.Name = "DtpFechaNacimiento";
             this.DtpFechaNacimiento.Size = new System.Drawing.Size(206, 22);
-            this.DtpFechaNacimiento.TabIndex = 13;
+            this.DtpFechaNacimiento.TabIndex = 9;
+            this.DtpFechaNacimiento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DtpFechaNacimiento_KeyPress);
             // 
             // groupBox3
             // 
@@ -470,7 +476,7 @@
             this.groupBox3.Location = new System.Drawing.Point(20, 11);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(354, 168);
-            this.groupBox3.TabIndex = 24;
+            this.groupBox3.TabIndex = 22;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Lugar de Nacimiento";
             // 
@@ -482,7 +488,7 @@
             this.CmbParroquia.Location = new System.Drawing.Point(182, 108);
             this.CmbParroquia.Name = "CmbParroquia";
             this.CmbParroquia.Size = new System.Drawing.Size(159, 24);
-            this.CmbParroquia.TabIndex = 12;
+            this.CmbParroquia.TabIndex = 26;
             // 
             // CmbCanton
             // 
@@ -492,7 +498,7 @@
             this.CmbCanton.Location = new System.Drawing.Point(13, 108);
             this.CmbCanton.Name = "CmbCanton";
             this.CmbCanton.Size = new System.Drawing.Size(159, 24);
-            this.CmbCanton.TabIndex = 11;
+            this.CmbCanton.TabIndex = 25;
             this.CmbCanton.SelectedIndexChanged += new System.EventHandler(this.CmbCanton_SelectedIndexChanged);
             // 
             // CmbProvincia
@@ -503,7 +509,7 @@
             this.CmbProvincia.Location = new System.Drawing.Point(182, 55);
             this.CmbProvincia.Name = "CmbProvincia";
             this.CmbProvincia.Size = new System.Drawing.Size(159, 24);
-            this.CmbProvincia.TabIndex = 10;
+            this.CmbProvincia.TabIndex = 24;
             this.CmbProvincia.SelectedIndexChanged += new System.EventHandler(this.CmbProvincia_SelectedIndexChanged);
             // 
             // CmbPais
@@ -514,7 +520,7 @@
             this.CmbPais.Location = new System.Drawing.Point(13, 55);
             this.CmbPais.Name = "CmbPais";
             this.CmbPais.Size = new System.Drawing.Size(159, 24);
-            this.CmbPais.TabIndex = 9;
+            this.CmbPais.TabIndex = 23;
             this.CmbPais.SelectedIndexChanged += new System.EventHandler(this.CmbPais_SelectedIndexChanged);
             // 
             // label9
@@ -642,9 +648,8 @@
             this.groupBox2.Location = new System.Drawing.Point(692, 13);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(307, 176);
-            this.groupBox2.TabIndex = 11;
+            this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Foto";
             // 
             // btnCancelar
             // 
@@ -652,10 +657,11 @@
             this.btnCancelar.Location = new System.Drawing.Point(194, 95);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(107, 48);
-            this.btnCancelar.TabIndex = 7;
+            this.btnCancelar.TabIndex = 8;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.btnCancelar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.btnCancelar_KeyPress);
             // 
             // BtnBuscar
             // 
@@ -665,11 +671,12 @@
             this.BtnBuscar.Location = new System.Drawing.Point(194, 37);
             this.BtnBuscar.Name = "BtnBuscar";
             this.BtnBuscar.Size = new System.Drawing.Size(107, 48);
-            this.BtnBuscar.TabIndex = 6;
-            this.BtnBuscar.Text = "Imagen";
+            this.BtnBuscar.TabIndex = 7;
+            this.BtnBuscar.Text = "Buscar";
             this.BtnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnBuscar.UseVisualStyleBackColor = true;
             this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
+            this.BtnBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.BtnBuscar_KeyPress);
             // 
             // PictureFoto
             // 
@@ -872,14 +879,14 @@
             this.DgvDatosEmpleado.AllowUserToOrderColumns = true;
             this.DgvDatosEmpleado.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvDatosEmpleado.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvDatosEmpleado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvDatosEmpleado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.DgvDatosEmpleado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvDatosEmpleado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Modificar,
@@ -912,7 +919,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(1089, 588);
+            this.ClientSize = new System.Drawing.Size(1089, 589);
             this.Controls.Add(this.tcEmpleado);
             this.Font = new System.Drawing.Font("Arial", 8.25F);
             this.MaximizeBox = false;

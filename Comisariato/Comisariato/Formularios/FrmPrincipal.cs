@@ -44,7 +44,8 @@ namespace Comisariato.Formularios
             InitializeComponent();
         }
         Funcion objFuncion = new Funcion();
-        
+        Consultas objConsulta = new Consultas();
+
 
         private void tvPrincipal_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
@@ -244,15 +245,22 @@ namespace Comisariato.Formularios
             }
             else if (nombre == "Compras")
             {
-                if (FrmCompra == null || FrmCompra.IsDisposed)
+                if (objConsulta.ObtenerValorCampo("IDPROVEEDOR","TbProveedor","") != "" && objConsulta.ObtenerValorCampo("IDSUCURSAL", "TbSucursal", "") != "" && objConsulta.ObtenerValorCampo("IDPARAMETROSFACTURA", "TbParametrosFactura", "") !="")
                 {
-                    FrmCompra = new FrmCompra();
-                    objFuncion.AddFormInPanel(FrmCompra, Program.panelPrincipalVariable);
+                    if (FrmCompra == null || FrmCompra.IsDisposed)
+                    {
+                        FrmCompra = new FrmCompra();
+                        objFuncion.AddFormInPanel(FrmCompra, Program.panelPrincipalVariable);
+                    }
+                    else
+                    {
+                        int index = panelPrincipal.Controls.GetChildIndex(FrmCompra);
+                        FrmCompra.BringToFront();
+                    }
                 }
                 else
                 {
-                    int index = panelPrincipal.Controls.GetChildIndex(FrmCompra);
-                    FrmCompra.BringToFront();
+                    MessageBox.Show("Para realizar un registro de compra debe de tener registrado lo siguiente:\n*Al menos un proveedor.\n*Al menos una sucursal.\n*Parametros para la factura", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else if (nombre == "Orden de Giro")

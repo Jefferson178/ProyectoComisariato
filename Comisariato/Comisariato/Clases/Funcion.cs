@@ -169,6 +169,51 @@ namespace Comisariato.Clases
 
         }
 
+        public static void ValidarLetrasPuntoNumero(KeyPressEventArgs e, string textBox1)
+        {
+            if (Char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsDigit(e.KeyChar) || e.KeyChar == '.')
+            {
+                if (e.KeyChar == '.')
+                {
+                    //if (textBox1.Contains(".") || textBox1 == "")
+                    //{
+                        e.Handled = false;
+                    //}
+                }
+                //else
+                //{
+                //if (textBox1.Contains("."))
+                //if (textBox1.Substring(textBox1.IndexOf('.') + 1).Length >= 2)
+                //{
+                //e.Handled = true;
+                //}
+                //}
+
+            }
+            else
+            {
+                e.Handled = true;
+            }
+
+        }
+
+
         //SOLO NUMEROS DGV
         private static void OnlyNumbers_KeyPress(object sender, KeyPressEventArgs e)
         {

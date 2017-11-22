@@ -137,7 +137,10 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             txtConsultarBodega.Text = "";
             txtDescripcionBodega.Text = "";
             txtUbicacionBodega.Text = "";
-            cbResponsableBodega.SelectedIndex = 0;
+            if (cbResponsableBodega.Items.Count > 0)
+            {
+                cbResponsableBodega.SelectedIndex = 0;
+            }
             btnGuardarBodega.Text = "&Guardar";
             btnLimpiarBodega.Text = "&Limpiar";
         }

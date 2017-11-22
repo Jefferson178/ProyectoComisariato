@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label13 = new System.Windows.Forms.Label();
             this.cbSucursal = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -38,6 +38,19 @@
             this.btnSalirCompra = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvProductosIngresos = new System.Windows.Forms.DataGridView();
+            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iceProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.irbpProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioPublico = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioMayorista = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioCaja = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iva = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.txtIRBP = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -85,19 +98,6 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label14 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iceProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.irbpProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioPublico = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioMayorista = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioCaja = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iva = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.pcOrdenCompra.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -130,7 +130,8 @@
             this.cbSucursal.Margin = new System.Windows.Forms.Padding(2);
             this.cbSucursal.Name = "cbSucursal";
             this.cbSucursal.Size = new System.Drawing.Size(214, 24);
-            this.cbSucursal.TabIndex = 11;
+            this.cbSucursal.TabIndex = 6;
+            this.cbSucursal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbSucursal_KeyDown);
             // 
             // tabControl1
             // 
@@ -142,7 +143,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1056, 575);
-            this.tabControl1.TabIndex = 13;
+            this.tabControl1.TabIndex = 1;
             // 
             // pcOrdenCompra
             // 
@@ -205,14 +206,14 @@
             this.dgvProductosIngresos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProductosIngresos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProductosIngresos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvProductosIngresos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductosIngresos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigo,
@@ -228,40 +229,137 @@
             this.subtotal,
             this.iva,
             this.total});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvProductosIngresos.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvProductosIngresos.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgvProductosIngresos.Location = new System.Drawing.Point(9, 20);
             this.dgvProductosIngresos.Margin = new System.Windows.Forms.Padding(2);
             this.dgvProductosIngresos.Name = "dgvProductosIngresos";
             this.dgvProductosIngresos.Size = new System.Drawing.Size(1015, 150);
-            this.dgvProductosIngresos.TabIndex = 59;
+            this.dgvProductosIngresos.TabIndex = 11;
             this.dgvProductosIngresos.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductosIngresos_CellEndEdit);
+            this.dgvProductosIngresos.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductosIngresos_CellEnter);
             this.dgvProductosIngresos.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvProductosIngresos_EditingControlShowing);
+            this.dgvProductosIngresos.Enter += new System.EventHandler(this.dgvProductosIngresos_Enter);
             this.dgvProductosIngresos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvProductosIngresos_KeyDown);
+            this.dgvProductosIngresos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvProductosIngresos_KeyPress);
+            this.dgvProductosIngresos.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvProductosIngresos_KeyUp);
+            // 
+            // codigo
+            // 
+            this.codigo.HeaderText = "Código";
+            this.codigo.Name = "codigo";
+            this.codigo.ReadOnly = true;
+            this.codigo.Width = 110;
+            // 
+            // producto
+            // 
+            this.producto.HeaderText = "Producto";
+            this.producto.Name = "producto";
+            this.producto.ReadOnly = true;
+            this.producto.Width = 160;
+            // 
+            // cantidad
+            // 
+            this.cantidad.HeaderText = "Cant.";
+            this.cantidad.Name = "cantidad";
+            this.cantidad.ReadOnly = true;
+            this.cantidad.Width = 50;
+            // 
+            // precioCompra
+            // 
+            this.precioCompra.HeaderText = "P. C.";
+            this.precioCompra.Name = "precioCompra";
+            this.precioCompra.ReadOnly = true;
+            this.precioCompra.Width = 60;
+            // 
+            // descuento
+            // 
+            this.descuento.HeaderText = "Desc.";
+            this.descuento.Name = "descuento";
+            this.descuento.ReadOnly = true;
+            this.descuento.Width = 70;
+            // 
+            // iceProducto
+            // 
+            this.iceProducto.HeaderText = "ICE";
+            this.iceProducto.Name = "iceProducto";
+            this.iceProducto.ReadOnly = true;
+            this.iceProducto.Width = 50;
+            // 
+            // irbpProducto
+            // 
+            this.irbpProducto.HeaderText = "IRBP";
+            this.irbpProducto.Name = "irbpProducto";
+            this.irbpProducto.ReadOnly = true;
+            this.irbpProducto.Width = 50;
+            // 
+            // precioPublico
+            // 
+            this.precioPublico.HeaderText = "P.V.P";
+            this.precioPublico.Name = "precioPublico";
+            this.precioPublico.ReadOnly = true;
+            this.precioPublico.Width = 60;
+            // 
+            // precioMayorista
+            // 
+            this.precioMayorista.HeaderText = "P. May";
+            this.precioMayorista.Name = "precioMayorista";
+            this.precioMayorista.ReadOnly = true;
+            this.precioMayorista.Width = 75;
+            // 
+            // precioCaja
+            // 
+            this.precioCaja.HeaderText = "P. Cajas";
+            this.precioCaja.Name = "precioCaja";
+            this.precioCaja.ReadOnly = true;
+            this.precioCaja.Width = 85;
+            // 
+            // subtotal
+            // 
+            this.subtotal.HeaderText = "Subtotal";
+            this.subtotal.Name = "subtotal";
+            this.subtotal.ReadOnly = true;
+            this.subtotal.Width = 75;
+            // 
+            // iva
+            // 
+            this.iva.HeaderText = "IVA";
+            this.iva.Name = "iva";
+            this.iva.ReadOnly = true;
+            this.iva.Width = 45;
+            // 
+            // total
+            // 
+            this.total.HeaderText = "Total";
+            this.total.Name = "total";
+            this.total.ReadOnly = true;
+            this.total.Width = 65;
             // 
             // txtTotal
             // 
+            this.txtTotal.Enabled = false;
             this.txtTotal.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold);
             this.txtTotal.Location = new System.Drawing.Point(776, 471);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(259, 63);
-            this.txtTotal.TabIndex = 57;
+            this.txtTotal.TabIndex = 20;
             // 
             // txtIRBP
             // 
+            this.txtIRBP.Enabled = false;
             this.txtIRBP.Font = new System.Drawing.Font("Arial", 10F);
             this.txtIRBP.Location = new System.Drawing.Point(650, 438);
             this.txtIRBP.Name = "txtIRBP";
             this.txtIRBP.ReadOnly = true;
             this.txtIRBP.Size = new System.Drawing.Size(130, 23);
-            this.txtIRBP.TabIndex = 56;
+            this.txtIRBP.TabIndex = 16;
             this.txtIRBP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIRBP_KeyPress);
             // 
             // label12
@@ -288,30 +386,33 @@
             // 
             // txtSubtutalIVA
             // 
+            this.txtSubtutalIVA.Enabled = false;
             this.txtSubtutalIVA.Font = new System.Drawing.Font("Arial", 10F);
             this.txtSubtutalIVA.Location = new System.Drawing.Point(905, 380);
             this.txtSubtutalIVA.Name = "txtSubtutalIVA";
             this.txtSubtutalIVA.ReadOnly = true;
             this.txtSubtutalIVA.Size = new System.Drawing.Size(130, 23);
-            this.txtSubtutalIVA.TabIndex = 53;
+            this.txtSubtutalIVA.TabIndex = 17;
             // 
             // txtSubtotal0
             // 
+            this.txtSubtotal0.Enabled = false;
             this.txtSubtotal0.Font = new System.Drawing.Font("Arial", 10F);
             this.txtSubtotal0.Location = new System.Drawing.Point(905, 409);
             this.txtSubtotal0.Name = "txtSubtotal0";
             this.txtSubtotal0.ReadOnly = true;
             this.txtSubtotal0.Size = new System.Drawing.Size(130, 23);
-            this.txtSubtotal0.TabIndex = 52;
+            this.txtSubtotal0.TabIndex = 18;
             // 
             // txtSubtotal
             // 
+            this.txtSubtotal.Enabled = false;
             this.txtSubtotal.Font = new System.Drawing.Font("Arial", 10F);
             this.txtSubtotal.Location = new System.Drawing.Point(905, 438);
             this.txtSubtotal.Name = "txtSubtotal";
             this.txtSubtotal.ReadOnly = true;
             this.txtSubtotal.Size = new System.Drawing.Size(130, 23);
-            this.txtSubtotal.TabIndex = 51;
+            this.txtSubtotal.TabIndex = 19;
             // 
             // label9
             // 
@@ -348,21 +449,23 @@
             // 
             // txtIVA
             // 
+            this.txtIVA.Enabled = false;
             this.txtIVA.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.txtIVA.Location = new System.Drawing.Point(650, 380);
             this.txtIVA.Name = "txtIVA";
             this.txtIVA.ReadOnly = true;
             this.txtIVA.Size = new System.Drawing.Size(130, 23);
-            this.txtIVA.TabIndex = 47;
+            this.txtIVA.TabIndex = 14;
             // 
             // txtICE
             // 
+            this.txtICE.Enabled = false;
             this.txtICE.Font = new System.Drawing.Font("Arial", 10F);
             this.txtICE.Location = new System.Drawing.Point(650, 409);
             this.txtICE.Name = "txtICE";
             this.txtICE.ReadOnly = true;
             this.txtICE.Size = new System.Drawing.Size(130, 23);
-            this.txtICE.TabIndex = 45;
+            this.txtICE.TabIndex = 15;
             this.txtICE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtICE_KeyPress);
             // 
             // label6
@@ -394,7 +497,7 @@
             this.BtnLimpiar.Location = new System.Drawing.Point(391, 384);
             this.BtnLimpiar.Name = "BtnLimpiar";
             this.BtnLimpiar.Size = new System.Drawing.Size(135, 77);
-            this.BtnLimpiar.TabIndex = 29;
+            this.BtnLimpiar.TabIndex = 13;
             this.BtnLimpiar.Text = "&Limpiar";
             this.BtnLimpiar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnLimpiar.UseVisualStyleBackColor = true;
@@ -406,7 +509,7 @@
             this.BtnGuardar.Location = new System.Drawing.Point(239, 384);
             this.BtnGuardar.Name = "BtnGuardar";
             this.BtnGuardar.Size = new System.Drawing.Size(135, 77);
-            this.BtnGuardar.TabIndex = 28;
+            this.BtnGuardar.TabIndex = 12;
             this.BtnGuardar.Text = "&Guardar";
             this.BtnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnGuardar.UseVisualStyleBackColor = true;
@@ -450,27 +553,33 @@
             // 
             this.txtNumero.Font = new System.Drawing.Font("Arial", 10F);
             this.txtNumero.Location = new System.Drawing.Point(770, 15);
+            this.txtNumero.MaxLength = 9;
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(156, 23);
-            this.txtNumero.TabIndex = 51;
+            this.txtNumero.TabIndex = 4;
+            this.txtNumero.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNumero_KeyDown);
             this.txtNumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumero_KeyPress);
             // 
             // txtSerie1
             // 
             this.txtSerie1.Font = new System.Drawing.Font("Arial", 10F);
             this.txtSerie1.Location = new System.Drawing.Point(619, 15);
+            this.txtSerie1.MaxLength = 3;
             this.txtSerie1.Name = "txtSerie1";
             this.txtSerie1.Size = new System.Drawing.Size(56, 23);
-            this.txtSerie1.TabIndex = 50;
+            this.txtSerie1.TabIndex = 2;
+            this.txtSerie1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSerie1_KeyDown);
             this.txtSerie1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSerie1_KeyPress);
             // 
             // txtSerie2
             // 
             this.txtSerie2.Font = new System.Drawing.Font("Arial", 10F);
             this.txtSerie2.Location = new System.Drawing.Point(689, 15);
+            this.txtSerie2.MaxLength = 3;
             this.txtSerie2.Name = "txtSerie2";
             this.txtSerie2.Size = new System.Drawing.Size(56, 23);
-            this.txtSerie2.TabIndex = 49;
+            this.txtSerie2.TabIndex = 3;
+            this.txtSerie2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSerie2_KeyDown);
             this.txtSerie2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSerie2_KeyPress);
             // 
             // label1
@@ -500,7 +609,8 @@
             this.txtPlazoOC.Location = new System.Drawing.Point(770, 50);
             this.txtPlazoOC.Name = "txtPlazoOC";
             this.txtPlazoOC.Size = new System.Drawing.Size(156, 23);
-            this.txtPlazoOC.TabIndex = 46;
+            this.txtPlazoOC.TabIndex = 8;
+            this.txtPlazoOC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPlazoOC_KeyDown);
             this.txtPlazoOC.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlazoOC_KeyPress);
             // 
             // cbImpuesto
@@ -510,7 +620,8 @@
             this.cbImpuesto.Location = new System.Drawing.Point(770, 77);
             this.cbImpuesto.Name = "cbImpuesto";
             this.cbImpuesto.Size = new System.Drawing.Size(156, 24);
-            this.cbImpuesto.TabIndex = 45;
+            this.cbImpuesto.TabIndex = 9;
+            this.cbImpuesto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbImpuesto_KeyDown);
             // 
             // txtObservacion
             // 
@@ -519,16 +630,17 @@
             this.txtObservacion.Multiline = true;
             this.txtObservacion.Name = "txtObservacion";
             this.txtObservacion.Size = new System.Drawing.Size(774, 44);
-            this.txtObservacion.TabIndex = 44;
-            this.txtObservacion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtObservacion_KeyPress);
+            this.txtObservacion.TabIndex = 10;
+            this.txtObservacion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtObservacion_KeyDown);
             // 
             // txtFlete
             // 
+            this.txtFlete.Enabled = false;
             this.txtFlete.Font = new System.Drawing.Font("Arial", 10F);
             this.txtFlete.Location = new System.Drawing.Point(152, 78);
             this.txtFlete.Name = "txtFlete";
             this.txtFlete.Size = new System.Drawing.Size(214, 23);
-            this.txtFlete.TabIndex = 43;
+            this.txtFlete.TabIndex = 100;
             this.txtFlete.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFlete_KeyPress);
             // 
             // txtOrdenCompra
@@ -616,6 +728,7 @@
             // 
             // cbTerminoPago
             // 
+            this.cbTerminoPago.Enabled = false;
             this.cbTerminoPago.Font = new System.Drawing.Font("Arial", 10F);
             this.cbTerminoPago.FormattingEnabled = true;
             this.cbTerminoPago.Items.AddRange(new object[] {
@@ -632,11 +745,13 @@
             // cbProveedor
             // 
             this.cbProveedor.Font = new System.Drawing.Font("Arial", 10F);
-            this.cbProveedor.FormattingEnabled = true;
             this.cbProveedor.Location = new System.Drawing.Point(502, 50);
             this.cbProveedor.Name = "cbProveedor";
             this.cbProveedor.Size = new System.Drawing.Size(111, 24);
-            this.cbProveedor.TabIndex = 31;
+            this.cbProveedor.TabIndex = 7;
+            this.cbProveedor.TextChanged += new System.EventHandler(this.cbProveedor_TextChanged);
+            this.cbProveedor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbProveedor_KeyDown);
+            this.cbProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbProveedor_KeyPress);
             // 
             // label3
             // 
@@ -656,7 +771,8 @@
             this.dtpFechaOC.Location = new System.Drawing.Point(277, 24);
             this.dtpFechaOC.Name = "dtpFechaOC";
             this.dtpFechaOC.Size = new System.Drawing.Size(89, 22);
-            this.dtpFechaOC.TabIndex = 37;
+            this.dtpFechaOC.TabIndex = 5;
+            this.dtpFechaOC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtpFechaOC_KeyDown);
             // 
             // label4
             // 
@@ -689,14 +805,14 @@
             this.dgvDatosProducto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvDatosProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosProducto.Location = new System.Drawing.Point(17, 132);
             this.dgvDatosProducto.Margin = new System.Windows.Forms.Padding(2);
@@ -773,103 +889,13 @@
             this.label16.TabIndex = 17;
             this.label16.Text = "Desde:";
             // 
-            // codigo
-            // 
-            this.codigo.HeaderText = "Código";
-            this.codigo.Name = "codigo";
-            this.codigo.Width = 110;
-            // 
-            // producto
-            // 
-            this.producto.HeaderText = "Producto";
-            this.producto.Name = "producto";
-            this.producto.ReadOnly = true;
-            this.producto.Width = 160;
-            // 
-            // cantidad
-            // 
-            this.cantidad.HeaderText = "Cant.";
-            this.cantidad.Name = "cantidad";
-            this.cantidad.ReadOnly = true;
-            this.cantidad.Width = 50;
-            // 
-            // precioCompra
-            // 
-            this.precioCompra.HeaderText = "P. C.";
-            this.precioCompra.Name = "precioCompra";
-            this.precioCompra.ReadOnly = true;
-            this.precioCompra.Width = 60;
-            // 
-            // descuento
-            // 
-            this.descuento.HeaderText = "Desc.";
-            this.descuento.Name = "descuento";
-            this.descuento.ReadOnly = true;
-            this.descuento.Width = 70;
-            // 
-            // iceProducto
-            // 
-            this.iceProducto.HeaderText = "ICE";
-            this.iceProducto.Name = "iceProducto";
-            this.iceProducto.ReadOnly = true;
-            this.iceProducto.Width = 50;
-            // 
-            // irbpProducto
-            // 
-            this.irbpProducto.HeaderText = "IRBP";
-            this.irbpProducto.Name = "irbpProducto";
-            this.irbpProducto.ReadOnly = true;
-            this.irbpProducto.Width = 50;
-            // 
-            // precioPublico
-            // 
-            this.precioPublico.HeaderText = "P.V.P";
-            this.precioPublico.Name = "precioPublico";
-            this.precioPublico.ReadOnly = true;
-            this.precioPublico.Width = 60;
-            // 
-            // precioMayorista
-            // 
-            this.precioMayorista.HeaderText = "P. May";
-            this.precioMayorista.Name = "precioMayorista";
-            this.precioMayorista.ReadOnly = true;
-            this.precioMayorista.Width = 75;
-            // 
-            // precioCaja
-            // 
-            this.precioCaja.HeaderText = "P. Cajas";
-            this.precioCaja.Name = "precioCaja";
-            this.precioCaja.ReadOnly = true;
-            this.precioCaja.Width = 85;
-            // 
-            // subtotal
-            // 
-            this.subtotal.HeaderText = "Subtotal";
-            this.subtotal.Name = "subtotal";
-            this.subtotal.ReadOnly = true;
-            this.subtotal.Width = 75;
-            // 
-            // iva
-            // 
-            this.iva.HeaderText = "IVA";
-            this.iva.Name = "iva";
-            this.iva.ReadOnly = true;
-            this.iva.Width = 45;
-            // 
-            // total
-            // 
-            this.total.HeaderText = "Total";
-            this.total.Name = "total";
-            this.total.ReadOnly = true;
-            this.total.Width = 65;
-            // 
             // FrmCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(1087, 587);
+            this.ClientSize = new System.Drawing.Size(1087, 588);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -879,6 +905,7 @@
             this.Name = "FrmCompra";
             this.Text = "Compras";
             this.Load += new System.EventHandler(this.FrmCompra_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FrmCompra_KeyPress);
             this.tabControl1.ResumeLayout(false);
             this.pcOrdenCompra.ResumeLayout(false);
             this.pcOrdenCompra.PerformLayout();

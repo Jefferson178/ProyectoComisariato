@@ -368,8 +368,6 @@ namespace Comisariato.Clases
             }
            
         }
-
-
         public string ObtenerValorCampo(String campo, String tabla, String condicion)
         {
             try
@@ -884,10 +882,10 @@ namespace Comisariato.Clases
                 Objc.conectar();
                 SqlCommand cmd = new SqlCommand("GRABA_PRODUCTO", ConexionBD.connection);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@NOMBREPRODUCTO", ObjProducto.Nombreproducto.ToUpper());
+                cmd.Parameters.AddWithValue("@NOMBREPRODUCTO", ObjProducto.Nombreproducto);
                 cmd.Parameters.AddWithValue("@ACTIVO", ObjProducto.Activo);
                 cmd.Parameters.AddWithValue("@CODIGOBARRA", ObjProducto.Codigobarra);
-                cmd.Parameters.AddWithValue("@TIPOPRODUCTO", ObjProducto.Tipoproducto.ToUpper());
+                cmd.Parameters.AddWithValue("@TIPOPRODUCTO", ObjProducto.Tipoproducto);
                 cmd.Parameters.AddWithValue("@UNIDAMEDIDA", ObjProducto.Unidamedida);
                 cmd.Parameters.AddWithValue("@PESO", ObjProducto.Peso);
                 cmd.Parameters.AddWithValue("@STOCKMAXIMO", ObjProducto.Stockmaximo);
@@ -957,7 +955,7 @@ namespace Comisariato.Clases
                 cmd.Parameters.AddWithValue("@NUMERO_ORDEN_COMPRA", ObjCompra.OrdenCompra);
                 cmd.Parameters.AddWithValue("@IDSUCURSAL", ObjCompra.Sucursal);
                 cmd.Parameters.AddWithValue("@FLETE", ObjCompra.Flete);
-                cmd.Parameters.AddWithValue("@FECHAORDENCOMPRA", ObjCompra.FechaOrdenCompra.Date.ToShortDateString());
+                cmd.Parameters.AddWithValue("@FECHAORDENCOMPRA", ObjCompra.FechaOrdenCompra);
                 cmd.Parameters.AddWithValue("@IDPROVEEDOR", ObjCompra.Proveedor);
                 cmd.Parameters.AddWithValue("@TERMINOPAGO", ObjCompra.TerminoPago.ToUpper());
                 cmd.Parameters.AddWithValue("@PLAZOORDENCOMPRA", ObjCompra.Plazo.ToUpper());
@@ -1198,7 +1196,8 @@ namespace Comisariato.Clases
                     cmd.Parameters.AddWithValue("@nombre", encabezadoCombo[1]);
                     cmd.Parameters.AddWithValue("@cantcombo", encabezadoCombo[2]);
                     cmd.Parameters.AddWithValue("@precio", encabezadoCombo[3]);
-                    cmd.Parameters.AddWithValue("@cantidadproducto", dg.Rows[i].Cells[3].Value);
+                    int cantidad= Convert.ToInt32(Convert.ToInt32(dg.Rows[i].Cells[3].Value) *Convert.ToInt32(encabezadoCombo[2]));
+                    cmd.Parameters.AddWithValue("@cantidadproducto", cantidad);
                     cmd.Parameters.AddWithValue("@idproducto", dg.Rows[i].Cells[7].Value);
 
                     result = cmd.ExecuteNonQuery();
