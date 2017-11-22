@@ -212,6 +212,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 {
                     posicion = 4;
                     ValidaCeldasPrecios();
+<<<<<<< HEAD
                     //SendKeys.Send("{LEFT}");
                     try
                     {
@@ -250,6 +251,8 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         SendKeys.Send("{LEFT}");
                         banderaFocoCelda = true;
                     }
+=======
+>>>>>>> 9bf541665af36311d5487c80f8d59acb16d54e5a
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "iceProducto")
                 {
