@@ -61,11 +61,15 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tpConsultarModificarCombo = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dgvDetalleCombo = new System.Windows.Forms.DataGridView();
             this.txtConsultarCombo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvDatosCombo = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dgvDetalleCombo = new System.Windows.Forms.DataGridView();
+            this.rdbCombosActivos = new System.Windows.Forms.RadioButton();
+            this.rdbCombosInactivos = new System.Windows.Forms.RadioButton();
+            this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Desabilitar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.gbproductosParaCombo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductosParaCombo)).BeginInit();
             this.tcComboProducto.SuspendLayout();
@@ -73,9 +77,9 @@
             this.gbComboProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductosEnCombo)).BeginInit();
             this.tpConsultarModificarCombo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDatosCombo)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleCombo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDatosCombo)).BeginInit();
             this.SuspendLayout();
             // 
             // gbproductosParaCombo
@@ -218,6 +222,7 @@
             this.button1.Text = "Salir";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtCodigoCombo
             // 
@@ -398,6 +403,8 @@
             // tpConsultarModificarCombo
             // 
             this.tpConsultarModificarCombo.BackColor = System.Drawing.Color.Bisque;
+            this.tpConsultarModificarCombo.Controls.Add(this.rdbCombosInactivos);
+            this.tpConsultarModificarCombo.Controls.Add(this.rdbCombosActivos);
             this.tpConsultarModificarCombo.Controls.Add(this.groupBox1);
             this.tpConsultarModificarCombo.Controls.Add(this.txtConsultarCombo);
             this.tpConsultarModificarCombo.Controls.Add(this.label2);
@@ -409,6 +416,26 @@
             this.tpConsultarModificarCombo.Size = new System.Drawing.Size(1035, 544);
             this.tpConsultarModificarCombo.TabIndex = 1;
             this.tpConsultarModificarCombo.Text = "Consultar - Modificar Combo";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dgvDetalleCombo);
+            this.groupBox1.Location = new System.Drawing.Point(564, 61);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(444, 460);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Detalle Combo";
+            // 
+            // dgvDetalleCombo
+            // 
+            this.dgvDetalleCombo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDetalleCombo.Location = new System.Drawing.Point(20, 28);
+            this.dgvDetalleCombo.Name = "dgvDetalleCombo";
+            this.dgvDetalleCombo.ReadOnly = true;
+            this.dgvDetalleCombo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDetalleCombo.Size = new System.Drawing.Size(408, 413);
+            this.dgvDetalleCombo.TabIndex = 0;
             // 
             // txtConsultarCombo
             // 
@@ -433,6 +460,7 @@
             // 
             // dgvDatosCombo
             // 
+            this.dgvDatosCombo.AllowUserToAddRows = false;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -442,34 +470,56 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvDatosCombo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDatosCombo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDatosCombo.Location = new System.Drawing.Point(19, 63);
+            this.dgvDatosCombo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Modificar,
+            this.Desabilitar});
+            this.dgvDatosCombo.Location = new System.Drawing.Point(19, 61);
             this.dgvDatosCombo.Margin = new System.Windows.Forms.Padding(2);
             this.dgvDatosCombo.Name = "dgvDatosCombo";
             this.dgvDatosCombo.ReadOnly = true;
             this.dgvDatosCombo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDatosCombo.Size = new System.Drawing.Size(517, 458);
+            this.dgvDatosCombo.Size = new System.Drawing.Size(517, 460);
             this.dgvDatosCombo.TabIndex = 6;
             this.dgvDatosCombo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosCombo_CellClick);
+            this.dgvDatosCombo.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvDatosCombo_CellPainting);
+            this.dgvDatosCombo.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvDatosCombo_RowHeaderMouseClick);
             // 
-            // groupBox1
+            // rdbCombosActivos
             // 
-            this.groupBox1.Controls.Add(this.dgvDetalleCombo);
-            this.groupBox1.Location = new System.Drawing.Point(564, 54);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(444, 467);
-            this.groupBox1.TabIndex = 9;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Detalle Combo";
+            this.rdbCombosActivos.AutoSize = true;
+            this.rdbCombosActivos.Checked = true;
+            this.rdbCombosActivos.Location = new System.Drawing.Point(565, 24);
+            this.rdbCombosActivos.Name = "rdbCombosActivos";
+            this.rdbCombosActivos.Size = new System.Drawing.Size(65, 20);
+            this.rdbCombosActivos.TabIndex = 10;
+            this.rdbCombosActivos.TabStop = true;
+            this.rdbCombosActivos.Text = "Activo";
+            this.rdbCombosActivos.UseVisualStyleBackColor = true;
+            this.rdbCombosActivos.CheckedChanged += new System.EventHandler(this.rdbCombosActivos_CheckedChanged);
             // 
-            // dgvDetalleCombo
+            // rdbCombosInactivos
             // 
-            this.dgvDetalleCombo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDetalleCombo.Location = new System.Drawing.Point(20, 30);
-            this.dgvDetalleCombo.Name = "dgvDetalleCombo";
-            this.dgvDetalleCombo.ReadOnly = true;
-            this.dgvDetalleCombo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetalleCombo.Size = new System.Drawing.Size(408, 413);
-            this.dgvDetalleCombo.TabIndex = 0;
+            this.rdbCombosInactivos.AutoSize = true;
+            this.rdbCombosInactivos.Location = new System.Drawing.Point(711, 24);
+            this.rdbCombosInactivos.Name = "rdbCombosInactivos";
+            this.rdbCombosInactivos.Size = new System.Drawing.Size(76, 20);
+            this.rdbCombosInactivos.TabIndex = 11;
+            this.rdbCombosInactivos.Text = "Inactivo";
+            this.rdbCombosInactivos.UseVisualStyleBackColor = true;
+            // 
+            // Modificar
+            // 
+            this.Modificar.HeaderText = "";
+            this.Modificar.Name = "Modificar";
+            this.Modificar.ReadOnly = true;
+            this.Modificar.Width = 30;
+            // 
+            // Desabilitar
+            // 
+            this.Desabilitar.HeaderText = "";
+            this.Desabilitar.Name = "Desabilitar";
+            this.Desabilitar.ReadOnly = true;
+            this.Desabilitar.Width = 30;
             // 
             // FrmComboProductos
             // 
@@ -495,9 +545,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductosEnCombo)).EndInit();
             this.tpConsultarModificarCombo.ResumeLayout(false);
             this.tpConsultarModificarCombo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDatosCombo)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleCombo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDatosCombo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -538,5 +588,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvDetalleCombo;
+        private System.Windows.Forms.RadioButton rdbCombosInactivos;
+        private System.Windows.Forms.RadioButton rdbCombosActivos;
+        private System.Windows.Forms.DataGridViewButtonColumn Modificar;
+        private System.Windows.Forms.DataGridViewButtonColumn Desabilitar;
     }
 }

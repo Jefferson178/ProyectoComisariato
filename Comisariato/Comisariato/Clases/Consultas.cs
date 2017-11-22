@@ -1196,7 +1196,8 @@ namespace Comisariato.Clases
                     cmd.Parameters.AddWithValue("@nombre", encabezadoCombo[1]);
                     cmd.Parameters.AddWithValue("@cantcombo", encabezadoCombo[2]);
                     cmd.Parameters.AddWithValue("@precio", encabezadoCombo[3]);
-                    cmd.Parameters.AddWithValue("@cantidadproducto", dg.Rows[i].Cells[3].Value);
+                    int cantidad= Convert.ToInt32(Convert.ToInt32(dg.Rows[i].Cells[3].Value) *Convert.ToInt32(encabezadoCombo[2]));
+                    cmd.Parameters.AddWithValue("@cantidadproducto", cantidad);
                     cmd.Parameters.AddWithValue("@idproducto", dg.Rows[i].Cells[7].Value);
 
                     result = cmd.ExecuteNonQuery();
