@@ -159,6 +159,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 banderaFocoCelda = true;
             }
         }
+        
         private void dgvProductosIngresos_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             bool banderaTab = false;
@@ -224,6 +225,8 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     ValidaCeldasPrecios();
                     datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[12];
                     datosProductoCompra.Rows[e.RowIndex + 1].Cells[0].ReadOnly = false;
+                    banderaTab = true;
+                    SendKeys.Send("{TAB}");
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioPublico")
                 {
@@ -263,6 +266,8 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             SendKeys.Send("{UP}");
             if (!banderaTab)
                 SendKeys.Send("{RIGHT}");
+            else
+                banderaTab = false;
             labelprueba1.Text = datosProductoCompra.CurrentCell.ToString() + " CellEndEdit";
         }
         private void Calcular()
