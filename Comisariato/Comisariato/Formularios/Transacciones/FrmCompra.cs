@@ -118,10 +118,12 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             
         }
         bool banderaFocoCelda = false;
-        public void ValidaCeldasPrecios(int posicion)
+        int posicion = 0;
+        public void ValidaCeldasPrecios()
         {
             try
             {
+                labelprueba.Text = datosProductoCompra.CurrentCell.ToString() + " FuncionValidaCeldasPrecios";
                 float valor;
                 string validaValores = Convert.ToString(datosProductoCompra.CurrentRow.Cells[posicion].Value);
                 if (validaValores.Substring(0, 1) == "." || validaValores.Substring(0, 1) == ",")
@@ -150,7 +152,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             }
             catch (Exception errorPrecio)
             {
-                MessageBox.Show("Ingresar valores correctos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //MessageBox.Show("Ingresar valores correctos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 datosProductoCompra.CurrentRow.Cells[posicion].Value = "";
                 //datosProductoCompra.BeginEdit(true);
                 SendKeys.Send("{LEFT}");
@@ -203,10 +205,16 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioCompra")
                 {
-                    ValidaCeldasPrecios(3);
+                    posicion = 3;
+                    ValidaCeldasPrecios();
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "descuento")
                 {
+<<<<<<< HEAD
+                    posicion = 4;
+                    ValidaCeldasPrecios();
+                    //SendKeys.Send("{LEFT}");
+=======
                     try
                     {
                         float valor;
@@ -244,28 +252,34 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         //SendKeys.Send("{LEFT}");
                         banderaFocoCelda = true;
                     }
+>>>>>>> e2b41f5b5781aec441308f0c2bc6b51825ab070a
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "iceProducto")
                 {
-                    ValidaCeldasPrecios(5);
+                    posicion = 5;
+                    ValidaCeldasPrecios();
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "irbpProducto")
                 {
-                    ValidaCeldasPrecios(6);
+                    posicion = 6;
+                    ValidaCeldasPrecios();
                     datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[12];
                     datosProductoCompra.Rows[e.RowIndex + 1].Cells[0].ReadOnly = false;
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioPublico")
                 {
-                    ValidaCeldasPrecios(7);
+                    posicion = 7;
+                    ValidaCeldasPrecios();
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioMayorista")
                 {
-                    ValidaCeldasPrecios(8);
+                    posicion = 8;
+                    ValidaCeldasPrecios();
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioCaja")
                 {
-                    ValidaCeldasPrecios(9);
+                    posicion = 9;
+                    ValidaCeldasPrecios();
                     datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[12];
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioCompra" || datosProductoCompra.Columns[e.ColumnIndex].Name == "cantidad" || datosProductoCompra.Columns[e.ColumnIndex].Name == "iceProducto")
@@ -289,9 +303,9 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             Calcular();
             SendKeys.Send("{UP}");
             if (!banderaTab)
-                SendKeys.Send("{TAB}");
-
-                    }
+                SendKeys.Send("{RIGHT}");
+            labelprueba1.Text = datosProductoCompra.CurrentCell.ToString() + " CellEndEdit";
+        }
         private void Calcular()
         {
             float sumasubiva = 0.0f, sumasubcero = 0.0f, totalpagar = 0.0f, ivatotal = 0.0f, sumaice = 0.0f, sumairbp = 0.0f;
@@ -436,18 +450,21 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         {
             try
             {
-                if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[3] && banderaFocoCelda)
+
+
+                labelprueba2.Text = datosProductoCompra.CurrentCell.ToString() + " CellEnter";
+                if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[posicion] && banderaFocoCelda)
                     datosProductoCompra.BeginEdit(true);
-                if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[4] && banderaFocoCelda)
-                    datosProductoCompra.BeginEdit(true);
-                if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[5] && banderaFocoCelda)
-                    datosProductoCompra.BeginEdit(true);
-                if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[6] && banderaFocoCelda)
-                    datosProductoCompra.BeginEdit(true);
-                if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[7] && banderaFocoCelda)
-                    datosProductoCompra.BeginEdit(true);
-                if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[8] && banderaFocoCelda)
-                    datosProductoCompra.BeginEdit(true);
+                //if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[4] && banderaFocoCelda)
+                //    datosProductoCompra.BeginEdit(true);
+                //if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[5] && banderaFocoCelda)
+                //    datosProductoCompra.BeginEdit(true);
+                //if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[6] && banderaFocoCelda)
+                //    datosProductoCompra.BeginEdit(true);
+                //if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[7] && banderaFocoCelda)
+                //    datosProductoCompra.BeginEdit(true);
+                //if (datosProductoCompra.CurrentCell == datosProductoCompra.CurrentRow.Cells[8] && banderaFocoCelda)
+                //    datosProductoCompra.BeginEdit(true);
             }
             catch (Exception)
             {
@@ -460,7 +477,11 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         {
             //if (Convert.ToInt32(e.KeyChar) == Convert.ToInt32(Keys.Enter))
             //{
-            //    e.Handled = true;
+            //    SendKeys.Send("{TAB}");
+            ////}
+            //if (datosProductoCompra.CurrentRow.Cells[3].Value != null)
+            //{
+            //    Funcion.SoloValores(e, datosProductoCompra.CurrentRow.Cells[3].Value.ToString());
             //}
         }
 

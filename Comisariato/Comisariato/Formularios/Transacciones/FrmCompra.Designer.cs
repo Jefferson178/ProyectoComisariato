@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label13 = new System.Windows.Forms.Label();
             this.cbSucursal = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -98,6 +98,9 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label14 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.labelprueba = new System.Windows.Forms.Label();
+            this.labelprueba1 = new System.Windows.Forms.Label();
+            this.labelprueba2 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.pcOrdenCompra.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -148,6 +151,9 @@
             // pcOrdenCompra
             // 
             this.pcOrdenCompra.BackColor = System.Drawing.Color.Bisque;
+            this.pcOrdenCompra.Controls.Add(this.labelprueba2);
+            this.pcOrdenCompra.Controls.Add(this.labelprueba1);
+            this.pcOrdenCompra.Controls.Add(this.labelprueba);
             this.pcOrdenCompra.Controls.Add(this.btnSalirCompra);
             this.pcOrdenCompra.Controls.Add(this.groupBox3);
             this.pcOrdenCompra.Controls.Add(this.txtTotal);
@@ -206,14 +212,14 @@
             this.dgvProductosIngresos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProductosIngresos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProductosIngresos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvProductosIngresos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductosIngresos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigo,
@@ -229,14 +235,14 @@
             this.subtotal,
             this.iva,
             this.total});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvProductosIngresos.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvProductosIngresos.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvProductosIngresos.Location = new System.Drawing.Point(9, 20);
             this.dgvProductosIngresos.Margin = new System.Windows.Forms.Padding(2);
             this.dgvProductosIngresos.Name = "dgvProductosIngresos";
@@ -805,14 +811,14 @@
             this.dgvDatosProducto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDatosProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosProducto.Location = new System.Drawing.Point(17, 132);
             this.dgvDatosProducto.Margin = new System.Windows.Forms.Padding(2);
@@ -888,6 +894,39 @@
             this.label16.Size = new System.Drawing.Size(52, 16);
             this.label16.TabIndex = 17;
             this.label16.Text = "Desde:";
+            // 
+            // labelprueba
+            // 
+            this.labelprueba.AutoSize = true;
+            this.labelprueba.Font = new System.Drawing.Font("Arial", 10F);
+            this.labelprueba.ForeColor = System.Drawing.Color.DarkCyan;
+            this.labelprueba.Location = new System.Drawing.Point(36, 471);
+            this.labelprueba.Name = "labelprueba";
+            this.labelprueba.Size = new System.Drawing.Size(141, 16);
+            this.labelprueba.TabIndex = 60;
+            this.labelprueba.Text = "sssssssssssssssssss";
+            // 
+            // labelprueba1
+            // 
+            this.labelprueba1.AutoSize = true;
+            this.labelprueba1.Font = new System.Drawing.Font("Arial", 10F);
+            this.labelprueba1.ForeColor = System.Drawing.Color.DarkCyan;
+            this.labelprueba1.Location = new System.Drawing.Point(36, 492);
+            this.labelprueba1.Name = "labelprueba1";
+            this.labelprueba1.Size = new System.Drawing.Size(141, 16);
+            this.labelprueba1.TabIndex = 61;
+            this.labelprueba1.Text = "sssssssssssssssssss";
+            // 
+            // labelprueba2
+            // 
+            this.labelprueba2.AutoSize = true;
+            this.labelprueba2.Font = new System.Drawing.Font("Arial", 10F);
+            this.labelprueba2.ForeColor = System.Drawing.Color.DarkCyan;
+            this.labelprueba2.Location = new System.Drawing.Point(36, 518);
+            this.labelprueba2.Name = "labelprueba2";
+            this.labelprueba2.Size = new System.Drawing.Size(141, 16);
+            this.labelprueba2.TabIndex = 62;
+            this.labelprueba2.Text = "sssssssssssssssssss";
             // 
             // FrmCompra
             // 
@@ -990,5 +1029,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn subtotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn iva;
         private System.Windows.Forms.DataGridViewTextBoxColumn total;
+        private System.Windows.Forms.Label labelprueba;
+        private System.Windows.Forms.Label labelprueba2;
+        private System.Windows.Forms.Label labelprueba1;
     }
 }
