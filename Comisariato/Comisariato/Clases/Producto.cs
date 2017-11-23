@@ -22,6 +22,8 @@ namespace Comisariato.Clases
         int stockminimo;
         int caja;
         int unidad;
+        int display;
+        //int unidadProducto;
 
         float preciopublico_iva;
         float preciopublico_sin_iva;
@@ -40,7 +42,7 @@ namespace Comisariato.Clases
         int cantidad,cantidad1;
         int iva;
 
-        public Producto(string nombreproducto, bool activo, string codigobarra, string tipoproducto, string unidamedida, string peso, int stockmaximo, int stockminimo, int caja, int unidad, float preciopublico_iva, float preciopublico_sin_iva, float precioalmayor_iva, float precioalmayor_sin_iva, float precioporcaja_iva, float precioporcaja_sin_iva, byte[] imagenproducto, bool ivaestado, string observaciones, int idcategoria, int canitdad)
+        public Producto(string nombreproducto, bool activo, string codigobarra, string tipoproducto, string unidamedida, string peso, int stockmaximo, int stockminimo, int caja, int unidad, float preciopublico_iva, float preciopublico_sin_iva, float precioalmayor_iva, float precioalmayor_sin_iva, float precioporcaja_iva, float precioporcaja_sin_iva, byte[] imagenproducto, bool ivaestado, string observaciones, int idcategoria, int canitdad, int display/*, int unidadProducto*/)
         {
             this.nombreproducto = nombreproducto;
             this.activo = activo;
@@ -63,6 +65,8 @@ namespace Comisariato.Clases
             this.observaciones = observaciones;
             this.idcategoria = idcategoria;
             this.Cantidad = cantidad;
+            this.display = display;
+            //this.unidadProducto = unidadProducto;
         }
         public Producto(int cantidad, string codigo) {
             this.Cantidad = cantidad;
@@ -384,6 +388,32 @@ namespace Comisariato.Clases
             }
         }
 
+        public int Display
+        {
+            get
+            {
+                return display;
+            }
+
+            set
+            {
+                display = value;
+            }
+        }
+
+        //public int UnidadProducto
+        //{
+        //    get
+        //    {
+        //        return unidadProducto;
+        //    }
+
+        //    set
+        //    {
+        //        unidadProducto = value;
+        //    }
+        //}
+
         public string InsertarProducto(Producto ObjProducto)
         {
             ObjConsulta = new Consultas();
@@ -424,7 +454,7 @@ namespace Comisariato.Clases
                 + " ,[UNIDAMEDIDA] = '"+unidamedida+ "'  ,[PESO] = '"+peso+ "' ,[STOCKMAXIMO] = "+stockmaximo+ " ,[STOCKMINIMO] = "+stockminimo+ " ,[CAJA] = "+caja+ " ,[UNIDAD] = "+unidad+ " ,[PRECIOPUBLICO_IVA] = "+ Funcion.reemplazarcaracter(preciopublico_iva.ToString()) +""
                 + " ,[PRECIOPUBLICO_SIN_IVA] = "+ Funcion.reemplazarcaracter(preciopublico_sin_iva.ToString()) + " ,[PRECIOALMAYOR_IVA] = "+ Funcion.reemplazarcaracter(precioalmayor_iva.ToString()) + " ,[PRECIOALMAYOR_SIN_IVA] = "+ Funcion.reemplazarcaracter(precioalmayor_sin_iva.ToString()) + ",[PRECIOPORCAJA_IVA] = "+ Funcion.reemplazarcaracter(precioporcaja_iva.ToString()) +""
                 + " ,[PRECIOPORCAJA_SIN_IVA] = "+ Funcion.reemplazarcaracter(precioporcaja_sin_iva.ToString()) + " ,[IVAESTADO] = '"+ivaestado+ "'"
-                + " ,[OBSERVACIONES] = '"+observaciones+ "' ,[IDCATEGORIA] = "+idcategoria+""
+                + " ,[OBSERVACIONES] = '"+observaciones+ "' ,[IDCATEGORIA] = "+idcategoria+ ",[DISPLAY] = "+display+""
                 + " WHERE CODIGOBARRA ='"+ CodigoBarra + "' "))
             {
                 ObjConsulta.EditarFoto(Imagenproducto, CodigoBarra, "[TbProducto]", "IMAGENPRODUCTO", "CODIGOBARRA");

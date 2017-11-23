@@ -75,7 +75,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             {
                 if (MessageBox.Show("¿Desea guaradar la compra?", "CONFIRMACIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    if (txtPlazoOC.Text != "" && txtSerie1.Text != "" && txtSerie2.Text != "" && txtNumero.Text != "")
+                    if (/*txtPlazoOC.Text != "" &&*/ txtSerie1.Text != "" && txtSerie2.Text != "" && txtNumero.Text != "")
                     {
                         int idEncabezadoCompra = 0;
                         ObjEncabezadoCompra = new EmcabezadoCompra(txtSerie1.Text, txtSerie2.Text, txtNumero.Text, Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtSubtutalIVA.Text)),
@@ -170,7 +170,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     s = validaValores.Split('.');
                 }
                 string valor1 = s[1];
-                if (valor1.Length > 4)
+                if (valor1.Length > 6)
                 {
                     valor = float.Parse("a");
                 }
@@ -345,8 +345,8 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         sumasubcero += Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[12].Value.ToString()));
                     }
                     totalpagar += Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[12].Value.ToString()));
-                    sumaice += Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[5].Value.ToString()));
-                    sumairbp += Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[6].Value.ToString()));
+                    sumaice += Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[5].Value.ToString())) * Convert.ToInt32(datosProductoCompra.Rows[i].Cells[2].Value);
+                    sumairbp += Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[6].Value.ToString())) * Convert.ToInt32(datosProductoCompra.Rows[i].Cells[2].Value);
                     if (Convert.ToString(datosProductoCompra.Rows[i + 1].Cells[0].Value) == "")
                     {
                         break;
