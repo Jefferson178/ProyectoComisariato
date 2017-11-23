@@ -452,8 +452,8 @@ namespace Comisariato.Clases
             {
                 Objc.conectar();
                 SqlCommand Sentencia = new SqlCommand("select  U.ACTIVO, U.NOMBREPRODUCTO as DETALLE, U.CANTIDAD, "+
-                    "U.PRECIOPUBLICO_IVA as PRECIOVENTAPUBLICO, U.IVAESTADO, U.PRECIOALMAYOR_IVA as PRECIOVENTAMAYORISTA, "+
-                    "U.PRECIOPORCAJA_IVA as PRECIOVENTACAJA, ICE, IRBP, PRECIOCOMPRA "+
+                    "U.PRECIOPUBLICO_IVA as PRECIOVENTAPUBLICO, U.IVAESTADO, U.PRECIOALMAYOR_IVA as PRECIOVENTAMAYORISTA,PRECIOALMAYOR_SIN_IVA, PRECIOPORCAJA_SIN_IVA" +
+                    ", PRECIOPUBLICO_SIN_IVA, PRECIOCOMPRA, U.PRECIOPORCAJA_IVA as PRECIOVENTACAJA, ICE, IRBP, PRECIOCOMPRA " +
                     "from TbProducto U where U.CODIGOBARRA = '"+ codigo +"'");
                 Sentencia.Connection = ConexionBD.connection;
                 SqlDataReader dato = Sentencia.ExecuteReader();
@@ -462,16 +462,19 @@ namespace Comisariato.Clases
                     int activo = Convert.ToInt32(dato["ACTIVO"]);
                     if (activo == 1)
                     {
-                        producto.Nombreproducto = (String)dato["DETALLE"];
-
-                        //        //producto.Cant = Convert.ToInt32(dato["CANTIDAD"]);
-                        producto.Cantidad = Convert.ToInt32(dato["CANTIDAD"]);
-
-                        producto.Preciopublico_iva = Convert.ToSingle(dato["PRECIOVENTAPUBLICO"]);
                         producto.Ivaestado = Convert.ToBoolean(dato["IVAESTADO"]);
+                        producto.Nombreproducto = (String)dato["DETALLE"];
+                        if (Convert.ToString(dato["PRECIOCOMPRA"]) != "")
+                        {
+                            producto.PrecioCompra = Convert.ToSingle(dato["PRECIOCOMPRA"]);
+                        }
+                        
+                        producto.Preciopublico_iva = Convert.ToSingle(dato["PRECIOVENTAPUBLICO"]);
                         producto.Precioalmayor_iva = Convert.ToSingle(dato["PRECIOVENTAMAYORISTA"]);
                         producto.Precioporcaja_iva = Convert.ToSingle(dato["PRECIOVENTACAJA"]);
-                        //producto.Pr = Convert.ToSingle(dato["PRECIOCOMPRA"]);
+                        producto.Preciopublico_sin_iva = Convert.ToSingle(dato["PRECIOPUBLICO_SIN_IVA"]);
+                        producto.Precioalmayor_sin_iva = Convert.ToSingle(dato["PRECIOALMAYOR_SIN_IVA"]);
+                        producto.Precioporcaja_sin_iva = Convert.ToSingle(dato["PRECIOPORCAJA_SIN_IVA"]);
                     }
                     else
                     {
@@ -1022,7 +1025,6 @@ namespace Comisariato.Clases
                 cmd.Parameters.AddWithValue("@SERIE1", ObjCompra.Serie1);
                 cmd.Parameters.AddWithValue("@SERIE2", ObjCompra.Serie2);
                 cmd.Parameters.AddWithValue("@NUMERO", ObjCompra.Numero);
-
                 int result = cmd.ExecuteNonQuery();
                 Objc.Cerrar();
                 if (result > 0)

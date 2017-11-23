@@ -98,9 +98,18 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         if (Program.FormularioLlamado)
                         {
                             FrmCompra.datosProductoCompra.CurrentRow.Cells[1].Value = txtNombreProducto.Text;
-                            FrmCompra.datosProductoCompra.CurrentRow.Cells[7].Value = txtPVPSinIVAProducto.Text;
-                            FrmCompra.datosProductoCompra.CurrentRow.Cells[8].Value = txtPrecioMayorSinIVAProducto.Text;
-                            FrmCompra.datosProductoCompra.CurrentRow.Cells[9].Value = txtPrecioCajaSinIVAProducto.Text;
+                            if (CkbIva.Checked)
+                            {
+                                FrmCompra.datosProductoCompra.CurrentRow.Cells[7].Value = txtPVPConIVAProducto.Text;
+                                FrmCompra.datosProductoCompra.CurrentRow.Cells[8].Value = txtPrecioMayorConIVAProducto.Text;
+                                FrmCompra.datosProductoCompra.CurrentRow.Cells[9].Value = txtPrecioCajaConIVAProducto.Text;
+                            }
+                            else
+                            {
+                                FrmCompra.datosProductoCompra.CurrentRow.Cells[7].Value = txtPVPSinIVAProducto.Text;
+                                FrmCompra.datosProductoCompra.CurrentRow.Cells[8].Value = txtPrecioMayorSinIVAProducto.Text;
+                                FrmCompra.datosProductoCompra.CurrentRow.Cells[9].Value = txtPrecioCajaSinIVAProducto.Text;
+                            }
                             FrmCompra.datosProductoCompra.CurrentCell = FrmCompra.datosProductoCompra.CurrentRow.Cells[2];
                             FrmCompra.datosProductoCompra.BeginEdit(true);
                             Program.FormularioLlamado = false;

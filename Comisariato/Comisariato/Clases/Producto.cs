@@ -30,6 +30,8 @@ namespace Comisariato.Clases
         float precioporcaja_iva;
         float precioporcaja_sin_iva;
 
+        float precioCompra;
+
         byte[] imagenproducto;
         bool ivaestado;
         string observaciones;
@@ -366,6 +368,19 @@ namespace Comisariato.Clases
             set
             {
                 iva = value;
+            }
+        }
+
+        public float PrecioCompra
+        {
+            get
+            {
+                return precioCompra;
+            }
+
+            set
+            {
+                precioCompra = value;
             }
         }
 
