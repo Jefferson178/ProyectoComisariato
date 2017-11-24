@@ -155,7 +155,7 @@ namespace Comisariato.Clases
                 else
                 {
                     if (textBox1.Contains("."))
-                        if (textBox1.Substring(textBox1.IndexOf('.') + 1).Length >= 2)
+                        if (textBox1.Substring(textBox1.IndexOf('.') + 1).Length >= 6)
                         {
                             e.Handled = true;
                         }

@@ -35,17 +35,17 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             txtNombreProducto.Text = "";
             txtCodigoBarraProducto.Text = "";
             txtStockMaximoProducto.Text = "0";
-            txtStockMaximoProducto.Text = "0";
+            txtStockMinimoProducto.Text = "0";
             txtCajaProducto.Text = "0";
             txtDisplay.Text = "0";
-            txtPVPConIVAProducto.Text = "0";
-            txtPVPSinIVAProducto.Text = "0";
-            txtPrecioMayorConIVAProducto.Text = "0";
-            txtPrecioMayorSinIVAProducto.Text = "0";
-            txtPrecioCajaConIVAProducto.Text = "0";
-            txtPrecioCajaSinIVAProducto.Text = "0";
-            TxtIce.Text = "0";
-            TxtIRBP.Text = "0";
+            txtPVPConIVAProducto.Text = "0.0";
+            txtPVPSinIVAProducto.Text = "0.0";
+            txtPrecioMayorConIVAProducto.Text = "0.0";
+            txtPrecioMayorSinIVAProducto.Text = "0.0";
+            txtPrecioCajaConIVAProducto.Text = "0.0";
+            txtPrecioCajaSinIVAProducto.Text = "0.0";
+            TxtIce.Text = "0.0";
+            TxtIRBP.Text = "0.0";
             txtObservacionesProducto.Text = "";
             txtPeso.Text = "";
             txtUnidadProducto.Text = "";
@@ -76,6 +76,28 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             " WHERE P.ACTIVO = " + condicion + ";");
             dgvDatosProducto.Columns["ID"].Visible = false;
             dgvDatosProducto.Columns["ACTIVO"].Visible = false;
+            try
+            {
+
+                dgvDatosProducto.Columns["IVA"].Width = 20;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            for (int i = 0; i < dgvDatosProducto.RowCount; i++)
+            {
+                string c = Funcion.reemplazarcaracter(dgvDatosProducto.Rows[i].Cells[7].Value.ToString());
+
+                if (c.Contains(","))
+                {
+                    string[] a = c.Split(',');
+                    if (a[1].Length == 1)
+                        c = c + "0";
+                }
+                else { c = c + ",00"; }
+                dgvDatosProducto.Rows[i].Cells[7].Value =Convert.ToSingle(c).ToString("#####0.00");
+            }
         }
         private void btnGuardarProducto_Click(object sender, EventArgs e)
         {
@@ -88,7 +110,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     bitDataImagen = Funcion.imgToByteArray(img);
                 }
                 //Objconsul.BoolDataTable("SELECT [CANTIDAD]  FROM [dbo].[TbProducto] where IDPRODUCTO = ''")
-                Producto ObjProducto = new Producto(txtNombreProducto.Text, ckbActivoProducto.Checked, txtCodigoBarraProducto.Text, cbTipoProducto.Text, cbUnidadMedidaProducto.Text, txtPeso.Text, Convert.ToInt32(txtStockMaximoProducto.Text), Convert.ToInt32(txtStockMinimoProducto.Text), Convert.ToInt32(txtCajaProducto.Text), Convert.ToInt32(txtUnidadProducto.Text), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtPVPConIVAProducto.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtPVPSinIVAProducto.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtPrecioMayorConIVAProducto.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtPrecioMayorSinIVAProducto.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtPrecioCajaConIVAProducto.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtPrecioCajaSinIVAProducto.Text)), bitDataImagen, CkbIva.Checked, txtObservacionesProducto.Text, Convert.ToInt32(cbTipoProducto.SelectedValue), 0,Convert.ToInt32(txtDisplay.Text)/*Convert.ToInt32(txtUnidadProducto.Text)*/);
+                Producto ObjProducto = new Producto(txtNombreProducto.Text, ckbActivoProducto.Checked, txtCodigoBarraProducto.Text, cbTipoProducto.Text, cbUnidadMedidaProducto.Text, txtPeso.Text, Convert.ToInt32(txtStockMaximoProducto.Text), Convert.ToInt32(txtStockMinimoProducto.Text), Convert.ToInt32(txtCajaProducto.Text), Convert.ToInt32(txtUnidadProducto.Text), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtPVPConIVAProducto.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtPVPSinIVAProducto.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtPrecioMayorConIVAProducto.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtPrecioMayorSinIVAProducto.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtPrecioCajaConIVAProducto.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtPrecioCajaSinIVAProducto.Text)), bitDataImagen, CkbIva.Checked, txtObservacionesProducto.Text, Convert.ToInt32(cbTipoProducto.SelectedValue), 0,Convert.ToInt32(txtDisplay.Text),Convert.ToSingle(Funcion.reemplazarcaracterViceversa(TxtIce.Text)),Convert.ToSingle(Funcion.reemplazarcaracterViceversa(TxtIRBP.Text))/*Convert.ToInt32(txtUnidadProducto.Text)*/);
 
                 if (!bandera_Estado) // Para identificar si se va ingresar
                 {
@@ -137,6 +159,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     else { MessageBox.Show("Error al actualizar el Producto", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                     inicializarDatos();
                     bandera_Estado = false;
+                    cargarDatos("1");
                     btnGuardarProducto.Text = "&Guardar";
                     btnLimpiarProducto.Text = "&Limpiar";
                 }
@@ -358,16 +381,27 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     txtStockMinimoProducto.Text = myRow["STOCKMINIMO"].ToString();
                     //txtDisplay.Text= myRow["DISPLAY"].ToString();
                     txtUnidadProducto.Text = myRow["UNIDAD"].ToString();
+                    TxtIce.Text = Funcion.reemplazarcaracter(myRow["ICE"].ToString());
+                    TxtIRBP.Text = Funcion.reemplazarcaracter(myRow["IRBP"].ToString());
 
+
+                    CkbIva.Checked = Convert.ToBoolean(myRow["IVAESTADO"]);
                     txtCajaProducto.Text = myRow["CAJA"].ToString();
                     txtDisplay.Text = myRow["DISPLAY"].ToString();
-                    txtPVPConIVAProducto.Text = myRow["PRECIOPUBLICO_IVA"].ToString();
-                    txtPVPSinIVAProducto.Text = myRow["PRECIOPUBLICO_SIN_IVA"].ToString();
-                    txtPrecioMayorConIVAProducto.Text = myRow["PRECIOALMAYOR_IVA"].ToString();
-                    txtPrecioMayorSinIVAProducto.Text = myRow["PRECIOALMAYOR_SIN_IVA"].ToString();
-                    txtPrecioCajaConIVAProducto.Text = myRow["PRECIOPORCAJA_IVA"].ToString();
-                    txtPrecioCajaSinIVAProducto.Text = myRow["PRECIOPORCAJA_SIN_IVA"].ToString();
-                    CkbIva.Checked = Convert.ToBoolean(myRow["IVAESTADO"]);
+                    txtPVPConIVAProducto.Text = Funcion.reemplazarcaracter(myRow["PRECIOPUBLICO_IVA"].ToString());
+                    txtPVPSinIVAProducto.Text = Funcion.reemplazarcaracter(myRow["PRECIOPUBLICO_SIN_IVA"].ToString());
+                    txtPrecioMayorConIVAProducto.Text = Funcion.reemplazarcaracter(myRow["PRECIOALMAYOR_IVA"].ToString());
+                    txtPrecioMayorSinIVAProducto.Text = Funcion.reemplazarcaracter(myRow["PRECIOALMAYOR_SIN_IVA"].ToString());
+                    txtPrecioCajaConIVAProducto.Text = Funcion.reemplazarcaracter(myRow["PRECIOPORCAJA_IVA"].ToString());
+                    txtPrecioCajaSinIVAProducto.Text = Funcion.reemplazarcaracter(myRow["PRECIOPORCAJA_SIN_IVA"].ToString());
+                    if (TxtIce.Text != "0" && TxtIce.Text != "")
+                        CkbICE.Checked = true;
+                    else
+                        CkbICE.Checked = false;
+                    if (TxtIRBP.Text != "0" && TxtIRBP.Text != "")
+                        CkbIRBP.Checked = true;
+                    else
+                        CkbIRBP.Checked = false;
                     //CkbICE.Checked = Convert.ToBoolean(myRow["ICEESTADO"]);
                     //CkbIRBP.Checked = Convert.ToBoolean(myRow["IRBPESTADO"]);
 
@@ -772,6 +806,26 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     txtPrecioCajaConIVAProducto.Text = Funcion.reemplazarcaracter((Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtPrecioCajaSinIVAProducto.Text)) + PrecioCajaConIva).ToString());
                 }
             }
+        }
+
+        private void TxtIce_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Funcion.SoloValores(e, TxtIce.Text);
+        }
+
+        private void TxtIRBP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Funcion.SoloValores(e, TxtIRBP.Text);
+        }
+
+        private void TxtIce_Enter(object sender, EventArgs e)
+        {
+            TxtIce.SelectAll();
+        }
+
+        private void TxtIRBP_Enter(object sender, EventArgs e)
+        {
+            TxtIRBP.SelectAll();
         }
     }
 }

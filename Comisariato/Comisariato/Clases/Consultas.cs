@@ -957,6 +957,8 @@ namespace Comisariato.Clases
                 cmd.Parameters.AddWithValue("@IDCATEGORIA", ObjProducto.Idcategoria);
                 cmd.Parameters.AddWithValue("@CANTIDAD", ObjProducto.Cantidad);
                 cmd.Parameters.AddWithValue("@DISPLAY", ObjProducto.Display);
+                cmd.Parameters.AddWithValue("@ICE", ObjProducto.Ice);
+                cmd.Parameters.AddWithValue("@IRBP", ObjProducto.Irbp);
 
                 if (ObjProducto.Imagenproducto != null)
                 { cmd.Parameters.AddWithValue("@IMAGENPRODUCTO", ObjProducto.Imagenproducto); }
