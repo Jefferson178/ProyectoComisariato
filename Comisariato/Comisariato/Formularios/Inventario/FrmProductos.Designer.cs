@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcProducto = new System.Windows.Forms.TabControl();
             this.tpNuevoProducto = new System.Windows.Forms.TabPage();
             this.txtNombreProducto = new System.Windows.Forms.RichTextBox();
@@ -385,8 +385,9 @@
             this.TxtIRBP.Name = "TxtIRBP";
             this.TxtIRBP.Size = new System.Drawing.Size(118, 22);
             this.TxtIRBP.TabIndex = 21;
-            this.TxtIRBP.Text = "0";
-            this.TxtIRBP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioCajaSinIVAProducto_KeyPress);
+            this.TxtIRBP.Text = "0.0";
+            this.TxtIRBP.Enter += new System.EventHandler(this.TxtIRBP_Enter);
+            this.TxtIRBP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIRBP_KeyPress);
             // 
             // TxtIce
             // 
@@ -397,8 +398,9 @@
             this.TxtIce.Name = "TxtIce";
             this.TxtIce.Size = new System.Drawing.Size(118, 22);
             this.TxtIce.TabIndex = 20;
-            this.TxtIce.Text = "0";
-            this.TxtIce.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioMayorSinIVAProducto_KeyPress);
+            this.TxtIce.Text = "0.0";
+            this.TxtIce.Enter += new System.EventHandler(this.TxtIce_Enter);
+            this.TxtIce.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIce_KeyPress);
             // 
             // CkbIRBP
             // 
@@ -473,7 +475,7 @@
             this.txtPrecioCajaSinIVAProducto.Name = "txtPrecioCajaSinIVAProducto";
             this.txtPrecioCajaSinIVAProducto.Size = new System.Drawing.Size(100, 22);
             this.txtPrecioCajaSinIVAProducto.TabIndex = 14;
-            this.txtPrecioCajaSinIVAProducto.Text = "0";
+            this.txtPrecioCajaSinIVAProducto.Text = "0.0";
             this.txtPrecioCajaSinIVAProducto.Enter += new System.EventHandler(this.txtPrecioCajaSinIVAProducto_Enter);
             this.txtPrecioCajaSinIVAProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioCajaSinIVAProducto_KeyPress);
             this.txtPrecioCajaSinIVAProducto.Leave += new System.EventHandler(this.txtPVPSinIVAProducto_Leave);
@@ -486,7 +488,7 @@
             this.txtPrecioMayorSinIVAProducto.Name = "txtPrecioMayorSinIVAProducto";
             this.txtPrecioMayorSinIVAProducto.Size = new System.Drawing.Size(100, 22);
             this.txtPrecioMayorSinIVAProducto.TabIndex = 13;
-            this.txtPrecioMayorSinIVAProducto.Text = "0";
+            this.txtPrecioMayorSinIVAProducto.Text = "0.0";
             this.txtPrecioMayorSinIVAProducto.Enter += new System.EventHandler(this.txtPrecioMayorSinIVAProducto_Enter);
             this.txtPrecioMayorSinIVAProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioMayorSinIVAProducto_KeyPress);
             this.txtPrecioMayorSinIVAProducto.Leave += new System.EventHandler(this.txtPVPSinIVAProducto_Leave);
@@ -499,7 +501,7 @@
             this.txtPVPSinIVAProducto.Name = "txtPVPSinIVAProducto";
             this.txtPVPSinIVAProducto.Size = new System.Drawing.Size(100, 22);
             this.txtPVPSinIVAProducto.TabIndex = 12;
-            this.txtPVPSinIVAProducto.Text = "0";
+            this.txtPVPSinIVAProducto.Text = "0.0";
             this.txtPVPSinIVAProducto.TextChanged += new System.EventHandler(this.txtPVPSinIVAProducto_TextChanged);
             this.txtPVPSinIVAProducto.Enter += new System.EventHandler(this.txtPVPSinIVAProducto_Enter);
             this.txtPVPSinIVAProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPVPSinIVAProducto_KeyPress);
@@ -513,7 +515,7 @@
             this.txtPrecioCajaConIVAProducto.Name = "txtPrecioCajaConIVAProducto";
             this.txtPrecioCajaConIVAProducto.Size = new System.Drawing.Size(100, 22);
             this.txtPrecioCajaConIVAProducto.TabIndex = 30;
-            this.txtPrecioCajaConIVAProducto.Text = "0";
+            this.txtPrecioCajaConIVAProducto.Text = "0.0";
             this.txtPrecioCajaConIVAProducto.TextChanged += new System.EventHandler(this.txtPVPConIVAProducto_TextChanged_1);
             this.txtPrecioCajaConIVAProducto.Enter += new System.EventHandler(this.txtPrecioCajaConIVAProducto_Enter);
             this.txtPrecioCajaConIVAProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioCajaConIVAProducto_KeyPress);
@@ -527,7 +529,7 @@
             this.txtPrecioMayorConIVAProducto.Name = "txtPrecioMayorConIVAProducto";
             this.txtPrecioMayorConIVAProducto.Size = new System.Drawing.Size(100, 22);
             this.txtPrecioMayorConIVAProducto.TabIndex = 29;
-            this.txtPrecioMayorConIVAProducto.Text = "0";
+            this.txtPrecioMayorConIVAProducto.Text = "0.0";
             this.txtPrecioMayorConIVAProducto.TextChanged += new System.EventHandler(this.txtPVPConIVAProducto_TextChanged_1);
             this.txtPrecioMayorConIVAProducto.Enter += new System.EventHandler(this.txtPrecioMayorConIVAProducto_Enter);
             this.txtPrecioMayorConIVAProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioMayorConIVAProducto_KeyPress);
@@ -541,7 +543,7 @@
             this.txtPVPConIVAProducto.Name = "txtPVPConIVAProducto";
             this.txtPVPConIVAProducto.Size = new System.Drawing.Size(100, 22);
             this.txtPVPConIVAProducto.TabIndex = 28;
-            this.txtPVPConIVAProducto.Text = "0";
+            this.txtPVPConIVAProducto.Text = "0.0";
             this.txtPVPConIVAProducto.TextChanged += new System.EventHandler(this.txtPVPConIVAProducto_TextChanged_1);
             this.txtPVPConIVAProducto.Enter += new System.EventHandler(this.txtPVPConIVAProducto_Enter);
             this.txtPVPConIVAProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPVPConIVAProducto_KeyPress_1);
@@ -805,14 +807,14 @@
             this.dgvDatosProducto.AllowUserToOrderColumns = true;
             this.dgvDatosProducto.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDatosProducto.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDatosProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosProducto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Modificar,
@@ -867,7 +869,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(1052, 573);
+            this.ClientSize = new System.Drawing.Size(1052, 572);
             this.Controls.Add(this.tcProducto);
             this.Font = new System.Drawing.Font("Arial", 10F);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
