@@ -69,7 +69,10 @@ namespace Comisariato.Formularios.Transacciones
                             string numcaja = "111", sucursal = "2";
                           
                             string condicion = " where CAJA = '" + numcaja + "' and SUCURSAL= '" + sucursal + "' and IDEMPRESA= '" + Program.IDEMPRESA + "';";
+
                             int numero = c.ObtenerID("IDFACTURA", "TbEncabezadoFactura", condicion);
+                            condicion= " where IDENTIFICACION= 9999999999999";
+                            f.IDCLIENTEINICIO = c.ObtenerID("IDCLIENTE", "TbCliente", condicion);
                             if (numero == 0)
                             {
                                 f.numfact = 1;
