@@ -28,18 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label13 = new System.Windows.Forms.Label();
             this.cbSucursal = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.pcOrdenCompra = new System.Windows.Forms.TabPage();
-            this.labelprueba2 = new System.Windows.Forms.Label();
-            this.labelprueba1 = new System.Windows.Forms.Label();
-            this.labelprueba = new System.Windows.Forms.Label();
             this.btnSalirCompra = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.gbDetalleProducto = new System.Windows.Forms.GroupBox();
             this.dgvProductosIngresos = new System.Windows.Forms.DataGridView();
             this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,7 +67,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.BtnGuardar = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbEncabezadoCompra = new System.Windows.Forms.GroupBox();
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.txtSerie1 = new System.Windows.Forms.TextBox();
             this.txtSerie2 = new System.Windows.Forms.TextBox();
@@ -103,9 +100,9 @@
             this.label16 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.pcOrdenCompra.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.gbDetalleProducto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductosIngresos)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.gbEncabezadoCompra.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatosProducto)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -151,11 +148,8 @@
             // pcOrdenCompra
             // 
             this.pcOrdenCompra.BackColor = System.Drawing.Color.Bisque;
-            this.pcOrdenCompra.Controls.Add(this.labelprueba2);
-            this.pcOrdenCompra.Controls.Add(this.labelprueba1);
-            this.pcOrdenCompra.Controls.Add(this.labelprueba);
             this.pcOrdenCompra.Controls.Add(this.btnSalirCompra);
-            this.pcOrdenCompra.Controls.Add(this.groupBox3);
+            this.pcOrdenCompra.Controls.Add(this.gbDetalleProducto);
             this.pcOrdenCompra.Controls.Add(this.txtTotal);
             this.pcOrdenCompra.Controls.Add(this.txtIRBP);
             this.pcOrdenCompra.Controls.Add(this.label12);
@@ -172,7 +166,7 @@
             this.pcOrdenCompra.Controls.Add(this.label5);
             this.pcOrdenCompra.Controls.Add(this.BtnLimpiar);
             this.pcOrdenCompra.Controls.Add(this.BtnGuardar);
-            this.pcOrdenCompra.Controls.Add(this.groupBox1);
+            this.pcOrdenCompra.Controls.Add(this.gbEncabezadoCompra);
             this.pcOrdenCompra.ForeColor = System.Drawing.Color.DarkCyan;
             this.pcOrdenCompra.Location = new System.Drawing.Point(4, 25);
             this.pcOrdenCompra.Margin = new System.Windows.Forms.Padding(2);
@@ -181,39 +175,6 @@
             this.pcOrdenCompra.Size = new System.Drawing.Size(1048, 546);
             this.pcOrdenCompra.TabIndex = 0;
             this.pcOrdenCompra.Text = "Orden de Compra";
-            // 
-            // labelprueba2
-            // 
-            this.labelprueba2.AutoSize = true;
-            this.labelprueba2.Font = new System.Drawing.Font("Arial", 10F);
-            this.labelprueba2.ForeColor = System.Drawing.Color.DarkCyan;
-            this.labelprueba2.Location = new System.Drawing.Point(36, 518);
-            this.labelprueba2.Name = "labelprueba2";
-            this.labelprueba2.Size = new System.Drawing.Size(141, 16);
-            this.labelprueba2.TabIndex = 62;
-            this.labelprueba2.Text = "sssssssssssssssssss";
-            // 
-            // labelprueba1
-            // 
-            this.labelprueba1.AutoSize = true;
-            this.labelprueba1.Font = new System.Drawing.Font("Arial", 10F);
-            this.labelprueba1.ForeColor = System.Drawing.Color.DarkCyan;
-            this.labelprueba1.Location = new System.Drawing.Point(36, 492);
-            this.labelprueba1.Name = "labelprueba1";
-            this.labelprueba1.Size = new System.Drawing.Size(141, 16);
-            this.labelprueba1.TabIndex = 61;
-            this.labelprueba1.Text = "sssssssssssssssssss";
-            // 
-            // labelprueba
-            // 
-            this.labelprueba.AutoSize = true;
-            this.labelprueba.Font = new System.Drawing.Font("Arial", 10F);
-            this.labelprueba.ForeColor = System.Drawing.Color.DarkCyan;
-            this.labelprueba.Location = new System.Drawing.Point(36, 471);
-            this.labelprueba.Name = "labelprueba";
-            this.labelprueba.Size = new System.Drawing.Size(141, 16);
-            this.labelprueba.TabIndex = 60;
-            this.labelprueba.Text = "sssssssssssssssssss";
             // 
             // btnSalirCompra
             // 
@@ -228,31 +189,31 @@
             this.btnSalirCompra.UseVisualStyleBackColor = true;
             this.btnSalirCompra.Click += new System.EventHandler(this.btnSalirCompra_Click);
             // 
-            // groupBox3
+            // gbDetalleProducto
             // 
-            this.groupBox3.Controls.Add(this.dgvProductosIngresos);
-            this.groupBox3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.groupBox3.ForeColor = System.Drawing.Color.Teal;
-            this.groupBox3.Location = new System.Drawing.Point(11, 189);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1032, 191);
-            this.groupBox3.TabIndex = 58;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Detalle de Productos";
+            this.gbDetalleProducto.Controls.Add(this.dgvProductosIngresos);
+            this.gbDetalleProducto.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.gbDetalleProducto.ForeColor = System.Drawing.Color.Teal;
+            this.gbDetalleProducto.Location = new System.Drawing.Point(11, 189);
+            this.gbDetalleProducto.Name = "gbDetalleProducto";
+            this.gbDetalleProducto.Size = new System.Drawing.Size(1032, 191);
+            this.gbDetalleProducto.TabIndex = 58;
+            this.gbDetalleProducto.TabStop = false;
+            this.gbDetalleProducto.Text = "Detalle de Productos";
             // 
             // dgvProductosIngresos
             // 
             this.dgvProductosIngresos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProductosIngresos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProductosIngresos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvProductosIngresos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductosIngresos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigo,
@@ -268,14 +229,14 @@
             this.subtotal,
             this.iva,
             this.total});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvProductosIngresos.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvProductosIngresos.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvProductosIngresos.Location = new System.Drawing.Point(9, 20);
             this.dgvProductosIngresos.Margin = new System.Windows.Forms.Padding(2);
             this.dgvProductosIngresos.Name = "dgvProductosIngresos";
@@ -286,8 +247,6 @@
             this.dgvProductosIngresos.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvProductosIngresos_EditingControlShowing);
             this.dgvProductosIngresos.Enter += new System.EventHandler(this.dgvProductosIngresos_Enter);
             this.dgvProductosIngresos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvProductosIngresos_KeyDown);
-            this.dgvProductosIngresos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvProductosIngresos_KeyPress);
-            this.dgvProductosIngresos.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvProductosIngresos_KeyUp);
             // 
             // codigo
             // 
@@ -540,6 +499,7 @@
             this.BtnLimpiar.Text = "&Limpiar";
             this.BtnLimpiar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnLimpiar.UseVisualStyleBackColor = true;
+            this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
             // BtnGuardar
             // 
@@ -554,39 +514,39 @@
             this.BtnGuardar.UseVisualStyleBackColor = true;
             this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
             // 
-            // groupBox1
+            // gbEncabezadoCompra
             // 
-            this.groupBox1.Controls.Add(this.txtNumero);
-            this.groupBox1.Controls.Add(this.txtSerie1);
-            this.groupBox1.Controls.Add(this.txtSerie2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.btnProveedor);
-            this.groupBox1.Controls.Add(this.txtPlazoOC);
-            this.groupBox1.Controls.Add(this.cbImpuesto);
-            this.groupBox1.Controls.Add(this.txtObservacion);
-            this.groupBox1.Controls.Add(this.txtFlete);
-            this.groupBox1.Controls.Add(this.txtOrdenCompra);
-            this.groupBox1.Controls.Add(this.label17);
-            this.groupBox1.Controls.Add(this.label21);
-            this.groupBox1.Controls.Add(this.label20);
-            this.groupBox1.Controls.Add(this.label19);
-            this.groupBox1.Controls.Add(this.label18);
-            this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.cbTerminoPago);
-            this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.cbSucursal);
-            this.groupBox1.Controls.Add(this.cbProveedor);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.dtpFechaOC);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.groupBox1.ForeColor = System.Drawing.Color.Teal;
-            this.groupBox1.Location = new System.Drawing.Point(58, 9);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(942, 163);
-            this.groupBox1.TabIndex = 36;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Datos de la Orden de Compra";
+            this.gbEncabezadoCompra.Controls.Add(this.txtNumero);
+            this.gbEncabezadoCompra.Controls.Add(this.txtSerie1);
+            this.gbEncabezadoCompra.Controls.Add(this.txtSerie2);
+            this.gbEncabezadoCompra.Controls.Add(this.label1);
+            this.gbEncabezadoCompra.Controls.Add(this.btnProveedor);
+            this.gbEncabezadoCompra.Controls.Add(this.txtPlazoOC);
+            this.gbEncabezadoCompra.Controls.Add(this.cbImpuesto);
+            this.gbEncabezadoCompra.Controls.Add(this.txtObservacion);
+            this.gbEncabezadoCompra.Controls.Add(this.txtFlete);
+            this.gbEncabezadoCompra.Controls.Add(this.txtOrdenCompra);
+            this.gbEncabezadoCompra.Controls.Add(this.label17);
+            this.gbEncabezadoCompra.Controls.Add(this.label21);
+            this.gbEncabezadoCompra.Controls.Add(this.label20);
+            this.gbEncabezadoCompra.Controls.Add(this.label19);
+            this.gbEncabezadoCompra.Controls.Add(this.label18);
+            this.gbEncabezadoCompra.Controls.Add(this.label15);
+            this.gbEncabezadoCompra.Controls.Add(this.cbTerminoPago);
+            this.gbEncabezadoCompra.Controls.Add(this.label13);
+            this.gbEncabezadoCompra.Controls.Add(this.cbSucursal);
+            this.gbEncabezadoCompra.Controls.Add(this.cbProveedor);
+            this.gbEncabezadoCompra.Controls.Add(this.label3);
+            this.gbEncabezadoCompra.Controls.Add(this.dtpFechaOC);
+            this.gbEncabezadoCompra.Controls.Add(this.label4);
+            this.gbEncabezadoCompra.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.gbEncabezadoCompra.ForeColor = System.Drawing.Color.Teal;
+            this.gbEncabezadoCompra.Location = new System.Drawing.Point(58, 9);
+            this.gbEncabezadoCompra.Name = "gbEncabezadoCompra";
+            this.gbEncabezadoCompra.Size = new System.Drawing.Size(942, 163);
+            this.gbEncabezadoCompra.TabIndex = 36;
+            this.gbEncabezadoCompra.TabStop = false;
+            this.gbEncabezadoCompra.Text = "Datos de la Orden de Compra";
             // 
             // txtNumero
             // 
@@ -647,6 +607,7 @@
             this.txtPlazoOC.Font = new System.Drawing.Font("Arial", 10F);
             this.txtPlazoOC.Location = new System.Drawing.Point(770, 50);
             this.txtPlazoOC.Name = "txtPlazoOC";
+            this.txtPlazoOC.ReadOnly = true;
             this.txtPlazoOC.Size = new System.Drawing.Size(156, 23);
             this.txtPlazoOC.TabIndex = 8;
             this.txtPlazoOC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPlazoOC_KeyDown);
@@ -788,9 +749,7 @@
             this.cbProveedor.Name = "cbProveedor";
             this.cbProveedor.Size = new System.Drawing.Size(111, 24);
             this.cbProveedor.TabIndex = 7;
-            this.cbProveedor.TextChanged += new System.EventHandler(this.cbProveedor_TextChanged);
             this.cbProveedor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbProveedor_KeyDown);
-            this.cbProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbProveedor_KeyPress);
             // 
             // label3
             // 
@@ -844,14 +803,14 @@
             this.dgvDatosProducto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDatosProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosProducto.Location = new System.Drawing.Point(17, 132);
             this.dgvDatosProducto.Margin = new System.Windows.Forms.Padding(2);
@@ -934,7 +893,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(1087, 587);
+            this.ClientSize = new System.Drawing.Size(1087, 588);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -944,14 +903,13 @@
             this.Name = "FrmCompra";
             this.Text = "Compras";
             this.Load += new System.EventHandler(this.FrmCompra_Load);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FrmCompra_KeyPress);
             this.tabControl1.ResumeLayout(false);
             this.pcOrdenCompra.ResumeLayout(false);
             this.pcOrdenCompra.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
+            this.gbDetalleProducto.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductosIngresos)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbEncabezadoCompra.ResumeLayout(false);
+            this.gbEncabezadoCompra.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatosProducto)).EndInit();
@@ -979,7 +937,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dtpFechaOC;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbEncabezadoCompra;
         private System.Windows.Forms.ComboBox cbProveedor;
         private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.TextBox txtIRBP;
@@ -997,7 +955,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox gbDetalleProducto;
         private System.Windows.Forms.TextBox txtPlazoOC;
         private System.Windows.Forms.ComboBox cbImpuesto;
         private System.Windows.Forms.TextBox txtObservacion;
@@ -1029,8 +987,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn subtotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn iva;
         private System.Windows.Forms.DataGridViewTextBoxColumn total;
-        private System.Windows.Forms.Label labelprueba;
-        private System.Windows.Forms.Label labelprueba2;
-        private System.Windows.Forms.Label labelprueba1;
     }
 }

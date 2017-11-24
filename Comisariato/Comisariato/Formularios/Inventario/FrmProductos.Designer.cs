@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcProducto = new System.Windows.Forms.TabControl();
             this.tpNuevoProducto = new System.Windows.Forms.TabPage();
             this.txtNombreProducto = new System.Windows.Forms.RichTextBox();
@@ -37,7 +37,9 @@
             this.ckbActivoProducto = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.gbDescripcionProducto = new System.Windows.Forms.GroupBox();
-            this.cbPeso = new System.Windows.Forms.ComboBox();
+            this.txtPeso = new System.Windows.Forms.TextBox();
+            this.txtUnidadProducto = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.txtObservacionesProducto = new System.Windows.Forms.TextBox();
             this.cbTipoProducto = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -69,7 +71,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtStockMinimoProducto = new System.Windows.Forms.TextBox();
             this.txtStockMaximoProducto = new System.Windows.Forms.TextBox();
-            this.txtUnidadProducto = new System.Windows.Forms.TextBox();
+            this.txtDisplay = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.txtCajaProducto = new System.Windows.Forms.TextBox();
@@ -196,7 +198,9 @@
             // 
             // gbDescripcionProducto
             // 
-            this.gbDescripcionProducto.Controls.Add(this.cbPeso);
+            this.gbDescripcionProducto.Controls.Add(this.txtPeso);
+            this.gbDescripcionProducto.Controls.Add(this.txtUnidadProducto);
+            this.gbDescripcionProducto.Controls.Add(this.label5);
             this.gbDescripcionProducto.Controls.Add(this.txtObservacionesProducto);
             this.gbDescripcionProducto.Controls.Add(this.cbTipoProducto);
             this.gbDescripcionProducto.Controls.Add(this.label18);
@@ -209,7 +213,7 @@
             this.gbDescripcionProducto.Controls.Add(this.label4);
             this.gbDescripcionProducto.Controls.Add(this.txtStockMinimoProducto);
             this.gbDescripcionProducto.Controls.Add(this.txtStockMaximoProducto);
-            this.gbDescripcionProducto.Controls.Add(this.txtUnidadProducto);
+            this.gbDescripcionProducto.Controls.Add(this.txtDisplay);
             this.gbDescripcionProducto.Controls.Add(this.label11);
             this.gbDescripcionProducto.Controls.Add(this.label12);
             this.gbDescripcionProducto.Controls.Add(this.txtCajaProducto);
@@ -227,18 +231,37 @@
             this.gbDescripcionProducto.TabStop = false;
             this.gbDescripcionProducto.Text = "Descripción del Producto";
             // 
-            // cbPeso
+            // txtPeso
             // 
-            this.cbPeso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPeso.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.cbPeso.FormattingEnabled = true;
-            this.cbPeso.Items.AddRange(new object[] {
-            "0"});
-            this.cbPeso.Location = new System.Drawing.Point(154, 98);
-            this.cbPeso.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbPeso.Name = "cbPeso";
-            this.cbPeso.Size = new System.Drawing.Size(249, 24);
-            this.cbPeso.TabIndex = 5;
+            this.txtPeso.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.txtPeso.Location = new System.Drawing.Point(539, 105);
+            this.txtPeso.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtPeso.Name = "txtPeso";
+            this.txtPeso.Size = new System.Drawing.Size(43, 22);
+            this.txtPeso.TabIndex = 51;
+            this.txtPeso.Text = "0";
+            this.txtPeso.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStockMaximoProducto_KeyPress);
+            // 
+            // txtUnidadProducto
+            // 
+            this.txtUnidadProducto.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.txtUnidadProducto.Location = new System.Drawing.Point(391, 106);
+            this.txtUnidadProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtUnidadProducto.Name = "txtUnidadProducto";
+            this.txtUnidadProducto.Size = new System.Drawing.Size(53, 22);
+            this.txtUnidadProducto.TabIndex = 50;
+            this.txtUnidadProducto.Text = "0";
+            this.txtUnidadProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStockMaximoProducto_KeyPress);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.label5.Location = new System.Drawing.Point(164, 108);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 16);
+            this.label5.TabIndex = 49;
+            this.label5.Text = "Display:";
             // 
             // txtObservacionesProducto
             // 
@@ -363,6 +386,7 @@
             this.TxtIRBP.Size = new System.Drawing.Size(118, 22);
             this.TxtIRBP.TabIndex = 21;
             this.TxtIRBP.Text = "0";
+            this.TxtIRBP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioCajaSinIVAProducto_KeyPress);
             // 
             // TxtIce
             // 
@@ -374,6 +398,7 @@
             this.TxtIce.Size = new System.Drawing.Size(118, 22);
             this.TxtIce.TabIndex = 20;
             this.TxtIce.Text = "0";
+            this.TxtIce.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioMayorSinIVAProducto_KeyPress);
             // 
             // CkbIRBP
             // 
@@ -451,6 +476,7 @@
             this.txtPrecioCajaSinIVAProducto.Text = "0";
             this.txtPrecioCajaSinIVAProducto.Enter += new System.EventHandler(this.txtPrecioCajaSinIVAProducto_Enter);
             this.txtPrecioCajaSinIVAProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioCajaSinIVAProducto_KeyPress);
+            this.txtPrecioCajaSinIVAProducto.Leave += new System.EventHandler(this.txtPVPSinIVAProducto_Leave);
             // 
             // txtPrecioMayorSinIVAProducto
             // 
@@ -463,6 +489,7 @@
             this.txtPrecioMayorSinIVAProducto.Text = "0";
             this.txtPrecioMayorSinIVAProducto.Enter += new System.EventHandler(this.txtPrecioMayorSinIVAProducto_Enter);
             this.txtPrecioMayorSinIVAProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioMayorSinIVAProducto_KeyPress);
+            this.txtPrecioMayorSinIVAProducto.Leave += new System.EventHandler(this.txtPVPSinIVAProducto_Leave);
             // 
             // txtPVPSinIVAProducto
             // 
@@ -473,8 +500,10 @@
             this.txtPVPSinIVAProducto.Size = new System.Drawing.Size(100, 22);
             this.txtPVPSinIVAProducto.TabIndex = 12;
             this.txtPVPSinIVAProducto.Text = "0";
+            this.txtPVPSinIVAProducto.TextChanged += new System.EventHandler(this.txtPVPSinIVAProducto_TextChanged);
             this.txtPVPSinIVAProducto.Enter += new System.EventHandler(this.txtPVPSinIVAProducto_Enter);
             this.txtPVPSinIVAProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPVPSinIVAProducto_KeyPress);
+            this.txtPVPSinIVAProducto.Leave += new System.EventHandler(this.txtPVPSinIVAProducto_Leave);
             // 
             // txtPrecioCajaConIVAProducto
             // 
@@ -485,7 +514,7 @@
             this.txtPrecioCajaConIVAProducto.Size = new System.Drawing.Size(100, 22);
             this.txtPrecioCajaConIVAProducto.TabIndex = 30;
             this.txtPrecioCajaConIVAProducto.Text = "0";
-            this.txtPrecioCajaConIVAProducto.TextChanged += new System.EventHandler(this.txtPrecioCajaConIVAProducto_TextChanged);
+            this.txtPrecioCajaConIVAProducto.TextChanged += new System.EventHandler(this.txtPVPConIVAProducto_TextChanged_1);
             this.txtPrecioCajaConIVAProducto.Enter += new System.EventHandler(this.txtPrecioCajaConIVAProducto_Enter);
             this.txtPrecioCajaConIVAProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioCajaConIVAProducto_KeyPress);
             this.txtPrecioCajaConIVAProducto.Leave += new System.EventHandler(this.txtPVPConIVAProducto_Leave);
@@ -499,7 +528,7 @@
             this.txtPrecioMayorConIVAProducto.Size = new System.Drawing.Size(100, 22);
             this.txtPrecioMayorConIVAProducto.TabIndex = 29;
             this.txtPrecioMayorConIVAProducto.Text = "0";
-            this.txtPrecioMayorConIVAProducto.TextChanged += new System.EventHandler(this.txtPrecioMayorConIVAProducto_TextChanged);
+            this.txtPrecioMayorConIVAProducto.TextChanged += new System.EventHandler(this.txtPVPConIVAProducto_TextChanged_1);
             this.txtPrecioMayorConIVAProducto.Enter += new System.EventHandler(this.txtPrecioMayorConIVAProducto_Enter);
             this.txtPrecioMayorConIVAProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioMayorConIVAProducto_KeyPress);
             this.txtPrecioMayorConIVAProducto.Leave += new System.EventHandler(this.txtPVPConIVAProducto_Leave);
@@ -513,7 +542,7 @@
             this.txtPVPConIVAProducto.Size = new System.Drawing.Size(100, 22);
             this.txtPVPConIVAProducto.TabIndex = 28;
             this.txtPVPConIVAProducto.Text = "0";
-            this.txtPVPConIVAProducto.TextChanged += new System.EventHandler(this.txtPVPConIVAProducto_TextChanged);
+            this.txtPVPConIVAProducto.TextChanged += new System.EventHandler(this.txtPVPConIVAProducto_TextChanged_1);
             this.txtPVPConIVAProducto.Enter += new System.EventHandler(this.txtPVPConIVAProducto_Enter);
             this.txtPVPConIVAProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPVPConIVAProducto_KeyPress_1);
             this.txtPVPConIVAProducto.Leave += new System.EventHandler(this.txtPVPConIVAProducto_Leave);
@@ -601,7 +630,7 @@
             // txtStockMinimoProducto
             // 
             this.txtStockMinimoProducto.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.txtStockMinimoProducto.Location = new System.Drawing.Point(439, 125);
+            this.txtStockMinimoProducto.Location = new System.Drawing.Point(439, 139);
             this.txtStockMinimoProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtStockMinimoProducto.Name = "txtStockMinimoProducto";
             this.txtStockMinimoProducto.Size = new System.Drawing.Size(143, 22);
@@ -613,7 +642,7 @@
             // txtStockMaximoProducto
             // 
             this.txtStockMaximoProducto.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.txtStockMaximoProducto.Location = new System.Drawing.Point(154, 125);
+            this.txtStockMaximoProducto.Location = new System.Drawing.Point(154, 139);
             this.txtStockMaximoProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtStockMaximoProducto.Name = "txtStockMaximoProducto";
             this.txtStockMaximoProducto.Size = new System.Drawing.Size(143, 22);
@@ -622,23 +651,23 @@
             this.txtStockMaximoProducto.Enter += new System.EventHandler(this.txtStockMaximoProducto_Enter);
             this.txtStockMaximoProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStockMaximoProducto_KeyPress);
             // 
-            // txtUnidadProducto
+            // txtDisplay
             // 
-            this.txtUnidadProducto.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.txtUnidadProducto.Location = new System.Drawing.Point(439, 152);
-            this.txtUnidadProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtUnidadProducto.Name = "txtUnidadProducto";
-            this.txtUnidadProducto.Size = new System.Drawing.Size(143, 22);
-            this.txtUnidadProducto.TabIndex = 10;
-            this.txtUnidadProducto.Text = "0";
-            this.txtUnidadProducto.Enter += new System.EventHandler(this.txtUnidadProducto_Enter);
-            this.txtUnidadProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStockMaximoProducto_KeyPress);
+            this.txtDisplay.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.txtDisplay.Location = new System.Drawing.Point(232, 105);
+            this.txtDisplay.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtDisplay.Name = "txtDisplay";
+            this.txtDisplay.Size = new System.Drawing.Size(53, 22);
+            this.txtDisplay.TabIndex = 10;
+            this.txtDisplay.Text = "0";
+            this.txtDisplay.Enter += new System.EventHandler(this.txtUnidadProducto_Enter);
+            this.txtDisplay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStockMaximoProducto_KeyPress);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label11.Location = new System.Drawing.Point(26, 155);
+            this.label11.Location = new System.Drawing.Point(26, 108);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(38, 16);
             this.label11.TabIndex = 31;
@@ -648,7 +677,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label12.Location = new System.Drawing.Point(26, 128);
+            this.label12.Location = new System.Drawing.Point(26, 142);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(96, 16);
             this.label12.TabIndex = 32;
@@ -657,10 +686,10 @@
             // txtCajaProducto
             // 
             this.txtCajaProducto.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.txtCajaProducto.Location = new System.Drawing.Point(154, 152);
+            this.txtCajaProducto.Location = new System.Drawing.Point(77, 105);
             this.txtCajaProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCajaProducto.Name = "txtCajaProducto";
-            this.txtCajaProducto.Size = new System.Drawing.Size(143, 22);
+            this.txtCajaProducto.Size = new System.Drawing.Size(54, 22);
             this.txtCajaProducto.TabIndex = 9;
             this.txtCajaProducto.Text = "0";
             this.txtCajaProducto.Enter += new System.EventHandler(this.txtCajaProducto_Enter);
@@ -670,7 +699,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label14.Location = new System.Drawing.Point(323, 155);
+            this.label14.Location = new System.Drawing.Point(326, 109);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(52, 16);
             this.label14.TabIndex = 33;
@@ -680,7 +709,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label15.Location = new System.Drawing.Point(323, 128);
+            this.label15.Location = new System.Drawing.Point(320, 142);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(92, 16);
             this.label15.TabIndex = 34;
@@ -690,7 +719,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label16.Location = new System.Drawing.Point(26, 101);
+            this.label16.Location = new System.Drawing.Point(478, 108);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(42, 16);
             this.label16.TabIndex = 35;
@@ -776,14 +805,14 @@
             this.dgvDatosProducto.AllowUserToOrderColumns = true;
             this.dgvDatosProducto.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDatosProducto.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDatosProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosProducto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Modificar,
@@ -899,7 +928,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtStockMinimoProducto;
         private System.Windows.Forms.TextBox txtStockMaximoProducto;
-        private System.Windows.Forms.TextBox txtUnidadProducto;
+        private System.Windows.Forms.TextBox txtDisplay;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtCajaProducto;
@@ -915,7 +944,6 @@
         private System.Windows.Forms.Button btnGuardarProducto;
         private System.Windows.Forms.TextBox txtConsultarProducto;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.ComboBox cbPeso;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.DataGridView dgvDatosProducto;
         private System.Windows.Forms.RadioButton rbtInactivos;
@@ -923,5 +951,8 @@
         private System.Windows.Forms.DataGridViewButtonColumn Modificar;
         private System.Windows.Forms.DataGridViewButtonColumn Deshabilitar;
         private System.Windows.Forms.RichTextBox txtNombreProducto;
+        private System.Windows.Forms.TextBox txtPeso;
+        private System.Windows.Forms.TextBox txtUnidadProducto;
+        private System.Windows.Forms.Label label5;
     }
 }

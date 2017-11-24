@@ -13,6 +13,7 @@ namespace Comisariato.Clases
         public static SqlConnection connection = null;
         //------------------------------Conexion Andres ----------------------------------------//
         //Data Source=DESKTOP-FUFA7EG\\ANDRES;Initial Catalog=BDComisariato;Integrated Security=True
+        //Data Source=DESKTOP-G14ID1U;Initial Catalog=BDComisariato;Integrated Security=True
         //------------------------------Conexion Servidor----------------------------------------//
         //data source = AIRCONTROL, 1433; initial catalog = BDComisariato; user id = COMI; password = server@1;
         //------------------------------Conexion Byron ----------------------------------------//
@@ -22,7 +23,7 @@ namespace Comisariato.Clases
         {
             try
             {
-                connection = new SqlConnection("data source = AIRCONTROL, 1433; initial catalog = BDComisariato; user id = COMI; password = server@1;");
+                connection = new SqlConnection("Data Source=DESKTOP-FUFA7EG\\ANDRES;Initial Catalog=BDComisariato;Integrated Security=True");
                 connection.Open();
                
             }
@@ -34,7 +35,7 @@ namespace Comisariato.Clases
         }
         public void Cerrar()
         {
-            connection = new SqlConnection("data source = AIRCONTROL, 1433; initial catalog = BDComisariato; user id = COMI; password = server@1;");
+            connection = new SqlConnection("Data Source=DESKTOP-FUFA7EG\\ANDRES;Initial Catalog=BDComisariato;Integrated Security=True");
             connection.Close();
         }
     }
