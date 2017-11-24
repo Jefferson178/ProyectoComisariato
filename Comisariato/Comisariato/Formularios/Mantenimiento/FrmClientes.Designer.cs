@@ -287,7 +287,7 @@
             this.cbIdentificacionCliente.Items.AddRange(new object[] {
             "Cedula",
             "RUC",
-            "Transporte"});
+            "Pasaporte"});
             this.cbIdentificacionCliente.Location = new System.Drawing.Point(167, 55);
             this.cbIdentificacionCliente.Margin = new System.Windows.Forms.Padding(2);
             this.cbIdentificacionCliente.Name = "cbIdentificacionCliente";
@@ -1362,7 +1362,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(1089, 589);
+            this.ClientSize = new System.Drawing.Size(1089, 588);
             this.Controls.Add(this.tcCliente);
             this.Font = new System.Drawing.Font("Arial", 10F);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

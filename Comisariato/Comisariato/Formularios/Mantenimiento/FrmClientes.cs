@@ -218,6 +218,10 @@ namespace Comisariato.Formularios
                             FrmFactura.verificadorfrm = 0;
                             FrmFactura.DatosCliente.Add(txtIdentificacionCliente.Text);
                             FrmFactura.DatosCliente.Add(txtNombresCliente.Text.ToUpper() + " " + txtApellidosCliente.Text.ToUpper());
+                            string condicion = " where IDENTIFICACION= '"+txtIdentificacionCliente.Text+"'";
+                            Consultas c = new Consultas();
+                            int numero = c.ObtenerID("IDCLIENTE", "TbCliente", condicion);
+                            FrmFactura.DatosCliente.Add(""+numero);
                             this.Close();
                         }
                         else if (resultado == "Error al Registrar")

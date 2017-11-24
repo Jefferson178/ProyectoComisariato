@@ -16,8 +16,10 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         List<Producto> datos;
         Consultas objc;
         List<int> indezp = new List<int>();
-        private int posindexp = 0;
+        private int posindexp = 0,idcombo=0;
         int bandera=1;
+        string codigobarra = "";
+
 
 
         //NOMBREPRODUCTO like '%" + txtconsultar.Text + "%' or CODIGOBARRA like '%" + txtconsultar.Text +"%'
@@ -190,23 +192,39 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                                             {
                                                 //Consultas c = new Consultas();
                                                 //int filas = indezp.Count;
-                                                List<String> encabezadoCombo = new List<String>();
-                                                encabezadoCombo.Add(txtCodigoCombo.Text);
-                                                encabezadoCombo.Add(txtNombreCombo.Text);
-                                                encabezadoCombo.Add(txtCantCombo.Text);
-                                                encabezadoCombo.Add(txtPrecioCombo.Text);
-                                                bool b = false;
-                                                
-                                                b = objc.GrabarCombo(encabezadoCombo, dgvProductosEnCombo,bandera);
-                                                
-                                                if (b)
+                                               
+                                                if (bandera==1)
                                                 {
-                                                    MessageBox.Show("Registro realizado con exito.");
-                                                    Limpiar();
+                                                    List<String> encabezadoCombo = new List<String>();
+                                                    encabezadoCombo.Add(txtCodigoCombo.Text);
+                                                    encabezadoCombo.Add(txtNombreCombo.Text);
+                                                    encabezadoCombo.Add(txtCantCombo.Text);
+                                                    encabezadoCombo.Add(txtPrecioCombo.Text);
+                                                    bool b = objc.GrabarCombo(encabezadoCombo, dgvProductosEnCombo, bandera);
+                                                    if (b)
+                                                    {
+                                                        MessageBox.Show("Registro realizado con exito.");
+                                                        Limpiar();
+                                                    }
+                                                    else
+                                                    {
+                                                        MessageBox.Show("Error al realizar el registro.");
+                                                    }
+
                                                 }
                                                 else
                                                 {
-                                                    MessageBox.Show("Error al realizar el registro.");
+                                                    bool a = objc.EjecutarSQL("UPDATE TbCombo SET CODIGO ='" + txtCodigoCombo.Text+ "', NOMBRE='"+ txtNombreCombo.Text+ "', CANTIDAD='"+ txtCantCombo.Text+ "', PRECIO='"+ txtPrecioCombo.Text+"'  WHERE IDCOMBO = '"+idcombo+"'");
+                                                    if (a)
+                                                    {
+                                                        objc.EjecutarSQL("UPDATE TbProducto SET NOMBREPRODUCTO = '"+ txtNombreCombo.Text+ "', CODIGOBARRA='" +txtCodigoCombo.Text +"', CANTIDAD= '"+ txtCantCombo.Text+ "', PRECIOPUBLICO_IVA='"+txtPrecioCombo.Text+ "', PRECIOPUBLICO_SIN_IVA ='" + txtPrecioCombo.Text + "' ,PRECIOALMAYOR_IVA ='" + txtPrecioCombo.Text + "' ,PRECIOALMAYOR_SIN_IVA ='" + txtPrecioCombo.Text + "' ,PRECIOPORCAJA_IVA='" + txtPrecioCombo.Text + "' ,PRECIOPORCAJA_SIN_IVA='" + txtPrecioCombo.Text + "' where CODIGOBARRA='"+ codigobarra+"';");
+                                                        MessageBox.Show("Actualizacion realizado con exito.");
+                                                        Limpiar();
+                                                    }
+                                                    else
+                                                    {
+                                                        MessageBox.Show("Error al realizar la actualizacion.");
+                                                    }
                                                 }
                                             }
                                             else
@@ -337,6 +355,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             cargarDatos("1");
             //dgvProductosParaCombo.Columns[0].Width = 150;
             AnchoColumna();
+            btnAgregarProductoACombo.Enabled = true;
             txtCodigoCombo.Focus();
         }
 
@@ -457,6 +476,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         ///"UPDATE TbProveedor SET ESTADO = 1 WHERE IDENTIFICACION = '" + Identificacion + "'"
                         
                         objc.EjecutarSQL("UPDATE TbCombo SET ESTADO = 0 WHERE IDCOMBO = '" + Convert.ToString(dgvDatosCombo.Rows[e.RowIndex].Cells[6].Value) + "'");
+                        objc.EjecutarSQL("UPDATE TbProducto SET ACTIVO = 0 WHERE CODIGOBARRA = '" + Convert.ToString(dgvDatosCombo.Rows[e.RowIndex].Cells[2].Value) + "'");
                         cargarDatos("1");
                         if (dgvDetalleCombo.RowCount>0)
                         {
@@ -470,6 +490,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     if (this.dgvDatosCombo.Columns[e.ColumnIndex].Name == "Desabilitar")
                     {
                         objc.EjecutarSQL("UPDATE TbCombo SET ESTADO = 1 WHERE IDCOMBO = '" +Convert.ToString(dgvDatosCombo.Rows[e.RowIndex].Cells[6].Value) + "'");
+                        objc.EjecutarSQL("UPDATE TbProducto SET ACTIVO = 1 WHERE CODIGOBARRA = '" + Convert.ToString(dgvDatosCombo.Rows[e.RowIndex].Cells[2].Value) + "'");
                         cargarDatos("0");
                         if (dgvDetalleCombo.RowCount > 0)
                         {
@@ -481,6 +502,9 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 if (this.dgvDatosCombo.Columns[e.ColumnIndex].Name == "Modificar")
                 {
                     bandera = 2;
+                    idcombo = Convert.ToInt32(dgvDatosCombo.Rows[e.RowIndex].Cells[6].Value);
+                    btnAgregarProductoACombo.Enabled = false;
+                    codigobarra = Convert.ToString(dgvDatosCombo.Rows[e.RowIndex].Cells[2].Value);
                    //String identificacion = dgvDatosCombo.CurrentRow.Cells[3].Value.ToString();
                    tcComboProducto.SelectedIndex = 0;
                     //objc = new Consultas();

@@ -957,6 +957,8 @@ namespace Comisariato.Clases
                 cmd.Parameters.AddWithValue("@IDCATEGORIA", ObjProducto.Idcategoria);
                 cmd.Parameters.AddWithValue("@CANTIDAD", ObjProducto.Cantidad);
                 cmd.Parameters.AddWithValue("@DISPLAY", ObjProducto.Display);
+                cmd.Parameters.AddWithValue("@ICE", ObjProducto.Ice);
+                cmd.Parameters.AddWithValue("@IRBP", ObjProducto.Irbp);
 
                 if (ObjProducto.Imagenproducto != null)
                 { cmd.Parameters.AddWithValue("@IMAGENPRODUCTO", ObjProducto.Imagenproducto); }
@@ -1153,7 +1155,6 @@ namespace Comisariato.Clases
             }
         }
 
-
         public void CargarCombos(String sql, DataGridView dg)
         {
             try
@@ -1248,7 +1249,7 @@ namespace Comisariato.Clases
                         cmd = new SqlCommand("REGISTRAR_Combo", ConexionBD.connection);
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.AddWithValue("@bandera", bandera);
+                        //cmd.Parameters.AddWithValue("@bandera", bandera);
                         cmd.Parameters.AddWithValue("@CONTADOR", i);
                         cmd.Parameters.AddWithValue("@codigo", encabezadoCombo[0]);
                         cmd.Parameters.AddWithValue("@nombre", encabezadoCombo[1]);
@@ -1310,6 +1311,7 @@ namespace Comisariato.Clases
                 return false;
             }
         }
+
 
     }
 }

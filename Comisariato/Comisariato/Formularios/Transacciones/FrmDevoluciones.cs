@@ -125,17 +125,21 @@ namespace Comisariato.Formularios.Transacciones.Devolucion_Venta
                 }
                 else
                 {
-                    if (DgvDetalleFact.Rows[e.RowIndex].Cells[0].Value != null && DgvDetalleFact.Rows[e.RowIndex].Cells[1].Value != null)
-                    {
-                        if (verificarindex(e.RowIndex))
-                        {
-                            indezp.RemoveAt(posindexp);
-                        }
-                        else
-                        {
-                            indezp.Add(e.RowIndex);
-                        }
-                    }
+                    //if (DgvDetalleFact.Rows[e.RowIndex].Cells[0].Value != null && DgvDetalleFact.Rows[e.RowIndex].Cells[1].Value != null)
+                    //{
+                    //    if (Convert.ToBoolean(DgvDetalleFact.Rows[e.RowIndex].Cells[6].Value))
+                    //    {
+                    //        if (verificarindex(e.RowIndex))
+                    //        {
+                    //            indezp.RemoveAt(posindexp);
+                    //        }
+                    //        else
+                    //        {
+                    //            indezp.Add(e.RowIndex);
+                    //        }
+                    //    }
+                        
+                    //}
                 }
             }
             catch (Exception)
@@ -191,7 +195,7 @@ namespace Comisariato.Formularios.Transacciones.Devolucion_Venta
                             if (Convert.ToString(DgvDetalleFact.Rows[i].Cells[0].Value) != "")
                             {
                                 DgvDetalleFact.Rows[i].Cells[6].Value = true;
-                                indezp.Add(i);
+                                //indezp.Add(i);
                             }
                             else
                             {
@@ -231,10 +235,21 @@ namespace Comisariato.Formularios.Transacciones.Devolucion_Venta
         {
             try
             {
-                for (int i = 0; i < indezp.Count; i++)
+                for (int i = 0; i < DgvDetalleFact.RowCount; i++)
                 {
-
-                    pedidos.Add("" + DgvDetalleFact.Rows[indezp[i]].Cells[0].Value + ";" + DgvDetalleFact.Rows[indezp[i]].Cells[2].Value);
+                    if (DgvDetalleFact.Rows[i].Cells[0].Value != null && DgvDetalleFact.Rows[i].Cells[1].Value != null)
+                    {
+                        if (Convert.ToBoolean(DgvDetalleFact.Rows[i].Cells[6].Value))
+                        {
+                            pedidos.Add("" + DgvDetalleFact.Rows[i].Cells[0].Value + ";" + DgvDetalleFact.Rows[i].Cells[2].Value);
+                            indezp.Add(i);
+                        }
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    
 
                 }
             }
@@ -251,11 +266,12 @@ namespace Comisariato.Formularios.Transacciones.Devolucion_Venta
             c = new Consultas();
             try
             {
+                ObtenerPedidos();
                 if (indezp.Count>0)
                 {
                     if (MessageBox.Show("¿Estas seguro de darle de baja a estos Items?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        ObtenerPedidos();
+                        
                         bool b = c.DevolucionVenta(pedidos, Convert.ToInt32(txtNumFact.Text));
                         if (b)
                         {
