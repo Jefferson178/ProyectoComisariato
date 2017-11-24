@@ -44,6 +44,13 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             datosProductoCompra = dgvProductosIngresos;
             datosProveedor = cbProveedor;
             txtFlete.Text = "0";
+            txtSubtotal.Text = "0.0";
+            txtSubtotal0.Text = "0.0";
+            txtSubtutalIVA.Text = "0.0";
+            txtTotal.Text = "0.0";
+            txtICE.Text = "0.0";
+            txtIRBP.Text = "0.0";
+            txtIVA.Text = "0.0";
             cbTerminoPago.SelectedIndex = 0;
         }
         private void BtnGuardar_Click(object sender, EventArgs e)
@@ -90,8 +97,10 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         consultas.ObtenerIDCompra(ref idEncabezadoCompra, "select IDEMCABEZADOCOMPRA as ID FROM TbEncabezadoyPieCompra where ORDEN_COMPRA_NUMERO = '" + txtOrdenCompra.Text + "'");
                         for (int i = 0; i < datosProductoCompra.RowCount; i++)
                         {
-                            ObjDetalleCompra = new DetalleCompra(Convert.ToSingle(datosProductoCompra.Rows[i].Cells[8].Value), Convert.ToSingle(datosProductoCompra.Rows[i].Cells[9].Value), idEncabezadoCompra, Convert.ToString(datosProductoCompra.Rows[i].Cells[0].Value), Convert.ToInt32(datosProductoCompra.Rows[i].Cells[2].Value), Convert.ToSingle(datosProductoCompra.Rows[i].Cells[3].Value),
-                                Convert.ToSingle(datosProductoCompra.Rows[i].Cells[4].Value), Convert.ToSingle(datosProductoCompra.Rows[i].Cells[5].Value), Convert.ToSingle(datosProductoCompra.Rows[i].Cells[6].Value), Convert.ToSingle(datosProductoCompra.Rows[i].Cells[7].Value));
+                            ObjDetalleCompra = new DetalleCompra(Convert.ToSingle(datosProductoCompra.Rows[i].Cells[8].Value), Convert.ToSingle(datosProductoCompra.Rows[i].Cells[9].Value), idEncabezadoCompra, 
+                                Convert.ToString(datosProductoCompra.Rows[i].Cells[0].Value), Convert.ToInt32(datosProductoCompra.Rows[i].Cells[2].Value), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[3].Value.ToString())),
+                                Convert.ToSingle(datosProductoCompra.Rows[i].Cells[4].Value), Convert.ToSingle(datosProductoCompra.Rows[i].Cells[5].Value), Convert.ToSingle(datosProductoCompra.Rows[i].Cells[6].Value), 
+                                Convert.ToSingle(datosProductoCompra.Rows[i].Cells[7].Value));
                             String resultadoDetalle = ObjDetalleCompra.InsertarDetalleCompra(ObjDetalleCompra);
                             if (resultadoDetalle == "Datos Guardados")
                             {
@@ -208,8 +217,27 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             }
             if (objProducto.PrecioCompra != 0)
             {
-                datosProductoCompra.CurrentRow.Cells[3].Value = objProducto.PrecioCompra;
+                datosProductoCompra.CurrentRow.Cells[3].Value = Funcion.reemplazarcaracter(objProducto.PrecioCompra.ToString());
             }
+        }
+        public bool validarCodigoRepetido(DataGridViewCellEventArgs e)
+        {
+            bool repetido = false;
+            for (int i = e.RowIndex - 1; i > -1; i--)
+            {
+                if (Convert.ToString(datosProductoCompra.Rows[e.RowIndex].Cells[0].Value) == Convert.ToString(datosProductoCompra.Rows[i].Cells[0].Value))
+                {
+                    MessageBox.Show("Producto ya ingresado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    datosProductoCompra.Rows[e.RowIndex].Cells[0].Value = "";
+                    datosProductoCompra.CurrentCell = datosProductoCompra.Rows[e.RowIndex].Cells[0];
+                    repetido = true;
+                }
+                else
+                {
+                    repetido = false;
+                }
+            }
+            return repetido;
         }
         private void dgvProductosIngresos_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
@@ -226,6 +254,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     {
                         datosProductoCompra.CurrentRow.Cells[i].ReadOnly = false;
                     }
+                    //if(validarCodigoRepetido(e))
                     objProducto = consultas.ConsultarproductoCompra(Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value));
                     if (objProducto == null)
                     {
