@@ -25,6 +25,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         DetalleCompra ObjDetalleCompra;
         Producto objProducto;
         int ordenCompra = 0, idOrdenComrpa;
+        float sumasubiva = 0.0f, sumasubcero = 0.0f, totalpagar = 0.0f, ivatotal = 0.0f, sumaice = 0.0f, sumairbp = 0.0f, subtotalPie = 0.0f;
         private void FrmCompra_Load(object sender, EventArgs e)
         {
             SendKeys.Send("{TAB}");
@@ -43,7 +44,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             txtOrdenCompra.Text = Convert.ToString(ordenCompra);
             datosProductoCompra = dgvProductosIngresos;
             datosProveedor = cbProveedor;
-            txtFlete.Text = "0";
+            txtFlete.Text = "0.0";
             cbTerminoPago.SelectedIndex = 0;
         }
         private void BtnGuardar_Click(object sender, EventArgs e)
@@ -78,12 +79,9 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     if (/*txtPlazoOC.Text != "" &&*/ txtSerie1.Text != "" && txtSerie2.Text != "" && txtNumero.Text != "")
                     {
                         int idEncabezadoCompra = 0;
-                        ObjEncabezadoCompra = new EmcabezadoCompra(txtSerie1.Text, txtSerie2.Text, txtNumero.Text, Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtSubtutalIVA.Text)),
-                            Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtSubtotal0.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtSubtotal.Text)),
-                            Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtTotal.Text)), txtOrdenCompra.Text, Convert.ToInt32(cbSucursal.SelectedValue), Convert.ToSingle(txtFlete.Text),
-                            dtpFechaOC.Value, Convert.ToInt32(datosProveedor.SelectedValue), cbTerminoPago.Text, txtPlazoOC.Text, cbImpuesto.Text, txtObservacion.Text,
-                            Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtIVA.Text)), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtICE.Text)),
-                            Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtIRBP.Text)));
+                        ObjEncabezadoCompra = new EmcabezadoCompra(txtSerie1.Text, txtSerie2.Text, txtNumero.Text, sumasubiva, sumasubcero, subtotalPie, totalpagar, txtOrdenCompra.Text, 
+                            Convert.ToInt32(cbSucursal.SelectedValue), Convert.ToSingle(txtFlete.Text), dtpFechaOC.Value, Convert.ToInt32(datosProveedor.SelectedValue), cbTerminoPago.Text,
+                            txtPlazoOC.Text, cbImpuesto.Text, txtObservacion.Text, ivatotal, sumaice, sumairbp);
                         //--------------------------------------------------------------------------------
                         //int encabezadoCompra = 0;
                         String resultadoEncabezado = ObjEncabezadoCompra.InsertarEncabezadoyPieCompra(ObjEncabezadoCompra); // retorna true si esta correcto todo
@@ -187,10 +185,11 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 banderaFocoCelda = true;
             }
         }
+        bool tieneIVA;
         public void informacionProducto()
         {
             datosProductoCompra.CurrentRow.Cells[1].Value = objProducto.Nombreproducto;
-            if (objProducto.Ivaestado)
+            if (tieneIVA)
             {
                 datosProductoCompra.CurrentRow.Cells[7].Value = objProducto.Preciopublico_iva;
                 datosProductoCompra.CurrentRow.Cells[8].Value = objProducto.Precioalmayor_iva;
@@ -222,37 +221,87 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "codigo")
                 {
                     //---------------Desbloquear Celdas
-                    for (int i = 0; i < datosProductoCompra.ColumnCount - 3; i++)
-                    {
-                        datosProductoCompra.CurrentRow.Cells[i].ReadOnly = false;
-                    }
-                    objProducto = consultas.ConsultarproductoCompra(Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value));
-                    if (objProducto == null)
-                    {
-                        if (MessageBox.Show("¿Desea agregar el producto?", "CONFIRMACIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                        {
-                            FrmProductos frmProducto = new FrmProductos();
-                            Program.FormularioLlamado = true;
-                            FrmProductos.codigo = Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value);
-                            objFuncion.AddFormInPanel(frmProducto, Program.panelPrincipalVariable);
-                            informacionProducto();
-                            datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
+                    //for (int i = e.RowIndex-1; i >=  -1; i--)
+                    //{
+                    //    if (e.RowIndex > 0)
+                    //    {
+                    //        if (Convert.ToString(datosProductoCompra.Rows[e.RowIndex].Cells[0].Value) == Convert.ToString(datosProductoCompra.Rows[i].Cells[0].Value))
+                    //        {
+                    //            MessageBox.Show("Producto ingresado anteriormente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //            datosProductoCompra.CurrentRow.Cells[0].Value = "";
+                    //            banderaTab = true;
+                    //            break;
+                    //        }
+                    //        else
+                    //        {
+                                for (int j = 0; j < datosProductoCompra.ColumnCount - 3; j++)
+                                {
+                                    datosProductoCompra.CurrentRow.Cells[j].ReadOnly = false;
+                                }
+                                objProducto = consultas.ConsultarproductoCompra(Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value));
+                                if (objProducto == null)
+                                {
+                                    if (MessageBox.Show("¿Desea agregar el producto?", "CONFIRMACIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        FrmProductos frmProducto = new FrmProductos();
+                                        Program.FormularioLlamado = true;
+                                        FrmProductos.codigo = Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value);
+                                        objFuncion.AddFormInPanel(frmProducto, Program.panelPrincipalVariable);
+                                        informacionProducto();
+                                        datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
 
-                        }
-                        else
-                        {
-                            datosProductoCompra.CurrentRow.Cells[0].Value = "";
-                            SendKeys.Send("{LEFT}");
-                            banderaTab = true;
-                        }
-                    }
-                    else
-                    {
-                        informacionProducto();                                   
-                        SendKeys.Send("{TAB}");
-                    }
+                                    }
+                                    else
+                                    {
+                                        datosProductoCompra.CurrentRow.Cells[0].Value = "";
+                                        SendKeys.Send("{LEFT}");
+                                        banderaTab = true;
+                                    }
+                                }
+                                else
+                                {
+                                    tieneIVA = objProducto.Ivaestado;
+                                    informacionProducto();
+                                    SendKeys.Send("{TAB}");
+                                }
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    for (int j = 0; j < datosProductoCompra.ColumnCount - 3; j++)
+                        //    {
+                        //        datosProductoCompra.CurrentRow.Cells[j].ReadOnly = false;
+                        //    }
+                        //    objProducto = consultas.ConsultarproductoCompra(Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value));
+                        //    if (objProducto == null)
+                        //    {
+                        //        if (MessageBox.Show("¿Desea agregar el producto?", "CONFIRMACIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        //        {
+                        //            FrmProductos frmProducto = new FrmProductos();
+                        //            Program.FormularioLlamado = true;
+                        //            FrmProductos.codigo = Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value);
+                        //            objFuncion.AddFormInPanel(frmProducto, Program.panelPrincipalVariable);
+                        //            informacionProducto();
+                        //            datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
 
-                }
+                        //        }
+                        //        else
+                        //        {
+                        //            datosProductoCompra.CurrentRow.Cells[0].Value = "";
+                        //            SendKeys.Send("{LEFT}");
+                        //            banderaTab = true;
+                        //        }
+                        //    }
+                        //    else
+                        //    {
+                        //        tieneIVA = objProducto.Ivaestado;
+                        //        informacionProducto();
+                        //        SendKeys.Send("{TAB}");
+                        //    }
+                        //}
+
+                    }
+                //}
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioCompra")
                 {
                     posicion = 3;
@@ -262,6 +311,12 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 {
                     posicion = 4;
                     ValidaCeldasPrecios();
+                    if (datosProductoCompra.CurrentRow.Cells[6].ReadOnly == true)
+                    {
+                        datosProductoCompra.Rows[e.RowIndex + 1].Cells[0].ReadOnly = false;
+                        banderaTab = true;
+                        SendKeys.Send("{TAB}");
+                    }
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "iceProducto")
                 {
@@ -296,24 +351,25 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     ValidaCeldasPrecios();
                     datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[12];
                 }
-                if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioCompra" || datosProductoCompra.Columns[e.ColumnIndex].Name == "cantidad" || datosProductoCompra.Columns[e.ColumnIndex].Name == "iceProducto")
+                if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioCompra" || datosProductoCompra.Columns[e.ColumnIndex].Name == "cantidad" || datosProductoCompra.Columns[e.ColumnIndex].Name == "iceProducto" || datosProductoCompra.Columns[e.ColumnIndex].Name == "irbpProducto" || datosProductoCompra.Columns[e.ColumnIndex].Name == "codigo")
                 {
                     float precioCompra = Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.CurrentRow.Cells[3].Value.ToString()));
                     float cantidad = Convert.ToInt32(datosProductoCompra.CurrentRow.Cells[2].Value.ToString());
                     float precioICE = Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.CurrentRow.Cells[5].Value.ToString()));
-                    if (objProducto.Ivaestado)
+                    float precioIRBP = Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.CurrentRow.Cells[6].Value.ToString()));
+                    if (tieneIVA)
                     {
-                        iva = ((cantidad * precioCompra) + precioICE) * 0.12f;
+                        iva = ((precioCompra + precioICE) *cantidad) * 0.12f;
                     }
                     else
                     {
                         iva = 0;
                     }
-                    subtotal = ((cantidad * precioCompra) + precioICE);
+                    subtotal = ((precioCompra + precioICE + precioIRBP) *cantidad);
                     total = subtotal + iva;
-                    datosProductoCompra.CurrentRow.Cells[11].Value = Funcion.reemplazarcaracter(iva.ToString("#####0.0000"));
-                    datosProductoCompra.CurrentRow.Cells[10].Value = Funcion.reemplazarcaracter(subtotal.ToString("#####0.0000"));
-                    datosProductoCompra.CurrentRow.Cells[12].Value = Funcion.reemplazarcaracter(total.ToString("#####0.0000"));
+                    datosProductoCompra.CurrentRow.Cells[11].Value = Funcion.reemplazarcaracter(Math.Round(iva, 2).ToString("#####0.00"));
+                    datosProductoCompra.CurrentRow.Cells[10].Value = Funcion.reemplazarcaracter(Math.Round(subtotal, 2).ToString("#####0.00"));
+                    datosProductoCompra.CurrentRow.Cells[12].Value = Funcion.reemplazarcaracter(Math.Round(total, 2).ToString("#####0.00"));
                 }
 
             }
@@ -327,38 +383,50 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             else
                 banderaTab = false;
             //labelprueba1.Text = datosProductoCompra.CurrentCell.ToString() + " CellEndEdit";
-        }
+        }        
         private void Calcular()
         {
-            float sumasubiva = 0.0f, sumasubcero = 0.0f, totalpagar = 0.0f, ivatotal = 0.0f, sumaice = 0.0f, sumairbp = 0.0f;
+            float cantidad = 0, pc = 0.0f;
             try
             {
                 for (int i = 0; i < datosProductoCompra.RowCount; i++)
                 {
                     if (Convert.ToSingle(datosProductoCompra.Rows[i].Cells[11].Value.ToString()) != 0)
                     {
-                        sumasubiva += Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[12].Value.ToString()));
+                        cantidad  = Convert.ToInt32(datosProductoCompra.Rows[i].Cells[2].Value);
+                        pc = Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[3].Value.ToString()));
+                        sumasubiva += Convert.ToSingle(cantidad * pc);
                         ivatotal += Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[11].Value.ToString()));
                     }
                     if (Convert.ToSingle(datosProductoCompra.Rows[i].Cells[11].Value.ToString()) == 0)
                     {
-                        sumasubcero += Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[12].Value.ToString()));
+                        cantidad = Convert.ToInt32(datosProductoCompra.Rows[i].Cells[2].Value);
+                        pc = Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[3].Value.ToString()));
+                        sumasubcero += Convert.ToSingle(cantidad * pc);
                     }
-                    totalpagar += Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[12].Value.ToString()));
                     sumaice += Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[5].Value.ToString())) * Convert.ToInt32(datosProductoCompra.Rows[i].Cells[2].Value);
-                    sumairbp += Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[6].Value.ToString())) * Convert.ToInt32(datosProductoCompra.Rows[i].Cells[2].Value);
+                    sumairbp += Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[6].Value.ToString())) * Convert.ToInt32(datosProductoCompra.Rows[i].Cells[2].Value);                    
                     if (Convert.ToString(datosProductoCompra.Rows[i + 1].Cells[0].Value) == "")
                     {
                         break;
                     }
                 }
-                txtIRBP.Text = Funcion.reemplazarcaracter(sumairbp.ToString("#####0.0000"));
-                txtICE.Text = Funcion.reemplazarcaracter(sumaice.ToString("#####0.0000"));
-                txtSubtotal0.Text = Funcion.reemplazarcaracter(sumasubcero.ToString("#####0.0000"));
-                txtSubtotal.Text = Funcion.reemplazarcaracter(totalpagar.ToString("#####0.0000"));
-                txtSubtutalIVA.Text = Funcion.reemplazarcaracter(sumasubiva.ToString("#####0.0000"));
-                txtIVA.Text = Funcion.reemplazarcaracter(ivatotal.ToString("#####0.0000"));
-                txtTotal.Text = Funcion.reemplazarcaracter(totalpagar.ToString("#####0.0000"));
+                txtIRBP.Text = Funcion.reemplazarcaracter(Math.Round(sumairbp,2).ToString("#####0.00"));
+                txtICE.Text = Funcion.reemplazarcaracter(Math.Round(sumaice, 2).ToString("#####0.00"));
+                txtSubtotal0.Text = Funcion.reemplazarcaracter(Math.Round(sumasubcero, 2).ToString("#####0.00"));
+                subtotalPie = sumasubcero + sumasubiva;
+                txtSubtotal.Text = Funcion.reemplazarcaracter(Math.Round(subtotalPie, 2).ToString("#####0.00"));
+                txtSubtutalIVA.Text = Funcion.reemplazarcaracter(Math.Round(sumasubiva, 2).ToString("#####0.00"));
+                txtIVA.Text = Funcion.reemplazarcaracter(Math.Round(ivatotal, 2).ToString("#####0.00"));
+                totalpagar = sumairbp + sumaice + subtotalPie + ivatotal;
+                txtTotal.Text = Funcion.reemplazarcaracter(Math.Round(totalpagar, 2).ToString("#####0.00"));
+                sumasubiva = Convert.ToSingle(Math.Round(sumasubiva, 6));
+                ivatotal = Convert.ToSingle(Math.Round(ivatotal, 6));
+                sumasubcero = Convert.ToSingle(Math.Round(sumasubcero, 6));
+                sumaice = Convert.ToSingle(Math.Round(sumaice, 6));
+                sumairbp = Convert.ToSingle(Math.Round(sumairbp, 6));
+                subtotalPie = Convert.ToSingle(Math.Round(subtotalPie, 6));
+                totalpagar = Convert.ToSingle(Math.Round(totalpagar, 6));
             }
             catch (Exception EX)
             {
@@ -562,6 +630,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
 
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
+            string ordenNumero = txtOrdenCompra.Text;
             Funcion.Limpiarobjetos(gbEncabezadoCompra);
             txtSubtotal.Text = "0.0";
             txtSubtotal0.Text = "0.0";
@@ -570,6 +639,8 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             txtICE.Text = "0.0";
             txtIRBP.Text = "0.0";
             txtIVA.Text = "0.0";
+            txtOrdenCompra.Text = ordenNumero;
+            txtFlete.Text = "0.0";
         }
 
         private void btnSalirCompra_Click(object sender, EventArgs e)
