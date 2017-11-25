@@ -1320,7 +1320,32 @@ namespace Comisariato.Clases
                 return false;
             }
         }
+        public int ObtenerCantidadRegistros(String sql)
+        {
+            try
+            {
+                SqlDataAdapter objDA;
+                int valor = 0;
+                DataTable dt = new DataTable();
+                Objc.conectar();
+                string sentencia = sql;
+                objDA = new SqlDataAdapter(sentencia, ConexionBD.connection);
+                objDA.Fill(dt);
+                Objc.Cerrar();
+                objDA.Dispose();
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];
+                    valor = Convert.ToInt32(row["Numeros"]);
+                }
+                return valor;
+            }
+            catch (Exception ex)
+            {
+                return -1;
 
+            }
+        }
 
     }
 }

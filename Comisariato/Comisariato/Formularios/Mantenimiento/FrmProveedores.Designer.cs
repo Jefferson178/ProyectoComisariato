@@ -1133,7 +1133,6 @@
             this.rbtInactivosProveedor.TabIndex = 7;
             this.rbtInactivosProveedor.Text = "Inactivos";
             this.rbtInactivosProveedor.UseVisualStyleBackColor = true;
-            this.rbtInactivosProveedor.CheckedChanged += new System.EventHandler(this.rbtInactivosProveedor_CheckedChanged);
             // 
             // rbtActivosProveedor
             // 
@@ -1215,7 +1214,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(1089, 591);
+            this.ClientSize = new System.Drawing.Size(1089, 592);
             this.Controls.Add(this.tcProveedor);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.KeyPreview = true;

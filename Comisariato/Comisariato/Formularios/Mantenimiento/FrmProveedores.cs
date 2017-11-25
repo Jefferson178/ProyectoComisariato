@@ -519,7 +519,6 @@ namespace Comisariato.Formularios
         }
         //--------------------------------------------------------------COMBOMULTICOLUMN CREDITO--------------------------------------------------------------
         bool apareceDataDeCombos = true;
-
         private void dgvCredito_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             consultas.BoolLlenarComboBox(cbCreditoProveedor, "SELECT IDCODIGOSRI as ID, '[' + CODIGOSRI + '] - ' + DESCRIPCION as Texto FROM TbCodigoSRI where IDCODIGOSRI =" + Convert.ToInt32(dgvCredito.CurrentRow.Cells[0].Value));
@@ -554,9 +553,6 @@ namespace Comisariato.Formularios
                     dgvCodigoRetencionProveedor.Focus();
             }
         }
-
-    
-
         private void dgvCredito_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -699,7 +695,7 @@ namespace Comisariato.Formularios
                 dgvDatosAutorizacionProveedor.Focus();
             }
         }
-        //--------------------------------------------------------------DataGridVieRetencion--------------------------------------------------------------
+        //--------------------------------------------------------------DataGridViewRetencion--------------------------------------------------------------
         private void dgvCodigoRetencionProveedor_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView Grid = (DataGridView)sender;
@@ -819,13 +815,14 @@ namespace Comisariato.Formularios
                 dgvCodigoRetencionProveedor.Focus();
             }
         }
+        //----------------------------------Funcion para dar el foco en la pagina 2
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabControl1.SelectedIndex == 1)
             {
                 dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.Rows[dgvCodigoRetencionProveedor.Rows.Count - 2].Cells[2];
                 dgvRetencionFuenteIva.Visible = false;
-                cbCreditoProveedor.Focus();
+                ckbContribuyenteEspecialProveedor.Focus();
 
         
             }
@@ -926,11 +923,6 @@ namespace Comisariato.Formularios
             {
                 SendKeys.Send("{TAB}");
             }
-        }
-
-        private void rbtInactivosProveedor_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
