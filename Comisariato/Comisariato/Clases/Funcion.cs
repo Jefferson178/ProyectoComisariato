@@ -111,6 +111,42 @@ namespace Comisariato.Clases
             }
         }
 
+        public static void Validar_Numeros_Punto(KeyPressEventArgs e, string texto)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                string[] a = texto.Split('.');
+                foreach (var item in a)
+                {
+                    if (item.Length >= 3)
+                        e.Handled = true;
+                    else
+                        e.Handled = false;
+                }
+            }
+            else if (Char.IsDigit(e.KeyChar) || e.KeyChar == '.')
+            {
+                int ocurrenciasPuntos = texto.Split('.').Length;
+                if (e.KeyChar == '.' && ocurrenciasPuntos <= 3)
+                {
+                    
+                    e.Handled = false;
+                }
+                else
+                {
+                            e.Handled = true;
+                }
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
 
         public static void validar_Num_Letras(KeyPressEventArgs e)
         {

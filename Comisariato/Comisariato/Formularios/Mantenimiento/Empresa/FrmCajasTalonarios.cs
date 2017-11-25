@@ -235,7 +235,8 @@ namespace Comisariato.Formularios.Mantenimiento
 
         private void TxtIP_Leave(object sender, EventArgs e)
         {
-            if (!Funcion.ValidaIP(TxtIP.Text))
+            int ocurrenciasPunto = TxtIP.Text.Split('.').Length;
+            if (!Funcion.ValidaIP(TxtIP.Text)  || ocurrenciasPunto <= 3)
             {
                 MessageBox.Show("Ingrese una Dirección IP Correca", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 TxtIP.Focus();
@@ -255,7 +256,7 @@ namespace Comisariato.Formularios.Mantenimiento
 
         private void TxtIP_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.Validar_Numeros(e);
+            Funcion.Validar_Numeros_Punto(e,TxtIP.Text);
         }
 
         private void txtConsultarCaja_TextChanged(object sender, EventArgs e)
@@ -272,6 +273,11 @@ namespace Comisariato.Formularios.Mantenimiento
                 //dgvDatosProveedor.Columns[1].HeaderText = "Habilitar";
                 dgvDatosCaja.Columns["ID"].Visible = false;
             }
+        }
+
+        private void TxtIP_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
