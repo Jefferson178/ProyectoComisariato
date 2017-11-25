@@ -103,7 +103,7 @@ namespace Comisariato.Formularios
 
         private void FrmProveedores_Load(object sender, EventArgs e)
         {
-            SendKeys.Send("{TAB}"); SendKeys.Send("{TAB}");
+            SendKeys.Send("{TAB}"); SendKeys.Send("{TAB}"); SendKeys.Send("{TAB}");
             cbIdentificacionProveedor.SelectedIndex = 0;
             cbNacionalidadProveedor.SelectedIndex = 0;
             cbNaturalezaProveedor.SelectedIndex = 0;
@@ -924,5 +924,29 @@ namespace Comisariato.Formularios
                 SendKeys.Send("{TAB}");
             }
         }
+<<<<<<< HEAD
+=======
+
+        private void rbtInactivosProveedor_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbIdentificacionProveedor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void tabControl1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+>>>>>>> d7badca0b77257ad9fab16a1c12fff1edee328b2
     }
 }

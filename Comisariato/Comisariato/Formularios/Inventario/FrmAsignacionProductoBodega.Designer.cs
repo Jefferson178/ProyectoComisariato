@@ -186,6 +186,7 @@
             // 
             // cbEscogerBodega
             // 
+            this.cbEscogerBodega.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEscogerBodega.Font = new System.Drawing.Font("Arial", 10F);
             this.cbEscogerBodega.FormattingEnabled = true;
             this.cbEscogerBodega.Location = new System.Drawing.Point(139, 23);

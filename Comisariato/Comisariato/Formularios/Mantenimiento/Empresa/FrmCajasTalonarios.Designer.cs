@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcCajaTalonario = new System.Windows.Forms.TabControl();
             this.tpNuevaCajaTalonario = new System.Windows.Forms.TabPage();
             this.btnLimpiar = new System.Windows.Forms.Button();
@@ -163,9 +163,11 @@
             // 
             this.TxtIP.Font = new System.Drawing.Font("Arial", 9.75F);
             this.TxtIP.Location = new System.Drawing.Point(491, 129);
+            this.TxtIP.MaxLength = 15;
             this.TxtIP.Name = "TxtIP";
             this.TxtIP.Size = new System.Drawing.Size(204, 22);
             this.TxtIP.TabIndex = 20;
+            this.TxtIP.TextChanged += new System.EventHandler(this.TxtIP_TextChanged);
             this.TxtIP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIP_KeyPress);
             this.TxtIP.Leave += new System.EventHandler(this.TxtIP_Leave);
             // 
@@ -283,6 +285,7 @@
             // 
             // cbTipoDocumentoCaja
             // 
+            this.cbTipoDocumentoCaja.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoDocumentoCaja.DropDownWidth = 555;
             this.cbTipoDocumentoCaja.Font = new System.Drawing.Font("Arial", 9.75F);
             this.cbTipoDocumentoCaja.FormattingEnabled = true;
@@ -377,6 +380,7 @@
             // 
             // cbBodegaCaja
             // 
+            this.cbBodegaCaja.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBodegaCaja.Font = new System.Drawing.Font("Arial", 9.75F);
             this.cbBodegaCaja.FormattingEnabled = true;
             this.cbBodegaCaja.Location = new System.Drawing.Point(83, 53);
@@ -386,6 +390,7 @@
             // 
             // cbSucursalCaja
             // 
+            this.cbSucursalCaja.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSucursalCaja.Font = new System.Drawing.Font("Arial", 9.75F);
             this.cbSucursalCaja.FormattingEnabled = true;
             this.cbSucursalCaja.Location = new System.Drawing.Point(83, 21);
@@ -463,14 +468,14 @@
             this.dgvDatosCaja.AllowUserToOrderColumns = true;
             this.dgvDatosCaja.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDatosCaja.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosCaja.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosCaja.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDatosCaja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosCaja.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Modificar,

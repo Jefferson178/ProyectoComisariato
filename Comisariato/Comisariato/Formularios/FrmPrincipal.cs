@@ -281,13 +281,13 @@ namespace Comisariato.Formularios
                 if (FrmDevolucionVenta == null || FrmDevolucionVenta.IsDisposed)
                 {
                     FrmDevolucionVenta = new FrmDevolucionVenta();
-                    FrmDevolucionVenta.ShowDialog();
+                    objFuncion.AddFormInPanel(FrmDevolucionVenta, Program.panelPrincipalVariable);
                 }
-                //else
-                //{
-                //    int index = panelPrincipal.Controls.GetChildIndex(FrmDevolucionVenta);
-                //    FrmDevolucionVenta.BringToFront();
-                //}
+                else
+                {
+                    int index = panelPrincipal.Controls.GetChildIndex(FrmDevolucionVenta);
+                    FrmDevolucionVenta.BringToFront();
+                }
             }
 
         }
