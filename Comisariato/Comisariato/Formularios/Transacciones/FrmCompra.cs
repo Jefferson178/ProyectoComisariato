@@ -312,13 +312,10 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         {
                             tieneIVA = objProducto.Ivaestado;
                             informacionProducto();
-<<<<<<< HEAD
                             datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[1];
                             //banderaTab = true;
-=======
                             datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
                             banderaTab = true;
->>>>>>> 858885e3ab3d0c507447e7ecf3380d057250abd9
                         }
                     }
                     else
