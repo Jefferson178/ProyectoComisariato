@@ -502,14 +502,12 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             if (rbtActivos.Checked)
             {
                 Objconsul.boolLlenarDataGridView(dgvDatosProducto, "Select  * from View_VistaFinalProducto P where P.ACTIVO   = 1 and P.[CODIGO BARRA] like '%" + txtConsultarProducto.Text + "%' or P.PRODUCTO like '%" + txtConsultarProducto.Text + "%' or P.CATEGORIA like '%" + txtConsultarProducto.Text + "%' or P.PROVEEDOR like '%" + txtConsultarProducto.Text + "%' ; ");
-                dgvDatosProducto.Columns[1].HeaderText = "Desabilitar";
                 dgvDatosProducto.Columns["ID"].Visible = false;
                 dgvDatosProducto.Columns["ACTIVO"].Visible = false;
             }
             else if (rbtInactivos.Checked)
             {
                 Objconsul.boolLlenarDataGridView(dgvDatosProducto, "Select * from View_VistaFinalProducto P where P.ACTIVO = 0 and P.[CODIGO BARRA] like '%" + txtConsultarProducto.Text + "%' or P.PRODUCTO  like '%" + txtConsultarProducto.Text + "%' or P.CATEGORIA like '%" + txtConsultarProducto.Text + "%' or P.PROVEEDOR like '%" + txtConsultarProducto.Text + "%' ;");
-                dgvDatosProducto.Columns[1].HeaderText = "Habilitar";
                 dgvDatosProducto.Columns["ID"].Visible = false;
                 dgvDatosProducto.Columns["ACTIVO"].Visible = false;
             }
@@ -851,6 +849,8 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             if (stockMax < stockMin)
             {
                 MessageBox.Show("El Stock Mimimo debe ser menor al Stock Máximo", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                txtStockMinimoProducto.Focus();
+                txtStockMinimoProducto.SelectAll();
             }
         }
     }

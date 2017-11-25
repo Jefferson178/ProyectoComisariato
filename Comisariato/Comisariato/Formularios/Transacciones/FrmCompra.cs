@@ -260,11 +260,6 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             {
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "codigo")
                 {
-<<<<<<< HEAD
-                    //---------------Desbloquear Celdas
-                    for (int i = 0; i < datosProductoCompra.ColumnCount - 3; i++)
-=======
->>>>>>> 4231322745e4b26e4f91200006610b8b4fc16294
                     if (!validarCodigoRepetido(e))
                     {
                         //---------------Desbloquear Celdas
@@ -295,63 +290,21 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         {
                             tieneIVA = objProducto.Ivaestado;
                             informacionProducto();
-<<<<<<< HEAD
-                           datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
-
-                        }
-                        else
-                                    {
-                                        datosProductoCompra.CurrentRow.Cells[0].Value = "";
-                                        SendKeys.Send("{LEFT}");
-                                        banderaTab = true;
-                                    }
-                                }
-                                else
-                                {
-                                    tieneIVA = objProducto.Ivaestado;
-                                    informacionProducto();
-                                    SendKeys.Send("{TAB}");
-                                }
-
-
-                }
-
-                //}
-                        }
-                        else
-                        {
-                            datosProductoCompra.CurrentRow.Cells[0].Value = "";
-                            SendKeys.Send("{LEFT}");
-                            banderaTab = true;
-                        }
-                    }
-                    else
-                    {
-                        tieneIVA = objProducto.Ivaestado;
-                        informacionProducto();
-                        SendKeys.Send("{TAB}");
-                    }
-
-                }
-                    if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioCompra")
-                            SendKeys.Send("{TAB}");
-                        }
-                    }
-                    else
-=======
                             datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
-
+                            banderaTab = true;
                         }
                     }
                     else
                     {
                         datosProductoCompra.CurrentRow.Cells[0].Value = "";
                         SendKeys.Send("{LEFT}");
->>>>>>> 4231322745e4b26e4f91200006610b8b4fc16294
                         banderaTab = true;
                     }
+
                 }
-                
+
+                //}
+
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "cantidad")
                 {
                     if (Convert.ToString(datosProductoCompra.CurrentRow.Cells[2].Value) != "")
@@ -396,7 +349,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         ValidaCeldasPrecios();
                         SendKeys.Send("{RIGHT}");
                     }
-                    banderaTab = true;     
+                    banderaTab = true;
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioPublico")
                 {
@@ -438,7 +391,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     float precioIRBP = Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.CurrentRow.Cells[6].Value.ToString()));
                     if (tieneIVA)
                     {
-                        iva = (((precioCompra + precioICE) * cantidad) *12)/100;
+                        iva = (((precioCompra + precioICE) * cantidad) * 12) / 100;
                     }
                     else
                     {
