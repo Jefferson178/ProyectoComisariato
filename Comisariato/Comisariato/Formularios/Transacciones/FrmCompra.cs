@@ -260,12 +260,9 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             {
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "codigo")
                 {
-<<<<<<< HEAD
                     //---------------Desbloquear Celdas
                     for (int i = 0; i < datosProductoCompra.ColumnCount - 3; i++)
-=======
                     if (!validarCodigoRepetido(e))
->>>>>>> 7b29eb10c4866ae38608ac5a3de8d029aea2465d
                     {
                         //---------------Desbloquear Celdas
                         for (int i = 0; i < datosProductoCompra.ColumnCount - 3; i++)
@@ -295,9 +292,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         {
                             tieneIVA = objProducto.Ivaestado;
                             informacionProducto();
-<<<<<<< HEAD
-                            datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
-<<<<<<< HEAD
+                           datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
 
                         }
                         else
@@ -318,7 +313,6 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 }
 
                 //}
-=======
                         }
                         else
                         {
@@ -336,7 +330,6 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
 
                 }
                     if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioCompra")
-=======
                             SendKeys.Send("{TAB}");
                         }
                     }
@@ -350,9 +343,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         SendKeys.Send("{RIGHT}");
                     banderaTab = true;
                 }
->>>>>>> ba98ab0cde6e3443cd0dfd153f24a9f363e7acb3
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioCompra")
->>>>>>> 7b29eb10c4866ae38608ac5a3de8d029aea2465d
                 {
                     if (Convert.ToString(datosProductoCompra.CurrentRow.Cells[3].Value) != "")
                     {

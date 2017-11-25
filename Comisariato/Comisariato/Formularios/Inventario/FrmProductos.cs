@@ -842,5 +842,16 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         {
             txtPeso.SelectAll();
         }
+
+      
+        private void txtStockMinimoProducto_Leave(object sender, EventArgs e)
+        {
+            int stockMax = Convert.ToInt32(txtStockMaximoProducto.Text);
+            int stockMin = Convert.ToInt32(txtStockMinimoProducto.Text);
+            if (stockMax < stockMin)
+            {
+                MessageBox.Show("El Stock Mimimo debe ser menor al Stock Máximo", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+        }
     }
 }

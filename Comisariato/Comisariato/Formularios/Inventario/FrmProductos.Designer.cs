@@ -642,6 +642,7 @@
             this.txtStockMinimoProducto.Text = "0";
             this.txtStockMinimoProducto.Enter += new System.EventHandler(this.txtStockMinimoProducto_Enter);
             this.txtStockMinimoProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStockMaximoProducto_KeyPress);
+            this.txtStockMinimoProducto.Leave += new System.EventHandler(this.txtStockMinimoProducto_Leave);
             // 
             // txtStockMaximoProducto
             // 
