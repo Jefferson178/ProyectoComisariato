@@ -283,6 +283,7 @@
             // 
             // cbTipoDocumentoCaja
             // 
+            this.cbTipoDocumentoCaja.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoDocumentoCaja.DropDownWidth = 555;
             this.cbTipoDocumentoCaja.Font = new System.Drawing.Font("Arial", 9.75F);
             this.cbTipoDocumentoCaja.FormattingEnabled = true;
@@ -386,6 +387,7 @@
             // 
             // cbSucursalCaja
             // 
+            this.cbSucursalCaja.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSucursalCaja.Font = new System.Drawing.Font("Arial", 9.75F);
             this.cbSucursalCaja.FormattingEnabled = true;
             this.cbSucursalCaja.Location = new System.Drawing.Point(83, 21);
