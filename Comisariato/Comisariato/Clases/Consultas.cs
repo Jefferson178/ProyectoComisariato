@@ -475,6 +475,8 @@ namespace Comisariato.Clases
                         producto.Preciopublico_sin_iva = Convert.ToSingle(dato["PRECIOPUBLICO_SIN_IVA"]);
                         producto.Precioalmayor_sin_iva = Convert.ToSingle(dato["PRECIOALMAYOR_SIN_IVA"]);
                         producto.Precioporcaja_sin_iva = Convert.ToSingle(dato["PRECIOPORCAJA_SIN_IVA"]);
+                        producto.Irbp = Convert.ToSingle(dato["IRBP"]);
+                        producto.Ice = Convert.ToSingle(dato["ICE"]);
                     }
                     else
                     {
