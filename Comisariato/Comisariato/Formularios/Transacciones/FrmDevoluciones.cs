@@ -154,9 +154,24 @@ namespace Comisariato.Formularios.Transacciones.Devolucion_Venta
         private void CalcularDevolucion()
         {
             float totalDevo = 0;
-            for (int i = 0; i < indezp.Count; i++)
+            for (int i = 0; i < DgvDetalleFact.RowCount; i++)
             {
-                totalDevo += Convert.ToSingle(DgvDetalleFact.Rows[indezp[i]].Cells[5].Value);
+                if (DgvDetalleFact.Rows[i].Cells[0].Value != null && DgvDetalleFact.Rows[i].Cells[1].Value != null)
+                {
+                    if (Convert.ToBoolean(DgvDetalleFact.Rows[i].Cells[7].Value))
+                    {
+                        if (DgvDetalleFact.Rows[i].Cells[6].Value != null)
+                        {
+                            totalDevo += (Convert.ToSingle(DgvDetalleFact.Rows[i].Cells[3].Value)*Convert.ToInt32(DgvDetalleFact.Rows[i].Cells[6].Value))+ Convert.ToSingle(DgvDetalleFact.Rows[i].Cells[4].Value);
+                        } 
+                    }
+                }
+                else
+                {
+                    break;
+                }
+               
+               
             }
             txtTotalDevolucion.Text = totalDevo.ToString("#####0.00");
         }
@@ -196,7 +211,7 @@ namespace Comisariato.Formularios.Transacciones.Devolucion_Venta
                         {
                             if (Convert.ToString(DgvDetalleFact.Rows[i].Cells[0].Value) != "")
                             {
-                                DgvDetalleFact.Rows[i].Cells[6].Value = true;
+                                DgvDetalleFact.Rows[i].Cells[7].Value = true;
                                 //indezp.Add(i);
                             }
                             else
@@ -241,9 +256,9 @@ namespace Comisariato.Formularios.Transacciones.Devolucion_Venta
                 {
                     if (DgvDetalleFact.Rows[i].Cells[0].Value != null && DgvDetalleFact.Rows[i].Cells[1].Value != null)
                     {
-                        if (Convert.ToBoolean(DgvDetalleFact.Rows[i].Cells[6].Value))
+                        if (Convert.ToBoolean(DgvDetalleFact.Rows[i].Cells[7].Value))
                         {
-                            pedidos.Add("" + DgvDetalleFact.Rows[i].Cells[0].Value + ";" + DgvDetalleFact.Rows[i].Cells[2].Value);
+                            pedidos.Add("" + DgvDetalleFact.Rows[i].Cells[0].Value + ";" + DgvDetalleFact.Rows[i].Cells[6].Value);
                             indezp.Add(i);
                         }
                     }
@@ -271,20 +286,40 @@ namespace Comisariato.Formularios.Transacciones.Devolucion_Venta
                 ObtenerPedidos();
                 if (indezp.Count>0)
                 {
-                    if (MessageBox.Show("¿Estas seguro de darle de baja a estos Items?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (!verificarNull())
                     {
-                        
-                        bool b = c.DevolucionVenta(pedidos, Convert.ToInt32(txtNumFact.Text));
-                        if (b)
+                        if (!verificarLimites())
                         {
-                            MessageBox.Show("Cambios realizados con exito.");
-                            LimpiarTodo();
+                            if (MessageBox.Show("¿Estas seguro de darle de baja a estos Items?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+
+                                bool b = c.DevolucionVenta(pedidos, Convert.ToInt32(txtNumFact.Text));
+                                if (b)
+                                {
+                                    MessageBox.Show("Cambios realizados con exito.");
+                                    LimpiarTodo();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error al realizar devolucion.");
+                                }
+                            }
                         }
                         else
                         {
-                            MessageBox.Show("Error al realizar devolucion.");
+                            MessageBox.Show("Hay una cantidad que sobrepasa a la cantidad vendida.\nFila: " + posicion + 1);
+                            DgvDetalleFact.CurrentCell = DgvDetalleFact.Rows[posicion].Cells[6];
+                            DgvDetalleFact.BeginEdit(true);
                         }
+                       
                     }
+                    else
+                    {
+                        MessageBox.Show("Hay un producto seleccionado sin cantidad.\nPor favor ingresa la cantidad. Fila: "+posicion+1);
+                        DgvDetalleFact.CurrentCell = DgvDetalleFact.Rows[posicion].Cells[6];
+                        DgvDetalleFact.BeginEdit(true);
+                    }
+                   
                     
                       
                 }
@@ -320,9 +355,72 @@ namespace Comisariato.Formularios.Transacciones.Devolucion_Venta
             txtSucursal.Focus();
         }
 
+        private int posicion = 0;
+        private bool verificarNull()
+        {
+            bool verificarnull = false;
+            for (int i = 0; i < DgvDetalleFact.RowCount; i++)
+            {
+                if (DgvDetalleFact.Rows[i].Cells[0].Value!=null && DgvDetalleFact.Rows[i].Cells[1].Value!=null)
+                {
+                    if (Convert.ToBoolean(DgvDetalleFact.Rows[i].Cells[7].Value))
+                    {
+                        if (DgvDetalleFact.Rows[i].Cells[6].Value==null)
+                        {
+                            posicion = i;
+                            verificarnull = true;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    break;
+                }
+                
+            }
+            return verificarnull;
+        }
+
+        private bool verificarLimites()
+        {
+            bool limite = false;
+            for (int i = 0; i < DgvDetalleFact.RowCount; i++)
+            {
+                if (DgvDetalleFact.Rows[i].Cells[0].Value != null && DgvDetalleFact.Rows[i].Cells[1].Value != null)
+                {
+                    if (Convert.ToBoolean(DgvDetalleFact.Rows[i].Cells[7].Value))
+                    {
+                        if (Convert.ToInt32(DgvDetalleFact.Rows[i].Cells[6].Value)> Convert.ToInt32(DgvDetalleFact.Rows[i].Cells[2].Value))
+                        {
+                            posicion = i;
+                            limite = true;
+                            break;
+                        }
+                       
+                        //verificarnull = true;
+                        
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return limite;
+        }
+
         private void txtNumFact_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void DgvDetalleFact_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DgvDetalleFact.CurrentCell==this.DgvDetalleFact.Rows[e.RowIndex].Cells[6])
+            {
+                CalcularDevolucion();
+            }
         }
     }
 }

@@ -297,6 +297,28 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                             informacionProducto();
 <<<<<<< HEAD
                             datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
+<<<<<<< HEAD
+
+                        }
+                        else
+                                    {
+                                        datosProductoCompra.CurrentRow.Cells[0].Value = "";
+                                        SendKeys.Send("{LEFT}");
+                                        banderaTab = true;
+                                    }
+                                }
+                                else
+                                {
+                                    tieneIVA = objProducto.Ivaestado;
+                                    informacionProducto();
+                                    SendKeys.Send("{TAB}");
+                                }
+
+
+                }
+
+                //}
+=======
                         }
                         else
                         {
@@ -328,6 +350,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         SendKeys.Send("{RIGHT}");
                     banderaTab = true;
                 }
+>>>>>>> ba98ab0cde6e3443cd0dfd153f24a9f363e7acb3
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioCompra")
 >>>>>>> 7b29eb10c4866ae38608ac5a3de8d029aea2465d
                 {

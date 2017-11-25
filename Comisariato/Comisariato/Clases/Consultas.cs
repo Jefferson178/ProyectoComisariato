@@ -343,9 +343,9 @@ namespace Comisariato.Clases
                 else
                     return false;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                MessageBox.Show(""+ex.Message);
                 return false;
             }
         }
@@ -570,7 +570,7 @@ namespace Comisariato.Clases
             {
                 List<Producto> lista = new List<Producto>();
                 Objc.conectar();
-                string sql = " SELECT U.PRECIO, U.CANTIDAD, U.CODIGOBARRAPRODUCTO, U.ESTADO, U.IVA, P.NOMBREPRODUCTO, P.IVAESTADO from TbDetalleFactura U INNER JOIN TbProducto P  ON(U.NFACTURA = '" + nfact + "') AND(P.CODIGOBARRA = U.CODIGOBARRAPRODUCTO)";
+                string sql = " SELECT U.PRECIO, U.CANTDEVUELTA, U.CANTIDAD, U.CODIGOBARRAPRODUCTO, U.ESTADO, U.IVA, P.NOMBREPRODUCTO, P.IVAESTADO from TbDetalleFactura U INNER JOIN TbProducto P  ON(U.NFACTURA = '" + nfact + "') AND(P.CODIGOBARRA = U.CODIGOBARRAPRODUCTO)";
                 SqlCommand comando = new SqlCommand(sql);
                 comando.Connection = ConexionBD.connection;
                 SqlDataReader dato = comando.ExecuteReader();
@@ -583,6 +583,7 @@ namespace Comisariato.Clases
                     p.Codigobarra = (String)dato["CODIGOBARRAPRODUCTO"];
                     p.Nombreproducto = (String)dato["NOMBREPRODUCTO"];
                     p.Iva = Convert.ToInt32(dato["IVA"].ToString());
+                    p.Cantidad1= Convert.ToInt32(dato["CANTDEVUELTA"].ToString());
                     if (verimetodo == 1)
                     {
                         lista.Add(p);
@@ -592,7 +593,13 @@ namespace Comisariato.Clases
                         bool b = Convert.ToBoolean(dato["ESTADO"]);
                         if (b)
                         {
-                            lista.Add(p);
+                            int resultado = p.Cantidad - p.Cantidad1;
+                            if (resultado!=0)
+                            {
+                                p.Cantidad = resultado;
+                                lista.Add(p);
+                            }
+                            
                         }
 
                     }
