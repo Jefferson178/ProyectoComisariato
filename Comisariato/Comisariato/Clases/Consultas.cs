@@ -302,6 +302,7 @@ namespace Comisariato.Clases
                     cmd.Parameters.AddWithValue("@estado", 1);
                     cmd.Parameters.AddWithValue("@ivat", ivas[i]);
                     cmd.Parameters.AddWithValue("@idempresa", idempresa);
+                    cmd.Parameters.AddWithValue("@cantcaja", dg.Rows[i].Cells[8].Value);
                     result = cmd.ExecuteNonQuery();
                 }
 
@@ -401,7 +402,7 @@ namespace Comisariato.Clases
             try
             {
                 Objc.conectar();
-                SqlCommand Sentencia = new SqlCommand("select  P.IVA as IVA, U.ACTIVO, U.NOMBREPRODUCTO as DETALLE, U.CANTIDAD, U.PRECIOPUBLICO_SIN_IVA as PRECIOVENTAPUBLICO, U.IVAESTADO, U.PRECIOALMAYOR_SIN_IVA as PRECIOVENTAMAYORISTA,  U.PRECIOPORCAJA_SIN_IVA as PRECIOVENTACAJA from TbProducto U, TbParametrosFactura P where U.CODIGOBARRA = '" + codigo +"'");
+                SqlCommand Sentencia = new SqlCommand("select U.CAJA, P.IVA as IVA, U.ACTIVO, U.NOMBREPRODUCTO as DETALLE, U.CANTIDAD, U.PRECIOPUBLICO_SIN_IVA as PRECIOVENTAPUBLICO, U.IVAESTADO, U.PRECIOALMAYOR_SIN_IVA as PRECIOVENTAMAYORISTA,  U.PRECIOPORCAJA_SIN_IVA as PRECIOVENTACAJA from TbProducto U, TbParametrosFactura P where U.CODIGOBARRA = '" + codigo +"'");
                     Sentencia.Connection = ConexionBD.connection;
                     SqlDataReader dato = Sentencia.ExecuteReader();
                 if (dato.Read() == true)
@@ -413,7 +414,7 @@ namespace Comisariato.Clases
 
                         //        //producto.Cant = Convert.ToInt32(dato["CANTIDAD"]);
                         producto.Cantidad = Convert.ToInt32(dato["CANTIDAD"]);
-
+                        producto.Caja= Convert.ToInt32(dato["CAJA"]);
                         producto.Preciopublico_sin_iva = Convert.ToSingle(dato["PRECIOVENTAPUBLICO"]);
                         producto.Ivaestado = Convert.ToBoolean(dato["IVAESTADO"]);
                         producto.Iva = Convert.ToInt32(dato["IVA"]);
@@ -732,6 +733,7 @@ namespace Comisariato.Clases
             dt.Columns.Add("P. CAJA", typeof(String));
             dt.Columns.Add("ESTADO IVA", typeof(int));
             dt.Columns.Add("IVA", typeof(int));
+            dt.Columns.Add("Cant. Caja", typeof(int));
 
             try
             {
@@ -754,12 +756,12 @@ namespace Comisariato.Clases
                         {
                             v = 1;
                             int iva = int.Parse(dato["IVA"].ToString());
-                            dt.Rows.Add((String)dato["CODIGOBARRA"], (String)dato["DETALLE"], (int)dato["CANTIDAD"], pp.ToString("#####0.00"), pm.ToString("#####0.00"), pc.ToString("#####0.00"), v, iva);
+                            dt.Rows.Add((String)dato["CODIGOBARRA"], (String)dato["DETALLE"], (int)dato["CANTIDAD"], pp.ToString("#####0.00"), pm.ToString("#####0.00"), pc.ToString("#####0.00"), v, iva, (int)dato["CAJA"]);
                         }
                         else
                         {
                             v = 0;
-                            dt.Rows.Add((String)dato["CODIGOBARRA"], (String)dato["DETALLE"], (int)dato["CANTIDAD"], pp.ToString("#####0.00"), pm.ToString("#####0.00"), pc.ToString("#####0.00"), v, 0);
+                            dt.Rows.Add((String)dato["CODIGOBARRA"], (String)dato["DETALLE"], (int)dato["CANTIDAD"], pp.ToString("#####0.00"), pm.ToString("#####0.00"), pc.ToString("#####0.00"), v, 0, (int)dato["CAJA"]);
                         }
                         //dt.Rows.Add((String)dato["CODIGOBARRA"], (String)dato["DETALLE"], (int)dato["CANTIDAD"], pp.ToString("#####0.00"), pm.ToString("#####0.00"), pc.ToString("#####0.00"), v, (int)dato["IVA"]);
 
