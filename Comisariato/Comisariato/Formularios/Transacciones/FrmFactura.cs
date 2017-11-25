@@ -112,7 +112,9 @@ namespace Comisariato.Formularios.Transacciones
             btnFactEspera.Enabled = false;
             btnEliminarFact.Enabled = false;
 
-
+           // this.dgvDetalleProductos.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.dgvDetalleProductos.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.dgvDetalleProductos.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
 
             //DataGridViewComboBoxColumn comboboxColumn = dgvFormaPago.Columns["Tipo"] as DataGridViewComboBoxColumn;

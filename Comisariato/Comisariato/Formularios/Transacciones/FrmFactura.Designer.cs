@@ -49,14 +49,6 @@
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dgvDetalleProductos = new System.Windows.Forms.DataGridView();
-            this.CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CANTIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PBodega = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.txtIva = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -107,6 +99,14 @@
             this.btnFactEspera = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CANTIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PBodega = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleProductos)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -316,7 +316,7 @@
             this.dgvDetalleProductos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvDetalleProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvDetalleProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDetalleProductos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvDetalleProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CODIGO,
@@ -350,85 +350,6 @@
             this.dgvDetalleProductos.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvDetalleProductos_EditingControlShowing);
             this.dgvDetalleProductos.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvDetalleProductos_RowHeaderMouseClick);
             this.dgvDetalleProductos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvDetalleProductos_KeyPress);
-            // 
-            // CODIGO
-            // 
-            this.CODIGO.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CODIGO.DefaultCellStyle = dataGridViewCellStyle1;
-            this.CODIGO.FillWeight = 12.35128F;
-            this.CODIGO.HeaderText = "Codigo";
-            this.CODIGO.Name = "CODIGO";
-            this.CODIGO.ReadOnly = true;
-            this.CODIGO.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CODIGO.Width = 160;
-            // 
-            // Column12
-            // 
-            this.Column12.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Column12.FillWeight = 21.52845F;
-            this.Column12.HeaderText = "Producto";
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            this.Column12.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column12.Width = 300;
-            // 
-            // CANTIDAD
-            // 
-            this.CANTIDAD.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.CANTIDAD.FillWeight = 42.35656F;
-            this.CANTIDAD.HeaderText = "Cantidad";
-            this.CANTIDAD.Name = "CANTIDAD";
-            this.CANTIDAD.ReadOnly = true;
-            this.CANTIDAD.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CANTIDAD.Width = 90;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Column1.FillWeight = 111.3851F;
-            this.Column1.HeaderText = "En Bodega";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column1.Width = 130;
-            // 
-            // Column14
-            // 
-            this.Column14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Column14.FillWeight = 84.21147F;
-            this.Column14.HeaderText = "Precio";
-            this.Column14.Name = "Column14";
-            this.Column14.ReadOnly = true;
-            this.Column14.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column14.Width = 90;
-            // 
-            // Column15
-            // 
-            this.Column15.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Column15.FillWeight = 168.6188F;
-            this.Column15.HeaderText = "IVA";
-            this.Column15.Name = "Column15";
-            this.Column15.ReadOnly = true;
-            this.Column15.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column15.Width = 90;
-            // 
-            // Column16
-            // 
-            this.Column16.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Column16.FillWeight = 339.2439F;
-            this.Column16.HeaderText = "Total";
-            this.Column16.Name = "Column16";
-            this.Column16.ReadOnly = true;
-            this.Column16.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // PBodega
-            // 
-            this.PBodega.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.PBodega.FillWeight = 20.30457F;
-            this.PBodega.HeaderText = "P. Bodega";
-            this.PBodega.Name = "PBodega";
-            this.PBodega.Width = 50;
             // 
             // txtIva
             // 
@@ -998,6 +919,85 @@
             this.label19.Size = new System.Drawing.Size(59, 68);
             this.label19.TabIndex = 50;
             this.label19.Text = "$";
+            // 
+            // CODIGO
+            // 
+            this.CODIGO.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CODIGO.DefaultCellStyle = dataGridViewCellStyle1;
+            this.CODIGO.FillWeight = 12.35128F;
+            this.CODIGO.HeaderText = "Codigo";
+            this.CODIGO.Name = "CODIGO";
+            this.CODIGO.ReadOnly = true;
+            this.CODIGO.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CODIGO.Width = 160;
+            // 
+            // Column12
+            // 
+            this.Column12.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column12.FillWeight = 21.52845F;
+            this.Column12.HeaderText = "Producto";
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            this.Column12.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column12.Width = 300;
+            // 
+            // CANTIDAD
+            // 
+            this.CANTIDAD.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.CANTIDAD.FillWeight = 42.35656F;
+            this.CANTIDAD.HeaderText = "Cantidad";
+            this.CANTIDAD.Name = "CANTIDAD";
+            this.CANTIDAD.ReadOnly = true;
+            this.CANTIDAD.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CANTIDAD.Width = 90;
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column1.FillWeight = 111.3851F;
+            this.Column1.HeaderText = "En Bodega";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column1.Width = 130;
+            // 
+            // Column14
+            // 
+            this.Column14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column14.FillWeight = 84.21147F;
+            this.Column14.HeaderText = "Precio";
+            this.Column14.Name = "Column14";
+            this.Column14.ReadOnly = true;
+            this.Column14.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column14.Width = 90;
+            // 
+            // Column15
+            // 
+            this.Column15.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column15.FillWeight = 168.6188F;
+            this.Column15.HeaderText = "IVA";
+            this.Column15.Name = "Column15";
+            this.Column15.ReadOnly = true;
+            this.Column15.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column15.Width = 90;
+            // 
+            // Column16
+            // 
+            this.Column16.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column16.FillWeight = 339.2439F;
+            this.Column16.HeaderText = "Total";
+            this.Column16.Name = "Column16";
+            this.Column16.ReadOnly = true;
+            this.Column16.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // PBodega
+            // 
+            this.PBodega.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.PBodega.FillWeight = 20.30457F;
+            this.PBodega.HeaderText = "P. B.";
+            this.PBodega.Name = "PBodega";
+            this.PBodega.Width = 50;
             // 
             // FrmFactura
             // 
