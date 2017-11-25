@@ -866,7 +866,7 @@
             this.button1.Image = global::Comisariato.Properties.Resources.bodega1;
             this.button1.Location = new System.Drawing.Point(677, 464);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(119, 115);
+            this.button1.Size = new System.Drawing.Size(119, 135);
             this.button1.TabIndex = 49;
             this.button1.Text = "Buscar Producto";
             this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -881,7 +881,7 @@
             this.button3.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button3.Location = new System.Drawing.Point(34, 464);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(119, 115);
+            this.button3.Size = new System.Drawing.Size(119, 135);
             this.button3.TabIndex = 48;
             this.button3.Text = "Avance";
             this.button3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -925,7 +925,7 @@
             this.btnReimprimirFact.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnReimprimirFact.Location = new System.Drawing.Point(422, 464);
             this.btnReimprimirFact.Name = "btnReimprimirFact";
-            this.btnReimprimirFact.Size = new System.Drawing.Size(119, 115);
+            this.btnReimprimirFact.Size = new System.Drawing.Size(119, 135);
             this.btnReimprimirFact.TabIndex = 42;
             this.btnReimprimirFact.Text = "Reimprimir Fact.";
             this.btnReimprimirFact.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -940,7 +940,7 @@
             this.btnActivarFact.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnActivarFact.Location = new System.Drawing.Point(292, 464);
             this.btnActivarFact.Name = "btnActivarFact";
-            this.btnActivarFact.Size = new System.Drawing.Size(119, 115);
+            this.btnActivarFact.Size = new System.Drawing.Size(119, 135);
             this.btnActivarFact.TabIndex = 41;
             this.btnActivarFact.Text = "Activar Fact. en Espera";
             this.btnActivarFact.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -955,7 +955,7 @@
             this.btnEliminarFact.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnEliminarFact.Location = new System.Drawing.Point(550, 464);
             this.btnEliminarFact.Name = "btnEliminarFact";
-            this.btnEliminarFact.Size = new System.Drawing.Size(119, 115);
+            this.btnEliminarFact.Size = new System.Drawing.Size(119, 135);
             this.btnEliminarFact.TabIndex = 43;
             this.btnEliminarFact.Text = "Limpiar";
             this.btnEliminarFact.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -970,7 +970,7 @@
             this.btnFactEspera.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnFactEspera.Location = new System.Drawing.Point(162, 464);
             this.btnFactEspera.Name = "btnFactEspera";
-            this.btnFactEspera.Size = new System.Drawing.Size(119, 115);
+            this.btnFactEspera.Size = new System.Drawing.Size(119, 135);
             this.btnFactEspera.TabIndex = 40;
             this.btnFactEspera.Text = "Fact. en Espera";
             this.btnFactEspera.TextAlign = System.Drawing.ContentAlignment.BottomCenter;

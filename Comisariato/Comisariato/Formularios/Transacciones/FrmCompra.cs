@@ -260,8 +260,11 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             {
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "codigo")
                 {
+<<<<<<< HEAD
                     //---------------Desbloquear Celdas
                     for (int i = 0; i < datosProductoCompra.ColumnCount - 3; i++)
+=======
+>>>>>>> 4231322745e4b26e4f91200006610b8b4fc16294
                     if (!validarCodigoRepetido(e))
                     {
                         //---------------Desbloquear Celdas
@@ -292,6 +295,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         {
                             tieneIVA = objProducto.Ivaestado;
                             informacionProducto();
+<<<<<<< HEAD
                            datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
 
                         }
@@ -334,9 +338,20 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         }
                     }
                     else
-                        banderaTab = true;
+=======
+                            datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
 
+                        }
+                    }
+                    else
+                    {
+                        datosProductoCompra.CurrentRow.Cells[0].Value = "";
+                        SendKeys.Send("{LEFT}");
+>>>>>>> 4231322745e4b26e4f91200006610b8b4fc16294
+                        banderaTab = true;
+                    }
                 }
+                
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "cantidad")
                 {
                     if (Convert.ToString(datosProductoCompra.CurrentRow.Cells[2].Value) != "")
