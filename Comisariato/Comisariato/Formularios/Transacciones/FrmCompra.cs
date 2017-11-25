@@ -312,8 +312,13 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         {
                             tieneIVA = objProducto.Ivaestado;
                             informacionProducto();
+<<<<<<< HEAD
                             datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[1];
                             //banderaTab = true;
+=======
+                            datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
+                            banderaTab = true;
+>>>>>>> 858885e3ab3d0c507447e7ecf3380d057250abd9
                         }
                     }
                     else
@@ -322,8 +327,11 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         SendKeys.Send("{LEFT}");
                         banderaTab = true;
                     }
+
                 }
-                
+
+                //}
+
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "cantidad")
                 {
                     if (Convert.ToString(datosProductoCompra.CurrentRow.Cells[2].Value) != "")
@@ -369,7 +377,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         ValidaCeldasPrecios();
                         SendKeys.Send("{RIGHT}");
                     }
-                    banderaTab = true;     
+                    banderaTab = true;
                 }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioPublico")
                 {
@@ -411,7 +419,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     float precioIRBP = Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.CurrentRow.Cells[6].Value.ToString()));
                     if (tieneIVA)
                     {
-                        iva = (((precioCompra + precioICE) * cantidad) *12)/100;
+                        iva = (((precioCompra + precioICE) * cantidad) * 12) / 100;
                     }
                     else
                     {
