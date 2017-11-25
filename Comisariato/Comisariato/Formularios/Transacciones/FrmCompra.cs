@@ -208,24 +208,46 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             if (tieneIVA)
             {
                 datosProductoCompra.CurrentRow.Cells[5].Value = Funcion.reemplazarcaracter(objProducto.Ice.ToString());
+                posicion = 5;
+                ValidaCeldasPrecios();
                 datosProductoCompra.CurrentRow.Cells[6].Value = Funcion.reemplazarcaracter(objProducto.Irbp.ToString());
+                posicion = 6;
+                ValidaCeldasPrecios();
                 datosProductoCompra.CurrentRow.Cells[7].Value = Funcion.reemplazarcaracter(objProducto.Preciopublico_iva.ToString());
+                posicion = 7;
+                ValidaCeldasPrecios();
                 datosProductoCompra.CurrentRow.Cells[8].Value = Funcion.reemplazarcaracter(objProducto.Precioalmayor_iva.ToString());
+                posicion = 8;
+                ValidaCeldasPrecios();
                 datosProductoCompra.CurrentRow.Cells[9].Value = Funcion.reemplazarcaracter(objProducto.Precioporcaja_iva.ToString());
+                posicion = 9;
+                ValidaCeldasPrecios();
             }
             else
             {
                 datosProductoCompra.CurrentRow.Cells[5].Value = 0;
+                posicion = 5;
+                ValidaCeldasPrecios();
                 datosProductoCompra.CurrentRow.Cells[6].Value = 0;
+                posicion = 6;
+                ValidaCeldasPrecios();
                 datosProductoCompra.CurrentRow.Cells[5].ReadOnly = true;
                 datosProductoCompra.CurrentRow.Cells[6].ReadOnly = true;
                 datosProductoCompra.CurrentRow.Cells[7].Value = Funcion.reemplazarcaracter(objProducto.Preciopublico_sin_iva.ToString());
+                posicion = 7;
+                ValidaCeldasPrecios();
                 datosProductoCompra.CurrentRow.Cells[8].Value = Funcion.reemplazarcaracter(objProducto.Precioalmayor_sin_iva.ToString());
+                posicion = 8;
+                ValidaCeldasPrecios();
                 datosProductoCompra.CurrentRow.Cells[9].Value = Funcion.reemplazarcaracter(objProducto.Precioporcaja_sin_iva.ToString());
+                posicion = 9;
+                ValidaCeldasPrecios();
             }
             if (objProducto.PrecioCompra != 0)
             {
                 datosProductoCompra.CurrentRow.Cells[3].Value = Funcion.reemplazarcaracter(objProducto.PrecioCompra.ToString());
+                posicion = 3;
+                ValidaCeldasPrecios();
             }
         }
         
@@ -290,8 +312,8 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         {
                             tieneIVA = objProducto.Ivaestado;
                             informacionProducto();
-                            datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
-
+                            datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[1];
+                            //banderaTab = true;
                         }
                     }
                     else
@@ -322,6 +344,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 {
                     if (Convert.ToString(datosProductoCompra.CurrentRow.Cells[4].Value) != "")
                     {
+                        datosProductoCompra.CurrentRow.Cells[4].Value = "0";
                         posicion = 4;
                         ValidaCeldasPrecios();
                         SendKeys.Send("{RIGHT}");
@@ -591,7 +614,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     datosProductoCompra.BeginEdit(true);
 
             }
-            catch (Exception W)
+            catch (Exception)
             {
             }
         }
