@@ -62,6 +62,8 @@ namespace Comisariato.Formularios
             LblRazonSocial.ForeColor = Color.Teal;
 
             consultas.BoolLlenarComboBox(cbCuentaContable, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta ");
+            SendKeys.Send("{TAB}"); SendKeys.Send("{TAB}");
+            cbTipoCliente.Focus();
 
         }
 
@@ -96,36 +98,64 @@ namespace Comisariato.Formularios
         private void txtIdentificacionCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.Validar_Numeros(e);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void txtNombresCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.Validar_Letras(e);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void txtRazonSocialCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.validar_Num_Letras(e);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void txtDireccion_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.validar_Num_Letras(e);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void txtCreditoAsignadoCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.SoloValores(e, txtCreditoAsignadoCliente.Text);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void txtCupoCreditoCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.SoloValores(e, txtCupoCreditoCliente.Text);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void txtDescuentoCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.SoloValores(e, txtDescuentoCliente.Text);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
 
         public string obtenerCategoriaChequeada()
@@ -553,6 +583,136 @@ namespace Comisariato.Formularios
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void cbTipoCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void cbIdentificacionCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void txtEmailCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void cbPaisCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void txtCasillaCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void txtFaxCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Funcion.Validar_Numeros(e);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void txtCelular1Cliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Funcion.Validar_Numeros(e);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void txtObservacionCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void cbCategoriaCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void rbCreditoCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void txtCreditoAsignadoCliente_Enter(object sender, EventArgs e)
+        {
+            txtCreditoAsignadoCliente.SelectAll();
+        }
+
+        private void txtCupoCreditoCliente_Enter(object sender, EventArgs e)
+        {
+            txtCupoCreditoCliente.SelectAll();
+        }
+
+        private void txtDescuentoCliente_Enter(object sender, EventArgs e)
+        {
+            txtDescuentoCliente.SelectAll();
+        }
+
+        private void txtIdentificacionRepresentanteLegalCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Funcion.Validar_Numeros(e);
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void txtEmailRepresentanteLegalCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void dtpFechaNacimientoCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void tcDatosCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
     }
 }
