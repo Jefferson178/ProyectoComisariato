@@ -44,7 +44,6 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             txtOrdenCompra.Text = Convert.ToString(ordenCompra);
             datosProductoCompra = dgvProductosIngresos;
             datosProveedor = cbProveedor;
-<<<<<<< HEAD
             txtFlete.Text = "0";
             txtSubtotal.Text = "0.0";
             txtSubtotal0.Text = "0.0";
@@ -53,9 +52,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             txtICE.Text = "0.0";
             txtIRBP.Text = "0.0";
             txtIVA.Text = "0.0";
-=======
             txtFlete.Text = "0.0";
->>>>>>> 2edcc9e8c3bf1d639fca1c876c804b7d839aea5d
             cbTerminoPago.SelectedIndex = 0;
         }
         private void BtnGuardar_Click(object sender, EventArgs e)
@@ -253,7 +250,6 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "codigo")
                 {
                     //---------------Desbloquear Celdas
-<<<<<<< HEAD
                     for (int i = 0; i < datosProductoCompra.ColumnCount - 3; i++)
                     {
                         datosProductoCompra.CurrentRow.Cells[i].ReadOnly = false;
@@ -270,7 +266,6 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                             objFuncion.AddFormInPanel(frmProducto, Program.panelPrincipalVariable);
                             informacionProducto();
                             datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
-=======
                     //for (int i = e.RowIndex-1; i >=  -1; i--)
                     //{
                     //    if (e.RowIndex > 0)
@@ -299,7 +294,6 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                                         objFuncion.AddFormInPanel(frmProducto, Program.panelPrincipalVariable);
                                         informacionProducto();
                                         datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
->>>>>>> 2edcc9e8c3bf1d639fca1c876c804b7d839aea5d
 
                                     }
                                     else

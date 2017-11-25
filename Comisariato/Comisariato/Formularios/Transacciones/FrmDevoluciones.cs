@@ -44,6 +44,8 @@ namespace Comisariato.Formularios.Transacciones.Devolucion_Venta
                         {
                             llenarDgV();
                             lblUsuario.Text="Usuario: " +em.NombreUsuario;
+                            DgvDetalleFact.CurrentCell = DgvDetalleFact.Rows[0].Cells[0];
+                            DgvDetalleFact.BeginEdit(true);
                         }
                         else
                         {
