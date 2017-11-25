@@ -76,32 +76,27 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             " WHERE P.ACTIVO = " + condicion + ";");
             dgvDatosProducto.Columns["ID"].Visible = false;
             dgvDatosProducto.Columns["ACTIVO"].Visible = false;
+            DataGridViewColumn col = dgvDatosProducto.Columns["P.V.P."];
+            col.DefaultCellStyle.Format = "N2";
+            DataGridViewColumn col1 = dgvDatosProducto.Columns["P. MAYOR."];
+            col1.DefaultCellStyle.Format = "N2";
+            DataGridViewColumn col2 = dgvDatosProducto.Columns["P. CAJA"];
+            col2.DefaultCellStyle.Format = "N2";
+            DataGridViewColumn col3 = dgvDatosProducto.Columns["COSTO"];
+            col3.DefaultCellStyle.Format = "N2";
             try
             {
 
                 dgvDatosProducto.Columns["IVA"].Width = 40;
-                dgvDatosProducto.Columns["PRECIO MAYOR."].Width = 58;
+                dgvDatosProducto.Columns["P. MAYOR."].Width = 50;
                 dgvDatosProducto.Columns["P.V.P."].Width = 50;
-                dgvDatosProducto.Columns["PRECIO CAJA"].Width = 58;
-                dgvDatosProducto.Columns["CANTIDAD"].Width = 70;
-
+                dgvDatosProducto.Columns["P. CAJA"].Width = 50;
+                dgvDatosProducto.Columns["STOCK"].Width = 50;
+                dgvDatosProducto.Columns["COSTO"].Width = 50;
             }
             catch (Exception ex)
             {
 
-            }
-            for (int i = 0; i < dgvDatosProducto.RowCount; i++)
-            {
-                string c = Funcion.reemplazarcaracter(dgvDatosProducto.Rows[i].Cells[7].Value.ToString());
-
-                if (c.Contains(","))
-                {
-                    string[] a = c.Split(',');
-                    if (a[1].Length == 1)
-                        c = c + "0";
-                }
-                else { c = c + ",00"; }
-                dgvDatosProducto.Rows[i].Cells[7].Value =Convert.ToSingle(c).ToString("#####0.00");
             }
         }
         private void btnGuardarProducto_Click(object sender, EventArgs e)
@@ -506,14 +501,14 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         {
             if (rbtActivos.Checked)
             {
-                Objconsul.boolLlenarDataGridView(dgvDatosProducto, "Select  * from View_VistaFinalProducto P where P.ACTIVO   = 1 and P.CODIGOBARRA like '%" + txtConsultarProducto.Text + "%' or P.NOMBREPRODUCTO like '%" + txtConsultarProducto.Text + "%' or P.CATEGORIA like '%" + txtConsultarProducto.Text + "%' or P.PROVEEDOR like '%" + txtConsultarProducto.Text + "%' ; ");
+                Objconsul.boolLlenarDataGridView(dgvDatosProducto, "Select  * from View_VistaFinalProducto P where P.ACTIVO   = 1 and P.[CODIGO BARRA] like '%" + txtConsultarProducto.Text + "%' or P.PRODUCTO like '%" + txtConsultarProducto.Text + "%' or P.CATEGORIA like '%" + txtConsultarProducto.Text + "%' or P.PROVEEDOR like '%" + txtConsultarProducto.Text + "%' ; ");
                 dgvDatosProducto.Columns[1].HeaderText = "Desabilitar";
                 dgvDatosProducto.Columns["ID"].Visible = false;
                 dgvDatosProducto.Columns["ACTIVO"].Visible = false;
             }
             else if (rbtInactivos.Checked)
             {
-                Objconsul.boolLlenarDataGridView(dgvDatosProducto, "Select * from View_VistaFinalProducto P where P.ACTIVO = 0 and P.CODIGOBARRA like '%" + txtConsultarProducto.Text + "%' or P.NOMBREPRODUCTO  like '%" + txtConsultarProducto.Text + "%' or P.CATEGORIA like '%" + txtConsultarProducto.Text + "%' or P.PROVEEDOR like '%" + txtConsultarProducto.Text + "%' ;");
+                Objconsul.boolLlenarDataGridView(dgvDatosProducto, "Select * from View_VistaFinalProducto P where P.ACTIVO = 0 and P.[CODIGO BARRA] like '%" + txtConsultarProducto.Text + "%' or P.PRODUCTO  like '%" + txtConsultarProducto.Text + "%' or P.CATEGORIA like '%" + txtConsultarProducto.Text + "%' or P.PROVEEDOR like '%" + txtConsultarProducto.Text + "%' ;");
                 dgvDatosProducto.Columns[1].HeaderText = "Habilitar";
                 dgvDatosProducto.Columns["ID"].Visible = false;
                 dgvDatosProducto.Columns["ACTIVO"].Visible = false;
@@ -643,10 +638,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             txtStockMinimoProducto.Select(0, txtStockMinimoProducto.TextLength);
         }
 
-        private void txtUnidadProducto_Enter(object sender, EventArgs e)
-        {
-            txtDisplay.Select(0, txtDisplay.TextLength);
-        }
+       
 
         private void txtPVPConIVAProducto_Enter(object sender, EventArgs e)
         {
@@ -714,13 +706,13 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
-            if (txtNombreProducto.Text.Length > 15)
+            if (txtNombreProducto.Text.Length > 14)
             {
                 
-                string parte2 = "";
+                //string parte2 = "";
                 int dimension = txtNombreProducto.Text.Length;
                                
-                for (int i = 15; i < dimension; i++)
+                for (int i = 14; i < dimension; i++)
                 {
                     //parte2 = txtNombreProducto.Text.Substring(i, 1);
                     //txtNombreProducto.SelectionStart = 16;
@@ -839,6 +831,16 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         private void TxtIRBP_Enter(object sender, EventArgs e)
         {
             TxtIRBP.SelectAll();
+        }
+
+        private void txtUnidadProducto_Enter(object sender, EventArgs e)
+        {
+            txtUnidadProducto.SelectAll();
+        }
+
+        private void txtPeso_Enter(object sender, EventArgs e)
+        {
+            txtPeso.SelectAll();
         }
     }
 }
