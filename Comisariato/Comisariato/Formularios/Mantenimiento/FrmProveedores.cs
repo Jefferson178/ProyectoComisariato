@@ -25,6 +25,7 @@ namespace Comisariato.Formularios
         String identificacion = "";
         String GlobalCodigoProveedor = "0";
         int IDProveedor;
+        DataGridViewComboBoxColumn columnaComboFI = new DataGridViewComboBoxColumn();
 
         public void inicializarDatos()
         {
@@ -136,11 +137,11 @@ namespace Comisariato.Formularios
             cbCuentaContableProveedor.DropDownHeight = cbCuentaContableProveedor.ItemHeight = 150;
             cbTipoServicioProveedor.DropDownHeight = cbTipoServicioProveedor.ItemHeight = 150;
 
-            
+
             /// Para poner del DATETIMEPICKER
             dtpOrder = new DateTimePicker();
             dtpOrder.Format = DateTimePickerFormat.Short;
-            
+
             dtpOrder.Visible = false;
             dtpOrder.Width = 100;
             dgvDatosAutorizacionProveedor.Controls.Add(dtpOrder);
@@ -148,9 +149,11 @@ namespace Comisariato.Formularios
             dgvDatosAutorizacionProveedor.CellBeginEdit += this.dgvDatosAutorizacionProveedor_CellBeginEdit;
             dgvDatosAutorizacionProveedor.CellEndEdit += this.dgvDatosAutorizacionProveedor_CellEndEdit;
 
-            
+            //Combo en DATAGRIDVIEW FUENTE/IVA
+            //ComboBox comboPrueba = new ComboBox();
+            //consultas.BoolLlenarComboBoxDgv((DataGridViewComboBoxColumn)dgvCodigoRetencionProveedor.Columns[1].i, "select CS.IDCODIGOSRI as ID, '[' + CS.CODIGOSRI + '] - ' + CS.DESCRIPCION as Texto from TbCodigoSRI CS, TbTipoCodigoSRI TCS WHERE TCS.IDTIPOCODIGOSRI = CS.IDTIPOCODIGOSRI AND TCS.CODIGO = 'COD_RET_FUE' or TCS.CODIGO = 'COD_RET_IVA'");
+            //dgvCodigoRetencionProveedor.Rows[0].Cells[1].Value = columnaComboFI;
         }
-
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
             if (txtNombreProveedor.Text != "" && txtNumeroIdentificacionProveedor.Text != "" && txtDireccionProveedor.Text != "" && cbCreditoProveedor.Text != "" && cbICEProveedor.Text != "" && cbCodigo101Proveedor.Text != "")
@@ -704,7 +707,7 @@ namespace Comisariato.Formularios
             if (e.ColumnIndex == 1)
             {
                 Rec = Grid.GetCellDisplayRectangle(Grid.CurrentCell.ColumnIndex, Grid.CurrentCell.RowIndex, false);
-                dgvRetencionFuenteIva.Visible = true;
+                //dgvRetencionFuenteIva.Visible = true;
                 dgvRetencionFuenteIva.BringToFront();
                 dgvRetencionFuenteIva.Location = new Point(Rec.X + 78, Rec.Y + 50);
 
@@ -924,7 +927,10 @@ namespace Comisariato.Formularios
                 SendKeys.Send("{TAB}");
             }
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1a370e9f66ccf8f066683c95f5c3c98b6ca19f96
         private void rbtInactivosProveedor_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -946,5 +952,25 @@ namespace Comisariato.Formularios
             }
         }
 
+<<<<<<< HEAD
+=======
+        private void dgvCredito_Leave(object sender, EventArgs e)
+        {
+            //if(cbCreditoProveedor.Focus() == false)
+            //{
+            //    dgvCredito.Visible = false;
+            //}
+        }
+
+        private void cbCreditoProveedor_Leave(object sender, EventArgs e)
+        {
+            dgvCredito.Visible = false;
+        }
+
+        private void tabPage2_Enter(object sender, EventArgs e)
+        {
+            dgvCredito.Visible = false;
+        }
+>>>>>>> 1a370e9f66ccf8f066683c95f5c3c98b6ca19f96
     }
 }

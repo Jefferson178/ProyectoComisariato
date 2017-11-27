@@ -365,6 +365,61 @@ namespace Comisariato.Clases
 
             return true;
         }
+        public static void ValidaCeldasPrecios(DataGridView datosProductoCompra, int posicion, ref bool banderaFocoCelda)
+        {
+            try
+            {
+                float valor;
+                string validaValores = Convert.ToString(datosProductoCompra.CurrentRow.Cells[posicion].Value);
+                string[] s = validaValores.Split('.');
+                if (validaValores.Substring(0, 1) == "." || validaValores.Substring(0, 1) == ",")
+                {
+                    validaValores = "0" + validaValores;
+                }
+                if (validaValores.Substring(validaValores.Length - 1, 1) == "." || validaValores.Substring(validaValores.Length - 1, 1) == ",")
+                {
+                    validaValores = validaValores + "0";
+                }
+                int ocurrencias, ocurrecias2, ocurrenciasComas;
+                ocurrencias = validaValores.Split('.').Length - 1;
+                ocurrenciasComas = validaValores.Split(',').Length - 1;
+                ocurrecias2 = validaValores.Split(new String[] { ".," }, StringSplitOptions.None).Length - 1;
+                if (ocurrencias > 1 || ocurrecias2 != 0)
+                {
+                    valor = float.Parse("a");
+                }
+                else if (ocurrencias == 0 && ocurrenciasComas == 0)
+                {
+                    validaValores = validaValores + ".0";
+                }
+                ocurrencias = validaValores.Split('.').Length - 1;
+                ocurrenciasComas = validaValores.Split(',').Length - 1;
+                if (ocurrencias == 0)
+                {
+                    s = validaValores.Split(',');
+                }
+                else if (ocurrenciasComas == 0)
+                {
+                    s = validaValores.Split('.');
+                }
+                string valor1 = s[1];
+                if (valor1.Length > 6)
+                {
+                    valor = float.Parse("a");
+                }
+                valor = float.Parse(validaValores);
+                datosProductoCompra.CurrentRow.Cells[posicion].Value = Funcion.reemplazarcaracter(validaValores);
+                banderaFocoCelda = false;
+            }
+            catch (Exception errorPrecio)
+            {
+                //MessageBox.Show("Ingresar valores correctos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                datosProductoCompra.CurrentRow.Cells[posicion].Value = "";
+                //datosProductoCompra.BeginEdit(true);
+                SendKeys.Send("{LEFT}");
+                banderaFocoCelda = true;
+            }
+        }
 
     }
 }
