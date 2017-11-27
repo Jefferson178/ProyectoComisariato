@@ -674,6 +674,15 @@ namespace Comisariato.Formularios.Transacciones
                     encabezadofact.Add("" + idempleadobd);
                     encabezadofact.Add("" + idclientebd);
 
+                    txtEfectivo.Text = Funcion.reemplazarcaracter(txtEfectivo.Text);
+                    txtCheque.Text= Funcion.reemplazarcaracter(txtCheque.Text);
+                    txtCredito.Text= Funcion.reemplazarcaracter(txtCredito.Text);
+                    txtRecibido.Text= Funcion.reemplazarcaracter(txtRecibido.Text);
+                    txtCambio.Text= Funcion.reemplazarcaracter(txtCambio.Text);
+
+                    ivabd= Funcion.reemplazarcaracter(ivabd);
+                    descuentobd= Funcion.reemplazarcaracter(descuentobd);
+
                     detallepago.Add(ivabd);
                     detallepago.Add(descuentobd);
                     if (txtEfectivo.Text=="")

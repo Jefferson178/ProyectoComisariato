@@ -464,6 +464,7 @@ namespace Comisariato.Formularios.Transacciones
 
         private void AgregarFila(int fila, float total)
         {
+            
             dgvDetalleProductos.Rows[fila].Cells[0].Value = txtCodigo.Text;
             dgvDetalleProductos.Rows[fila].Cells[1].Value = txtDetalle.Text;
             dgvDetalleProductos.Rows[fila].Cells[2].Value = txtCantidad.Text;
@@ -481,6 +482,7 @@ namespace Comisariato.Formularios.Transacciones
             }
             
             Ivas.Add("" + Producto.Iva);
+            dgvDetalleProductos.Rows.Add("");
             LimpiarTexbox();
         }
 
@@ -526,7 +528,7 @@ namespace Comisariato.Formularios.Transacciones
                 txtSubTotalIva.Text = sumasubiva.ToString("#####0.00");
                 //totalpagar = sumasub + ivatotal;
                 txtIva.Text = ivatotal.ToString("#####0.00");
-                lblTotalPagar.Text = "$ " + totalpagar.ToString("#####0.00");
+                lblTotalPagar.Text = "" + totalpagar.ToString("#####0.00");
                 codactual = "";
                 factenter = 0;
                 LimpiarTexbox();
@@ -1565,39 +1567,48 @@ namespace Comisariato.Formularios.Transacciones
 
         private void grabarfact()
         {
-            Program.em = new EmcabezadoFactura();
-            Program.em.Sucursal = int.Parse(txtSucursal.Text);
-            //Program.em.Descuento = Convert.ToSingle(txtDescuento.Text);
-            Program.em.Caja = int.Parse(txtCaja.Text);
-            Program.em.Fecha = DateTime.Now.Date.ToShortDateString();
-            Program.em.Hora = DateTime.Now.TimeOfDay.ToString();
-            //Program.em.Iva = Convert.ToSingle(txtIva.Text);
-            Program.em.Idempleado = int.Parse(Program.IDUsuario);
-            Program.em.Idcliente = idcliente;
-            Program.em.Numfact = numfact;
+            if (Convert.ToSingle(lblTotalPagar.Text) >= 200 && txtIdentidicacion.Text == "9999999999999")
+            {
+                MessageBox.Show("Factura obligatoria con datos.");
+                rdbFacturaDatos.Checked = true;
+            }
+            else
+            {
+                Program.em = new EmcabezadoFactura();
+                Program.em.Sucursal = int.Parse(txtSucursal.Text);
+                //Program.em.Descuento = Convert.ToSingle(txtDescuento.Text);
+                Program.em.Caja = int.Parse(txtCaja.Text);
+                Program.em.Fecha = DateTime.Now.Date.ToShortDateString();
+                Program.em.Hora = DateTime.Now.TimeOfDay.ToString();
+                //Program.em.Iva = Convert.ToSingle(txtIva.Text);
+                Program.em.Idempleado = int.Parse(Program.IDUsuario);
+                Program.em.Idcliente = idcliente;
+                Program.em.Numfact = numfact;
 
-            //Consultas objCns = new Consultas();
-            // objCns.Insertar("INSERT INTO TbEncabezadoFactura (SUCURSAL,CAJA,NFACTURA,FECHA,HORA,DESCUENTO,IVA,IDEMPLEADO,IDCLIENTE) VALUES ('" + txtSucursal.Text + "','" + txtCaja.Text + "','"+txtNumFact.Text+"','"+Program.FecaInicio+"','"+ DateTime.Now.Date.ToShortDateString()+"','"+ DateTime.Now.TimeOfDay.ToString()+"','0','"+txtIva.Text+"','"+Program.IDUsuario+"','"+idcliente+"'"+ ");");
-            //List<>
-            frmcobrar = new FrmCobrar();
-            frmcobrar.nombre = txtConsumidor.Text;
-            frmcobrar.identificacion = txtIdentidicacion.Text;
-            frmcobrar.descuentobd = txtDescuento.Text;
-            frmcobrar.ivabd = txtIva.Text;
-            frmcobrar.subtotal = txtSubTotal.Text;
-            frmcobrar.subtotaconiva = txtSubTotalIva.Text;
-            frmcobrar.descuento = txtDescuento.Text;
-            frmcobrar.totalapagar = txtSubTotal.Text;
-            frmcobrar.ivasuma = txtIva.Text;
+                //Consultas objCns = new Consultas();
+                // objCns.Insertar("INSERT INTO TbEncabezadoFactura (SUCURSAL,CAJA,NFACTURA,FECHA,HORA,DESCUENTO,IVA,IDEMPLEADO,IDCLIENTE) VALUES ('" + txtSucursal.Text + "','" + txtCaja.Text + "','"+txtNumFact.Text+"','"+Program.FecaInicio+"','"+ DateTime.Now.Date.ToShortDateString()+"','"+ DateTime.Now.TimeOfDay.ToString()+"','0','"+txtIva.Text+"','"+Program.IDUsuario+"','"+idcliente+"'"+ ");");
+                //List<>
+                frmcobrar = new FrmCobrar();
+                frmcobrar.nombre = txtConsumidor.Text;
+                frmcobrar.identificacion = txtIdentidicacion.Text;
+                frmcobrar.descuentobd = txtDescuento.Text;
+                frmcobrar.ivabd = txtIva.Text;
+                frmcobrar.subtotal = txtSubTotal.Text;
+                frmcobrar.subtotaconiva = txtSubTotalIva.Text;
+                frmcobrar.descuento = txtDescuento.Text;
+                frmcobrar.totalapagar = txtSubTotal.Text;
+                frmcobrar.ivasuma = txtIva.Text;
 
-            frmcobrar.total = Convert.ToSingle(txtSubTotal.Text);
-            frmcobrar.dg = dgvDetalleProductos;
-            frmcobrar.totalfilas = codigos.Count;
-            ObtenerPedidos();
-            frmcobrar.pedidos = pedidos;
-            frmcobrar.ivas = Ivas;
-            frmcobrar.ShowDialog();
-            //nuevafact();
+                frmcobrar.total = Convert.ToSingle(txtSubTotal.Text);
+                frmcobrar.dg = dgvDetalleProductos;
+                frmcobrar.totalfilas = codigos.Count;
+                ObtenerPedidos();
+                frmcobrar.pedidos = pedidos;
+                frmcobrar.ivas = Ivas;
+                frmcobrar.ShowDialog();
+                //nuevafact();
+            }
+
         }
 
         private void nuevafact()
