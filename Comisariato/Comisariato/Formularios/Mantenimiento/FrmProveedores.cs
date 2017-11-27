@@ -924,8 +924,6 @@ namespace Comisariato.Formularios
                 SendKeys.Send("{TAB}");
             }
         }
-<<<<<<< HEAD
-=======
 
         private void rbtInactivosProveedor_CheckedChanged(object sender, EventArgs e)
         {
@@ -947,6 +945,6 @@ namespace Comisariato.Formularios
                 SendKeys.Send("{TAB}");
             }
         }
->>>>>>> d7badca0b77257ad9fab16a1c12fff1edee328b2
+
     }
 }
