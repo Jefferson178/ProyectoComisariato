@@ -112,6 +112,28 @@ namespace Comisariato.Clases
                 //throw;
             }
         }
+        public void BoolLlenarComboBoxDgv(DataGridViewComboBoxColumn cb, String SQL)
+        {
+            try
+            {
+                Objc.conectar();
+                SqlDataAdapter objDA;
+                SqlCommand cmd = new SqlCommand(SQL, ConexionBD.connection);
+                objDA = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                objDA.Fill(dt);
+                Objc.Cerrar();
+                cb.DisplayMember = "Texto";
+                cb.ValueMember = "ID";
+                cb.DataSource = dt;
+                objDA.Dispose();
+            }
+            catch (Exception e)
+            {
+                //MessageBox.Show(""+e.Message);
+                //throw;
+            }
+        }
         public void BoolLlenarCheckListBox(CheckedListBox chkl, String SQL)
         {
             //Consulta a la Bases de Datos

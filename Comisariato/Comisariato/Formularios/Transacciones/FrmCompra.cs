@@ -158,61 +158,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             else
                 MessageBox.Show("El numero de factura del proveedor seleccionado ya existe.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }        
-        public void ValidaCeldasPrecios()
-        {
-            try
-            {
-                float valor;
-                string validaValores = Convert.ToString(datosProductoCompra.CurrentRow.Cells[posicion].Value);
-                string[] s = validaValores.Split('.');
-                if (validaValores.Substring(0, 1) == "." || validaValores.Substring(0, 1) == ",")
-                {
-                    validaValores = "0" + validaValores;
-                }
-                if (validaValores.Substring(validaValores.Length - 1, 1) == "." || validaValores.Substring(validaValores.Length - 1, 1) == ",")
-                {
-                    validaValores = validaValores + "0";
-                }
-                int ocurrencias, ocurrecias2, ocurrenciasComas;
-                ocurrencias = validaValores.Split('.').Length - 1;
-                ocurrenciasComas = validaValores.Split(',').Length - 1;
-                ocurrecias2 = validaValores.Split(new String[] { ".," }, StringSplitOptions.None).Length - 1;
-                if (ocurrencias > 1 || ocurrecias2 != 0)
-                {
-                    valor = float.Parse("a");
-                }
-                else if (ocurrencias == 0 && ocurrenciasComas == 0)
-                {
-                    validaValores = validaValores + ".0";
-                }
-                ocurrencias = validaValores.Split('.').Length - 1;
-                ocurrenciasComas = validaValores.Split(',').Length - 1;
-                if (ocurrencias == 0)
-                {
-                    s = validaValores.Split(',');
-                }
-                else if (ocurrenciasComas == 0)
-                {
-                    s = validaValores.Split('.');
-                }
-                string valor1 = s[1];
-                if (valor1.Length > 6)
-                {
-                    valor = float.Parse("a");
-                }
-                valor = float.Parse(validaValores);
-                datosProductoCompra.CurrentRow.Cells[posicion].Value = Funcion.reemplazarcaracter(validaValores);
-                banderaFocoCelda = false;
-            }
-            catch (Exception errorPrecio)
-            {
-                //MessageBox.Show("Ingresar valores correctos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                datosProductoCompra.CurrentRow.Cells[posicion].Value = "";
-                //datosProductoCompra.BeginEdit(true);
-                SendKeys.Send("{LEFT}");
-                banderaFocoCelda = true;
-            }
-        }
+        
         public void informacionProducto()
         {
             datosProductoCompra.CurrentRow.Cells[1].Value = objProducto.Nombreproducto;
@@ -220,45 +166,45 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             {
                 datosProductoCompra.CurrentRow.Cells[5].Value = Funcion.reemplazarcaracter(objProducto.Ice.ToString());
                 posicion = 5;
-                ValidaCeldasPrecios();
+                Funcion.ValidaCeldasPrecios(datosProductoCompra, posicion, ref banderaFocoCelda);
                 datosProductoCompra.CurrentRow.Cells[6].Value = Funcion.reemplazarcaracter(objProducto.Irbp.ToString());
                 posicion = 6;
-                ValidaCeldasPrecios();
+                Funcion.ValidaCeldasPrecios(datosProductoCompra, posicion, ref banderaFocoCelda);
                 datosProductoCompra.CurrentRow.Cells[7].Value = Funcion.reemplazarcaracter(objProducto.Preciopublico_iva.ToString());
                 posicion = 7;
-                ValidaCeldasPrecios();
+                Funcion.ValidaCeldasPrecios(datosProductoCompra, posicion, ref banderaFocoCelda);
                 datosProductoCompra.CurrentRow.Cells[8].Value = Funcion.reemplazarcaracter(objProducto.Precioalmayor_iva.ToString());
                 posicion = 8;
-                ValidaCeldasPrecios();
+                Funcion.ValidaCeldasPrecios(datosProductoCompra, posicion, ref banderaFocoCelda);
                 datosProductoCompra.CurrentRow.Cells[9].Value = Funcion.reemplazarcaracter(objProducto.Precioporcaja_iva.ToString());
                 posicion = 9;
-                ValidaCeldasPrecios();
+                Funcion.ValidaCeldasPrecios(datosProductoCompra, posicion, ref banderaFocoCelda);
             }
             else
             {
                 datosProductoCompra.CurrentRow.Cells[5].Value = 0;
                 posicion = 5;
-                ValidaCeldasPrecios();
+                Funcion.ValidaCeldasPrecios(datosProductoCompra, posicion, ref banderaFocoCelda);
                 datosProductoCompra.CurrentRow.Cells[6].Value = 0;
                 posicion = 6;
-                ValidaCeldasPrecios();
+                Funcion.ValidaCeldasPrecios(datosProductoCompra, posicion, ref banderaFocoCelda);
                 datosProductoCompra.CurrentRow.Cells[5].ReadOnly = true;
                 datosProductoCompra.CurrentRow.Cells[6].ReadOnly = true;
                 datosProductoCompra.CurrentRow.Cells[7].Value = Funcion.reemplazarcaracter(objProducto.Preciopublico_sin_iva.ToString());
                 posicion = 7;
-                ValidaCeldasPrecios();
+                Funcion.ValidaCeldasPrecios(datosProductoCompra, posicion, ref banderaFocoCelda);
                 datosProductoCompra.CurrentRow.Cells[8].Value = Funcion.reemplazarcaracter(objProducto.Precioalmayor_sin_iva.ToString());
                 posicion = 8;
-                ValidaCeldasPrecios();
+                Funcion.ValidaCeldasPrecios(datosProductoCompra, posicion, ref banderaFocoCelda);
                 datosProductoCompra.CurrentRow.Cells[9].Value = Funcion.reemplazarcaracter(objProducto.Precioporcaja_sin_iva.ToString());
                 posicion = 9;
-                ValidaCeldasPrecios();
+                Funcion.ValidaCeldasPrecios(datosProductoCompra, posicion, ref banderaFocoCelda);
             }
             if (objProducto.PrecioCompra != 0)
             {
                 datosProductoCompra.CurrentRow.Cells[3].Value = Funcion.reemplazarcaracter(objProducto.PrecioCompra.ToString());
                 posicion = 3;
-                ValidaCeldasPrecios();
+                Funcion.ValidaCeldasPrecios(datosProductoCompra, posicion, ref banderaFocoCelda);
             }
         }
         
@@ -347,7 +293,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     if (Convert.ToString(datosProductoCompra.CurrentRow.Cells[3].Value) != "")
                     {
                         posicion = 3;
-                        ValidaCeldasPrecios();
+                        Funcion.ValidaCeldasPrecios(datosProductoCompra, posicion, ref banderaFocoCelda);
                         SendKeys.Send("{RIGHT}");
                     }
                     banderaTab = true;
@@ -358,13 +304,13 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     {
                         datosProductoCompra.CurrentRow.Cells[4].Value = "0";
                         posicion = 4;
-                        ValidaCeldasPrecios();
+                        Funcion.ValidaCeldasPrecios(datosProductoCompra, posicion, ref banderaFocoCelda);
                         SendKeys.Send("{RIGHT}");
                     }
                     else
                     {
                         posicion = 4;
-                        ValidaCeldasPrecios();
+                        Funcion.ValidaCeldasPrecios(datosProductoCompra, posicion, ref banderaFocoCelda);
                         SendKeys.Send("{RIGHT}");
                     }
                     banderaTab = true;
@@ -374,7 +320,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     if (Convert.ToString(datosProductoCompra.CurrentRow.Cells[5].Value) != "")
                     {
                         posicion = 5;
-                        ValidaCeldasPrecios();
+                        Funcion.ValidaCeldasPrecios(datosProductoCompra, posicion, ref banderaFocoCelda);
                         SendKeys.Send("{RIGHT}");
                     }
                     banderaTab = true;
@@ -384,7 +330,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     if (Convert.ToString(datosProductoCompra.CurrentRow.Cells[6].Value) != "")
                     {
                         posicion = 6;
-                        ValidaCeldasPrecios();
+                        Funcion.ValidaCeldasPrecios(datosProductoCompra, posicion, ref banderaFocoCelda);
                         SendKeys.Send("{RIGHT}");
                     }
                     banderaTab = true;
@@ -394,7 +340,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     if (Convert.ToString(datosProductoCompra.CurrentRow.Cells[7].Value) != "")
                     {
                         posicion = 7;
-                        ValidaCeldasPrecios();
+                        Funcion.ValidaCeldasPrecios(datosProductoCompra, posicion, ref banderaFocoCelda);
                         SendKeys.Send("{RIGHT}");
                     }
                     banderaTab = true;
@@ -404,7 +350,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     if (Convert.ToString(datosProductoCompra.CurrentRow.Cells[8].Value) != "")
                     {
                         posicion = 8;
-                        ValidaCeldasPrecios();
+                        Funcion.ValidaCeldasPrecios(datosProductoCompra, posicion, ref banderaFocoCelda);
                         SendKeys.Send("{RIGHT}");
                     }
                     banderaTab = true;
@@ -414,7 +360,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     if (Convert.ToString(datosProductoCompra.CurrentRow.Cells[9].Value) != "")
                     {
                         posicion = 9;
-                        ValidaCeldasPrecios();
+                        Funcion.ValidaCeldasPrecios(datosProductoCompra, posicion, ref banderaFocoCelda);
                         datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[12];
                         datosProductoCompra.Rows[e.RowIndex + 1].Cells[0].ReadOnly = false;
                         SendKeys.Send("{TAB}");
