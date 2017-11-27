@@ -707,7 +707,7 @@ namespace Comisariato.Formularios
             if (e.ColumnIndex == 1)
             {
                 Rec = Grid.GetCellDisplayRectangle(Grid.CurrentCell.ColumnIndex, Grid.CurrentCell.RowIndex, false);
-                //dgvRetencionFuenteIva.Visible = true;
+                dgvRetencionFuenteIva.Visible = true;
                 dgvRetencionFuenteIva.BringToFront();
                 dgvRetencionFuenteIva.Location = new Point(Rec.X + 78, Rec.Y + 50);
 
@@ -747,10 +747,10 @@ namespace Comisariato.Formularios
                 dgvCodigoRetencionProveedor.CurrentRow.Cells[3].Value = dgvRetencionFuenteIva.CurrentRow.Cells[3].Value;
                 string [] s = dgvRetencionFuenteIva.CurrentRow.Cells[5].Value.ToString().Split(' ');
                 dgvCodigoRetencionProveedor.CurrentRow.Cells[5].Value = s[0];
-                dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.Rows[dgvCodigoRetencionProveedor.Rows.Count - 2].Cells[1];
-
+                //dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.Rows[dgvCodigoRetencionProveedor.Rows.Count - 2].Cells[1];
+                dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.CurrentRow.Cells[2];
                 dgvRetencionFuenteIva.Visible = false;
-                dgvCodigoRetencionProveedor.Focus();
+                //dgvCodigoRetencionProveedor.Focus();
             }
         }
         string tipoRetencion;
@@ -786,16 +786,16 @@ namespace Comisariato.Formularios
                 dgvCodigoRetencionProveedor.Focus();
                 try
                 {
-                    dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.Rows[dgvCodigoRetencionProveedor.Rows.Count - 3].Cells[2];
+                    dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.CurrentRow.Cells[2];
                 }
                 catch { }
                 dgvRetencionFuenteIva.Visible = false;
-                try
-                {
-                    dgvCodigoRetencionProveedor.Rows.Remove(dgvCodigoRetencionProveedor.Rows[dgvCodigoRetencionProveedor.RowCount - 2]);
-                    dgvCodigoRetencionProveedor.Focus();
-                }
-                catch { }
+                //try
+                //{
+                //    dgvCodigoRetencionProveedor.Rows.Remove(dgvCodigoRetencionProveedor.Rows[dgvCodigoRetencionProveedor.RowCount - 2]);
+                //    dgvCodigoRetencionProveedor.Focus();
+                //}
+                //catch { }
             }
             else if (e.KeyCode == Keys.Escape && Convert.ToString(dgvCodigoRetencionProveedor.CurrentRow.Cells[1].Value) != "")
             {
@@ -823,11 +823,9 @@ namespace Comisariato.Formularios
         {
             if (tabControl1.SelectedIndex == 1)
             {
-                dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.Rows[dgvCodigoRetencionProveedor.Rows.Count - 2].Cells[2];
+                dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.CurrentRow.Cells[2];
                 dgvRetencionFuenteIva.Visible = false;
                 ckbContribuyenteEspecialProveedor.Focus();
-
-        
             }
         }
 
@@ -955,15 +953,57 @@ namespace Comisariato.Formularios
             //    dgvCredito.Visible = false;
             //}
         }
-
-        private void cbCreditoProveedor_Leave(object sender, EventArgs e)
+        //---------------------------------------credito Proveedor -----------------------------------//
+        private void cbCreditoProveedor_MouseLeave(object sender, EventArgs e)
         {
             dgvCredito.Visible = false;
         }
 
-        private void tabPage2_Enter(object sender, EventArgs e)
+        private void dgvCredito_MouseLeave(object sender, EventArgs e)
         {
             dgvCredito.Visible = false;
         }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+        private void dgvCredito_MouseEnter(object sender, EventArgs e)
+        {
+            dgvCredito.Visible = true;
+        }
+        //---------------------------------------ICE-----------------------------------//
+        private void cbICEProveedor_MouseLeave(object sender, EventArgs e)
+        {
+            dgvICE.Visible = false;
+        }
+
+        private void dgvICE_MouseLeave(object sender, EventArgs e)
+        {
+            dgvICE.Visible = false;
+        }
+
+        private void dgvICE_MouseEnter(object sender, EventArgs e)
+        {
+            dgvICE.Visible = true;
+        }
+        //---------------------------------------Codigo 101-----------------------------------//
+        private void cbCodigo101Proveedor_MouseLeave(object sender, EventArgs e)
+        {
+            dgvCodigo101.Visible = false;
+        }
+
+        private void dgvCodigo101_MouseEnter(object sender, EventArgs e)
+        {
+            dgvCodigo101.Visible = true;
+        }
+
+        private void dgvCodigo101_MouseLeave(object sender, EventArgs e)
+        {
+            dgvCodigo101.Visible = false;
+        }
+=======
+>>>>>>> 1a370e9f66ccf8f066683c95f5c3c98b6ca19f96
+>>>>>>> 940e6a3e327637397e11246af0d184038779d60e
+>>>>>>> ac09a09480b149215b85384188d88fc5234637de
     }
 }
