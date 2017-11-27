@@ -927,10 +927,6 @@ namespace Comisariato.Formularios
                 SendKeys.Send("{TAB}");
             }
         }
-<<<<<<< HEAD
-
-=======
->>>>>>> 1a370e9f66ccf8f066683c95f5c3c98b6ca19f96
         private void rbtInactivosProveedor_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -952,8 +948,6 @@ namespace Comisariato.Formularios
             }
         }
 
-<<<<<<< HEAD
-=======
         private void dgvCredito_Leave(object sender, EventArgs e)
         {
             //if(cbCreditoProveedor.Focus() == false)
@@ -971,6 +965,5 @@ namespace Comisariato.Formularios
         {
             dgvCredito.Visible = false;
         }
->>>>>>> 1a370e9f66ccf8f066683c95f5c3c98b6ca19f96
     }
 }
