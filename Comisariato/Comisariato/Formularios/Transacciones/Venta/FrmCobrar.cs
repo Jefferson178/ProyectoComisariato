@@ -155,15 +155,55 @@ namespace Comisariato.Formularios.Transacciones
 
         private void dgvCheque_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            dato =Convert.ToString(dgvCheque.CurrentRow.Cells[e.ColumnIndex].Value);
+            //if (dgvCheque.CurrentCell == this.dgvCheque.CurrentRow.Cells[5])
+            //{
+            //    dgvCheque.Rows[e.RowIndex].Cells[5].Value = Convert.ToDecimal(dgvCheque.Rows[e.RowIndex].Cells[5].Value);
+
+
+            //}
+            //else
+            //{
+
+            dato = Convert.ToString(dgvCheque.CurrentRow.Cells[e.ColumnIndex].Value);
             SendKeys.Send("{UP}");
+                //}
+                //dato = Convert.ToString(dgvCheque.CurrentRow.Cells[e.ColumnIndex].Value);
+                //SendKeys.Send("{UP}");
+           // }
+            
             //SendKeys.Send("{TAB}");
         }
 
         private void dgvTarjeta_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            dato = Convert.ToString(dgvTarjeta.CurrentRow.Cells[e.ColumnIndex].Value);
-            SendKeys.Send("{UP}");
+            //if (dgvTarjeta.CurrentCell == this.dgvTarjeta.CurrentRow.Cells[2])
+            //{
+            //    bool b = true;
+            //    Funcion.ValidaCeldasPrecios(dgvTarjeta, 2, ref b);
+            //    //if (!b)
+            //    //{
+            //        SendKeys.Send("{RIGHT}");
+
+            //    //}
+            //    //else
+            //    //{
+            //    //    txtEfectivo.Focus();
+            //    //}
+
+
+            //}
+            //else
+            //{
+               
+               // {
+                    dato = Convert.ToString(dgvTarjeta.CurrentRow.Cells[e.ColumnIndex].Value);
+                    SendKeys.Send("{UP}");
+                //}
+               
+            //}
+
+            //dato = Convert.ToString(dgvTarjeta.CurrentRow.Cells[e.ColumnIndex].Value);
+            //SendKeys.Send("{UP}");
             // MessageBox.Show("escibiendo...");
         }
 
@@ -278,6 +318,7 @@ namespace Comisariato.Formularios.Transacciones
                             }
                         }
                     }
+                    
                 }
                 catch (Exception)
                 {
@@ -988,7 +1029,9 @@ namespace Comisariato.Formularios.Transacciones
                     {
                         if (dgvCheque.Rows[i].Cells[0].Value!=null)
                         {
-                            totalCheque += Convert.ToSingle(dgvCheque.Rows[i].Cells[5].Value.ToString());
+                            string con =Convert.ToString(dgvCheque.Rows[i].Cells[5].Value);
+                            con = Funcion.reemplazarcaracterViceversa(con);
+                            totalCheque += Convert.ToSingle(con);
                         }
                         else
                         {
@@ -1008,7 +1051,9 @@ namespace Comisariato.Formularios.Transacciones
                     {
                         if (dgvTarjeta.Rows[i].Cells[0].Value != null)
                         {
-                            TotalCredito += Convert.ToSingle(dgvTarjeta.Rows[i].Cells[2].Value.ToString());
+                            string con = Convert.ToString(dgvTarjeta.Rows[i].Cells[2].Value);
+                            con = Funcion.reemplazarcaracterViceversa(con);
+                            TotalCredito += Convert.ToSingle(con);
                         }
                         else
                         {
@@ -1053,7 +1098,9 @@ namespace Comisariato.Formularios.Transacciones
                         {
                             if (dgvTarjeta.Rows[i].Cells[0].Value != null)
                             {
-                                TotalCredito += Convert.ToSingle(dgvTarjeta.Rows[i].Cells[2].Value.ToString());
+                                string con = Convert.ToString(dgvTarjeta.Rows[i].Cells[2].Value);
+                                con = Funcion.reemplazarcaracterViceversa(con);
+                                TotalCredito += Convert.ToSingle(con);
                             }
                             else
                             {
@@ -1094,7 +1141,9 @@ namespace Comisariato.Formularios.Transacciones
                             {
                                 if (dgvCheque.Rows[i].Cells[0].Value != null)
                                 {
-                                    totalCheque += Convert.ToSingle(dgvCheque.Rows[i].Cells[5].Value.ToString());
+                                    string con = Convert.ToString(dgvCheque.Rows[i].Cells[5].Value);
+                                    con = Funcion.reemplazarcaracterViceversa(con);
+                                    totalCheque += Convert.ToSingle(con);
                                 }
                                 else
                                 {
@@ -1133,7 +1182,9 @@ namespace Comisariato.Formularios.Transacciones
                                 {
                                     if (dgvTarjeta.Rows[i].Cells[0].Value != null)
                                     {
-                                        TotalCredito += Convert.ToSingle(dgvTarjeta.Rows[i].Cells[2].Value.ToString());
+                                        string con = Convert.ToString(dgvTarjeta.Rows[i].Cells[2].Value);
+                                        con = Funcion.reemplazarcaracterViceversa(con);
+                                        TotalCredito += Convert.ToSingle(con);
                                     }
                                     else
                                     {
@@ -1151,7 +1202,9 @@ namespace Comisariato.Formularios.Transacciones
                                 {
                                     if (dgvCheque.Rows[i].Cells[0].Value != null)
                                     {
-                                        totalCheque += Convert.ToSingle(dgvCheque.Rows[i].Cells[5].Value.ToString());
+                                        string con = Convert.ToString(dgvCheque.Rows[i].Cells[5].Value);
+                                        con = Funcion.reemplazarcaracterViceversa(con);
+                                        totalCheque += Convert.ToSingle(con);
                                     }
                                     else
                                     {
@@ -1180,7 +1233,9 @@ namespace Comisariato.Formularios.Transacciones
                                 {
                                     if (dgvCheque.Rows[i].Cells[0].Value != null)
                                     {
-                                        totalCheque += Convert.ToSingle(dgvCheque.Rows[i].Cells[5].Value.ToString());
+                                        string con = Convert.ToString(dgvCheque.Rows[i].Cells[5].Value);
+                                        con = Funcion.reemplazarcaracterViceversa(con);
+                                        totalCheque += Convert.ToSingle(con);
                                     }
                                     else
                                     {
@@ -1241,7 +1296,10 @@ namespace Comisariato.Formularios.Transacciones
                                         {
                                             if (dgvTarjeta.Rows[i].Cells[0].Value != null)
                                             {
-                                                TotalCredito += Convert.ToSingle(dgvTarjeta.Rows[i].Cells[2].Value.ToString());
+                                                string con = Convert.ToString(dgvTarjeta.Rows[i].Cells[2].Value);
+                                                con = Funcion.reemplazarcaracterViceversa(con);
+
+                                                TotalCredito += Convert.ToSingle(con);
                                             }
                                             else
                                             {
