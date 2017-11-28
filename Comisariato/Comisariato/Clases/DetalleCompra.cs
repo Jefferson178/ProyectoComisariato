@@ -19,6 +19,9 @@ namespace Comisariato.Clases
         int idEncabezadoCompra;
         float ice;
         float irbp;
+        int serie1;
+        int serie2;
+        int numero;
         public string Codigo
         {
             get
@@ -148,14 +151,53 @@ namespace Comisariato.Clases
             }
         }
 
+        public int Serie1
+        {
+            get
+            {
+                return serie1;
+            }
+
+            set
+            {
+                serie1 = value;
+            }
+        }
+
+        public int Serie2
+        {
+            get
+            {
+                return serie2;
+            }
+
+            set
+            {
+                serie2 = value;
+            }
+        }
+
+        public int Numero
+        {
+            get
+            {
+                return numero;
+            }
+
+            set
+            {
+                numero = value;
+            }
+        }
+
         Consultas ObjConsulta;
         public DetalleCompra()
         {
 
         }
-        public DetalleCompra(float ice, float irbp, int idEncabezadoCompra, string codigo, int cantidad, float precioCompra, float descuento, float precioVentaPublico, float precioMayorista, float precioCajas)
+        public DetalleCompra(float ice, float irbp, string codigo, int cantidad, float precioCompra, float descuento, float precioVentaPublico, float precioMayorista, float precioCajas, int serie1, int serie2, int numero)
         {
-            this.IdEncabezadoCompra = idEncabezadoCompra;
+            //this.IdEncabezadoCompra = idEncabezadoCompra;
             this.Codigo = codigo;
             this.Cantidad = cantidad;
             this.PrecioCompra = precioCompra;
@@ -165,6 +207,9 @@ namespace Comisariato.Clases
             this.PrecioCajas = precioCajas;
             this.Ice = ice;
             this.Irbp = irbp;
+            this.Serie1 = serie1;
+            this.Serie2 = serie2;
+            this.Numero = numero;
         }
         public string InsertarDetalleCompra(DetalleCompra objDetalleCompra)
         {

@@ -1089,16 +1089,19 @@ namespace Comisariato.Clases
                 Objc.conectar();
                 SqlCommand cmd = new SqlCommand("REGISTRAR_DETALLE_COMPRA", ConexionBD.connection);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@IDENCABEZADOCOMPRA", ObjCompra.IdEncabezadoCompra);
+                //cmd.Parameters.AddWithValue("@IDENCABEZADOCOMPRA", ObjCompra.IdEncabezadoCompra);
                 cmd.Parameters.AddWithValue("@CODIGOBARRA", ObjCompra.Codigo.ToUpper());
                 cmd.Parameters.AddWithValue("@CANTIDAD", ObjCompra.Cantidad);
-                cmd.Parameters.AddWithValue("@PRECIOCOMPRA", ObjCompra.PrecioCompra);
-                cmd.Parameters.AddWithValue("@DESCUENTO", ObjCompra.Descuento);
-                cmd.Parameters.AddWithValue("@PRECIOVENTAPUBLICO", ObjCompra.PrecioVentaPublico);
-                cmd.Parameters.AddWithValue("@PRECIOMAYORISTA", ObjCompra.PrecioMayorista);
-                cmd.Parameters.AddWithValue("@PRECIOCAJAS", ObjCompra.PrecioCajas);
-                cmd.Parameters.AddWithValue("@ICE", ObjCompra.Ice);
-                cmd.Parameters.AddWithValue("@IRBP", ObjCompra.Irbp);
+                cmd.Parameters.AddWithValue("@PRECIOCOMPRA", Funcion.reemplazarcaracter(ObjCompra.PrecioCompra.ToString()));
+                cmd.Parameters.AddWithValue("@DESCUENTO", Funcion.reemplazarcaracter(ObjCompra.Descuento.ToString()));
+                cmd.Parameters.AddWithValue("@PRECIOVENTAPUBLICO", Funcion.reemplazarcaracter(ObjCompra.PrecioVentaPublico.ToString()));
+                cmd.Parameters.AddWithValue("@PRECIOMAYORISTA", Funcion.reemplazarcaracter(ObjCompra.PrecioMayorista.ToString()));
+                cmd.Parameters.AddWithValue("@PRECIOCAJAS", Funcion.reemplazarcaracter(ObjCompra.PrecioCajas.ToString()));
+                cmd.Parameters.AddWithValue("@ICE", Funcion.reemplazarcaracter(ObjCompra.Ice.ToString()));
+                cmd.Parameters.AddWithValue("@IRBP", Funcion.reemplazarcaracter(ObjCompra.Irbp.ToString()));
+                cmd.Parameters.AddWithValue("@SERIE1", ObjCompra.Serie1);
+                cmd.Parameters.AddWithValue("@SERIE2", ObjCompra.Serie2);
+                cmd.Parameters.AddWithValue("@NUMERO", ObjCompra.Numero);
                 int result = cmd.ExecuteNonQuery();
                 Objc.Cerrar();
                 if (result > 0)
