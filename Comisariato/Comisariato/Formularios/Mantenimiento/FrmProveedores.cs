@@ -963,9 +963,6 @@ namespace Comisariato.Formularios
         {
             dgvCredito.Visible = false;
         }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
         private void dgvCredito_MouseEnter(object sender, EventArgs e)
         {
@@ -1001,9 +998,5 @@ namespace Comisariato.Formularios
         {
             dgvCodigo101.Visible = false;
         }
-=======
->>>>>>> 1a370e9f66ccf8f066683c95f5c3c98b6ca19f96
->>>>>>> 940e6a3e327637397e11246af0d184038779d60e
->>>>>>> ac09a09480b149215b85384188d88fc5234637de
     }
 }
