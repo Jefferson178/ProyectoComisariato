@@ -1,4 +1,5 @@
 ﻿using Comisariato.Clases;
+using Comisariato.Formularios.Transacciones;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -141,6 +142,13 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                                 dgvProductosIngresos.Rows.Clear();
                                 txtOrdenCompra.Text = Convert.ToString(ordenNumero + 1);
                                 incializar();
+                                if (MessageBox.Show("¿Desea ingresar la orden de giro?", "CONFIRMACIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                {
+                                    FrmOrdenDeGiro frmOrdenDeGiro = new FrmOrdenDeGiro();
+                                    Program.FormularioLlamado = true;
+                                    objFuncion.AddFormInPanel(frmOrdenDeGiro, Program.panelPrincipalVariable);
+                                    //consultas.BoolLlenarComboBox(cbProveedor, "select IDPROVEEDOR AS Id, NOMBRES AS Texto from TbProveedor");
+                                }
                             }
                             else if (resultadoEncabezado == "Error al Registrar Encabezado") { MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                             else if (resultadoEncabezado == "Existe") { MessageBox.Show("Ya Existe el Empleado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }
