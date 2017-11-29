@@ -1567,13 +1567,13 @@ namespace Comisariato.Formularios.Transacciones
 
         private void grabarfact()
         {
-            if (Convert.ToSingle(lblTotalPagar.Text) >= 200 && txtIdentidicacion.Text == "9999999999999")
-            {
-                MessageBox.Show("Factura obligatoria con datos.");
-                rdbFacturaDatos.Checked = true;
-            }
-            else
-            {
+            //if (Convert.ToSingle(lblTotalPagar.Text) >= 200 && txtIdentidicacion.Text == "9999999999999")
+            //{
+            //    MessageBox.Show("Factura obligatoria con datos.");
+            //    rdbFacturaDatos.Checked = true;
+            //}
+            //else
+            //{
                 Program.em = new EmcabezadoFactura();
                 Program.em.Sucursal = int.Parse(txtSucursal.Text);
                 //Program.em.Descuento = Convert.ToSingle(txtDescuento.Text);
@@ -1607,7 +1607,7 @@ namespace Comisariato.Formularios.Transacciones
                 frmcobrar.ivas = Ivas;
                 frmcobrar.ShowDialog();
                 //nuevafact();
-            }
+            //}
 
         }
 

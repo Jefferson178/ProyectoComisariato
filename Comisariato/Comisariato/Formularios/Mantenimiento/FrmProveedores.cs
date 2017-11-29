@@ -925,10 +925,7 @@ namespace Comisariato.Formularios
                 SendKeys.Send("{TAB}");
             }
         }
-<<<<<<< HEAD
-=======
 
->>>>>>> 909d3870a461bb7e291af550178de2e94af9b3ed
         private void rbtInactivosProveedor_CheckedChanged(object sender, EventArgs e)
         {
 
