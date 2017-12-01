@@ -1274,8 +1274,10 @@ namespace Comisariato.Formularios.Transacciones
                                     {
                                         r = "0";
                                     }
-                                        reci = Convert.ToSingle(Funcion.reemplazarcaracterViceversa(r));
-                                        float cambio = Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtTotalPagar.Text)) - reci;
+                                        reci = Convert.ToSingle(Funcion.reemplazarcaracter(r));
+                                        //string prueba = Funcion.reemplazarcaracterViceversa(txtTotalPagar.Text);
+                                      float tpagar=Convert.ToSingle(Funcion.reemplazarcaracter(txtTotalPagar.Text));
+                                        float cambio = tpagar - reci;
                                         if (cambio < 0)
                                         {
                                             cambio *= -1;
