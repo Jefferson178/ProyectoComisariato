@@ -35,7 +35,7 @@ namespace Comisariato.Formularios.Transacciones
         private void FrmCobrar_Load(object sender, EventArgs e)
         {
             txtEfectivo.Focus();
-            txtTotalPagar.Text = total.ToString("#####0.00");
+            txtTotalPagar.Text = ""+total;
             dgvTarjeta.Enabled = false;
             dgvCheque.Enabled = false;
             txtRecibido.Text = "0.00";
