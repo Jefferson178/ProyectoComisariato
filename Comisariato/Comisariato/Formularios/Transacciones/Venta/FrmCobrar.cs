@@ -35,7 +35,7 @@ namespace Comisariato.Formularios.Transacciones
         private void FrmCobrar_Load(object sender, EventArgs e)
         {
             txtEfectivo.Focus();
-            txtTotalPagar.Text = total.ToString("#####0.00");
+            txtTotalPagar.Text = Funcion.reemplazarcaracter(total.ToString("#####0.00"));
             dgvTarjeta.Enabled = false;
             dgvCheque.Enabled = false;
             txtRecibido.Text = "0.00";
@@ -1068,7 +1068,7 @@ namespace Comisariato.Formularios.Transacciones
 
                 if (txtEfectivo.Text != "")
                 {
-                    suma = TotalCredito + Convert.ToSingle(txtEfectivo.Text)+totalCheque;
+                    suma = TotalCredito + Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtEfectivo.Text))+totalCheque;
                 }
                 else
                 {
@@ -1076,7 +1076,7 @@ namespace Comisariato.Formularios.Transacciones
                 }
 
                 txtRecibido.Text= suma.ToString("#####0.00");
-                float cambio = Convert.ToSingle(txtRecibido.Text)- Convert.ToSingle(txtTotalPagar.Text);
+                float cambio = Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtRecibido.Text))- Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtTotalPagar.Text));
 
                 if (cambio<0)
                 {
@@ -1111,13 +1111,13 @@ namespace Comisariato.Formularios.Transacciones
                     }
                     if (txtEfectivo.Text!="")
                     {
-                        suma = TotalCredito + Convert.ToSingle(txtEfectivo.Text);
+                        suma = TotalCredito + Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtEfectivo.Text));
                     }
                     else
                     {
                         suma = TotalCredito +0;
                     }
-                    cambio = suma -Convert.ToSingle( txtTotalPagar.Text);
+                    cambio = suma -Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtTotalPagar.Text));
                     if (cambio<0)
                     {
                         cambio *= -1;
@@ -1154,13 +1154,13 @@ namespace Comisariato.Formularios.Transacciones
 
                         if (txtEfectivo.Text != "")
                         {
-                            suma = totalCheque + Convert.ToSingle(txtEfectivo.Text);
+                            suma = totalCheque + Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtEfectivo.Text));
                         }
                         else
                         {
                             suma = totalCheque + 0;
                         }
-                        cambio = suma - Convert.ToSingle(txtTotalPagar.Text);
+                        cambio = suma - Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtTotalPagar.Text));
                         if (cambio<0)
                         {
                             cambio *= -1;
@@ -1216,7 +1216,7 @@ namespace Comisariato.Formularios.Transacciones
                             txtCheque.Text = "" + totalCheque.ToString("#####0.00");
 
                             float r = TotalCredito + totalCheque;
-                            float cam = r - Convert.ToSingle(txtTotalPagar.Text);
+                            float cam = r - Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtTotalPagar.Text));
                             if (cam<0)
                             {
                                 cam *= -1;
@@ -1248,7 +1248,7 @@ namespace Comisariato.Formularios.Transacciones
                                 //{
 
                                    // reci = Convert.ToSingle(txtCheque.Text);
-                                    float cambio = totalCheque - Convert.ToSingle(txtTotalPagar.Text);
+                                    float cambio = totalCheque - Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtTotalPagar.Text));
                                     if (cambio < 0)
                                     {
                                         cambio *= -1;
@@ -1261,7 +1261,7 @@ namespace Comisariato.Formularios.Transacciones
                             {
                                 if (ckbEfectivo.Checked)
                                 {
-                                    float reci = 0.0f;
+                                    float reci = 0;
                                     string r = "";
                                    
                                     //if (Convert.ToSingle(r) >= total)
@@ -1274,13 +1274,15 @@ namespace Comisariato.Formularios.Transacciones
                                     {
                                         r = "0";
                                     }
-                                        reci = Convert.ToSingle(r);
-                                        float cambio = Convert.ToSingle(txtTotalPagar.Text) - reci;
+                                        reci = Convert.ToSingle(Funcion.reemplazarcaracterViceversa(r));
+                                        //string prueba = Funcion.reemplazarcaracter(txtTotalPagar.Text);
+                                        float tpagar=Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtTotalPagar.Text));
+                                        float cambio = tpagar - reci;
                                         if (cambio < 0)
                                         {
                                             cambio *= -1;
                                         }
-                                        txtCambio.Text = cambio.ToString("#####0.00");
+                                        txtCambio.Text = Funcion.reemplazarcaracter(cambio.ToString("#####0.00"));
                                     //}
                                     //else
                                     //{
@@ -1297,7 +1299,7 @@ namespace Comisariato.Formularios.Transacciones
                                             if (dgvTarjeta.Rows[i].Cells[0].Value != null)
                                             {
                                                 string con = Convert.ToString(dgvTarjeta.Rows[i].Cells[2].Value);
-                                                con = Funcion.reemplazarcaracterViceversa(con);
+                                                con = Funcion.reemplazarcaracter(con);
 
                                                 TotalCredito += Convert.ToSingle(con);
                                             }
@@ -1309,7 +1311,7 @@ namespace Comisariato.Formularios.Transacciones
                                         }
                                        
                                         txtCredito.Text = "" + TotalCredito.ToString("#####0.00");
-                                        float cambio = TotalCredito - Convert.ToSingle(txtTotalPagar.Text);
+                                        float cambio = TotalCredito - Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtTotalPagar.Text));
                                         if (cambio < 0)
                                         {
                                             cambio *= -1;
