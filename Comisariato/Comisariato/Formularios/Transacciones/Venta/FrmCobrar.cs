@@ -35,7 +35,7 @@ namespace Comisariato.Formularios.Transacciones
         private void FrmCobrar_Load(object sender, EventArgs e)
         {
             txtEfectivo.Focus();
-            txtTotalPagar.Text = total.ToString("#####0.00");
+            txtTotalPagar.Text = Funcion.reemplazarcaracter(total.ToString("#####0.00"));
             dgvTarjeta.Enabled = false;
             dgvCheque.Enabled = false;
             txtRecibido.Text = "0.00";
@@ -1276,7 +1276,7 @@ namespace Comisariato.Formularios.Transacciones
                                     }
                                         reci = Convert.ToSingle(Funcion.reemplazarcaracterViceversa(r));
                                         //string prueba = Funcion.reemplazarcaracter(txtTotalPagar.Text);
-                                      float tpagar=Convert.ToSingle(txtTotalPagar.Text);
+                                        float tpagar=Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtTotalPagar.Text));
                                         float cambio = tpagar - reci;
                                         if (cambio < 0)
                                         {
