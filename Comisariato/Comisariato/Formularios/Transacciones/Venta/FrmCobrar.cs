@@ -1261,7 +1261,7 @@ namespace Comisariato.Formularios.Transacciones
                             {
                                 if (ckbEfectivo.Checked)
                                 {
-                                    float reci = 0.0f;
+                                    float reci = 0;
                                     string r = "";
                                    
                                     //if (Convert.ToSingle(r) >= total)
@@ -1274,9 +1274,9 @@ namespace Comisariato.Formularios.Transacciones
                                     {
                                         r = "0";
                                     }
-                                        reci = Convert.ToSingle(Funcion.reemplazarcaracter(r));
-                                        //string prueba = Funcion.reemplazarcaracterViceversa(txtTotalPagar.Text);
-                                      float tpagar=Convert.ToSingle(Funcion.reemplazarcaracter(txtTotalPagar.Text));
+                                        reci = Convert.ToSingle(Funcion.reemplazarcaracterViceversa(r));
+                                        //string prueba = Funcion.reemplazarcaracter(txtTotalPagar.Text);
+                                      float tpagar=Convert.ToSingle(txtTotalPagar.Text);
                                         float cambio = tpagar - reci;
                                         if (cambio < 0)
                                         {
