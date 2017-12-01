@@ -1299,7 +1299,7 @@ namespace Comisariato.Formularios.Transacciones
                                             if (dgvTarjeta.Rows[i].Cells[0].Value != null)
                                             {
                                                 string con = Convert.ToString(dgvTarjeta.Rows[i].Cells[2].Value);
-                                                con = Funcion.reemplazarcaracterViceversa(con);
+                                                con = Funcion.reemplazarcaracter(con);
 
                                                 TotalCredito += Convert.ToSingle(con);
                                             }
