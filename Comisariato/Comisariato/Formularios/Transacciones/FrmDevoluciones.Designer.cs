@@ -45,6 +45,7 @@
             this.PRECIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IVA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Anular = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -155,7 +156,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(329, 20);
+            this.label4.Location = new System.Drawing.Point(369, 20);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(165, 23);
             this.label4.TabIndex = 4;
@@ -174,48 +175,62 @@
             this.PRECIO,
             this.IVA,
             this.TOTAL,
+            this.Column1,
             this.Anular});
             this.DgvDetalleFact.Location = new System.Drawing.Point(53, 171);
             this.DgvDetalleFact.Name = "DgvDetalleFact";
-            this.DgvDetalleFact.Size = new System.Drawing.Size(747, 363);
+            this.DgvDetalleFact.Size = new System.Drawing.Size(775, 363);
             this.DgvDetalleFact.TabIndex = 5;
             this.DgvDetalleFact.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDetalleFact_CellClick);
+            this.DgvDetalleFact.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDetalleFact_CellEndEdit);
             // 
             // CODIGO
             // 
             this.CODIGO.HeaderText = "Codigo";
             this.CODIGO.Name = "CODIGO";
-            this.CODIGO.Width = 150;
+            this.CODIGO.ReadOnly = true;
+            this.CODIGO.Width = 120;
             // 
             // DETALLE
             // 
             this.DETALLE.HeaderText = "Detalle";
             this.DETALLE.Name = "DETALLE";
-            this.DETALLE.Width = 175;
+            this.DETALLE.ReadOnly = true;
+            this.DETALLE.Width = 150;
             // 
             // CANTIDAD
             // 
             this.CANTIDAD.HeaderText = "Cantidad";
             this.CANTIDAD.Name = "CANTIDAD";
+            this.CANTIDAD.ReadOnly = true;
             this.CANTIDAD.Width = 80;
             // 
             // PRECIO
             // 
             this.PRECIO.HeaderText = "Precio";
             this.PRECIO.Name = "PRECIO";
+            this.PRECIO.ReadOnly = true;
             this.PRECIO.Width = 80;
             // 
             // IVA
             // 
             this.IVA.HeaderText = "Iva";
             this.IVA.Name = "IVA";
+            this.IVA.ReadOnly = true;
             this.IVA.Width = 80;
             // 
             // TOTAL
             // 
             this.TOTAL.HeaderText = "Total";
             this.TOTAL.Name = "TOTAL";
+            this.TOTAL.ReadOnly = true;
             this.TOTAL.Width = 80;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Cant. Devolver";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 80;
             // 
             // Anular
             // 
@@ -227,7 +242,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(685, 598);
+            this.button1.Location = new System.Drawing.Point(731, 598);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(97, 38);
             this.button1.TabIndex = 6;
@@ -248,7 +263,7 @@
             // txtTotalFactura
             // 
             this.txtTotalFactura.Enabled = false;
-            this.txtTotalFactura.Location = new System.Drawing.Point(449, 552);
+            this.txtTotalFactura.Location = new System.Drawing.Point(494, 552);
             this.txtTotalFactura.Name = "txtTotalFactura";
             this.txtTotalFactura.Size = new System.Drawing.Size(100, 20);
             this.txtTotalFactura.TabIndex = 8;
@@ -256,7 +271,7 @@
             // txtTotalDevolucion
             // 
             this.txtTotalDevolucion.Enabled = false;
-            this.txtTotalDevolucion.Location = new System.Drawing.Point(680, 552);
+            this.txtTotalDevolucion.Location = new System.Drawing.Point(725, 552);
             this.txtTotalDevolucion.Name = "txtTotalDevolucion";
             this.txtTotalDevolucion.Size = new System.Drawing.Size(100, 20);
             this.txtTotalDevolucion.TabIndex = 9;
@@ -264,7 +279,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(588, 555);
+            this.label5.Location = new System.Drawing.Point(633, 555);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(91, 13);
             this.label5.TabIndex = 10;
@@ -273,7 +288,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(376, 555);
+            this.label6.Location = new System.Drawing.Point(421, 555);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(73, 13);
             this.label6.TabIndex = 11;
@@ -283,7 +298,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(839, 665);
+            this.BackColor = System.Drawing.Color.Bisque;
+            this.ClientSize = new System.Drawing.Size(873, 665);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtTotalDevolucion);
@@ -293,10 +309,9 @@
             this.Controls.Add(this.DgvDetalleFact);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(855, 704);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(855, 704);
             this.Name = "FrmDevolucionVenta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Devoluciones";
@@ -333,6 +348,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PRECIO;
         private System.Windows.Forms.DataGridViewTextBoxColumn IVA;
         private System.Windows.Forms.DataGridViewTextBoxColumn TOTAL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Anular;
     }
 }

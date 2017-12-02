@@ -38,7 +38,7 @@ namespace Comisariato.Formularios.Transacciones
                     lbltitulo.Text = "Consulta de Datos.";
                     gbDatosCliente.Visible = false;
                     gbBuscar.Visible = true;
-                    ObjConsul.boolLlenarDataGridView(dgvDatosUsuario, "Select tbCliente.IDENTIFICACION, tbCliente.NOMBRES, tbCliente.APELLIDOS, tbCliente.EMAIL, tbCliente.RAZONSOCIAL, tbCliente.DIRECCION from tbCliente;");
+                    ObjConsul.boolLlenarDataGridView(dgvDatosUsuario, "Select tbCliente.IDENTIFICACION, tbCliente.NOMBRES, tbCliente.APELLIDOS, tbCliente.EMAIL, tbCliente.RAZONSOCIAL, tbCliente.DIRECCION,tbCliente.IDCLIENTE from tbCliente;");
                     this.Size = new Size(804, 540);
                     lbltitulo.Left = (this.Width - lbltitulo.Width) / 2;
                     TxtConsulta.Focus();
@@ -81,7 +81,7 @@ namespace Comisariato.Formularios.Transacciones
             FrmFactura.verificadorfrm = 0;
             FrmFactura.DatosCliente.Add(dgvDatosUsuario.CurrentRow.Cells[0].Value.ToString());
             FrmFactura.DatosCliente.Add(dgvDatosUsuario.CurrentRow.Cells[1].Value.ToString() + " " + dgvDatosUsuario.CurrentRow.Cells[2].Value.ToString());
-
+            FrmFactura.DatosCliente.Add(dgvDatosUsuario.CurrentRow.Cells[6].Value.ToString());
             this.Close();
         }
 
@@ -95,7 +95,7 @@ namespace Comisariato.Formularios.Transacciones
             FrmFactura.verificadorfrm = 0;
             FrmFactura.DatosCliente.Add(dgvDatosUsuario.CurrentRow.Cells[0].Value.ToString());
             FrmFactura.DatosCliente.Add(dgvDatosUsuario.CurrentRow.Cells[1].Value.ToString() + " " + dgvDatosUsuario.CurrentRow.Cells[2].Value.ToString());
-
+            FrmFactura.DatosCliente.Add(dgvDatosUsuario.CurrentRow.Cells[6].Value.ToString());
             this.Close();
         }
 
@@ -127,6 +127,7 @@ namespace Comisariato.Formularios.Transacciones
                             FrmFactura.verificadorfrm = 0;
                             FrmFactura.DatosCliente.Add(dgvDatosUsuario.CurrentRow.Cells[0].Value.ToString());
                             FrmFactura.DatosCliente.Add(dgvDatosUsuario.CurrentRow.Cells[1].Value.ToString() + " " + dgvDatosUsuario.CurrentRow.Cells[2].Value.ToString());
+                            FrmFactura.DatosCliente.Add(dgvDatosUsuario.CurrentRow.Cells[6].Value.ToString());
                             this.Close();
                         }
                         catch (Exception)

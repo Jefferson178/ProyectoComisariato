@@ -112,6 +112,28 @@ namespace Comisariato.Clases
                 //throw;
             }
         }
+        public void BoolLlenarComboBoxDgv(DataGridViewComboBoxColumn cb, String SQL)
+        {
+            try
+            {
+                Objc.conectar();
+                SqlDataAdapter objDA;
+                SqlCommand cmd = new SqlCommand(SQL, ConexionBD.connection);
+                objDA = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                objDA.Fill(dt);
+                Objc.Cerrar();
+                cb.DisplayMember = "Texto";
+                cb.ValueMember = "ID";
+                cb.DataSource = dt;
+                objDA.Dispose();
+            }
+            catch (Exception e)
+            {
+                //MessageBox.Show(""+e.Message);
+                //throw;
+            }
+        }
         public void BoolLlenarCheckListBox(CheckedListBox chkl, String SQL)
         {
             //Consulta a la Bases de Datos
@@ -302,6 +324,7 @@ namespace Comisariato.Clases
                     cmd.Parameters.AddWithValue("@estado", 1);
                     cmd.Parameters.AddWithValue("@ivat", ivas[i]);
                     cmd.Parameters.AddWithValue("@idempresa", idempresa);
+                    cmd.Parameters.AddWithValue("@cantcaja", dg.Rows[i].Cells[8].Value);
                     result = cmd.ExecuteNonQuery();
                 }
 
@@ -343,9 +366,9 @@ namespace Comisariato.Clases
                 else
                     return false;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                MessageBox.Show(""+ex.Message);
                 return false;
             }
         }
@@ -401,7 +424,7 @@ namespace Comisariato.Clases
             try
             {
                 Objc.conectar();
-                SqlCommand Sentencia = new SqlCommand("select  P.IVA as IVA, U.ACTIVO, U.NOMBREPRODUCTO as DETALLE, U.CANTIDAD, U.PRECIOPUBLICO_SIN_IVA as PRECIOVENTAPUBLICO, U.IVAESTADO, U.PRECIOALMAYOR_SIN_IVA as PRECIOVENTAMAYORISTA,  U.PRECIOPORCAJA_SIN_IVA as PRECIOVENTACAJA from TbProducto U, TbParametrosFactura P where U.CODIGOBARRA = '" + codigo +"'");
+                SqlCommand Sentencia = new SqlCommand("select U.CAJA, P.IVA as IVA, U.ACTIVO, U.NOMBREPRODUCTO as DETALLE, U.CANTIDAD, U.PRECIOPUBLICO_SIN_IVA as PRECIOVENTAPUBLICO, U.IVAESTADO, U.PRECIOALMAYOR_SIN_IVA as PRECIOVENTAMAYORISTA,  U.PRECIOPORCAJA_SIN_IVA as PRECIOVENTACAJA from TbProducto U, TbParametrosFactura P where U.CODIGOBARRA = '" + codigo +"'");
                     Sentencia.Connection = ConexionBD.connection;
                     SqlDataReader dato = Sentencia.ExecuteReader();
                 if (dato.Read() == true)
@@ -413,7 +436,7 @@ namespace Comisariato.Clases
 
                         //        //producto.Cant = Convert.ToInt32(dato["CANTIDAD"]);
                         producto.Cantidad = Convert.ToInt32(dato["CANTIDAD"]);
-
+                        producto.Caja= Convert.ToInt32(dato["CAJA"]);
                         producto.Preciopublico_sin_iva = Convert.ToSingle(dato["PRECIOVENTAPUBLICO"]);
                         producto.Ivaestado = Convert.ToBoolean(dato["IVAESTADO"]);
                         producto.Iva = Convert.ToInt32(dato["IVA"]);
@@ -475,6 +498,8 @@ namespace Comisariato.Clases
                         producto.Preciopublico_sin_iva = Convert.ToSingle(dato["PRECIOPUBLICO_SIN_IVA"]);
                         producto.Precioalmayor_sin_iva = Convert.ToSingle(dato["PRECIOALMAYOR_SIN_IVA"]);
                         producto.Precioporcaja_sin_iva = Convert.ToSingle(dato["PRECIOPORCAJA_SIN_IVA"]);
+                        producto.Irbp = Convert.ToSingle(dato["IRBP"]);
+                        producto.Ice = Convert.ToSingle(dato["ICE"]);
                     }
                     else
                     {
@@ -568,7 +593,7 @@ namespace Comisariato.Clases
             {
                 List<Producto> lista = new List<Producto>();
                 Objc.conectar();
-                string sql = " SELECT U.PRECIO, U.CANTIDAD, U.CODIGOBARRAPRODUCTO, U.ESTADO, U.IVA, P.NOMBREPRODUCTO, P.IVAESTADO from TbDetalleFactura U INNER JOIN TbProducto P  ON(U.NFACTURA = '" + nfact + "') AND(P.CODIGOBARRA = U.CODIGOBARRAPRODUCTO)";
+                string sql = " SELECT U.PRECIO, U.CANTDEVUELTA, U.CANTIDAD, U.CODIGOBARRAPRODUCTO, U.ESTADO, U.IVA, P.NOMBREPRODUCTO, P.IVAESTADO from TbDetalleFactura U INNER JOIN TbProducto P  ON(U.NFACTURA = '" + nfact + "') AND(P.CODIGOBARRA = U.CODIGOBARRAPRODUCTO)";
                 SqlCommand comando = new SqlCommand(sql);
                 comando.Connection = ConexionBD.connection;
                 SqlDataReader dato = comando.ExecuteReader();
@@ -581,6 +606,7 @@ namespace Comisariato.Clases
                     p.Codigobarra = (String)dato["CODIGOBARRAPRODUCTO"];
                     p.Nombreproducto = (String)dato["NOMBREPRODUCTO"];
                     p.Iva = Convert.ToInt32(dato["IVA"].ToString());
+                    p.Cantidad1= Convert.ToInt32(dato["CANTDEVUELTA"].ToString());
                     if (verimetodo == 1)
                     {
                         lista.Add(p);
@@ -590,7 +616,13 @@ namespace Comisariato.Clases
                         bool b = Convert.ToBoolean(dato["ESTADO"]);
                         if (b)
                         {
-                            lista.Add(p);
+                            int resultado = p.Cantidad - p.Cantidad1;
+                            if (resultado!=0)
+                            {
+                                p.Cantidad = resultado;
+                                lista.Add(p);
+                            }
+                            
                         }
 
                     }
@@ -723,6 +755,7 @@ namespace Comisariato.Clases
             dt.Columns.Add("P. CAJA", typeof(String));
             dt.Columns.Add("ESTADO IVA", typeof(int));
             dt.Columns.Add("IVA", typeof(int));
+            dt.Columns.Add("Cant. Caja", typeof(int));
 
             try
             {
@@ -745,12 +778,12 @@ namespace Comisariato.Clases
                         {
                             v = 1;
                             int iva = int.Parse(dato["IVA"].ToString());
-                            dt.Rows.Add((String)dato["CODIGOBARRA"], (String)dato["DETALLE"], (int)dato["CANTIDAD"], pp.ToString("#####0.00"), pm.ToString("#####0.00"), pc.ToString("#####0.00"), v, iva);
+                            dt.Rows.Add((String)dato["CODIGOBARRA"], (String)dato["DETALLE"], (int)dato["CANTIDAD"], pp.ToString("#####0.00"), pm.ToString("#####0.00"), pc.ToString("#####0.00"), v, iva, (int)dato["CAJA"]);
                         }
                         else
                         {
                             v = 0;
-                            dt.Rows.Add((String)dato["CODIGOBARRA"], (String)dato["DETALLE"], (int)dato["CANTIDAD"], pp.ToString("#####0.00"), pm.ToString("#####0.00"), pc.ToString("#####0.00"), v, 0);
+                            dt.Rows.Add((String)dato["CODIGOBARRA"], (String)dato["DETALLE"], (int)dato["CANTIDAD"], pp.ToString("#####0.00"), pm.ToString("#####0.00"), pc.ToString("#####0.00"), v, 0, (int)dato["CAJA"]);
                         }
                         //dt.Rows.Add((String)dato["CODIGOBARRA"], (String)dato["DETALLE"], (int)dato["CANTIDAD"], pp.ToString("#####0.00"), pm.ToString("#####0.00"), pc.ToString("#####0.00"), v, (int)dato["IVA"]);
 
@@ -1056,16 +1089,19 @@ namespace Comisariato.Clases
                 Objc.conectar();
                 SqlCommand cmd = new SqlCommand("REGISTRAR_DETALLE_COMPRA", ConexionBD.connection);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@IDENCABEZADOCOMPRA", ObjCompra.IdEncabezadoCompra);
+                //cmd.Parameters.AddWithValue("@IDENCABEZADOCOMPRA", ObjCompra.IdEncabezadoCompra);
                 cmd.Parameters.AddWithValue("@CODIGOBARRA", ObjCompra.Codigo.ToUpper());
                 cmd.Parameters.AddWithValue("@CANTIDAD", ObjCompra.Cantidad);
-                cmd.Parameters.AddWithValue("@PRECIOCOMPRA", ObjCompra.PrecioCompra);
-                cmd.Parameters.AddWithValue("@DESCUENTO", ObjCompra.Descuento);
-                cmd.Parameters.AddWithValue("@PRECIOVENTAPUBLICO", ObjCompra.PrecioVentaPublico);
-                cmd.Parameters.AddWithValue("@PRECIOMAYORISTA", ObjCompra.PrecioMayorista);
-                cmd.Parameters.AddWithValue("@PRECIOCAJAS", ObjCompra.PrecioCajas);
-                cmd.Parameters.AddWithValue("@ICE", ObjCompra.Ice);
-                cmd.Parameters.AddWithValue("@IRBP", ObjCompra.Irbp);
+                cmd.Parameters.AddWithValue("@PRECIOCOMPRA", Funcion.reemplazarcaracter(ObjCompra.PrecioCompra.ToString()));
+                cmd.Parameters.AddWithValue("@DESCUENTO", Funcion.reemplazarcaracter(ObjCompra.Descuento.ToString()));
+                cmd.Parameters.AddWithValue("@PRECIOVENTAPUBLICO", Funcion.reemplazarcaracter(ObjCompra.PrecioVentaPublico.ToString()));
+                cmd.Parameters.AddWithValue("@PRECIOMAYORISTA", Funcion.reemplazarcaracter(ObjCompra.PrecioMayorista.ToString()));
+                cmd.Parameters.AddWithValue("@PRECIOCAJAS", Funcion.reemplazarcaracter(ObjCompra.PrecioCajas.ToString()));
+                cmd.Parameters.AddWithValue("@ICE", Funcion.reemplazarcaracter(ObjCompra.Ice.ToString()));
+                cmd.Parameters.AddWithValue("@IRBP", Funcion.reemplazarcaracter(ObjCompra.Irbp.ToString()));
+                cmd.Parameters.AddWithValue("@SERIE1", ObjCompra.Serie1);
+                cmd.Parameters.AddWithValue("@SERIE2", ObjCompra.Serie2);
+                cmd.Parameters.AddWithValue("@NUMERO", ObjCompra.Numero);
                 int result = cmd.ExecuteNonQuery();
                 Objc.Cerrar();
                 if (result > 0)
@@ -1311,7 +1347,32 @@ namespace Comisariato.Clases
                 return false;
             }
         }
+        public int ObtenerCantidadRegistros(String sql)
+        {
+            try
+            {
+                SqlDataAdapter objDA;
+                int valor = 0;
+                DataTable dt = new DataTable();
+                Objc.conectar();
+                string sentencia = sql;
+                objDA = new SqlDataAdapter(sentencia, ConexionBD.connection);
+                objDA.Fill(dt);
+                Objc.Cerrar();
+                objDA.Dispose();
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];
+                    valor = Convert.ToInt32(row["Numeros"]);
+                }
+                return valor;
+            }
+            catch (Exception ex)
+            {
+                return -1;
 
+            }
+        }
 
     }
 }

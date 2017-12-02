@@ -17,7 +17,7 @@ namespace Comisariato.Clases
         //------------------------------Conexion Servidor----------------------------------------//
         //data source = AIRCONTROL, 1433; initial catalog = BDComisariato; user id = COMI; password = server@1;
         //------------------------------Conexion Byron ----------------------------------------//
-        //Data Source = DESKTOP - SI5M9C5; Initial Catalog = BDComisariato; Integrated Security = True
+        //Data Source = DESKTOP-SI5M9C5; Initial Catalog = BDComisariato; Integrated Security = True
 
         public void conectar()
         {

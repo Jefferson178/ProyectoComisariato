@@ -259,7 +259,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
 
         private void txtBuscarProducto_TextChanged(object sender, EventArgs e)
         {
-            objconsul.boolLlenarDataGridView(dgvDatosProductoParaAsignacionBodega, "Select P.IDPRODUCTO, P.CODIGOBARRA as 'Código', P.NOMBREPRODUCTO as 'Nombre',P.CANTIDAD, C.DESCRIPCION as 'Categoria' from TbProducto P inner join TbCategoria C on (C.IDCATEGORIA= P.IDCATEGORIA) where  P.CODIGOBARRA like '%" + txtBuscarProducto.Text + "%' or P.NOMBREPRODUCTO like '%" + txtBuscarProducto.Text + "%' or C.DESCRIPCION like '%" + txtBuscarProducto.Text + "%' and not exists (select * from TbAsignacionProdcutoBodega where TbAsignacionProdcutoBodega.IDPRODUCTO = P.IDPRODUCTO and TbAsignacionProdcutoBodega.ESTADO = 1)");
+            objconsul.boolLlenarDataGridView(dgvDatosProductoParaAsignacionBodega, "Select * from VistaProductosSinAsignarBodega ViewP where ViewP.Codigo like '%" + txtBuscarProducto.Text + "%' or ViewP.Nombre like '%" + txtBuscarProducto.Text + "%' or ViewP.Categoria like '%" + txtBuscarProducto.Text + "%';");
             dgvDatosProductoParaAsignacionBodega.Columns["IDPRODUCTO"].Visible = false;
         }
 
