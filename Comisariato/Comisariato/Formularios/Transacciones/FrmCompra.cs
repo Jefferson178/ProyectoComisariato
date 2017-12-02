@@ -44,7 +44,6 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             txtOrdenCompra.Text = Convert.ToString(ordenCompra);
             datosProductoCompra = dgvProductosIngresos;
             datosProveedor = cbProveedor;
-<<<<<<< HEAD
             txtFlete.Text = "0";
             txtSubtotal.Text = "0.0";
             txtSubtotal0.Text = "0.0";
@@ -53,9 +52,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             txtICE.Text = "0.0";
             txtIRBP.Text = "0.0";
             txtIVA.Text = "0.0";
-=======
             txtFlete.Text = "0.0";
->>>>>>> 2edcc9e8c3bf1d639fca1c876c804b7d839aea5d
             cbTerminoPago.SelectedIndex = 0;
         }
         private void BtnGuardar_Click(object sender, EventArgs e)
@@ -253,106 +250,39 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "codigo")
                 {
                     //---------------Desbloquear Celdas
-<<<<<<< HEAD
-                    for (int i = 0; i < datosProductoCompra.ColumnCount - 3; i++)
+                    if (!validarCodigoRepetido(e))
                     {
-                        datosProductoCompra.CurrentRow.Cells[i].ReadOnly = false;
-                    }
-                    //if(validarCodigoRepetido(e))
-                    objProducto = consultas.ConsultarproductoCompra(Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value));
-                    if (objProducto == null)
-                    {
-                        if (MessageBox.Show("¿Desea agregar el producto?", "CONFIRMACIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        for (int i = 0; i < datosProductoCompra.ColumnCount - 3; i++)
                         {
-                            FrmProductos frmProducto = new FrmProductos();
-                            Program.FormularioLlamado = true;
-                            FrmProductos.codigo = Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value);
-                            objFuncion.AddFormInPanel(frmProducto, Program.panelPrincipalVariable);
+                            datosProductoCompra.CurrentRow.Cells[i].ReadOnly = false;
+                        }
+                        objProducto = consultas.ConsultarproductoCompra(Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value));
+                        if (objProducto == null)
+                        {
+                            if (MessageBox.Show("¿Desea agregar el producto?", "CONFIRMACIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+                                FrmProductos frmProducto = new FrmProductos();
+                                Program.FormularioLlamado = true;
+                                FrmProductos.codigo = Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value);
+                                objFuncion.AddFormInPanel(frmProducto, Program.panelPrincipalVariable);
+                                informacionProducto();
+                                datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
+                            }
+                            else
+                            {
+                                datosProductoCompra.CurrentRow.Cells[0].Value = "";
+                                SendKeys.Send("{LEFT}");
+                                banderaTab = true;
+                            }
+                        }
+                        else
+                        {
+                            tieneIVA = objProducto.Ivaestado;
                             informacionProducto();
-                            datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
-=======
-                    //for (int i = e.RowIndex-1; i >=  -1; i--)
-                    //{
-                    //    if (e.RowIndex > 0)
-                    //    {
-                    //        if (Convert.ToString(datosProductoCompra.Rows[e.RowIndex].Cells[0].Value) == Convert.ToString(datosProductoCompra.Rows[i].Cells[0].Value))
-                    //        {
-                    //            MessageBox.Show("Producto ingresado anteriormente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    //            datosProductoCompra.CurrentRow.Cells[0].Value = "";
-                    //            banderaTab = true;
-                    //            break;
-                    //        }
-                    //        else
-                    //        {
-                                for (int j = 0; j < datosProductoCompra.ColumnCount - 3; j++)
-                                {
-                                    datosProductoCompra.CurrentRow.Cells[j].ReadOnly = false;
-                                }
-                                objProducto = consultas.ConsultarproductoCompra(Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value));
-                                if (objProducto == null)
-                                {
-                                    if (MessageBox.Show("¿Desea agregar el producto?", "CONFIRMACIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                    {
-                                        FrmProductos frmProducto = new FrmProductos();
-                                        Program.FormularioLlamado = true;
-                                        FrmProductos.codigo = Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value);
-                                        objFuncion.AddFormInPanel(frmProducto, Program.panelPrincipalVariable);
-                                        informacionProducto();
-                                        datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
->>>>>>> 2edcc9e8c3bf1d639fca1c876c804b7d839aea5d
-
-                                    }
-                                    else
-                                    {
-                                        datosProductoCompra.CurrentRow.Cells[0].Value = "";
-                                        SendKeys.Send("{LEFT}");
-                                        banderaTab = true;
-                                    }
-                                }
-                                else
-                                {
-                                    tieneIVA = objProducto.Ivaestado;
-                                    informacionProducto();
-                                    SendKeys.Send("{TAB}");
-                                }
-                        //    }
-                        //}
-                        //else
-                        //{
-                        //    for (int j = 0; j < datosProductoCompra.ColumnCount - 3; j++)
-                        //    {
-                        //        datosProductoCompra.CurrentRow.Cells[j].ReadOnly = false;
-                        //    }
-                        //    objProducto = consultas.ConsultarproductoCompra(Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value));
-                        //    if (objProducto == null)
-                        //    {
-                        //        if (MessageBox.Show("¿Desea agregar el producto?", "CONFIRMACIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                        //        {
-                        //            FrmProductos frmProducto = new FrmProductos();
-                        //            Program.FormularioLlamado = true;
-                        //            FrmProductos.codigo = Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value);
-                        //            objFuncion.AddFormInPanel(frmProducto, Program.panelPrincipalVariable);
-                        //            informacionProducto();
-                        //            datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
-
-                        //        }
-                        //        else
-                        //        {
-                        //            datosProductoCompra.CurrentRow.Cells[0].Value = "";
-                        //            SendKeys.Send("{LEFT}");
-                        //            banderaTab = true;
-                        //        }
-                        //    }
-                        //    else
-                        //    {
-                        //        tieneIVA = objProducto.Ivaestado;
-                        //        informacionProducto();
-                        //        SendKeys.Send("{TAB}");
-                        //    }
-                        //}
-
+                            SendKeys.Send("{TAB}");
+                        }
                     }
-                //}
+                }
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "precioCompra")
                 {
                     posicion = 3;
