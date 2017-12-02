@@ -235,12 +235,15 @@ namespace Comisariato.Formularios.Mantenimiento
 
         private void TxtIP_Leave(object sender, EventArgs e)
         {
-            int ocurrenciasPunto = TxtIP.Text.Split('.').Length;
-            if (!Funcion.ValidaIP(TxtIP.Text)  || ocurrenciasPunto <= 3)
+            if (TxtIP.Text != "")
             {
-                MessageBox.Show("Ingrese una Dirección IP Correca", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                TxtIP.Focus();
-                TxtIP.SelectAll();
+                int ocurrenciasPunto = TxtIP.Text.Split('.').Length;
+                if (!Funcion.ValidaIP(TxtIP.Text) || ocurrenciasPunto <= 3)
+                {
+                    MessageBox.Show("Ingrese una Dirección IP Correca", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    TxtIP.Focus();
+                    TxtIP.SelectAll();
+                }
             }
         }
 
