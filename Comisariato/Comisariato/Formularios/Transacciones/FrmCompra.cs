@@ -20,6 +20,9 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         }
         public static DataGridView datosProductoCompra;
         public static ComboBox datosProveedor;
+        Funcion objFuncion = new Funcion();
+        FrmPrincipal objPrincipal = new FrmPrincipal();
+        public static int IDEncabezadoCompraOG = 0;
 
         Consultas consultas;
         EmcabezadoCompra ObjEncabezadoCompra;
@@ -49,6 +52,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             txtIVA.Text = "0.0";
             txtFlete.Text = "0.0";
             cbTerminoPago.SelectedIndex = 0;
+            dgvProductosIngresos.Rows.Clear();
             for (int i = 0; i < 8; i++)
             {
                 dgvProductosIngresos.Rows.Add();
@@ -74,97 +78,139 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             txtOrdenCompra.Text = Convert.ToString(ordenCompra);
             datosProductoCompra = dgvProductosIngresos;
             datosProveedor = cbProveedor;
-            
+            txtFlete.Text = "0";
+            txtSubtotal.Text = "0.0";
+            txtSubtotal0.Text = "0.0";
+            txtSubtutalIVA.Text = "0.0";
+            txtTotal.Text = "0.0";
+            txtICE.Text = "0.0";
+            txtIRBP.Text = "0.0";
+            txtIVA.Text = "0.0";
+            txtFlete.Text = "0.0";
+            cbTerminoPago.SelectedIndex = 0;
         }
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            int cantidadRegistros = consultas.ObtenerCantidadRegistros("select COUNT(*) as Numeros from TbEncabezadoyPieCompra where SERIE1 = " + Convert.ToInt32(txtSerie1.Text) + " and SERIE2 = " + Convert.ToInt32(txtSerie2.Text) + " and NUMERO = " + Convert.ToInt32(txtNumero.Text) + " and IDPROVEEDOR = " + cbProveedor.SelectedValue + "");
-            if (cantidadRegistros == 0)
+            if (/*txtPlazoOC.Text != "" &&*/ txtSerie1.Text != "" && txtSerie2.Text != "" && txtNumero.Text != "")
             {
-                bool dataGridCorrecto = false;
-                for (int i = 0; i < datosProductoCompra.RowCount - 1; i++)
+                bool cantidadRegistros = consultas.Existe("SERIE1 = " + Convert.ToInt32(txtSerie1.Text) + " and SERIE2 = " + Convert.ToInt32(txtSerie2.Text) + " and NUMERO = " + Convert.ToInt32(txtNumero.Text) + " and IDPROVEEDOR", Convert.ToString(cbProveedor.SelectedValue), "TbEncabezadoyPieCompra");
+                if (!cantidadRegistros)
                 {
-                    if (Convert.ToString(datosProductoCompra.Rows[i].Cells[0].Value) != "")
+                    bool dataGridCorrecto = false;
+                    for (int i = 0; i < datosProductoCompra.RowCount - 1; i++)
                     {
-                        for (int j = 1; j < datosProductoCompra.ColumnCount - 3; j++)
+                        if (Convert.ToString(datosProductoCompra.Rows[i].Cells[0].Value) != "")
                         {
-                            if (Convert.ToString(datosProductoCompra.Rows[i].Cells[j].Value) != "")
+                            for (int j = 1; j < datosProductoCompra.ColumnCount - 3; j++)
                             {
-                                dataGridCorrecto = true;
-                            }
-                            else
-                            {
-                                dataGridCorrecto = false;
-                                break;
+                                if (Convert.ToString(datosProductoCompra.Rows[i].Cells[j].Value) != "")
+                                {
+                                    dataGridCorrecto = true;
+                                }
+                                else
+                                {
+                                    dataGridCorrecto = false;
+                                    break;
+                                }
                             }
                         }
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                if (dataGridCorrecto)
-                {
-                    if (MessageBox.Show("¿Desea guaradar la compra?", "CONFIRMACIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        if (/*txtPlazoOC.Text != "" &&*/ txtSerie1.Text != "" && txtSerie2.Text != "" && txtNumero.Text != "")
+                        else
                         {
+                            break;
+                        }
+                    }
+                    if (dataGridCorrecto)
+                    {
+                        if (MessageBox.Show("¿Desea guaradar la compra?", "CONFIRMACIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+
                             int idEncabezadoCompra = 0;
                             ObjEncabezadoCompra = new EmcabezadoCompra(txtSerie1.Text, txtSerie2.Text, txtNumero.Text, sumasubiva, sumasubcero, subtotalPie, totalpagar, txtOrdenCompra.Text,
                                 Convert.ToInt32(cbSucursal.SelectedValue), Convert.ToSingle(txtFlete.Text), dtpFechaOC.Value, Convert.ToInt32(datosProveedor.SelectedValue), cbTerminoPago.Text,
                                 txtPlazoOC.Text, cbImpuesto.Text, txtObservacion.Text, ivatotal, sumaice, sumairbp);
                             //--------------------------------------------------------------------------------
                             //int encabezadoCompra = 0;
+                            String resultadoDetalle = "";
                             String resultadoEncabezado = ObjEncabezadoCompra.InsertarEncabezadoyPieCompra(ObjEncabezadoCompra); // retorna true si esta correcto todo
-                            //consultas.ObtenerIDCompra(ref idEncabezadoCompra, "select IDEMCABEZADOCOMPRA as ID FROM TbEncabezadoyPieCompra where ORDEN_COMPRA_NUMERO = '" + txtOrdenCompra.Text + "'");
-                            for (int i = 0; i < datosProductoCompra.RowCount; i++)
-                            {
-                                ObjDetalleCompra = new DetalleCompra(Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[6].Value.ToString())), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[7].Value.ToString())),
-                                    Convert.ToString(datosProductoCompra.Rows[i].Cells[0].Value), Convert.ToInt32(datosProductoCompra.Rows[i].Cells[2].Value),
-                                    Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[3].Value.ToString())), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[4].Value.ToString())),
-                                    Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[7].Value.ToString())), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[8].Value.ToString())),
-                                    Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[9].Value.ToString())), Convert.ToInt32(txtSerie1.Text), Convert.ToInt32(txtSerie2.Text), Convert.ToInt32(txtNumero.Text));
-                                String resultadoDetalle = ObjDetalleCompra.InsertarDetalleCompra(ObjDetalleCompra);
-                                if (resultadoDetalle == "Datos Guardados")
-                                {
-                                }
-                                else if (resultadoDetalle == "Error al Registrar")
-                                    MessageBox.Show("Error al guardar Producto", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                if (Convert.ToString(datosProductoCompra.Rows[i + 1].Cells[0].Value) == "")
-                                    break;
-                            }
                             if (resultadoEncabezado == "Datos Guardados")
                             {
-                                MessageBox.Show("Compra Registrada Correctamente ", "Exito", MessageBoxButtons.OK);
-                                int ordenNumero = Convert.ToInt32(txtOrdenCompra.Text);
-                                Funcion.Limpiarobjetos(gbEncabezadoCompra);
-                                dgvProductosIngresos.Rows.Clear();
-                                txtOrdenCompra.Text = Convert.ToString(ordenNumero + 1);
-                                incializar();
-                                if (MessageBox.Show("¿Desea ingresar la orden de giro?", "CONFIRMACIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                for (int i = 0; i < datosProductoCompra.RowCount; i++)
                                 {
-                                    FrmOrdenDeGiro frmOrdenDeGiro = new FrmOrdenDeGiro();
-                                    Program.FormularioLlamado = true;
-                                    objFuncion.AddFormInPanel(frmOrdenDeGiro, Program.panelPrincipalVariable);
-                                    //consultas.BoolLlenarComboBox(cbProveedor, "select IDPROVEEDOR AS Id, NOMBRES AS Texto from TbProveedor");
+                                    ObjDetalleCompra = new DetalleCompra(Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[6].Value.ToString())), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[7].Value.ToString())),
+                                        Convert.ToString(datosProductoCompra.Rows[i].Cells[0].Value), Convert.ToInt32(datosProductoCompra.Rows[i].Cells[2].Value),
+                                        Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[3].Value.ToString())), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[4].Value.ToString())),
+                                        Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[7].Value.ToString())), Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[8].Value.ToString())),
+                                        Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.Rows[i].Cells[9].Value.ToString())), Convert.ToInt32(txtSerie1.Text), Convert.ToInt32(txtSerie2.Text), Convert.ToInt32(txtNumero.Text), Convert.ToInt32(cbProveedor.SelectedValue));
+                                    resultadoDetalle = ObjDetalleCompra.InsertarDetalleCompra(ObjDetalleCompra);
+                                    if (Convert.ToString(datosProductoCompra.Rows[i + 1].Cells[0].Value) == "")
+                                        break;
+                                }
+                                if (resultadoDetalle == "Datos Guardados")
+                                {
+                                    MessageBox.Show("Compra Registrada Correctamente ", "Exito", MessageBoxButtons.OK);                                    
+                                    if (MessageBox.Show("¿Desea ingresar la orden de giro?", "CONFIRMACIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        FrmOrdenDeGiro frmOrdenDeGiro = new FrmOrdenDeGiro();
+                                        Program.FormularioLlamado = true;
+                                        string condicion = "where SERIE1 = " + Convert.ToInt32(txtSerie1.Text) + " AND SERIE2 = " + Convert.ToInt32(txtSerie2.Text) + " AND NUMERO = " + Convert.ToInt32(txtNumero.Text) + " AND IDPROVEEDOR = " + Convert.ToInt32(cbProveedor.SelectedValue);
+                                        IDEncabezadoCompraOG = Convert.ToInt32(consultas.ObtenerValorCampo("IDEMCABEZADOCOMPRA", "TbEncabezadoyPieCompra", condicion));
+
+                                        objFuncion.AddFormInPanel(frmOrdenDeGiro, Program.panelPrincipalVariable);
+                                        this.Close();
+                                        //consultas.BoolLlenarComboBox(cbProveedor, "select IDPROVEEDOR AS Id, NOMBRES AS Texto from TbProveedor");
+                                    }
+                                    int ordenNumero = Convert.ToInt32(txtOrdenCompra.Text);
+                                    Funcion.Limpiarobjetos(gbEncabezadoCompra);
+                                    txtOrdenCompra.Text = Convert.ToString(ordenNumero + 1);
+                                    incializar();
+                                }
+                                else if (resultadoDetalle == "Error al Registrar")
+                                {
+                                    MessageBox.Show("Error al guardar Producto", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    try
+                                    {
+                                        int idDetalle = 0, idEncabezado = 0;
+                                        consultas.ObtenerIDCompra(ref idDetalle, "select D.IDENCABEZADOCOMPRA from TbEncabezadoyPieCompra E, TbDetalleCompra D where D.IDENCABEZADOCOMPRA = E.IDEMCABEZADOCOMPRA and E.NUMERO = " + Convert.ToInt32(txtNumero.Text) + " AND E. SERIE1 = " + Convert.ToInt32(txtSerie1.Text) + " AND SERIE2 = " + Convert.ToInt32(txtSerie2.Text) + " AND IDPROVEEDOR = " + Convert.ToInt32(cbProveedor.SelectedValue) + "");
+                                        consultas.EjecutarSQL("DELETE FROM [dbo].[TbDetalleCompra] WHERE IDENCABEZADOCOMPRA = " + idDetalle + "");
+                                        consultas.ObtenerIDCompra(ref idEncabezado, "select E.IDEMCABEZADOCOMPRA from TbEncabezadoyPieCompra E where E.NUMERO = " + Convert.ToInt32(txtNumero.Text) + " AND E. SERIE1 = " + Convert.ToInt32(txtSerie1.Text) + " AND SERIE2 = " + Convert.ToInt32(txtSerie2.Text) + " AND IDPROVEEDOR = " + Convert.ToInt32(cbProveedor.SelectedValue) + "");
+                                        consultas.EjecutarSQL("DELETE FROM [dbo].[TbEncabezadoyPieCompra] WHERE IDEMCABEZADOCOMPRA = " + idEncabezado + "");
+                                    }
+                                    catch (Exception)
+                                    {
+                                        //throw;
+                                    }
+                                }
+                                //    
+
+                            }
+                            else if (resultadoEncabezado == "Error al Registrar Encabezado")
+                            {
+                                try
+                                {
+                                    int idEncabezado = 0;
+                                    MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    consultas.ObtenerIDCompra(ref idEncabezado, "select E.IDEMCABEZADOCOMPRA from TbEncabezadoyPieCompra E where E.NUMERO = " + Convert.ToInt32(txtNumero.Text) + " AND E. SERIE1 = " + Convert.ToInt32(txtSerie1.Text) + " AND SERIE2 = " + Convert.ToInt32(txtSerie2.Text) + " AND IDPROVEEDOR = " + Convert.ToInt32(cbProveedor.SelectedValue) + "");
+                                    consultas.EjecutarSQL("DELETE FROM [dbo].[TbEncabezadoyPieCompra] WHERE IDEMCABEZADOCOMPRA = " + idEncabezado + "");
+                                }
+                                catch (Exception)
+                                {
+                                    //throw;
                                 }
                             }
-                            else if (resultadoEncabezado == "Error al Registrar Encabezado") { MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-                            else if (resultadoEncabezado == "Existe") { MessageBox.Show("Ya Existe el Empleado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+                            else if (resultadoEncabezado == "Existe") { MessageBox.Show("Ya Existe", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }                            
                         }
-                        else
-                            MessageBox.Show("Ingrese los datos necesarios.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Uno o mas campos en el detalle de la compra estan vacíos");
+                        dgvProductosIngresos.Focus();
                     }
                 }
                 else
-                {
-                    MessageBox.Show("Uno o mas campos en el detalle de la compra estan vacíos");
-                    dgvProductosIngresos.Focus();
-                }
+                    MessageBox.Show("El numero de factura del proveedor seleccionado ya existe.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
-                MessageBox.Show("El numero de factura del proveedor seleccionado ya existe.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ingrese los datos necesarios.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }        
         
         public void informacionProducto()
@@ -247,6 +293,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             {
                 if (datosProductoCompra.Columns[e.ColumnIndex].Name == "codigo")
                 {
+                    //---------------Desbloquear Celdas
                     if (!validarCodigoRepetido(e))
                     {
                         //---------------Desbloquear Celdas
@@ -272,12 +319,13 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                                 SendKeys.Send("{LEFT}");
                                 banderaTab = true;
                             }
+                            datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[1];
                         }
                         else
                         {
                             tieneIVA = objProducto.Ivaestado;
                             informacionProducto();
-                            datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[1];
+                            SendKeys.Send("{TAB}");
                         }
                     }
                     else
@@ -467,8 +515,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 SendKeys.Send("{TAB}");
             }
         }
-        Funcion objFuncion = new Funcion();
-        FrmPrincipal objPrincipal = new FrmPrincipal();
+        
         private void btnProveedor_Click(object sender, EventArgs e)
         {
             FrmProveedores frmProveedor = new FrmProveedores();

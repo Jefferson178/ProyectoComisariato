@@ -1,4 +1,5 @@
 ﻿using Comisariato.Clases;
+using Comisariato.Formularios.Mantenimiento.Inventario;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,10 +24,12 @@ namespace Comisariato.Formularios.Transacciones
         private void FrmOrdenDeGiro_Load(object sender, EventArgs e)
         {
 
-            ObjConsul.BoolLlenarComboBox(cbCuentaDeudoraCero, "select IdctaCble AS ID, '[' +IdctaCble +']' + ' ' + pc_Cuenta AS Texto FROM dbo.TbPlanCuenta");
-            ObjConsul.BoolLlenarComboBox(cbCuentaDeudora12, "select IdctaCble AS ID, '[' +IdctaCble +']' + ' ' + pc_Cuenta AS Texto FROM dbo.TbPlanCuenta");
-            ObjConsul.BoolLlenarComboBox(cbCuentaDeudoraIRBP, "select IdctaCble AS ID, '[' +IdctaCble +']' + ' ' + pc_Cuenta AS Texto FROM dbo.TbPlanCuenta");
-            ObjConsul.BoolLlenarComboBox(cbIvaPagar, "select IdctaCble AS ID, '[' +IdctaCble +']' + ' ' + pc_Cuenta AS Texto FROM dbo.TbPlanCuenta");
+            ObjConsul.BoolLlenarComboBox(cbCuentaDeudoraCero, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta");
+            cbCuentaDeudoraCero.SelectedValue = 26;
+            ObjConsul.BoolLlenarComboBox(cbCuentaDeudora12, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta");
+            cbCuentaDeudora12.SelectedValue = 27;
+            ObjConsul.BoolLlenarComboBox(cbCuentaDeudoraIRBP, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta");
+            ObjConsul.BoolLlenarComboBox(cbIvaPagar, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta");
             for (int i = 0; i < 7; i++)
             {
                 dgvDatosLibroDiario.Rows.Add();
@@ -55,6 +58,14 @@ namespace Comisariato.Formularios.Transacciones
             CmbTipoDocumento.DropDownHeight = CmbTipoDocumento.ItemHeight = 100;
 
             CmbTipo.SelectedIndex = 0;
+
+            if (Program.FormularioLlamado)
+            {
+                //FrmCompra.IDEncabezadoCompraOG;
+                ObjConsul.BoolLlenarComboBox(CmbProveedor, "Select P.NOMBRES from TbProveedor P , TbEncabezadoyPieCompra E where E.IDPROVEEDOR = P.IDPROVEEDOR and E.IDEMCABEZADOCOMPRA = " + FrmCompra.IDEncabezadoCompraOG + "");
+                ObjConsul.BoolLlenarComboBox(CmbProveedor, "Select C.DESCRIPCION from TbProveedor P, TbCodigoSRI C  where  P.CREDITO = C.IDCODIGOSRI and  P.IDPROVEEDOR = "+ Convert.ToInt32(CmbProveedor.SelectedValue) +"");
+
+            }
 
         }
         

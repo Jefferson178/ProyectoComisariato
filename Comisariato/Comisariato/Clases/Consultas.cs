@@ -1102,6 +1102,7 @@ namespace Comisariato.Clases
                 cmd.Parameters.AddWithValue("@SERIE1", ObjCompra.Serie1);
                 cmd.Parameters.AddWithValue("@SERIE2", ObjCompra.Serie2);
                 cmd.Parameters.AddWithValue("@NUMERO", ObjCompra.Numero);
+                cmd.Parameters.AddWithValue("@PROVEEDOR", ObjCompra.Proveedor);
                 int result = cmd.ExecuteNonQuery();
                 Objc.Cerrar();
                 if (result > 0)
