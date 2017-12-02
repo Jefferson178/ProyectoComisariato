@@ -1374,6 +1374,34 @@ namespace Comisariato.Clases
 
             }
         }
+        public SqlDataReader obtenerDatos(string SQL)
+        {
+            //Producto producto = new Producto();
+            SqlDataReader dato = null;
+            try
+            {
+                Objc.conectar();
+                SqlCommand Sentencia = new SqlCommand(SQL);
+                Sentencia.Connection = ConexionBD.connection;
+                dato = Sentencia.ExecuteReader();
+                if (dato.Read() == true)
+                {
+                    return dato;
+                }
+                else
+                {
+                    dato = null;
+                    MessageBox.Show("No se encontró ningun producto con ese codigo.");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            Objc.Cerrar();
+            return dato;            
+        }
 
     }
 }

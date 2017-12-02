@@ -23,6 +23,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         Funcion objFuncion = new Funcion();
         FrmPrincipal objPrincipal = new FrmPrincipal();
         public static int IDEncabezadoCompraOG = 0;
+        public static string IVA = "";
 
         Consultas consultas;
         EmcabezadoCompra ObjEncabezadoCompra;
@@ -147,22 +148,25 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                                 }
                                 if (resultadoDetalle == "Datos Guardados")
                                 {
-                                    MessageBox.Show("Compra Registrada Correctamente ", "Exito", MessageBoxButtons.OK);                                    
+                                    MessageBox.Show("Compra Registrada Correctamente ", "Exito", MessageBoxButtons.OK);
                                     if (MessageBox.Show("¿Desea ingresar la orden de giro?", "CONFIRMACIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                     {
                                         FrmOrdenDeGiro frmOrdenDeGiro = new FrmOrdenDeGiro();
                                         Program.FormularioLlamado = true;
+
+                                        IVA = cbImpuesto.Text;
                                         string condicion = "where SERIE1 = " + Convert.ToInt32(txtSerie1.Text) + " AND SERIE2 = " + Convert.ToInt32(txtSerie2.Text) + " AND NUMERO = " + Convert.ToInt32(txtNumero.Text) + " AND IDPROVEEDOR = " + Convert.ToInt32(cbProveedor.SelectedValue);
                                         IDEncabezadoCompraOG = Convert.ToInt32(consultas.ObtenerValorCampo("IDEMCABEZADOCOMPRA", "TbEncabezadoyPieCompra", condicion));
-
                                         objFuncion.AddFormInPanel(frmOrdenDeGiro, Program.panelPrincipalVariable);
-                                        this.Close();
                                         //consultas.BoolLlenarComboBox(cbProveedor, "select IDPROVEEDOR AS Id, NOMBRES AS Texto from TbProveedor");
                                     }
-                                    int ordenNumero = Convert.ToInt32(txtOrdenCompra.Text);
-                                    Funcion.Limpiarobjetos(gbEncabezadoCompra);
-                                    txtOrdenCompra.Text = Convert.ToString(ordenNumero + 1);
-                                    incializar();
+                                    else
+                                    {
+                                        int ordenNumero = Convert.ToInt32(txtOrdenCompra.Text);
+                                        Funcion.Limpiarobjetos(gbEncabezadoCompra);
+                                        txtOrdenCompra.Text = Convert.ToString(ordenNumero + 1);
+                                        incializar();
+                                    }
                                 }
                                 else if (resultadoDetalle == "Error al Registrar")
                                 {
