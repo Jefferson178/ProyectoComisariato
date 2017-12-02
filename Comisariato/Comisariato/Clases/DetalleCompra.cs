@@ -22,6 +22,7 @@ namespace Comisariato.Clases
         int serie1;
         int serie2;
         int numero;
+        int proveedor;
         public string Codigo
         {
             get
@@ -190,12 +191,25 @@ namespace Comisariato.Clases
             }
         }
 
+        public int Proveedor
+        {
+            get
+            {
+                return proveedor;
+            }
+
+            set
+            {
+                proveedor = value;
+            }
+        }
+
         Consultas ObjConsulta;
         public DetalleCompra()
         {
 
         }
-        public DetalleCompra(float ice, float irbp, string codigo, int cantidad, float precioCompra, float descuento, float precioVentaPublico, float precioMayorista, float precioCajas, int serie1, int serie2, int numero)
+        public DetalleCompra(float ice, float irbp, string codigo, int cantidad, float precioCompra, float descuento, float precioVentaPublico, float precioMayorista, float precioCajas, int serie1, int serie2, int numero, int proveedor)
         {
             //this.IdEncabezadoCompra = idEncabezadoCompra;
             this.Codigo = codigo;
@@ -210,6 +224,7 @@ namespace Comisariato.Clases
             this.Serie1 = serie1;
             this.Serie2 = serie2;
             this.Numero = numero;
+            this.Proveedor = proveedor;
         }
         public string InsertarDetalleCompra(DetalleCompra objDetalleCompra)
         {

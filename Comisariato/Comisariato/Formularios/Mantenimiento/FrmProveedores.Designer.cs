@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcProveedor = new System.Windows.Forms.TabControl();
             this.tpNuevoProveedor = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
@@ -83,6 +83,12 @@
             this.facturaFinProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbCodigoRetencionProveedor = new System.Windows.Forms.GroupBox();
             this.dgvCodigoRetencionProveedor = new System.Windows.Forms.DataGridView();
+            this.IDCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.retencionSRIProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipoProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.porcentajeProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cuentaContableProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.validesProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ckbContribuyenteEspecialProveedor = new System.Windows.Forms.CheckBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -117,12 +123,6 @@
             this.DeshabilitarProveedor = new System.Windows.Forms.DataGridViewButtonColumn();
             this.txtConsultarProveedor = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.IDCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.retencionSRIProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipoProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.porcentajeProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cuentaContableProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.validesProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcProveedor.SuspendLayout();
             this.tpNuevoProveedor.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -650,14 +650,14 @@
             // 
             // dgvDatosAutorizacionProveedor
             // 
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosAutorizacionProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosAutorizacionProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDatosAutorizacionProveedor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosAutorizacionProveedor.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.serie1Proveedor,
@@ -719,14 +719,14 @@
             // 
             // dgvCodigoRetencionProveedor
             // 
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCodigoRetencionProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCodigoRetencionProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvCodigoRetencionProveedor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCodigoRetencionProveedor.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IDCodigo,
@@ -741,6 +741,49 @@
             this.dgvCodigoRetencionProveedor.Size = new System.Drawing.Size(477, 131);
             this.dgvCodigoRetencionProveedor.TabIndex = 28;
             this.dgvCodigoRetencionProveedor.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCodigoRetencionProveedor_CellEnter);
+            // 
+            // IDCodigo
+            // 
+            this.IDCodigo.HeaderText = "ID";
+            this.IDCodigo.Name = "IDCodigo";
+            this.IDCodigo.ReadOnly = true;
+            this.IDCodigo.Visible = false;
+            // 
+            // retencionSRIProveedor
+            // 
+            this.retencionSRIProveedor.HeaderText = "Retención SRI";
+            this.retencionSRIProveedor.Name = "retencionSRIProveedor";
+            this.retencionSRIProveedor.ReadOnly = true;
+            this.retencionSRIProveedor.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.retencionSRIProveedor.Width = 125;
+            // 
+            // tipoProveedor
+            // 
+            this.tipoProveedor.HeaderText = "Tipo";
+            this.tipoProveedor.Name = "tipoProveedor";
+            this.tipoProveedor.ReadOnly = true;
+            this.tipoProveedor.Width = 55;
+            // 
+            // porcentajeProveedor
+            // 
+            this.porcentajeProveedor.HeaderText = "%";
+            this.porcentajeProveedor.Name = "porcentajeProveedor";
+            this.porcentajeProveedor.ReadOnly = true;
+            this.porcentajeProveedor.Width = 25;
+            // 
+            // cuentaContableProveedor
+            // 
+            this.cuentaContableProveedor.HeaderText = "Cta. Contable";
+            this.cuentaContableProveedor.Name = "cuentaContableProveedor";
+            this.cuentaContableProveedor.ReadOnly = true;
+            this.cuentaContableProveedor.Width = 120;
+            // 
+            // validesProveedor
+            // 
+            this.validesProveedor.HeaderText = "Valides";
+            this.validesProveedor.Name = "validesProveedor";
+            this.validesProveedor.ReadOnly = true;
+            this.validesProveedor.Width = 90;
             // 
             // ckbContribuyenteEspecialProveedor
             // 
@@ -784,7 +827,6 @@
             this.cbCodigo101Proveedor.Size = new System.Drawing.Size(351, 24);
             this.cbCodigo101Proveedor.TabIndex = 27;
             this.cbCodigo101Proveedor.Enter += new System.EventHandler(this.cbCodigo101Proveedor_Enter);
-            this.cbCodigo101Proveedor.MouseLeave += new System.EventHandler(this.cbCodigo101Proveedor_MouseLeave);
             // 
             // label20
             // 
@@ -807,10 +849,10 @@
             this.cbICEProveedor.Size = new System.Drawing.Size(351, 24);
             this.cbICEProveedor.TabIndex = 26;
             this.cbICEProveedor.Enter += new System.EventHandler(this.cbICEProveedor_Enter);
-            this.cbICEProveedor.MouseLeave += new System.EventHandler(this.cbICEProveedor_MouseLeave);
             // 
             // cbCreditoProveedor
             // 
+            this.cbCreditoProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCreditoProveedor.DropDownWidth = 1;
             this.cbCreditoProveedor.Font = new System.Drawing.Font("Arial", 9.75F);
             this.cbCreditoProveedor.FormattingEnabled = true;
@@ -819,7 +861,6 @@
             this.cbCreditoProveedor.Size = new System.Drawing.Size(351, 24);
             this.cbCreditoProveedor.TabIndex = 25;
             this.cbCreditoProveedor.Enter += new System.EventHandler(this.cbCreditoProveedor_Enter);
-            this.cbCreditoProveedor.MouseLeave += new System.EventHandler(this.cbCreditoProveedor_MouseLeave);
             // 
             // dgvCredito
             // 
@@ -840,8 +881,6 @@
             this.dgvCredito.Enter += new System.EventHandler(this.dgvCredito_Enter);
             this.dgvCredito.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCredito_KeyDown);
             this.dgvCredito.Leave += new System.EventHandler(this.dgvCredito_Leave);
-            this.dgvCredito.MouseEnter += new System.EventHandler(this.dgvCredito_MouseEnter);
-            this.dgvCredito.MouseLeave += new System.EventHandler(this.dgvCredito_MouseLeave);
             // 
             // dgvICE
             // 
@@ -861,8 +900,6 @@
             this.dgvICE.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvICE_CellDoubleClick);
             this.dgvICE.Enter += new System.EventHandler(this.dgvICE_Enter);
             this.dgvICE.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvICE_KeyDown);
-            this.dgvICE.MouseEnter += new System.EventHandler(this.dgvICE_MouseEnter);
-            this.dgvICE.MouseLeave += new System.EventHandler(this.dgvICE_MouseLeave);
             // 
             // dgvCodigo101
             // 
@@ -882,8 +919,6 @@
             this.dgvCodigo101.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCodigo101_CellDoubleClick);
             this.dgvCodigo101.Enter += new System.EventHandler(this.dgvCodigo101_Enter);
             this.dgvCodigo101.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCodigo101_KeyDown);
-            this.dgvCodigo101.MouseEnter += new System.EventHandler(this.dgvCodigo101_MouseEnter);
-            this.dgvCodigo101.MouseLeave += new System.EventHandler(this.dgvCodigo101_MouseLeave);
             // 
             // dgvRetencionFuenteIva
             // 
@@ -1132,14 +1167,14 @@
             this.dgvDatosProveedor.AllowUserToOrderColumns = true;
             this.dgvDatosProveedor.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDatosProveedor.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDatosProveedor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosProveedor.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.modificarProveedor,
@@ -1185,49 +1220,6 @@
             this.label8.Size = new System.Drawing.Size(67, 16);
             this.label8.TabIndex = 3;
             this.label8.Text = "Consultar:";
-            // 
-            // IDCodigo
-            // 
-            this.IDCodigo.HeaderText = "ID";
-            this.IDCodigo.Name = "IDCodigo";
-            this.IDCodigo.ReadOnly = true;
-            this.IDCodigo.Visible = false;
-            // 
-            // retencionSRIProveedor
-            // 
-            this.retencionSRIProveedor.HeaderText = "Retención SRI";
-            this.retencionSRIProveedor.Name = "retencionSRIProveedor";
-            this.retencionSRIProveedor.ReadOnly = true;
-            this.retencionSRIProveedor.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.retencionSRIProveedor.Width = 125;
-            // 
-            // tipoProveedor
-            // 
-            this.tipoProveedor.HeaderText = "Tipo";
-            this.tipoProveedor.Name = "tipoProveedor";
-            this.tipoProveedor.ReadOnly = true;
-            this.tipoProveedor.Width = 55;
-            // 
-            // porcentajeProveedor
-            // 
-            this.porcentajeProveedor.HeaderText = "%";
-            this.porcentajeProveedor.Name = "porcentajeProveedor";
-            this.porcentajeProveedor.ReadOnly = true;
-            this.porcentajeProveedor.Width = 25;
-            // 
-            // cuentaContableProveedor
-            // 
-            this.cuentaContableProveedor.HeaderText = "Cta. Contable";
-            this.cuentaContableProveedor.Name = "cuentaContableProveedor";
-            this.cuentaContableProveedor.ReadOnly = true;
-            this.cuentaContableProveedor.Width = 120;
-            // 
-            // validesProveedor
-            // 
-            this.validesProveedor.HeaderText = "Valides";
-            this.validesProveedor.Name = "validesProveedor";
-            this.validesProveedor.ReadOnly = true;
-            this.validesProveedor.Width = 90;
             // 
             // FrmProveedores
             // 
