@@ -1402,6 +1402,6 @@ namespace Comisariato.Clases
             Objc.Cerrar();
             return dato;            
         }
-
+        
     }
 }

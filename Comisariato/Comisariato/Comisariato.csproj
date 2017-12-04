@@ -63,6 +63,7 @@
     <Compile Include="Clases\DetalleCompra.cs" />
     <Compile Include="Clases\Empleado.cs" />
     <Compile Include="Clases\Empresa.cs" />
+    <Compile Include="Clases\EncabezadoOrdenGiro.cs" />
     <Compile Include="Clases\Funcion.cs" />
     <Compile Include="Clases\ParametrosFactura.cs" />
     <Compile Include="Clases\Producto.cs" />
@@ -176,6 +177,11 @@
     </Compile>
     <Compile Include="Formularios\Transacciones\FrmDevoluciones.Designer.cs">
       <DependentUpon>FrmDevoluciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Transacciones\Reportes\dtOG.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtOG.xsd</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Transacciones\Venta\FrmAvanse.cs">
       <SubType>Form</SubType>
@@ -333,6 +339,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Formularios\Transacciones\Reportes\dtOG.xsc">
+      <DependentUpon>dtOG.xsd</DependentUpon>
+    </None>
+    <None Include="Formularios\Transacciones\Reportes\dtOG.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtOG.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Formularios\Transacciones\Reportes\dtOG.xss">
+      <DependentUpon>dtOG.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -544,6 +561,7 @@
   <ItemGroup>
     <None Include="Resources\LIMPIAR32X32.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
