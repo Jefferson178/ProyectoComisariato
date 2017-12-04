@@ -32,6 +32,29 @@ namespace Comisariato.Formularios.Transacciones
             CmbTipo.SelectedIndex = 0;
             cbAutorizacionSRI.SelectedIndex = 0;
         }
+        public string agregra0Decimal(string valor)
+        {
+            
+            int i;
+            int ocurrencias = valor.Split('.').Length - 1;
+            if (ocurrencias == 0)
+            {
+                valor += ".0";
+            }
+            string[] s = valor.Split('.');
+            for (i = 0; i < s[1].Length;)
+            {
+                i++;
+            }
+            if (i < 4)
+            {
+                for (int j = i; j < 4; j++)
+                {
+                    s[1] += "0"; 
+                }
+            }
+            return s[0] + "." + s[1];
+        }
         public void llenarDatosOG(int ecnabezadoCompra)
         {
             SqlDataReader datos = null;
@@ -39,13 +62,20 @@ namespace Comisariato.Formularios.Transacciones
             txtNumero.Text = Convert.ToString(datos["NUMERO"]);
             txtSerie1.Text = Convert.ToString(datos["SERIE1"]);
             txtSerie2.Text = Convert.ToString(datos["SERIE2"]);
-            txtBaseImponible.Text = Convert.ToString(datos["SUBTOTAL"]);
-            txtICE.Text = Convert.ToString(datos["TOTALICE"]);
-            txtIRBP.Text = Convert.ToString(datos["TOTALIRBP"]);
-            txtSubtotalIVA.Text = Convert.ToString(datos["SUBTOTALIVA"]);
-            txtSubtotal0.Text = Convert.ToString(datos["SUBTOTAL0"]);
-            txtTotal.Text = Convert.ToString(datos["TOTAL"]);
-            txtIVA.Text = Convert.ToString(datos["TOTALIVA"]);
+            txtBaseImponible.Text = Funcion.reemplazarcaracter(Convert.ToString(datos["SUBTOTAL"]));
+            txtBaseImponible.Text = agregra0Decimal(txtBaseImponible.Text);
+            txtICE.Text = Funcion.reemplazarcaracter(Convert.ToString(datos["TOTALICE"]));
+            txtICE.Text = agregra0Decimal(txtICE.Text);
+            txtIRBP.Text = Funcion.reemplazarcaracter(Convert.ToString(datos["TOTALIRBP"]));
+            txtIRBP.Text = agregra0Decimal(txtIRBP.Text);
+            txtSubtotalIVA.Text = Funcion.reemplazarcaracter(Convert.ToString(datos["SUBTOTALIVA"]));
+            txtSubtotalIVA.Text = agregra0Decimal(txtSubtotalIVA.Text);
+            txtSubtotal0.Text = Funcion.reemplazarcaracter(Convert.ToString(datos["SUBTOTAL0"]));
+            txtSubtotal0.Text = agregra0Decimal(txtSubtotal0.Text);
+            txtTotal.Text = Funcion.reemplazarcaracter(Convert.ToString(datos["TOTAL"]));
+            txtTotal.Text = agregra0Decimal(txtTotal.Text);
+            txtIVA.Text = Funcion.reemplazarcaracter(Convert.ToString(datos["TOTALIVA"]));
+            txtIVA.Text = agregra0Decimal(txtIVA.Text);
             datos = ObjConsul.obtenerDatos("select PROVEEDORRISE from TbProveedor where IDPROVEEDOR = " + CmbProveedor.SelectedValue + "");
             ckbRISE.Checked = Convert.ToBoolean(datos["PROVEEDORRISE"]);
             cbIVA.Text = FrmCompra.IVA;
@@ -79,7 +109,6 @@ namespace Comisariato.Formularios.Transacciones
 
         private void FrmOrdenDeGiro_Load(object sender, EventArgs e)
         {
-
             ObjConsul.BoolLlenarComboBox(cbCuentaDeudoraCero, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta");
             cbCuentaDeudoraCero.SelectedValue = 26;
             ObjConsul.BoolLlenarComboBox(cbCuentaDeudora12, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta");
@@ -186,6 +215,36 @@ namespace Comisariato.Formularios.Transacciones
         private void cbAutorizacionSRI_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtNAutorizacion.Text = "";
+        }
+
+        private void txtValorPagar_TextChanged(object sender, EventArgs e)
+        {
+            float saldo = 0.0f;
+            try
+            {
+
+                saldo = Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtTotal.Text)) - Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtValorPagar.Text));
+                if (saldo < 0)
+                {
+                    txtSaldo.Text = "";
+                }
+                else
+                {
+                    txtSaldo.Text = saldo.ToString();
+                }
+            }
+            catch (Exception)
+            {
+            }
+            if (txtValorPagar.Text == "")
+            {
+                txtSaldo.Text = "";
+            }
+        }
+
+        private void txtValorPagar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Funcion.SoloValores(e, txtValorPagar.Text);
         }
     }
 }
