@@ -95,7 +95,7 @@ namespace Comisariato.Formularios.Transacciones
             //propiedadesdgv();
 
             Consultas consultas = new Consultas();
-            DataTable dt = consultas.BoolDataTable("Select FONDOPANTALLA from TbEmpresa where IDEMPRESA = 1");
+            DataTable dt = consultas.BoolDataTable("Select LOGO from TbEmpresa where IDEMPRESA = 1");
             //Arreglo de byte en donde se almacenara la foto en bytes
             byte[] MyData = new byte[0];
             //Verificar si tiene Datos
@@ -104,7 +104,7 @@ namespace Comisariato.Formularios.Transacciones
                 DataRow myRow = dt.Rows[0];
 
                 //Se almacena el campo foto de la tabla en el arreglo de bytes
-                MyData = (byte[])myRow["FONDOPANTALLA"];
+                MyData = (byte[])myRow["LOGO"];
                 //Se inicializa un flujo en memoria del arreglo de bytes
                 MemoryStream stream = new MemoryStream(MyData);
                 //En el picture box se muestra la imagen que esta almacenada en el flujo en memoria 
