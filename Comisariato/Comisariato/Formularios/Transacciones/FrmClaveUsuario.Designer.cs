@@ -84,6 +84,7 @@
             this.Name = "FrmClaveUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Clave Usuario";
+            this.Load += new System.EventHandler(this.FrmClaveUsuario_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

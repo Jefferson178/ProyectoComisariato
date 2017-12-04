@@ -142,7 +142,7 @@ namespace Comisariato.Formularios.Transacciones
 
             // comboboxColumn.DataSource = listatipo;
 
-            for (int i = 0; i < 21; i++)
+            for (int i = 0; i < 27; i++)
             {
                 dgvDetalleProductos.Rows.Add();
             }
