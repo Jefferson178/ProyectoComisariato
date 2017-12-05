@@ -240,6 +240,7 @@ namespace Comisariato.Formularios
                 btnGuardarProveedor.Text = "&Guardar";
             }
             else { inicializarDatos(); }
+            bandera_Estado = false;
         }
 
 

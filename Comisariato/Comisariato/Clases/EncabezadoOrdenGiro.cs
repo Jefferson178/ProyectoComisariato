@@ -487,13 +487,13 @@ namespace Comisariato.Clases
             }
         }
         Consultas ObjConsulta;
-        public string InsertarEncabezadoyPieCompra(EmcabezadoCompra objEncabezadoCompra)
+        public string InsertarEncabezadoOrden(EncabezadoOrdenGiro objEncabezadoOrdenGiro)
         {
             ObjConsulta = new Consultas();
 
-            if (!ObjConsulta.Existe("IDPROVEEDOR = " + proveedor + " AND NUMERO = " + numeroProveedor + " AND SERIE1 = " + serie1Proveedor + " AND SERIE2", serie2Proveedor.ToString(), "TbEncabezadoyPieCompra"))
+            if (!ObjConsulta.Existe("IDPROVEEDOR = " + proveedor + " AND NUMEROPROVEEDOR = " + numeroProveedor + " AND SERIE1PROVEEDOR = " + serie1Proveedor + " AND SERIE2PROVEEDOR", serie2Proveedor.ToString(), "TbEncabezadoOrdenGiro"))
             {
-                if (ObjConsulta.EjecutarPROCEDUREEncabezadoCompra(objEncabezadoCompra))
+                if (ObjConsulta.EjecutarPROCEDUREEncabezadoOrdenGiro(objEncabezadoOrdenGiro))
                 {
                     return "Datos Guardados";
                 }

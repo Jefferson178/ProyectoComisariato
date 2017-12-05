@@ -338,6 +338,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         private void btnLimpiarCombo_Click(object sender, EventArgs e)
         {
             Limpiar();
+            
         }
 
         private void Limpiar()

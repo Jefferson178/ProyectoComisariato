@@ -80,6 +80,7 @@
             this.btnLimpiarIva.Text = "&Limpiar";
             this.btnLimpiarIva.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLimpiarIva.UseVisualStyleBackColor = true;
+            this.btnLimpiarIva.Click += new System.EventHandler(this.btnLimpiarIva_Click);
             // 
             // btnGuardarIva
             // 

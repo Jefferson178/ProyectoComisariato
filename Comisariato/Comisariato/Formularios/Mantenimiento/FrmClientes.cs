@@ -299,6 +299,7 @@ namespace Comisariato.Formularios
                 btnGuardarCliente.Text = "&Guardar";
             }
             else { inicializarDatos(); }
+            bandera_Estado = false;
         }
 
         private void dgvDatosCliente_CellClick(object sender, DataGridViewCellEventArgs e)

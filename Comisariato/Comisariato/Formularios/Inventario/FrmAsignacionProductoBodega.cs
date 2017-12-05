@@ -254,7 +254,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
 
         private void btnLimpiarAsignacionProducto_Click(object sender, EventArgs e)
         {
-            inicializar();
+            inicializar();            
         }
 
         private void txtBuscarProducto_TextChanged(object sender, EventArgs e)
