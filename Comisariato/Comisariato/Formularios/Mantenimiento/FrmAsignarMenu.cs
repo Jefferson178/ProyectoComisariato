@@ -21,7 +21,7 @@ namespace Comisariato.Formularios.Mantenimiento
         private void FrmAsignarMenu_Load(object sender, EventArgs e)
         {
             Consultas objConsul = new Consultas();
-            objConsul.BoolLlenarCheckListBox(cklMenu, "Select IDMENU AS ID, DESCRIPCION AS Texto FROM TbMenu");
+            objConsul.BoolLlenarCheckListBoxMenu(cklMenu, "Select IDMENU AS ID, DESCRIPCION AS Texto FROM TbMenu");
         }
     }
 }

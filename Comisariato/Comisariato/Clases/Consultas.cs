@@ -1457,6 +1457,15 @@ namespace Comisariato.Clases
                 return false;
             }
         }
-
+        public void BoolLlenarCheckListBoxMenu(CheckedListBox chkl, String SQL)
+        {
+            SqlDataAdapter ObjSQLDA = new SqlDataAdapter(SQL, ConexionBD.connection);
+            DataSet ObjDS = new DataSet();
+            ObjSQLDA.Fill(ObjDS, "Texto");
+            chkl.DataSource = ObjDS.Tables[0];
+            chkl.DisplayMember = "Texto";
+            chkl.ValueMember = "ID";
+            ObjSQLDA.Dispose();
+        }
     }
 }
