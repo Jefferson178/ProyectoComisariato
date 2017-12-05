@@ -77,7 +77,10 @@ namespace Comisariato.Formularios.Transacciones
                                 numcaja = myRows["SERIE2"].ToString();
                                 documentoActual= myRows["DOCUMENTOACTUAL"].ToString();
                             }
-                            
+                            else
+                            {
+                                MessageBox.Show("Caja no registrada");
+                            }
 
                             
                            
