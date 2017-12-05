@@ -68,6 +68,7 @@ namespace Comisariato.Formularios.Mantenimiento
             CmbProvincia.DropDownHeight = CmbProvincia.ItemHeight = 150;
             CmbCanton.DropDownHeight = CmbCanton.ItemHeight = 150;
             CmbParroquia.DropDownHeight = CmbParroquia.ItemHeight = 150;
+            inicializarDatos();
         }
        
 
@@ -208,6 +209,12 @@ namespace Comisariato.Formularios.Mantenimiento
 
             // llenar datadrigview solo los activos
             cargarDatos("1");
+
+
+            //cbPaisProveedor.SelectedIndex = 0;
+            CmbProvincia.SelectedValue = 9;
+            CmbCanton.SelectedValue = 80;
+            CmbParroquia.SelectedValue = 41;
         }
 
 
@@ -228,77 +235,80 @@ namespace Comisariato.Formularios.Mantenimiento
 
         private void DgvDatosEmpleado_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            Empleado ObjEmpleado = new Empleado();
-            if (rbtActivosEmpleado.Checked)
+            if (DgvDatosEmpleado.RowCount > 0)
             {
-                if (this.DgvDatosEmpleado.Columns[e.ColumnIndex].Name == "Deshabilitar")
+
+                Empleado ObjEmpleado = new Empleado();
+                if (rbtActivosEmpleado.Checked)
                 {
-                    ObjEmpleado.EstadoEmpleado(DgvDatosEmpleado.CurrentRow.Cells[3].Value.ToString(), 2);
-                    cargarDatos("1");
+                    if (this.DgvDatosEmpleado.Columns[e.ColumnIndex].Name == "Deshabilitar")
+                    {
+                        ObjEmpleado.EstadoEmpleado(DgvDatosEmpleado.CurrentRow.Cells[3].Value.ToString(), 2);
+                        cargarDatos("1");
+                    }
                 }
-            }
-            else if (rbtInactivosEmpleado.Checked)
-            {
-                if (this.DgvDatosEmpleado.Columns[e.ColumnIndex].Name == "Deshabilitar")
+                else if (rbtInactivosEmpleado.Checked)
                 {
-                    ObjEmpleado.EstadoEmpleado(DgvDatosEmpleado.CurrentRow.Cells[3].Value.ToString(), 1);
-                    cargarDatos("0");
+                    if (this.DgvDatosEmpleado.Columns[e.ColumnIndex].Name == "Deshabilitar")
+                    {
+                        ObjEmpleado.EstadoEmpleado(DgvDatosEmpleado.CurrentRow.Cells[3].Value.ToString(), 1);
+                        cargarDatos("0");
+                    }
                 }
-            }
 
-            if (this.DgvDatosEmpleado.Columns[e.ColumnIndex].Name == "Modificar")
-            {
-                //MessageBox.Show("modificar toca " + DgvDatosEmpleado.CurrentRow.Cells[3].Value.ToString());
-                identificacion = DgvDatosEmpleado.CurrentRow.Cells[3].Value.ToString();
-                tcEmpleado.SelectedIndex = 0;
-                bandera_Estado = true;
-                //Llenar el DataTable
-                DataTable dt = consultas.BoolDataTable("Select * from TbEmpleado where IDENTIFICACION = '" + identificacion + "'");
-                //Arreglo de byte en donde se almacenara la foto en bytes
-                byte[] MyData = new byte[0];
-                //Verificar si tiene Datos
-                if (dt.Rows.Count > 0)
+                if (this.DgvDatosEmpleado.Columns[e.ColumnIndex].Name == "Modificar")
                 {
-                    DataRow myRow = dt.Rows[0];
+                    //MessageBox.Show("modificar toca " + DgvDatosEmpleado.CurrentRow.Cells[3].Value.ToString());
+                    identificacion = DgvDatosEmpleado.CurrentRow.Cells[3].Value.ToString();
+                    tcEmpleado.SelectedIndex = 0;
+                    bandera_Estado = true;
+                    //Llenar el DataTable
+                    DataTable dt = consultas.BoolDataTable("Select * from TbEmpleado where IDENTIFICACION = '" + identificacion + "'");
+                    //Arreglo de byte en donde se almacenara la foto en bytes
+                    byte[] MyData = new byte[0];
+                    //Verificar si tiene Datos
+                    if (dt.Rows.Count > 0)
+                    {
+                        DataRow myRow = dt.Rows[0];
 
-                    //Se almacena el campo foto de la tabla en el arreglo de bytes
-                    MyData = (byte[])myRow["IMAGEN"];
-                    MyDataImagen = MyData;
-                    //Se inicializa un flujo en memoria del arreglo de bytes
-                    MemoryStream stream = new MemoryStream(MyData);
-                    //En el picture box se muestra la imagen que esta almacenada en el flujo en memoria 
-                    //el cual contiene el arreglo de bytes
-                    PictureFoto.Image = Image.FromStream(stream);
+                        //Se almacena el campo foto de la tabla en el arreglo de bytes
+                        MyData = (byte[])myRow["IMAGEN"];
+                        MyDataImagen = MyData;
+                        //Se inicializa un flujo en memoria del arreglo de bytes
+                        MemoryStream stream = new MemoryStream(MyData);
+                        //En el picture box se muestra la imagen que esta almacenada en el flujo en memoria 
+                        //el cual contiene el arreglo de bytes
+                        PictureFoto.Image = Image.FromStream(stream);
 
-                    //Cargar los demas Datos
-                    cmbTipoDocumento.SelectedItem = myRow["TIPOIDENTIFICACION"].ToString();
-                    TxtIdentidad.Text = myRow["IDENTIFICACION"].ToString();
-                    TxtNombres.Text = myRow["NOMBRES"].ToString();
-                    TxtApellidos.Text = myRow["APELLIDOS"].ToString();
-                    ckbActivo.Checked = Convert.ToBoolean(myRow["ACTIVO"]);
-                    TxtDireccion.Text = myRow["DIRECCION"].ToString();
-                    //CmbParroquia
+                        //Cargar los demas Datos
+                        cmbTipoDocumento.SelectedItem = myRow["TIPOIDENTIFICACION"].ToString();
+                        TxtIdentidad.Text = myRow["IDENTIFICACION"].ToString();
+                        TxtNombres.Text = myRow["NOMBRES"].ToString();
+                        TxtApellidos.Text = myRow["APELLIDOS"].ToString();
+                        ckbActivo.Checked = Convert.ToBoolean(myRow["ACTIVO"]);
+                        TxtDireccion.Text = myRow["DIRECCION"].ToString();
+                        //CmbParroquia
 
-                    consultas.LLenarCombosUbicacion(Convert.ToInt32(myRow["IDPARROQUIA"]), ref CmbPais, ref CmbProvincia, ref CmbCanton, ref CmbParroquia);
-                        
-                    TxtEmail.Text = myRow["EMAIL"].ToString();
-                    DtpFechaNacimiento.Value = Convert.ToDateTime(myRow["FECHANACIMIENTO"]);
-                    CmbTipoLicencia.SelectedItem = myRow["TIPOLICENCIA"].ToString();
-                    CmbTipoSangre.SelectedItem = myRow["TIPOSANGRE"].ToString();
-                    TxtLibretaMilitar.Text = myRow["LIBRETAMILITAR"].ToString();
-                    CkbDiscapacidad.Checked = Convert.ToBoolean(myRow["DISCAPACIDAD"]);
-                    NupDiscapacidad.Value = Convert.ToInt32(myRow["PORCENTAJEDISCAPACIDAD"]);
-                    TxtMovimientoQuincenal.Text = myRow["MOVIMIENTOQUINCENAL"].ToString();
-                    CmbGenero.SelectedItem = myRow["GENERO"].ToString();
-                    CmbEstadoCivil.SelectedItem = myRow["ESTADOCIVIL"].ToString();
-                    TxtSueldoMensual.Text = myRow["SUELDOMENSUAL"].ToString();
-                    TxtSueldoExtra.Text = myRow["SUELDOEXTRA"].ToString();
-                    TxtCelular1.Text = myRow["CELULAR1"].ToString();
-                    TxtCelular2.Text = myRow["CELULAR2"].ToString();
+                        consultas.LLenarCombosUbicacion(Convert.ToInt32(myRow["IDPARROQUIA"]), ref CmbPais, ref CmbProvincia, ref CmbCanton, ref CmbParroquia);
+
+                        TxtEmail.Text = myRow["EMAIL"].ToString();
+                        DtpFechaNacimiento.Value = Convert.ToDateTime(myRow["FECHANACIMIENTO"]);
+                        CmbTipoLicencia.SelectedItem = myRow["TIPOLICENCIA"].ToString();
+                        CmbTipoSangre.SelectedItem = myRow["TIPOSANGRE"].ToString();
+                        TxtLibretaMilitar.Text = myRow["LIBRETAMILITAR"].ToString();
+                        CkbDiscapacidad.Checked = Convert.ToBoolean(myRow["DISCAPACIDAD"]);
+                        NupDiscapacidad.Value = Convert.ToInt32(myRow["PORCENTAJEDISCAPACIDAD"]);
+                        TxtMovimientoQuincenal.Text = myRow["MOVIMIENTOQUINCENAL"].ToString();
+                        CmbGenero.SelectedItem = myRow["GENERO"].ToString();
+                        CmbEstadoCivil.SelectedItem = myRow["ESTADOCIVIL"].ToString();
+                        TxtSueldoMensual.Text = myRow["SUELDOMENSUAL"].ToString();
+                        TxtSueldoExtra.Text = myRow["SUELDOEXTRA"].ToString();
+                        TxtCelular1.Text = myRow["CELULAR1"].ToString();
+                        TxtCelular2.Text = myRow["CELULAR2"].ToString();
+                    }
+                    btnLimpiar.Text = "&Cancelar";
+                    btnGuardar.Text = "&Modificar";
                 }
-                btnLimpiar.Text = "&Cancelar";
-                btnGuardar.Text = "&Modificar";
-
             }
         }
 
@@ -424,6 +434,8 @@ namespace Comisariato.Formularios.Mantenimiento
 
         private void TxtIdentidad_Leave(object sender, EventArgs e)
         {
+
+
             if (TxtIdentidad.Text != "")
             {
                 if (cmbTipoDocumento.SelectedIndex == 0)
@@ -451,6 +463,12 @@ namespace Comisariato.Formularios.Mantenimiento
                         MessageBox.Show("Ingrese el RUC Correctamente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); TxtIdentidad.Focus();
                         TxtIdentidad.Select(0, TxtIdentidad.Text.Length);
                     }
+                }
+
+                if (consultas.Existe("IDENTIFICACION", TxtIdentidad.Text, "TbEmpleado"))
+                {
+                    MessageBox.Show("Ya Existe el Empleado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); TxtIdentidad.Focus();
+                    TxtIdentidad.Select(0, TxtIdentidad.Text.Length);
                 }
             }
         }
@@ -551,6 +569,11 @@ namespace Comisariato.Formularios.Mantenimiento
             {
                 SendKeys.Send("{TAB}");
             }
+        }
+
+        private void FrmEmpleado_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            TxtIdentidad.Text = "";
         }
     }
 }

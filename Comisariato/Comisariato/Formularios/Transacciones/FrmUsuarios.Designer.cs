@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcUsuario = new System.Windows.Forms.TabControl();
             this.tpNuevoUsuario = new System.Windows.Forms.TabPage();
             this.btnLimpiarProveedor = new System.Windows.Forms.Button();
@@ -52,10 +52,10 @@
             this.rbtInactivos = new System.Windows.Forms.RadioButton();
             this.rbtActivos = new System.Windows.Forms.RadioButton();
             this.dgvDatosUsuario = new System.Windows.Forms.DataGridView();
-            this.txtConsultarUsuario = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Deshabilitar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.txtConsultarUsuario = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.tcUsuario.SuspendLayout();
             this.tpNuevoUsuario.SuspendLayout();
             this.gbDatosUsuario.SuspendLayout();
@@ -213,6 +213,7 @@
             this.CheckListBEmpresas.Name = "CheckListBEmpresas";
             this.CheckListBEmpresas.Size = new System.Drawing.Size(302, 89);
             this.CheckListBEmpresas.TabIndex = 7;
+            this.CheckListBEmpresas.Enter += new System.EventHandler(this.cbPersonaUsuario_Enter);
             // 
             // TxtConfirmarContraUsuario
             // 
@@ -254,6 +255,7 @@
             this.cbPersonaUsuario.Name = "cbPersonaUsuario";
             this.cbPersonaUsuario.Size = new System.Drawing.Size(426, 24);
             this.cbPersonaUsuario.TabIndex = 4;
+            this.cbPersonaUsuario.Enter += new System.EventHandler(this.cbPersonaUsuario_Enter);
             // 
             // label3
             // 
@@ -354,14 +356,14 @@
             this.dgvDatosUsuario.AllowUserToOrderColumns = true;
             this.dgvDatosUsuario.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDatosUsuario.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosUsuario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosUsuario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDatosUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosUsuario.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Modificar,
@@ -374,6 +376,18 @@
             this.dgvDatosUsuario.TabIndex = 2;
             this.dgvDatosUsuario.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosUsuario_CellClick);
             this.dgvDatosUsuario.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvDatosUsuario_CellPainting);
+            // 
+            // Modificar
+            // 
+            this.Modificar.HeaderText = "";
+            this.Modificar.Name = "Modificar";
+            this.Modificar.ReadOnly = true;
+            // 
+            // Deshabilitar
+            // 
+            this.Deshabilitar.HeaderText = "";
+            this.Deshabilitar.Name = "Deshabilitar";
+            this.Deshabilitar.ReadOnly = true;
             // 
             // txtConsultarUsuario
             // 
@@ -395,18 +409,6 @@
             this.label4.Size = new System.Drawing.Size(67, 16);
             this.label4.TabIndex = 0;
             this.label4.Text = "Consultar:";
-            // 
-            // Modificar
-            // 
-            this.Modificar.HeaderText = "";
-            this.Modificar.Name = "Modificar";
-            this.Modificar.ReadOnly = true;
-            // 
-            // Deshabilitar
-            // 
-            this.Deshabilitar.HeaderText = "";
-            this.Deshabilitar.Name = "Deshabilitar";
-            this.Deshabilitar.ReadOnly = true;
             // 
             // FrmUsuarios
             // 

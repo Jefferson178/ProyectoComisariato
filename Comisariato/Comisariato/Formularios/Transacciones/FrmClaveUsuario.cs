@@ -66,8 +66,28 @@ namespace Comisariato.Formularios.Transacciones
                             bitacora = new Bitacora("00:00:00", "Venta");
                             bitacora.insertarBitacora();
 
-                            string numcaja = "111", sucursal = "2";
-                          
+                            Consultas objconsul = new Consultas();
+                            string numcaja = "", sucursal = "", documentoActual ="";
+                            string IpMaquina = bitacora.LocalIPAddress();
+                            DataTable Dt = objconsul.BoolDataTable("Select SERIE1,SERIE2,DOCUMENTOACTUAL,DOCUMENTOINICIAL,DOCUMENTOFINAL,AUTORIZACION,ESTACION,IPESTACION from TbCajasTalonario where IPESTACION = '" + IpMaquina + "' and ESTADO=1;");
+                            if (Dt.Rows.Count > 0)
+                            {
+                                DataRow myRows = Dt.Rows[0];
+                                sucursal = myRows["SERIE1"].ToString();
+                                numcaja = myRows["SERIE2"].ToString();
+                                documentoActual= myRows["DOCUMENTOACTUAL"].ToString();
+                            }
+                            
+
+                            
+                           
+
+
+
+
+
+
+
                             string condicion = " where CAJA = '" + numcaja + "' and SUCURSAL= '" + sucursal + "' and IDEMPRESA= '" + Program.IDEMPRESA + "';";
 
                             int numero = c.ObtenerID("IDFACTURA", "TbEncabezadoFactura", condicion);
@@ -75,7 +95,7 @@ namespace Comisariato.Formularios.Transacciones
                             f.IDCLIENTEINICIO = c.ObtenerID("IDCLIENTE", "TbCliente", condicion);
                             if (numero == 0)
                             {
-                                f.numfact = 1;
+                                f.numfact = Convert.ToInt32(documentoActual);
                             }
                             else
                             {

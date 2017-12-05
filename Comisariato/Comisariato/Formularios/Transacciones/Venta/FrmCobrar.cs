@@ -816,7 +816,8 @@ namespace Comisariato.Formularios.Transacciones
             ticket.TextoIzquierda("         Informacion del Consumidor");//Es el mio por si me quieren contactar ...
             ticket.TextoIzquierda("RUC: "+identificacion);
             ticket.TextoIzquierda("Cliente: "+nombre);
-            ticket.TextoIzquierda("Facturado: "+Program.NOMBRES+" "+Program.APELLIDOS);
+            ticket.TextoIzquierda("Facturado: "+Program.Usuario);
+            ticket.TextoIzquierda("# CAJA: " + numcaja.ToString("D4"));
             string[] h = DateTime.Now.TimeOfDay.ToString().Split('.');
             ticket.TextoIzquierda("Fecha: "+Program.FecaInicio+"          "+ h[0]);
             if (ckbCheque.Checked && ckbEfectivo.Checked && ckbTarjeta.Checked)
@@ -984,7 +985,7 @@ namespace Comisariato.Formularios.Transacciones
             ticket.TextoCentro("              ");
             ticket.TextoCentro("PEDIDO A BODEGA");
             ticket.TextoCentro("              ");
-            ticket.TextoIzquierda("USUARIO: " + Program.NOMBRES + " " + Program.APELLIDOS);
+            ticket.TextoIzquierda("USUARIO: " + Program.Usuario);
                 ticket.TextoIzquierda( "# CAJA: " + numcaja.ToString("D4"));
             ticket.TextoIzquierda("                 ");
             ticket.TextoIzquierda("");
