@@ -77,7 +77,10 @@ namespace Comisariato.Formularios.Transacciones
                                 numcaja = myRows["SERIE2"].ToString();
                                 documentoActual= myRows["DOCUMENTOACTUAL"].ToString();
                             }
-                            
+                            else
+                            {
+                                MessageBox.Show("Caja no registrada");
+                            }
 
                             
                            
@@ -146,6 +149,7 @@ namespace Comisariato.Formularios.Transacciones
         private void FrmClaveUsuario_Load(object sender, EventArgs e)
         {
             SendKeys.Send("{TAB}");
+
             txtClave.Focus();
         }
     }
