@@ -266,5 +266,18 @@ namespace Comisariato.Formularios
         {
             Funcion.validar_Num_Letras(e);
         }
+
+        private void cbPersonaUsuario_Enter(object sender, EventArgs e)
+        {
+            
+            objConsul.BoolLlenarCheckListBox(CheckListBEmpresas, "Select IDEMPRESA as ID, NOMBRE as 'Texto' from TbEmpresa;");
+            objConsul.BoolLlenarComboBox(cbPersonaUsuario, "Select IDEMPLEADO as ID,(E.APELLIDOS +' '+ E.NOMBRES) as Texto from TbEmpleado E  WHERE (E.NOMBRES != 'ADMINISTRADOR');");
+            //objConsul.BoolLlenarComboBox(cbTipoUsuario, "Select IDTIPOUSUARIO as ID,TIPO as Texto from TbTipousuario;");
+            ckbFacturaUsuario.Checked = false;
+            ckMostrarContra.Checked = false;
+            cbPersonaUsuario.DropDownHeight = cbPersonaUsuario.ItemHeight = 150;
+            cbTipoUsuario.DropDownHeight = cbTipoUsuario.ItemHeight = 150;
+            cargarDatos("1");
+        }
     }
 }

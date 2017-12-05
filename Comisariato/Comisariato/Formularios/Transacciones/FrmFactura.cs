@@ -117,9 +117,9 @@ namespace Comisariato.Formularios.Transacciones
             txtCodigo.Focus();
             idcliente = IDCLIENTEINICIO;
             txtNumFact.Text = numfact.ToString("D8");
-            txtCaja.Text = "00" + numcaja;
-            txtSucursal.Text = "00" + sucursal;
-            lblCajero.Text = "Cajero:  " + Program.NOMBRES + "  " + Program.APELLIDOS;
+            txtCaja.Text = numcaja;
+            txtSucursal.Text = sucursal;
+            lblCajero.Text = "Cajero:  " + Program.Usuario;
             dgvDetalleProductos.Columns[2].DefaultCellStyle.BackColor = Color.LightCyan;
             dgvDetalleProductos.Columns[3].DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
             dgvDetalleProductos.Columns[4].DefaultCellStyle.BackColor = Color.LightCyan;
@@ -1451,7 +1451,7 @@ namespace Comisariato.Formularios.Transacciones
             listatipo.Clear();
 
 
-            for (int i = 0; i < 21; i++)
+            for (int i = 0; i < 27; i++)
             {
                 dgvDetalleProductos.Rows.Add();
             }
@@ -1656,7 +1656,7 @@ namespace Comisariato.Formularios.Transacciones
             //btnEliminarFact.Enabled = false;
             factenter = 0;
             //MessageBox.Show(""+codigos.Count);
-            for (int i = 0; i < 21; i++)
+            for (int i = 0; i < 27; i++)
             {
                 dgvDetalleProductos.Rows.Add();
             }
