@@ -38,5 +38,10 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
         {
             Funcion.Validar_Numeros(e);
         }
+
+        private void btnLimpiarIva_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

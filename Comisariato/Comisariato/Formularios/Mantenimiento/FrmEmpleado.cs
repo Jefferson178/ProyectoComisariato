@@ -411,6 +411,7 @@ namespace Comisariato.Formularios.Mantenimiento
                 btnGuardar.Text = "&Guardar";
             }
             else { inicializarDatos(); }
+            bandera_Estado = false;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

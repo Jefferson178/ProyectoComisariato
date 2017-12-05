@@ -495,6 +495,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 btnGuardarProducto.Text = "&Guardar";
             }
             else { inicializarDatos(); }
+            bandera_Estado = false;
         }
 
         private void txtConsultarProducto_TextChanged(object sender, EventArgs e)

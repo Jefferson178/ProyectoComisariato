@@ -38,6 +38,7 @@ namespace Comisariato.Formularios
         FrmEmpleado FrmEmpleado;
         FrmOrdenDeGiro FrmOrdenDeGiro;
         FrmDevolucionVenta FrmDevolucionVenta;
+        FrmAsignarMenu FrmAsignarMenu;
 
         public FrmPrincipal()
         {
@@ -50,7 +51,7 @@ namespace Comisariato.Formularios
         private void tvPrincipal_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             Program.panelPrincipalVariable = panelPrincipal;
-            
+
             string nombre = e.Node.Text;
             //-------------------------------------------------Mantenimiento---------------------------------------//
             //---------------------Cliente --------------------------------------//
@@ -79,6 +80,19 @@ namespace Comisariato.Formularios
                 {
                     //int index = panelPrincipal.Controls.GetChildIndex(FrmEmpleado);
                     FrmEmpleado.BringToFront();
+                }
+            }
+            if (nombre == "Administrar Menu")
+            {
+                if (FrmAsignarMenu == null || FrmAsignarMenu.IsDisposed)
+                {
+                    FrmAsignarMenu = new FrmAsignarMenu();
+                    objFuncion.AddFormInPanel(FrmAsignarMenu, Program.panelPrincipalVariable);
+                }
+                else
+                {
+                    //int index = panelPrincipal.Controls.GetChildIndex(FrmEmpleado);
+                    FrmAsignarMenu.BringToFront();
                 }
             }
             //--------------------Empresa---------------------------------------//
@@ -245,7 +259,7 @@ namespace Comisariato.Formularios
             }
             else if (nombre == "Compras")
             {
-                if (objConsulta.ObtenerValorCampo("IDPROVEEDOR","TbProveedor","") != "" && objConsulta.ObtenerValorCampo("IDSUCURSAL", "TbSucursal", "") != "" && objConsulta.ObtenerValorCampo("IDPARAMETROSFACTURA", "TbParametrosFactura", "") !="")
+                if (objConsulta.ObtenerValorCampo("IDPROVEEDOR", "TbProveedor", "") != "" && objConsulta.ObtenerValorCampo("IDSUCURSAL", "TbSucursal", "") != "" && objConsulta.ObtenerValorCampo("IDPARAMETROSFACTURA", "TbParametrosFactura", "") != "")
                 {
                     if (FrmCompra == null || FrmCompra.IsDisposed)
                     {
@@ -347,7 +361,60 @@ namespace Comisariato.Formularios
                 this.panelPrincipal.BackgroundImage = Image.FromStream(stream);
 
             }
-                //this.panelPrincipal.BackgroundImage = global::Comisariato.Properties.Resources.logo1098x585;
+            //Bitacora bt = new Bitacora();
+            //DataTable dip = consultas.BoolDataTable("Select ESTACION from TbCajasTalonario where IPESTACION = '" + Convert.ToString(bt.LocalIPAddress()) + "'");
+            //if (dip.Rows.Count > 0)
+            //{
+            //    DataRow myRow = dip.Rows[0];
+
+            //    //Se almacena el campo foto de la tabla en el arreglo de bytes
+            //    string estacion = myRow["ESTACION"].ToString();
+            //    string[] s = estacion.Split(' ');
+            //    if (s[0] == "Caja")
+            //    {
+            //        for (int i = 0; i < 6; i++)
+            //        {
+            //            if (i > 2)
+            //            {
+            //                tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[1]);
+            //            }
+            //            else if (i < 2)
+            //            {
+            //                tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[0]);
+            //            }
+            //        }
+            //    }
+            //    for (int i = 0; i < 5; i++)
+            //    {
+            //        if (i > 0)
+            //        {
+            //            tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[0].Nodes[1]);
+            //        }
+            //    }
+            //}
+            DataTable usuraio = consultas.BoolDataTable("select IDTIPOUSUARIO FROM TbUsuario WHERE IDUSUARIO = '" + Convert.ToInt32(Program.IDTIPOUSUARIO) + "'");
+            if (Program.IDTIPOUSUARIO == "2")
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    if (i > 2)
+                    {
+                        tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[1]);
+                    }
+                    else if (i < 2)
+                    {
+                        tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[0]);
+                    }
+                }
+                for (int i = 0; i < 5; i++)
+                {
+                    if (i > 0)
+                    {
+                        tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[0].Nodes[1]);
+                    }
+                }
+
+            }
         }
     }
 }

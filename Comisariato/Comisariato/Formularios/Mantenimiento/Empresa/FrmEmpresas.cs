@@ -170,6 +170,7 @@ namespace Comisariato.Formularios
                 btnGuardarEmpresa.Text = "&Guardar";
             }
             else { inicializarDatos(); }
+            bandera_Estado = false;
         }
 
 

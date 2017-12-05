@@ -231,6 +231,7 @@ namespace Comisariato.Formularios.Mantenimiento
                 btnGuardar.Text = "&Guardar";
             }
             else { inicializarDatos(); }
+            bandera_Estado = false;
         }
 
         private void TxtIP_Leave(object sender, EventArgs e)

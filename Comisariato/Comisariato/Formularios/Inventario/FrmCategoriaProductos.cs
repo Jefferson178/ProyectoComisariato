@@ -160,6 +160,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 btnGuardarCategoriaProducto.Text = "&Guardar";
             }
             else { inicializarDatos(); }
+            bandera_Estado = false;
         }
 
         private void txtConsultarCategoriaProducto_TextChanged(object sender, EventArgs e)
