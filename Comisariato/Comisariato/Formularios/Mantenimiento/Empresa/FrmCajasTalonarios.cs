@@ -231,15 +231,20 @@ namespace Comisariato.Formularios.Mantenimiento
                 btnGuardar.Text = "&Guardar";
             }
             else { inicializarDatos(); }
+            bandera_Estado = false;
         }
 
         private void TxtIP_Leave(object sender, EventArgs e)
         {
-            if (!Funcion.ValidaIP(TxtIP.Text))
+            if (TxtIP.Text != "")
             {
-                MessageBox.Show("Ingrese una Dirección IP Correca", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                TxtIP.Focus();
-                TxtIP.SelectAll();
+                int ocurrenciasPunto = TxtIP.Text.Split('.').Length;
+                if (!Funcion.ValidaIP(TxtIP.Text) || ocurrenciasPunto <= 3)
+                {
+                    MessageBox.Show("Ingrese una Dirección IP Correca", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    TxtIP.Focus();
+                    TxtIP.SelectAll();
+                }
             }
         }
 
@@ -255,7 +260,7 @@ namespace Comisariato.Formularios.Mantenimiento
 
         private void TxtIP_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.Validar_Numeros(e);
+            Funcion.Validar_Numeros_Punto(e,TxtIP.Text);
         }
 
         private void txtConsultarCaja_TextChanged(object sender, EventArgs e)
@@ -272,6 +277,115 @@ namespace Comisariato.Formularios.Mantenimiento
                 //dgvDatosProveedor.Columns[1].HeaderText = "Habilitar";
                 dgvDatosCaja.Columns["ID"].Visible = false;
             }
+        }
+
+        private void TxtIP_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSerie1Caja_Leave(object sender, EventArgs e)
+        {
+            if (txtSerie1Caja.Text != "")
+            {
+                if (txtSerie1Caja.Text.Length < 3)
+                {
+                    MessageBox.Show("3 digitos por serie");
+                    txtSerie1Caja.Focus();
+                    txtSerie1Caja.SelectAll();
+                }
+            }
+        }
+
+        private void txtSerie2Caja_Leave(object sender, EventArgs e)
+        {
+            if (txtSerie2Caja.Text != "")
+            {
+                if (txtSerie2Caja.Text.Length < 3)
+                {
+                    MessageBox.Show("3 digitos por serie");
+                    txtSerie2Caja.Focus();
+                    txtSerie2Caja.SelectAll();
+                }
+            }
+        }
+
+        private void txtDocumentoInicialCaja_Leave(object sender, EventArgs e)
+        {
+            if (txtDocumentoInicialCaja.Text != "")
+            {
+                if (txtDocumentoInicialCaja.Text.Length < 9)
+                {
+                    MessageBox.Show("9 digitos");
+                    txtDocumentoInicialCaja.Focus();
+                    txtDocumentoInicialCaja.SelectAll();
+                }
+                if (txtDocumentoFinalCaja.Text != "")
+                {
+                    int inicial = 0, final = 0;
+                    inicial = Convert.ToInt32(txtDocumentoInicialCaja.Text);
+                    final = Convert.ToInt32(txtDocumentoFinalCaja.Text);
+                    if (!(inicial < final))
+                    {
+                        MessageBox.Show("El Documento Inicial  deber ser Menor  al 'Documento Inicial'");
+                        txtDocumentoActualCaja.SelectAll();
+                    }
+                }
+            }
+
+        }
+
+        private void txtDocumentoFinalCaja_Leave(object sender, EventArgs e)
+        {
+            if (txtDocumentoFinalCaja.Text != "")
+            {
+                if (txtDocumentoFinalCaja.Text.Length < 9)
+                {
+                    MessageBox.Show("9 digitos");
+                    txtDocumentoFinalCaja.Focus();
+                    txtDocumentoFinalCaja.SelectAll();
+                }
+                if (txtDocumentoFinalCaja.Text != "")
+                {
+                    int inicial = 0, final = 0;
+                    inicial = Convert.ToInt32(txtDocumentoInicialCaja.Text);
+                    final = Convert.ToInt32(txtDocumentoFinalCaja.Text);
+
+                    if (!(final > inicial))
+                    {
+                        MessageBox.Show("El Documento Final  deber ser Mayor al 'Documento Inicial'");
+                        txtDocumentoActualCaja.SelectAll();
+                    }
+                }
+
+            }
+        }
+
+        private void txtDocumentoActualCaja_Leave(object sender, EventArgs e)
+        {
+            if (txtDocumentoActualCaja.Text != "")
+            {
+                if (txtDocumentoActualCaja.Text.Length < 9)
+                {
+                    MessageBox.Show("9 digitos");
+                    txtDocumentoActualCaja.Focus();
+                    txtDocumentoActualCaja.SelectAll();
+                }
+                if (txtDocumentoFinalCaja.Text != "" && txtDocumentoInicialCaja.Text !="")
+                {
+                    int inicial = 0, final = 0, actual = 0;
+                    inicial = Convert.ToInt32(txtDocumentoInicialCaja.Text);
+                    final = Convert.ToInt32(txtDocumentoFinalCaja.Text);
+                    actual = Convert.ToInt32(txtDocumentoActualCaja.Text);
+
+                    if (!(actual >= inicial) && !(actual <= final))
+                    {
+                        MessageBox.Show("El Documento Actual debe ser Mayor o Igual al 'Documento Inicial' y deber ser Menor o Igual a 'Documento Final'");
+                        txtDocumentoActualCaja.SelectAll();
+                    }
+                }
+            }
+
         }
     }
 }

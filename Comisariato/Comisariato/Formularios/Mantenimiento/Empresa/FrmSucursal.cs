@@ -155,6 +155,7 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
                 btnGuardar.Text = "&Guardar";
             }
             else { inicializarDatos(); }
+            bandera_Estado = false;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)

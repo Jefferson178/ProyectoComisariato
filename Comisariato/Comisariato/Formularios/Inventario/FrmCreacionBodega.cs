@@ -130,6 +130,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             //Funcion.Limpiarobjetos(gbNuevaBodega);
             //Funcion.Limpiarobjetos(gbConsultarModificarDeshabilitarBodega);
             inicializar();
+            bandera_Estado = false;
         }
 
         public void inicializar()

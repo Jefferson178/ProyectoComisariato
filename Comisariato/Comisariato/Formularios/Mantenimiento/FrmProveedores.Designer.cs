@@ -176,7 +176,7 @@
             this.button1.Location = new System.Drawing.Point(932, 23);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(92, 62);
-            this.button1.TabIndex = 28;
+            this.button1.TabIndex = 30;
             this.button1.Text = "Salir";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.UseVisualStyleBackColor = true;
@@ -191,8 +191,9 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1007, 381);
-            this.tabControl1.TabIndex = 29;
+            this.tabControl1.TabIndex = 8;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.tabControl1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tabControl1_KeyPress);
             // 
             // tabPage1
             // 
@@ -246,7 +247,7 @@
             this.TxtCelularResponsable.Location = new System.Drawing.Point(107, 230);
             this.TxtCelularResponsable.Name = "TxtCelularResponsable";
             this.TxtCelularResponsable.Size = new System.Drawing.Size(146, 22);
-            this.TxtCelularResponsable.TabIndex = 19;
+            this.TxtCelularResponsable.TabIndex = 23;
             this.TxtCelularResponsable.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIdentificacion_KeyPress);
             // 
             // label27
@@ -268,7 +269,8 @@
             this.cbCuentaContableProveedor.Location = new System.Drawing.Point(107, 165);
             this.cbCuentaContableProveedor.Name = "cbCuentaContableProveedor";
             this.cbCuentaContableProveedor.Size = new System.Drawing.Size(383, 24);
-            this.cbCuentaContableProveedor.TabIndex = 15;
+            this.cbCuentaContableProveedor.TabIndex = 17;
+            this.cbCuentaContableProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbIdentificacionProveedor_KeyPress);
             // 
             // txtPlazo
             // 
@@ -305,7 +307,7 @@
             this.txtFax.Location = new System.Drawing.Point(846, 198);
             this.txtFax.Name = "txtFax";
             this.txtFax.Size = new System.Drawing.Size(146, 22);
-            this.txtFax.TabIndex = 21;
+            this.txtFax.TabIndex = 22;
             this.txtFax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFax_KeyPress);
             // 
             // label7
@@ -374,7 +376,7 @@
             this.txtTelefonoProveedor.Location = new System.Drawing.Point(344, 132);
             this.txtTelefonoProveedor.Name = "txtTelefonoProveedor";
             this.txtTelefonoProveedor.Size = new System.Drawing.Size(146, 22);
-            this.txtTelefonoProveedor.TabIndex = 13;
+            this.txtTelefonoProveedor.TabIndex = 14;
             this.txtTelefonoProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIdentificacion_KeyPress);
             // 
             // label12
@@ -413,7 +415,7 @@
             this.txtCelularProveedor.Location = new System.Drawing.Point(107, 132);
             this.txtCelularProveedor.Name = "txtCelularProveedor";
             this.txtCelularProveedor.Size = new System.Drawing.Size(146, 22);
-            this.txtCelularProveedor.TabIndex = 12;
+            this.txtCelularProveedor.TabIndex = 13;
             this.txtCelularProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIdentificacion_KeyPress);
             // 
             // label14
@@ -442,7 +444,7 @@
             this.txtDireccionProveedor.Location = new System.Drawing.Point(107, 65);
             this.txtDireccionProveedor.Name = "txtDireccionProveedor";
             this.txtDireccionProveedor.Size = new System.Drawing.Size(383, 22);
-            this.txtDireccionProveedor.TabIndex = 8;
+            this.txtDireccionProveedor.TabIndex = 9;
             this.txtDireccionProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDireccion_KeyPress);
             // 
             // ckbEstado
@@ -454,7 +456,7 @@
             this.ckbEstado.Location = new System.Drawing.Point(776, 231);
             this.ckbEstado.Name = "ckbEstado";
             this.ckbEstado.Size = new System.Drawing.Size(68, 20);
-            this.ckbEstado.TabIndex = 23;
+            this.ckbEstado.TabIndex = 27;
             this.ckbEstado.Text = "Estado";
             this.ckbEstado.UseVisualStyleBackColor = true;
             // 
@@ -464,7 +466,7 @@
             this.txtRazonSocialProveedor.Location = new System.Drawing.Point(107, 98);
             this.txtRazonSocialProveedor.Name = "txtRazonSocialProveedor";
             this.txtRazonSocialProveedor.Size = new System.Drawing.Size(383, 22);
-            this.txtRazonSocialProveedor.TabIndex = 10;
+            this.txtRazonSocialProveedor.TabIndex = 11;
             this.txtRazonSocialProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDireccion_KeyPress);
             // 
             // ckbRISEProveedor
@@ -474,7 +476,7 @@
             this.ckbRISEProveedor.Location = new System.Drawing.Point(507, 231);
             this.ckbRISEProveedor.Name = "ckbRISEProveedor";
             this.ckbRISEProveedor.Size = new System.Drawing.Size(118, 20);
-            this.ckbRISEProveedor.TabIndex = 22;
+            this.ckbRISEProveedor.TabIndex = 26;
             this.ckbRISEProveedor.Text = "Proveedor RISE";
             this.ckbRISEProveedor.UseVisualStyleBackColor = true;
             // 
@@ -484,7 +486,7 @@
             this.txtEmailProveedor.Location = new System.Drawing.Point(609, 65);
             this.txtEmailProveedor.Name = "txtEmailProveedor";
             this.txtEmailProveedor.Size = new System.Drawing.Size(383, 22);
-            this.txtEmailProveedor.TabIndex = 9;
+            this.txtEmailProveedor.TabIndex = 10;
             this.txtEmailProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmailProveedor_KeyPress);
             // 
             // cbTipoServicioProveedor
@@ -498,6 +500,7 @@
             this.cbTipoServicioProveedor.Name = "cbTipoServicioProveedor";
             this.cbTipoServicioProveedor.Size = new System.Drawing.Size(151, 24);
             this.cbTipoServicioProveedor.TabIndex = 24;
+            this.cbTipoServicioProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbIdentificacionProveedor_KeyPress);
             // 
             // txtGiraChequeProveedor
             // 
@@ -505,7 +508,7 @@
             this.txtGiraChequeProveedor.Location = new System.Drawing.Point(609, 98);
             this.txtGiraChequeProveedor.Name = "txtGiraChequeProveedor";
             this.txtGiraChequeProveedor.Size = new System.Drawing.Size(383, 22);
-            this.txtGiraChequeProveedor.TabIndex = 11;
+            this.txtGiraChequeProveedor.TabIndex = 12;
             this.txtGiraChequeProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDireccion_KeyPress);
             // 
             // cbTipoGastoProveedor
@@ -521,7 +524,8 @@
             this.cbTipoGastoProveedor.Location = new System.Drawing.Point(609, 199);
             this.cbTipoGastoProveedor.Name = "cbTipoGastoProveedor";
             this.cbTipoGastoProveedor.Size = new System.Drawing.Size(145, 24);
-            this.cbTipoGastoProveedor.TabIndex = 20;
+            this.cbTipoGastoProveedor.TabIndex = 21;
+            this.cbTipoGastoProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbIdentificacionProveedor_KeyPress);
             // 
             // cbPaisProveedor
             // 
@@ -531,8 +535,9 @@
             this.cbPaisProveedor.Location = new System.Drawing.Point(609, 131);
             this.cbPaisProveedor.Name = "cbPaisProveedor";
             this.cbPaisProveedor.Size = new System.Drawing.Size(145, 24);
-            this.cbPaisProveedor.TabIndex = 14;
+            this.cbPaisProveedor.TabIndex = 15;
             this.cbPaisProveedor.SelectedIndexChanged += new System.EventHandler(this.cbPaisProveedor_SelectedIndexChanged);
+            this.cbPaisProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbIdentificacionProveedor_KeyPress);
             // 
             // txtResponsableProveedor
             // 
@@ -540,7 +545,7 @@
             this.txtResponsableProveedor.Location = new System.Drawing.Point(107, 198);
             this.txtResponsableProveedor.Name = "txtResponsableProveedor";
             this.txtResponsableProveedor.Size = new System.Drawing.Size(383, 22);
-            this.txtResponsableProveedor.TabIndex = 18;
+            this.txtResponsableProveedor.TabIndex = 20;
             this.txtResponsableProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNombreProveedor_KeyPress);
             // 
             // cbCantonProveedor
@@ -551,8 +556,9 @@
             this.cbCantonProveedor.Location = new System.Drawing.Point(609, 164);
             this.cbCantonProveedor.Name = "cbCantonProveedor";
             this.cbCantonProveedor.Size = new System.Drawing.Size(145, 24);
-            this.cbCantonProveedor.TabIndex = 16;
+            this.cbCantonProveedor.TabIndex = 18;
             this.cbCantonProveedor.SelectedIndexChanged += new System.EventHandler(this.cbCantonProveedor_SelectedIndexChanged);
+            this.cbCantonProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbIdentificacionProveedor_KeyPress);
             // 
             // label17
             // 
@@ -572,8 +578,9 @@
             this.cbProvinciaProveedor.Location = new System.Drawing.Point(846, 131);
             this.cbProvinciaProveedor.Name = "cbProvinciaProveedor";
             this.cbProvinciaProveedor.Size = new System.Drawing.Size(146, 24);
-            this.cbProvinciaProveedor.TabIndex = 15;
+            this.cbProvinciaProveedor.TabIndex = 16;
             this.cbProvinciaProveedor.SelectedIndexChanged += new System.EventHandler(this.cbProvinciaProveedor_SelectedIndexChanged);
+            this.cbProvinciaProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbIdentificacionProveedor_KeyPress);
             // 
             // label16
             // 
@@ -593,7 +600,8 @@
             this.cbParroquiaProveedor.Location = new System.Drawing.Point(846, 164);
             this.cbParroquiaProveedor.Name = "cbParroquiaProveedor";
             this.cbParroquiaProveedor.Size = new System.Drawing.Size(146, 24);
-            this.cbParroquiaProveedor.TabIndex = 17;
+            this.cbParroquiaProveedor.TabIndex = 19;
+            this.cbParroquiaProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbIdentificacionProveedor_KeyPress);
             // 
             // label15
             // 
@@ -746,6 +754,7 @@
             this.retencionSRIProveedor.HeaderText = "Retención SRI";
             this.retencionSRIProveedor.Name = "retencionSRIProveedor";
             this.retencionSRIProveedor.ReadOnly = true;
+            this.retencionSRIProveedor.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.retencionSRIProveedor.Width = 125;
             // 
             // tipoProveedor
@@ -871,6 +880,7 @@
             this.dgvCredito.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCredito_CellDoubleClick);
             this.dgvCredito.Enter += new System.EventHandler(this.dgvCredito_Enter);
             this.dgvCredito.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCredito_KeyDown);
+            this.dgvCredito.Leave += new System.EventHandler(this.dgvCredito_Leave);
             // 
             // dgvICE
             // 
@@ -958,6 +968,7 @@
             this.txtCodigo.Size = new System.Drawing.Size(58, 22);
             this.txtCodigo.TabIndex = 2;
             this.txtCodigo.Text = "0";
+            this.txtCodigo.TextChanged += new System.EventHandler(this.txtCodigo_TextChanged);
             this.txtCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIdentificacion_KeyPress);
             // 
             // cbNaturalezaProveedor
@@ -974,6 +985,7 @@
             this.cbNaturalezaProveedor.Name = "cbNaturalezaProveedor";
             this.cbNaturalezaProveedor.Size = new System.Drawing.Size(152, 24);
             this.cbNaturalezaProveedor.TabIndex = 7;
+            this.cbNaturalezaProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbIdentificacionProveedor_KeyPress);
             // 
             // label23
             // 
@@ -1067,6 +1079,7 @@
             this.cbIdentificacionProveedor.Name = "cbIdentificacionProveedor";
             this.cbIdentificacionProveedor.Size = new System.Drawing.Size(152, 24);
             this.cbIdentificacionProveedor.TabIndex = 4;
+            this.cbIdentificacionProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbIdentificacionProveedor_KeyPress);
             // 
             // cbNacionalidadProveedor
             // 
@@ -1080,6 +1093,7 @@
             this.cbNacionalidadProveedor.Name = "cbNacionalidadProveedor";
             this.cbNacionalidadProveedor.Size = new System.Drawing.Size(152, 24);
             this.cbNacionalidadProveedor.TabIndex = 6;
+            this.cbNacionalidadProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbIdentificacionProveedor_KeyPress);
             // 
             // btnLimpiarProveedor
             // 
@@ -1088,7 +1102,7 @@
             this.btnLimpiarProveedor.Location = new System.Drawing.Point(734, 36);
             this.btnLimpiarProveedor.Name = "btnLimpiarProveedor";
             this.btnLimpiarProveedor.Size = new System.Drawing.Size(134, 84);
-            this.btnLimpiarProveedor.TabIndex = 27;
+            this.btnLimpiarProveedor.TabIndex = 29;
             this.btnLimpiarProveedor.Text = "&Limpiar";
             this.btnLimpiarProveedor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLimpiarProveedor.UseVisualStyleBackColor = true;
@@ -1101,7 +1115,7 @@
             this.btnGuardarProveedor.Location = new System.Drawing.Point(594, 36);
             this.btnGuardarProveedor.Name = "btnGuardarProveedor";
             this.btnGuardarProveedor.Size = new System.Drawing.Size(133, 84);
-            this.btnGuardarProveedor.TabIndex = 26;
+            this.btnGuardarProveedor.TabIndex = 28;
             this.btnGuardarProveedor.Text = "&Guardar";
             this.btnGuardarProveedor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardarProveedor.UseVisualStyleBackColor = true;
@@ -1133,7 +1147,6 @@
             this.rbtInactivosProveedor.TabIndex = 7;
             this.rbtInactivosProveedor.Text = "Inactivos";
             this.rbtInactivosProveedor.UseVisualStyleBackColor = true;
-            this.rbtInactivosProveedor.CheckedChanged += new System.EventHandler(this.rbtInactivosProveedor_CheckedChanged);
             // 
             // rbtActivosProveedor
             // 
@@ -1337,13 +1350,13 @@
         private System.Windows.Forms.DataGridView dgvICE;
         private System.Windows.Forms.DataGridView dgvCodigo101;
         private System.Windows.Forms.DataGridView dgvRetencionFuenteIva;
+        private System.Windows.Forms.TextBox TxtCelularResponsable;
+        private System.Windows.Forms.Label label27;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDCodigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn retencionSRIProveedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipoProveedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn porcentajeProveedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn cuentaContableProveedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn validesProveedor;
-        private System.Windows.Forms.TextBox TxtCelularResponsable;
-        private System.Windows.Forms.Label label27;
     }
 }

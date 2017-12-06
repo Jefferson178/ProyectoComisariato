@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\AdmSql.cs" />
+    <Compile Include="Clases\AsignacionMenu.cs" />
     <Compile Include="Clases\Bitacora.cs" />
     <Compile Include="Clases\Bodega.cs" />
     <Compile Include="Clases\CajaTalonarioEmpresa.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Clases\DetalleCompra.cs" />
     <Compile Include="Clases\Empleado.cs" />
     <Compile Include="Clases\Empresa.cs" />
+    <Compile Include="Clases\EncabezadoOrdenGiro.cs" />
     <Compile Include="Clases\Funcion.cs" />
     <Compile Include="Clases\ParametrosFactura.cs" />
     <Compile Include="Clases\Producto.cs" />
@@ -111,6 +113,12 @@
     <Compile Include="Formularios\FrmSesion.Designer.cs">
       <DependentUpon>FrmSesion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Mantenimiento\FrmAsignarMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Mantenimiento\FrmAsignarMenu.Designer.cs">
+      <DependentUpon>FrmAsignarMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Mantenimiento\FrmClientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,10 +143,10 @@
     <Compile Include="Formularios\Mantenimiento\FrmProveedores.Designer.cs">
       <DependentUpon>FrmProveedores.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\Transacciones\FrmUsuarios.cs">
+    <Compile Include="Formularios\Mantenimiento\FrmUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\Transacciones\FrmUsuarios.Designer.cs">
+    <Compile Include="Formularios\Mantenimiento\FrmUsuarios.Designer.cs">
       <DependentUpon>FrmUsuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Inventario\FrmAsignacionProductoBodega.cs">
@@ -176,6 +184,11 @@
     </Compile>
     <Compile Include="Formularios\Transacciones\FrmDevoluciones.Designer.cs">
       <DependentUpon>FrmDevoluciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Transacciones\Reportes\dtOG.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtOG.xsd</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Transacciones\Venta\FrmAvanse.cs">
       <SubType>Form</SubType>
@@ -260,6 +273,9 @@
     <EmbeddedResource Include="Formularios\FrmSesion.resx">
       <DependentUpon>FrmSesion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Mantenimiento\FrmAsignarMenu.resx">
+      <DependentUpon>FrmAsignarMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Mantenimiento\FrmClientes.resx">
       <DependentUpon>FrmClientes.cs</DependentUpon>
     </EmbeddedResource>
@@ -272,7 +288,7 @@
     <EmbeddedResource Include="Formularios\Mantenimiento\FrmProveedores.resx">
       <DependentUpon>FrmProveedores.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\Transacciones\FrmUsuarios.resx">
+    <EmbeddedResource Include="Formularios\Mantenimiento\FrmUsuarios.resx">
       <DependentUpon>FrmUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Inventario\FrmAsignacionProductoBodega.resx">
@@ -333,6 +349,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Formularios\Transacciones\Reportes\dtOG.xsc">
+      <DependentUpon>dtOG.xsd</DependentUpon>
+    </None>
+    <None Include="Formularios\Transacciones\Reportes\dtOG.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtOG.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Formularios\Transacciones\Reportes\dtOG.xss">
+      <DependentUpon>dtOG.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -544,6 +571,7 @@
   <ItemGroup>
     <None Include="Resources\LIMPIAR32X32.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcCajaTalonario = new System.Windows.Forms.TabControl();
             this.tpNuevaCajaTalonario = new System.Windows.Forms.TabPage();
             this.btnLimpiar = new System.Windows.Forms.Button();
@@ -163,9 +163,11 @@
             // 
             this.TxtIP.Font = new System.Drawing.Font("Arial", 9.75F);
             this.TxtIP.Location = new System.Drawing.Point(491, 129);
+            this.TxtIP.MaxLength = 15;
             this.TxtIP.Name = "TxtIP";
             this.TxtIP.Size = new System.Drawing.Size(204, 22);
             this.TxtIP.TabIndex = 20;
+            this.TxtIP.TextChanged += new System.EventHandler(this.TxtIP_TextChanged);
             this.TxtIP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIP_KeyPress);
             this.TxtIP.Leave += new System.EventHandler(this.TxtIP_Leave);
             // 
@@ -230,28 +232,34 @@
             // 
             this.txtDocumentoActualCaja.Font = new System.Drawing.Font("Arial", 9.75F);
             this.txtDocumentoActualCaja.Location = new System.Drawing.Point(179, 77);
+            this.txtDocumentoActualCaja.MaxLength = 9;
             this.txtDocumentoActualCaja.Name = "txtDocumentoActualCaja";
             this.txtDocumentoActualCaja.Size = new System.Drawing.Size(190, 22);
             this.txtDocumentoActualCaja.TabIndex = 13;
             this.txtDocumentoActualCaja.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDocumentoInicialCaja_KeyPress);
+            this.txtDocumentoActualCaja.Leave += new System.EventHandler(this.txtDocumentoActualCaja_Leave);
             // 
             // txtDocumentoFinalCaja
             // 
             this.txtDocumentoFinalCaja.Font = new System.Drawing.Font("Arial", 9.75F);
             this.txtDocumentoFinalCaja.Location = new System.Drawing.Point(491, 50);
+            this.txtDocumentoFinalCaja.MaxLength = 9;
             this.txtDocumentoFinalCaja.Name = "txtDocumentoFinalCaja";
             this.txtDocumentoFinalCaja.Size = new System.Drawing.Size(204, 22);
             this.txtDocumentoFinalCaja.TabIndex = 12;
             this.txtDocumentoFinalCaja.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDocumentoInicialCaja_KeyPress);
+            this.txtDocumentoFinalCaja.Leave += new System.EventHandler(this.txtDocumentoFinalCaja_Leave);
             // 
             // txtDocumentoInicialCaja
             // 
             this.txtDocumentoInicialCaja.Font = new System.Drawing.Font("Arial", 9.75F);
             this.txtDocumentoInicialCaja.Location = new System.Drawing.Point(179, 50);
+            this.txtDocumentoInicialCaja.MaxLength = 9;
             this.txtDocumentoInicialCaja.Name = "txtDocumentoInicialCaja";
             this.txtDocumentoInicialCaja.Size = new System.Drawing.Size(190, 22);
             this.txtDocumentoInicialCaja.TabIndex = 11;
             this.txtDocumentoInicialCaja.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDocumentoInicialCaja_KeyPress);
+            this.txtDocumentoInicialCaja.Leave += new System.EventHandler(this.txtDocumentoInicialCaja_Leave);
             // 
             // label10
             // 
@@ -267,22 +275,27 @@
             // 
             this.txtSerie2Caja.Font = new System.Drawing.Font("Arial", 9.75F);
             this.txtSerie2Caja.Location = new System.Drawing.Point(595, 24);
+            this.txtSerie2Caja.MaxLength = 3;
             this.txtSerie2Caja.Name = "txtSerie2Caja";
             this.txtSerie2Caja.Size = new System.Drawing.Size(100, 22);
             this.txtSerie2Caja.TabIndex = 9;
             this.txtSerie2Caja.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDocumentoInicialCaja_KeyPress);
+            this.txtSerie2Caja.Leave += new System.EventHandler(this.txtSerie2Caja_Leave);
             // 
             // txtSerie1Caja
             // 
             this.txtSerie1Caja.Font = new System.Drawing.Font("Arial", 9.75F);
             this.txtSerie1Caja.Location = new System.Drawing.Point(491, 24);
+            this.txtSerie1Caja.MaxLength = 3;
             this.txtSerie1Caja.Name = "txtSerie1Caja";
             this.txtSerie1Caja.Size = new System.Drawing.Size(82, 22);
             this.txtSerie1Caja.TabIndex = 8;
             this.txtSerie1Caja.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDocumentoInicialCaja_KeyPress);
+            this.txtSerie1Caja.Leave += new System.EventHandler(this.txtSerie1Caja_Leave);
             // 
             // cbTipoDocumentoCaja
             // 
+            this.cbTipoDocumentoCaja.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoDocumentoCaja.DropDownWidth = 555;
             this.cbTipoDocumentoCaja.Font = new System.Drawing.Font("Arial", 9.75F);
             this.cbTipoDocumentoCaja.FormattingEnabled = true;
@@ -377,6 +390,7 @@
             // 
             // cbBodegaCaja
             // 
+            this.cbBodegaCaja.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBodegaCaja.Font = new System.Drawing.Font("Arial", 9.75F);
             this.cbBodegaCaja.FormattingEnabled = true;
             this.cbBodegaCaja.Location = new System.Drawing.Point(83, 53);
@@ -386,6 +400,7 @@
             // 
             // cbSucursalCaja
             // 
+            this.cbSucursalCaja.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSucursalCaja.Font = new System.Drawing.Font("Arial", 9.75F);
             this.cbSucursalCaja.FormattingEnabled = true;
             this.cbSucursalCaja.Location = new System.Drawing.Point(83, 21);
@@ -463,14 +478,14 @@
             this.dgvDatosCaja.AllowUserToOrderColumns = true;
             this.dgvDatosCaja.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDatosCaja.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosCaja.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosCaja.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvDatosCaja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosCaja.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Modificar,

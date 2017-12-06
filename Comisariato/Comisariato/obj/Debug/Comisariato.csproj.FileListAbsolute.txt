@@ -525,3 +525,9 @@ C:\Users\Chikitik Sandra\Documents\GitHub\ProyectoComisariato\Comisariato\Comisa
 C:\Users\Chikitik Sandra\Documents\GitHub\ProyectoComisariato\Comisariato\Comisariato\obj\Debug\Comisariato.Formularios.Transacciones.FrmReimprimirFact.resources
 C:\Users\Chikitik Sandra\Documents\GitHub\ProyectoComisariato\Comisariato\Comisariato\obj\Debug\Comisariato.Properties.Resources.resources
 C:\Users\Chikitik Sandra\Documents\GitHub\ProyectoComisariato\Comisariato\Comisariato\obj\Debug\Comisariato.csproj.GenerateResource.Cache
+C:\Users\MaxDJ\Documents\GitHub\ProyectoComisariato\Comisariato\Comisariato\obj\Debug\Comisariato.Formularios.Mantenimiento.FrmAsignarMenu.resources
+C:\Users\Programacion\Documents\GitHub\ProyectoComisariato\Comisariato\Comisariato\obj\Debug\Comisariato.Formularios.Mantenimiento.FrmAsignarMenu.resources
+C:\Users\Byron\Documents\GitHub\ProyectoComisariato\Comisariato\Comisariato\obj\Debug\Comisariato.Formularios.Mantenimiento.FrmAsignarMenu.resources
+C:\Users\Andres\Documents\GitHub\ProyectoComisariato\Comisariato\Comisariato\obj\Debug\Comisariato.Formularios.Mantenimiento.FrmAsignarMenu.resources
+>>>>>>> 5836bef86986d80f2ffacdf1a456dd49b2a6b912
+C:\Users\Galito\Documents\GitHub\ProyectoComisariato\Comisariato\Comisariato\obj\Debug\Comisariato.Formularios.Mantenimiento.FrmAsignarMenu.resources

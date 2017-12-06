@@ -217,7 +217,14 @@ namespace Comisariato.Clases
             {
                 espacios += " ";
             }
-            textoCompleto += espacios + valor;
+            if (total==0)
+            {
+                textoCompleto += espacios + "$ 0.00";
+            }
+            else
+            {
+                textoCompleto += espacios + valor;
+            }
             linea.AppendLine(textoCompleto);
         }
 
@@ -394,7 +401,6 @@ namespace Comisariato.Clases
         }
 
     }
-
 
     //Clase para mandara a imprimir texto plano a la impresora
     public class RawPrinterHelper

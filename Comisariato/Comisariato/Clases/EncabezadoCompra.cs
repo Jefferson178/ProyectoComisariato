@@ -297,7 +297,7 @@ namespace Comisariato.Clases
         {
             ObjConsulta = new Consultas();
 
-            if (!ObjConsulta.Existe("ORDEN_COMPRA_NUMERO", ordenCompra, "TbEncabezadoyPieCompra"))
+            if (!ObjConsulta.Existe("IDPROVEEDOR = "+ proveedor +" AND NUMERO = "+ numero +" AND SERIE1 = "+ serie1 +" AND SERIE2", serie2, "TbEncabezadoyPieCompra"))
             {
                 if (ObjConsulta.EjecutarPROCEDUREEncabezadoCompra(objEncabezadoCompra))
                 {

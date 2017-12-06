@@ -103,11 +103,11 @@ namespace Comisariato.Formularios
             if (txtNombreEmpresa.Text != "" && txtRUCEmpresa.Text != "" && txtNombreComercialEmpresa.Text != "" && txtRazonSocialEmpresa.Text != "" && txtGerenteEmpresa.Text != "" && txtEmailEmpresa.Text != "" && txtCeluar1Empresa.Text != "")
             {
 
-                //if (nameLogo != "" )
-                //{
+                if (nameLogo != "")
+                {
                     Image img1 = pbLogoEmpresa.Image;
                     bitDataLogo = Funcion.imgToByteArray(img1);
-                //}
+                }
                 if (nameFondo != "")
                 {
                     Image img2 = pbfondoPantallaEmpresa.Image;
@@ -170,6 +170,7 @@ namespace Comisariato.Formularios
                 btnGuardarEmpresa.Text = "&Guardar";
             }
             else { inicializarDatos(); }
+            bandera_Estado = false;
         }
 
 

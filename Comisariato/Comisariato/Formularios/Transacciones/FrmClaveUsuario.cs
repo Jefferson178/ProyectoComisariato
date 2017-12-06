@@ -66,16 +66,36 @@ namespace Comisariato.Formularios.Transacciones
                             bitacora = new Bitacora("00:00:00", "Venta");
                             bitacora.insertarBitacora();
 
-                            string numcaja = "111", sucursal = "2";
-                          
-                            string condicion = " where CAJA = '" + numcaja + "' and SUCURSAL= '" + sucursal + "' and IDEMPRESA= '" + Program.IDEMPRESA + "';";
+                            string numcaja = "", sucursal = "", documentoActual ="";
+                            string IpMaquina = bitacora.LocalIPAddress();
+                            DataTable Dt = c.BoolDataTable("Select SERIE1,SERIE2,DOCUMENTOACTUAL,DOCUMENTOINICIAL,DOCUMENTOFINAL,AUTORIZACION,ESTACION,IPESTACION from TbCajasTalonario where IPESTACION = '" + IpMaquina + "' and ESTADO=1;");
+                            if (Dt.Rows.Count > 0)
+                            {
+                                DataRow myRows = Dt.Rows[0];
+                                sucursal = myRows["SERIE1"].ToString();
+                                numcaja = myRows["SERIE2"].ToString();
+                                documentoActual= myRows["DOCUMENTOACTUAL"].ToString();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Caja no registrada");
+                            }
 
+                            //DataTable Dtparametros = c.BoolDataTable("Select PIE1,PIE2,PIE3,PIE4 from TbParametrosFactura INNER JOIN TbAutorizadosImprimir ON( TbParametrosFactura.IDPARAMETROSFACTURA=TbAutorizadosImprimir.IDPARAMETROSFACTURA AND TbParametrosFactura.IDEMPRESA= '" + Program.IDEMPRESA + ");");
+                            //if (Dtparametros.Rows.Count > 0)
+                            //{
+                            //    DataRow myRows = Dtparametros.Rows[0];
+                            //    Program.piefactura = myRows["PIE1"].ToString() + "\n" + myRows["PIE2"].ToString() + "\n" + myRows["PIE3"].ToString() + "\n" + myRows["PIE4"].ToString();
+                            //    //numcaja = myRows["PIE2"].ToString()
+                            //}
+
+                            string condicion = " where CAJA = '" + numcaja + "' and SUCURSAL= '" + sucursal + "' and IDEMPRESA= '" + Program.IDEMPRESA + "';";
                             int numero = c.ObtenerID("IDFACTURA", "TbEncabezadoFactura", condicion);
                             condicion= " where IDENTIFICACION= 9999999999999";
                             f.IDCLIENTEINICIO = c.ObtenerID("IDCLIENTE", "TbCliente", condicion);
                             if (numero == 0)
                             {
-                                f.numfact = 1;
+                                f.numfact = Convert.ToInt32(documentoActual);
                             }
                             else
                             {
@@ -121,6 +141,13 @@ namespace Comisariato.Formularios.Transacciones
             }
 
 
+        }
+
+        private void FrmClaveUsuario_Load(object sender, EventArgs e)
+        {
+            SendKeys.Send("{TAB}");
+
+            txtClave.Focus();
         }
     }
 }

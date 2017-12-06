@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label13 = new System.Windows.Forms.Label();
             this.cbSucursal = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -38,19 +38,6 @@
             this.btnSalirCompra = new System.Windows.Forms.Button();
             this.gbDetalleProducto = new System.Windows.Forms.GroupBox();
             this.dgvProductosIngresos = new System.Windows.Forms.DataGridView();
-            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iceProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.irbpProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioPublico = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioMayorista = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioCaja = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iva = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.txtIRBP = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -98,6 +85,19 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label14 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iceProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.irbpProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioPublico = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioMayorista = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioCaja = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iva = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.pcOrdenCompra.SuspendLayout();
             this.gbDetalleProducto.SuspendLayout();
@@ -206,14 +206,14 @@
             this.dgvProductosIngresos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProductosIngresos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial", 10F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProductosIngresos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvProductosIngresos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductosIngresos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigo,
@@ -229,14 +229,14 @@
             this.subtotal,
             this.iva,
             this.total});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvProductosIngresos.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Arial", 10F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvProductosIngresos.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgvProductosIngresos.Location = new System.Drawing.Point(9, 20);
             this.dgvProductosIngresos.Margin = new System.Windows.Forms.Padding(2);
             this.dgvProductosIngresos.Name = "dgvProductosIngresos";
@@ -248,101 +248,10 @@
             this.dgvProductosIngresos.Enter += new System.EventHandler(this.dgvProductosIngresos_Enter);
             this.dgvProductosIngresos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvProductosIngresos_KeyDown);
             // 
-            // codigo
-            // 
-            this.codigo.HeaderText = "Código";
-            this.codigo.Name = "codigo";
-            this.codigo.ReadOnly = true;
-            this.codigo.Width = 110;
-            // 
-            // producto
-            // 
-            this.producto.HeaderText = "Producto";
-            this.producto.Name = "producto";
-            this.producto.ReadOnly = true;
-            this.producto.Width = 160;
-            // 
-            // cantidad
-            // 
-            this.cantidad.HeaderText = "Cant.";
-            this.cantidad.Name = "cantidad";
-            this.cantidad.ReadOnly = true;
-            this.cantidad.Width = 50;
-            // 
-            // precioCompra
-            // 
-            this.precioCompra.HeaderText = "P. C.";
-            this.precioCompra.Name = "precioCompra";
-            this.precioCompra.ReadOnly = true;
-            this.precioCompra.Width = 60;
-            // 
-            // descuento
-            // 
-            this.descuento.HeaderText = "Desc.";
-            this.descuento.Name = "descuento";
-            this.descuento.ReadOnly = true;
-            this.descuento.Width = 70;
-            // 
-            // iceProducto
-            // 
-            this.iceProducto.HeaderText = "ICE";
-            this.iceProducto.Name = "iceProducto";
-            this.iceProducto.ReadOnly = true;
-            this.iceProducto.Width = 50;
-            // 
-            // irbpProducto
-            // 
-            this.irbpProducto.HeaderText = "IRBP";
-            this.irbpProducto.Name = "irbpProducto";
-            this.irbpProducto.ReadOnly = true;
-            this.irbpProducto.Width = 50;
-            // 
-            // precioPublico
-            // 
-            this.precioPublico.HeaderText = "P.V.P";
-            this.precioPublico.Name = "precioPublico";
-            this.precioPublico.ReadOnly = true;
-            this.precioPublico.Width = 60;
-            // 
-            // precioMayorista
-            // 
-            this.precioMayorista.HeaderText = "P. May";
-            this.precioMayorista.Name = "precioMayorista";
-            this.precioMayorista.ReadOnly = true;
-            this.precioMayorista.Width = 75;
-            // 
-            // precioCaja
-            // 
-            this.precioCaja.HeaderText = "P. Cajas";
-            this.precioCaja.Name = "precioCaja";
-            this.precioCaja.ReadOnly = true;
-            this.precioCaja.Width = 85;
-            // 
-            // subtotal
-            // 
-            this.subtotal.HeaderText = "Subtotal";
-            this.subtotal.Name = "subtotal";
-            this.subtotal.ReadOnly = true;
-            this.subtotal.Width = 75;
-            // 
-            // iva
-            // 
-            this.iva.HeaderText = "IVA";
-            this.iva.Name = "iva";
-            this.iva.ReadOnly = true;
-            this.iva.Width = 45;
-            // 
-            // total
-            // 
-            this.total.HeaderText = "Total";
-            this.total.Name = "total";
-            this.total.ReadOnly = true;
-            this.total.Width = 65;
-            // 
             // txtTotal
             // 
             this.txtTotal.Enabled = false;
-            this.txtTotal.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold);
+            this.txtTotal.Font = new System.Drawing.Font("Arial", 36F);
             this.txtTotal.Location = new System.Drawing.Point(776, 471);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
@@ -448,7 +357,7 @@
             // txtIVA
             // 
             this.txtIVA.Enabled = false;
-            this.txtIVA.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.txtIVA.Font = new System.Drawing.Font("Arial", 10F);
             this.txtIVA.Location = new System.Drawing.Point(650, 380);
             this.txtIVA.Name = "txtIVA";
             this.txtIVA.ReadOnly = true;
@@ -604,6 +513,7 @@
             // 
             // txtPlazoOC
             // 
+            this.txtPlazoOC.Enabled = false;
             this.txtPlazoOC.Font = new System.Drawing.Font("Arial", 10F);
             this.txtPlazoOC.Location = new System.Drawing.Point(770, 50);
             this.txtPlazoOC.Name = "txtPlazoOC";
@@ -639,6 +549,7 @@
             this.txtFlete.Font = new System.Drawing.Font("Arial", 10F);
             this.txtFlete.Location = new System.Drawing.Point(152, 78);
             this.txtFlete.Name = "txtFlete";
+            this.txtFlete.ReadOnly = true;
             this.txtFlete.Size = new System.Drawing.Size(214, 23);
             this.txtFlete.TabIndex = 100;
             this.txtFlete.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFlete_KeyPress);
@@ -744,6 +655,7 @@
             // 
             // cbProveedor
             // 
+            this.cbProveedor.DropDownWidth = 225;
             this.cbProveedor.Font = new System.Drawing.Font("Arial", 10F);
             this.cbProveedor.Location = new System.Drawing.Point(502, 50);
             this.cbProveedor.Name = "cbProveedor";
@@ -803,14 +715,14 @@
             this.dgvDatosProducto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvDatosProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosProducto.Location = new System.Drawing.Point(17, 132);
             this.dgvDatosProducto.Margin = new System.Windows.Forms.Padding(2);
@@ -886,6 +798,110 @@
             this.label16.Size = new System.Drawing.Size(52, 16);
             this.label16.TabIndex = 17;
             this.label16.Text = "Desde:";
+            // 
+            // codigo
+            // 
+            this.codigo.FillWeight = 147.1193F;
+            this.codigo.HeaderText = "Código";
+            this.codigo.Name = "codigo";
+            this.codigo.ReadOnly = true;
+            this.codigo.Width = 105;
+            // 
+            // producto
+            // 
+            this.producto.FillWeight = 208.2813F;
+            this.producto.HeaderText = "Producto";
+            this.producto.Name = "producto";
+            this.producto.ReadOnly = true;
+            this.producto.Width = 225;
+            // 
+            // cantidad
+            // 
+            this.cantidad.FillWeight = 60.1572F;
+            this.cantidad.HeaderText = "Cant.";
+            this.cantidad.Name = "cantidad";
+            this.cantidad.ReadOnly = true;
+            this.cantidad.Width = 45;
+            // 
+            // precioCompra
+            // 
+            this.precioCompra.FillWeight = 75.41525F;
+            this.precioCompra.HeaderText = "P.C.";
+            this.precioCompra.Name = "precioCompra";
+            this.precioCompra.ReadOnly = true;
+            this.precioCompra.Width = 50;
+            // 
+            // descuento
+            // 
+            this.descuento.FillWeight = 90.65001F;
+            this.descuento.HeaderText = "Desc.";
+            this.descuento.Name = "descuento";
+            this.descuento.ReadOnly = true;
+            this.descuento.Width = 50;
+            // 
+            // iceProducto
+            // 
+            this.iceProducto.FillWeight = 65.87027F;
+            this.iceProducto.HeaderText = "ICE";
+            this.iceProducto.Name = "iceProducto";
+            this.iceProducto.ReadOnly = true;
+            this.iceProducto.Width = 45;
+            // 
+            // irbpProducto
+            // 
+            this.irbpProducto.FillWeight = 68.26523F;
+            this.irbpProducto.HeaderText = "IRBP";
+            this.irbpProducto.Name = "irbpProducto";
+            this.irbpProducto.ReadOnly = true;
+            this.irbpProducto.Width = 51;
+            // 
+            // precioPublico
+            // 
+            this.precioPublico.FillWeight = 84.64441F;
+            this.precioPublico.HeaderText = "P.V.P";
+            this.precioPublico.Name = "precioPublico";
+            this.precioPublico.ReadOnly = true;
+            this.precioPublico.Width = 63;
+            // 
+            // precioMayorista
+            // 
+            this.precioMayorista.FillWeight = 107.9493F;
+            this.precioMayorista.HeaderText = "P.M.";
+            this.precioMayorista.Name = "precioMayorista";
+            this.precioMayorista.ReadOnly = true;
+            this.precioMayorista.Width = 60;
+            // 
+            // precioCaja
+            // 
+            this.precioCaja.FillWeight = 122.7342F;
+            this.precioCaja.HeaderText = "P.Cj.";
+            this.precioCaja.Name = "precioCaja";
+            this.precioCaja.ReadOnly = true;
+            this.precioCaja.Width = 60;
+            // 
+            // subtotal
+            // 
+            this.subtotal.FillWeight = 107.4997F;
+            this.subtotal.HeaderText = "Subtotal";
+            this.subtotal.Name = "subtotal";
+            this.subtotal.ReadOnly = true;
+            this.subtotal.Width = 80;
+            // 
+            // iva
+            // 
+            this.iva.FillWeight = 64.72799F;
+            this.iva.HeaderText = "IVA";
+            this.iva.Name = "iva";
+            this.iva.ReadOnly = true;
+            this.iva.Width = 49;
+            // 
+            // total
+            // 
+            this.total.FillWeight = 96.68581F;
+            this.total.HeaderText = "Total";
+            this.total.Name = "total";
+            this.total.ReadOnly = true;
+            this.total.Width = 72;
             // 
             // FrmCompra
             // 

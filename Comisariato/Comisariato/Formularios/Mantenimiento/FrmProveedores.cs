@@ -25,6 +25,7 @@ namespace Comisariato.Formularios
         String identificacion = "";
         String GlobalCodigoProveedor = "0";
         int IDProveedor;
+        DataGridViewComboBoxColumn columnaComboFI = new DataGridViewComboBoxColumn();
 
         public void inicializarDatos()
         {
@@ -66,25 +67,28 @@ namespace Comisariato.Formularios
             consultas.BoolLlenarComboBox(cbCuentaContableProveedor, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta ");
             consultas.BoolLlenarComboBox(cbTipoServicioProveedor, "Select IDSERVICIO as ID, DESCRIPCION AS Texto from TbTipoServicio");
 
-            
+
             IDProveedor = consultas.ObtenerID("IDProveedor", "TbProveedor", "");
             if (IDProveedor > 0)
             {
                 GlobalCodigoProveedor = (IDProveedor + 1).ToString();
             }
             else { GlobalCodigoProveedor = "1"; }
-            
-            switch (GlobalCodigoProveedor.Length)
-            {
-                case 1:
-                    GlobalCodigoProveedor = "00" + GlobalCodigoProveedor;
-                    break;
-                case 2:
-                    GlobalCodigoProveedor = "0" + GlobalCodigoProveedor;
-                    break;
-                default:
-                    break;
-            }
+
+            //switch (GlobalCodigoProveedor.Length)
+            //{
+            //    case 1:
+            //        GlobalCodigoProveedor = "000" + GlobalCodigoProveedor;
+            //        break;
+            //    case 2:
+            //        GlobalCodigoProveedor = "00" + GlobalCodigoProveedor;
+            //        break;
+            //    case 3:
+            //        GlobalCodigoProveedor = "0" + GlobalCodigoProveedor;
+            //        break;
+            //    default:
+            //        break;
+            //}
             txtCodigo.Text = GlobalCodigoProveedor;
 
             cbCreditoProveedor.DataSource = null;
@@ -99,11 +103,15 @@ namespace Comisariato.Formularios
                 dgvCodigoRetencionProveedor.Rows.Add();
                 dgvDatosAutorizacionProveedor.Rows.Add();
             }
+            tabControl1.SelectedIndex = 0;
+            tcProveedor.SelectedIndex = 0;
+
+
         }
 
         private void FrmProveedores_Load(object sender, EventArgs e)
         {
-            SendKeys.Send("{TAB}"); SendKeys.Send("{TAB}");
+            SendKeys.Send("{TAB}"); SendKeys.Send("{TAB}"); SendKeys.Send("{TAB}");
             cbIdentificacionProveedor.SelectedIndex = 0;
             cbNacionalidadProveedor.SelectedIndex = 0;
             cbNaturalezaProveedor.SelectedIndex = 0;
@@ -136,11 +144,11 @@ namespace Comisariato.Formularios
             cbCuentaContableProveedor.DropDownHeight = cbCuentaContableProveedor.ItemHeight = 150;
             cbTipoServicioProveedor.DropDownHeight = cbTipoServicioProveedor.ItemHeight = 150;
 
-            
+
             /// Para poner del DATETIMEPICKER
             dtpOrder = new DateTimePicker();
             dtpOrder.Format = DateTimePickerFormat.Short;
-            
+
             dtpOrder.Visible = false;
             dtpOrder.Width = 100;
             dgvDatosAutorizacionProveedor.Controls.Add(dtpOrder);
@@ -148,9 +156,11 @@ namespace Comisariato.Formularios
             dgvDatosAutorizacionProveedor.CellBeginEdit += this.dgvDatosAutorizacionProveedor_CellBeginEdit;
             dgvDatosAutorizacionProveedor.CellEndEdit += this.dgvDatosAutorizacionProveedor_CellEndEdit;
 
-            
+            //Combo en DATAGRIDVIEW FUENTE/IVA
+            //ComboBox comboPrueba = new ComboBox();
+            //consultas.BoolLlenarComboBoxDgv((DataGridViewComboBoxColumn)dgvCodigoRetencionProveedor.Columns[1].i, "select CS.IDCODIGOSRI as ID, '[' + CS.CODIGOSRI + '] - ' + CS.DESCRIPCION as Texto from TbCodigoSRI CS, TbTipoCodigoSRI TCS WHERE TCS.IDTIPOCODIGOSRI = CS.IDTIPOCODIGOSRI AND TCS.CODIGO = 'COD_RET_FUE' or TCS.CODIGO = 'COD_RET_IVA'");
+            //dgvCodigoRetencionProveedor.Rows[0].Cells[1].Value = columnaComboFI;
         }
-
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
             if (txtNombreProveedor.Text != "" && txtNumeroIdentificacionProveedor.Text != "" && txtDireccionProveedor.Text != "" && cbCreditoProveedor.Text != "" && cbICEProveedor.Text != "" && cbCodigo101Proveedor.Text != "")
@@ -159,16 +169,16 @@ namespace Comisariato.Formularios
                     txtNombreProveedor.Text, txtNumeroIdentificacionProveedor.Text, cbNacionalidadProveedor.Text, cbNaturalezaProveedor.Text,
                     txtDireccionProveedor.Text, txtRazonSocialProveedor.Text, txtEmailProveedor.Text, txtTelefonoProveedor.Text, txtCelularProveedor.Text,
                     txtGiraChequeProveedor.Text, txtResponsableProveedor.Text, cbTipoGastoProveedor.Text, cbTipoServicioProveedor.Text,
-                    Convert.ToInt32(cbParroquiaProveedor.SelectedValue), ckbRISEProveedor.Checked, Convert.ToInt32(cbCuentaContableProveedor.SelectedValue), Convert.ToInt32(cbCreditoProveedor.SelectedValue), Convert.ToInt32(cbICEProveedor.SelectedValue), Convert.ToInt32(cbCodigo101Proveedor.SelectedValue),TxtCelularResponsable.Text);
+                    Convert.ToInt32(cbParroquiaProveedor.SelectedValue), ckbRISEProveedor.Checked, Convert.ToInt32(cbCuentaContableProveedor.SelectedValue), Convert.ToInt32(cbCreditoProveedor.SelectedValue), Convert.ToInt32(cbICEProveedor.SelectedValue), Convert.ToInt32(cbCodigo101Proveedor.SelectedValue), TxtCelularResponsable.Text);
                 if (!bandera_Estado)
                 {
-                    String resultado = ObjProvee.InsertarProveedor();
+                    String resultado = ObjProvee.InsertarProveedor(ObjProvee);
                     if (resultado == "Datos Guardados")
                     {
                         //string res = ObjProvee.InsertarAutorizacionProveedor()
-                        ObjProvee.InsertarAutorizacionProveedor(dgvDatosAutorizacionProveedor, IDProveedor + 1);
-                        ObjProvee.InsertarRetencion(dgvCodigoRetencionProveedor, IDProveedor + 1);
-                        MessageBox.Show("Proveedor Registrado Correctamente ", "Exito",MessageBoxButtons.OK);
+                        ObjProvee.InsertarAutorizacionProveedor(dgvDatosAutorizacionProveedor, txtNumeroIdentificacionProveedor.Text);
+                        ObjProvee.InsertarRetencion(dgvCodigoRetencionProveedor, txtNumeroIdentificacionProveedor.Text);
+                        MessageBox.Show("Proveedor Registrado Correctamente ", "Exito", MessageBoxButtons.OK);
                         cargarDatos("1");
                         rbtActivosProveedor.Checked = true;
                         inicializarDatos();
@@ -237,6 +247,7 @@ namespace Comisariato.Formularios
                 btnGuardarProveedor.Text = "&Guardar";
             }
             else { inicializarDatos(); }
+            bandera_Estado = false;
         }
 
 
@@ -244,7 +255,7 @@ namespace Comisariato.Formularios
 
         private void TxtNombreProveedor_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Funcion.ValidarLetrasPuntoNumero(e,txtNombreProveedor.Text);
+            Funcion.ValidarLetrasPuntoNumero(e, txtNombreProveedor.Text);
 
             if (e.KeyChar == (char)Keys.Return)
             {
@@ -519,7 +530,6 @@ namespace Comisariato.Formularios
         }
         //--------------------------------------------------------------COMBOMULTICOLUMN CREDITO--------------------------------------------------------------
         bool apareceDataDeCombos = true;
-
         private void dgvCredito_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             consultas.BoolLlenarComboBox(cbCreditoProveedor, "SELECT IDCODIGOSRI as ID, '[' + CODIGOSRI + '] - ' + DESCRIPCION as Texto FROM TbCodigoSRI where IDCODIGOSRI =" + Convert.ToInt32(dgvCredito.CurrentRow.Cells[0].Value));
@@ -554,9 +564,6 @@ namespace Comisariato.Formularios
                     dgvCodigoRetencionProveedor.Focus();
             }
         }
-
-    
-
         private void dgvCredito_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -608,7 +615,7 @@ namespace Comisariato.Formularios
                     dgvCodigoRetencionProveedor.Focus();
 
             }
-            
+
         }
 
         private void dgvICE_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -699,7 +706,7 @@ namespace Comisariato.Formularios
                 dgvDatosAutorizacionProveedor.Focus();
             }
         }
-        //--------------------------------------------------------------DataGridVieRetencion--------------------------------------------------------------
+        //--------------------------------------------------------------DataGridViewRetencion--------------------------------------------------------------
         private void dgvCodigoRetencionProveedor_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView Grid = (DataGridView)sender;
@@ -726,7 +733,7 @@ namespace Comisariato.Formularios
 
         private void dgvRetencionFuenteIva_DoubleClick(object sender, EventArgs e)
         {
-            
+
         }
 
         private void dgvRetencionFuenteIva_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -746,10 +753,9 @@ namespace Comisariato.Formularios
                 }
                 dgvCodigoRetencionProveedor.CurrentRow.Cells[2].Value = tipoRetencion;
                 dgvCodigoRetencionProveedor.CurrentRow.Cells[3].Value = dgvRetencionFuenteIva.CurrentRow.Cells[3].Value;
-                string [] s = dgvRetencionFuenteIva.CurrentRow.Cells[5].Value.ToString().Split(' ');
+                string[] s = dgvRetencionFuenteIva.CurrentRow.Cells[5].Value.ToString().Split(' ');
                 dgvCodigoRetencionProveedor.CurrentRow.Cells[5].Value = s[0];
-                dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.Rows[dgvCodigoRetencionProveedor.Rows.Count - 2].Cells[1];
-
+                dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.CurrentRow.Cells[2];
                 dgvRetencionFuenteIva.Visible = false;
                 dgvCodigoRetencionProveedor.Focus();
             }
@@ -760,7 +766,6 @@ namespace Comisariato.Formularios
             if (e.KeyCode == Keys.Enter)
             {
                 dgvCodigoRetencionProveedor.Rows.Add();
-                e.SuppressKeyPress = true;
                 dgvCodigoRetencionProveedor.CurrentRow.Cells[0].Value = dgvRetencionFuenteIva.CurrentRow.Cells[0].Value;
                 dgvCodigoRetencionProveedor.CurrentRow.Cells[1].Value = dgvRetencionFuenteIva.CurrentRow.Cells[1].Value;
                 if (Convert.ToString(dgvRetencionFuenteIva.CurrentRow.Cells[2].Value) == "COD_RET_IVA")
@@ -775,11 +780,8 @@ namespace Comisariato.Formularios
                 dgvCodigoRetencionProveedor.CurrentRow.Cells[3].Value = dgvRetencionFuenteIva.CurrentRow.Cells[3].Value;
                 string[] s = dgvRetencionFuenteIva.CurrentRow.Cells[5].Value.ToString().Split(' ');
                 dgvCodigoRetencionProveedor.CurrentRow.Cells[5].Value = s[0];
-                dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.Rows[dgvCodigoRetencionProveedor.Rows.Count - 2].Cells[1];
+                dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.CurrentRow.Cells[2];
                 dgvRetencionFuenteIva.Visible = false;
-                //----Si no funciona es esto
-                //apareceDataDeCombos = true;
-                //-------------------------
                 dgvCodigoRetencionProveedor.Focus();
             }
             if (e.KeyCode == Keys.Escape && Convert.ToString(dgvCodigoRetencionProveedor.CurrentRow.Cells[1].Value) == "")
@@ -787,16 +789,10 @@ namespace Comisariato.Formularios
                 dgvCodigoRetencionProveedor.Focus();
                 try
                 {
-                    dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.Rows[dgvCodigoRetencionProveedor.Rows.Count - 3].Cells[2];
+                    dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.CurrentRow.Cells[2];
                 }
                 catch { }
                 dgvRetencionFuenteIva.Visible = false;
-                try
-                {
-                    dgvCodigoRetencionProveedor.Rows.Remove(dgvCodigoRetencionProveedor.Rows[dgvCodigoRetencionProveedor.RowCount - 2]);
-                    dgvCodigoRetencionProveedor.Focus();
-                }
-                catch { }
             }
             else if (e.KeyCode == Keys.Escape && Convert.ToString(dgvCodigoRetencionProveedor.CurrentRow.Cells[1].Value) != "")
             {
@@ -819,15 +815,14 @@ namespace Comisariato.Formularios
                 dgvCodigoRetencionProveedor.Focus();
             }
         }
+        //----------------------------------Funcion para dar el foco en la pagina 2
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabControl1.SelectedIndex == 1)
             {
-                dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.Rows[dgvCodigoRetencionProveedor.Rows.Count - 2].Cells[2];
+                dgvCodigoRetencionProveedor.CurrentCell = dgvCodigoRetencionProveedor.CurrentRow.Cells[2];
                 dgvRetencionFuenteIva.Visible = false;
-                cbCreditoProveedor.Focus();
-
-        
+                ckbContribuyenteEspecialProveedor.Focus();
             }
         }
 
@@ -927,10 +922,52 @@ namespace Comisariato.Formularios
                 SendKeys.Send("{TAB}");
             }
         }
-
         private void rbtInactivosProveedor_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void cbIdentificacionProveedor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void tabControl1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void dgvCredito_Leave(object sender, EventArgs e)
+        {
+            //if(cbCreditoProveedor.Focus() == false)
+            //{
+            //    dgvCredito.Visible = false;
+            //}
+        }
+
+        private void txtCodigo_TextChanged(object sender, EventArgs e)
+        {
+            switch(txtCodigo.Text.Length)
+            {
+                case 1:
+                    txtCodigo.Text = "000" + txtCodigo.Text;
+                break;
+                case 2:
+                    txtCodigo.Text = "00" + txtCodigo.Text;
+                break;
+                case 3:
+                    txtCodigo.Text = "0" + txtCodigo.Text;
+                break;
+                default:
+                    break;
+            }
+            //txtCodigo.Text = GlobalCodigoProveedor;
         }
     }
 }

@@ -38,6 +38,7 @@ namespace Comisariato.Formularios
         FrmEmpleado FrmEmpleado;
         FrmOrdenDeGiro FrmOrdenDeGiro;
         FrmDevolucionVenta FrmDevolucionVenta;
+        FrmAsignarMenu FrmAsignarMenu;
 
         public FrmPrincipal()
         {
@@ -50,7 +51,7 @@ namespace Comisariato.Formularios
         private void tvPrincipal_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             Program.panelPrincipalVariable = panelPrincipal;
-            
+
             string nombre = e.Node.Text;
             //-------------------------------------------------Mantenimiento---------------------------------------//
             //---------------------Cliente --------------------------------------//
@@ -79,6 +80,19 @@ namespace Comisariato.Formularios
                 {
                     //int index = panelPrincipal.Controls.GetChildIndex(FrmEmpleado);
                     FrmEmpleado.BringToFront();
+                }
+            }
+            if (nombre == "Administrar Menu")
+            {
+                if (FrmAsignarMenu == null || FrmAsignarMenu.IsDisposed)
+                {
+                    FrmAsignarMenu = new FrmAsignarMenu();
+                    objFuncion.AddFormInPanel(FrmAsignarMenu, Program.panelPrincipalVariable);
+                }
+                else
+                {
+                    //int index = panelPrincipal.Controls.GetChildIndex(FrmEmpleado);
+                    FrmAsignarMenu.BringToFront();
                 }
             }
             //--------------------Empresa---------------------------------------//
@@ -245,7 +259,7 @@ namespace Comisariato.Formularios
             }
             else if (nombre == "Compras")
             {
-                if (objConsulta.ObtenerValorCampo("IDPROVEEDOR","TbProveedor","") != "" && objConsulta.ObtenerValorCampo("IDSUCURSAL", "TbSucursal", "") != "" && objConsulta.ObtenerValorCampo("IDPARAMETROSFACTURA", "TbParametrosFactura", "") !="")
+                if (objConsulta.ObtenerValorCampo("IDPROVEEDOR", "TbProveedor", "") != "" && objConsulta.ObtenerValorCampo("IDSUCURSAL", "TbSucursal", "") != "" && objConsulta.ObtenerValorCampo("IDPARAMETROSFACTURA", "TbParametrosFactura", "") != "")
                 {
                     if (FrmCompra == null || FrmCompra.IsDisposed)
                     {
@@ -281,13 +295,13 @@ namespace Comisariato.Formularios
                 if (FrmDevolucionVenta == null || FrmDevolucionVenta.IsDisposed)
                 {
                     FrmDevolucionVenta = new FrmDevolucionVenta();
-                    FrmDevolucionVenta.ShowDialog();
+                    objFuncion.AddFormInPanel(FrmDevolucionVenta, Program.panelPrincipalVariable);
                 }
-                //else
-                //{
-                //    int index = panelPrincipal.Controls.GetChildIndex(FrmDevolucionVenta);
-                //    FrmDevolucionVenta.BringToFront();
-                //}
+                else
+                {
+                    int index = panelPrincipal.Controls.GetChildIndex(FrmDevolucionVenta);
+                    FrmDevolucionVenta.BringToFront();
+                }
             }
 
         }
@@ -331,23 +345,39 @@ namespace Comisariato.Formularios
         {
             Consultas consultas = new Consultas();
             DataTable dt = consultas.BoolDataTable("Select FONDOPANTALLA from TbEmpresa where IDEMPRESA = 1");
-            //Arreglo de byte en donde se almacenara la foto en bytes
             byte[] MyData = new byte[0];
-            //Verificar si tiene Datos
             if (dt.Rows.Count > 0)
             {
                 DataRow myRow = dt.Rows[0];
 
-                //Se almacena el campo foto de la tabla en el arreglo de bytes
                 MyData = (byte[])myRow["FONDOPANTALLA"];
-                //Se inicializa un flujo en memoria del arreglo de bytes
                 MemoryStream stream = new MemoryStream(MyData);
-                //En el picture box se muestra la imagen que esta almacenada en el flujo en memoria 
-                //el cual contiene el arreglo de bytes
                 this.panelPrincipal.BackgroundImage = Image.FromStream(stream);
 
             }
-                //this.panelPrincipal.BackgroundImage = global::Comisariato.Properties.Resources.logo1098x585;
+            DataTable usuraio = consultas.BoolDataTable("select IDTIPOUSUARIO FROM TbUsuario WHERE IDUSUARIO = '" + Convert.ToInt32(Program.IDTIPOUSUARIO) + "'");
+            if (Program.IDTIPOUSUARIO == "2")
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    if (i > 2)
+                    {
+                        tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[1]);
+                    }
+                    else if (i < 2)
+                    {
+                        tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[0]);
+                    }
+                }
+                for (int i = 0; i < 5; i++)
+                {
+                    if (i > 0)
+                    {
+                        tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[0].Nodes[1]);
+                    }
+                }
+
+            }
         }
     }
 }
