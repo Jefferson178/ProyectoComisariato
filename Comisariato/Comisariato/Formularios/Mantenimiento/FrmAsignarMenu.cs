@@ -27,12 +27,12 @@ namespace Comisariato.Formularios.Mantenimiento
 
         private void cbEmpresa_SelectedIndexChanged(object sender, EventArgs e)
         {
-            objConsul.BoolLlenarComboBox(cbUsuario, "SELECT  dbo.TbUsuario.IDUSUARIO as ID, dbo.TbUsuario.USUARIO As Texto FROM dbo.TbEmpresa INNER JOIN dbo.TbUsuario ON dbo.TbEmpresa.IDEMPRESA = dbo.TbUsuario.IDEMPRESA INNER JOIN dbo.TbEmpleado ON dbo.TbUsuario.IDEMPLEADO = dbo.TbEmpleado.IDEMPLEADO WHERE (dbo.TbEmpresa.IDEMPRESA = " + cbEmpresa.SelectedValue + ")");
+            objConsul.BoolLlenarComboBox(cbUsuario, "SELECT  dbo.TbUsuario.IDUSUARIO as ID, dbo.TbUsuario.USUARIO As Texto FROM dbo.TbEmpresa INNER JOIN dbo.TbUsuario ON dbo.TbEmpresa.IDEMPRESA = dbo.TbUsuario.IDEMPRESA INNER JOIN dbo.TbEmpleado ON dbo.TbUsuario.IDEMPLEADO = dbo.TbEmpleado.IDEMPLEADO WHERE (dbo.TbEmpresa.IDEMPRESA = " + cbEmpresa.SelectedValue + ") and dbo.TbUsuario.IDEMPLEADO != 1");
         }
 
         private void cbUsuario_Enter(object sender, EventArgs e)
         {
-            objConsul.BoolLlenarComboBox(cbUsuario, "SELECT  dbo.TbUsuario.IDUSUARIO as ID, dbo.TbUsuario.USUARIO As Texto FROM dbo.TbEmpresa INNER JOIN dbo.TbUsuario ON dbo.TbEmpresa.IDEMPRESA = dbo.TbUsuario.IDEMPRESA INNER JOIN dbo.TbEmpleado ON dbo.TbUsuario.IDEMPLEADO = dbo.TbEmpleado.IDEMPLEADO WHERE (dbo.TbEmpresa.IDEMPRESA = " + cbEmpresa.SelectedValue + ")");
+            objConsul.BoolLlenarComboBox(cbUsuario, "SELECT  dbo.TbUsuario.IDUSUARIO as ID, dbo.TbUsuario.USUARIO As Texto FROM dbo.TbEmpresa INNER JOIN dbo.TbUsuario ON dbo.TbEmpresa.IDEMPRESA = dbo.TbUsuario.IDEMPRESA INNER JOIN dbo.TbEmpleado ON dbo.TbUsuario.IDEMPLEADO = dbo.TbEmpleado.IDEMPLEADO WHERE (dbo.TbEmpresa.IDEMPRESA = " + cbEmpresa.SelectedValue + ") and dbo.TbUsuario.IDEMPLEADO != 1");
         }
 
         private void tvMenuAsignacion_AfterCheck(object sender, TreeViewEventArgs e)
@@ -51,17 +51,6 @@ namespace Comisariato.Formularios.Mantenimiento
                             e.Node.Nodes[i].Checked = false;
                     }
                 }
-                //else
-                //{
-                //    int cantidadNodosHijos = e.Node.GetNodeCount(true);
-                //    for (int i = 0; i < cantidadNodosHijos; i++)
-                //    {
-                //        if (e.Node.Nodes[i].Checked == true)
-                //        {
-                //            e.Node.Checked = true;
-                //        }
-                //    }
-                //}
             }
             catch (Exception)
             {
@@ -74,16 +63,29 @@ namespace Comisariato.Formularios.Mantenimiento
             try
             {
                 AsignacionMenu objAM = new AsignacionMenu();
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 6; i++)
                 {
                     //int nodo = Convert.ToInt32(objConsul.ObtenerValorCampo("IDMENU", "TbMenu", "where DESCRIPCION = '" + tvMenuAsignacion.Nodes[i].Text +"'"));
                     int cantNodos = tvMenuAsignacion.Nodes[i].GetNodeCount(true);
                     for (int j = 0; j < cantNodos; j++)
                     {
+                        int cantNodosHijos = tvMenuAsignacion.Nodes[i].Nodes[j].GetNodeCount(true);
+                        if (cantNodosHijos > 0)
+                        {
+                            cantNodos = Math.Abs(cantNodosHijos - cantNodos);
+                            for (int k = 0; k < cantNodosHijos; k++)
+                            {
+                                if (tvMenuAsignacion.Nodes[i].Nodes[j].Nodes[k].Checked == true)
+                                {
+
+                                    int nodo = Convert.ToInt32(objConsul.ObtenerValorCampo("IDMENU", "TbMenu", "where DESCRIPCION = '" + tvMenuAsignacion.Nodes[i].Nodes[j].Nodes[k].Text + "'"));
+                                    objAM.InsertarMenuAsignado(nodo, Convert.ToInt32(cbUsuario.SelectedValue));
+                                }
+                            }
+                        }
                         if (tvMenuAsignacion.Nodes[i].Nodes[j].Checked == true)
                         {
                             int nodo = Convert.ToInt32(objConsul.ObtenerValorCampo("IDMENU", "TbMenu", "where DESCRIPCION = '" + tvMenuAsignacion.Nodes[i].Nodes[j].Text + "'"));
-                            //int menuNumero = Math.Abs((cantNodos - (j + nodo + 1)));
                             objAM.InsertarMenuAsignado(nodo, Convert.ToInt32(cbUsuario.SelectedValue));
                         }
                     }

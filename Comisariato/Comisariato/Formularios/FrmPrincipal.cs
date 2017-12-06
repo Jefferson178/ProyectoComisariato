@@ -345,53 +345,16 @@ namespace Comisariato.Formularios
         {
             Consultas consultas = new Consultas();
             DataTable dt = consultas.BoolDataTable("Select FONDOPANTALLA from TbEmpresa where IDEMPRESA = 1");
-            //Arreglo de byte en donde se almacenara la foto en bytes
             byte[] MyData = new byte[0];
-            //Verificar si tiene Datos
             if (dt.Rows.Count > 0)
             {
                 DataRow myRow = dt.Rows[0];
 
-                //Se almacena el campo foto de la tabla en el arreglo de bytes
                 MyData = (byte[])myRow["FONDOPANTALLA"];
-                //Se inicializa un flujo en memoria del arreglo de bytes
                 MemoryStream stream = new MemoryStream(MyData);
-                //En el picture box se muestra la imagen que esta almacenada en el flujo en memoria 
-                //el cual contiene el arreglo de bytes
                 this.panelPrincipal.BackgroundImage = Image.FromStream(stream);
 
             }
-            //Bitacora bt = new Bitacora();
-            //DataTable dip = consultas.BoolDataTable("Select ESTACION from TbCajasTalonario where IPESTACION = '" + Convert.ToString(bt.LocalIPAddress()) + "'");
-            //if (dip.Rows.Count > 0)
-            //{
-            //    DataRow myRow = dip.Rows[0];
-
-            //    //Se almacena el campo foto de la tabla en el arreglo de bytes
-            //    string estacion = myRow["ESTACION"].ToString();
-            //    string[] s = estacion.Split(' ');
-            //    if (s[0] == "Caja")
-            //    {
-            //        for (int i = 0; i < 6; i++)
-            //        {
-            //            if (i > 2)
-            //            {
-            //                tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[1]);
-            //            }
-            //            else if (i < 2)
-            //            {
-            //                tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[0]);
-            //            }
-            //        }
-            //    }
-            //    for (int i = 0; i < 5; i++)
-            //    {
-            //        if (i > 0)
-            //        {
-            //            tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[0].Nodes[1]);
-            //        }
-            //    }
-            //}
             DataTable usuraio = consultas.BoolDataTable("select IDTIPOUSUARIO FROM TbUsuario WHERE IDUSUARIO = '" + Convert.ToInt32(Program.IDTIPOUSUARIO) + "'");
             if (Program.IDTIPOUSUARIO == "2")
             {
