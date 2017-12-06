@@ -80,12 +80,17 @@ namespace Comisariato.Formularios.Mantenimiento
                     int cantNodos = tvMenuAsignacion.Nodes[i].GetNodeCount(true);
                     for (int j = 0; j < cantNodos; j++)
                     {
-                        if (tvMenuAsignacion.Nodes[i].Nodes[j].Checked == true)
+                        int cantNodosHijos = tvMenuAsignacion.Nodes[i].Nodes[j].GetNodeCount(true);
+                        if (cantNodosHijos > 0)
                         {
-                            int nodo = Convert.ToInt32(objConsul.ObtenerValorCampo("IDMENU", "TbMenu", "where DESCRIPCION = '" + tvMenuAsignacion.Nodes[i].Nodes[j].Text + "'"));
-                            //int menuNumero = Math.Abs((cantNodos - (j + nodo + 1)));
-                            objAM.InsertarMenuAsignado(nodo, Convert.ToInt32(cbUsuario.SelectedValue));
+                            if (tvMenuAsignacion.Nodes[i].Nodes[j].Checked == true)
+                            {
+                                int nodo = Convert.ToInt32(objConsul.ObtenerValorCampo("IDMENU", "TbMenu", "where DESCRIPCION = '" + tvMenuAsignacion.Nodes[i].Nodes[j].Text + "'"));
+                                //int menuNumero = Math.Abs((cantNodos - (j + nodo + 1)));
+                                objAM.InsertarMenuAsignado(nodo, Convert.ToInt32(cbUsuario.SelectedValue));
+                            }
                         }
+
                     }
                 }
             }
