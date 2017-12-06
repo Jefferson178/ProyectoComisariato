@@ -52,6 +52,8 @@ namespace Comisariato
 
         private void BtnIniciar_Click(object sender, EventArgs e)
         {
+            //float total = 1;
+           // MessageBox.Show("$ 0.00");
             Consultas c = new Consultas();
             if (txtUsuario.Text != "")
             {
@@ -62,7 +64,7 @@ namespace Comisariato
                     {
                         if (Program.estado)
                         {
-                           // Program.Usuario = txtUsuario.Text;
+                            // Program.Usuario = txtUsuario.Text;
                             //Program.IDUsuario=
                             Program.FecaInicio = DateTime.Now.Date.ToShortDateString();
                             Program.horainicio = DateTime.Now.TimeOfDay.ToString();
@@ -76,7 +78,7 @@ namespace Comisariato
                         {
                             lblError.Text = "Su usuario por el momento se encuentra desabilitado.\nContactate con el administrador del sistema.";
                         }
-                      
+
                     }
                     else
                     {
@@ -95,8 +97,8 @@ namespace Comisariato
             {
                 lblError.Text = "Ingresa el usuario.";
                 txtUsuario.Focus();
-            }
-        }
+             }
+       }
 
         private void label2_Click(object sender, EventArgs e)
         {

@@ -379,8 +379,8 @@ namespace Comisariato.Clases
                 int ID = 0;
                 Objc.conectar();
                 SqlCommand Sentencia;
-                //Sentencia = new SqlCommand("SELECT  max(" + campoID + ") AS id from " + tabla + "" + condicion, ConexionBD.connection);
-                Sentencia = new SqlCommand("SELECT IDENT_CURRENT ('"+ tabla + "')as "+ campoID + "" + condicion, ConexionBD.connection);
+                Sentencia = new SqlCommand("SELECT  max(" + campoID + ") AS id from " + tabla + "" + condicion, ConexionBD.connection);
+                //Sentencia = new SqlCommand("SELECT IDENT_CURRENT ('"+ tabla + "')as "+ campoID + "" + condicion, ConexionBD.connection);
                 ID = Convert.ToInt32(Sentencia.ExecuteScalar());
                 Objc.Cerrar();
                 return ID;
