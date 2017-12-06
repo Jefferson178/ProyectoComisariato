@@ -1009,7 +1009,7 @@ namespace Comisariato.Formularios.Transacciones
             //MessageBox.Show(""+ pd.PrinterSettings.PrinterName);
             //string r = pd.PrinterSettings.PrinterName;
             // MessageBox.Show(@"\\SCLIENTE-PC\PedidoBodega");
-           String ruta = @"\\SCLIENTE-PC\BodegaPedido";
+           String ruta = @"\\AIRCONTROL\BodegaPedido";
             ticket.ImprimirTicket(ruta);
                // RawPrinterHelper.SendStringToPrinter(pd.PrinterSettings.PrinterName, "");
             //}

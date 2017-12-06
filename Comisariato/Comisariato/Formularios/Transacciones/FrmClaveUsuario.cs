@@ -80,11 +80,12 @@ namespace Comisariato.Formularios.Transacciones
                             {
                                 MessageBox.Show("Caja no registrada");
                             }
-                            //DataTable Dtparametros = c.BoolDataTable("Select PIE1,PIE2,PIE3,PIE4 from TbParametrosFactura INNER JOIN TbAutorizadosImprimir ON( TbParametrosFactura.IDPARAMETROSFACTURA=TbAutorizadosImprimir.IDPARAMETROSFACTURA AND TbParametrosFactura.IDEMPRESA= '"+Program.IDEMPRESA+");");
+
+                            //DataTable Dtparametros = c.BoolDataTable("Select PIE1,PIE2,PIE3,PIE4 from TbParametrosFactura INNER JOIN TbAutorizadosImprimir ON( TbParametrosFactura.IDPARAMETROSFACTURA=TbAutorizadosImprimir.IDPARAMETROSFACTURA AND TbParametrosFactura.IDEMPRESA= '" + Program.IDEMPRESA + ");");
                             //if (Dtparametros.Rows.Count > 0)
                             //{
                             //    DataRow myRows = Dtparametros.Rows[0];
-                            //    Program.piefactura = myRows["PIE1"].ToString()+"\n"+myRows["PIE2"].ToString()+"\n"+ myRows["PIE3"].ToString()+"\n"+myRows["PIE4"].ToString();
+                            //    Program.piefactura = myRows["PIE1"].ToString() + "\n" + myRows["PIE2"].ToString() + "\n" + myRows["PIE3"].ToString() + "\n" + myRows["PIE4"].ToString();
                             //    //numcaja = myRows["PIE2"].ToString()
                             //}
 
