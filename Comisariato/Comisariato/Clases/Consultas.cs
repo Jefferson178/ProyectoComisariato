@@ -379,7 +379,8 @@ namespace Comisariato.Clases
                 int ID = 0;
                 Objc.conectar();
                 SqlCommand Sentencia;
-                Sentencia = new SqlCommand("SELECT  max(" + campoID + ") AS id from " + tabla + "" + condicion, ConexionBD.connection);
+                //Sentencia = new SqlCommand("SELECT  max(" + campoID + ") AS id from " + tabla + "" + condicion, ConexionBD.connection);
+                Sentencia = new SqlCommand("SELECT IDENT_CURRENT ('"+ tabla + "')as "+ campoID + "" + condicion, ConexionBD.connection);
                 ID = Convert.ToInt32(Sentencia.ExecuteScalar());
                 Objc.Cerrar();
                 return ID;
@@ -886,6 +887,55 @@ namespace Comisariato.Clases
                 return false;
             }
         }
+
+        public bool EjecutarPROCEDUREProveedor(Proveedor ObjProvee)
+        {
+            try
+            {
+                Objc.conectar();
+                SqlCommand cmd = new SqlCommand("GRABA_PROVEEDOR", ConexionBD.connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                //SqlParameter Codigo = cmd.Parameters.Add
+                //("@CODIGO", SqlDbType.Int);
+                //Codigo.Direction = ParameterDirection.Output;
+                cmd.Parameters.AddWithValue("@NOMBRES", ObjProvee.Nombres);
+                cmd.Parameters.AddWithValue("@TIPOIDENTIFICACION", ObjProvee.TipoIdentificacion);
+                cmd.Parameters.AddWithValue("@IDENTIFICACION", ObjProvee.Identificacion);
+                cmd.Parameters.AddWithValue("@NACIONALIDAD", ObjProvee.Nacionalidad);
+                cmd.Parameters.AddWithValue("@NATURALEZA", ObjProvee.Naturaleza);
+                cmd.Parameters.AddWithValue("@DIRECCION", ObjProvee.Direccion);
+                cmd.Parameters.AddWithValue("@RAZONSOCIAL", ObjProvee.Razosocial);
+                cmd.Parameters.AddWithValue("@TELEFONO", ObjProvee.Telefono);
+                cmd.Parameters.AddWithValue("@CELULAR", ObjProvee.Celular);
+                cmd.Parameters.AddWithValue("@RESPONSABLE", ObjProvee.Responsable);
+                cmd.Parameters.AddWithValue("@TIPOSERVICIO", ObjProvee.Tiposervicio);
+                cmd.Parameters.AddWithValue("@PLAZO", ObjProvee.Plazo);
+                cmd.Parameters.AddWithValue("@EMAIL", ObjProvee.Email);
+                cmd.Parameters.AddWithValue("@GIRACHEQUEA", ObjProvee.Giracheque);
+                cmd.Parameters.AddWithValue("@IDPARROQUIA", ObjProvee.Idparroquia);
+                cmd.Parameters.AddWithValue("@TIPOGASTO", ObjProvee.Tipogasto);
+                cmd.Parameters.AddWithValue("@FAX", ObjProvee.Fax);
+                cmd.Parameters.AddWithValue("@ESTADO", ObjProvee.Estado);
+                cmd.Parameters.AddWithValue("@PROVEEDORRISE", ObjProvee.Riseproveedor);
+                cmd.Parameters.AddWithValue("@IDCuentaContable", ObjProvee.IDCuentaContable1);
+                cmd.Parameters.AddWithValue("@CREDITO", ObjProvee.Credito);
+                cmd.Parameters.AddWithValue("@ICE", ObjProvee.Ice);
+                cmd.Parameters.AddWithValue("@CODIGO_101", ObjProvee.Codigo_101);
+                cmd.Parameters.AddWithValue("@CELULAR_RESPONSABLE", ObjProvee.CelularResponsable);
+                int result = cmd.ExecuteNonQuery();
+                Objc.Cerrar();
+                if (result > 0)
+                    return true;
+                else
+                    return false;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public bool EditarFoto(byte[] binData, string CondicionIDENTIFICACION, string NombreTabla, string CampoModificar, string CampoCondicion)
         {
             try

@@ -75,17 +75,20 @@ namespace Comisariato.Formularios
             }
             else { GlobalCodigoProveedor = "1"; }
 
-            switch (GlobalCodigoProveedor.Length)
-            {
-                case 1:
-                    GlobalCodigoProveedor = "00" + GlobalCodigoProveedor;
-                    break;
-                case 2:
-                    GlobalCodigoProveedor = "0" + GlobalCodigoProveedor;
-                    break;
-                default:
-                    break;
-            }
+            //switch (GlobalCodigoProveedor.Length)
+            //{
+            //    case 1:
+            //        GlobalCodigoProveedor = "000" + GlobalCodigoProveedor;
+            //        break;
+            //    case 2:
+            //        GlobalCodigoProveedor = "00" + GlobalCodigoProveedor;
+            //        break;
+            //    case 3:
+            //        GlobalCodigoProveedor = "0" + GlobalCodigoProveedor;
+            //        break;
+            //    default:
+            //        break;
+            //}
             txtCodigo.Text = GlobalCodigoProveedor;
 
             cbCreditoProveedor.DataSource = null;
@@ -100,6 +103,10 @@ namespace Comisariato.Formularios
                 dgvCodigoRetencionProveedor.Rows.Add();
                 dgvDatosAutorizacionProveedor.Rows.Add();
             }
+            tabControl1.SelectedIndex = 0;
+            tcProveedor.SelectedIndex = 0;
+
+
         }
 
         private void FrmProveedores_Load(object sender, EventArgs e)
@@ -165,12 +172,12 @@ namespace Comisariato.Formularios
                     Convert.ToInt32(cbParroquiaProveedor.SelectedValue), ckbRISEProveedor.Checked, Convert.ToInt32(cbCuentaContableProveedor.SelectedValue), Convert.ToInt32(cbCreditoProveedor.SelectedValue), Convert.ToInt32(cbICEProveedor.SelectedValue), Convert.ToInt32(cbCodigo101Proveedor.SelectedValue), TxtCelularResponsable.Text);
                 if (!bandera_Estado)
                 {
-                    String resultado = ObjProvee.InsertarProveedor();
+                    String resultado = ObjProvee.InsertarProveedor(ObjProvee);
                     if (resultado == "Datos Guardados")
                     {
                         //string res = ObjProvee.InsertarAutorizacionProveedor()
-                        ObjProvee.InsertarAutorizacionProveedor(dgvDatosAutorizacionProveedor, IDProveedor + 1);
-                        ObjProvee.InsertarRetencion(dgvCodigoRetencionProveedor, IDProveedor + 1);
+                        ObjProvee.InsertarAutorizacionProveedor(dgvDatosAutorizacionProveedor, txtNumeroIdentificacionProveedor.Text);
+                        ObjProvee.InsertarRetencion(dgvCodigoRetencionProveedor, txtNumeroIdentificacionProveedor.Text);
                         MessageBox.Show("Proveedor Registrado Correctamente ", "Exito", MessageBoxButtons.OK);
                         cargarDatos("1");
                         rbtActivosProveedor.Checked = true;
@@ -942,6 +949,25 @@ namespace Comisariato.Formularios
             //{
             //    dgvCredito.Visible = false;
             //}
+        }
+
+        private void txtCodigo_TextChanged(object sender, EventArgs e)
+        {
+            switch(txtCodigo.Text.Length)
+            {
+                case 1:
+                    txtCodigo.Text = "000" + txtCodigo.Text;
+                break;
+                case 2:
+                    txtCodigo.Text = "00" + txtCodigo.Text;
+                break;
+                case 3:
+                    txtCodigo.Text = "0" + txtCodigo.Text;
+                break;
+                default:
+                    break;
+            }
+            //txtCodigo.Text = GlobalCodigoProveedor;
         }
     }
 }

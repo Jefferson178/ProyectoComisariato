@@ -968,6 +968,7 @@
             this.txtCodigo.Size = new System.Drawing.Size(58, 22);
             this.txtCodigo.TabIndex = 2;
             this.txtCodigo.Text = "0";
+            this.txtCodigo.TextChanged += new System.EventHandler(this.txtCodigo_TextChanged);
             this.txtCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIdentificacion_KeyPress);
             // 
             // cbNaturalezaProveedor
