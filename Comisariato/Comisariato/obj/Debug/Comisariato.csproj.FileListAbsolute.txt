@@ -527,3 +527,4 @@ C:\Users\Chikitik Sandra\Documents\GitHub\ProyectoComisariato\Comisariato\Comisa
 C:\Users\Chikitik Sandra\Documents\GitHub\ProyectoComisariato\Comisariato\Comisariato\obj\Debug\Comisariato.csproj.GenerateResource.Cache
 C:\Users\MaxDJ\Documents\GitHub\ProyectoComisariato\Comisariato\Comisariato\obj\Debug\Comisariato.Formularios.Mantenimiento.FrmAsignarMenu.resources
 C:\Users\Programacion\Documents\GitHub\ProyectoComisariato\Comisariato\Comisariato\obj\Debug\Comisariato.Formularios.Mantenimiento.FrmAsignarMenu.resources
+C:\Users\Andres\Documents\GitHub\ProyectoComisariato\Comisariato\Comisariato\obj\Debug\Comisariato.Formularios.Mantenimiento.FrmAsignarMenu.resources

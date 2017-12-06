@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\AdmSql.cs" />
+    <Compile Include="Clases\AsignacionMenu.cs" />
     <Compile Include="Clases\Bitacora.cs" />
     <Compile Include="Clases\Bodega.cs" />
     <Compile Include="Clases\CajaTalonarioEmpresa.cs" />
@@ -142,10 +143,10 @@
     <Compile Include="Formularios\Mantenimiento\FrmProveedores.Designer.cs">
       <DependentUpon>FrmProveedores.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\Transacciones\FrmUsuarios.cs">
+    <Compile Include="Formularios\Mantenimiento\FrmUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\Transacciones\FrmUsuarios.Designer.cs">
+    <Compile Include="Formularios\Mantenimiento\FrmUsuarios.Designer.cs">
       <DependentUpon>FrmUsuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Inventario\FrmAsignacionProductoBodega.cs">
@@ -287,7 +288,7 @@
     <EmbeddedResource Include="Formularios\Mantenimiento\FrmProveedores.resx">
       <DependentUpon>FrmProveedores.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\Transacciones\FrmUsuarios.resx">
+    <EmbeddedResource Include="Formularios\Mantenimiento\FrmUsuarios.resx">
       <DependentUpon>FrmUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Inventario\FrmAsignacionProductoBodega.resx">
