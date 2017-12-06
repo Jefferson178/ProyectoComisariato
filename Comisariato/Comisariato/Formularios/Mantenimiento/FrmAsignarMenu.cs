@@ -17,11 +17,81 @@ namespace Comisariato.Formularios.Mantenimiento
         {
             InitializeComponent();
         }
-
+        Consultas objConsul = new Consultas();
         private void FrmAsignarMenu_Load(object sender, EventArgs e)
         {
-            Consultas objConsul = new Consultas();
-            objConsul.BoolLlenarCheckListBoxMenu(cklMenu, "Select IDMENU AS ID, DESCRIPCION AS Texto FROM TbMenu");
+
+            objConsul.BoolLlenarTreeViewMenu(tvMenuAsignacion, "Select NODOPADRE, DESCRIPCION FROM TbMenu");
+            objConsul.BoolLlenarComboBox(cbEmpresa, "select IDEMPRESA as ID, NOMBRE AS Texto from TbEmpresa");
+        }
+
+        private void cbEmpresa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            objConsul.BoolLlenarComboBox(cbUsuario, "SELECT  dbo.TbUsuario.IDUSUARIO as ID, dbo.TbUsuario.USUARIO As Texto FROM dbo.TbEmpresa INNER JOIN dbo.TbUsuario ON dbo.TbEmpresa.IDEMPRESA = dbo.TbUsuario.IDEMPRESA INNER JOIN dbo.TbEmpleado ON dbo.TbUsuario.IDEMPLEADO = dbo.TbEmpleado.IDEMPLEADO WHERE (dbo.TbEmpresa.IDEMPRESA = " + cbEmpresa.SelectedValue + ")");
+        }
+
+        private void cbUsuario_Enter(object sender, EventArgs e)
+        {
+            objConsul.BoolLlenarComboBox(cbUsuario, "SELECT  dbo.TbUsuario.IDUSUARIO as ID, dbo.TbUsuario.USUARIO As Texto FROM dbo.TbEmpresa INNER JOIN dbo.TbUsuario ON dbo.TbEmpresa.IDEMPRESA = dbo.TbUsuario.IDEMPRESA INNER JOIN dbo.TbEmpleado ON dbo.TbUsuario.IDEMPLEADO = dbo.TbEmpleado.IDEMPLEADO WHERE (dbo.TbEmpresa.IDEMPRESA = " + cbEmpresa.SelectedValue + ")");
+        }
+
+        private void tvMenuAsignacion_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            try
+            {
+                if (e.Node.Nodes.Count > 0)
+                {
+                    int cantidadNodosHijos = e.Node.GetNodeCount(true);
+                    for (int i = 0; i < cantidadNodosHijos; i++)
+                    {
+                        if (e.Node.Checked == true)
+                        
+                            e.Node.Nodes[i].Checked = true;
+                        else
+                            e.Node.Nodes[i].Checked = false;
+                    }
+                }
+                //else
+                //{
+                //    int cantidadNodosHijos = e.Node.GetNodeCount(true);
+                //    for (int i = 0; i < cantidadNodosHijos; i++)
+                //    {
+                //        if (e.Node.Nodes[i].Checked == true)
+                //        {
+                //            e.Node.Checked = true;
+                //        }
+                //    }
+                //}
+            }
+            catch (Exception)
+            {
+            }
+           
+        }
+        
+        private void btnGuardarProveedor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AsignacionMenu objAM = new AsignacionMenu();
+                for (int i = 0; i < 5; i++)
+                {
+                    //int nodo = Convert.ToInt32(objConsul.ObtenerValorCampo("IDMENU", "TbMenu", "where DESCRIPCION = '" + tvMenuAsignacion.Nodes[i].Text +"'"));
+                    int cantNodos = tvMenuAsignacion.Nodes[i].GetNodeCount(true);
+                    for (int j = 0; j < cantNodos; j++)
+                    {
+                        if (tvMenuAsignacion.Nodes[i].Nodes[j].Checked == true)
+                        {
+                            int nodo = Convert.ToInt32(objConsul.ObtenerValorCampo("IDMENU", "TbMenu", "where DESCRIPCION = '" + tvMenuAsignacion.Nodes[i].Nodes[j].Text + "'"));
+                            //int menuNumero = Math.Abs((cantNodos - (j + nodo + 1)));
+                            objAM.InsertarMenuAsignado(nodo, Convert.ToInt32(cbUsuario.SelectedValue));
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }
