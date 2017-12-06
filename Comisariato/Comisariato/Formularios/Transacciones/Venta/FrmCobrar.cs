@@ -802,7 +802,7 @@ namespace Comisariato.Formularios.Transacciones
             ticket.AbreCajon();//Para abrir el cajon de dinero.
 
             //De aqui en adelante pueden formar su ticket a su gusto... Les muestro un ejemplo
-            string fechaf = Program.FecaInicio;
+            string fechaf = DateTime.Now.Date.ToShortDateString();
             int sucursal= Program.em.Sucursal;
             int numcaja = Program.em.Caja;
             int numfac = Program.em.Numfact;
@@ -812,14 +812,14 @@ namespace Comisariato.Formularios.Transacciones
             ticket.TextoIzquierda("Direccion: "+Program.direccionempresa);
             ticket.TextoIzquierda("Valido: "+ fechaf+" Hasta: " +fechaf);
             ticket.TextoIzquierda("Clave: 4530000");
-            ticket.TextoIzquierda("        Factura: "+sucursal.ToString("D4") + "-"+numcaja.ToString("D4") + "-"+numfac.ToString("D8"));
+            ticket.TextoIzquierda("        Factura: "+sucursal.ToString("D3") + "-"+numcaja.ToString("D3") + "-"+numfac.ToString("D8"));
             ticket.TextoIzquierda("         Informacion del Consumidor");//Es el mio por si me quieren contactar ...
             ticket.TextoIzquierda("RUC: "+identificacion);
             ticket.TextoIzquierda("Cliente: "+nombre);
             ticket.TextoIzquierda("Facturado: "+Program.Usuario);
-            ticket.TextoIzquierda("# CAJA: " + numcaja.ToString("D4"));
+            ticket.TextoIzquierda("# CAJA: " + numcaja.ToString("D3"));
             string[] h = DateTime.Now.TimeOfDay.ToString().Split('.');
-            ticket.TextoIzquierda("Fecha: "+Program.FecaInicio+"          "+ h[0]);
+            ticket.TextoIzquierda("Fecha: "+ fechaf + "          "+ h[0]);
             if (ckbCheque.Checked && ckbEfectivo.Checked && ckbTarjeta.Checked)
             {
                 ticket.TextoIzquierda("Tipo de pago: Efectivo - Cheque - T. Credito");
@@ -880,7 +880,7 @@ namespace Comisariato.Formularios.Transacciones
                 if (Convert.ToSingle( dg.Rows[i].Cells[5].Value.ToString())!=0)
                 {
                     ticket.AgregaArticulo("*"+dg.Rows[i].Cells[1].Value.ToString(), int.Parse(dg.Rows[i].Cells[2].Value.ToString()),
-                Convert.ToSingle(dg.Rows[i].Cells[4].Value).ToString("#####0.00"), total.ToString("#####0.00"));
+                    Convert.ToSingle(dg.Rows[i].Cells[4].Value).ToString("#####0.00"), total.ToString("#####0.00"));
 
                     imivasuma += Convert.ToSingle(dg.Rows[i].Cells[5].Value.ToString());
                     subtotaliva += Convert.ToSingle(dg.Rows[i].Cells[6].Value.ToString());
