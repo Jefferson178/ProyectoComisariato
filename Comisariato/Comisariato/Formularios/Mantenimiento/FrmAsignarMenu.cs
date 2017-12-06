@@ -89,7 +89,7 @@ namespace Comisariato.Formularios.Mantenimiento
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
             }
         }
