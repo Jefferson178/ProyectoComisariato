@@ -210,8 +210,14 @@ namespace Comisariato.Clases
             textoCompleto = resumen;
             valor = total.ToString(""+"#,#.00");//Agregamos el total previo formateo.
 
+
+            if (total == 0)
+            {
+                valor = "0" + valor;
+            }
+
             //Obtenemos el numero de espacios restantes para alinearlos a la derecha
-            int nroEspacios = maxCar - (resumen.Length + valor.Length);
+            int nroEspacios = maxCar - (resumen.Length + valor.Length+2);
             //agregamos los espacios
             for (int i = 0; i < nroEspacios; i++)
             {
@@ -237,7 +243,7 @@ namespace Comisariato.Clases
                 string elemento = "", espacios = "";
                 bool bandera = false;//Indicara si es la primera linea que se escribe cuando bajemos a la segunda si el nombre del articulo no entra en la primera linea
                 int nroEspacios = 0;
-
+                articulo = articulo.Substring(0, 15);
                 //Si el nombre o descripcion del articulo es mayor a 20, bajar a la siguiente linea
                 if (articulo.Length > 20)
                 {
