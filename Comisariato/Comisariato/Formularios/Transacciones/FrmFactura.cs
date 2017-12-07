@@ -1614,15 +1614,21 @@ namespace Comisariato.Formularios.Transacciones
         private void nuevafact()
         {
             verificadorfrm = 0;
+            Consultas Objconsul = new Consultas();
+            //String AUXNUMEROFACTURA = numfact.ToString("D8");
             //MessageBox.Show("" + codigos.Count);
             //if (factEspe == 1)
             //{
-                numfact += 1;
+            numfact += 1;
                 //DatosCliente.Clear();
                 //Ivas.Clear();
             //}
 
-            txtNumFact.Text = numfact.ToString("D8");
+            
+
+            txtNumFact.Text = numfact.ToString("D9");
+            Objconsul.EjecutarSQL("UPDATE [dbo].[TbCajasTalonario] SET [DOCUMENTOACTUAL] = '" + txtNumFact.Text + "'  WHERE  SERIE2 = '" + txtCaja.Text + "' and SERIE1= '" + txtSucursal.Text + "';");
+
             rdbPublico.Checked = true;
             rdbConsumidorFinal.Checked = true;
             //ckbEfectivo.Checked = true;

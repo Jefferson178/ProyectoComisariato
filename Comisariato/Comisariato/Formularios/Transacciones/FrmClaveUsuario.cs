@@ -89,18 +89,18 @@ namespace Comisariato.Formularios.Transacciones
                             //    //numcaja = myRows["PIE2"].ToString()
                             //}
 
-                            string condicion = " where CAJA = '" + numcaja + "' and SUCURSAL= '" + sucursal + "' and IDEMPRESA= '" + Program.IDEMPRESA + "';";
-                            int numero = c.ObtenerID("IDFACTURA", "TbEncabezadoFactura", condicion);
+                            string condicion = " where CAJA = '" + numcaja + "' and SUCURSAL= '" + sucursal + "';";
+                            int numero = c.ObtenerID("DOCUMENTOACTUAL", "TbCajasTalonario", condicion);
                             condicion= " where IDENTIFICACION= 9999999999999";
                             f.IDCLIENTEINICIO = c.ObtenerID("IDCLIENTE", "TbCliente", condicion);
-                            if (numero == 0)
-                            {
+                            //if (numero == 0)
+                            //{
                                 f.numfact = Convert.ToInt32(documentoActual);
-                            }
-                            else
-                            {
-                                f.numfact = numero + 1;
-                            }
+                            //}
+                            //else
+                            //{
+                                //f.numfact = numero + 1;
+                            //}
                             f.sucursal = sucursal;
                             f.numcaja = numcaja;
                             //f.numcaja = numcaja;
