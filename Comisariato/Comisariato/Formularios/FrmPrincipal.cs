@@ -57,29 +57,45 @@ namespace Comisariato.Formularios
             //---------------------Cliente --------------------------------------//
             if (nombre == "Administrar Clientes")
             {
+                //if (FrmCliente == null || FrmCliente.IsDisposed)
+                //{
+                //    FrmCliente = new FrmClientes();
+                //    objFuncion.AddFormInPanel(FrmCliente, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    int index = panelPrincipal.Controls.GetChildIndex(FrmCliente);
+                //    FrmCliente.BringToFront();
+                //}
                 if (FrmCliente == null || FrmCliente.IsDisposed)
                 {
                     FrmCliente = new FrmClientes();
-                    objFuncion.AddFormInPanel(FrmCliente, Program.panelPrincipalVariable);
-                }
-                else
-                {
-                    int index = panelPrincipal.Controls.GetChildIndex(FrmCliente);
+                    FrmCliente.MdiParent = this;
                     FrmCliente.BringToFront();
+                    FrmCliente.Show();
+                    
                 }
             }
             //---------------------Empleado --------------------------------------//
             if (nombre == "Administrar Empleados")
             {
+                //if (FrmEmpleado == null || FrmEmpleado.IsDisposed)
+                //{
+                //    FrmEmpleado = new FrmEmpleado();
+                //    objFuncion.AddFormInPanel(FrmEmpleado, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    //int index = panelPrincipal.Controls.GetChildIndex(FrmEmpleado);
+                //    FrmEmpleado.BringToFront();
+                //}
                 if (FrmEmpleado == null || FrmEmpleado.IsDisposed)
                 {
                     FrmEmpleado = new FrmEmpleado();
-                    objFuncion.AddFormInPanel(FrmEmpleado, Program.panelPrincipalVariable);
-                }
-                else
-                {
-                    //int index = panelPrincipal.Controls.GetChildIndex(FrmEmpleado);
+                    FrmEmpleado.MdiParent = this;
                     FrmEmpleado.BringToFront();
+                    FrmEmpleado.Show();
+
                 }
             }
             if (nombre == "Administrar Menu")
@@ -376,6 +392,7 @@ namespace Comisariato.Formularios
             //            tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[0].Nodes[1]);
             //        }
             //    }
+<<<<<<< HEAD
 
             //}
             try
@@ -477,6 +494,11 @@ namespace Comisariato.Formularios
             {
                 return 0;
             }
+=======
+            //}
+            //menu.Nodes.Add(myRow["DESCRIPCION"].ToString());
+
+>>>>>>> 52cdebeda38e88a4210746583e0cc659a7d1c6ad
         }
     }
 }
