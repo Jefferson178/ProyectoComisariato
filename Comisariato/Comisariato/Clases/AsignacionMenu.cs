@@ -49,7 +49,7 @@ namespace Comisariato.Clases
 
                 //if (!objConsulta.Existe("DESCRIPCION", DESCRIPCION, "TbCategoria"))
                 //{
-                if (objConsulta.EjecutarSQL("INSERT INTO [dbo].[AsignacionMenu]([IDUSUARIO],[IDMENU])VALUES(" + empleado + "," + menu + ")"))
+                if (objConsulta.EjecutarSQL("INSERT INTO [dbo].[TbAsignacionMenu]([IDUSUARIO],[IDMENU])VALUES(" + empleado + "," + menu + ")"))
                     {
                         return "Datos Guardados";
                     }
