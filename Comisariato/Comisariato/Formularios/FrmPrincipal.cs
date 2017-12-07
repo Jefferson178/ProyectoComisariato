@@ -392,7 +392,6 @@ namespace Comisariato.Formularios
             //            tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[0].Nodes[1]);
             //        }
             //    }
-<<<<<<< HEAD
 
             //}
             try
@@ -494,11 +493,9 @@ namespace Comisariato.Formularios
             {
                 return 0;
             }
-=======
             //}
             //menu.Nodes.Add(myRow["DESCRIPCION"].ToString());
 
->>>>>>> 52cdebeda38e88a4210746583e0cc659a7d1c6ad
         }
     }
 }
