@@ -57,29 +57,45 @@ namespace Comisariato.Formularios
             //---------------------Cliente --------------------------------------//
             if (nombre == "Administrar Clientes")
             {
+                //if (FrmCliente == null || FrmCliente.IsDisposed)
+                //{
+                //    FrmCliente = new FrmClientes();
+                //    objFuncion.AddFormInPanel(FrmCliente, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    int index = panelPrincipal.Controls.GetChildIndex(FrmCliente);
+                //    FrmCliente.BringToFront();
+                //}
                 if (FrmCliente == null || FrmCliente.IsDisposed)
                 {
                     FrmCliente = new FrmClientes();
-                    objFuncion.AddFormInPanel(FrmCliente, Program.panelPrincipalVariable);
-                }
-                else
-                {
-                    int index = panelPrincipal.Controls.GetChildIndex(FrmCliente);
+                    FrmCliente.MdiParent = this;
                     FrmCliente.BringToFront();
+                    FrmCliente.Show();
+                    
                 }
             }
             //---------------------Empleado --------------------------------------//
             if (nombre == "Administrar Empleados")
             {
+                //if (FrmEmpleado == null || FrmEmpleado.IsDisposed)
+                //{
+                //    FrmEmpleado = new FrmEmpleado();
+                //    objFuncion.AddFormInPanel(FrmEmpleado, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    //int index = panelPrincipal.Controls.GetChildIndex(FrmEmpleado);
+                //    FrmEmpleado.BringToFront();
+                //}
                 if (FrmEmpleado == null || FrmEmpleado.IsDisposed)
                 {
                     FrmEmpleado = new FrmEmpleado();
-                    objFuncion.AddFormInPanel(FrmEmpleado, Program.panelPrincipalVariable);
-                }
-                else
-                {
-                    //int index = panelPrincipal.Controls.GetChildIndex(FrmEmpleado);
+                    FrmEmpleado.MdiParent = this;
                     FrmEmpleado.BringToFront();
+                    FrmEmpleado.Show();
+
                 }
             }
             if (nombre == "Administrar Menu")
@@ -355,29 +371,30 @@ namespace Comisariato.Formularios
                 this.panelPrincipal.BackgroundImage = Image.FromStream(stream);
 
             }
-            DataTable usuraio = consultas.BoolDataTable("select IDTIPOUSUARIO FROM TbUsuario WHERE IDUSUARIO = '" + Convert.ToInt32(Program.IDTIPOUSUARIO) + "'");
-            if (Program.IDTIPOUSUARIO == "2")
-            {
-                for (int i = 0; i < 6; i++)
-                {
-                    if (i > 2)
-                    {
-                        tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[1]);
-                    }
-                    else if (i < 2)
-                    {
-                        tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[0]);
-                    }
-                }
-                for (int i = 0; i < 5; i++)
-                {
-                    if (i > 0)
-                    {
-                        tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[0].Nodes[1]);
-                    }
-                }
+            //DataTable usuraio = consultas.BoolDataTable("select IDTIPOUSUARIO FROM TbUsuario WHERE IDUSUARIO = '" + Convert.ToInt32(Program.IDTIPOUSUARIO) + "'");
+            //if (Program.IDTIPOUSUARIO == "2")
+            //{
+            //    for (int i = 0; i < 6; i++)
+            //    {
+            //        if (i > 2)
+            //        {
+            //            tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[1]);
+            //        }
+            //        else if (i < 2)
+            //        {
+            //            tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[0]);
+            //        }
+            //    }
+            //    for (int i = 0; i < 5; i++)
+            //    {
+            //        if (i > 0)
+            //        {
+            //            tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[0].Nodes[1]);
+            //        }
+            //    }
+            //}
+            //menu.Nodes.Add(myRow["DESCRIPCION"].ToString());
 
-            }
         }
     }
 }

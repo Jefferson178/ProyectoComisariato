@@ -343,10 +343,10 @@
             this.panelPrincipal.AutoScroll = true;
             this.panelPrincipal.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panelPrincipal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panelPrincipal.Location = new System.Drawing.Point(243, 46);
+            this.panelPrincipal.Location = new System.Drawing.Point(241, 46);
             this.panelPrincipal.Margin = new System.Windows.Forms.Padding(5);
             this.panelPrincipal.Name = "panelPrincipal";
-            this.panelPrincipal.Size = new System.Drawing.Size(1099, 600);
+            this.panelPrincipal.Size = new System.Drawing.Size(1101, 600);
             this.panelPrincipal.TabIndex = 4;
             // 
             // FrmPrincipal

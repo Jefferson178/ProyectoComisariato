@@ -65,7 +65,7 @@ namespace Comisariato.Clases
             try
             {
                 Objc.conectar();
-                string sql = "select U.IDEMPLEADO, U.USUARIO, U.CONTRASEÑA, U.IDTIPOUSUARIO, U.IDEMPRESA, U.ACTIVO from TbUsuario U where U.USUARIO='" + Usuario + "' and  U.CONTRASEÑA='" + Contraseña + "'";
+                string sql = "select U.IDUSUARIO, U.IDEMPLEADO, U.USUARIO, U.CONTRASEÑA, U.IDTIPOUSUARIO, U.IDEMPRESA, U.ACTIVO from TbUsuario U where U.USUARIO='" + Usuario + "' and  U.CONTRASEÑA='" + Contraseña + "'";
                 SqlCommand Sentencia = new SqlCommand(sql);
                 Sentencia.Connection = ConexionBD.connection;
                 //int valor = Convert.ToInt32(Sentencia.ExecuteScalar());
@@ -74,6 +74,7 @@ namespace Comisariato.Clases
                 if (dato.Read() == true)
                 {
                     Program.Usuario = Usuario;
+                    Program.IDUsuarioMenu = Convert.ToString(dato["IDUSUARIO"]);
                     Program.estado = Convert.ToBoolean(dato["ACTIVO"]);
                     Program.IDUsuario = "" + (int)dato["IDEMPLEADO"];
                     Program.IDTIPOUSUARIO = "" + (int)dato["IDTIPOUSUARIO"];
