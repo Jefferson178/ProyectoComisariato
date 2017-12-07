@@ -1304,7 +1304,18 @@ namespace Comisariato.Formularios.Transacciones
                                         {
                                             cambio *= -1;
                                         }
+                                    //  else
+                                    //{
+                                    //    txtCambio.Text = Funcion.reemplazarcaracter(cambio.ToString("#####0.00"));
+                                    //}
+                                    if (cambio<tpagar)
+                                    {
+                                        txtCambio.Text = "";
+                                    }
+                                    else
+                                    {
                                         txtCambio.Text = Funcion.reemplazarcaracter(cambio.ToString("#####0.00"));
+                                    }
                                     //}
                                     //else
                                     //{

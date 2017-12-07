@@ -324,11 +324,6 @@ namespace Comisariato.Formularios
 
         private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //DialogResult Resul = MessageBox.Show("Esta Seguro que Quiere Cerrar la Sesión", "Estado de Cesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-            //if (Resul == DialogResult.Yes)
-            //{
-            //    Application.Restart();
-            //}
             Application.Exit();
         }
 
@@ -356,10 +351,8 @@ namespace Comisariato.Formularios
                 throw;
             }
         }
-        
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
-            //Consultas consultas = new Consultas();
             DataTable dt = objConsulta.BoolDataTable("Select FONDOPANTALLA from TbEmpresa where IDEMPRESA = 1");
             byte[] MyData = new byte[0];
             if (dt.Rows.Count > 0)
@@ -371,131 +364,25 @@ namespace Comisariato.Formularios
                 this.panelPrincipal.BackgroundImage = Image.FromStream(stream);
 
             }
-            //DataTable usuraio = consultas.BoolDataTable("select IDTIPOUSUARIO FROM TbUsuario WHERE IDUSUARIO = '" + Convert.ToInt32(Program.IDTIPOUSUARIO) + "'");
-            //if (Program.IDTIPOUSUARIO == "2")
-            //{
-            //    for (int i = 0; i < 6; i++)
-            //    {
-            //        if (i > 2)
-            //        {
-            //            tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[1]);
-            //        }
-            //        else if (i < 2)
-            //        {
-            //            tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[0]);
-            //        }
-            //    }
-            //    for (int i = 0; i < 5; i++)
-            //    {
-            //        if (i > 0)
-            //        {
-            //            tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[0].Nodes[1]);
-            //        }
-            //    }
-
-            //}
             try
             {
-                    
-                DataTable NodosPadres = objConsulta.BoolDataTable("Select DISTINCT NODOPADRE from TbMenu where (NODOPADRE!= 0);");
-                if (NodosPadres.Rows.Count > 0)
+                if (Program.Usuario !="ADMIN")
                 {
-                    int CantidadNodosPadres = NodosPadres.Rows.Count;
-                    List<int> padres = new List<int>();
-                    
-                    for (int i = 0; i < CantidadNodosPadres; i++)
-                    {
-                        DataRow rows = NodosPadres.Rows[i];
-                        padres.Add(Convert.ToInt32(rows[0]));
-                    }
-                    //Declaracion de Lista
-                    List<int> Padre1 = new List<int>();
-                    List<int> Padre2 = new List<int>();
-                    List<int> Padre3 = new List<int>();
-                    List<int> Padre4 = new List<int>();
-                    List<int> Padre5 = new List<int>();
-                    List<int> Padre6 = new List<int>();
-                    List<int> Padre7 = new List<int>();
-
-                    //Llenar el primer elemento de las listas con el nodo padre
-                    Padre1.Add(Convert.ToInt32(padres[0])); //1
-                    Padre2.Add(Convert.ToInt32(padres[1])); //5
-                    Padre3.Add(Convert.ToInt32(padres[2])); //14
-                    Padre4.Add(Convert.ToInt32(padres[3])); //20
-                    Padre5.Add(Convert.ToInt32(padres[4])); //26
-                    Padre6.Add(Convert.ToInt32(padres[5])); //28
-                    Padre7.Add(Convert.ToInt32(padres[6])); //30
-
-                    //Obtener el menu del usuario logeado TbAsignacionMenu
-                    DataTable MenuUsuarioLogeado = objConsulta.BoolDataTable("Select * from TbAsignacionMenu where IDUSUARIO = "+Program.IDUsuarioMenu+";");
-                    for (int i = 0; i < MenuUsuarioLogeado.Rows.Count; i++)
-                    {
-                        DataRow rows = MenuUsuarioLogeado.Rows[i];
-                        int hijo = Convert.ToInt32(rows["IDMENU"]);
-                        int Padre = ObtenerPadreDeHijo(hijo);
-
-                        if (Padre != 0)
-                        {
-                            switch (Padre)
-                            {
-                                case 1:
-                                    Padre1.Add(hijo);
-                                    break;
-                                case 5:
-                                    Padre2.Add(hijo);
-                                    break;
-                                case 14:
-                                    Padre3.Add(hijo);
-                                    break;
-                                case 20:
-                                    Padre4.Add(hijo);
-                                    break;
-                                case 26:
-                                    Padre5.Add(hijo);
-                                    break;
-                                case 28:
-                                    Padre6.Add(hijo);
-                                    break;
-                                case 30:
-                                    Padre7.Add(hijo);
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-                    }
-                    //MessageBox.Show("SSS");
+                    llenarTreeViewPrincipal();
                 }
             }
             catch (Exception ex)
             {
-                                
             }
+        }        
 
-
-        }
-
-
-        public int ObtenerPadreDeHijo(int Hijo)
+        public void llenarTreeViewPrincipal()
         {
-            try
+            for (int i = 0; i < tvPrincipal.Nodes.Count;)
             {
-                int Padre = 0;
-                DataTable MenuUsuarioLogeado = objConsulta.BoolDataTable("Select * from TbMenu where IDMENU = " + Hijo + ";");
-                if (MenuUsuarioLogeado.Rows.Count > 0)
-                {
-                    DataRow myRow = MenuUsuarioLogeado.Rows[0];
-                    Padre = Convert.ToInt32(myRow["NODOPADRE"]);
-                }
-                    return Padre;
+                tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[0]);
             }
-            catch (Exception)
-            {
-                return 0;
-            }
-            //}
-            //menu.Nodes.Add(myRow["DESCRIPCION"].ToString());
-
+            objConsulta.BoolLlenarTreeViewMenu(tvPrincipal, "SELECT DISTINCT M.IDMENU, M.DESCRIPCION, M.NODOPADRE from TbMenu M, TbAsignacionMenu AM where M.IDMENU = AM.IDMENU AND AM.IDUSUARIO = " + Program.IDUsuarioMenu + " ORDER BY M.IDMENU;");
         }
     }
 }
