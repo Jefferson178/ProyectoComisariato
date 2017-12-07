@@ -768,6 +768,7 @@ namespace Comisariato.Formularios.Transacciones
 
                         Imprimirfact();
                         FrmFactura.verificadorfrm = 3;
+
                         this.Close();
 
                     }

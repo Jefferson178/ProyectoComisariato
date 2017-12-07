@@ -65,7 +65,11 @@ namespace Comisariato.Clases
             try
             {
                 Objc.conectar();
+<<<<<<< HEAD
+                string sql = "select U.IDUSUARIO ,U.IDEMPLEADO, U.USUARIO, U.CONTRASEÑA, U.IDTIPOUSUARIO, U.IDEMPRESA, U.ACTIVO from TbUsuario U where U.USUARIO='" + Usuario + "' and  U.CONTRASEÑA='" + Contraseña + "'";
+=======
                 string sql = "select U.IDUSUARIO, U.IDEMPLEADO, U.USUARIO, U.CONTRASEÑA, U.IDTIPOUSUARIO, U.IDEMPRESA, U.ACTIVO from TbUsuario U where U.USUARIO='" + Usuario + "' and  U.CONTRASEÑA='" + Contraseña + "'";
+>>>>>>> 52cdebeda38e88a4210746583e0cc659a7d1c6ad
                 SqlCommand Sentencia = new SqlCommand(sql);
                 Sentencia.Connection = ConexionBD.connection;
                 //int valor = Convert.ToInt32(Sentencia.ExecuteScalar());
@@ -331,7 +335,10 @@ namespace Comisariato.Clases
 
                 Objc.Cerrar();
                 if (result > 0)
+                {
+                    
                     return true;
+                }
                 else
                     return false;
 
