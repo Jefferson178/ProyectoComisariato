@@ -208,7 +208,7 @@ namespace Comisariato.Clases
             { resumen = texto; }
 
             textoCompleto = resumen;
-            valor = total.ToString("$ "+"#,#.00");//Agregamos el total previo formateo.
+            valor = total.ToString(""+"#,#.00");//Agregamos el total previo formateo.
 
             //Obtenemos el numero de espacios restantes para alinearlos a la derecha
             int nroEspacios = maxCar - (resumen.Length + valor.Length);
@@ -219,11 +219,11 @@ namespace Comisariato.Clases
             }
             if (total==0)
             {
-                textoCompleto += espacios + "$ 0.00";
+                textoCompleto += espacios+"$ " + "0.00";
             }
             else
             {
-                textoCompleto += espacios + valor;
+                textoCompleto += espacios + "$ " + valor;
             }
             linea.AppendLine(textoCompleto);
         }
