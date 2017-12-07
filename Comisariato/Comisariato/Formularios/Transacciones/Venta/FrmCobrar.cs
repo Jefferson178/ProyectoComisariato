@@ -963,10 +963,12 @@ namespace Comisariato.Formularios.Transacciones
                    
                 }
             }
+            String PIEFA = Program.piefactura;
             //Texto final del Ticket.
             ticket.TextoIzquierda("");
             ticket.TextoIzquierda("ARTICULOS VENDIDOS: "+totalfilas);
             ticket.TextoIzquierda("");
+            ticket.TextoCentro(""+PIEFA);
             ticket.TextoCentro("¡GRACIAS POR SU COMPRA!");
             ticket.CortaTicket();
             ticket.ImprimirTicket("Generic / Text Only");//Nombre de la impresora ticketera
@@ -986,7 +988,7 @@ namespace Comisariato.Formularios.Transacciones
             ticket.TextoCentro("PEDIDO A BODEGA");
             ticket.TextoCentro("              ");
             ticket.TextoIzquierda("USUARIO: " + Program.Usuario);
-                ticket.TextoIzquierda( "# CAJA: " + numcaja.ToString("D4"));
+                ticket.TextoIzquierda( "# CAJA: " + numcaja.ToString("D3"));
             ticket.TextoIzquierda("                 ");
             ticket.TextoIzquierda("");
             string[] h = DateTime.Now.TimeOfDay.ToString().Split('.');
@@ -1009,7 +1011,7 @@ namespace Comisariato.Formularios.Transacciones
             //MessageBox.Show(""+ pd.PrinterSettings.PrinterName);
             //string r = pd.PrinterSettings.PrinterName;
             // MessageBox.Show(@"\\SCLIENTE-PC\PedidoBodega");
-           String ruta = @"\\SCLIENTE-PC\BodegaPedido";
+           String ruta = @"\\AIRCONTROL\BodegaPedido";
             ticket.ImprimirTicket(ruta);
                // RawPrinterHelper.SendStringToPrinter(pd.PrinterSettings.PrinterName, "");
             //}
@@ -1281,9 +1283,9 @@ namespace Comisariato.Formularios.Transacciones
                                     {
                                         r = "0";
                                     }
-                                        reci = Convert.ToSingle(Funcion.reemplazarcaracterViceversa(r));
+                                        reci = float.Parse(r);
                                         //string prueba = Funcion.reemplazarcaracter(txtTotalPagar.Text);
-                                        float tpagar=Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtTotalPagar.Text));
+                                        float tpagar=float.Parse(txtTotalPagar.Text);
                                         float cambio = tpagar - reci;
                                         if (cambio < 0)
                                         {

@@ -208,7 +208,7 @@ namespace Comisariato.Clases
             { resumen = texto; }
 
             textoCompleto = resumen;
-            valor = total.ToString("$ "+"#,#.00");//Agregamos el total previo formateo.
+            valor = total.ToString(""+"#,#.00");//Agregamos el total previo formateo.
 
             //Obtenemos el numero de espacios restantes para alinearlos a la derecha
             int nroEspacios = maxCar - (resumen.Length + valor.Length);
@@ -217,7 +217,14 @@ namespace Comisariato.Clases
             {
                 espacios += " ";
             }
-            textoCompleto += espacios + valor;
+            if (total==0)
+            {
+                textoCompleto += espacios+"$ " + "0.00";
+            }
+            else
+            {
+                textoCompleto += espacios + "$ " + valor;
+            }
             linea.AppendLine(textoCompleto);
         }
 
@@ -394,7 +401,6 @@ namespace Comisariato.Clases
         }
 
     }
-
 
     //Clase para mandara a imprimir texto plano a la impresora
     public class RawPrinterHelper
