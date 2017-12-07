@@ -140,7 +140,7 @@
             this.lblTotalPagar.Name = "lblTotalPagar";
             this.lblTotalPagar.Size = new System.Drawing.Size(281, 77);
             this.lblTotalPagar.TabIndex = 33;
-            this.lblTotalPagar.Text = "999999.99";
+            this.lblTotalPagar.Text = "000000.00";
             this.lblTotalPagar.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // groupBox4
