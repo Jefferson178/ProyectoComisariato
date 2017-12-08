@@ -17,7 +17,7 @@ namespace Comisariato.Clases
             Form fh = formHijo as Form;
             fh.TopLevel = false;
             panelPrincipal.Controls.Add(fh);
-            //panelPrincipal.Tag = fh;
+            //panelPrincipal.Tag = fh;            
             int index = panelPrincipal.Controls.GetChildIndex(fh);
             fh.BringToFront();
             fh.Show();

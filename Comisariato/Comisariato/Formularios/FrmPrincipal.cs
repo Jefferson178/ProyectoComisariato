@@ -39,7 +39,8 @@ namespace Comisariato.Formularios
         FrmOrdenDeGiro FrmOrdenDeGiro;
         FrmDevolucionVenta FrmDevolucionVenta;
         FrmAsignarMenu FrmAsignarMenu;
-
+        public static MenuStrip menuMostrar;
+        //public static void Panel
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -261,16 +262,19 @@ namespace Comisariato.Formularios
             //-------------------------------------------------Transacciones---------------------------------------//
             else if (nombre == "Ventas")
             {
-                if (FrmClaveUsuario == null || FrmClaveUsuario.IsDisposed)
+                if (!Program.FormularioVentaAbierto)
                 {
-                    FrmClaveUsuario = new FrmClaveUsuario();
-                    FrmClaveUsuario.verificarMetodo = 1;
-                    objFuncion.AddFormInPanel(FrmClaveUsuario, Program.panelPrincipalVariable);
-                }
-                else
-                {
-                    int index = panelPrincipal.Controls.GetChildIndex(FrmClaveUsuario);
-                    FrmClaveUsuario.BringToFront();
+                    if (FrmClaveUsuario == null || FrmClaveUsuario.IsDisposed)
+                    {
+                        FrmClaveUsuario = new FrmClaveUsuario();
+                        FrmClaveUsuario.verificarMetodo = 1;
+                        objFuncion.AddFormInPanel(FrmClaveUsuario, Program.panelPrincipalVariable);
+                    }
+                    else
+                    {
+                        int index = panelPrincipal.Controls.GetChildIndex(FrmClaveUsuario);
+                        FrmClaveUsuario.BringToFront();
+                    }
                 }
             }
             else if (nombre == "Compras")
@@ -353,6 +357,7 @@ namespace Comisariato.Formularios
         }
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
+            menuMostrar = msPrincipal;
             DataTable dt = objConsulta.BoolDataTable("Select FONDOPANTALLA from TbEmpresa where IDEMPRESA = 1");
             byte[] MyData = new byte[0];
             if (dt.Rows.Count > 0)

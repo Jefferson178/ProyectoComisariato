@@ -109,12 +109,12 @@ namespace Comisariato.Formularios.Transacciones
 
         private void FrmOrdenDeGiro_Load(object sender, EventArgs e)
         {
-            ObjConsul.BoolLlenarComboBox(cbCuentaDeudoraCero, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta");
-            cbCuentaDeudoraCero.SelectedValue = 26;
-            ObjConsul.BoolLlenarComboBox(cbCuentaDeudora12, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta");
-            cbCuentaDeudora12.SelectedValue = 27;
-            ObjConsul.BoolLlenarComboBox(cbCuentaDeudoraIRBP, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta");
-            ObjConsul.BoolLlenarComboBox(cbIvaPagar, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta");
+            //ObjConsul.BoolLlenarComboBox(cbCuentaDeudoraCero, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta");
+            //cbCuentaDeudoraCero.SelectedValue = 26;
+            //ObjConsul.BoolLlenarComboBox(cbCuentaDeudora12, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta");
+            //cbCuentaDeudora12.SelectedValue = 27;
+            //ObjConsul.BoolLlenarComboBox(cbCuentaDeudoraIRBP, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta");
+            //ObjConsul.BoolLlenarComboBox(cbIvaPagar, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta");
             for (int i = 0; i < 7; i++)
             {
                 dgvDatosLibroDiario.Rows.Add();
@@ -123,10 +123,10 @@ namespace Comisariato.Formularios.Transacciones
             {
                 dgvDatosRetencion.Rows.Add();
             }
-            for (int i = 0; i < 20; i++)
-            {
-                dgvDatosImportacionesRelacionadas.Rows.Add();
-            }
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    dgvDatosImportacionesRelacionadas.Rows.Add();
+            //}
             for (int i = 0; i < 25; i++)
             {
                 dgvDatosOG.Rows.Add();
