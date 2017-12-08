@@ -110,6 +110,8 @@ namespace Comisariato.Formularios.Transacciones
                         else
                         {
                             MessageBox.Show("Clave incorrecta. O quizas no tenga permiso para ingresar a esta opcion.");
+                            txtClave.Focus();
+                            txtClave.SelectAll();
                         }
                     }
                     else
