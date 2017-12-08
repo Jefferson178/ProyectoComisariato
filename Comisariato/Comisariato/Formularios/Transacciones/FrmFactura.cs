@@ -532,7 +532,7 @@ namespace Comisariato.Formularios.Transacciones
                 txtSubTotalIva.Text = sumasubiva.ToString("#####0.00");
                 //totalpagar = sumasub + ivatotal;
                 txtIva.Text = ivatotal.ToString("#####0.00");
-                lblTotalPagar.Text = "" + totalpagar.ToString("#####0.00");
+                lblTotalPagar.Text = "" + Funcion.reemplazarcaracter(totalpagar.ToString("#####0.00"));
                 codactual = "";
                 factenter = 0;
                 LimpiarTexbox();
@@ -1450,7 +1450,7 @@ namespace Comisariato.Formularios.Transacciones
             //ckbEfectivo.Checked = true;
             //ckbCredito.Checked = false;
             dgvDetalleProductos.Rows.Clear();
-            lblTotalPagar.Text = "000000.00";
+            lblTotalPagar.Text = "0.00";
             txtSubTotalcero.Text = "0.00";
             txtSubTotalIva.Text = "0.00";
             txtSubTotal.Text = "0.00";
@@ -1646,7 +1646,7 @@ namespace Comisariato.Formularios.Transacciones
             //ckbEfectivo.Checked = true;
             //ckbCredito.Checked = false;
             dgvDetalleProductos.Rows.Clear();
-            lblTotalPagar.Text = "$ 0.00";
+            lblTotalPagar.Text = "0.00";
             txtSubTotalcero.Text = "0.00";
             txtSubTotalIva.Text = "0.00";
             txtSubTotal.Text = "0.00";
