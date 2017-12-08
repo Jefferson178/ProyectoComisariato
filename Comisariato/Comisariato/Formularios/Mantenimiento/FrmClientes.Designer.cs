@@ -1393,7 +1393,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(1089, 588);
+            this.ClientSize = new System.Drawing.Size(1089, 589);
             this.Controls.Add(this.tcCliente);
             this.Font = new System.Drawing.Font("Arial", 10F);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

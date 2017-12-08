@@ -72,7 +72,7 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
         private void btnRegistrarIVA_Click(object sender, EventArgs e)
         {
             FrmRegistrarIVA frmRegistrarIVA = new FrmRegistrarIVA();
-            objFuncion.AddFormInPanel(frmRegistrarIVA, Program.panelPrincipalVariable);
+            objFuncion.AddFormInPanel(frmRegistrarIVA/*, Program.panelPrincipalVariable*/);
             Program.FormularioLlamado = true;
         }
         public void inicializarDatos()

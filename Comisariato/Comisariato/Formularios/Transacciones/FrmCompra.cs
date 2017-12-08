@@ -157,7 +157,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                                         IVA = cbImpuesto.Text;
                                         string condicion = "where SERIE1 = " + Convert.ToInt32(txtSerie1.Text) + " AND SERIE2 = " + Convert.ToInt32(txtSerie2.Text) + " AND NUMERO = " + Convert.ToInt32(txtNumero.Text) + " AND IDPROVEEDOR = " + Convert.ToInt32(cbProveedor.SelectedValue);
                                         IDEncabezadoCompraOG = Convert.ToInt32(consultas.ObtenerValorCampo("IDEMCABEZADOCOMPRA", "TbEncabezadoyPieCompra", condicion));
-                                        objFuncion.AddFormInPanel(frmOrdenDeGiro, Program.panelPrincipalVariable);
+                                        objFuncion.AddFormInPanel(frmOrdenDeGiro/*, Program.panelPrincipalVariable*/);
                                         //consultas.BoolLlenarComboBox(cbProveedor, "select IDPROVEEDOR AS Id, NOMBRES AS Texto from TbProveedor");
                                     }
                                     else
@@ -313,7 +313,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                                 FrmProductos frmProducto = new FrmProductos();
                                 Program.FormularioLlamado = true;
                                 FrmProductos.codigo = Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value);
-                                objFuncion.AddFormInPanel(frmProducto, Program.panelPrincipalVariable);
+                                objFuncion.AddFormInPanel(frmProducto/*, Program.panelPrincipalVariable*/);
                                 informacionProducto();
                                 datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
                             }
@@ -519,12 +519,24 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                 SendKeys.Send("{TAB}");
             }
         }
-        
+
+
+        FrmProveedores FrmProveedor = null;
         private void btnProveedor_Click(object sender, EventArgs e)
         {
-            FrmProveedores frmProveedor = new FrmProveedores();
-            Program.FormularioLlamado = true;            
-            objFuncion.AddFormInPanel(frmProveedor, Program.panelPrincipalVariable);
+            //FrmProveedores frmProveedor = null;
+            Program.FormularioLlamado = true;
+            //FrmPrincipal frmprincipal = Program.
+            if (FrmProveedor == null || FrmProveedor.IsDisposed)
+            {
+                FrmProveedor = new FrmProveedores();
+                //FrmProveedor.MdiParent = frmprincipal;
+                FrmProveedor.BringToFront();
+                FrmProveedor.Show();
+
+            }
+            else { FrmProveedor.BringToFront(); }
+            //objFuncion.AddFormInPanel(frmProveedor/*, Program.panelPrincipalVariable*/);
             consultas.BoolLlenarComboBox(cbProveedor, "select IDPROVEEDOR AS Id, NOMBRES AS Texto from TbProveedor");
             if (Program.FormularioProveedorCompra)
             {
