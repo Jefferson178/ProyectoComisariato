@@ -491,6 +491,7 @@ namespace Comisariato.Formularios.Transacciones
                 if (txtEfectivo.Text=="")
                 {
                     txtCambio.Text = "0.00";
+                    txtRecibido.Text = "0.00";
                 }
                 else
                 {
@@ -703,7 +704,7 @@ namespace Comisariato.Formularios.Transacciones
                 int idclientebd = Program.em.Idcliente;
                 //string ivastring = Funcion.reemplazarcaracter(ivabd.ToString());
                 //string des = Funcion.reemplazarcaracter(descuentobd.ToString());
-                if (Convert.ToSingle(txtRecibido.Text) >= total)
+                if (Convert.ToDouble(Funcion.reemplazarcaracterViceversa(txtRecibido.Text)) >= Convert.ToDouble(total))
                 {
                     List<string> encabezadofact = new List<string>();
                     List<string> detallepago = new List<string>();
@@ -870,38 +871,44 @@ namespace Comisariato.Formularios.Transacciones
             }
             ticket.lineasAsteriscos();
 
-            float imsubtotal=0, imivasuma=0,subtotaliva=0;
+            double imsubtotal=0F, imivasuma=0F,subtotaliva=0F;
             //Articulos a vender.
             ticket.EncabezadoVenta();//NOMBRE DEL ARTICULO, CANT, PRECIO, IMPORTE
             ticket.lineasAsteriscos();
             //Si tiene una DataGridView donde estan sus articulos a vender pueden usar esta manera para agregarlos al ticket.
             for (int i = 0; i < totalfilas; i++)//dgvLista es el nombre del datagridview
             {
-                float total = Convert.ToSingle(dg.Rows[i].Cells[4].Value.ToString()) * Convert.ToInt32(dg.Rows[i].Cells[2].Value.ToString());
+                double total = Convert.ToDouble(dg.Rows[i].Cells[4].Value.ToString()) * Convert.ToInt32(dg.Rows[i].Cells[2].Value.ToString());
                 if (Convert.ToSingle(dg.Rows[i].Cells[5].Value.ToString()) != 0)
                 {
+                    Double PRECIO_ConIVa = (total + Convert.ToDouble(dg.Rows[i].Cells[5].Value));
+                    //ticket.AgregaArticulo("*" + dg.Rows[i].Cells[1].Value.ToString(), int.Parse(dg.Rows[i].Cells[2].Value.ToString()),
+                    //Convert.ToSingle(dg.Rows[i].Cells[4].Value).ToString("#####0.00"), total.ToString("#####0.00"));
                     ticket.AgregaArticulo("*" + dg.Rows[i].Cells[1].Value.ToString(), int.Parse(dg.Rows[i].Cells[2].Value.ToString()),
                     Convert.ToSingle(dg.Rows[i].Cells[4].Value).ToString("#####0.00"), total.ToString("#####0.00"));
 
-                    imivasuma += Convert.ToSingle(dg.Rows[i].Cells[5].Value.ToString());
+                    imivasuma += Convert.ToDouble(dg.Rows[i].Cells[5].Value);
                     //subtotaliva += Convert.ToSingle(dg.Rows[i].Cells[4].Value.ToString());
-                    subtotaliva += total;
+                    subtotaliva += (total + Convert.ToDouble(dg.Rows[i].Cells[5].Value));
                 }
                 else {
                     ticket.AgregaArticulo(" " + dg.Rows[i].Cells[1].Value.ToString(), int.Parse(dg.Rows[i].Cells[2].Value.ToString()),
                 Convert.ToSingle(dg.Rows[i].Cells[4].Value).ToString("#####0.00"), total.ToString("#####0.00"));
 
-                    imsubtotal += Convert.ToSingle(dg.Rows[i].Cells[4].Value.ToString());
+                    //imsubtotal += Convert.ToSingle(dg.Rows[i].Cells[4].Value.ToString());
+                    imsubtotal += total;
                 }
                 //imsubtotal += total;
             }
-           
+            imsubtotal = Math.Round(imsubtotal, 2);
+            subtotaliva = Math.Round(subtotaliva, 2);
+            imivasuma = Math.Round(imivasuma, 2);
             ticket.lineasAsteriscos();
             //Resumen de la venta. Sólo son ejemplos
-            ticket.AgregarTotales("SUBTOTAL  0%",Convert.ToSingle(imsubtotal));
-            ticket.AgregarTotales("SUBTOTAL 12% ", Convert.ToSingle(subtotaliva));
+            ticket.AgregarTotales("SUBTOTAL  0%",imsubtotal);
+            ticket.AgregarTotales("SUBTOTAL 12% ", subtotaliva);
             ticket.AgregarTotales("Descuento", Convert.ToSingle(descuento));
-            ticket.AgregarTotales("Iva 12%  ", Convert.ToSingle(imivasuma));
+            ticket.AgregarTotales("Iva 12%  ", imivasuma);
             ticket.AgregarTotales("Total a pagar", Convert.ToSingle(totalapagar));
             
             if (ckbCheque.Checked && ckbEfectivo.Checked && ckbTarjeta.Checked)
@@ -1283,12 +1290,12 @@ namespace Comisariato.Formularios.Transacciones
                                 //TODO BIEN
                                 if (ckbEfectivo.Checked)
                                 {
-                                    float reci = 0;
+                                    Double reci = 0;
                                     string r = "";
-                                   
+
                                     //if (Convert.ToSingle(r) >= total)
                                     //{
-                                    if (txtEfectivo.Text!="")
+                                    if (txtEfectivo.Text != "")
                                     {
                                         r = txtEfectivo.Text;
                                     }
@@ -1296,19 +1303,19 @@ namespace Comisariato.Formularios.Transacciones
                                     {
                                         r = "0";
                                     }
-                                        reci = float.Parse(r);
-                                        //string prueba = Funcion.reemplazarcaracter(txtTotalPagar.Text);
-                                        float tpagar=float.Parse(txtTotalPagar.Text);
-                                        float cambio = tpagar - reci;
-                                        if (cambio < 0)
-                                        {
-                                            cambio *= -1;
-                                        }
+                                    reci = Convert.ToDouble(Funcion.reemplazarcaracterViceversa(r));
+                                    //string prueba = Funcion.reemplazarcaracter(txtTotalPagar.Text);
+                                    Double tpagar = Convert.ToDouble(Funcion.reemplazarcaracterViceversa(txtTotalPagar.Text));
+                                    Double cambio = tpagar - reci;
+                                    if (cambio < 0)
+                                    {
+                                        cambio *= -1;
+                                    }
                                     //  else
                                     //{
                                     //    txtCambio.Text = Funcion.reemplazarcaracter(cambio.ToString("#####0.00"));
                                     //}
-                                    if (cambio<tpagar)
+                                    if (reci < tpagar)
                                     {
                                         txtCambio.Text = "";
                                     }
@@ -1341,8 +1348,8 @@ namespace Comisariato.Formularios.Transacciones
                                             }
 
                                         }
-                                       
-                                        
+
+
                                         float cambio = TotalCredito - Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtTotalPagar.Text));
                                         if (cambio < 0)
                                         {

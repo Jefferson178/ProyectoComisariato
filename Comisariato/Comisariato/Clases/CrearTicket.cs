@@ -194,7 +194,7 @@ namespace Comisariato.Clases
         }
 
         //Metodo para agregar los totales d ela venta
-        public void AgregarTotales(string texto, float total)
+        public void AgregarTotales(string texto, double total)
         {
             //Variables que usaremos
             string resumen, valor, textoCompleto, espacios = "";
