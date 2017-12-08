@@ -93,7 +93,7 @@ namespace Comisariato.Formularios.Transacciones
         {
             // this.dgvDetalleProductos.CellValidating += new DataGridViewCellValidatingEventHandler(dgv_validating);
             //propiedadesdgv();
-
+            Program.FormularioVentaAbierto = true;
             Consultas consultas = new Consultas();
             DataTable dt = consultas.BoolDataTable("Select LOGO from TbEmpresa where IDEMPRESA = 1");
             //Arreglo de byte en donde se almacenara la foto en bytes
@@ -1140,6 +1140,11 @@ namespace Comisariato.Formularios.Transacciones
                 txtCodigo.Focus();
             }
           
+        }
+
+        private void FrmFactura_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Program.FormularioVentaAbierto = false;
         }
 
         private void dgvDetalleProductos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)

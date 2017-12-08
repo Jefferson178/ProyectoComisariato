@@ -28,7 +28,7 @@ namespace Comisariato
         public static Panel panelPrincipalVariable;
         public static bool FormularioLlamado = false;
         public static bool FormularioProveedorCompra = false;
-
+        public static bool FormularioVentaAbierto = false;
 
         //datos empresa
         public static string nombreempresa;

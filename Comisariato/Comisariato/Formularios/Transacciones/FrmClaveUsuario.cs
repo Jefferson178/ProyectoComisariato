@@ -16,7 +16,9 @@ namespace Comisariato.Formularios.Transacciones
     {
 
         Consultas c;
-        public int verificarMetodo;
+        Funcion objFuncion = new Funcion();
+            public int verificarMetodo;
+
         public FrmClaveUsuario()
         {
             InitializeComponent();
@@ -28,11 +30,7 @@ namespace Comisariato.Formularios.Transacciones
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-
             Auntenticar();
-
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -66,7 +64,7 @@ namespace Comisariato.Formularios.Transacciones
                             bitacora = new Bitacora("00:00:00", "Venta");
                             bitacora.insertarBitacora();
 
-                            string numcaja = "", sucursal = "", documentoActual ="";
+                            string numcaja = "", sucursal = "", documentoActual = "";
                             string IpMaquina = bitacora.LocalIPAddress();
                             DataTable Dt = c.BoolDataTable("Select SERIE1,SERIE2,DOCUMENTOACTUAL,DOCUMENTOINICIAL,DOCUMENTOFINAL,AUTORIZACION,ESTACION,IPESTACION from TbCajasTalonario where IPESTACION = '" + IpMaquina + "' and ESTADO=1;");
                             if (Dt.Rows.Count > 0)
@@ -91,21 +89,22 @@ namespace Comisariato.Formularios.Transacciones
 
                             string condicion = " where CAJA = '" + numcaja + "' and SUCURSAL= '" + sucursal + "';";
                             int numero = c.ObtenerID("DOCUMENTOACTUAL", "TbCajasTalonario", condicion);
-                            condicion= " where IDENTIFICACION= 9999999999999";
+                            condicion = " where IDENTIFICACION= 9999999999999";
                             f.IDCLIENTEINICIO = c.ObtenerID("IDCLIENTE", "TbCliente", condicion);
-                            //if (numero == 0)
-                            //{
-                                f.numfact = Convert.ToInt32(documentoActual);
-                            //}
-                            //else
-                            //{
-                                //f.numfact = numero + 1;
-                            //}
+
+                            f.numfact = Convert.ToInt32(documentoActual);
                             f.sucursal = sucursal;
                             f.numcaja = numcaja;
-                            //f.numcaja = numcaja;
                             this.Close();
-                            f.ShowDialog();
+                            //if (f == null || f.IsDisposed)
+                            //{
+                            //f.ShowDialog();
+                            f = new FrmFactura();
+                            //f.verificarMetodo = 1;
+                            objFuncion.AddFormInPanel(f, Program.panelPrincipalVariable);
+                            f.Dock = DockStyle.Top;
+                            FrmPrincipal.menuMostrar.Visible = false; 
+                            //}
                         }
                         else
                         {

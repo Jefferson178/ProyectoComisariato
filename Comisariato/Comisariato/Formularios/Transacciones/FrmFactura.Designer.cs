@@ -1035,6 +1035,7 @@
             this.Text = "VENTAS - Aircontrol";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.FrmFactura_Activated);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmFactura_FormClosed);
             this.Load += new System.EventHandler(this.FrmFactura_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FrmFactura_KeyUp);
             this.groupBox4.ResumeLayout(false);

@@ -39,7 +39,8 @@ namespace Comisariato.Formularios
         FrmOrdenDeGiro FrmOrdenDeGiro;
         FrmDevolucionVenta FrmDevolucionVenta;
         FrmAsignarMenu FrmAsignarMenu;
-
+        public static MenuStrip menuMostrar;
+        //public static void Panel
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -372,6 +373,7 @@ namespace Comisariato.Formularios
             //-------------------------------------------------Transacciones---------------------------------------//
             else if (nombre == "Ventas")
             {
+<<<<<<< HEAD
                 //if (FrmClaveUsuario == null || FrmClaveUsuario.IsDisposed)
                 //{
                 //    FrmClaveUsuario = new FrmClaveUsuario();
@@ -391,6 +393,21 @@ namespace Comisariato.Formularios
                     FrmClaveUsuario.MdiParent = this;
                     FrmClaveUsuario.Show();
 
+=======
+                if (!Program.FormularioVentaAbierto)
+                {
+                    if (FrmClaveUsuario == null || FrmClaveUsuario.IsDisposed)
+                    {
+                        FrmClaveUsuario = new FrmClaveUsuario();
+                        FrmClaveUsuario.verificarMetodo = 1;
+                        objFuncion.AddFormInPanel(FrmClaveUsuario, Program.panelPrincipalVariable);
+                    }
+                    else
+                    {
+                        int index = panelPrincipal.Controls.GetChildIndex(FrmClaveUsuario);
+                        FrmClaveUsuario.BringToFront();
+                    }
+>>>>>>> 79d04499b7b7f1cd42156aabe820f54752dbb22f
                 }
                 else { FrmClaveUsuario.BringToFront(); }
             }
@@ -501,6 +518,7 @@ namespace Comisariato.Formularios
         }
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
+            menuMostrar = msPrincipal;
             DataTable dt = objConsulta.BoolDataTable("Select FONDOPANTALLA from TbEmpresa where IDEMPRESA = 1");
             byte[] MyData = new byte[0];
             if (dt.Rows.Count > 0)
