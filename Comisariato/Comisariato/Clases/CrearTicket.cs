@@ -211,7 +211,7 @@ namespace Comisariato.Clases
             valor = total.ToString(""+"#,#.00");//Agregamos el total previo formateo.
 
 
-            if (total == 0)
+            if (total == 0 || valor[0] == ',')
             {
                 valor = "0" + valor;
             }
@@ -231,7 +231,7 @@ namespace Comisariato.Clases
             {
                 textoCompleto += espacios + "$ " + valor;
             }
-            linea.AppendLine(textoCompleto);
+            linea.AppendLine(Funcion.reemplazarcaracter(textoCompleto));
         }
 
         //Metodo para agreagar articulos al ticket de venta
@@ -330,7 +330,7 @@ namespace Comisariato.Clases
                     }
                     elemento += espacios + importe;
 
-                    linea.AppendLine(elemento);//Agregamos todo el elemento: nombre del articulo, cant, precio, importe.
+                    linea.AppendLine(Funcion.reemplazarcaracter(elemento));//Agregamos todo el elemento: nombre del articulo, cant, precio, importe.
                 }
             }
             else

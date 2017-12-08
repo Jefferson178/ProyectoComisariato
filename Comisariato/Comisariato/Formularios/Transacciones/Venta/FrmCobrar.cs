@@ -804,24 +804,26 @@ namespace Comisariato.Formularios.Transacciones
             ticket.AbreCajon();//Para abrir el cajon de dinero.
 
             //De aqui en adelante pueden formar su ticket a su gusto... Les muestro un ejemplo
-            string fechaf = DateTime.Now.Date.ToShortDateString();
+            string fechactual = DateTime.Now.Date.ToShortDateString();
+            //int añoactual = DateTime.Now.Date.Year;
+            string fechaexpira = DateTime.Now.Date.AddYears(1).ToShortDateString();
             int sucursal= Program.em.Sucursal;
             int numcaja = Program.em.Caja;
             int numfac = Program.em.Numfact;
             //Datos de la cabecera del Ticket.
             ticket.TextoCentro("EMPRESA: "+Program.nombreempresa);
             ticket.TextoCentro("RUC: "+Program.rucempresa);
-            ticket.TextoIzquierda("Direccion: "+Program.direccionempresa);
-            ticket.TextoIzquierda("Valido: "+ fechaf+" Hasta: " +fechaf);
+            ticket.TextoIzquierda(Program.direccionempresa);
+            ticket.TextoIzquierda("Valido: "+ fechactual + " Hasta: " + fechaexpira);
             ticket.TextoIzquierda("Clave: 4530000");
-            ticket.TextoIzquierda("        Factura: "+sucursal.ToString("D3") + "-"+numcaja.ToString("D3") + "-"+numfac.ToString("D8"));
+            ticket.TextoIzquierda("        Factura #: "+sucursal.ToString("D3") + "-"+numcaja.ToString("D3") + "-"+numfac.ToString("D8"));
             ticket.TextoIzquierda("         Informacion del Consumidor");//Es el mio por si me quieren contactar ...
             ticket.TextoIzquierda("RUC: "+identificacion);
             ticket.TextoIzquierda("Cliente: "+nombre);
             ticket.TextoIzquierda("Facturado: "+Program.Usuario);
             ticket.TextoIzquierda("# CAJA: " + numcaja.ToString("D3"));
             string[] h = DateTime.Now.TimeOfDay.ToString().Split('.');
-            ticket.TextoIzquierda("Fecha: "+ fechaf + "          "+ h[0]);
+            ticket.TextoIzquierda("Fecha: "+ fechactual + "          "+ h[0]);
             if (ckbCheque.Checked && ckbEfectivo.Checked && ckbTarjeta.Checked)
             {
                 ticket.TextoIzquierda("Tipo de pago: Efectivo - Cheque - T. Credito");
@@ -881,15 +883,15 @@ namespace Comisariato.Formularios.Transacciones
                 double total = Convert.ToDouble(dg.Rows[i].Cells[4].Value.ToString()) * Convert.ToInt32(dg.Rows[i].Cells[2].Value.ToString());
                 if (Convert.ToSingle(dg.Rows[i].Cells[5].Value.ToString()) != 0)
                 {
-                    Double PRECIO_ConIVa = (total + Convert.ToDouble(dg.Rows[i].Cells[5].Value));
+                    //Double PRECIO_ConIVa = (total + Convert.ToDouble(dg.Rows[i].Cells[5].Value));
                     //ticket.AgregaArticulo("*" + dg.Rows[i].Cells[1].Value.ToString(), int.Parse(dg.Rows[i].Cells[2].Value.ToString()),
                     //Convert.ToSingle(dg.Rows[i].Cells[4].Value).ToString("#####0.00"), total.ToString("#####0.00"));
                     ticket.AgregaArticulo("*" + dg.Rows[i].Cells[1].Value.ToString(), int.Parse(dg.Rows[i].Cells[2].Value.ToString()),
                     Convert.ToSingle(dg.Rows[i].Cells[4].Value).ToString("#####0.00"), total.ToString("#####0.00"));
 
                     imivasuma += Convert.ToDouble(dg.Rows[i].Cells[5].Value);
-                    //subtotaliva += Convert.ToSingle(dg.Rows[i].Cells[4].Value.ToString());
-                    subtotaliva += (total + Convert.ToDouble(dg.Rows[i].Cells[5].Value));
+                    subtotaliva += Convert.ToSingle(dg.Rows[i].Cells[4].Value.ToString());
+                    //subtotaliva += (total + Convert.ToDouble(dg.Rows[i].Cells[5].Value));
                 }
                 else {
                     ticket.AgregaArticulo(" " + dg.Rows[i].Cells[1].Value.ToString(), int.Parse(dg.Rows[i].Cells[2].Value.ToString()),
