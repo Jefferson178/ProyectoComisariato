@@ -160,6 +160,7 @@ namespace Comisariato.Formularios
             //ComboBox comboPrueba = new ComboBox();
             //consultas.BoolLlenarComboBoxDgv((DataGridViewComboBoxColumn)dgvCodigoRetencionProveedor.Columns[1].i, "select CS.IDCODIGOSRI as ID, '[' + CS.CODIGOSRI + '] - ' + CS.DESCRIPCION as Texto from TbCodigoSRI CS, TbTipoCodigoSRI TCS WHERE TCS.IDTIPOCODIGOSRI = CS.IDTIPOCODIGOSRI AND TCS.CODIGO = 'COD_RET_FUE' or TCS.CODIGO = 'COD_RET_IVA'");
             //dgvCodigoRetencionProveedor.Rows[0].Cells[1].Value = columnaComboFI;
+            Program.FormularioProveedorCompra = true;
         }
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
@@ -968,6 +969,11 @@ namespace Comisariato.Formularios
                     break;
             }
             //txtCodigo.Text = GlobalCodigoProveedor;
+        }
+
+        private void FrmProveedores_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Program.FormularioProveedorCompra = false;
         }
     }
 }

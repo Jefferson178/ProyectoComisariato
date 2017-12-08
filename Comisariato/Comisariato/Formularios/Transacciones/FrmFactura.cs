@@ -1555,10 +1555,10 @@ namespace Comisariato.Formularios.Transacciones
                     if (DatosCliente.Count>0)
                     {
                         txtCantidad.Focus();
-                        if (DatosCliente.Count > 0)
-                        {
-                            DatosCliente.Clear();
-                        }
+                        //if (DatosCliente.Count > 0)
+                        //{
+                        //    DatosCliente.Clear();
+                        //}
                     }
                     else
                     {

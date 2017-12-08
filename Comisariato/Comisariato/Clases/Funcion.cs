@@ -15,7 +15,6 @@ namespace Comisariato.Clases
     {         
         public void AddFormInPanel(Form formHijo /*, Panel panelPrincipal*/)
         {
-<<<<<<< HEAD
             //Form fh = formHijo as Form;
             //fh.TopLevel = false;
             //panelPrincipal.Controls.Add(fh);
@@ -35,16 +34,6 @@ namespace Comisariato.Clases
 
             }
             else { formHijo.BringToFront(); }
-
-=======
-            Form fh = formHijo as Form;
-            fh.TopLevel = false;
-            panelPrincipal.Controls.Add(fh);
-            //panelPrincipal.Tag = fh;            
-            int index = panelPrincipal.Controls.GetChildIndex(fh);
-            fh.BringToFront();
-            fh.Show();
->>>>>>> 79d04499b7b7f1cd42156aabe820f54752dbb22f
         }
 
         public static void ValidarNumerosStock(DataGridViewCellValidatingEventArgs e, DataGridView Dgv)

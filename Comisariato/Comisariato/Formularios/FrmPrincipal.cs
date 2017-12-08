@@ -51,7 +51,7 @@ namespace Comisariato.Formularios
 
         private void tvPrincipal_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            //Program.panelPrincipalVariable = panelPrincipal;
+            Program.panelPrincipalVariable = this;
 
             string nombre = e.Node.Text;
             //-------------------------------------------------Mantenimiento---------------------------------------//
@@ -373,7 +373,6 @@ namespace Comisariato.Formularios
             //-------------------------------------------------Transacciones---------------------------------------//
             else if (nombre == "Ventas")
             {
-<<<<<<< HEAD
                 //if (FrmClaveUsuario == null || FrmClaveUsuario.IsDisposed)
                 //{
                 //    FrmClaveUsuario = new FrmClaveUsuario();
@@ -385,31 +384,20 @@ namespace Comisariato.Formularios
                 //    int index = panelPrincipal.Controls.GetChildIndex(FrmClaveUsuario);
                 //    FrmClaveUsuario.BringToFront();
                 //}
-                if (FrmClaveUsuario == null || FrmClaveUsuario.IsDisposed)
-                {
-                    FrmClaveUsuario = new FrmClaveUsuario();
-                    FrmClaveUsuario.verificarMetodo = 1;
-                    FrmClaveUsuario.BringToFront();
-                    FrmClaveUsuario.MdiParent = this;
-                    FrmClaveUsuario.Show();
 
-=======
+
                 if (!Program.FormularioVentaAbierto)
                 {
                     if (FrmClaveUsuario == null || FrmClaveUsuario.IsDisposed)
                     {
                         FrmClaveUsuario = new FrmClaveUsuario();
                         FrmClaveUsuario.verificarMetodo = 1;
-                        objFuncion.AddFormInPanel(FrmClaveUsuario, Program.panelPrincipalVariable);
-                    }
-                    else
-                    {
-                        int index = panelPrincipal.Controls.GetChildIndex(FrmClaveUsuario);
                         FrmClaveUsuario.BringToFront();
+                        FrmClaveUsuario.MdiParent = this;
+                        FrmClaveUsuario.Show();
                     }
->>>>>>> 79d04499b7b7f1cd42156aabe820f54752dbb22f
+                    else { FrmClaveUsuario.BringToFront(); }
                 }
-                else { FrmClaveUsuario.BringToFront(); }
             }
             else if (nombre == "Compras")
             {

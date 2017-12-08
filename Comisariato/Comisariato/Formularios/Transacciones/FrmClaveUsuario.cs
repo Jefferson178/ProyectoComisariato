@@ -45,7 +45,7 @@ namespace Comisariato.Formularios.Transacciones
                 Auntenticar();
             }
         }
-
+        FrmFactura f;
         private void Auntenticar()
         {
             try
@@ -60,7 +60,7 @@ namespace Comisariato.Formularios.Transacciones
                         if (b)
                         {
                             Program.contraseñausuarioactual = txtClave.Text;
-                            FrmFactura f = new FrmFactura();
+                            
                             bitacora = new Bitacora("00:00:00", "Venta");
                             bitacora.insertarBitacora();
 
@@ -90,20 +90,35 @@ namespace Comisariato.Formularios.Transacciones
                             string condicion = " where CAJA = '" + numcaja + "' and SUCURSAL= '" + sucursal + "';";
                             int numero = c.ObtenerID("DOCUMENTOACTUAL", "TbCajasTalonario", condicion);
                             condicion = " where IDENTIFICACION= 9999999999999";
-                            f.IDCLIENTEINICIO = c.ObtenerID("IDCLIENTE", "TbCliente", condicion);
+                            //f.IDCLIENTEINICIO = c.ObtenerID("IDCLIENTE", "TbCliente", condicion);
 
-                            f.numfact = Convert.ToInt32(documentoActual);
-                            f.sucursal = sucursal;
-                            f.numcaja = numcaja;
+                            //f.numfact = Convert.ToInt32(documentoActual);
+                            //f.sucursal = sucursal;
+                            //f.numcaja = numcaja;
                             this.Close();
                             //if (f == null || f.IsDisposed)
                             //{
                             //f.ShowDialog();
-                            f = new FrmFactura();
+                            //f = new FrmFactura();
+                            if (f == null || f.IsDisposed)
+                            {
+                                f = new FrmFactura();
+                                f.IDCLIENTEINICIO = c.ObtenerID("IDCLIENTE", "TbCliente", condicion);
+
+                                f.numfact = Convert.ToInt32(documentoActual);
+                                f.sucursal = sucursal;
+                                f.numcaja = numcaja;
+
+                                f.MdiParent = Program.panelPrincipalVariable;
+                                f.BringToFront();
+                                f.Show();
+
+                            }
+                            else { f.BringToFront(); }
                             //f.verificarMetodo = 1;
-                            objFuncion.AddFormInPanel(f, Program.panelPrincipalVariable);
+                            //objFuncion.AddFormInPanel(f, Program.panelPrincipalVariable);
                             f.Dock = DockStyle.Top;
-                            FrmPrincipal.menuMostrar.Visible = false; 
+                            //FrmPrincipal.menuMostrar.Visible = false; 
                             //}
                         }
                         else

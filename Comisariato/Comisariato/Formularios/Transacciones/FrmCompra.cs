@@ -521,26 +521,26 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         }
 
 
-        FrmProveedores FrmProveedor = null;
+        FrmProveedores FrmProveedor;
         private void btnProveedor_Click(object sender, EventArgs e)
         {
-            //FrmProveedores frmProveedor = null;
-            Program.FormularioLlamado = true;
-            //FrmPrincipal frmprincipal = Program.
-            if (FrmProveedor == null || FrmProveedor.IsDisposed)
-            {
-                FrmProveedor = new FrmProveedores();
-                //FrmProveedor.MdiParent = frmprincipal;
-                FrmProveedor.BringToFront();
-                FrmProveedor.Show();
-
-            }
-            else { FrmProveedor.BringToFront(); }
-            //objFuncion.AddFormInPanel(frmProveedor/*, Program.panelPrincipalVariable*/);
+            
             consultas.BoolLlenarComboBox(cbProveedor, "select IDPROVEEDOR AS Id, NOMBRES AS Texto from TbProveedor");
-            if (Program.FormularioProveedorCompra)
-            {
-                
+            if (!Program.FormularioProveedorCompra)
+            {//FrmProveedores frmProveedor = null;
+                Program.FormularioLlamado = true;
+                //FrmPrincipal frmprincipal = Program.
+                if (FrmProveedor == null || FrmProveedor.IsDisposed)
+                {
+                    FrmProveedor = new FrmProveedores();
+                    FrmProveedor.MdiParent = Program.panelPrincipalVariable;
+                    FrmProveedor.BringToFront();
+                    FrmProveedor.Show();
+
+                }
+                else { FrmProveedor.BringToFront(); }
+                //objFuncion.AddFormInPanel(frmProveedor/*, Program.panelPrincipalVariable*/);
+
             }
         }
 

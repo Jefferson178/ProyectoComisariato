@@ -25,7 +25,7 @@ namespace Comisariato
         public static EmcabezadoFactura em = new EmcabezadoFactura();
         // ------- Variables Usadas por Andres 
         public static string IDUsuarioMenu = "";
-        public static Panel panelPrincipalVariable;
+        public static Form panelPrincipalVariable;
         public static bool FormularioLlamado = false;
         public static bool FormularioProveedorCompra = false;
         public static bool FormularioVentaAbierto = false;
