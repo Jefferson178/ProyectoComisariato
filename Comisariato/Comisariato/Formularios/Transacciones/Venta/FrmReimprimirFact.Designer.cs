@@ -159,6 +159,7 @@
             this.Name = "FrmReimprimirFact";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ReImpresión de Factura";
+            this.Load += new System.EventHandler(this.FrmReimprimirFact_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);

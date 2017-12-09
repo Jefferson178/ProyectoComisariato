@@ -17,6 +17,8 @@ namespace Comisariato.Clases
         //Preimpresa Factura
         string ancho;
         string largo;
+        string TamanoEncabezadoFact;
+        string TamanoPieFact;
         int numeroItems;
 
         //Autorizados para Imprimir
@@ -39,7 +41,7 @@ namespace Comisariato.Clases
         public ParametrosFactura()
         { }
 
-        public ParametrosFactura(string montoMinimoFactura, int iva, bool contribuyenteEspecial, bool obligadoContabilida, string ancho, string largo, int numeroItems, string pie1, string pie2, string pie3, string pie4, int idempresa)
+        public ParametrosFactura(string montoMinimoFactura, int iva, bool contribuyenteEspecial, bool obligadoContabilida, string ancho, string largo, int numeroItems, string pie1, string pie2, string pie3, string pie4, int idempresa, string TamanoEncabezadoFact, string TamanoPieFact)
         {
             MontoMinimoFactura = montoMinimoFactura;
             this.iva = iva;
@@ -53,6 +55,8 @@ namespace Comisariato.Clases
             this.pie3 = pie3;
             this.pie4 = pie4;
             this.idempresa = idempresa;
+            this.TamanoEncabezadoFact = TamanoEncabezadoFact;
+            this.TamanoPieFact = TamanoPieFact;
         }
 
         public string MontoMinimoFactura1
@@ -211,6 +215,32 @@ namespace Comisariato.Clases
             }
         }
 
+        public string TamanoEncabezadoFact1
+        {
+            get
+            {
+                return TamanoEncabezadoFact;
+            }
+
+            set
+            {
+                TamanoEncabezadoFact = value;
+            }
+        }
+
+        public string TamanoPieFact1
+        {
+            get
+            {
+                return TamanoPieFact;
+            }
+
+            set
+            {
+                TamanoPieFact = value;
+            }
+        }
+
         public string InsertarParametrosFactura()
         {
             ObjConsulta = new Consultas();
@@ -235,8 +265,8 @@ namespace Comisariato.Clases
         {
             ObjConsulta = new Consultas();
 
-            if (ObjConsulta.EjecutarSQL("INSERT INTO [BDComisariato].[dbo].[TbPreimpresa] ([ANCHO] ,[LARGO] ,[NUMEROITEMS] ,[IDPARAMETROSFACTURA])"
-                + " VALUES(" + ancho + "," + largo+","+numeroItems+","+idParametrosFactura+")"))
+            if (ObjConsulta.EjecutarSQL("INSERT INTO [BDComisariato].[dbo].[TbPreimpresa] ([ANCHO] ,[LARGO] ,[NUMEROITEMS] ,[IDPARAMETROSFACTURA],[TAMANOENCABEZADOFACTURA],[TAMANOPIEFACTURA])"
+                + " VALUES(" + ancho + "," + largo+","+numeroItems+","+idParametrosFactura+","+TamanoEncabezadoFact+","+TamanoPieFact+")"))
             {
                 return "Datos Guardados";
             }
