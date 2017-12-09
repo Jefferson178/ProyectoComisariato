@@ -1521,10 +1521,6 @@ namespace Comisariato.Clases
                 cmd.Parameters.AddWithValue("@TOTAL", ObjEncabezadoOrdenGiro.Total);
                 cmd.Parameters.AddWithValue("@VALORPAGAR", ObjEncabezadoOrdenGiro.ValorPagar);
                 cmd.Parameters.AddWithValue("@SALDO", ObjEncabezadoOrdenGiro.Saldo);
-                cmd.Parameters.AddWithValue("@CUENTADEUDORA0", ObjEncabezadoOrdenGiro.CuentaDeudora0);
-                cmd.Parameters.AddWithValue("@CUENTADEUDORA12", ObjEncabezadoOrdenGiro.CuentadDeudora12);
-                cmd.Parameters.AddWithValue("@CUENTADEUDORAIRBP", ObjEncabezadoOrdenGiro.CuentaDeudoraiRBP);
-                cmd.Parameters.AddWithValue("@CUENTAIVAPAGAR", ObjEncabezadoOrdenGiro.CuentaIVAPagar);
                 cmd.Parameters.AddWithValue("@FECHARETENCION", ObjEncabezadoOrdenGiro.FechaRetencion);
                 cmd.Parameters.AddWithValue("@FECHAVENCEDOCUMENTO", ObjEncabezadoOrdenGiro.FechaVenceDocumento);
                 cmd.Parameters.AddWithValue("@SERIE1RETENCION", ObjEncabezadoOrdenGiro.Serie1Retencion);

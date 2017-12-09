@@ -9,19 +9,21 @@ namespace Comisariato.Clases
     public class EncabezadoOrdenGiro
     {
         int numeroOrdenGiro, tipoDocumento, proveedor;
-        string tipo, plazo, concepto, atorizacionProveedor,numeroProveedor;
+        string tipo, plazo, concepto, atorizacionProveedor,numeroProveedor, tipoAutorizacion;
         int  serie1Proveedor, serie2Proveedor;
         bool rise, declaraSRI, retencionManual;
         DateTime fechaDocumento, fechaContabilizacion, fechaOrdenGiro, FechaVigente;
         int encabezadoCompra;
         float total, valorPagar, saldo;
-        int cuentaDeudora0, cuentadDeudora12, cuentaDeudoraiRBP, cuentaIVAPagar;
         DateTime fechaRetencion, fechaVenceDocumento;
         int serie1Retencion, serie2Retencion, numeroRetencion;
         string autorizacionretencion;
         float totalDebe, totalHaber;
 
-        public EncabezadoOrdenGiro(int numeroOrdenGiro, int tipoDocumento, int proveedor, string tipo, string plazo, string concepto, string atorizacionProveedor, string numeroProveedor, int serie1Proveedor, int serie2Proveedor, bool rise, bool declaraSRI, bool retencionManual, DateTime fechaDocumento, DateTime fechaContabilizacion, DateTime fechaOrdenGiro, DateTime fechaVigente, int encabezadoCompra, float total, float valorPagar, float saldo, int cuentaDeudora0, int cuentadDeudora12, int cuentaDeudoraiRBP, int cuentaIVAPagar, DateTime fechaRetencion, DateTime fechaVenceDocumento, int serie1Retencion, int serie2Retencion, int numeroRetencion, string autorizacionretencion, float totalDebe, float totalHaber)
+        public EncabezadoOrdenGiro(int numeroOrdenGiro, int tipoDocumento, int proveedor, string tipo, string plazo, string concepto, string atorizacionProveedor, 
+            string numeroProveedor, int serie1Proveedor, int serie2Proveedor, bool rise, bool declaraSRI, bool retencionManual, DateTime fechaDocumento, 
+            DateTime fechaContabilizacion, DateTime fechaOrdenGiro, DateTime fechaVigente, int encabezadoCompra, float total, float valorPagar, float saldo, 
+            DateTime fechaRetencion, DateTime fechaVenceDocumento, int serie1Retencion, int serie2Retencion, int numeroRetencion, string autorizacionretencion, float totalDebe, float totalHaber)
         {
             this.numeroOrdenGiro = numeroOrdenGiro;
             this.tipoDocumento = tipoDocumento;
@@ -44,10 +46,6 @@ namespace Comisariato.Clases
             this.total = total;
             this.valorPagar = valorPagar;
             this.saldo = saldo;
-            this.cuentaDeudora0 = cuentaDeudora0;
-            this.cuentadDeudora12 = cuentadDeudora12;
-            this.cuentaDeudoraiRBP = cuentaDeudoraiRBP;
-            this.cuentaIVAPagar = cuentaIVAPagar;
             this.fechaRetencion = fechaRetencion;
             this.fechaVenceDocumento = fechaVenceDocumento;
             this.serie1Retencion = serie1Retencion;
@@ -330,59 +328,6 @@ namespace Comisariato.Clases
                 saldo = value;
             }
         }
-
-        public int CuentaDeudora0
-        {
-            get
-            {
-                return cuentaDeudora0;
-            }
-
-            set
-            {
-                cuentaDeudora0 = value;
-            }
-        }
-
-        public int CuentadDeudora12
-        {
-            get
-            {
-                return cuentadDeudora12;
-            }
-
-            set
-            {
-                cuentadDeudora12 = value;
-            }
-        }
-
-        public int CuentaDeudoraiRBP
-        {
-            get
-            {
-                return cuentaDeudoraiRBP;
-            }
-
-            set
-            {
-                cuentaDeudoraiRBP = value;
-            }
-        }
-
-        public int CuentaIVAPagar
-        {
-            get
-            {
-                return cuentaIVAPagar;
-            }
-
-            set
-            {
-                cuentaIVAPagar = value;
-            }
-        }
-
         public DateTime FechaRetencion
         {
             get

@@ -1,4 +1,5 @@
 ﻿using Comisariato.Clases;
+using Comisariato.Formularios.Informes;
 using Comisariato.Formularios.Mantenimiento;
 using Comisariato.Formularios.Mantenimiento.Empresa;
 using Comisariato.Formularios.Mantenimiento.Inventario;
@@ -39,6 +40,7 @@ namespace Comisariato.Formularios
         FrmOrdenDeGiro FrmOrdenDeGiro;
         FrmDevolucionVenta FrmDevolucionVenta;
         FrmAsignarMenu FrmAsignarMenu;
+        FrmInformeVentas FrmInformeVentas;
         public static MenuStrip menuMostrar;
         //public static void Panel
         public FrmPrincipal()
@@ -149,6 +151,28 @@ namespace Comisariato.Formularios
                     Asignar(FrmCajasTalonario.Name);
                 }
                 //else { FrmProducto.BringToFront(); }
+            }
+            else if (nombre == "Informe Ventas")
+            {
+                //if (FrmCajasTalonario == null || FrmCajasTalonario.IsDisposed)
+                //{
+                //    FrmCajasTalonario = new FrmCajasTalonario();
+                //    objFuncion.AddFormInPanel(FrmCajasTalonario, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    int index = panelPrincipal.Controls.GetChildIndex(FrmCajasTalonario);
+                //    FrmCajasTalonario.BringToFront();
+                //}
+                if (FrmInformeVentas == null || FrmInformeVentas.IsDisposed)
+                {
+                    FrmInformeVentas = new FrmInformeVentas();
+                    FrmInformeVentas.MdiParent = this;
+                    FrmInformeVentas.BringToFront();
+                    FrmInformeVentas.Show();
+
+                }
+                else { FrmInformeVentas.BringToFront(); }
             }
             else if (nombre == "Empresa")
             {

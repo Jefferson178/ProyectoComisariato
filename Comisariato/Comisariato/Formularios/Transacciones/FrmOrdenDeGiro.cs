@@ -29,7 +29,7 @@ namespace Comisariato.Formularios.Transacciones
             txtSerie2.Text = "";
             txtNumero.Text = "";
             cbSustentoTributario.Text = "";
-            CmbTipo.SelectedIndex = 0;
+            cbTipo.SelectedIndex = 0;
             cbAutorizacionSRI.SelectedIndex = 0;
         }
         public string agregra0Decimal(string valor)
@@ -93,15 +93,14 @@ namespace Comisariato.Formularios.Transacciones
                 if (myRow["CODIGO"].ToString() == "COD_RET_FUE")
                 {
                     dgvDatosRetencion.Rows[i].Cells[1].Value = "FUENTE";
-                    dgvDatosRetencion.Rows[i].Cells[3].Value = txtBaseImponible.Text;
-                    dgvDatosRetencion.Rows[i].Cells[4].Value = (Convert.ToSingle(dgvDatosRetencion.Rows[i].Cells[3].Value) * Convert.ToSingle(dgvDatosRetencion.Rows[i].Cells[2].Value)) / 100;
+                    
                 }
                 else
                 {
                     dgvDatosRetencion.Rows[i].Cells[1].Value = "IVA";
-                    dgvDatosRetencion.Rows[i].Cells[3].Value = Convert.ToSingle(txtBaseImponible.Text) * Convert.ToSingle(txtIVA.Text);
-                    dgvDatosRetencion.Rows[i].Cells[4].Value = (Convert.ToSingle(dgvDatosRetencion.Rows[i].Cells[3].Value) * Convert.ToSingle(dgvDatosRetencion.Rows[i].Cells[2].Value)) / 100;
                 }
+                dgvDatosRetencion.Rows[i].Cells[3].Value = txtBaseImponible.Text;
+                dgvDatosRetencion.Rows[i].Cells[4].Value = Funcion.reemplazarcaracter(((Convert.ToSingle(Funcion.reemplazarcaracterViceversa(dgvDatosRetencion.Rows[i].Cells[3].Value.ToString())) * Convert.ToSingle(dgvDatosRetencion.Rows[i].Cells[2].Value)) / 100).ToString());
                 dgvDatosRetencion.Rows[i].Cells[6].Value = Convert.ToDateTime(myRow["FECHAVALIDODESDE"]).ToShortDateString() + " - " + Convert.ToDateTime(myRow["FECHAVALIDOHASTA"]).ToShortDateString();
 
             }
@@ -109,12 +108,6 @@ namespace Comisariato.Formularios.Transacciones
 
         private void FrmOrdenDeGiro_Load(object sender, EventArgs e)
         {
-            //ObjConsul.BoolLlenarComboBox(cbCuentaDeudoraCero, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta");
-            //cbCuentaDeudoraCero.SelectedValue = 26;
-            //ObjConsul.BoolLlenarComboBox(cbCuentaDeudora12, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta");
-            //cbCuentaDeudora12.SelectedValue = 27;
-            //ObjConsul.BoolLlenarComboBox(cbCuentaDeudoraIRBP, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta");
-            //ObjConsul.BoolLlenarComboBox(cbIvaPagar, "Select IDPLANCUENTA as ID ,'[' +CUENTA +']' + ' - ' + DESCRIPCIONCUENTA AS Texto FROM dbo.TbPlanCuenta");
             for (int i = 0; i < 7; i++)
             {
                 dgvDatosLibroDiario.Rows.Add();
@@ -123,10 +116,6 @@ namespace Comisariato.Formularios.Transacciones
             {
                 dgvDatosRetencion.Rows.Add();
             }
-            //for (int i = 0; i < 20; i++)
-            //{
-            //    dgvDatosImportacionesRelacionadas.Rows.Add();
-            //}
             for (int i = 0; i < 25; i++)
             {
                 dgvDatosOG.Rows.Add();
@@ -139,7 +128,7 @@ namespace Comisariato.Formularios.Transacciones
             ObjConsul.BoolLlenarComboBox(CmbTipoDocumento, "Select IDTIPODOCUMENTO ID, NOMBREDOCUMENTO AS TEXTO from TbTipoDocumento");
             // hacer aparecer un scrollBar, poniendo un limite de item que aparezcan
             CmbTipoDocumento.DropDownHeight = CmbTipoDocumento.ItemHeight = 100;
-            CmbTipo.SelectedIndex = 0;
+            cbTipo.SelectedIndex = 0;
             cbAutorizacionSRI.SelectedIndex = 0;
             int idOrdenGiro = ObjConsul.ObtenerID("IDORDENGIRO", "TbEncabezadoOrdenGiro", "");
             int NordenGiro = 1 + ObjConsul.ObtenerID("NUMEROORDENGIRO", "TbEncabezadoOrdenGiro", " where IDORDENGIRO =" + idOrdenGiro + "");
@@ -230,7 +219,7 @@ namespace Comisariato.Formularios.Transacciones
                 }
                 else
                 {
-                    txtSaldo.Text = saldo.ToString();
+                    txtSaldo.Text = saldo.ToString("##.0000");
                 }
             }
             catch (Exception)
@@ -245,6 +234,124 @@ namespace Comisariato.Formularios.Transacciones
         private void txtValorPagar_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.SoloValores(e, txtValorPagar.Text);
+        }
+
+        private void btnContabilizar_Click(object sender, EventArgs e)
+        {
+            if(txtValorPagar.Text != "" && txtConcepto.Text != "" && cbFormaPago.Text != "")
+            {
+                dgvDatosLibroDiario.Rows.Clear();
+                for (int i = 0; i < 5; i++)
+                {
+                    dgvDatosLibroDiario.Rows.Add();
+                }
+                //fila 0 para inventario 0%
+                dgvDatosLibroDiario.Rows[0].Cells[2].Value = txtSubtotal0.Text;
+                dgvDatosLibroDiario.Rows[0].Cells[0].Value = "101.03.03.01 - Inventario 0%";
+                //fila 0 para inventario 12%
+                dgvDatosLibroDiario.Rows[1].Cells[2].Value = txtSubtotalIVA.Text;
+                dgvDatosLibroDiario.Rows[1].Cells[0].Value = "101.03.03.02 - Inventario 12%";
+                //fila 0 para iva
+                dgvDatosLibroDiario.Rows[2].Cells[2].Value = txtIVA.Text;
+                dgvDatosLibroDiario.Rows[2].Cells[0].Value = "101.05.01.01 - IVA";
+                //fila 0 para ice
+                dgvDatosLibroDiario.Rows[3].Cells[2].Value = txtICE.Text;
+                dgvDatosLibroDiario.Rows[3].Cells[0].Value = "ICE";
+                //fila 0 para irbp
+                dgvDatosLibroDiario.Rows[4].Cells[2].Value = txtIRBP.Text;
+                dgvDatosLibroDiario.Rows[4].Cells[0].Value = "IRBP";
+                int contadorFilaLibroDiario = 5;
+                
+                for (int i = 0; i < dgvDatosRetencion.RowCount - 1; i++)
+                {
+                    if (contadorFilaLibroDiario < dgvDatosLibroDiario.RowCount - 1)
+                    {
+                        dgvDatosLibroDiario.Rows[contadorFilaLibroDiario].Cells[3].Value = dgvDatosRetencion.Rows[i].Cells[4].Value;
+                        string concepto = Convert.ToString(dgvDatosRetencion.Rows[i].Cells[0].Value) + "(" + Convert.ToString(dgvDatosRetencion.Rows[i].Cells[1].Value) + ")";
+                        dgvDatosLibroDiario.Rows[contadorFilaLibroDiario].Cells[0].Value = concepto;
+                        contadorFilaLibroDiario++;                        
+                    }
+                    else
+                    {
+                        dgvDatosLibroDiario.Rows.Add();
+                        i--;
+                        //contadorFilaLibroDiario--;
+                    }
+                    if (dgvDatosRetencion.Rows[i + 1].Cells[4].Value == null)
+                    {
+                        break;
+                    }
+                }
+                dgvDatosLibroDiario.Rows.Add();
+                dgvDatosLibroDiario.Rows[contadorFilaLibroDiario].Cells[3].Value = txtValorPagar.Text;
+                if (txtPlazo.Text == "0")
+                {
+                    //dgvDatosLibroDiario.Rows.Add();
+                    if (cbFormaPago.SelectedIndex == 0)
+                    {
+                        dgvDatosLibroDiario.Rows[contadorFilaLibroDiario].Cells[0].Value = "101.01.01 - CAJA";
+                    }
+                    else
+                    {
+                        dgvDatosLibroDiario.Rows[contadorFilaLibroDiario].Cells[0].Value = "101.01.02 - BANCO";
+                    }                    
+                }
+                else
+                {
+                    dgvDatosLibroDiario.Rows[contadorFilaLibroDiario].Cells[0].Value = "CTA X PAGAR";
+                }
+                for (int i = 0; i < dgvDatosLibroDiario.RowCount - 1 ; i++)
+                {
+                    dgvDatosLibroDiario.Rows[i].Cells[4].Value = txtConcepto.Text;
+                }
+                quitarValores0DGVLD();
+                calcularLibroDiario();
+            }
+            else
+            {
+                MessageBox.Show("Debe ingresar los datos necesarios", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        private void quitarValores0DGVLD()
+        {
+            int columna;
+            for (int i = 0; i < dgvDatosLibroDiario.RowCount -1; i++)
+            {
+                if (dgvDatosLibroDiario.Rows[i].Cells[2].Value != null)
+                {
+                    columna = 2;
+                }
+                else
+                    columna = 3;
+                if (Convert.ToString(dgvDatosLibroDiario.Rows[i].Cells[columna].Value) == "0.0000")
+                {
+                    dgvDatosLibroDiario.Rows.Remove(dgvDatosLibroDiario.Rows[i]);
+                }
+            }
+        }
+        public void calcularLibroDiario()
+        {
+            float sumaDebe = 0.0f, sumaHaber = 0.0f;
+            for (int i = 0; i < dgvDatosLibroDiario.RowCount - 1; i++)
+            {
+                if (dgvDatosLibroDiario.Rows[i].Cells[2].Value != null)
+                {
+                    sumaDebe = sumaDebe + Convert.ToSingle(Funcion.reemplazarcaracterViceversa(dgvDatosLibroDiario.Rows[i].Cells[2].Value.ToString()));
+                }
+                else
+                    sumaHaber = sumaHaber + Convert.ToSingle(Funcion.reemplazarcaracterViceversa(dgvDatosLibroDiario.Rows[i].Cells[3].Value.ToString()));
+            }
+            txtTotalDebe.Text = Funcion.reemplazarcaracter(sumaDebe.ToString());
+            txtTotalHaber.Text = Funcion.reemplazarcaracter(sumaHaber.ToString());
+        }
+        private void btnGuardarProveedor_Click(object sender, EventArgs e)
+        {
+            if (txtValorPagar.Text != "" && txtConcepto.Text != "" && cbFormaPago.Text != "" && txtNAutorizacion.Text != "" && cbTipo.Text != "")
+            {
+                //EncabezadoOrdenGiro objEncabezadoOG = new EncabezadoOrdenGiro(Convert.ToInt32(txtOrdenGiro.Text), CmbTipoDocumento.SelectedValue, CmbProveedor.SelectedValue, cbTipo.Text, txtPlazo.Text,
+                //    txtConcepto.Text, txtNAutorizacion.Text, txtNumero.Text, Convert.ToInt32(txtSerie1.Text), Convert.ToInt32(txtSerie2.Text), ckbRISE.Checked, ckbDeclaraSRI.Checked, ckbManual.Checked,
+                //    dtpFechaDocumentacion, dtpFechaContabilizacion, dtpFechaOrdenGiro, dtpFechaVigente, ;
+            }
         }
     }
 }

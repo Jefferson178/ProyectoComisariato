@@ -45,8 +45,8 @@
             this.btnContabilizar = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label37 = new System.Windows.Forms.Label();
-            this.textBox25 = new System.Windows.Forms.TextBox();
-            this.textBox24 = new System.Windows.Forms.TextBox();
+            this.txtTotalDebe = new System.Windows.Forms.TextBox();
+            this.txtTotalHaber = new System.Windows.Forms.TextBox();
             this.dgvDatosLibroDiario = new System.Windows.Forms.DataGridView();
             this.planCuenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.centroCosto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,14 +83,14 @@
             this.montoRetencion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cuentaContable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaVigente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBox29 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker6 = new System.Windows.Forms.DateTimePicker();
-            this.textBox28 = new System.Windows.Forms.TextBox();
-            this.textBox27 = new System.Windows.Forms.TextBox();
-            this.textBox26 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker5 = new System.Windows.Forms.DateTimePicker();
+            this.txtAutorizacionRetencion = new System.Windows.Forms.TextBox();
+            this.dtpFechaVenceDocumento = new System.Windows.Forms.DateTimePicker();
+            this.txtSerie2Retencion = new System.Windows.Forms.TextBox();
+            this.txtNumeroRetencion = new System.Windows.Forms.TextBox();
+            this.txtSerie1Retencion = new System.Windows.Forms.TextBox();
+            this.dtpFechaRetencion = new System.Windows.Forms.DateTimePicker();
             this.label42 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
+            this.label = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
             this.ckbRISE = new System.Windows.Forms.CheckBox();
@@ -106,8 +106,13 @@
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.txtPlazo = new System.Windows.Forms.TextBox();
             this.cbSustentoTributario = new System.Windows.Forms.ComboBox();
+<<<<<<< HEAD
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.CmbTipo = new System.Windows.Forms.ComboBox();
+=======
+            this.cbFormaPago = new System.Windows.Forms.ComboBox();
+            this.cbTipo = new System.Windows.Forms.ComboBox();
+>>>>>>> d4a709284185da524329dbf4e0c5d4cef45394b5
             this.CmbProveedor = new System.Windows.Forms.ComboBox();
             this.CmbTipoDocumento = new System.Windows.Forms.ComboBox();
             this.dtpFechaOrdenGiro = new System.Windows.Forms.DateTimePicker();
@@ -190,8 +195,8 @@
             this.tabPage1.Controls.Add(this.txtNumero);
             this.tabPage1.Controls.Add(this.txtPlazo);
             this.tabPage1.Controls.Add(this.cbSustentoTributario);
-            this.tabPage1.Controls.Add(this.comboBox1);
-            this.tabPage1.Controls.Add(this.CmbTipo);
+            this.tabPage1.Controls.Add(this.cbFormaPago);
+            this.tabPage1.Controls.Add(this.cbTipo);
             this.tabPage1.Controls.Add(this.CmbProveedor);
             this.tabPage1.Controls.Add(this.CmbTipoDocumento);
             this.tabPage1.Controls.Add(this.dtpFechaOrdenGiro);
@@ -265,6 +270,7 @@
             this.btnGuardarProveedor.Text = "&Guardar";
             this.btnGuardarProveedor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardarProveedor.UseVisualStyleBackColor = true;
+            this.btnGuardarProveedor.Click += new System.EventHandler(this.btnGuardarProveedor_Click);
             // 
             // txtSerie1
             // 
@@ -328,12 +334,16 @@
             this.btnContabilizar.TabIndex = 41;
             this.btnContabilizar.Text = "&Contabilizar";
             this.btnContabilizar.UseVisualStyleBackColor = true;
+<<<<<<< HEAD
+=======
+            this.btnContabilizar.Click += new System.EventHandler(this.btnContabilizar_Click);
+>>>>>>> d4a709284185da524329dbf4e0c5d4cef45394b5
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.label37);
-            this.groupBox4.Controls.Add(this.textBox25);
-            this.groupBox4.Controls.Add(this.textBox24);
+            this.groupBox4.Controls.Add(this.txtTotalDebe);
+            this.groupBox4.Controls.Add(this.txtTotalHaber);
             this.groupBox4.Controls.Add(this.dgvDatosLibroDiario);
             this.groupBox4.ForeColor = System.Drawing.Color.Teal;
             this.groupBox4.Location = new System.Drawing.Point(6, 119);
@@ -352,19 +362,19 @@
             this.label37.TabIndex = 40;
             this.label37.Text = "Total:";
             // 
-            // textBox25
+            // txtTotalDebe
             // 
-            this.textBox25.Location = new System.Drawing.Point(481, 192);
-            this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new System.Drawing.Size(100, 22);
-            this.textBox25.TabIndex = 39;
+            this.txtTotalDebe.Location = new System.Drawing.Point(481, 192);
+            this.txtTotalDebe.Name = "txtTotalDebe";
+            this.txtTotalDebe.Size = new System.Drawing.Size(100, 22);
+            this.txtTotalDebe.TabIndex = 39;
             // 
-            // textBox24
+            // txtTotalHaber
             // 
-            this.textBox24.Location = new System.Drawing.Point(582, 192);
-            this.textBox24.Name = "textBox24";
-            this.textBox24.Size = new System.Drawing.Size(100, 22);
-            this.textBox24.TabIndex = 38;
+            this.txtTotalHaber.Location = new System.Drawing.Point(582, 192);
+            this.txtTotalHaber.Name = "txtTotalHaber";
+            this.txtTotalHaber.Size = new System.Drawing.Size(100, 22);
+            this.txtTotalHaber.TabIndex = 38;
             // 
             // dgvDatosLibroDiario
             // 
@@ -656,14 +666,14 @@
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.dgvDatosRetencion);
-            this.groupBox5.Controls.Add(this.textBox29);
-            this.groupBox5.Controls.Add(this.dateTimePicker6);
-            this.groupBox5.Controls.Add(this.textBox28);
-            this.groupBox5.Controls.Add(this.textBox27);
-            this.groupBox5.Controls.Add(this.textBox26);
-            this.groupBox5.Controls.Add(this.dateTimePicker5);
+            this.groupBox5.Controls.Add(this.txtAutorizacionRetencion);
+            this.groupBox5.Controls.Add(this.dtpFechaVenceDocumento);
+            this.groupBox5.Controls.Add(this.txtSerie2Retencion);
+            this.groupBox5.Controls.Add(this.txtNumeroRetencion);
+            this.groupBox5.Controls.Add(this.txtSerie1Retencion);
+            this.groupBox5.Controls.Add(this.dtpFechaRetencion);
             this.groupBox5.Controls.Add(this.label42);
-            this.groupBox5.Controls.Add(this.label41);
+            this.groupBox5.Controls.Add(this.label);
             this.groupBox5.Controls.Add(this.label40);
             this.groupBox5.Controls.Add(this.label39);
             this.groupBox5.ForeColor = System.Drawing.Color.Teal;
@@ -748,63 +758,63 @@
             this.fechaVigente.ReadOnly = true;
             this.fechaVigente.Width = 150;
             // 
-            // textBox29
+            // txtAutorizacionRetencion
             // 
-            this.textBox29.Enabled = false;
-            this.textBox29.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.textBox29.Location = new System.Drawing.Point(598, 65);
-            this.textBox29.Name = "textBox29";
-            this.textBox29.ReadOnly = true;
-            this.textBox29.Size = new System.Drawing.Size(144, 22);
-            this.textBox29.TabIndex = 9;
+            this.txtAutorizacionRetencion.Enabled = false;
+            this.txtAutorizacionRetencion.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.txtAutorizacionRetencion.Location = new System.Drawing.Point(598, 65);
+            this.txtAutorizacionRetencion.Name = "txtAutorizacionRetencion";
+            this.txtAutorizacionRetencion.ReadOnly = true;
+            this.txtAutorizacionRetencion.Size = new System.Drawing.Size(144, 22);
+            this.txtAutorizacionRetencion.TabIndex = 9;
             // 
-            // dateTimePicker6
+            // dtpFechaVenceDocumento
             // 
-            this.dateTimePicker6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker6.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker6.Location = new System.Drawing.Point(374, 65);
-            this.dateTimePicker6.Name = "dateTimePicker6";
-            this.dateTimePicker6.Size = new System.Drawing.Size(104, 22);
-            this.dateTimePicker6.TabIndex = 8;
+            this.dtpFechaVenceDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaVenceDocumento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaVenceDocumento.Location = new System.Drawing.Point(374, 65);
+            this.dtpFechaVenceDocumento.Name = "dtpFechaVenceDocumento";
+            this.dtpFechaVenceDocumento.Size = new System.Drawing.Size(104, 22);
+            this.dtpFechaVenceDocumento.TabIndex = 8;
             // 
-            // textBox28
+            // txtSerie2Retencion
             // 
-            this.textBox28.Enabled = false;
-            this.textBox28.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.textBox28.Location = new System.Drawing.Point(673, 30);
-            this.textBox28.Name = "textBox28";
-            this.textBox28.ReadOnly = true;
-            this.textBox28.Size = new System.Drawing.Size(69, 22);
-            this.textBox28.TabIndex = 7;
+            this.txtSerie2Retencion.Enabled = false;
+            this.txtSerie2Retencion.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.txtSerie2Retencion.Location = new System.Drawing.Point(673, 30);
+            this.txtSerie2Retencion.Name = "txtSerie2Retencion";
+            this.txtSerie2Retencion.ReadOnly = true;
+            this.txtSerie2Retencion.Size = new System.Drawing.Size(69, 22);
+            this.txtSerie2Retencion.TabIndex = 7;
             // 
-            // textBox27
+            // txtNumeroRetencion
             // 
-            this.textBox27.Enabled = false;
-            this.textBox27.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.textBox27.Location = new System.Drawing.Point(748, 30);
-            this.textBox27.Name = "textBox27";
-            this.textBox27.ReadOnly = true;
-            this.textBox27.Size = new System.Drawing.Size(116, 22);
-            this.textBox27.TabIndex = 6;
+            this.txtNumeroRetencion.Enabled = false;
+            this.txtNumeroRetencion.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.txtNumeroRetencion.Location = new System.Drawing.Point(748, 30);
+            this.txtNumeroRetencion.Name = "txtNumeroRetencion";
+            this.txtNumeroRetencion.ReadOnly = true;
+            this.txtNumeroRetencion.Size = new System.Drawing.Size(116, 22);
+            this.txtNumeroRetencion.TabIndex = 6;
             // 
-            // textBox26
+            // txtSerie1Retencion
             // 
-            this.textBox26.Enabled = false;
-            this.textBox26.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.textBox26.Location = new System.Drawing.Point(598, 30);
-            this.textBox26.Name = "textBox26";
-            this.textBox26.ReadOnly = true;
-            this.textBox26.Size = new System.Drawing.Size(69, 22);
-            this.textBox26.TabIndex = 5;
+            this.txtSerie1Retencion.Enabled = false;
+            this.txtSerie1Retencion.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.txtSerie1Retencion.Location = new System.Drawing.Point(598, 30);
+            this.txtSerie1Retencion.Name = "txtSerie1Retencion";
+            this.txtSerie1Retencion.ReadOnly = true;
+            this.txtSerie1Retencion.Size = new System.Drawing.Size(69, 22);
+            this.txtSerie1Retencion.TabIndex = 5;
             // 
-            // dateTimePicker5
+            // dtpFechaRetencion
             // 
-            this.dateTimePicker5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker5.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker5.Location = new System.Drawing.Point(374, 30);
-            this.dateTimePicker5.Name = "dateTimePicker5";
-            this.dateTimePicker5.Size = new System.Drawing.Size(104, 22);
-            this.dateTimePicker5.TabIndex = 4;
+            this.dtpFechaRetencion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaRetencion.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaRetencion.Location = new System.Drawing.Point(374, 30);
+            this.dtpFechaRetencion.Name = "dtpFechaRetencion";
+            this.dtpFechaRetencion.Size = new System.Drawing.Size(104, 22);
+            this.dtpFechaRetencion.TabIndex = 4;
             // 
             // label42
             // 
@@ -816,15 +826,15 @@
             this.label42.TabIndex = 3;
             this.label42.Text = "# Retención:";
             // 
-            // label41
+            // label
             // 
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label41.Location = new System.Drawing.Point(189, 68);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(158, 16);
-            this.label41.TabIndex = 2;
-            this.label41.Text = "Fecha Vence Documento:";
+            this.label.AutoSize = true;
+            this.label.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.label.Location = new System.Drawing.Point(189, 68);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(158, 16);
+            this.label.TabIndex = 2;
+            this.label.Text = "Fecha Vence Documento:";
             // 
             // label40
             // 
@@ -983,6 +993,7 @@
             this.txtPlazo.Name = "txtPlazo";
             this.txtPlazo.Size = new System.Drawing.Size(103, 23);
             this.txtPlazo.TabIndex = 23;
+            this.txtPlazo.Text = "0";
             this.txtPlazo.TextChanged += new System.EventHandler(this.txtPlazo_TextChanged);
             this.txtPlazo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlazo_KeyPress);
             // 
@@ -996,6 +1007,7 @@
             this.cbSustentoTributario.Size = new System.Drawing.Size(202, 24);
             this.cbSustentoTributario.TabIndex = 22;
             // 
+<<<<<<< HEAD
             // comboBox1
             // 
             this.comboBox1.Font = new System.Drawing.Font("Arial", 10F);
@@ -1010,17 +1022,32 @@
             this.comboBox1.TabIndex = 21;
             // 
             // CmbTipo
+=======
+            // cbFormaPago
             // 
-            this.CmbTipo.Font = new System.Drawing.Font("Arial", 10F);
-            this.CmbTipo.FormattingEnabled = true;
-            this.CmbTipo.Items.AddRange(new object[] {
+            this.cbFormaPago.Font = new System.Drawing.Font("Arial", 10F);
+            this.cbFormaPago.FormattingEnabled = true;
+            this.cbFormaPago.Items.AddRange(new object[] {
+            "EFECTIVO",
+            "CHEQUE"});
+            this.cbFormaPago.Location = new System.Drawing.Point(542, 60);
+            this.cbFormaPago.Name = "cbFormaPago";
+            this.cbFormaPago.Size = new System.Drawing.Size(159, 24);
+            this.cbFormaPago.TabIndex = 21;
+            // 
+            // cbTipo
+>>>>>>> d4a709284185da524329dbf4e0c5d4cef45394b5
+            // 
+            this.cbTipo.Font = new System.Drawing.Font("Arial", 10F);
+            this.cbTipo.FormattingEnabled = true;
+            this.cbTipo.Items.AddRange(new object[] {
             "BIEN",
             "SERVICIO",
             "AMBAS"});
-            this.CmbTipo.Location = new System.Drawing.Point(898, 108);
-            this.CmbTipo.Name = "CmbTipo";
-            this.CmbTipo.Size = new System.Drawing.Size(101, 24);
-            this.CmbTipo.TabIndex = 21;
+            this.cbTipo.Location = new System.Drawing.Point(898, 108);
+            this.cbTipo.Name = "cbTipo";
+            this.cbTipo.Size = new System.Drawing.Size(101, 24);
+            this.cbTipo.TabIndex = 21;
             // 
             // CmbProveedor
             // 
@@ -1477,12 +1504,12 @@
         private System.Windows.Forms.TextBox txtNumero;
         private System.Windows.Forms.TextBox txtPlazo;
         private System.Windows.Forms.ComboBox cbSustentoTributario;
-        private System.Windows.Forms.ComboBox CmbTipo;
+        private System.Windows.Forms.ComboBox cbTipo;
         private System.Windows.Forms.ComboBox CmbProveedor;
         private System.Windows.Forms.ComboBox CmbTipoDocumento;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox textBox25;
-        private System.Windows.Forms.TextBox textBox24;
+        private System.Windows.Forms.TextBox txtTotalDebe;
+        private System.Windows.Forms.TextBox txtTotalHaber;
         private System.Windows.Forms.DataGridView dgvDatosLibroDiario;
         private System.Windows.Forms.DataGridViewTextBoxColumn planCuenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn centroCosto;
@@ -1492,14 +1519,14 @@
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.DataGridView dgvDatosRetencion;
-        private System.Windows.Forms.TextBox textBox29;
-        private System.Windows.Forms.DateTimePicker dateTimePicker6;
-        private System.Windows.Forms.TextBox textBox28;
-        private System.Windows.Forms.TextBox textBox27;
-        private System.Windows.Forms.TextBox textBox26;
-        private System.Windows.Forms.DateTimePicker dateTimePicker5;
+        private System.Windows.Forms.TextBox txtAutorizacionRetencion;
+        private System.Windows.Forms.DateTimePicker dtpFechaVenceDocumento;
+        private System.Windows.Forms.TextBox txtSerie2Retencion;
+        private System.Windows.Forms.TextBox txtNumeroRetencion;
+        private System.Windows.Forms.TextBox txtSerie1Retencion;
+        private System.Windows.Forms.DateTimePicker dtpFechaRetencion;
         private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.DataGridViewTextBoxColumn retencionSRI;
@@ -1535,7 +1562,7 @@
         private System.Windows.Forms.TextBox txtNAutorizacion;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbFormaPago;
         private System.Windows.Forms.Label label15;
     }
 }

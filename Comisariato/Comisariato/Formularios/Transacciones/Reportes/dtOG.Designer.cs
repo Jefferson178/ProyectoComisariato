@@ -24,6 +24,8 @@ namespace Comisariato.Formularios.Transacciones.Reportes {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class dtOG : global::System.Data.DataSet {
         
+        private TbEncabezadoOrdenGiroDataTable tableTbEncabezadoOrdenGiro;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -52,6 +54,9 @@ namespace Comisariato.Formularios.Transacciones.Reportes {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
+                if ((ds.Tables["TbEncabezadoOrdenGiro"] != null)) {
+                    base.Tables.Add(new TbEncabezadoOrdenGiroDataTable(ds.Tables["TbEncabezadoOrdenGiro"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -68,6 +73,16 @@ namespace Comisariato.Formularios.Transacciones.Reportes {
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
             base.Tables.CollectionChanged += schemaChangedHandler;
             this.Relations.CollectionChanged += schemaChangedHandler;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public TbEncabezadoOrdenGiroDataTable TbEncabezadoOrdenGiro {
+            get {
+                return this.tableTbEncabezadoOrdenGiro;
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -137,6 +152,9 @@ namespace Comisariato.Formularios.Transacciones.Reportes {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
+                if ((ds.Tables["TbEncabezadoOrdenGiro"] != null)) {
+                    base.Tables.Add(new TbEncabezadoOrdenGiroDataTable(ds.Tables["TbEncabezadoOrdenGiro"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -170,6 +188,12 @@ namespace Comisariato.Formularios.Transacciones.Reportes {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
+            this.tableTbEncabezadoOrdenGiro = ((TbEncabezadoOrdenGiroDataTable)(base.Tables["TbEncabezadoOrdenGiro"]));
+            if ((initTable == true)) {
+                if ((this.tableTbEncabezadoOrdenGiro != null)) {
+                    this.tableTbEncabezadoOrdenGiro.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -180,6 +204,14 @@ namespace Comisariato.Formularios.Transacciones.Reportes {
             this.Namespace = "http://tempuri.org/dtOG.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
+            this.tableTbEncabezadoOrdenGiro = new TbEncabezadoOrdenGiroDataTable();
+            base.Tables.Add(this.tableTbEncabezadoOrdenGiro);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeTbEncabezadoOrdenGiro() {
+            return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -235,6 +267,2646 @@ namespace Comisariato.Formularios.Transacciones.Reportes {
             }
             xs.Add(dsSchema);
             return type;
+        }
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void TbEncabezadoOrdenGiroRowChangeEventHandler(object sender, TbEncabezadoOrdenGiroRowChangeEvent e);
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class TbEncabezadoOrdenGiroDataTable : global::System.Data.TypedTableBase<TbEncabezadoOrdenGiroRow> {
+            
+            private global::System.Data.DataColumn columnIDORDENGIRO;
+            
+            private global::System.Data.DataColumn columnNUMEROORDENGIRO;
+            
+            private global::System.Data.DataColumn columnIDTIPODOCUMENTO;
+            
+            private global::System.Data.DataColumn columnIDPROVEEDOR;
+            
+            private global::System.Data.DataColumn columnTIPO;
+            
+            private global::System.Data.DataColumn columnPLAZO;
+            
+            private global::System.Data.DataColumn columnCONCEPTO;
+            
+            private global::System.Data.DataColumn columnAUTORIZACIONPROVEEDOR;
+            
+            private global::System.Data.DataColumn columnNUMERODOCUMENTOPROVEEDOR;
+            
+            private global::System.Data.DataColumn columnSERIE1PROVEEDOR;
+            
+            private global::System.Data.DataColumn columnSERIE2PROVEEDOR;
+            
+            private global::System.Data.DataColumn columnRISE;
+            
+            private global::System.Data.DataColumn columnDECLARASRI;
+            
+            private global::System.Data.DataColumn columnRETENCIONMANUAL;
+            
+            private global::System.Data.DataColumn columnFECHADOCUMENTO;
+            
+            private global::System.Data.DataColumn columnFECHACONTABILIZACION;
+            
+            private global::System.Data.DataColumn columnFECHAORDENGIRO;
+            
+            private global::System.Data.DataColumn columnFECHAVIGENTE;
+            
+            private global::System.Data.DataColumn columnIDEMCABEZADOCOMPRA;
+            
+            private global::System.Data.DataColumn columnTOTAL;
+            
+            private global::System.Data.DataColumn columnVALORAPAGAR;
+            
+            private global::System.Data.DataColumn columnSALDO;
+            
+            private global::System.Data.DataColumn columnCUENTADEUDORA0;
+            
+            private global::System.Data.DataColumn columnCUENTADEUDORA12;
+            
+            private global::System.Data.DataColumn columnCUENTADEUDORAIRBP;
+            
+            private global::System.Data.DataColumn columnCUENTAIVAPORPAGAR;
+            
+            private global::System.Data.DataColumn columnFECHARETENCION;
+            
+            private global::System.Data.DataColumn columnFECHAVENCEDOCUMENTO;
+            
+            private global::System.Data.DataColumn columnSERIE1RETENCION;
+            
+            private global::System.Data.DataColumn columnSERIE2RETENCION;
+            
+            private global::System.Data.DataColumn columnNUMERORETECION;
+            
+            private global::System.Data.DataColumn columnAUTORIZACIONRETECION;
+            
+            private global::System.Data.DataColumn columnTOTALDEBE;
+            
+            private global::System.Data.DataColumn columnTOTALHABER;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TbEncabezadoOrdenGiroDataTable() {
+                this.TableName = "TbEncabezadoOrdenGiro";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal TbEncabezadoOrdenGiroDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected TbEncabezadoOrdenGiroDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDORDENGIROColumn {
+                get {
+                    return this.columnIDORDENGIRO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NUMEROORDENGIROColumn {
+                get {
+                    return this.columnNUMEROORDENGIRO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDTIPODOCUMENTOColumn {
+                get {
+                    return this.columnIDTIPODOCUMENTO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDPROVEEDORColumn {
+                get {
+                    return this.columnIDPROVEEDOR;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TIPOColumn {
+                get {
+                    return this.columnTIPO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PLAZOColumn {
+                get {
+                    return this.columnPLAZO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CONCEPTOColumn {
+                get {
+                    return this.columnCONCEPTO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AUTORIZACIONPROVEEDORColumn {
+                get {
+                    return this.columnAUTORIZACIONPROVEEDOR;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NUMERODOCUMENTOPROVEEDORColumn {
+                get {
+                    return this.columnNUMERODOCUMENTOPROVEEDOR;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SERIE1PROVEEDORColumn {
+                get {
+                    return this.columnSERIE1PROVEEDOR;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SERIE2PROVEEDORColumn {
+                get {
+                    return this.columnSERIE2PROVEEDOR;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RISEColumn {
+                get {
+                    return this.columnRISE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DECLARASRIColumn {
+                get {
+                    return this.columnDECLARASRI;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RETENCIONMANUALColumn {
+                get {
+                    return this.columnRETENCIONMANUAL;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FECHADOCUMENTOColumn {
+                get {
+                    return this.columnFECHADOCUMENTO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FECHACONTABILIZACIONColumn {
+                get {
+                    return this.columnFECHACONTABILIZACION;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FECHAORDENGIROColumn {
+                get {
+                    return this.columnFECHAORDENGIRO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FECHAVIGENTEColumn {
+                get {
+                    return this.columnFECHAVIGENTE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDEMCABEZADOCOMPRAColumn {
+                get {
+                    return this.columnIDEMCABEZADOCOMPRA;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TOTALColumn {
+                get {
+                    return this.columnTOTAL;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn VALORAPAGARColumn {
+                get {
+                    return this.columnVALORAPAGAR;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SALDOColumn {
+                get {
+                    return this.columnSALDO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CUENTADEUDORA0Column {
+                get {
+                    return this.columnCUENTADEUDORA0;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CUENTADEUDORA12Column {
+                get {
+                    return this.columnCUENTADEUDORA12;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CUENTADEUDORAIRBPColumn {
+                get {
+                    return this.columnCUENTADEUDORAIRBP;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CUENTAIVAPORPAGARColumn {
+                get {
+                    return this.columnCUENTAIVAPORPAGAR;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FECHARETENCIONColumn {
+                get {
+                    return this.columnFECHARETENCION;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FECHAVENCEDOCUMENTOColumn {
+                get {
+                    return this.columnFECHAVENCEDOCUMENTO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SERIE1RETENCIONColumn {
+                get {
+                    return this.columnSERIE1RETENCION;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SERIE2RETENCIONColumn {
+                get {
+                    return this.columnSERIE2RETENCION;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NUMERORETECIONColumn {
+                get {
+                    return this.columnNUMERORETECION;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AUTORIZACIONRETECIONColumn {
+                get {
+                    return this.columnAUTORIZACIONRETECION;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TOTALDEBEColumn {
+                get {
+                    return this.columnTOTALDEBE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TOTALHABERColumn {
+                get {
+                    return this.columnTOTALHABER;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TbEncabezadoOrdenGiroRow this[int index] {
+                get {
+                    return ((TbEncabezadoOrdenGiroRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event TbEncabezadoOrdenGiroRowChangeEventHandler TbEncabezadoOrdenGiroRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event TbEncabezadoOrdenGiroRowChangeEventHandler TbEncabezadoOrdenGiroRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event TbEncabezadoOrdenGiroRowChangeEventHandler TbEncabezadoOrdenGiroRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event TbEncabezadoOrdenGiroRowChangeEventHandler TbEncabezadoOrdenGiroRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddTbEncabezadoOrdenGiroRow(TbEncabezadoOrdenGiroRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TbEncabezadoOrdenGiroRow AddTbEncabezadoOrdenGiroRow(
+                        int NUMEROORDENGIRO, 
+                        int IDTIPODOCUMENTO, 
+                        int IDPROVEEDOR, 
+                        string TIPO, 
+                        string PLAZO, 
+                        string CONCEPTO, 
+                        string AUTORIZACIONPROVEEDOR, 
+                        string NUMERODOCUMENTOPROVEEDOR, 
+                        int SERIE1PROVEEDOR, 
+                        int SERIE2PROVEEDOR, 
+                        bool RISE, 
+                        bool DECLARASRI, 
+                        bool RETENCIONMANUAL, 
+                        System.DateTime FECHADOCUMENTO, 
+                        System.DateTime FECHACONTABILIZACION, 
+                        System.DateTime FECHAORDENGIRO, 
+                        System.DateTime FECHAVIGENTE, 
+                        int IDEMCABEZADOCOMPRA, 
+                        double TOTAL, 
+                        double VALORAPAGAR, 
+                        double SALDO, 
+                        int CUENTADEUDORA0, 
+                        int CUENTADEUDORA12, 
+                        int CUENTADEUDORAIRBP, 
+                        int CUENTAIVAPORPAGAR, 
+                        System.DateTime FECHARETENCION, 
+                        System.DateTime FECHAVENCEDOCUMENTO, 
+                        int SERIE1RETENCION, 
+                        int SERIE2RETENCION, 
+                        int NUMERORETECION, 
+                        string AUTORIZACIONRETECION, 
+                        double TOTALDEBE, 
+                        double TOTALHABER) {
+                TbEncabezadoOrdenGiroRow rowTbEncabezadoOrdenGiroRow = ((TbEncabezadoOrdenGiroRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        NUMEROORDENGIRO,
+                        IDTIPODOCUMENTO,
+                        IDPROVEEDOR,
+                        TIPO,
+                        PLAZO,
+                        CONCEPTO,
+                        AUTORIZACIONPROVEEDOR,
+                        NUMERODOCUMENTOPROVEEDOR,
+                        SERIE1PROVEEDOR,
+                        SERIE2PROVEEDOR,
+                        RISE,
+                        DECLARASRI,
+                        RETENCIONMANUAL,
+                        FECHADOCUMENTO,
+                        FECHACONTABILIZACION,
+                        FECHAORDENGIRO,
+                        FECHAVIGENTE,
+                        IDEMCABEZADOCOMPRA,
+                        TOTAL,
+                        VALORAPAGAR,
+                        SALDO,
+                        CUENTADEUDORA0,
+                        CUENTADEUDORA12,
+                        CUENTADEUDORAIRBP,
+                        CUENTAIVAPORPAGAR,
+                        FECHARETENCION,
+                        FECHAVENCEDOCUMENTO,
+                        SERIE1RETENCION,
+                        SERIE2RETENCION,
+                        NUMERORETECION,
+                        AUTORIZACIONRETECION,
+                        TOTALDEBE,
+                        TOTALHABER};
+                rowTbEncabezadoOrdenGiroRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowTbEncabezadoOrdenGiroRow);
+                return rowTbEncabezadoOrdenGiroRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TbEncabezadoOrdenGiroRow FindByIDORDENGIRO(int IDORDENGIRO) {
+                return ((TbEncabezadoOrdenGiroRow)(this.Rows.Find(new object[] {
+                            IDORDENGIRO})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                TbEncabezadoOrdenGiroDataTable cln = ((TbEncabezadoOrdenGiroDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new TbEncabezadoOrdenGiroDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnIDORDENGIRO = base.Columns["IDORDENGIRO"];
+                this.columnNUMEROORDENGIRO = base.Columns["NUMEROORDENGIRO"];
+                this.columnIDTIPODOCUMENTO = base.Columns["IDTIPODOCUMENTO"];
+                this.columnIDPROVEEDOR = base.Columns["IDPROVEEDOR"];
+                this.columnTIPO = base.Columns["TIPO"];
+                this.columnPLAZO = base.Columns["PLAZO"];
+                this.columnCONCEPTO = base.Columns["CONCEPTO"];
+                this.columnAUTORIZACIONPROVEEDOR = base.Columns["AUTORIZACIONPROVEEDOR"];
+                this.columnNUMERODOCUMENTOPROVEEDOR = base.Columns["NUMERODOCUMENTOPROVEEDOR"];
+                this.columnSERIE1PROVEEDOR = base.Columns["SERIE1PROVEEDOR"];
+                this.columnSERIE2PROVEEDOR = base.Columns["SERIE2PROVEEDOR"];
+                this.columnRISE = base.Columns["RISE"];
+                this.columnDECLARASRI = base.Columns["DECLARASRI"];
+                this.columnRETENCIONMANUAL = base.Columns["RETENCIONMANUAL"];
+                this.columnFECHADOCUMENTO = base.Columns["FECHADOCUMENTO"];
+                this.columnFECHACONTABILIZACION = base.Columns["FECHACONTABILIZACION"];
+                this.columnFECHAORDENGIRO = base.Columns["FECHAORDENGIRO"];
+                this.columnFECHAVIGENTE = base.Columns["FECHAVIGENTE"];
+                this.columnIDEMCABEZADOCOMPRA = base.Columns["IDEMCABEZADOCOMPRA"];
+                this.columnTOTAL = base.Columns["TOTAL"];
+                this.columnVALORAPAGAR = base.Columns["VALORAPAGAR"];
+                this.columnSALDO = base.Columns["SALDO"];
+                this.columnCUENTADEUDORA0 = base.Columns["CUENTADEUDORA0"];
+                this.columnCUENTADEUDORA12 = base.Columns["CUENTADEUDORA12"];
+                this.columnCUENTADEUDORAIRBP = base.Columns["CUENTADEUDORAIRBP"];
+                this.columnCUENTAIVAPORPAGAR = base.Columns["CUENTAIVAPORPAGAR"];
+                this.columnFECHARETENCION = base.Columns["FECHARETENCION"];
+                this.columnFECHAVENCEDOCUMENTO = base.Columns["FECHAVENCEDOCUMENTO"];
+                this.columnSERIE1RETENCION = base.Columns["SERIE1RETENCION"];
+                this.columnSERIE2RETENCION = base.Columns["SERIE2RETENCION"];
+                this.columnNUMERORETECION = base.Columns["NUMERORETECION"];
+                this.columnAUTORIZACIONRETECION = base.Columns["AUTORIZACIONRETECION"];
+                this.columnTOTALDEBE = base.Columns["TOTALDEBE"];
+                this.columnTOTALHABER = base.Columns["TOTALHABER"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnIDORDENGIRO = new global::System.Data.DataColumn("IDORDENGIRO", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIDORDENGIRO);
+                this.columnNUMEROORDENGIRO = new global::System.Data.DataColumn("NUMEROORDENGIRO", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNUMEROORDENGIRO);
+                this.columnIDTIPODOCUMENTO = new global::System.Data.DataColumn("IDTIPODOCUMENTO", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIDTIPODOCUMENTO);
+                this.columnIDPROVEEDOR = new global::System.Data.DataColumn("IDPROVEEDOR", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIDPROVEEDOR);
+                this.columnTIPO = new global::System.Data.DataColumn("TIPO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTIPO);
+                this.columnPLAZO = new global::System.Data.DataColumn("PLAZO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPLAZO);
+                this.columnCONCEPTO = new global::System.Data.DataColumn("CONCEPTO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCONCEPTO);
+                this.columnAUTORIZACIONPROVEEDOR = new global::System.Data.DataColumn("AUTORIZACIONPROVEEDOR", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAUTORIZACIONPROVEEDOR);
+                this.columnNUMERODOCUMENTOPROVEEDOR = new global::System.Data.DataColumn("NUMERODOCUMENTOPROVEEDOR", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNUMERODOCUMENTOPROVEEDOR);
+                this.columnSERIE1PROVEEDOR = new global::System.Data.DataColumn("SERIE1PROVEEDOR", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSERIE1PROVEEDOR);
+                this.columnSERIE2PROVEEDOR = new global::System.Data.DataColumn("SERIE2PROVEEDOR", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSERIE2PROVEEDOR);
+                this.columnRISE = new global::System.Data.DataColumn("RISE", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRISE);
+                this.columnDECLARASRI = new global::System.Data.DataColumn("DECLARASRI", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDECLARASRI);
+                this.columnRETENCIONMANUAL = new global::System.Data.DataColumn("RETENCIONMANUAL", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRETENCIONMANUAL);
+                this.columnFECHADOCUMENTO = new global::System.Data.DataColumn("FECHADOCUMENTO", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFECHADOCUMENTO);
+                this.columnFECHACONTABILIZACION = new global::System.Data.DataColumn("FECHACONTABILIZACION", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFECHACONTABILIZACION);
+                this.columnFECHAORDENGIRO = new global::System.Data.DataColumn("FECHAORDENGIRO", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFECHAORDENGIRO);
+                this.columnFECHAVIGENTE = new global::System.Data.DataColumn("FECHAVIGENTE", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFECHAVIGENTE);
+                this.columnIDEMCABEZADOCOMPRA = new global::System.Data.DataColumn("IDEMCABEZADOCOMPRA", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIDEMCABEZADOCOMPRA);
+                this.columnTOTAL = new global::System.Data.DataColumn("TOTAL", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTOTAL);
+                this.columnVALORAPAGAR = new global::System.Data.DataColumn("VALORAPAGAR", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVALORAPAGAR);
+                this.columnSALDO = new global::System.Data.DataColumn("SALDO", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSALDO);
+                this.columnCUENTADEUDORA0 = new global::System.Data.DataColumn("CUENTADEUDORA0", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCUENTADEUDORA0);
+                this.columnCUENTADEUDORA12 = new global::System.Data.DataColumn("CUENTADEUDORA12", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCUENTADEUDORA12);
+                this.columnCUENTADEUDORAIRBP = new global::System.Data.DataColumn("CUENTADEUDORAIRBP", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCUENTADEUDORAIRBP);
+                this.columnCUENTAIVAPORPAGAR = new global::System.Data.DataColumn("CUENTAIVAPORPAGAR", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCUENTAIVAPORPAGAR);
+                this.columnFECHARETENCION = new global::System.Data.DataColumn("FECHARETENCION", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFECHARETENCION);
+                this.columnFECHAVENCEDOCUMENTO = new global::System.Data.DataColumn("FECHAVENCEDOCUMENTO", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFECHAVENCEDOCUMENTO);
+                this.columnSERIE1RETENCION = new global::System.Data.DataColumn("SERIE1RETENCION", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSERIE1RETENCION);
+                this.columnSERIE2RETENCION = new global::System.Data.DataColumn("SERIE2RETENCION", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSERIE2RETENCION);
+                this.columnNUMERORETECION = new global::System.Data.DataColumn("NUMERORETECION", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNUMERORETECION);
+                this.columnAUTORIZACIONRETECION = new global::System.Data.DataColumn("AUTORIZACIONRETECION", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAUTORIZACIONRETECION);
+                this.columnTOTALDEBE = new global::System.Data.DataColumn("TOTALDEBE", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTOTALDEBE);
+                this.columnTOTALHABER = new global::System.Data.DataColumn("TOTALHABER", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTOTALHABER);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnIDORDENGIRO}, true));
+                this.columnIDORDENGIRO.AutoIncrement = true;
+                this.columnIDORDENGIRO.AutoIncrementSeed = -1;
+                this.columnIDORDENGIRO.AutoIncrementStep = -1;
+                this.columnIDORDENGIRO.AllowDBNull = false;
+                this.columnIDORDENGIRO.ReadOnly = true;
+                this.columnIDORDENGIRO.Unique = true;
+                this.columnNUMEROORDENGIRO.AllowDBNull = false;
+                this.columnIDTIPODOCUMENTO.AllowDBNull = false;
+                this.columnIDPROVEEDOR.AllowDBNull = false;
+                this.columnTIPO.AllowDBNull = false;
+                this.columnTIPO.MaxLength = 50;
+                this.columnPLAZO.AllowDBNull = false;
+                this.columnPLAZO.MaxLength = 50;
+                this.columnCONCEPTO.AllowDBNull = false;
+                this.columnCONCEPTO.MaxLength = 50;
+                this.columnAUTORIZACIONPROVEEDOR.AllowDBNull = false;
+                this.columnAUTORIZACIONPROVEEDOR.MaxLength = 50;
+                this.columnNUMERODOCUMENTOPROVEEDOR.AllowDBNull = false;
+                this.columnNUMERODOCUMENTOPROVEEDOR.MaxLength = 50;
+                this.columnSERIE1PROVEEDOR.AllowDBNull = false;
+                this.columnSERIE2PROVEEDOR.AllowDBNull = false;
+                this.columnRISE.AllowDBNull = false;
+                this.columnDECLARASRI.AllowDBNull = false;
+                this.columnRETENCIONMANUAL.AllowDBNull = false;
+                this.columnFECHADOCUMENTO.AllowDBNull = false;
+                this.columnFECHACONTABILIZACION.AllowDBNull = false;
+                this.columnFECHAORDENGIRO.AllowDBNull = false;
+                this.columnFECHAVIGENTE.AllowDBNull = false;
+                this.columnIDEMCABEZADOCOMPRA.AllowDBNull = false;
+                this.columnTOTAL.AllowDBNull = false;
+                this.columnVALORAPAGAR.AllowDBNull = false;
+                this.columnSALDO.AllowDBNull = false;
+                this.columnCUENTADEUDORA0.AllowDBNull = false;
+                this.columnCUENTADEUDORA12.AllowDBNull = false;
+                this.columnCUENTADEUDORAIRBP.AllowDBNull = false;
+                this.columnCUENTAIVAPORPAGAR.AllowDBNull = false;
+                this.columnFECHARETENCION.AllowDBNull = false;
+                this.columnFECHAVENCEDOCUMENTO.AllowDBNull = false;
+                this.columnSERIE1RETENCION.AllowDBNull = false;
+                this.columnSERIE2RETENCION.AllowDBNull = false;
+                this.columnNUMERORETECION.AllowDBNull = false;
+                this.columnAUTORIZACIONRETECION.AllowDBNull = false;
+                this.columnAUTORIZACIONRETECION.MaxLength = 50;
+                this.columnTOTALDEBE.AllowDBNull = false;
+                this.columnTOTALHABER.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TbEncabezadoOrdenGiroRow NewTbEncabezadoOrdenGiroRow() {
+                return ((TbEncabezadoOrdenGiroRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new TbEncabezadoOrdenGiroRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(TbEncabezadoOrdenGiroRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.TbEncabezadoOrdenGiroRowChanged != null)) {
+                    this.TbEncabezadoOrdenGiroRowChanged(this, new TbEncabezadoOrdenGiroRowChangeEvent(((TbEncabezadoOrdenGiroRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.TbEncabezadoOrdenGiroRowChanging != null)) {
+                    this.TbEncabezadoOrdenGiroRowChanging(this, new TbEncabezadoOrdenGiroRowChangeEvent(((TbEncabezadoOrdenGiroRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.TbEncabezadoOrdenGiroRowDeleted != null)) {
+                    this.TbEncabezadoOrdenGiroRowDeleted(this, new TbEncabezadoOrdenGiroRowChangeEvent(((TbEncabezadoOrdenGiroRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.TbEncabezadoOrdenGiroRowDeleting != null)) {
+                    this.TbEncabezadoOrdenGiroRowDeleting(this, new TbEncabezadoOrdenGiroRowChangeEvent(((TbEncabezadoOrdenGiroRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveTbEncabezadoOrdenGiroRow(TbEncabezadoOrdenGiroRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                dtOG ds = new dtOG();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "TbEncabezadoOrdenGiroDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class TbEncabezadoOrdenGiroRow : global::System.Data.DataRow {
+            
+            private TbEncabezadoOrdenGiroDataTable tableTbEncabezadoOrdenGiro;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal TbEncabezadoOrdenGiroRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableTbEncabezadoOrdenGiro = ((TbEncabezadoOrdenGiroDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int IDORDENGIRO {
+                get {
+                    return ((int)(this[this.tableTbEncabezadoOrdenGiro.IDORDENGIROColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.IDORDENGIROColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int NUMEROORDENGIRO {
+                get {
+                    return ((int)(this[this.tableTbEncabezadoOrdenGiro.NUMEROORDENGIROColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.NUMEROORDENGIROColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int IDTIPODOCUMENTO {
+                get {
+                    return ((int)(this[this.tableTbEncabezadoOrdenGiro.IDTIPODOCUMENTOColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.IDTIPODOCUMENTOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int IDPROVEEDOR {
+                get {
+                    return ((int)(this[this.tableTbEncabezadoOrdenGiro.IDPROVEEDORColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.IDPROVEEDORColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TIPO {
+                get {
+                    return ((string)(this[this.tableTbEncabezadoOrdenGiro.TIPOColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.TIPOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string PLAZO {
+                get {
+                    return ((string)(this[this.tableTbEncabezadoOrdenGiro.PLAZOColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.PLAZOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CONCEPTO {
+                get {
+                    return ((string)(this[this.tableTbEncabezadoOrdenGiro.CONCEPTOColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.CONCEPTOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string AUTORIZACIONPROVEEDOR {
+                get {
+                    return ((string)(this[this.tableTbEncabezadoOrdenGiro.AUTORIZACIONPROVEEDORColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.AUTORIZACIONPROVEEDORColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NUMERODOCUMENTOPROVEEDOR {
+                get {
+                    return ((string)(this[this.tableTbEncabezadoOrdenGiro.NUMERODOCUMENTOPROVEEDORColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.NUMERODOCUMENTOPROVEEDORColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int SERIE1PROVEEDOR {
+                get {
+                    return ((int)(this[this.tableTbEncabezadoOrdenGiro.SERIE1PROVEEDORColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.SERIE1PROVEEDORColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int SERIE2PROVEEDOR {
+                get {
+                    return ((int)(this[this.tableTbEncabezadoOrdenGiro.SERIE2PROVEEDORColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.SERIE2PROVEEDORColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool RISE {
+                get {
+                    return ((bool)(this[this.tableTbEncabezadoOrdenGiro.RISEColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.RISEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool DECLARASRI {
+                get {
+                    return ((bool)(this[this.tableTbEncabezadoOrdenGiro.DECLARASRIColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.DECLARASRIColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool RETENCIONMANUAL {
+                get {
+                    return ((bool)(this[this.tableTbEncabezadoOrdenGiro.RETENCIONMANUALColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.RETENCIONMANUALColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime FECHADOCUMENTO {
+                get {
+                    return ((global::System.DateTime)(this[this.tableTbEncabezadoOrdenGiro.FECHADOCUMENTOColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.FECHADOCUMENTOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime FECHACONTABILIZACION {
+                get {
+                    return ((global::System.DateTime)(this[this.tableTbEncabezadoOrdenGiro.FECHACONTABILIZACIONColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.FECHACONTABILIZACIONColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime FECHAORDENGIRO {
+                get {
+                    return ((global::System.DateTime)(this[this.tableTbEncabezadoOrdenGiro.FECHAORDENGIROColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.FECHAORDENGIROColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime FECHAVIGENTE {
+                get {
+                    return ((global::System.DateTime)(this[this.tableTbEncabezadoOrdenGiro.FECHAVIGENTEColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.FECHAVIGENTEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int IDEMCABEZADOCOMPRA {
+                get {
+                    return ((int)(this[this.tableTbEncabezadoOrdenGiro.IDEMCABEZADOCOMPRAColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.IDEMCABEZADOCOMPRAColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double TOTAL {
+                get {
+                    return ((double)(this[this.tableTbEncabezadoOrdenGiro.TOTALColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.TOTALColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double VALORAPAGAR {
+                get {
+                    return ((double)(this[this.tableTbEncabezadoOrdenGiro.VALORAPAGARColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.VALORAPAGARColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double SALDO {
+                get {
+                    return ((double)(this[this.tableTbEncabezadoOrdenGiro.SALDOColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.SALDOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int CUENTADEUDORA0 {
+                get {
+                    return ((int)(this[this.tableTbEncabezadoOrdenGiro.CUENTADEUDORA0Column]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.CUENTADEUDORA0Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int CUENTADEUDORA12 {
+                get {
+                    return ((int)(this[this.tableTbEncabezadoOrdenGiro.CUENTADEUDORA12Column]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.CUENTADEUDORA12Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int CUENTADEUDORAIRBP {
+                get {
+                    return ((int)(this[this.tableTbEncabezadoOrdenGiro.CUENTADEUDORAIRBPColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.CUENTADEUDORAIRBPColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int CUENTAIVAPORPAGAR {
+                get {
+                    return ((int)(this[this.tableTbEncabezadoOrdenGiro.CUENTAIVAPORPAGARColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.CUENTAIVAPORPAGARColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime FECHARETENCION {
+                get {
+                    return ((global::System.DateTime)(this[this.tableTbEncabezadoOrdenGiro.FECHARETENCIONColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.FECHARETENCIONColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime FECHAVENCEDOCUMENTO {
+                get {
+                    return ((global::System.DateTime)(this[this.tableTbEncabezadoOrdenGiro.FECHAVENCEDOCUMENTOColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.FECHAVENCEDOCUMENTOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int SERIE1RETENCION {
+                get {
+                    return ((int)(this[this.tableTbEncabezadoOrdenGiro.SERIE1RETENCIONColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.SERIE1RETENCIONColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int SERIE2RETENCION {
+                get {
+                    return ((int)(this[this.tableTbEncabezadoOrdenGiro.SERIE2RETENCIONColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.SERIE2RETENCIONColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int NUMERORETECION {
+                get {
+                    return ((int)(this[this.tableTbEncabezadoOrdenGiro.NUMERORETECIONColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.NUMERORETECIONColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string AUTORIZACIONRETECION {
+                get {
+                    return ((string)(this[this.tableTbEncabezadoOrdenGiro.AUTORIZACIONRETECIONColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.AUTORIZACIONRETECIONColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double TOTALDEBE {
+                get {
+                    return ((double)(this[this.tableTbEncabezadoOrdenGiro.TOTALDEBEColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.TOTALDEBEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double TOTALHABER {
+                get {
+                    return ((double)(this[this.tableTbEncabezadoOrdenGiro.TOTALHABERColumn]));
+                }
+                set {
+                    this[this.tableTbEncabezadoOrdenGiro.TOTALHABERColumn] = value;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class TbEncabezadoOrdenGiroRowChangeEvent : global::System.EventArgs {
+            
+            private TbEncabezadoOrdenGiroRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TbEncabezadoOrdenGiroRowChangeEvent(TbEncabezadoOrdenGiroRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TbEncabezadoOrdenGiroRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+    }
+}
+namespace Comisariato.Formularios.Transacciones.Reportes.dtOGTableAdapters {
+    
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class TbEncabezadoOrdenGiroTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public TbEncabezadoOrdenGiroTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "TbEncabezadoOrdenGiro";
+            tableMapping.ColumnMappings.Add("IDORDENGIRO", "IDORDENGIRO");
+            tableMapping.ColumnMappings.Add("NUMEROORDENGIRO", "NUMEROORDENGIRO");
+            tableMapping.ColumnMappings.Add("IDTIPODOCUMENTO", "IDTIPODOCUMENTO");
+            tableMapping.ColumnMappings.Add("IDPROVEEDOR", "IDPROVEEDOR");
+            tableMapping.ColumnMappings.Add("TIPO", "TIPO");
+            tableMapping.ColumnMappings.Add("PLAZO", "PLAZO");
+            tableMapping.ColumnMappings.Add("CONCEPTO", "CONCEPTO");
+            tableMapping.ColumnMappings.Add("AUTORIZACIONPROVEEDOR", "AUTORIZACIONPROVEEDOR");
+            tableMapping.ColumnMappings.Add("NUMERODOCUMENTOPROVEEDOR", "NUMERODOCUMENTOPROVEEDOR");
+            tableMapping.ColumnMappings.Add("SERIE1PROVEEDOR", "SERIE1PROVEEDOR");
+            tableMapping.ColumnMappings.Add("SERIE2PROVEEDOR", "SERIE2PROVEEDOR");
+            tableMapping.ColumnMappings.Add("RISE", "RISE");
+            tableMapping.ColumnMappings.Add("DECLARASRI", "DECLARASRI");
+            tableMapping.ColumnMappings.Add("RETENCIONMANUAL", "RETENCIONMANUAL");
+            tableMapping.ColumnMappings.Add("FECHADOCUMENTO", "FECHADOCUMENTO");
+            tableMapping.ColumnMappings.Add("FECHACONTABILIZACION", "FECHACONTABILIZACION");
+            tableMapping.ColumnMappings.Add("FECHAORDENGIRO", "FECHAORDENGIRO");
+            tableMapping.ColumnMappings.Add("FECHAVIGENTE", "FECHAVIGENTE");
+            tableMapping.ColumnMappings.Add("IDEMCABEZADOCOMPRA", "IDEMCABEZADOCOMPRA");
+            tableMapping.ColumnMappings.Add("TOTAL", "TOTAL");
+            tableMapping.ColumnMappings.Add("VALORAPAGAR", "VALORAPAGAR");
+            tableMapping.ColumnMappings.Add("SALDO", "SALDO");
+            tableMapping.ColumnMappings.Add("CUENTADEUDORA0", "CUENTADEUDORA0");
+            tableMapping.ColumnMappings.Add("CUENTADEUDORA12", "CUENTADEUDORA12");
+            tableMapping.ColumnMappings.Add("CUENTADEUDORAIRBP", "CUENTADEUDORAIRBP");
+            tableMapping.ColumnMappings.Add("CUENTAIVAPORPAGAR", "CUENTAIVAPORPAGAR");
+            tableMapping.ColumnMappings.Add("FECHARETENCION", "FECHARETENCION");
+            tableMapping.ColumnMappings.Add("FECHAVENCEDOCUMENTO", "FECHAVENCEDOCUMENTO");
+            tableMapping.ColumnMappings.Add("SERIE1RETENCION", "SERIE1RETENCION");
+            tableMapping.ColumnMappings.Add("SERIE2RETENCION", "SERIE2RETENCION");
+            tableMapping.ColumnMappings.Add("NUMERORETECION", "NUMERORETECION");
+            tableMapping.ColumnMappings.Add("AUTORIZACIONRETECION", "AUTORIZACIONRETECION");
+            tableMapping.ColumnMappings.Add("TOTALDEBE", "TOTALDEBE");
+            tableMapping.ColumnMappings.Add("TOTALHABER", "TOTALHABER");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[TbEncabezadoOrdenGiro] WHERE (([IDORDENGIRO] = @Original_IDORD" +
+                "ENGIRO) AND ([NUMEROORDENGIRO] = @Original_NUMEROORDENGIRO) AND ([IDTIPODOCUMENT" +
+                "O] = @Original_IDTIPODOCUMENTO) AND ([IDPROVEEDOR] = @Original_IDPROVEEDOR) AND " +
+                "([TIPO] = @Original_TIPO) AND ([PLAZO] = @Original_PLAZO) AND ([CONCEPTO] = @Ori" +
+                "ginal_CONCEPTO) AND ([AUTORIZACIONPROVEEDOR] = @Original_AUTORIZACIONPROVEEDOR) " +
+                "AND ([NUMERODOCUMENTOPROVEEDOR] = @Original_NUMERODOCUMENTOPROVEEDOR) AND ([SERI" +
+                "E1PROVEEDOR] = @Original_SERIE1PROVEEDOR) AND ([SERIE2PROVEEDOR] = @Original_SER" +
+                "IE2PROVEEDOR) AND ([RISE] = @Original_RISE) AND ([DECLARASRI] = @Original_DECLAR" +
+                "ASRI) AND ([RETENCIONMANUAL] = @Original_RETENCIONMANUAL) AND ([FECHADOCUMENTO] " +
+                "= @Original_FECHADOCUMENTO) AND ([FECHACONTABILIZACION] = @Original_FECHACONTABI" +
+                "LIZACION) AND ([FECHAORDENGIRO] = @Original_FECHAORDENGIRO) AND ([FECHAVIGENTE] " +
+                "= @Original_FECHAVIGENTE) AND ([IDEMCABEZADOCOMPRA] = @Original_IDEMCABEZADOCOMP" +
+                "RA) AND ([TOTAL] = @Original_TOTAL) AND ([VALORAPAGAR] = @Original_VALORAPAGAR) " +
+                "AND ([SALDO] = @Original_SALDO) AND ([CUENTADEUDORA0] = @Original_CUENTADEUDORA0" +
+                ") AND ([CUENTADEUDORA12] = @Original_CUENTADEUDORA12) AND ([CUENTADEUDORAIRBP] =" +
+                " @Original_CUENTADEUDORAIRBP) AND ([CUENTAIVAPORPAGAR] = @Original_CUENTAIVAPORP" +
+                "AGAR) AND ([FECHARETENCION] = @Original_FECHARETENCION) AND ([FECHAVENCEDOCUMENT" +
+                "O] = @Original_FECHAVENCEDOCUMENTO) AND ([SERIE1RETENCION] = @Original_SERIE1RET" +
+                "ENCION) AND ([SERIE2RETENCION] = @Original_SERIE2RETENCION) AND ([NUMERORETECION" +
+                "] = @Original_NUMERORETECION) AND ([AUTORIZACIONRETECION] = @Original_AUTORIZACI" +
+                "ONRETECION) AND ([TOTALDEBE] = @Original_TOTALDEBE) AND ([TOTALHABER] = @Origina" +
+                "l_TOTALHABER))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDORDENGIRO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDORDENGIRO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NUMEROORDENGIRO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NUMEROORDENGIRO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDTIPODOCUMENTO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDTIPODOCUMENTO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDPROVEEDOR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDPROVEEDOR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TIPO", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TIPO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PLAZO", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PLAZO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CONCEPTO", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CONCEPTO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AUTORIZACIONPROVEEDOR", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AUTORIZACIONPROVEEDOR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NUMERODOCUMENTOPROVEEDOR", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NUMERODOCUMENTOPROVEEDOR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SERIE1PROVEEDOR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SERIE1PROVEEDOR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SERIE2PROVEEDOR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SERIE2PROVEEDOR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RISE", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RISE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DECLARASRI", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DECLARASRI", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RETENCIONMANUAL", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RETENCIONMANUAL", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FECHADOCUMENTO", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHADOCUMENTO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FECHACONTABILIZACION", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHACONTABILIZACION", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FECHAORDENGIRO", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHAORDENGIRO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FECHAVIGENTE", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHAVIGENTE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDEMCABEZADOCOMPRA", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDEMCABEZADOCOMPRA", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TOTAL", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TOTAL", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_VALORAPAGAR", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VALORAPAGAR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SALDO", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SALDO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CUENTADEUDORA0", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUENTADEUDORA0", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CUENTADEUDORA12", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUENTADEUDORA12", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CUENTADEUDORAIRBP", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUENTADEUDORAIRBP", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CUENTAIVAPORPAGAR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUENTAIVAPORPAGAR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FECHARETENCION", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHARETENCION", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FECHAVENCEDOCUMENTO", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHAVENCEDOCUMENTO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SERIE1RETENCION", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SERIE1RETENCION", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SERIE2RETENCION", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SERIE2RETENCION", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NUMERORETECION", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NUMERORETECION", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AUTORIZACIONRETECION", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AUTORIZACIONRETECION", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TOTALDEBE", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TOTALDEBE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TOTALHABER", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TOTALHABER", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TbEncabezadoOrdenGiro] ([NUMEROORDENGIRO], [IDTIPODOCUMENTO], " +
+                "[IDPROVEEDOR], [TIPO], [PLAZO], [CONCEPTO], [AUTORIZACIONPROVEEDOR], [NUMERODOCU" +
+                "MENTOPROVEEDOR], [SERIE1PROVEEDOR], [SERIE2PROVEEDOR], [RISE], [DECLARASRI], [RE" +
+                "TENCIONMANUAL], [FECHADOCUMENTO], [FECHACONTABILIZACION], [FECHAORDENGIRO], [FEC" +
+                "HAVIGENTE], [IDEMCABEZADOCOMPRA], [TOTAL], [VALORAPAGAR], [SALDO], [CUENTADEUDOR" +
+                "A0], [CUENTADEUDORA12], [CUENTADEUDORAIRBP], [CUENTAIVAPORPAGAR], [FECHARETENCIO" +
+                "N], [FECHAVENCEDOCUMENTO], [SERIE1RETENCION], [SERIE2RETENCION], [NUMERORETECION" +
+                "], [AUTORIZACIONRETECION], [TOTALDEBE], [TOTALHABER]) VALUES (@NUMEROORDENGIRO, " +
+                "@IDTIPODOCUMENTO, @IDPROVEEDOR, @TIPO, @PLAZO, @CONCEPTO, @AUTORIZACIONPROVEEDOR" +
+                ", @NUMERODOCUMENTOPROVEEDOR, @SERIE1PROVEEDOR, @SERIE2PROVEEDOR, @RISE, @DECLARA" +
+                "SRI, @RETENCIONMANUAL, @FECHADOCUMENTO, @FECHACONTABILIZACION, @FECHAORDENGIRO, " +
+                "@FECHAVIGENTE, @IDEMCABEZADOCOMPRA, @TOTAL, @VALORAPAGAR, @SALDO, @CUENTADEUDORA" +
+                "0, @CUENTADEUDORA12, @CUENTADEUDORAIRBP, @CUENTAIVAPORPAGAR, @FECHARETENCION, @F" +
+                "ECHAVENCEDOCUMENTO, @SERIE1RETENCION, @SERIE2RETENCION, @NUMERORETECION, @AUTORI" +
+                "ZACIONRETECION, @TOTALDEBE, @TOTALHABER);\r\nSELECT IDORDENGIRO, NUMEROORDENGIRO, " +
+                "IDTIPODOCUMENTO, IDPROVEEDOR, TIPO, PLAZO, CONCEPTO, AUTORIZACIONPROVEEDOR, NUME" +
+                "RODOCUMENTOPROVEEDOR, SERIE1PROVEEDOR, SERIE2PROVEEDOR, RISE, DECLARASRI, RETENC" +
+                "IONMANUAL, FECHADOCUMENTO, FECHACONTABILIZACION, FECHAORDENGIRO, FECHAVIGENTE, I" +
+                "DEMCABEZADOCOMPRA, TOTAL, VALORAPAGAR, SALDO, CUENTADEUDORA0, CUENTADEUDORA12, C" +
+                "UENTADEUDORAIRBP, CUENTAIVAPORPAGAR, FECHARETENCION, FECHAVENCEDOCUMENTO, SERIE1" +
+                "RETENCION, SERIE2RETENCION, NUMERORETECION, AUTORIZACIONRETECION, TOTALDEBE, TOT" +
+                "ALHABER FROM TbEncabezadoOrdenGiro WHERE (IDORDENGIRO = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NUMEROORDENGIRO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NUMEROORDENGIRO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDTIPODOCUMENTO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDTIPODOCUMENTO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDPROVEEDOR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDPROVEEDOR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TIPO", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TIPO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PLAZO", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PLAZO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CONCEPTO", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CONCEPTO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AUTORIZACIONPROVEEDOR", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AUTORIZACIONPROVEEDOR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NUMERODOCUMENTOPROVEEDOR", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NUMERODOCUMENTOPROVEEDOR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SERIE1PROVEEDOR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SERIE1PROVEEDOR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SERIE2PROVEEDOR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SERIE2PROVEEDOR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RISE", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RISE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DECLARASRI", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DECLARASRI", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETENCIONMANUAL", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RETENCIONMANUAL", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FECHADOCUMENTO", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHADOCUMENTO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FECHACONTABILIZACION", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHACONTABILIZACION", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FECHAORDENGIRO", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHAORDENGIRO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FECHAVIGENTE", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHAVIGENTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDEMCABEZADOCOMPRA", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDEMCABEZADOCOMPRA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TOTAL", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TOTAL", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@VALORAPAGAR", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VALORAPAGAR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SALDO", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SALDO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CUENTADEUDORA0", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUENTADEUDORA0", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CUENTADEUDORA12", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUENTADEUDORA12", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CUENTADEUDORAIRBP", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUENTADEUDORAIRBP", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CUENTAIVAPORPAGAR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUENTAIVAPORPAGAR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FECHARETENCION", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHARETENCION", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FECHAVENCEDOCUMENTO", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHAVENCEDOCUMENTO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SERIE1RETENCION", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SERIE1RETENCION", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SERIE2RETENCION", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SERIE2RETENCION", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NUMERORETECION", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NUMERORETECION", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AUTORIZACIONRETECION", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AUTORIZACIONRETECION", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TOTALDEBE", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TOTALDEBE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TOTALHABER", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TOTALHABER", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[TbEncabezadoOrdenGiro] SET [NUMEROORDENGIRO] = @NUMEROORDENGIRO, [I" +
+                "DTIPODOCUMENTO] = @IDTIPODOCUMENTO, [IDPROVEEDOR] = @IDPROVEEDOR, [TIPO] = @TIPO" +
+                ", [PLAZO] = @PLAZO, [CONCEPTO] = @CONCEPTO, [AUTORIZACIONPROVEEDOR] = @AUTORIZAC" +
+                "IONPROVEEDOR, [NUMERODOCUMENTOPROVEEDOR] = @NUMERODOCUMENTOPROVEEDOR, [SERIE1PRO" +
+                "VEEDOR] = @SERIE1PROVEEDOR, [SERIE2PROVEEDOR] = @SERIE2PROVEEDOR, [RISE] = @RISE" +
+                ", [DECLARASRI] = @DECLARASRI, [RETENCIONMANUAL] = @RETENCIONMANUAL, [FECHADOCUME" +
+                "NTO] = @FECHADOCUMENTO, [FECHACONTABILIZACION] = @FECHACONTABILIZACION, [FECHAOR" +
+                "DENGIRO] = @FECHAORDENGIRO, [FECHAVIGENTE] = @FECHAVIGENTE, [IDEMCABEZADOCOMPRA]" +
+                " = @IDEMCABEZADOCOMPRA, [TOTAL] = @TOTAL, [VALORAPAGAR] = @VALORAPAGAR, [SALDO] " +
+                "= @SALDO, [CUENTADEUDORA0] = @CUENTADEUDORA0, [CUENTADEUDORA12] = @CUENTADEUDORA" +
+                "12, [CUENTADEUDORAIRBP] = @CUENTADEUDORAIRBP, [CUENTAIVAPORPAGAR] = @CUENTAIVAPO" +
+                "RPAGAR, [FECHARETENCION] = @FECHARETENCION, [FECHAVENCEDOCUMENTO] = @FECHAVENCED" +
+                "OCUMENTO, [SERIE1RETENCION] = @SERIE1RETENCION, [SERIE2RETENCION] = @SERIE2RETEN" +
+                "CION, [NUMERORETECION] = @NUMERORETECION, [AUTORIZACIONRETECION] = @AUTORIZACION" +
+                "RETECION, [TOTALDEBE] = @TOTALDEBE, [TOTALHABER] = @TOTALHABER WHERE (([IDORDENG" +
+                "IRO] = @Original_IDORDENGIRO) AND ([NUMEROORDENGIRO] = @Original_NUMEROORDENGIRO" +
+                ") AND ([IDTIPODOCUMENTO] = @Original_IDTIPODOCUMENTO) AND ([IDPROVEEDOR] = @Orig" +
+                "inal_IDPROVEEDOR) AND ([TIPO] = @Original_TIPO) AND ([PLAZO] = @Original_PLAZO) " +
+                "AND ([CONCEPTO] = @Original_CONCEPTO) AND ([AUTORIZACIONPROVEEDOR] = @Original_A" +
+                "UTORIZACIONPROVEEDOR) AND ([NUMERODOCUMENTOPROVEEDOR] = @Original_NUMERODOCUMENT" +
+                "OPROVEEDOR) AND ([SERIE1PROVEEDOR] = @Original_SERIE1PROVEEDOR) AND ([SERIE2PROV" +
+                "EEDOR] = @Original_SERIE2PROVEEDOR) AND ([RISE] = @Original_RISE) AND ([DECLARAS" +
+                "RI] = @Original_DECLARASRI) AND ([RETENCIONMANUAL] = @Original_RETENCIONMANUAL) " +
+                "AND ([FECHADOCUMENTO] = @Original_FECHADOCUMENTO) AND ([FECHACONTABILIZACION] = " +
+                "@Original_FECHACONTABILIZACION) AND ([FECHAORDENGIRO] = @Original_FECHAORDENGIRO" +
+                ") AND ([FECHAVIGENTE] = @Original_FECHAVIGENTE) AND ([IDEMCABEZADOCOMPRA] = @Ori" +
+                "ginal_IDEMCABEZADOCOMPRA) AND ([TOTAL] = @Original_TOTAL) AND ([VALORAPAGAR] = @" +
+                "Original_VALORAPAGAR) AND ([SALDO] = @Original_SALDO) AND ([CUENTADEUDORA0] = @O" +
+                "riginal_CUENTADEUDORA0) AND ([CUENTADEUDORA12] = @Original_CUENTADEUDORA12) AND " +
+                "([CUENTADEUDORAIRBP] = @Original_CUENTADEUDORAIRBP) AND ([CUENTAIVAPORPAGAR] = @" +
+                "Original_CUENTAIVAPORPAGAR) AND ([FECHARETENCION] = @Original_FECHARETENCION) AN" +
+                "D ([FECHAVENCEDOCUMENTO] = @Original_FECHAVENCEDOCUMENTO) AND ([SERIE1RETENCION]" +
+                " = @Original_SERIE1RETENCION) AND ([SERIE2RETENCION] = @Original_SERIE2RETENCION" +
+                ") AND ([NUMERORETECION] = @Original_NUMERORETECION) AND ([AUTORIZACIONRETECION] " +
+                "= @Original_AUTORIZACIONRETECION) AND ([TOTALDEBE] = @Original_TOTALDEBE) AND ([" +
+                "TOTALHABER] = @Original_TOTALHABER));\r\nSELECT IDORDENGIRO, NUMEROORDENGIRO, IDTI" +
+                "PODOCUMENTO, IDPROVEEDOR, TIPO, PLAZO, CONCEPTO, AUTORIZACIONPROVEEDOR, NUMERODO" +
+                "CUMENTOPROVEEDOR, SERIE1PROVEEDOR, SERIE2PROVEEDOR, RISE, DECLARASRI, RETENCIONM" +
+                "ANUAL, FECHADOCUMENTO, FECHACONTABILIZACION, FECHAORDENGIRO, FECHAVIGENTE, IDEMC" +
+                "ABEZADOCOMPRA, TOTAL, VALORAPAGAR, SALDO, CUENTADEUDORA0, CUENTADEUDORA12, CUENT" +
+                "ADEUDORAIRBP, CUENTAIVAPORPAGAR, FECHARETENCION, FECHAVENCEDOCUMENTO, SERIE1RETE" +
+                "NCION, SERIE2RETENCION, NUMERORETECION, AUTORIZACIONRETECION, TOTALDEBE, TOTALHA" +
+                "BER FROM TbEncabezadoOrdenGiro WHERE (IDORDENGIRO = @IDORDENGIRO)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NUMEROORDENGIRO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NUMEROORDENGIRO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDTIPODOCUMENTO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDTIPODOCUMENTO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDPROVEEDOR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDPROVEEDOR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TIPO", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TIPO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PLAZO", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PLAZO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CONCEPTO", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CONCEPTO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AUTORIZACIONPROVEEDOR", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AUTORIZACIONPROVEEDOR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NUMERODOCUMENTOPROVEEDOR", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NUMERODOCUMENTOPROVEEDOR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SERIE1PROVEEDOR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SERIE1PROVEEDOR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SERIE2PROVEEDOR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SERIE2PROVEEDOR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RISE", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RISE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DECLARASRI", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DECLARASRI", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETENCIONMANUAL", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RETENCIONMANUAL", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FECHADOCUMENTO", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHADOCUMENTO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FECHACONTABILIZACION", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHACONTABILIZACION", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FECHAORDENGIRO", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHAORDENGIRO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FECHAVIGENTE", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHAVIGENTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDEMCABEZADOCOMPRA", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDEMCABEZADOCOMPRA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TOTAL", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TOTAL", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@VALORAPAGAR", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VALORAPAGAR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SALDO", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SALDO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CUENTADEUDORA0", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUENTADEUDORA0", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CUENTADEUDORA12", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUENTADEUDORA12", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CUENTADEUDORAIRBP", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUENTADEUDORAIRBP", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CUENTAIVAPORPAGAR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUENTAIVAPORPAGAR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FECHARETENCION", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHARETENCION", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FECHAVENCEDOCUMENTO", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHAVENCEDOCUMENTO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SERIE1RETENCION", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SERIE1RETENCION", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SERIE2RETENCION", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SERIE2RETENCION", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NUMERORETECION", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NUMERORETECION", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AUTORIZACIONRETECION", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AUTORIZACIONRETECION", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TOTALDEBE", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TOTALDEBE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TOTALHABER", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TOTALHABER", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDORDENGIRO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDORDENGIRO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NUMEROORDENGIRO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NUMEROORDENGIRO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDTIPODOCUMENTO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDTIPODOCUMENTO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDPROVEEDOR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDPROVEEDOR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TIPO", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TIPO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PLAZO", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PLAZO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CONCEPTO", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CONCEPTO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AUTORIZACIONPROVEEDOR", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AUTORIZACIONPROVEEDOR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NUMERODOCUMENTOPROVEEDOR", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NUMERODOCUMENTOPROVEEDOR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SERIE1PROVEEDOR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SERIE1PROVEEDOR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SERIE2PROVEEDOR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SERIE2PROVEEDOR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RISE", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RISE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DECLARASRI", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DECLARASRI", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RETENCIONMANUAL", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RETENCIONMANUAL", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FECHADOCUMENTO", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHADOCUMENTO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FECHACONTABILIZACION", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHACONTABILIZACION", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FECHAORDENGIRO", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHAORDENGIRO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FECHAVIGENTE", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHAVIGENTE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IDEMCABEZADOCOMPRA", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDEMCABEZADOCOMPRA", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TOTAL", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TOTAL", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_VALORAPAGAR", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VALORAPAGAR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SALDO", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SALDO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CUENTADEUDORA0", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUENTADEUDORA0", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CUENTADEUDORA12", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUENTADEUDORA12", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CUENTADEUDORAIRBP", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUENTADEUDORAIRBP", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CUENTAIVAPORPAGAR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUENTAIVAPORPAGAR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FECHARETENCION", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHARETENCION", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FECHAVENCEDOCUMENTO", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FECHAVENCEDOCUMENTO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SERIE1RETENCION", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SERIE1RETENCION", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SERIE2RETENCION", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SERIE2RETENCION", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NUMERORETECION", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NUMERORETECION", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AUTORIZACIONRETECION", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AUTORIZACIONRETECION", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TOTALDEBE", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TOTALDEBE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TOTALHABER", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TOTALHABER", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDORDENGIRO", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDORDENGIRO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Comisariato.Properties.Settings.Default.BDComisariatoConnectionString1;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = @"SELECT IDORDENGIRO, NUMEROORDENGIRO, IDTIPODOCUMENTO, IDPROVEEDOR, TIPO, PLAZO, CONCEPTO, AUTORIZACIONPROVEEDOR, NUMERODOCUMENTOPROVEEDOR, SERIE1PROVEEDOR, SERIE2PROVEEDOR, RISE, DECLARASRI, RETENCIONMANUAL, FECHADOCUMENTO, FECHACONTABILIZACION, FECHAORDENGIRO, FECHAVIGENTE, IDEMCABEZADOCOMPRA, TOTAL, VALORAPAGAR, SALDO, CUENTADEUDORA0, CUENTADEUDORA12, CUENTADEUDORAIRBP, CUENTAIVAPORPAGAR, FECHARETENCION, FECHAVENCEDOCUMENTO, SERIE1RETENCION, SERIE2RETENCION, NUMERORETECION, AUTORIZACIONRETECION, TOTALDEBE, TOTALHABER FROM dbo.TbEncabezadoOrdenGiro";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(dtOG.TbEncabezadoOrdenGiroDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual dtOG.TbEncabezadoOrdenGiroDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            dtOG.TbEncabezadoOrdenGiroDataTable dataTable = new dtOG.TbEncabezadoOrdenGiroDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(dtOG.TbEncabezadoOrdenGiroDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(dtOG dataSet) {
+            return this.Adapter.Update(dataSet, "TbEncabezadoOrdenGiro");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(
+                    int Original_IDORDENGIRO, 
+                    int Original_NUMEROORDENGIRO, 
+                    int Original_IDTIPODOCUMENTO, 
+                    int Original_IDPROVEEDOR, 
+                    string Original_TIPO, 
+                    string Original_PLAZO, 
+                    string Original_CONCEPTO, 
+                    string Original_AUTORIZACIONPROVEEDOR, 
+                    string Original_NUMERODOCUMENTOPROVEEDOR, 
+                    int Original_SERIE1PROVEEDOR, 
+                    int Original_SERIE2PROVEEDOR, 
+                    bool Original_RISE, 
+                    bool Original_DECLARASRI, 
+                    bool Original_RETENCIONMANUAL, 
+                    System.DateTime Original_FECHADOCUMENTO, 
+                    System.DateTime Original_FECHACONTABILIZACION, 
+                    System.DateTime Original_FECHAORDENGIRO, 
+                    System.DateTime Original_FECHAVIGENTE, 
+                    int Original_IDEMCABEZADOCOMPRA, 
+                    double Original_TOTAL, 
+                    double Original_VALORAPAGAR, 
+                    double Original_SALDO, 
+                    int Original_CUENTADEUDORA0, 
+                    int Original_CUENTADEUDORA12, 
+                    int Original_CUENTADEUDORAIRBP, 
+                    int Original_CUENTAIVAPORPAGAR, 
+                    System.DateTime Original_FECHARETENCION, 
+                    System.DateTime Original_FECHAVENCEDOCUMENTO, 
+                    int Original_SERIE1RETENCION, 
+                    int Original_SERIE2RETENCION, 
+                    int Original_NUMERORETECION, 
+                    string Original_AUTORIZACIONRETECION, 
+                    double Original_TOTALDEBE, 
+                    double Original_TOTALHABER) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_IDORDENGIRO));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_NUMEROORDENGIRO));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_IDTIPODOCUMENTO));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_IDPROVEEDOR));
+            if ((Original_TIPO == null)) {
+                throw new global::System.ArgumentNullException("Original_TIPO");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_TIPO));
+            }
+            if ((Original_PLAZO == null)) {
+                throw new global::System.ArgumentNullException("Original_PLAZO");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_PLAZO));
+            }
+            if ((Original_CONCEPTO == null)) {
+                throw new global::System.ArgumentNullException("Original_CONCEPTO");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_CONCEPTO));
+            }
+            if ((Original_AUTORIZACIONPROVEEDOR == null)) {
+                throw new global::System.ArgumentNullException("Original_AUTORIZACIONPROVEEDOR");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_AUTORIZACIONPROVEEDOR));
+            }
+            if ((Original_NUMERODOCUMENTOPROVEEDOR == null)) {
+                throw new global::System.ArgumentNullException("Original_NUMERODOCUMENTOPROVEEDOR");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_NUMERODOCUMENTOPROVEEDOR));
+            }
+            this.Adapter.DeleteCommand.Parameters[9].Value = ((int)(Original_SERIE1PROVEEDOR));
+            this.Adapter.DeleteCommand.Parameters[10].Value = ((int)(Original_SERIE2PROVEEDOR));
+            this.Adapter.DeleteCommand.Parameters[11].Value = ((bool)(Original_RISE));
+            this.Adapter.DeleteCommand.Parameters[12].Value = ((bool)(Original_DECLARASRI));
+            this.Adapter.DeleteCommand.Parameters[13].Value = ((bool)(Original_RETENCIONMANUAL));
+            this.Adapter.DeleteCommand.Parameters[14].Value = ((System.DateTime)(Original_FECHADOCUMENTO));
+            this.Adapter.DeleteCommand.Parameters[15].Value = ((System.DateTime)(Original_FECHACONTABILIZACION));
+            this.Adapter.DeleteCommand.Parameters[16].Value = ((System.DateTime)(Original_FECHAORDENGIRO));
+            this.Adapter.DeleteCommand.Parameters[17].Value = ((System.DateTime)(Original_FECHAVIGENTE));
+            this.Adapter.DeleteCommand.Parameters[18].Value = ((int)(Original_IDEMCABEZADOCOMPRA));
+            this.Adapter.DeleteCommand.Parameters[19].Value = ((double)(Original_TOTAL));
+            this.Adapter.DeleteCommand.Parameters[20].Value = ((double)(Original_VALORAPAGAR));
+            this.Adapter.DeleteCommand.Parameters[21].Value = ((double)(Original_SALDO));
+            this.Adapter.DeleteCommand.Parameters[22].Value = ((int)(Original_CUENTADEUDORA0));
+            this.Adapter.DeleteCommand.Parameters[23].Value = ((int)(Original_CUENTADEUDORA12));
+            this.Adapter.DeleteCommand.Parameters[24].Value = ((int)(Original_CUENTADEUDORAIRBP));
+            this.Adapter.DeleteCommand.Parameters[25].Value = ((int)(Original_CUENTAIVAPORPAGAR));
+            this.Adapter.DeleteCommand.Parameters[26].Value = ((System.DateTime)(Original_FECHARETENCION));
+            this.Adapter.DeleteCommand.Parameters[27].Value = ((System.DateTime)(Original_FECHAVENCEDOCUMENTO));
+            this.Adapter.DeleteCommand.Parameters[28].Value = ((int)(Original_SERIE1RETENCION));
+            this.Adapter.DeleteCommand.Parameters[29].Value = ((int)(Original_SERIE2RETENCION));
+            this.Adapter.DeleteCommand.Parameters[30].Value = ((int)(Original_NUMERORETECION));
+            if ((Original_AUTORIZACIONRETECION == null)) {
+                throw new global::System.ArgumentNullException("Original_AUTORIZACIONRETECION");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[31].Value = ((string)(Original_AUTORIZACIONRETECION));
+            }
+            this.Adapter.DeleteCommand.Parameters[32].Value = ((double)(Original_TOTALDEBE));
+            this.Adapter.DeleteCommand.Parameters[33].Value = ((double)(Original_TOTALHABER));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(
+                    int NUMEROORDENGIRO, 
+                    int IDTIPODOCUMENTO, 
+                    int IDPROVEEDOR, 
+                    string TIPO, 
+                    string PLAZO, 
+                    string CONCEPTO, 
+                    string AUTORIZACIONPROVEEDOR, 
+                    string NUMERODOCUMENTOPROVEEDOR, 
+                    int SERIE1PROVEEDOR, 
+                    int SERIE2PROVEEDOR, 
+                    bool RISE, 
+                    bool DECLARASRI, 
+                    bool RETENCIONMANUAL, 
+                    System.DateTime FECHADOCUMENTO, 
+                    System.DateTime FECHACONTABILIZACION, 
+                    System.DateTime FECHAORDENGIRO, 
+                    System.DateTime FECHAVIGENTE, 
+                    int IDEMCABEZADOCOMPRA, 
+                    double TOTAL, 
+                    double VALORAPAGAR, 
+                    double SALDO, 
+                    int CUENTADEUDORA0, 
+                    int CUENTADEUDORA12, 
+                    int CUENTADEUDORAIRBP, 
+                    int CUENTAIVAPORPAGAR, 
+                    System.DateTime FECHARETENCION, 
+                    System.DateTime FECHAVENCEDOCUMENTO, 
+                    int SERIE1RETENCION, 
+                    int SERIE2RETENCION, 
+                    int NUMERORETECION, 
+                    string AUTORIZACIONRETECION, 
+                    double TOTALDEBE, 
+                    double TOTALHABER) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(NUMEROORDENGIRO));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(IDTIPODOCUMENTO));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(IDPROVEEDOR));
+            if ((TIPO == null)) {
+                throw new global::System.ArgumentNullException("TIPO");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(TIPO));
+            }
+            if ((PLAZO == null)) {
+                throw new global::System.ArgumentNullException("PLAZO");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(PLAZO));
+            }
+            if ((CONCEPTO == null)) {
+                throw new global::System.ArgumentNullException("CONCEPTO");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(CONCEPTO));
+            }
+            if ((AUTORIZACIONPROVEEDOR == null)) {
+                throw new global::System.ArgumentNullException("AUTORIZACIONPROVEEDOR");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(AUTORIZACIONPROVEEDOR));
+            }
+            if ((NUMERODOCUMENTOPROVEEDOR == null)) {
+                throw new global::System.ArgumentNullException("NUMERODOCUMENTOPROVEEDOR");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(NUMERODOCUMENTOPROVEEDOR));
+            }
+            this.Adapter.InsertCommand.Parameters[8].Value = ((int)(SERIE1PROVEEDOR));
+            this.Adapter.InsertCommand.Parameters[9].Value = ((int)(SERIE2PROVEEDOR));
+            this.Adapter.InsertCommand.Parameters[10].Value = ((bool)(RISE));
+            this.Adapter.InsertCommand.Parameters[11].Value = ((bool)(DECLARASRI));
+            this.Adapter.InsertCommand.Parameters[12].Value = ((bool)(RETENCIONMANUAL));
+            this.Adapter.InsertCommand.Parameters[13].Value = ((System.DateTime)(FECHADOCUMENTO));
+            this.Adapter.InsertCommand.Parameters[14].Value = ((System.DateTime)(FECHACONTABILIZACION));
+            this.Adapter.InsertCommand.Parameters[15].Value = ((System.DateTime)(FECHAORDENGIRO));
+            this.Adapter.InsertCommand.Parameters[16].Value = ((System.DateTime)(FECHAVIGENTE));
+            this.Adapter.InsertCommand.Parameters[17].Value = ((int)(IDEMCABEZADOCOMPRA));
+            this.Adapter.InsertCommand.Parameters[18].Value = ((double)(TOTAL));
+            this.Adapter.InsertCommand.Parameters[19].Value = ((double)(VALORAPAGAR));
+            this.Adapter.InsertCommand.Parameters[20].Value = ((double)(SALDO));
+            this.Adapter.InsertCommand.Parameters[21].Value = ((int)(CUENTADEUDORA0));
+            this.Adapter.InsertCommand.Parameters[22].Value = ((int)(CUENTADEUDORA12));
+            this.Adapter.InsertCommand.Parameters[23].Value = ((int)(CUENTADEUDORAIRBP));
+            this.Adapter.InsertCommand.Parameters[24].Value = ((int)(CUENTAIVAPORPAGAR));
+            this.Adapter.InsertCommand.Parameters[25].Value = ((System.DateTime)(FECHARETENCION));
+            this.Adapter.InsertCommand.Parameters[26].Value = ((System.DateTime)(FECHAVENCEDOCUMENTO));
+            this.Adapter.InsertCommand.Parameters[27].Value = ((int)(SERIE1RETENCION));
+            this.Adapter.InsertCommand.Parameters[28].Value = ((int)(SERIE2RETENCION));
+            this.Adapter.InsertCommand.Parameters[29].Value = ((int)(NUMERORETECION));
+            if ((AUTORIZACIONRETECION == null)) {
+                throw new global::System.ArgumentNullException("AUTORIZACIONRETECION");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[30].Value = ((string)(AUTORIZACIONRETECION));
+            }
+            this.Adapter.InsertCommand.Parameters[31].Value = ((double)(TOTALDEBE));
+            this.Adapter.InsertCommand.Parameters[32].Value = ((double)(TOTALHABER));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    int NUMEROORDENGIRO, 
+                    int IDTIPODOCUMENTO, 
+                    int IDPROVEEDOR, 
+                    string TIPO, 
+                    string PLAZO, 
+                    string CONCEPTO, 
+                    string AUTORIZACIONPROVEEDOR, 
+                    string NUMERODOCUMENTOPROVEEDOR, 
+                    int SERIE1PROVEEDOR, 
+                    int SERIE2PROVEEDOR, 
+                    bool RISE, 
+                    bool DECLARASRI, 
+                    bool RETENCIONMANUAL, 
+                    System.DateTime FECHADOCUMENTO, 
+                    System.DateTime FECHACONTABILIZACION, 
+                    System.DateTime FECHAORDENGIRO, 
+                    System.DateTime FECHAVIGENTE, 
+                    int IDEMCABEZADOCOMPRA, 
+                    double TOTAL, 
+                    double VALORAPAGAR, 
+                    double SALDO, 
+                    int CUENTADEUDORA0, 
+                    int CUENTADEUDORA12, 
+                    int CUENTADEUDORAIRBP, 
+                    int CUENTAIVAPORPAGAR, 
+                    System.DateTime FECHARETENCION, 
+                    System.DateTime FECHAVENCEDOCUMENTO, 
+                    int SERIE1RETENCION, 
+                    int SERIE2RETENCION, 
+                    int NUMERORETECION, 
+                    string AUTORIZACIONRETECION, 
+                    double TOTALDEBE, 
+                    double TOTALHABER, 
+                    int Original_IDORDENGIRO, 
+                    int Original_NUMEROORDENGIRO, 
+                    int Original_IDTIPODOCUMENTO, 
+                    int Original_IDPROVEEDOR, 
+                    string Original_TIPO, 
+                    string Original_PLAZO, 
+                    string Original_CONCEPTO, 
+                    string Original_AUTORIZACIONPROVEEDOR, 
+                    string Original_NUMERODOCUMENTOPROVEEDOR, 
+                    int Original_SERIE1PROVEEDOR, 
+                    int Original_SERIE2PROVEEDOR, 
+                    bool Original_RISE, 
+                    bool Original_DECLARASRI, 
+                    bool Original_RETENCIONMANUAL, 
+                    System.DateTime Original_FECHADOCUMENTO, 
+                    System.DateTime Original_FECHACONTABILIZACION, 
+                    System.DateTime Original_FECHAORDENGIRO, 
+                    System.DateTime Original_FECHAVIGENTE, 
+                    int Original_IDEMCABEZADOCOMPRA, 
+                    double Original_TOTAL, 
+                    double Original_VALORAPAGAR, 
+                    double Original_SALDO, 
+                    int Original_CUENTADEUDORA0, 
+                    int Original_CUENTADEUDORA12, 
+                    int Original_CUENTADEUDORAIRBP, 
+                    int Original_CUENTAIVAPORPAGAR, 
+                    System.DateTime Original_FECHARETENCION, 
+                    System.DateTime Original_FECHAVENCEDOCUMENTO, 
+                    int Original_SERIE1RETENCION, 
+                    int Original_SERIE2RETENCION, 
+                    int Original_NUMERORETECION, 
+                    string Original_AUTORIZACIONRETECION, 
+                    double Original_TOTALDEBE, 
+                    double Original_TOTALHABER, 
+                    int IDORDENGIRO) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(NUMEROORDENGIRO));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(IDTIPODOCUMENTO));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(IDPROVEEDOR));
+            if ((TIPO == null)) {
+                throw new global::System.ArgumentNullException("TIPO");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(TIPO));
+            }
+            if ((PLAZO == null)) {
+                throw new global::System.ArgumentNullException("PLAZO");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(PLAZO));
+            }
+            if ((CONCEPTO == null)) {
+                throw new global::System.ArgumentNullException("CONCEPTO");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(CONCEPTO));
+            }
+            if ((AUTORIZACIONPROVEEDOR == null)) {
+                throw new global::System.ArgumentNullException("AUTORIZACIONPROVEEDOR");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(AUTORIZACIONPROVEEDOR));
+            }
+            if ((NUMERODOCUMENTOPROVEEDOR == null)) {
+                throw new global::System.ArgumentNullException("NUMERODOCUMENTOPROVEEDOR");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(NUMERODOCUMENTOPROVEEDOR));
+            }
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(SERIE1PROVEEDOR));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(SERIE2PROVEEDOR));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(RISE));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(DECLARASRI));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((bool)(RETENCIONMANUAL));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((System.DateTime)(FECHADOCUMENTO));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((System.DateTime)(FECHACONTABILIZACION));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((System.DateTime)(FECHAORDENGIRO));
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((System.DateTime)(FECHAVIGENTE));
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(IDEMCABEZADOCOMPRA));
+            this.Adapter.UpdateCommand.Parameters[18].Value = ((double)(TOTAL));
+            this.Adapter.UpdateCommand.Parameters[19].Value = ((double)(VALORAPAGAR));
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((double)(SALDO));
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((int)(CUENTADEUDORA0));
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((int)(CUENTADEUDORA12));
+            this.Adapter.UpdateCommand.Parameters[23].Value = ((int)(CUENTADEUDORAIRBP));
+            this.Adapter.UpdateCommand.Parameters[24].Value = ((int)(CUENTAIVAPORPAGAR));
+            this.Adapter.UpdateCommand.Parameters[25].Value = ((System.DateTime)(FECHARETENCION));
+            this.Adapter.UpdateCommand.Parameters[26].Value = ((System.DateTime)(FECHAVENCEDOCUMENTO));
+            this.Adapter.UpdateCommand.Parameters[27].Value = ((int)(SERIE1RETENCION));
+            this.Adapter.UpdateCommand.Parameters[28].Value = ((int)(SERIE2RETENCION));
+            this.Adapter.UpdateCommand.Parameters[29].Value = ((int)(NUMERORETECION));
+            if ((AUTORIZACIONRETECION == null)) {
+                throw new global::System.ArgumentNullException("AUTORIZACIONRETECION");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((string)(AUTORIZACIONRETECION));
+            }
+            this.Adapter.UpdateCommand.Parameters[31].Value = ((double)(TOTALDEBE));
+            this.Adapter.UpdateCommand.Parameters[32].Value = ((double)(TOTALHABER));
+            this.Adapter.UpdateCommand.Parameters[33].Value = ((int)(Original_IDORDENGIRO));
+            this.Adapter.UpdateCommand.Parameters[34].Value = ((int)(Original_NUMEROORDENGIRO));
+            this.Adapter.UpdateCommand.Parameters[35].Value = ((int)(Original_IDTIPODOCUMENTO));
+            this.Adapter.UpdateCommand.Parameters[36].Value = ((int)(Original_IDPROVEEDOR));
+            if ((Original_TIPO == null)) {
+                throw new global::System.ArgumentNullException("Original_TIPO");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[37].Value = ((string)(Original_TIPO));
+            }
+            if ((Original_PLAZO == null)) {
+                throw new global::System.ArgumentNullException("Original_PLAZO");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[38].Value = ((string)(Original_PLAZO));
+            }
+            if ((Original_CONCEPTO == null)) {
+                throw new global::System.ArgumentNullException("Original_CONCEPTO");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[39].Value = ((string)(Original_CONCEPTO));
+            }
+            if ((Original_AUTORIZACIONPROVEEDOR == null)) {
+                throw new global::System.ArgumentNullException("Original_AUTORIZACIONPROVEEDOR");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[40].Value = ((string)(Original_AUTORIZACIONPROVEEDOR));
+            }
+            if ((Original_NUMERODOCUMENTOPROVEEDOR == null)) {
+                throw new global::System.ArgumentNullException("Original_NUMERODOCUMENTOPROVEEDOR");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[41].Value = ((string)(Original_NUMERODOCUMENTOPROVEEDOR));
+            }
+            this.Adapter.UpdateCommand.Parameters[42].Value = ((int)(Original_SERIE1PROVEEDOR));
+            this.Adapter.UpdateCommand.Parameters[43].Value = ((int)(Original_SERIE2PROVEEDOR));
+            this.Adapter.UpdateCommand.Parameters[44].Value = ((bool)(Original_RISE));
+            this.Adapter.UpdateCommand.Parameters[45].Value = ((bool)(Original_DECLARASRI));
+            this.Adapter.UpdateCommand.Parameters[46].Value = ((bool)(Original_RETENCIONMANUAL));
+            this.Adapter.UpdateCommand.Parameters[47].Value = ((System.DateTime)(Original_FECHADOCUMENTO));
+            this.Adapter.UpdateCommand.Parameters[48].Value = ((System.DateTime)(Original_FECHACONTABILIZACION));
+            this.Adapter.UpdateCommand.Parameters[49].Value = ((System.DateTime)(Original_FECHAORDENGIRO));
+            this.Adapter.UpdateCommand.Parameters[50].Value = ((System.DateTime)(Original_FECHAVIGENTE));
+            this.Adapter.UpdateCommand.Parameters[51].Value = ((int)(Original_IDEMCABEZADOCOMPRA));
+            this.Adapter.UpdateCommand.Parameters[52].Value = ((double)(Original_TOTAL));
+            this.Adapter.UpdateCommand.Parameters[53].Value = ((double)(Original_VALORAPAGAR));
+            this.Adapter.UpdateCommand.Parameters[54].Value = ((double)(Original_SALDO));
+            this.Adapter.UpdateCommand.Parameters[55].Value = ((int)(Original_CUENTADEUDORA0));
+            this.Adapter.UpdateCommand.Parameters[56].Value = ((int)(Original_CUENTADEUDORA12));
+            this.Adapter.UpdateCommand.Parameters[57].Value = ((int)(Original_CUENTADEUDORAIRBP));
+            this.Adapter.UpdateCommand.Parameters[58].Value = ((int)(Original_CUENTAIVAPORPAGAR));
+            this.Adapter.UpdateCommand.Parameters[59].Value = ((System.DateTime)(Original_FECHARETENCION));
+            this.Adapter.UpdateCommand.Parameters[60].Value = ((System.DateTime)(Original_FECHAVENCEDOCUMENTO));
+            this.Adapter.UpdateCommand.Parameters[61].Value = ((int)(Original_SERIE1RETENCION));
+            this.Adapter.UpdateCommand.Parameters[62].Value = ((int)(Original_SERIE2RETENCION));
+            this.Adapter.UpdateCommand.Parameters[63].Value = ((int)(Original_NUMERORETECION));
+            if ((Original_AUTORIZACIONRETECION == null)) {
+                throw new global::System.ArgumentNullException("Original_AUTORIZACIONRETECION");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[64].Value = ((string)(Original_AUTORIZACIONRETECION));
+            }
+            this.Adapter.UpdateCommand.Parameters[65].Value = ((double)(Original_TOTALDEBE));
+            this.Adapter.UpdateCommand.Parameters[66].Value = ((double)(Original_TOTALHABER));
+            this.Adapter.UpdateCommand.Parameters[67].Value = ((int)(IDORDENGIRO));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    int NUMEROORDENGIRO, 
+                    int IDTIPODOCUMENTO, 
+                    int IDPROVEEDOR, 
+                    string TIPO, 
+                    string PLAZO, 
+                    string CONCEPTO, 
+                    string AUTORIZACIONPROVEEDOR, 
+                    string NUMERODOCUMENTOPROVEEDOR, 
+                    int SERIE1PROVEEDOR, 
+                    int SERIE2PROVEEDOR, 
+                    bool RISE, 
+                    bool DECLARASRI, 
+                    bool RETENCIONMANUAL, 
+                    System.DateTime FECHADOCUMENTO, 
+                    System.DateTime FECHACONTABILIZACION, 
+                    System.DateTime FECHAORDENGIRO, 
+                    System.DateTime FECHAVIGENTE, 
+                    int IDEMCABEZADOCOMPRA, 
+                    double TOTAL, 
+                    double VALORAPAGAR, 
+                    double SALDO, 
+                    int CUENTADEUDORA0, 
+                    int CUENTADEUDORA12, 
+                    int CUENTADEUDORAIRBP, 
+                    int CUENTAIVAPORPAGAR, 
+                    System.DateTime FECHARETENCION, 
+                    System.DateTime FECHAVENCEDOCUMENTO, 
+                    int SERIE1RETENCION, 
+                    int SERIE2RETENCION, 
+                    int NUMERORETECION, 
+                    string AUTORIZACIONRETECION, 
+                    double TOTALDEBE, 
+                    double TOTALHABER, 
+                    int Original_IDORDENGIRO, 
+                    int Original_NUMEROORDENGIRO, 
+                    int Original_IDTIPODOCUMENTO, 
+                    int Original_IDPROVEEDOR, 
+                    string Original_TIPO, 
+                    string Original_PLAZO, 
+                    string Original_CONCEPTO, 
+                    string Original_AUTORIZACIONPROVEEDOR, 
+                    string Original_NUMERODOCUMENTOPROVEEDOR, 
+                    int Original_SERIE1PROVEEDOR, 
+                    int Original_SERIE2PROVEEDOR, 
+                    bool Original_RISE, 
+                    bool Original_DECLARASRI, 
+                    bool Original_RETENCIONMANUAL, 
+                    System.DateTime Original_FECHADOCUMENTO, 
+                    System.DateTime Original_FECHACONTABILIZACION, 
+                    System.DateTime Original_FECHAORDENGIRO, 
+                    System.DateTime Original_FECHAVIGENTE, 
+                    int Original_IDEMCABEZADOCOMPRA, 
+                    double Original_TOTAL, 
+                    double Original_VALORAPAGAR, 
+                    double Original_SALDO, 
+                    int Original_CUENTADEUDORA0, 
+                    int Original_CUENTADEUDORA12, 
+                    int Original_CUENTADEUDORAIRBP, 
+                    int Original_CUENTAIVAPORPAGAR, 
+                    System.DateTime Original_FECHARETENCION, 
+                    System.DateTime Original_FECHAVENCEDOCUMENTO, 
+                    int Original_SERIE1RETENCION, 
+                    int Original_SERIE2RETENCION, 
+                    int Original_NUMERORETECION, 
+                    string Original_AUTORIZACIONRETECION, 
+                    double Original_TOTALDEBE, 
+                    double Original_TOTALHABER) {
+            return this.Update(NUMEROORDENGIRO, IDTIPODOCUMENTO, IDPROVEEDOR, TIPO, PLAZO, CONCEPTO, AUTORIZACIONPROVEEDOR, NUMERODOCUMENTOPROVEEDOR, SERIE1PROVEEDOR, SERIE2PROVEEDOR, RISE, DECLARASRI, RETENCIONMANUAL, FECHADOCUMENTO, FECHACONTABILIZACION, FECHAORDENGIRO, FECHAVIGENTE, IDEMCABEZADOCOMPRA, TOTAL, VALORAPAGAR, SALDO, CUENTADEUDORA0, CUENTADEUDORA12, CUENTADEUDORAIRBP, CUENTAIVAPORPAGAR, FECHARETENCION, FECHAVENCEDOCUMENTO, SERIE1RETENCION, SERIE2RETENCION, NUMERORETECION, AUTORIZACIONRETECION, TOTALDEBE, TOTALHABER, Original_IDORDENGIRO, Original_NUMEROORDENGIRO, Original_IDTIPODOCUMENTO, Original_IDPROVEEDOR, Original_TIPO, Original_PLAZO, Original_CONCEPTO, Original_AUTORIZACIONPROVEEDOR, Original_NUMERODOCUMENTOPROVEEDOR, Original_SERIE1PROVEEDOR, Original_SERIE2PROVEEDOR, Original_RISE, Original_DECLARASRI, Original_RETENCIONMANUAL, Original_FECHADOCUMENTO, Original_FECHACONTABILIZACION, Original_FECHAORDENGIRO, Original_FECHAVIGENTE, Original_IDEMCABEZADOCOMPRA, Original_TOTAL, Original_VALORAPAGAR, Original_SALDO, Original_CUENTADEUDORA0, Original_CUENTADEUDORA12, Original_CUENTADEUDORAIRBP, Original_CUENTAIVAPORPAGAR, Original_FECHARETENCION, Original_FECHAVENCEDOCUMENTO, Original_SERIE1RETENCION, Original_SERIE2RETENCION, Original_NUMERORETECION, Original_AUTORIZACIONRETECION, Original_TOTALDEBE, Original_TOTALHABER, Original_IDORDENGIRO);
+        }
+    }
+    
+    /// <summary>
+    ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerDesigner, Microsoft.VSD" +
+        "esigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapterManager")]
+    public partial class TableAdapterManager : global::System.ComponentModel.Component {
+        
+        private UpdateOrderOption _updateOrder;
+        
+        private TbEncabezadoOrdenGiroTableAdapter _tbEncabezadoOrdenGiroTableAdapter;
+        
+        private bool _backupDataSetBeforeUpdate;
+        
+        private global::System.Data.IDbConnection _connection;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public UpdateOrderOption UpdateOrder {
+            get {
+                return this._updateOrder;
+            }
+            set {
+                this._updateOrder = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public TbEncabezadoOrdenGiroTableAdapter TbEncabezadoOrdenGiroTableAdapter {
+            get {
+                return this._tbEncabezadoOrdenGiroTableAdapter;
+            }
+            set {
+                this._tbEncabezadoOrdenGiroTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool BackupDataSetBeforeUpdate {
+            get {
+                return this._backupDataSetBeforeUpdate;
+            }
+            set {
+                this._backupDataSetBeforeUpdate = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        public global::System.Data.IDbConnection Connection {
+            get {
+                if ((this._connection != null)) {
+                    return this._connection;
+                }
+                if (((this._tbEncabezadoOrdenGiroTableAdapter != null) 
+                            && (this._tbEncabezadoOrdenGiroTableAdapter.Connection != null))) {
+                    return this._tbEncabezadoOrdenGiroTableAdapter.Connection;
+                }
+                return null;
+            }
+            set {
+                this._connection = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        public int TableAdapterInstanceCount {
+            get {
+                int count = 0;
+                if ((this._tbEncabezadoOrdenGiroTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                return count;
+            }
+        }
+        
+        /// <summary>
+        ///Update rows in top-down order.
+        ///</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private int UpdateUpdatedRows(dtOG dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+            int result = 0;
+            if ((this._tbEncabezadoOrdenGiroTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.TbEncabezadoOrdenGiro.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._tbEncabezadoOrdenGiroTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            return result;
+        }
+        
+        /// <summary>
+        ///Insert rows in top-down order.
+        ///</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private int UpdateInsertedRows(dtOG dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+            int result = 0;
+            if ((this._tbEncabezadoOrdenGiroTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.TbEncabezadoOrdenGiro.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._tbEncabezadoOrdenGiroTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            return result;
+        }
+        
+        /// <summary>
+        ///Delete rows in bottom-up order.
+        ///</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private int UpdateDeletedRows(dtOG dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+            int result = 0;
+            if ((this._tbEncabezadoOrdenGiroTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.TbEncabezadoOrdenGiro.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._tbEncabezadoOrdenGiroTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            return result;
+        }
+        
+        /// <summary>
+        ///Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+        ///</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private global::System.Data.DataRow[] GetRealUpdatedRows(global::System.Data.DataRow[] updatedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+            if (((updatedRows == null) 
+                        || (updatedRows.Length < 1))) {
+                return updatedRows;
+            }
+            if (((allAddedRows == null) 
+                        || (allAddedRows.Count < 1))) {
+                return updatedRows;
+            }
+            global::System.Collections.Generic.List<global::System.Data.DataRow> realUpdatedRows = new global::System.Collections.Generic.List<global::System.Data.DataRow>();
+            for (int i = 0; (i < updatedRows.Length); i = (i + 1)) {
+                global::System.Data.DataRow row = updatedRows[i];
+                if ((allAddedRows.Contains(row) == false)) {
+                    realUpdatedRows.Add(row);
+                }
+            }
+            return realUpdatedRows.ToArray();
+        }
+        
+        /// <summary>
+        ///Update all changes to the dataset.
+        ///</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public virtual int UpdateAll(dtOG dataSet) {
+            if ((dataSet == null)) {
+                throw new global::System.ArgumentNullException("dataSet");
+            }
+            if ((dataSet.HasChanges() == false)) {
+                return 0;
+            }
+            if (((this._tbEncabezadoOrdenGiroTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._tbEncabezadoOrdenGiroTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("Todos los TableAdapters administrados por un TableAdapterManager deben usar la mi" +
+                        "sma cadena de conexión.");
+            }
+            global::System.Data.IDbConnection workConnection = this.Connection;
+            if ((workConnection == null)) {
+                throw new global::System.ApplicationException("TableAdapterManager no contiene información de conexión. Establezca cada propieda" +
+                        "d TableAdapterManager TableAdapter en una instancia TableAdapter válida.");
+            }
+            bool workConnOpened = false;
+            if (((workConnection.State & global::System.Data.ConnectionState.Broken) 
+                        == global::System.Data.ConnectionState.Broken)) {
+                workConnection.Close();
+            }
+            if ((workConnection.State == global::System.Data.ConnectionState.Closed)) {
+                workConnection.Open();
+                workConnOpened = true;
+            }
+            global::System.Data.IDbTransaction workTransaction = workConnection.BeginTransaction();
+            if ((workTransaction == null)) {
+                throw new global::System.ApplicationException("La transacción no puede comenzar. La conexión de datos actual no es compatible co" +
+                        "n las transacciones o el estado actual no permite que comience la transacción.");
+            }
+            global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows = new global::System.Collections.Generic.List<global::System.Data.DataRow>();
+            global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows = new global::System.Collections.Generic.List<global::System.Data.DataRow>();
+            global::System.Collections.Generic.List<global::System.Data.Common.DataAdapter> adaptersWithAcceptChangesDuringUpdate = new global::System.Collections.Generic.List<global::System.Data.Common.DataAdapter>();
+            global::System.Collections.Generic.Dictionary<object, global::System.Data.IDbConnection> revertConnections = new global::System.Collections.Generic.Dictionary<object, global::System.Data.IDbConnection>();
+            int result = 0;
+            global::System.Data.DataSet backupDataSet = null;
+            if (this.BackupDataSetBeforeUpdate) {
+                backupDataSet = new global::System.Data.DataSet();
+                backupDataSet.Merge(dataSet);
+            }
+            try {
+                // ---- Prepare for update -----------
+                //
+                if ((this._tbEncabezadoOrdenGiroTableAdapter != null)) {
+                    revertConnections.Add(this._tbEncabezadoOrdenGiroTableAdapter, this._tbEncabezadoOrdenGiroTableAdapter.Connection);
+                    this._tbEncabezadoOrdenGiroTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._tbEncabezadoOrdenGiroTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._tbEncabezadoOrdenGiroTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._tbEncabezadoOrdenGiroTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._tbEncabezadoOrdenGiroTableAdapter.Adapter);
+                    }
+                }
+                // 
+                //---- Perform updates -----------
+                //
+                if ((this.UpdateOrder == UpdateOrderOption.UpdateInsertDelete)) {
+                    result = (result + this.UpdateUpdatedRows(dataSet, allChangedRows, allAddedRows));
+                    result = (result + this.UpdateInsertedRows(dataSet, allAddedRows));
+                }
+                else {
+                    result = (result + this.UpdateInsertedRows(dataSet, allAddedRows));
+                    result = (result + this.UpdateUpdatedRows(dataSet, allChangedRows, allAddedRows));
+                }
+                result = (result + this.UpdateDeletedRows(dataSet, allChangedRows));
+                // 
+                //---- Commit updates -----------
+                //
+                workTransaction.Commit();
+                if ((0 < allAddedRows.Count)) {
+                    global::System.Data.DataRow[] rows = new System.Data.DataRow[allAddedRows.Count];
+                    allAddedRows.CopyTo(rows);
+                    for (int i = 0; (i < rows.Length); i = (i + 1)) {
+                        global::System.Data.DataRow row = rows[i];
+                        row.AcceptChanges();
+                    }
+                }
+                if ((0 < allChangedRows.Count)) {
+                    global::System.Data.DataRow[] rows = new System.Data.DataRow[allChangedRows.Count];
+                    allChangedRows.CopyTo(rows);
+                    for (int i = 0; (i < rows.Length); i = (i + 1)) {
+                        global::System.Data.DataRow row = rows[i];
+                        row.AcceptChanges();
+                    }
+                }
+            }
+            catch (global::System.Exception ex) {
+                workTransaction.Rollback();
+                // ---- Restore the dataset -----------
+                if (this.BackupDataSetBeforeUpdate) {
+                    global::System.Diagnostics.Debug.Assert((backupDataSet != null));
+                    dataSet.Clear();
+                    dataSet.Merge(backupDataSet);
+                }
+                else {
+                    if ((0 < allAddedRows.Count)) {
+                        global::System.Data.DataRow[] rows = new System.Data.DataRow[allAddedRows.Count];
+                        allAddedRows.CopyTo(rows);
+                        for (int i = 0; (i < rows.Length); i = (i + 1)) {
+                            global::System.Data.DataRow row = rows[i];
+                            row.AcceptChanges();
+                            row.SetAdded();
+                        }
+                    }
+                }
+                throw ex;
+            }
+            finally {
+                if (workConnOpened) {
+                    workConnection.Close();
+                }
+                if ((this._tbEncabezadoOrdenGiroTableAdapter != null)) {
+                    this._tbEncabezadoOrdenGiroTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tbEncabezadoOrdenGiroTableAdapter]));
+                    this._tbEncabezadoOrdenGiroTableAdapter.Transaction = null;
+                }
+                if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
+                    global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];
+                    adaptersWithAcceptChangesDuringUpdate.CopyTo(adapters);
+                    for (int i = 0; (i < adapters.Length); i = (i + 1)) {
+                        global::System.Data.Common.DataAdapter adapter = adapters[i];
+                        adapter.AcceptChangesDuringUpdate = true;
+                    }
+                }
+            }
+            return result;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected virtual void SortSelfReferenceRows(global::System.Data.DataRow[] rows, global::System.Data.DataRelation relation, bool childFirst) {
+            global::System.Array.Sort<global::System.Data.DataRow>(rows, new SelfReferenceComparer(relation, childFirst));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected virtual bool MatchTableAdapterConnection(global::System.Data.IDbConnection inputConnection) {
+            if ((this._connection != null)) {
+                return true;
+            }
+            if (((this.Connection == null) 
+                        || (inputConnection == null))) {
+                return true;
+            }
+            if (string.Equals(this.Connection.ConnectionString, inputConnection.ConnectionString, global::System.StringComparison.Ordinal)) {
+                return true;
+            }
+            return false;
+        }
+        
+        /// <summary>
+        ///Update Order Option
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public enum UpdateOrderOption {
+            
+            InsertUpdateDelete = 0,
+            
+            UpdateInsertDelete = 1,
+        }
+        
+        /// <summary>
+        ///Used to sort self-referenced table's rows
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private class SelfReferenceComparer : object, global::System.Collections.Generic.IComparer<global::System.Data.DataRow> {
+            
+            private global::System.Data.DataRelation _relation;
+            
+            private int _childFirst;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal SelfReferenceComparer(global::System.Data.DataRelation relation, bool childFirst) {
+                this._relation = relation;
+                if (childFirst) {
+                    this._childFirst = -1;
+                }
+                else {
+                    this._childFirst = 1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private global::System.Data.DataRow GetRoot(global::System.Data.DataRow row, out int distance) {
+                global::System.Diagnostics.Debug.Assert((row != null));
+                global::System.Data.DataRow root = row;
+                distance = 0;
+
+                global::System.Collections.Generic.IDictionary<global::System.Data.DataRow, global::System.Data.DataRow> traversedRows = new global::System.Collections.Generic.Dictionary<global::System.Data.DataRow, global::System.Data.DataRow>();
+                traversedRows[row] = row;
+
+                global::System.Data.DataRow parent = row.GetParentRow(this._relation, global::System.Data.DataRowVersion.Default);
+                for (
+                ; ((parent != null) 
+                            && (traversedRows.ContainsKey(parent) == false)); 
+                ) {
+                    distance = (distance + 1);
+                    root = parent;
+                    traversedRows[parent] = parent;
+                    parent = parent.GetParentRow(this._relation, global::System.Data.DataRowVersion.Default);
+                }
+
+                if ((distance == 0)) {
+                    traversedRows.Clear();
+                    traversedRows[row] = row;
+                    parent = row.GetParentRow(this._relation, global::System.Data.DataRowVersion.Original);
+                    for (
+                    ; ((parent != null) 
+                                && (traversedRows.ContainsKey(parent) == false)); 
+                    ) {
+                        distance = (distance + 1);
+                        root = parent;
+                        traversedRows[parent] = parent;
+                        parent = parent.GetParentRow(this._relation, global::System.Data.DataRowVersion.Original);
+                    }
+                }
+
+                return root;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int Compare(global::System.Data.DataRow row1, global::System.Data.DataRow row2) {
+                if (object.ReferenceEquals(row1, row2)) {
+                    return 0;
+                }
+                if ((row1 == null)) {
+                    return -1;
+                }
+                if ((row2 == null)) {
+                    return 1;
+                }
+
+                int distance1 = 0;
+                global::System.Data.DataRow root1 = this.GetRoot(row1, out distance1);
+
+                int distance2 = 0;
+                global::System.Data.DataRow root2 = this.GetRoot(row2, out distance2);
+
+                if (object.ReferenceEquals(root1, root2)) {
+                    return (this._childFirst * distance1.CompareTo(distance2));
+                }
+                else {
+                    global::System.Diagnostics.Debug.Assert(((root1.Table != null) 
+                                    && (root2.Table != null)));
+                    if ((root1.Table.Rows.IndexOf(root1) < root2.Table.Rows.IndexOf(root2))) {
+                        return -1;
+                    }
+                    else {
+                        return 1;
+                    }
+                }
+            }
         }
     }
 }
