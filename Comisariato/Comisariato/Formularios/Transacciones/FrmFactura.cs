@@ -93,7 +93,7 @@ namespace Comisariato.Formularios.Transacciones
         {
             // this.dgvDetalleProductos.CellValidating += new DataGridViewCellValidatingEventHandler(dgv_validating);
             //propiedadesdgv();
-
+            Program.FormularioVentaAbierto = true;
             Consultas consultas = new Consultas();
             DataTable dt = consultas.BoolDataTable("Select LOGO from TbEmpresa where IDEMPRESA = 1");
             //Arreglo de byte en donde se almacenara la foto en bytes
@@ -334,6 +334,7 @@ namespace Comisariato.Formularios.Transacciones
                             total = (Convert.ToSingle(dgvDetalleProductos.Rows[posicion].Cells[4].Value.ToString()) * Convert.ToInt32(dgvDetalleProductos.Rows[posicion].Cells[2].Value.ToString())) + ivant;
                             //dgvDetalleProductos.CurrentRow.Cells[2].Value = Convert.ToInt32(dgvDetalleProductos.CurrentRow.Cells[2].Value.ToString()) + cantidadanterior;
                             dgvDetalleProductos.Rows[posicion].Cells[6].Value = total.ToString("#####0.00");
+                            //dgvDetalleProductos.Rows[posicion].Cells[6].Value = Math.Round(total,2);
 
                             // LimpiarTexbox();
 
@@ -362,6 +363,7 @@ namespace Comisariato.Formularios.Transacciones
                             total = (Convert.ToSingle(dgvDetalleProductos.Rows[posicion].Cells[4].Value.ToString()) * Convert.ToInt32(dgvDetalleProductos.Rows[posicion].Cells[2].Value.ToString())) + ivant;
                             //dgvDetalleProductos.CurrentRow.Cells[2].Value = Convert.ToInt32(dgvDetalleProductos.CurrentRow.Cells[2].Value.ToString()) + cantidadanterior;
                             dgvDetalleProductos.Rows[posicion].Cells[6].Value = total.ToString("#####0.00");
+                            //dgvDetalleProductos.Rows[posicion].Cells[6].Value = Math.Round(total, 2);
 
                             // LimpiarTexbox();
 
@@ -407,6 +409,7 @@ namespace Comisariato.Formularios.Transacciones
                             total = Convert.ToInt32(dgvDetalleProductos.Rows[posicion].Cells[2].Value.ToString()) * Convert.ToSingle(dgvDetalleProductos.Rows[posicion].Cells[4].Value.ToString());
                             //dgvDetalleProductos.CurrentRow.Cells[2].Value = Convert.ToInt32(dgvDetalleProductos.CurrentRow.Cells[2].Value.ToString()) + cantidadanterior;
                             dgvDetalleProductos.Rows[posicion].Cells[6].Value = total.ToString("#####0.00");
+                            //dgvDetalleProductos.Rows[posicion].Cells[6].Value = Math.Round(total, 2);
                             //LimpiarTexbox();
                             Calcular();
                             pr = true;
@@ -426,6 +429,7 @@ namespace Comisariato.Formularios.Transacciones
                             total = Convert.ToInt32(dgvDetalleProductos.Rows[posicion].Cells[2].Value.ToString()) * Convert.ToSingle(dgvDetalleProductos.Rows[posicion].Cells[4].Value.ToString());
                             //dgvDetalleProductos.CurrentRow.Cells[2].Value = Convert.ToInt32(dgvDetalleProductos.CurrentRow.Cells[2].Value.ToString()) + cantidadanterior;
                             dgvDetalleProductos.Rows[posicion].Cells[6].Value = total.ToString("#####0.00");
+                            //dgvDetalleProductos.Rows[posicion].Cells[6].Value = Math.Round(total, 2);
                             //LimpiarTexbox();
                             Calcular();
                             pr = true;
@@ -471,7 +475,7 @@ namespace Comisariato.Formularios.Transacciones
             dgvDetalleProductos.Rows[fila].Cells[3].Value = txtBodega.Text;
             dgvDetalleProductos.Rows[fila].Cells[4].Value = txtPrecio.Text;
             dgvDetalleProductos.Rows[fila].Cells[5].Value = txtIvaPrecio.Text;
-            dgvDetalleProductos.Rows[fila].Cells[6].Value = total;
+            dgvDetalleProductos.Rows[fila].Cells[6].Value = total.ToString("#####0.00"); ;
             if (rdbCaja.Checked)
             {
                 dgvDetalleProductos.Rows[fila].Cells[8].Value = cantcaja;
@@ -528,7 +532,7 @@ namespace Comisariato.Formularios.Transacciones
                 txtSubTotalIva.Text = sumasubiva.ToString("#####0.00");
                 //totalpagar = sumasub + ivatotal;
                 txtIva.Text = ivatotal.ToString("#####0.00");
-                lblTotalPagar.Text = "" + totalpagar.ToString("#####0.00");
+                lblTotalPagar.Text = "" + Funcion.reemplazarcaracter(totalpagar.ToString("#####0.00"));
                 codactual = "";
                 factenter = 0;
                 LimpiarTexbox();
@@ -604,6 +608,7 @@ namespace Comisariato.Formularios.Transacciones
             f.ShowDialog();
             txtCodigo.Focus();
         }
+
 
         private void txtIdentidicacion_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -857,6 +862,8 @@ namespace Comisariato.Formularios.Transacciones
                             if (MessageBox.Show("¿Deseas Grabar esta Factura?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
                                 grabarfact();
+                                factenter = 0;
+                                escribiendo = false;
                             }
                             else
                             {
@@ -1082,11 +1089,16 @@ namespace Comisariato.Formularios.Transacciones
         {
             try
             {
-                if (estadoiva)
+                if (txtCantidad.Text[0] != '0')
                 {
-                    float iva = ((Convert.ToSingle(txtPrecio.Text) * Convert.ToInt32(txtCantidad.Text)) * ivaporcentaje) / 100;
-                    txtIvaPrecio.Text = iva.ToString("#####0.00");
+
+                    if (estadoiva)
+                    {
+                        float iva = ((Convert.ToSingle(txtPrecio.Text) * Convert.ToInt32(txtCantidad.Text)) * ivaporcentaje) / 100;
+                        txtIvaPrecio.Text = iva.ToString("#####0.00");
+                    }
                 }
+                else { txtCantidad.Text = ""; }
                 
             }
             catch (Exception)
@@ -1128,6 +1140,11 @@ namespace Comisariato.Formularios.Transacciones
                 txtCodigo.Focus();
             }
           
+        }
+
+        private void FrmFactura_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Program.FormularioVentaAbierto = false;
         }
 
         private void dgvDetalleProductos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -1438,7 +1455,7 @@ namespace Comisariato.Formularios.Transacciones
             //ckbEfectivo.Checked = true;
             //ckbCredito.Checked = false;
             dgvDetalleProductos.Rows.Clear();
-            lblTotalPagar.Text = "$ 0.00";
+            lblTotalPagar.Text = "0.00";
             txtSubTotalcero.Text = "0.00";
             txtSubTotalIva.Text = "0.00";
             txtSubTotal.Text = "0.00";
@@ -1538,10 +1555,10 @@ namespace Comisariato.Formularios.Transacciones
                     if (DatosCliente.Count>0)
                     {
                         txtCantidad.Focus();
-                        if (DatosCliente.Count > 0)
-                        {
-                            DatosCliente.Clear();
-                        }
+                        //if (DatosCliente.Count > 0)
+                        //{
+                        //    DatosCliente.Clear();
+                        //}
                     }
                     else
                     {
@@ -1614,21 +1631,27 @@ namespace Comisariato.Formularios.Transacciones
         private void nuevafact()
         {
             verificadorfrm = 0;
+            Consultas Objconsul = new Consultas();
+            //String AUXNUMEROFACTURA = numfact.ToString("D8");
             //MessageBox.Show("" + codigos.Count);
             //if (factEspe == 1)
             //{
-                numfact += 1;
+            numfact += 1;
                 //DatosCliente.Clear();
                 //Ivas.Clear();
             //}
 
-            txtNumFact.Text = numfact.ToString("D8");
+            
+
+            txtNumFact.Text = numfact.ToString("D9");
+            Objconsul.EjecutarSQL("UPDATE [dbo].[TbCajasTalonario] SET [DOCUMENTOACTUAL] = '" + txtNumFact.Text + "'  WHERE  SERIE2 = '" + txtCaja.Text + "' and SERIE1= '" + txtSucursal.Text + "';");
+
             rdbPublico.Checked = true;
             rdbConsumidorFinal.Checked = true;
             //ckbEfectivo.Checked = true;
             //ckbCredito.Checked = false;
             dgvDetalleProductos.Rows.Clear();
-            lblTotalPagar.Text = "$ 0.00";
+            lblTotalPagar.Text = "0.00";
             txtSubTotalcero.Text = "0.00";
             txtSubTotalIva.Text = "0.00";
             txtSubTotal.Text = "0.00";

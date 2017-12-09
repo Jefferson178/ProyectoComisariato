@@ -375,18 +375,13 @@ namespace Comisariato.Clases
             this.codigo_101 = codigo_101;
             this.celularResponsable = celularResponsable;
         }
-        public string InsertarProveedor()
+        public string InsertarProveedor(Proveedor ObjProvee)
         {
             ObjConsulta = new Consultas();
 
             if (!ObjConsulta.Existe("IDENTIFICACION", identificacion, "TbProveedor"))
             {
-                if (ObjConsulta.EjecutarSQL("Insert into [dbo].[TbProveedor] ([CODIGO],[NOMBRES],[TIPOIDENTIFICACION],[IDENTIFICACION],[NACIONALIDAD],[NATURALEZA],[DIRECCION]" +
-           ",[RAZONSOCIAL],[TELEFONO],[CELULAR],[RESPONSABLE],[TIPOSERVICIO],[PLAZO],[EMAIL],[GIRACHEQUEA],[IDPARROQUIA],[TIPOGASTO],[FAX]"+
-           ",[ESTADO],[PROVEEDORRISE],[IDCuentaContable],[CREDITO],[ICE],[CODIGO_101],[CELULAR_RESPONSABLE]) " +
-                    " VALUES ('"+ codigo.ToUpper() +"','" + nombres.ToUpper() + "','"+ tipoIdentificacion.ToUpper() +"','" + identificacion.ToUpper() + "','" + nacionalidad.ToUpper() + "','" + naturaleza.ToUpper() + "','" + direccion.ToUpper() + 
-                    "','" + razosocial.ToUpper() + "','" + telefono + "','" + celular + "','" + responsable.ToUpper() + "','" + tiposervicio.ToUpper() + "','" + plazo.ToUpper() +
-                    "','" + email.ToUpper() + "','" + giracheque.ToUpper() + "'," + idparroquia + ",'" + tipogasto.ToUpper() + "','" + fax +  "','" + estado +"','" + riseproveedor + "',"+IDCuentaContable+","+credito+","+ice+","+codigo_101+",'"+celularResponsable+"');"))
+                if (ObjConsulta.EjecutarPROCEDUREProveedor(ObjProvee))
                 {
                     return "Datos Guardados";
                 }
@@ -458,15 +453,16 @@ namespace Comisariato.Clases
             else { return "Existe"; }
         }
 
-        public void InsertarAutorizacionProveedor(DataGridView dgv, int idproveedor)
+        public void InsertarAutorizacionProveedor(DataGridView dgv, string identificacionProve)
         {
             try
             {
+                String idproveedor = ObjConsulta.ObtenerValorCampo("IDPROVEEDOR", "TbProveedor", "where TbProveedor.IDENTIFICACION = '"+identificacionProve+"'");
                 for (int i = 0; i < dgv.RowCount; i++)
                 {
                     if (dgv.Rows[i].Cells[0].Value != null && dgv.Rows[i].Cells[1].Value != null && dgv.Rows[i].Cells[2].Value != null && dgv.Rows[i].Cells[3].Value != null && dgv.Rows[i].Cells[4].Value != null && dgv.Rows[i].Cells[5] != null)
                     {
-                        InsertarTablaAutorizacionProveedor(dgv.Rows[i].Cells[0].Value.ToString(), dgv.Rows[i].Cells[1].Value.ToString(), dgv.Rows[i].Cells[2].Value.ToString(), dgv.Rows[i].Cells[3].Value.ToString(), dgv.Rows[i].Cells[4].Value.ToString(), dgv.Rows[i].Cells[5].Value.ToString(), idproveedor);
+                        InsertarTablaAutorizacionProveedor(dgv.Rows[i].Cells[0].Value.ToString(), dgv.Rows[i].Cells[1].Value.ToString(), dgv.Rows[i].Cells[2].Value.ToString(), dgv.Rows[i].Cells[3].Value.ToString(), dgv.Rows[i].Cells[4].Value.ToString(), dgv.Rows[i].Cells[5].Value.ToString(), Convert.ToInt32(idproveedor));
                     }
                     else {
                         //MessageBox.Show("Ingrese los Datos de Autorizacion Completos");
@@ -480,15 +476,16 @@ namespace Comisariato.Clases
                 //throw;
             }
         }
-        public void InsertarRetencion(DataGridView dgv, int idproveedor)
+        public void InsertarRetencion(DataGridView dgv, string identificacionProve)
         {
             try
             {
+                String idproveedor = ObjConsulta.ObtenerValorCampo("IDPROVEEDOR", "TbProveedor", "where TbProveedor.IDENTIFICACION = '" + identificacionProve + "'");
                 for (int i = 0; i < dgv.RowCount; i++)
                 {
                     if (dgv.Rows[i].Cells[0].Value.ToString() != "")
                     {
-                        InsertarTablaRetencion(idproveedor, Convert.ToInt32(dgv.Rows[i].Cells[0].Value));
+                        InsertarTablaRetencion(Convert.ToInt32(idproveedor), Convert.ToInt32(dgv.Rows[i].Cells[0].Value));
                     }
                     else
                     {

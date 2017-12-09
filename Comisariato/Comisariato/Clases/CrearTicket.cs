@@ -194,7 +194,7 @@ namespace Comisariato.Clases
         }
 
         //Metodo para agregar los totales d ela venta
-        public void AgregarTotales(string texto, float total)
+        public void AgregarTotales(string texto, double total)
         {
             //Variables que usaremos
             string resumen, valor, textoCompleto, espacios = "";
@@ -208,17 +208,30 @@ namespace Comisariato.Clases
             { resumen = texto; }
 
             textoCompleto = resumen;
-            valor = total.ToString("$ "+"#,#.00");//Agregamos el total previo formateo.
+            valor = total.ToString(""+"#,#.00");//Agregamos el total previo formateo.
+
+
+            if (total == 0 || valor[0] == ',')
+            {
+                valor = "0" + valor;
+            }
 
             //Obtenemos el numero de espacios restantes para alinearlos a la derecha
-            int nroEspacios = maxCar - (resumen.Length + valor.Length);
+            int nroEspacios = maxCar - (resumen.Length + valor.Length+2);
             //agregamos los espacios
             for (int i = 0; i < nroEspacios; i++)
             {
                 espacios += " ";
             }
-            textoCompleto += espacios + valor;
-            linea.AppendLine(textoCompleto);
+            if (total==0)
+            {
+                textoCompleto += espacios+"$ " + "0.00";
+            }
+            else
+            {
+                textoCompleto += espacios + "$ " + valor;
+            }
+            linea.AppendLine(Funcion.reemplazarcaracter(textoCompleto));
         }
 
         //Metodo para agreagar articulos al ticket de venta
@@ -230,7 +243,7 @@ namespace Comisariato.Clases
                 string elemento = "", espacios = "";
                 bool bandera = false;//Indicara si es la primera linea que se escribe cuando bajemos a la segunda si el nombre del articulo no entra en la primera linea
                 int nroEspacios = 0;
-
+                articulo = articulo.Substring(0, 15);
                 //Si el nombre o descripcion del articulo es mayor a 20, bajar a la siguiente linea
                 if (articulo.Length > 20)
                 {
@@ -317,7 +330,7 @@ namespace Comisariato.Clases
                     }
                     elemento += espacios + importe;
 
-                    linea.AppendLine(elemento);//Agregamos todo el elemento: nombre del articulo, cant, precio, importe.
+                    linea.AppendLine(Funcion.reemplazarcaracter(elemento));//Agregamos todo el elemento: nombre del articulo, cant, precio, importe.
                 }
             }
             else
@@ -394,7 +407,6 @@ namespace Comisariato.Clases
         }
 
     }
-
 
     //Clase para mandara a imprimir texto plano a la impresora
     public class RawPrinterHelper

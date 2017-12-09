@@ -491,6 +491,7 @@ namespace Comisariato.Formularios.Transacciones
                 if (txtEfectivo.Text=="")
                 {
                     txtCambio.Text = "0.00";
+                    txtRecibido.Text = "0.00";
                 }
                 else
                 {
@@ -703,7 +704,7 @@ namespace Comisariato.Formularios.Transacciones
                 int idclientebd = Program.em.Idcliente;
                 //string ivastring = Funcion.reemplazarcaracter(ivabd.ToString());
                 //string des = Funcion.reemplazarcaracter(descuentobd.ToString());
-                if (Convert.ToSingle(txtRecibido.Text) >= total)
+                if (Convert.ToDouble(Funcion.reemplazarcaracterViceversa(txtRecibido.Text)) >= Convert.ToDouble(total))
                 {
                     List<string> encabezadofact = new List<string>();
                     List<string> detallepago = new List<string>();
@@ -768,6 +769,7 @@ namespace Comisariato.Formularios.Transacciones
 
                         Imprimirfact();
                         FrmFactura.verificadorfrm = 3;
+
                         this.Close();
 
                     }
@@ -802,24 +804,26 @@ namespace Comisariato.Formularios.Transacciones
             ticket.AbreCajon();//Para abrir el cajon de dinero.
 
             //De aqui en adelante pueden formar su ticket a su gusto... Les muestro un ejemplo
-            string fechaf = Program.FecaInicio;
+            string fechactual = DateTime.Now.Date.ToShortDateString();
+            //int añoactual = DateTime.Now.Date.Year;
+            string fechaexpira = DateTime.Now.Date.AddYears(1).ToShortDateString();
             int sucursal= Program.em.Sucursal;
             int numcaja = Program.em.Caja;
             int numfac = Program.em.Numfact;
             //Datos de la cabecera del Ticket.
             ticket.TextoCentro("EMPRESA: "+Program.nombreempresa);
             ticket.TextoCentro("RUC: "+Program.rucempresa);
-            ticket.TextoIzquierda("Direccion: "+Program.direccionempresa);
-            ticket.TextoIzquierda("Valido: "+ fechaf+" Hasta: " +fechaf);
+            ticket.TextoIzquierda(Program.direccionempresa);
+            ticket.TextoIzquierda("Valido: "+ fechactual + " Hasta: " + fechaexpira);
             ticket.TextoIzquierda("Clave: 4530000");
-            ticket.TextoIzquierda("        Factura: "+sucursal.ToString("D4") + "-"+numcaja.ToString("D4") + "-"+numfac.ToString("D8"));
+            ticket.TextoIzquierda("        Factura #: "+sucursal.ToString("D3") + "-"+numcaja.ToString("D3") + "-"+numfac.ToString("D8"));
             ticket.TextoIzquierda("         Informacion del Consumidor");//Es el mio por si me quieren contactar ...
             ticket.TextoIzquierda("RUC: "+identificacion);
             ticket.TextoIzquierda("Cliente: "+nombre);
             ticket.TextoIzquierda("Facturado: "+Program.Usuario);
-            ticket.TextoIzquierda("# CAJA: " + numcaja.ToString("D4"));
+            ticket.TextoIzquierda("# CAJA: " + numcaja.ToString("D3"));
             string[] h = DateTime.Now.TimeOfDay.ToString().Split('.');
-            ticket.TextoIzquierda("Fecha: "+Program.FecaInicio+"          "+ h[0]);
+            ticket.TextoIzquierda("Fecha: "+ fechactual + "          "+ h[0]);
             if (ckbCheque.Checked && ckbEfectivo.Checked && ckbTarjeta.Checked)
             {
                 ticket.TextoIzquierda("Tipo de pago: Efectivo - Cheque - T. Credito");
@@ -869,36 +873,45 @@ namespace Comisariato.Formularios.Transacciones
             }
             ticket.lineasAsteriscos();
 
-            float imsubtotal=0, imivasuma=0,subtotaliva=0;
+            double imsubtotal=0F, imivasuma=0F,subtotaliva=0F;
             //Articulos a vender.
             ticket.EncabezadoVenta();//NOMBRE DEL ARTICULO, CANT, PRECIO, IMPORTE
             ticket.lineasAsteriscos();
             //Si tiene una DataGridView donde estan sus articulos a vender pueden usar esta manera para agregarlos al ticket.
             for (int i = 0; i < totalfilas; i++)//dgvLista es el nombre del datagridview
             {
-                float total = Convert.ToSingle(dg.Rows[i].Cells[4].Value.ToString()) * Convert.ToInt32(dg.Rows[i].Cells[2].Value.ToString());
-                if (Convert.ToSingle( dg.Rows[i].Cells[5].Value.ToString())!=0)
+                double total = Convert.ToDouble(dg.Rows[i].Cells[4].Value.ToString()) * Convert.ToInt32(dg.Rows[i].Cells[2].Value.ToString());
+                if (Convert.ToSingle(dg.Rows[i].Cells[5].Value.ToString()) != 0)
                 {
-                    ticket.AgregaArticulo("*"+dg.Rows[i].Cells[1].Value.ToString(), int.Parse(dg.Rows[i].Cells[2].Value.ToString()),
-                Convert.ToSingle(dg.Rows[i].Cells[4].Value).ToString("#####0.00"), total.ToString("#####0.00"));
+                    //Double PRECIO_ConIVa = (total + Convert.ToDouble(dg.Rows[i].Cells[5].Value));
+                    //ticket.AgregaArticulo("*" + dg.Rows[i].Cells[1].Value.ToString(), int.Parse(dg.Rows[i].Cells[2].Value.ToString()),
+                    //Convert.ToSingle(dg.Rows[i].Cells[4].Value).ToString("#####0.00"), total.ToString("#####0.00"));
+                    ticket.AgregaArticulo("*" + dg.Rows[i].Cells[1].Value.ToString(), int.Parse(dg.Rows[i].Cells[2].Value.ToString()),
+                    Convert.ToSingle(dg.Rows[i].Cells[4].Value).ToString("#####0.00"), total.ToString("#####0.00"));
 
-                    imivasuma += Convert.ToSingle(dg.Rows[i].Cells[5].Value.ToString());
-                    subtotaliva += Convert.ToSingle(dg.Rows[i].Cells[6].Value.ToString());
+                    imivasuma += Convert.ToDouble(dg.Rows[i].Cells[5].Value);
+                    subtotaliva += Convert.ToSingle(dg.Rows[i].Cells[4].Value.ToString());
+                    //subtotaliva += (total + Convert.ToDouble(dg.Rows[i].Cells[5].Value));
                 }
                 else {
-                    ticket.AgregaArticulo(" "+dg.Rows[i].Cells[1].Value.ToString(), int.Parse(dg.Rows[i].Cells[2].Value.ToString()),
+                    ticket.AgregaArticulo(" " + dg.Rows[i].Cells[1].Value.ToString(), int.Parse(dg.Rows[i].Cells[2].Value.ToString()),
                 Convert.ToSingle(dg.Rows[i].Cells[4].Value).ToString("#####0.00"), total.ToString("#####0.00"));
+
+                    //imsubtotal += Convert.ToSingle(dg.Rows[i].Cells[4].Value.ToString());
+                    imsubtotal += total;
                 }
-                imsubtotal += total;
+                //imsubtotal += total;
             }
-           
+            imsubtotal = Math.Round(imsubtotal, 2);
+            subtotaliva = Math.Round(subtotaliva, 2);
+            imivasuma = Math.Round(imivasuma, 2);
             ticket.lineasAsteriscos();
             //Resumen de la venta. Sólo son ejemplos
-            ticket.AgregarTotales("SUBTOTAL ",Convert.ToSingle(Funcion.reemplazarcaracter(Convert.ToString(imsubtotal))));
-            ticket.AgregarTotales("SUBTOTAL 12% ", Convert.ToSingle(Funcion.reemplazarcaracter(Convert.ToString(subtotaliva))));
-            ticket.AgregarTotales("Descuento", Convert.ToSingle(Funcion.reemplazarcaracter(descuento)));
-            ticket.AgregarTotales("Iva 12%  ", Convert.ToSingle(Funcion.reemplazarcaracter(Convert.ToString(imivasuma))));
-            ticket.AgregarTotales("Total a pagar", Convert.ToSingle(Funcion.reemplazarcaracter(totalapagar)));
+            ticket.AgregarTotales("SUBTOTAL  0%",imsubtotal);
+            ticket.AgregarTotales("SUBTOTAL 12% ", subtotaliva);
+            ticket.AgregarTotales("Descuento", Convert.ToSingle(descuento));
+            ticket.AgregarTotales("Iva 12%  ", imivasuma);
+            ticket.AgregarTotales("Total a pagar", Convert.ToSingle(totalapagar));
             
             if (ckbCheque.Checked && ckbEfectivo.Checked && ckbTarjeta.Checked)
             {
@@ -938,7 +951,7 @@ namespace Comisariato.Formularios.Transacciones
                         {
                             if (ckbEfectivo.Checked)
                             {
-                                ticket.TextoIzquierda("Efectivo:  $" + txtEfectivo.Text);
+                                ticket.TextoIzquierda("Efectivo: $" + txtEfectivo.Text);
                                 ticket.TextoIzquierda("Recibido: $" + txtEfectivo.Text+" Cambio: $"+txtCambio.Text);
                                 //ticket.TextoIzquierda("Recibido: $" + txtRecibido.Text + " Cambio: $" + txtCambio.Text);
                             }
@@ -946,7 +959,7 @@ namespace Comisariato.Formularios.Transacciones
                             {
                                 if (ckbCheque.Checked)
                                 {
-                                    ticket.TextoIzquierda("Cheque:    $" + txtCheque.Text);
+                                    ticket.TextoIzquierda("Cheque:   $" + txtCheque.Text);
                                     ticket.TextoIzquierda("Recibido: $" + txtRecibido.Text + " Cambio: $" + txtCambio.Text);
                                 }
                                 else
@@ -963,12 +976,23 @@ namespace Comisariato.Formularios.Transacciones
                    
                 }
             }
+            String PIEFA = Program.piefactura;
+            string[] PIES = PIEFA.Split('\n');
             //Texto final del Ticket.
             ticket.TextoIzquierda("");
             ticket.TextoIzquierda("ARTICULOS VENDIDOS: "+totalfilas);
             ticket.TextoIzquierda("");
+            ticket.TextoCentro(PIES[0]);
+            ticket.TextoCentro(PIES[1]);
+            ticket.TextoCentro(PIES[2]);
+            ticket.TextoCentro(PIES[3]);
             ticket.TextoCentro("¡GRACIAS POR SU COMPRA!");
             ticket.CortaTicket();
+
+            //String ruta = @"\\AIRCONTROL\BodegaPedido";
+            //ticket.ImprimirTicket(ruta);
+
+
             ticket.ImprimirTicket("Generic / Text Only");//Nombre de la impresora ticketera
 
         }
@@ -986,7 +1010,7 @@ namespace Comisariato.Formularios.Transacciones
             ticket.TextoCentro("PEDIDO A BODEGA");
             ticket.TextoCentro("              ");
             ticket.TextoIzquierda("USUARIO: " + Program.Usuario);
-                ticket.TextoIzquierda( "# CAJA: " + numcaja.ToString("D4"));
+                ticket.TextoIzquierda( "# CAJA: " + numcaja.ToString("D3"));
             ticket.TextoIzquierda("                 ");
             ticket.TextoIzquierda("");
             string[] h = DateTime.Now.TimeOfDay.ToString().Split('.');
@@ -1009,7 +1033,7 @@ namespace Comisariato.Formularios.Transacciones
             //MessageBox.Show(""+ pd.PrinterSettings.PrinterName);
             //string r = pd.PrinterSettings.PrinterName;
             // MessageBox.Show(@"\\SCLIENTE-PC\PedidoBodega");
-           String ruta = @"\\SCLIENTE-PC\BodegaPedido";
+           String ruta = @"\\AIRCONTROL\BodegaPedido";
             ticket.ImprimirTicket(ruta);
                // RawPrinterHelper.SendStringToPrinter(pd.PrinterSettings.PrinterName, "");
             //}
@@ -1268,12 +1292,12 @@ namespace Comisariato.Formularios.Transacciones
                                 //TODO BIEN
                                 if (ckbEfectivo.Checked)
                                 {
-                                    float reci = 0;
+                                    Double reci = 0;
                                     string r = "";
-                                   
+
                                     //if (Convert.ToSingle(r) >= total)
                                     //{
-                                    if (txtEfectivo.Text!="")
+                                    if (txtEfectivo.Text != "")
                                     {
                                         r = txtEfectivo.Text;
                                     }
@@ -1281,15 +1305,26 @@ namespace Comisariato.Formularios.Transacciones
                                     {
                                         r = "0";
                                     }
-                                        reci = Convert.ToSingle(Funcion.reemplazarcaracterViceversa(r));
-                                        //string prueba = Funcion.reemplazarcaracter(txtTotalPagar.Text);
-                                        float tpagar=Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtTotalPagar.Text));
-                                        float cambio = tpagar - reci;
-                                        if (cambio < 0)
-                                        {
-                                            cambio *= -1;
-                                        }
+                                    reci = Convert.ToDouble(Funcion.reemplazarcaracterViceversa(r));
+                                    //string prueba = Funcion.reemplazarcaracter(txtTotalPagar.Text);
+                                    Double tpagar = Convert.ToDouble(Funcion.reemplazarcaracterViceversa(txtTotalPagar.Text));
+                                    Double cambio = tpagar - reci;
+                                    if (cambio < 0)
+                                    {
+                                        cambio *= -1;
+                                    }
+                                    //  else
+                                    //{
+                                    //    txtCambio.Text = Funcion.reemplazarcaracter(cambio.ToString("#####0.00"));
+                                    //}
+                                    if (reci < tpagar)
+                                    {
+                                        txtCambio.Text = "";
+                                    }
+                                    else
+                                    {
                                         txtCambio.Text = Funcion.reemplazarcaracter(cambio.ToString("#####0.00"));
+                                    }
                                     //}
                                     //else
                                     //{
@@ -1315,8 +1350,8 @@ namespace Comisariato.Formularios.Transacciones
                                             }
 
                                         }
-                                       
-                                        
+
+
                                         float cambio = TotalCredito - Convert.ToSingle(Funcion.reemplazarcaracterViceversa(txtTotalPagar.Text));
                                         if (cambio < 0)
                                         {

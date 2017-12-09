@@ -7,20 +7,33 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.IO;
 using System.Net;
+using Comisariato.Formularios;
 
 namespace Comisariato.Clases
 {
      public class Funcion
     {         
-        public void AddFormInPanel(object formHijo, Panel panelPrincipal)
+        public void AddFormInPanel(Form formHijo /*, Panel panelPrincipal*/)
         {
-            Form fh = formHijo as Form;
-            fh.TopLevel = false;
-            panelPrincipal.Controls.Add(fh);
-            //panelPrincipal.Tag = fh;
-            int index = panelPrincipal.Controls.GetChildIndex(fh);
-            fh.BringToFront();
-            fh.Show();
+            //Form fh = formHijo as Form;
+            //fh.TopLevel = false;
+            //panelPrincipal.Controls.Add(fh);
+            ////panelPrincipal.Tag = fh;
+            //int index = panelPrincipal.Controls.GetChildIndex(fh);
+            //fh.BringToFront();
+            //fh.Show();
+            formHijo = new Form();
+            //Form fh = (Form)formHijo;
+            FrmPrincipal frmprincipal = new FrmPrincipal();
+            if (formHijo == null || formHijo.IsDisposed)
+            {
+                formHijo = new Form();
+                formHijo.MdiParent = frmprincipal;
+                formHijo.BringToFront();
+                formHijo.Show();
+
+            }
+            else { formHijo.BringToFront(); }
         }
 
         public static void ValidarNumerosStock(DataGridViewCellValidatingEventArgs e, DataGridView Dgv)

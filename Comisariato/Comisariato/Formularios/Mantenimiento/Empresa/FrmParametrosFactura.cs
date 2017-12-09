@@ -37,6 +37,31 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
         private void FrmParametrosFactura_Load(object sender, EventArgs e)
         {
             consultas.BoolLlenarComboBox(cbIVA, "select IDIVA as ID, IVA as Texto FROM [dbo].[TbIva]");
+
+
+            //LLENAR LOS DATOS
+            //Llenar el DataTable
+            DataTable dt = consultas.BoolDataTable("Select * from View_ParametrosFactura where IDEMPRESA =" + Program.IDEMPRESA+";");
+            //Verificar si tiene Datos
+            if (dt.Rows.Count > 0)
+            {
+                DataRow myRow = dt.Rows[0];
+                ////Cargar los demas Datos
+                txtMontoMinimoFacturaEmpresa.Text = myRow["MONTO_MINIMO_FACTURA"].ToString();
+                cbIVA.SelectedItem = myRow["IVA"].ToString();
+                ckbContribuyenteEspecial.Checked = Convert.ToBoolean(myRow["CONTRIBUYENTEESPECIAL"]);
+                ckbObligadoContabilidad.Checked= Convert.ToBoolean(myRow["OBLIGADOLLEVARCONTABILIDAD"]);
+                
+                TxtPie1.Text = myRow["PIE1"].ToString();
+                TxtPie2.Text = myRow["PIE2"].ToString();
+                TxtPie3.Text = myRow["PIE3"].ToString();
+                TxtPie4.Text = myRow["PIE4"].ToString();
+
+                TxtAncho.Text = myRow["ANCHO"].ToString();
+                TxtLargo.Text = myRow["LARGO"].ToString();
+                TxtNumeroItemsFactura.Text = myRow["NUMEROITEMS"].ToString();
+
+            }
         }
 
         private void cbIVA_Enter(object sender, EventArgs e)
@@ -47,7 +72,7 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
         private void btnRegistrarIVA_Click(object sender, EventArgs e)
         {
             FrmRegistrarIVA frmRegistrarIVA = new FrmRegistrarIVA();
-            objFuncion.AddFormInPanel(frmRegistrarIVA, Program.panelPrincipalVariable);
+            objFuncion.AddFormInPanel(frmRegistrarIVA/*, Program.panelPrincipalVariable*/);
             Program.FormularioLlamado = true;
         }
         public void inicializarDatos()

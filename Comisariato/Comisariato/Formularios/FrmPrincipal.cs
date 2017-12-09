@@ -39,7 +39,8 @@ namespace Comisariato.Formularios
         FrmOrdenDeGiro FrmOrdenDeGiro;
         FrmDevolucionVenta FrmDevolucionVenta;
         FrmAsignarMenu FrmAsignarMenu;
-
+        public static MenuStrip menuMostrar;
+        //public static void Panel
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -50,227 +51,377 @@ namespace Comisariato.Formularios
 
         private void tvPrincipal_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            Program.panelPrincipalVariable = panelPrincipal;
+            Program.panelPrincipalVariable = this;
 
             string nombre = e.Node.Text;
             //-------------------------------------------------Mantenimiento---------------------------------------//
             //---------------------Cliente --------------------------------------//
             if (nombre == "Administrar Clientes")
             {
+                //if (FrmCliente == null || FrmCliente.IsDisposed)
+                //{
+                //    FrmCliente = new FrmClientes();
+                //    objFuncion.AddFormInPanel(FrmCliente, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    int index = panelPrincipal.Controls.GetChildIndex(FrmCliente);
+                //    FrmCliente.BringToFront();
+                //}
                 if (FrmCliente == null || FrmCliente.IsDisposed)
                 {
                     FrmCliente = new FrmClientes();
-                    objFuncion.AddFormInPanel(FrmCliente, Program.panelPrincipalVariable);
-                }
-                else
-                {
-                    int index = panelPrincipal.Controls.GetChildIndex(FrmCliente);
+                    FrmCliente.MdiParent = this;
                     FrmCliente.BringToFront();
+                    FrmCliente.Show();
+
                 }
+                else { FrmProducto.BringToFront(); }
             }
             //---------------------Empleado --------------------------------------//
             if (nombre == "Administrar Empleados")
             {
+                //if (FrmEmpleado == null || FrmEmpleado.IsDisposed)
+                //{
+                //    FrmEmpleado = new FrmEmpleado();
+                //    objFuncion.AddFormInPanel(FrmEmpleado, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    //int index = panelPrincipal.Controls.GetChildIndex(FrmEmpleado);
+                //    FrmEmpleado.BringToFront();
+                //}
                 if (FrmEmpleado == null || FrmEmpleado.IsDisposed)
                 {
                     FrmEmpleado = new FrmEmpleado();
-                    objFuncion.AddFormInPanel(FrmEmpleado, Program.panelPrincipalVariable);
-                }
-                else
-                {
-                    //int index = panelPrincipal.Controls.GetChildIndex(FrmEmpleado);
+                    FrmEmpleado.MdiParent = this;
                     FrmEmpleado.BringToFront();
+                    FrmEmpleado.Show();
+
                 }
+                else { FrmProducto.BringToFront(); }
             }
             if (nombre == "Administrar Menu")
             {
+                //if (FrmAsignarMenu == null || FrmAsignarMenu.IsDisposed)
+                //{
+                //    FrmAsignarMenu = new FrmAsignarMenu();
+                //    objFuncion.AddFormInPanel(FrmAsignarMenu, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    //int index = panelPrincipal.Controls.GetChildIndex(FrmEmpleado);
+                //    FrmAsignarMenu.BringToFront();
+                //}
                 if (FrmAsignarMenu == null || FrmAsignarMenu.IsDisposed)
                 {
                     FrmAsignarMenu = new FrmAsignarMenu();
-                    objFuncion.AddFormInPanel(FrmAsignarMenu, Program.panelPrincipalVariable);
-                }
-                else
-                {
-                    //int index = panelPrincipal.Controls.GetChildIndex(FrmEmpleado);
+                    FrmAsignarMenu.MdiParent = this;
                     FrmAsignarMenu.BringToFront();
+                    FrmAsignarMenu.Show();
+
                 }
+                else { FrmProducto.BringToFront(); }
             }
             //--------------------Empresa---------------------------------------//
             else if (nombre == "Cajas/Talonarios")
             {
+                //if (FrmCajasTalonario == null || FrmCajasTalonario.IsDisposed)
+                //{
+                //    FrmCajasTalonario = new FrmCajasTalonario();
+                //    objFuncion.AddFormInPanel(FrmCajasTalonario, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    int index = panelPrincipal.Controls.GetChildIndex(FrmCajasTalonario);
+                //    FrmCajasTalonario.BringToFront();
+                //}
                 if (FrmCajasTalonario == null || FrmCajasTalonario.IsDisposed)
                 {
                     FrmCajasTalonario = new FrmCajasTalonario();
-                    objFuncion.AddFormInPanel(FrmCajasTalonario, Program.panelPrincipalVariable);
-                }
-                else
-                {
-                    int index = panelPrincipal.Controls.GetChildIndex(FrmCajasTalonario);
+                    FrmCajasTalonario.MdiParent = this;
                     FrmCajasTalonario.BringToFront();
+                    FrmCajasTalonario.Show();
+
                 }
+                else { FrmProducto.BringToFront(); }
             }
             else if (nombre == "Empresa")
             {
+                //if (FrmEmpresa == null || FrmEmpresa.IsDisposed)
+                //{
+                //    FrmEmpresa = new FrmEmpresa();
+                //    objFuncion.AddFormInPanel(FrmEmpresa, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    int index = panelPrincipal.Controls.GetChildIndex(FrmEmpresa);
+                //    FrmEmpresa.BringToFront();
+                //}
                 if (FrmEmpresa == null || FrmEmpresa.IsDisposed)
                 {
                     FrmEmpresa = new FrmEmpresa();
-                    objFuncion.AddFormInPanel(FrmEmpresa, Program.panelPrincipalVariable);
-                }
-                else
-                {
-                    int index = panelPrincipal.Controls.GetChildIndex(FrmEmpresa);
+                    FrmEmpresa.MdiParent = this;
                     FrmEmpresa.BringToFront();
+                    FrmEmpresa.Show();
+
                 }
+                else { FrmProducto.BringToFront(); }
             }
             else if (nombre == "Impresion de Factura")
             {
+                //if (FrmParametrosFactura == null || FrmParametrosFactura.IsDisposed)
+                //{
+                //    FrmParametrosFactura = new FrmParametrosFactura();
+                //    objFuncion.AddFormInPanel(FrmParametrosFactura, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    int index = panelPrincipal.Controls.GetChildIndex(FrmParametrosFactura);
+                //    FrmParametrosFactura.BringToFront();
+                //}
                 if (FrmParametrosFactura == null || FrmParametrosFactura.IsDisposed)
                 {
                     FrmParametrosFactura = new FrmParametrosFactura();
-                    objFuncion.AddFormInPanel(FrmParametrosFactura, Program.panelPrincipalVariable);
-                }
-                else
-                {
-                    int index = panelPrincipal.Controls.GetChildIndex(FrmParametrosFactura);
+                    FrmParametrosFactura.MdiParent = this;
                     FrmParametrosFactura.BringToFront();
+                    FrmParametrosFactura.Show();
+
                 }
+                else { FrmProducto.BringToFront(); }
             }
             else if (nombre == "Sucursales")
             {
+                //if (FrmSucursal == null || FrmSucursal.IsDisposed)
+                //{
+                //    FrmSucursal = new FrmSucursal();
+                //    objFuncion.AddFormInPanel(FrmSucursal, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    int index = panelPrincipal.Controls.GetChildIndex(FrmSucursal);
+                //    FrmSucursal.BringToFront();
+                //}
                 if (FrmSucursal == null || FrmSucursal.IsDisposed)
                 {
                     FrmSucursal = new FrmSucursal();
-                    objFuncion.AddFormInPanel(FrmSucursal, Program.panelPrincipalVariable);
-                }
-                else
-                {
-                    int index = panelPrincipal.Controls.GetChildIndex(FrmSucursal);
+                    FrmSucursal.MdiParent = this;
                     FrmSucursal.BringToFront();
+                    FrmSucursal.Show();
+
                 }
+                else { FrmProducto.BringToFront(); }
             }
             //--------------------Proveedores---------------------------------------//
             else if (nombre == "Administrar Proveedores")
             {
+                //if (FrmProveedor == null || FrmProveedor.IsDisposed)
+                //{
+                //    FrmProveedor = new FrmProveedores();
+                //    objFuncion.AddFormInPanel(FrmProveedor, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    int index = panelPrincipal.Controls.GetChildIndex(FrmProveedor);
+                //    FrmProveedor.BringToFront();
+                //}
                 if (FrmProveedor == null || FrmProveedor.IsDisposed)
                 {
                     FrmProveedor = new FrmProveedores();
-                    objFuncion.AddFormInPanel(FrmProveedor, Program.panelPrincipalVariable);
-                }
-                else
-                {
-                    int index = panelPrincipal.Controls.GetChildIndex(FrmProveedor);
+                    FrmProveedor.MdiParent = this;
                     FrmProveedor.BringToFront();
+                    FrmProveedor.Show();
+
                 }
+                else { FrmProducto.BringToFront(); }
             }
             //--------------------Usuarios---------------------------------------//
             else if (nombre == "Administrar Usuarios")
             {
+                //if (FrmUsuario == null || FrmUsuario.IsDisposed)
+                //{
+                //    FrmUsuario = new FrmUsuarios();
+                //    objFuncion.AddFormInPanel(FrmUsuario, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    int index = panelPrincipal.Controls.GetChildIndex(FrmUsuario);
+                //    FrmUsuario.BringToFront();
+                //}
                 if (FrmUsuario == null || FrmUsuario.IsDisposed)
                 {
                     FrmUsuario = new FrmUsuarios();
-                    objFuncion.AddFormInPanel(FrmUsuario, Program.panelPrincipalVariable);
-                }
-                else
-                {
-                    int index = panelPrincipal.Controls.GetChildIndex(FrmUsuario);
+                    FrmUsuario.MdiParent = this;
                     FrmUsuario.BringToFront();
+                    FrmUsuario.Show();
+
                 }
+                else { FrmProducto.BringToFront(); }
             }
             //--------------------Inventario---------------------------------------//
             else if (nombre == "Productos")
             {
+                //if (FrmProducto == null || FrmProducto.IsDisposed)
+                //{
+                //    FrmProducto = new FrmProductos();
+                //    objFuncion.AddFormInPanel(FrmProducto, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    int index = panelPrincipal.Controls.GetChildIndex(FrmProducto);
+                //    FrmProducto.BringToFront();
+                //}
                 if (FrmProducto == null || FrmProducto.IsDisposed)
                 {
                     FrmProducto = new FrmProductos();
-                    objFuncion.AddFormInPanel(FrmProducto, Program.panelPrincipalVariable);
-                }
-                else
-                {
-                    int index = panelPrincipal.Controls.GetChildIndex(FrmProducto);
                     FrmProducto.BringToFront();
+                    FrmProducto.MdiParent = this;
+                    FrmProducto.Show();
+
                 }
+                else { FrmProducto.BringToFront(); }
             }
             else if (nombre == "Categoria Producto")
             {
+                //if (FrmCategoriaProducto == null || FrmCategoriaProducto.IsDisposed)
+                //{
+                //    FrmCategoriaProducto = new FrmCategoriaProductos();
+                //    objFuncion.AddFormInPanel(FrmCategoriaProducto, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    int index = panelPrincipal.Controls.GetChildIndex(FrmCategoriaProducto);
+                //    FrmCategoriaProducto.BringToFront();
+                //}
                 if (FrmCategoriaProducto == null || FrmCategoriaProducto.IsDisposed)
                 {
                     FrmCategoriaProducto = new FrmCategoriaProductos();
-                    objFuncion.AddFormInPanel(FrmCategoriaProducto, Program.panelPrincipalVariable);
-                }
-                else
-                {
-                    int index = panelPrincipal.Controls.GetChildIndex(FrmCategoriaProducto);
                     FrmCategoriaProducto.BringToFront();
+                    FrmCategoriaProducto.MdiParent = this;
+                    FrmCategoriaProducto.Show();
+
                 }
+                else { FrmCategoriaProducto.BringToFront(); }
+
             }
             else if (nombre == "Creacion de Bodega")
             {
+                //if (FrmCreacionBodega == null || FrmCreacionBodega.IsDisposed)
+                //{
+                //    FrmCreacionBodega = new FrmCreacionBodega();
+                //    objFuncion.AddFormInPanel(FrmCreacionBodega, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    int index = panelPrincipal.Controls.GetChildIndex(FrmCreacionBodega);
+                //    FrmCreacionBodega.BringToFront();
+                //}
                 if (FrmCreacionBodega == null || FrmCreacionBodega.IsDisposed)
                 {
                     FrmCreacionBodega = new FrmCreacionBodega();
-                    objFuncion.AddFormInPanel(FrmCreacionBodega, Program.panelPrincipalVariable);
-                }
-                else
-                {
-                    int index = panelPrincipal.Controls.GetChildIndex(FrmCreacionBodega);
                     FrmCreacionBodega.BringToFront();
+                    FrmCreacionBodega.MdiParent = this;
+                    FrmCreacionBodega.Show();
+
                 }
+                else { FrmCreacionBodega.BringToFront(); }
             }
             else if (nombre == "Combo de Productos")
             {
+                //if (FrmComboProducto == null || FrmComboProducto.IsDisposed)
+                //{
+                //    FrmComboProducto = new FrmComboProductos();
+                //    objFuncion.AddFormInPanel(FrmComboProducto, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    int index = panelPrincipal.Controls.GetChildIndex(FrmComboProducto);
+                //    FrmComboProducto.BringToFront();
+                //}
                 if (FrmComboProducto == null || FrmComboProducto.IsDisposed)
                 {
                     FrmComboProducto = new FrmComboProductos();
-                    objFuncion.AddFormInPanel(FrmComboProducto, Program.panelPrincipalVariable);
-                }
-                else
-                {
-                    int index = panelPrincipal.Controls.GetChildIndex(FrmComboProducto);
                     FrmComboProducto.BringToFront();
+                    FrmComboProducto.MdiParent = this;
+                    FrmComboProducto.Show();
+
                 }
+                else { FrmCreacionBodega.BringToFront(); }
             }
             else if (nombre == "Asignacion de Producto por Bodega")
             {
+                //if (FrmAsignacionProductoBodega == null || FrmAsignacionProductoBodega.IsDisposed)
+                //{
+                //    FrmAsignacionProductoBodega = new FrmAsignacionProductoBodega();
+                //    objFuncion.AddFormInPanel(FrmAsignacionProductoBodega, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    int index = panelPrincipal.Controls.GetChildIndex(FrmAsignacionProductoBodega);
+                //    FrmAsignacionProductoBodega.BringToFront();
+                //}
                 if (FrmAsignacionProductoBodega == null || FrmAsignacionProductoBodega.IsDisposed)
                 {
                     FrmAsignacionProductoBodega = new FrmAsignacionProductoBodega();
-                    objFuncion.AddFormInPanel(FrmAsignacionProductoBodega, Program.panelPrincipalVariable);
-                }
-                else
-                {
-                    int index = panelPrincipal.Controls.GetChildIndex(FrmAsignacionProductoBodega);
                     FrmAsignacionProductoBodega.BringToFront();
+                    FrmAsignacionProductoBodega.MdiParent = this;
+                    FrmAsignacionProductoBodega.Show();
+
                 }
+                else { FrmAsignacionProductoBodega.BringToFront(); }
             }
             //-------------------------------------------------Transacciones---------------------------------------//
             else if (nombre == "Ventas")
             {
-                if (FrmClaveUsuario == null || FrmClaveUsuario.IsDisposed)
+                //if (FrmClaveUsuario == null || FrmClaveUsuario.IsDisposed)
+                //{
+                //    FrmClaveUsuario = new FrmClaveUsuario();
+                //    FrmClaveUsuario.verificarMetodo = 1;
+                //    objFuncion.AddFormInPanel(FrmClaveUsuario, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    int index = panelPrincipal.Controls.GetChildIndex(FrmClaveUsuario);
+                //    FrmClaveUsuario.BringToFront();
+                //}
+
+
+                if (!Program.FormularioVentaAbierto)
                 {
-                    FrmClaveUsuario = new FrmClaveUsuario();
-                    FrmClaveUsuario.verificarMetodo = 1;
-                    objFuncion.AddFormInPanel(FrmClaveUsuario, Program.panelPrincipalVariable);
-                }
-                else
-                {
-                    int index = panelPrincipal.Controls.GetChildIndex(FrmClaveUsuario);
-                    FrmClaveUsuario.BringToFront();
+                    if (FrmClaveUsuario == null || FrmClaveUsuario.IsDisposed)
+                    {
+                        FrmClaveUsuario = new FrmClaveUsuario();
+                        FrmClaveUsuario.verificarMetodo = 1;
+                        FrmClaveUsuario.BringToFront();
+                        FrmClaveUsuario.MdiParent = this;
+                        FrmClaveUsuario.Show();
+                    }
+                    else { FrmClaveUsuario.BringToFront(); }
                 }
             }
             else if (nombre == "Compras")
             {
                 if (objConsulta.ObtenerValorCampo("IDPROVEEDOR", "TbProveedor", "") != "" && objConsulta.ObtenerValorCampo("IDSUCURSAL", "TbSucursal", "") != "" && objConsulta.ObtenerValorCampo("IDPARAMETROSFACTURA", "TbParametrosFactura", "") != "")
                 {
+                    //if (FrmCompra == null || FrmCompra.IsDisposed)
+                    //{
+                    //    FrmCompra = new FrmCompra();
+                    //    objFuncion.AddFormInPanel(FrmCompra, Program.panelPrincipalVariable);
+                    //}
+                    //else
+                    //{
+                    //    int index = panelPrincipal.Controls.GetChildIndex(FrmCompra);
+                    //    FrmCompra.BringToFront();
+                    //}
                     if (FrmCompra == null || FrmCompra.IsDisposed)
                     {
                         FrmCompra = new FrmCompra();
-                        objFuncion.AddFormInPanel(FrmCompra, Program.panelPrincipalVariable);
-                    }
-                    else
-                    {
-                        int index = panelPrincipal.Controls.GetChildIndex(FrmCompra);
                         FrmCompra.BringToFront();
+                        FrmCompra.MdiParent = this;
+                        FrmCompra.Show();
+
                     }
+                    else { FrmCompra.BringToFront(); }
                 }
                 else
                 {
@@ -279,40 +430,53 @@ namespace Comisariato.Formularios
             }
             else if (nombre == "Orden de Giro")
             {
+                //if (FrmOrdenDeGiro == null || FrmOrdenDeGiro.IsDisposed)
+                //{
+                //    FrmOrdenDeGiro = new FrmOrdenDeGiro();
+                //    objFuncion.AddFormInPanel(FrmOrdenDeGiro, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    int index = panelPrincipal.Controls.GetChildIndex(FrmOrdenDeGiro);
+                //    FrmOrdenDeGiro.BringToFront();
+                //}
                 if (FrmOrdenDeGiro == null || FrmOrdenDeGiro.IsDisposed)
                 {
                     FrmOrdenDeGiro = new FrmOrdenDeGiro();
-                    objFuncion.AddFormInPanel(FrmOrdenDeGiro, Program.panelPrincipalVariable);
-                }
-                else
-                {
-                    int index = panelPrincipal.Controls.GetChildIndex(FrmOrdenDeGiro);
                     FrmOrdenDeGiro.BringToFront();
+                    FrmOrdenDeGiro.MdiParent = this;
+                    FrmOrdenDeGiro.Show();
+
                 }
+                else { FrmOrdenDeGiro.BringToFront(); }
             }
             else if (nombre == "Devolución en Venta")
             {
+                //if (FrmDevolucionVenta == null || FrmDevolucionVenta.IsDisposed)
+                //{
+                //    FrmDevolucionVenta = new FrmDevolucionVenta();
+                //    objFuncion.AddFormInPanel(FrmDevolucionVenta, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    int index = panelPrincipal.Controls.GetChildIndex(FrmDevolucionVenta);
+                //    FrmDevolucionVenta.BringToFront();
+                //}
                 if (FrmDevolucionVenta == null || FrmDevolucionVenta.IsDisposed)
                 {
                     FrmDevolucionVenta = new FrmDevolucionVenta();
-                    objFuncion.AddFormInPanel(FrmDevolucionVenta, Program.panelPrincipalVariable);
-                }
-                else
-                {
-                    int index = panelPrincipal.Controls.GetChildIndex(FrmDevolucionVenta);
                     FrmDevolucionVenta.BringToFront();
+                    FrmDevolucionVenta.MdiParent = this;
+                    FrmDevolucionVenta.Show();
+
                 }
+                else { FrmDevolucionVenta.BringToFront(); }
             }
 
         }
 
         private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //DialogResult Resul = MessageBox.Show("Esta Seguro que Quiere Cerrar la Sesión", "Estado de Cesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-            //if (Resul == DialogResult.Yes)
-            //{
-            //    Application.Restart();
-            //}
             Application.Exit();
         }
 
@@ -340,80 +504,61 @@ namespace Comisariato.Formularios
                 throw;
             }
         }
-
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
-            Consultas consultas = new Consultas();
-            DataTable dt = consultas.BoolDataTable("Select FONDOPANTALLA from TbEmpresa where IDEMPRESA = 1");
-            //Arreglo de byte en donde se almacenara la foto en bytes
+            menuMostrar = msPrincipal;
+            DataTable dt = objConsulta.BoolDataTable("Select FONDOPANTALLA from TbEmpresa where IDEMPRESA = 1");
             byte[] MyData = new byte[0];
-            //Verificar si tiene Datos
             if (dt.Rows.Count > 0)
             {
                 DataRow myRow = dt.Rows[0];
 
-                //Se almacena el campo foto de la tabla en el arreglo de bytes
                 MyData = (byte[])myRow["FONDOPANTALLA"];
-                //Se inicializa un flujo en memoria del arreglo de bytes
                 MemoryStream stream = new MemoryStream(MyData);
-                //En el picture box se muestra la imagen que esta almacenada en el flujo en memoria 
-                //el cual contiene el arreglo de bytes
-                this.panelPrincipal.BackgroundImage = Image.FromStream(stream);
+                //this.panelPrincipal.BackgroundImage = Image.FromStream(stream);
+                this.BackgroundImage = Image.FromStream(stream);
+                this.BackgroundImageLayout = ImageLayout.Stretch;
 
             }
-            //Bitacora bt = new Bitacora();
-            //DataTable dip = consultas.BoolDataTable("Select ESTACION from TbCajasTalonario where IPESTACION = '" + Convert.ToString(bt.LocalIPAddress()) + "'");
-            //if (dip.Rows.Count > 0)
-            //{
-            //    DataRow myRow = dip.Rows[0];
-
-            //    //Se almacena el campo foto de la tabla en el arreglo de bytes
-            //    string estacion = myRow["ESTACION"].ToString();
-            //    string[] s = estacion.Split(' ');
-            //    if (s[0] == "Caja")
-            //    {
-            //        for (int i = 0; i < 6; i++)
-            //        {
-            //            if (i > 2)
-            //            {
-            //                tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[1]);
-            //            }
-            //            else if (i < 2)
-            //            {
-            //                tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[0]);
-            //            }
-            //        }
-            //    }
-            //    for (int i = 0; i < 5; i++)
-            //    {
-            //        if (i > 0)
-            //        {
-            //            tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[0].Nodes[1]);
-            //        }
-            //    }
-            //}
-            DataTable usuraio = consultas.BoolDataTable("select IDTIPOUSUARIO FROM TbUsuario WHERE IDUSUARIO = '" + Convert.ToInt32(Program.IDTIPOUSUARIO) + "'");
-            if (Program.IDTIPOUSUARIO == "2")
+            try
             {
-                for (int i = 0; i < 6; i++)
+                if (Program.Usuario !="ADMIN")
                 {
-                    if (i > 2)
-                    {
-                        tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[1]);
-                    }
-                    else if (i < 2)
-                    {
-                        tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[0]);
-                    }
+                    llenarTreeViewPrincipal();
                 }
-                for (int i = 0; i < 5; i++)
-                {
-                    if (i > 0)
-                    {
-                        tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[0].Nodes[1]);
-                    }
-                }
+            }
+            catch (Exception ex)
+            {
+            }
 
+            
+        }        
+
+        public void llenarTreeViewPrincipal()
+        {
+            for (int i = 0; i < tvPrincipal.Nodes.Count;)
+            {
+                tvPrincipal.Nodes.Remove(tvPrincipal.Nodes[0]);
+            }
+            objConsulta.BoolLlenarTreeViewMenu(tvPrincipal, "SELECT DISTINCT M.IDMENU, M.DESCRIPCION, M.NODOPADRE from TbMenu M, TbAsignacionMenu AM where M.IDMENU = AM.IDMENU AND AM.IDUSUARIO = " + Program.IDUsuarioMenu + " ORDER BY M.IDMENU;");
+        }
+
+        private void msPrincipal_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+        bool banderaMenuPrincipal = false;
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (!banderaMenuPrincipal)
+            {
+                tvPrincipal.Visible = false;
+                banderaMenuPrincipal = true;
+            }
+            else
+            {
+                tvPrincipal.Visible = true;
+                banderaMenuPrincipal = false;
             }
         }
     }

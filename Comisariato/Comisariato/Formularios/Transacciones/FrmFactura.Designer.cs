@@ -140,7 +140,7 @@
             this.lblTotalPagar.Name = "lblTotalPagar";
             this.lblTotalPagar.Size = new System.Drawing.Size(281, 77);
             this.lblTotalPagar.TabIndex = 33;
-            this.lblTotalPagar.Text = "999999.99";
+            this.lblTotalPagar.Text = "0.00";
             this.lblTotalPagar.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // groupBox4
@@ -899,7 +899,7 @@
             this.btnBuscar.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.Image = global::Comisariato.Properties.Resources.buscar2;
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(605, 21);
+            this.btnBuscar.Location = new System.Drawing.Point(551, 18);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(128, 45);
             this.btnBuscar.TabIndex = 47;
@@ -1033,8 +1033,8 @@
             this.Name = "FrmFactura";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VENTAS - Aircontrol";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.FrmFactura_Activated);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmFactura_FormClosed);
             this.Load += new System.EventHandler(this.FrmFactura_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FrmFactura_KeyUp);
             this.groupBox4.ResumeLayout(false);
