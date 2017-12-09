@@ -66,13 +66,27 @@ namespace Comisariato.Formularios.Transacciones
 
                             string numcaja = "", sucursal = "", documentoActual = "";
                             string IpMaquina = bitacora.LocalIPAddress();
-                            DataTable Dt = c.BoolDataTable("Select SERIE1,SERIE2,DOCUMENTOACTUAL,DOCUMENTOINICIAL,DOCUMENTOFINAL,AUTORIZACION,ESTACION,IPESTACION from TbCajasTalonario where IPESTACION = '" + IpMaquina + "' and ESTADO=1;");
+                            DataTable Dt = c.BoolDataTable("Select TIPODOCUMENTO, SERIE1,SERIE2,DOCUMENTOACTUAL,DOCUMENTOINICIAL,DOCUMENTOFINAL,AUTORIZACION,ESTACION,IPESTACION from TbCajasTalonario where IPESTACION = '" + IpMaquina + "' and ESTADO=1;");
                             if (Dt.Rows.Count > 0)
                             {
-                                DataRow myRows = Dt.Rows[0];
-                                sucursal = myRows["SERIE1"].ToString();
-                                numcaja = myRows["SERIE2"].ToString();
-                                documentoActual = myRows["DOCUMENTOACTUAL"].ToString();
+                                bool banderaCaja = false;
+                                for (int i = 0; i < Dt.Rows.Count; i++)
+                                {
+                                    banderaCaja = true;
+                                    DataRow myRows = Dt.Rows[i];
+                                    if (myRows["TIPODOCUMENTO"].ToString() == "FAC")
+                                    {
+                                        sucursal = myRows["SERIE1"].ToString();
+                                        numcaja = myRows["SERIE2"].ToString();
+                                        documentoActual = myRows["DOCUMENTOACTUAL"].ToString();
+                                        banderaCaja = false;
+                                        break;
+                                    }                                    
+                                }
+                                if (banderaCaja)
+                                {
+                                    MessageBox.Show("Caja no registrada");
+                                }                    
                             }
                             else
                             {

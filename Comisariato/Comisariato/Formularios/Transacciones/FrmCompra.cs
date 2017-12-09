@@ -90,9 +90,10 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             txtFlete.Text = "0.0";
             cbTerminoPago.SelectedIndex = 0;
         }
+        FrmOrdenDeGiro frmOrdenDeGiro = new FrmOrdenDeGiro();
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            if (/*txtPlazoOC.Text != "" &&*/ txtSerie1.Text != "" && txtSerie2.Text != "" && txtNumero.Text != "")
+            if (txtSerie1.Text != "" && txtSerie2.Text != "" && txtNumero.Text != "")
             {
                 bool cantidadRegistros = consultas.Existe("SERIE1 = " + Convert.ToInt32(txtSerie1.Text) + " and SERIE2 = " + Convert.ToInt32(txtSerie2.Text) + " and NUMERO = " + Convert.ToInt32(txtNumero.Text) + " and IDPROVEEDOR", Convert.ToString(cbProveedor.SelectedValue), "TbEncabezadoyPieCompra");
                 if (!cantidadRegistros)
@@ -124,13 +125,9 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     {
                         if (MessageBox.Show("¿Desea guaradar la compra?", "CONFIRMACIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-
-                            int idEncabezadoCompra = 0;
                             ObjEncabezadoCompra = new EmcabezadoCompra(txtSerie1.Text, txtSerie2.Text, txtNumero.Text, sumasubiva, sumasubcero, subtotalPie, totalpagar, txtOrdenCompra.Text,
                                 Convert.ToInt32(cbSucursal.SelectedValue), Convert.ToSingle(txtFlete.Text), dtpFechaOC.Value, Convert.ToInt32(datosProveedor.SelectedValue), cbTerminoPago.Text,
                                 txtPlazoOC.Text, cbImpuesto.Text, txtObservacion.Text, ivatotal, sumaice, sumairbp);
-                            //--------------------------------------------------------------------------------
-                            //int encabezadoCompra = 0;
                             String resultadoDetalle = "";
                             String resultadoEncabezado = ObjEncabezadoCompra.InsertarEncabezadoyPieCompra(ObjEncabezadoCompra); // retorna true si esta correcto todo
                             if (resultadoEncabezado == "Datos Guardados")
@@ -151,14 +148,21 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                                     MessageBox.Show("Compra Registrada Correctamente ", "Exito", MessageBoxButtons.OK);
                                     if (MessageBox.Show("¿Desea ingresar la orden de giro?", "CONFIRMACIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                     {
-                                        FrmOrdenDeGiro frmOrdenDeGiro = new FrmOrdenDeGiro();
                                         Program.FormularioLlamado = true;
-
                                         IVA = cbImpuesto.Text;
                                         string condicion = "where SERIE1 = " + Convert.ToInt32(txtSerie1.Text) + " AND SERIE2 = " + Convert.ToInt32(txtSerie2.Text) + " AND NUMERO = " + Convert.ToInt32(txtNumero.Text) + " AND IDPROVEEDOR = " + Convert.ToInt32(cbProveedor.SelectedValue);
                                         IDEncabezadoCompraOG = Convert.ToInt32(consultas.ObtenerValorCampo("IDEMCABEZADOCOMPRA", "TbEncabezadoyPieCompra", condicion));
-                                        objFuncion.AddFormInPanel(frmOrdenDeGiro/*, Program.panelPrincipalVariable*/);
-                                        //consultas.BoolLlenarComboBox(cbProveedor, "select IDPROVEEDOR AS Id, NOMBRES AS Texto from TbProveedor");
+                                        if (Program.FormularioOrdenGiro)
+                                        {
+                                            frmOrdenDeGiro.Close();
+                                        }
+                                        if (frmOrdenDeGiro == null || frmOrdenDeGiro.IsDisposed)
+                                        {
+                                            frmOrdenDeGiro = new FrmOrdenDeGiro();
+                                            frmOrdenDeGiro.MdiParent = Program.panelPrincipalVariable;
+                                            frmOrdenDeGiro.BringToFront();
+                                            frmOrdenDeGiro.Show();
+                                        }
                                     }
                                     else
                                     {
@@ -181,11 +185,8 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                                     }
                                     catch (Exception)
                                     {
-                                        //throw;
                                     }
                                 }
-                                //    
-
                             }
                             else if (resultadoEncabezado == "Error al Registrar Encabezado")
                             {
@@ -198,7 +199,6 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                                 }
                                 catch (Exception)
                                 {
-                                    //throw;
                                 }
                             }
                             else if (resultadoEncabezado == "Existe") { MessageBox.Show("Ya Existe", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }                            
@@ -529,18 +529,14 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             if (!Program.FormularioProveedorCompra)
             {//FrmProveedores frmProveedor = null;
                 Program.FormularioLlamado = true;
-                //FrmPrincipal frmprincipal = Program.
                 if (FrmProveedor == null || FrmProveedor.IsDisposed)
                 {
                     FrmProveedor = new FrmProveedores();
                     FrmProveedor.MdiParent = Program.panelPrincipalVariable;
                     FrmProveedor.BringToFront();
                     FrmProveedor.Show();
-
                 }
                 else { FrmProveedor.BringToFront(); }
-                //objFuncion.AddFormInPanel(frmProveedor/*, Program.panelPrincipalVariable*/);
-
             }
         }
 

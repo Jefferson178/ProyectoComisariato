@@ -42,6 +42,7 @@ namespace Comisariato.Formularios
         FrmAsignarMenu FrmAsignarMenu;
         FrmInformeVentas FrmInformeVentas;
         public static MenuStrip menuMostrar;
+        Bitacora  bitacora = new Bitacora();
         //public static void Panel
         public FrmPrincipal()
         {
@@ -469,15 +470,40 @@ namespace Comisariato.Formularios
                 //    int index = panelPrincipal.Controls.GetChildIndex(FrmOrdenDeGiro);
                 //    FrmOrdenDeGiro.BringToFront();
                 //}
-                if (FrmOrdenDeGiro == null || FrmOrdenDeGiro.IsDisposed)
-                {
-                    FrmOrdenDeGiro = new FrmOrdenDeGiro();
-                    //FrmOrdenDeGiro.BringToFront();
-                    FrmOrdenDeGiro.Show();
-                    FrmOrdenDeGiro.MdiParent = this;
-                    Asignar(FrmOrdenDeGiro.Name);
+                string IpMaquina = bitacora.LocalIPAddress();
+                DataTable Dt = objConsulta.BoolDataTable("Select TIPODOCUMENTO, SERIE1,SERIE2,DOCUMENTOACTUAL,DOCUMENTOINICIAL,DOCUMENTOFINAL,AUTORIZACION,ESTACION,IPESTACION from TbCajasTalonario where IPESTACION = '" + IpMaquina + "' and ESTADO=1;");
+                bool banderaCaja = false;
+                if (Dt.Rows.Count > 0)
+                {                    
+                    for (int i = 0; i < Dt.Rows.Count; i++)
+                    {
+                        banderaCaja = true;
+                        DataRow myRows = Dt.Rows[i];
+                        if (myRows["TIPODOCUMENTO"].ToString() == "RET")
+                        {
+                            banderaCaja = false;
+                            if (FrmOrdenDeGiro == null || FrmOrdenDeGiro.IsDisposed)
+                            {
+                                FrmOrdenDeGiro = new FrmOrdenDeGiro();
+                                //FrmOrdenDeGiro.BringToFront();
+                                FrmOrdenDeGiro.Show();
+                                FrmOrdenDeGiro.MdiParent = this;
+                                Asignar(FrmOrdenDeGiro.Name);
+                                break;
+                            }
+                            //else { FrmOrdenDeGiro.BringToFront(); }
+                        }
+                    }
+                    if (banderaCaja)
+                    {
+                        MessageBox.Show("Caja no registrada");
+                    }
                 }
-                //else { FrmOrdenDeGiro.BringToFront(); }
+                else
+                {
+                    MessageBox.Show("Caja no registrada");
+                }
+                
             }
             else if (nombre == "Devolución en Venta")
             {
