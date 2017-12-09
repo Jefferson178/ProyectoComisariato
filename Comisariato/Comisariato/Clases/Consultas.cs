@@ -697,6 +697,36 @@ namespace Comisariato.Clases
             }
         }
 
+        public List<string> DatosParametrosfactura(string parametro)
+        {
+            try
+            {
+                List<string> lista = new List<string>();
+                Objc.conectar();
+                SqlCommand comando = new SqlCommand("Select IDENTIFICACION,NOMBRES, APELLIDOS, EMAIL, RAZONSOCIAL, TELEFONOCASA AS TELEFONO, DIRECCION from TbCliente where  IDENTIFICACION='" + parametro + "' ");
+                comando.Connection = ConexionBD.connection;
+                SqlDataReader dato = comando.ExecuteReader();
+                Objc.Cerrar();
+                if (dato.Read() == true)
+                {
+                    lista.Add(dato["IDENTIFICACION"].ToString());
+                    lista.Add(dato["NOMBRES"].ToString());
+                    lista.Add(dato["APELLIDOS"].ToString());
+                    lista.Add(dato["EMAIL"].ToString());
+                    lista.Add(dato["RAZONSOCIAL"].ToString());
+                    lista.Add(dato["TELEFONO"].ToString());
+                    lista.Add(dato["DIRECCION"].ToString());
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar cliente: " + ex);
+                return null;
+            }
+        }
+
+
         public Cliente buscarcliente(string identificacion)
         {
             Cliente datos;
@@ -1146,15 +1176,39 @@ namespace Comisariato.Clases
                 cmd.Parameters.AddWithValue("@CONTRIBUYENTEESPECIAL", ObjParametrosFact.ContribuyenteEspecial);
                 cmd.Parameters.AddWithValue("@OBLIGADOLLEVARCONTABILIDAD", ObjParametrosFact.ObligadoContabilida);
                 cmd.Parameters.AddWithValue("@IDEMPRESA", ObjParametrosFact.Idempresa);
-                cmd.Parameters.AddWithValue("@ANCHO", ObjParametrosFact.Ancho);
-                cmd.Parameters.AddWithValue("@LARGO", ObjParametrosFact.Largo);
-                cmd.Parameters.AddWithValue("@TAMANOENCABEZADOFACTURA", ObjParametrosFact.TamanoEncabezadoFact1);
-                cmd.Parameters.AddWithValue("@TAMANOPIEFACTURA", ObjParametrosFact.TamanoPieFact1);
-                cmd.Parameters.AddWithValue("@NUMEROITEMS", ObjParametrosFact.NumeroItems);
-                cmd.Parameters.AddWithValue("@PIE1", ObjParametrosFact.Pie1);
-                cmd.Parameters.AddWithValue("@PIE2", ObjParametrosFact.Pie2);
-                cmd.Parameters.AddWithValue("@PIE3", ObjParametrosFact.Pie3);
-                cmd.Parameters.AddWithValue("@PIE4", ObjParametrosFact.Pie4);
+                cmd.Parameters.AddWithValue("@PREIMPRESA", ObjParametrosFact.Preimpresa);
+                cmd.Parameters.AddWithValue("@AUTORIZADOIMPRIMIR", ObjParametrosFact.AutorizadoParaImprimir);
+
+                // TbPreimpresa
+                if (ObjParametrosFact.Preimpresa)
+                {
+                    cmd.Parameters.AddWithValue("@ANCHO", ObjParametrosFact.Ancho);
+                    cmd.Parameters.AddWithValue("@LARGO", ObjParametrosFact.Largo);
+                    cmd.Parameters.AddWithValue("@TAMANOENCABEZADOFACTURA", ObjParametrosFact.TamanoEncabezadoFact1);
+                    cmd.Parameters.AddWithValue("@TAMANOPIEFACTURA", ObjParametrosFact.TamanoPieFact1);
+                    cmd.Parameters.AddWithValue("@NUMEROITEMS", ObjParametrosFact.NumeroItems);
+                    //TbAutorizadosImprimir
+                    cmd.Parameters.AddWithValue("@PIE1", "");
+                    cmd.Parameters.AddWithValue("@PIE2", "");
+                    cmd.Parameters.AddWithValue("@PIE3", "");
+                    cmd.Parameters.AddWithValue("@PIE4", "");
+                }
+
+                if (ObjParametrosFact.AutorizadoParaImprimir)
+                {
+                    // TbPreimpresa
+                    cmd.Parameters.AddWithValue("@ANCHO", 0);
+                    cmd.Parameters.AddWithValue("@LARGO", 0);
+                    cmd.Parameters.AddWithValue("@TAMANOENCABEZADOFACTURA", 0);
+                    cmd.Parameters.AddWithValue("@TAMANOPIEFACTURA", 0);
+                    cmd.Parameters.AddWithValue("@NUMEROITEMS", 0);
+
+                    //TbAutorizadosImprimir
+                    cmd.Parameters.AddWithValue("@PIE1", ObjParametrosFact.Pie1);
+                    cmd.Parameters.AddWithValue("@PIE2", ObjParametrosFact.Pie2);
+                    cmd.Parameters.AddWithValue("@PIE3", ObjParametrosFact.Pie3);
+                    cmd.Parameters.AddWithValue("@PIE4", ObjParametrosFact.Pie4);
+                } 
                 int result = cmd.ExecuteNonQuery();
                 Objc.Cerrar();
                 if (result > 0)

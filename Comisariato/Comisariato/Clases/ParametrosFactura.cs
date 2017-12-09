@@ -33,6 +33,11 @@ namespace Comisariato.Clases
         int idParametrosFactura;
         int idempresa;
 
+        //Tipo Factura
+        bool preimpresa;
+        bool autorizadoParaImprimir;
+
+
 
 
         private Consultas ObjConsulta;
@@ -41,7 +46,7 @@ namespace Comisariato.Clases
         public ParametrosFactura()
         { }
 
-        public ParametrosFactura(string montoMinimoFactura, int iva, bool contribuyenteEspecial, bool obligadoContabilida, string ancho, string largo, int numeroItems, string pie1, string pie2, string pie3, string pie4, int idempresa, string TamanoEncabezadoFact, string TamanoPieFact)
+        public ParametrosFactura(string montoMinimoFactura, int iva, bool contribuyenteEspecial, bool obligadoContabilida, string ancho, string largo, int numeroItems, string pie1, string pie2, string pie3, string pie4, int idempresa, string TamanoEncabezadoFact, string TamanoPieFact,bool preimpresa, bool autorizadoParaImprimir)
         {
             MontoMinimoFactura = montoMinimoFactura;
             this.iva = iva;
@@ -57,6 +62,8 @@ namespace Comisariato.Clases
             this.idempresa = idempresa;
             this.TamanoEncabezadoFact = TamanoEncabezadoFact;
             this.TamanoPieFact = TamanoPieFact;
+            this.preimpresa = preimpresa;
+            this.autorizadoParaImprimir = autorizadoParaImprimir;
         }
 
         public string MontoMinimoFactura1
@@ -241,18 +248,46 @@ namespace Comisariato.Clases
             }
         }
 
+        public bool Preimpresa
+        {
+            get
+            {
+                return preimpresa;
+            }
+
+            set
+            {
+                preimpresa = value;
+            }
+        }
+
+        public bool AutorizadoParaImprimir
+        {
+            get
+            {
+                return autorizadoParaImprimir;
+            }
+
+            set
+            {
+                autorizadoParaImprimir = value;
+            }
+        }
+
         public string InsertarParametrosFactura()
         {
             ObjConsulta = new Consultas();
 
             if (!ObjConsulta.Existe("IVA", iva.ToString(), "TbParametrosFactura"))
             {
-                if (ObjConsulta.EjecutarSQL("INSERT INTO [BDComisariato].[dbo].[TbParametrosFactura]  ([MONTO_MINIMO_FACTURA]  ,[IVA] ,[CONTRIBUYENTEESPECIAL]  ,[OBLIGADOLLEVARCONTABILIDAD], [IDEMPRESA])"
-                    + " VALUES(" + MontoMinimoFactura + ",'" + iva + "','" + contribuyenteEspecial + "','" + obligadoContabilida + "',"+ idempresa +")"))
+                if (ObjConsulta.EjecutarSQL("INSERT INTO [BDComisariato].[dbo].[TbParametrosFactura]  ([MONTO_MINIMO_FACTURA]  ,[IVA] ,[CONTRIBUYENTEESPECIAL]  ,[OBLIGADOLLEVARCONTABILIDAD], [IDEMPRESA],[PREIMPRESA],[AUTORIZADOIMPRIMIR])"
+                    + " VALUES(" + MontoMinimoFactura + ",'" + iva + "','" + contribuyenteEspecial + "','" + obligadoContabilida + "',"+ idempresa +",'"+preimpresa+"','"+autorizadoParaImprimir+"')"))
                 {
                     idParametrosFactura = ObjConsulta.ObtenerID("IDPARAMETROSFACTURA", "TbParametrosFactura","");
-                    InsertarPreimpresa();
-                    InsertarAutorizadosImprimir();
+                    if (preimpresa)
+                    { InsertarPreimpresa(); }
+                    if (autorizadoParaImprimir)
+                    { InsertarAutorizadosImprimir(); }
                     return "Datos Guardados";
                 }
                 else { return "Error al Registrar"; }

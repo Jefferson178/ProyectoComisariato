@@ -68,6 +68,9 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
                 TxtTamañoPieFact.Text = Funcion.reemplazarcaracter(myRow["TAMANOPIEFACTURA"].ToString());
                 TxtNumeroItemsFactura.Text = myRow["NUMEROITEMS"].ToString();
 
+                rbAutorizadoImprimir.Checked = Convert.ToBoolean(myRow["AUTORIZADOIMPRIMIR"]);
+                rbPreimpresa.Checked = Convert.ToBoolean(myRow["PREIMPRESA"]);
+
             }
             
         }
@@ -110,7 +113,7 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
             if (txtMontoMinimoFacturaEmpresa.Text!="" && cbIVA.SelectedIndex>=0 )
             {
                 
-                ParametrosFactura ObjParametrosFactura = new ParametrosFactura(txtMontoMinimoFacturaEmpresa.Text, Convert.ToInt32(cbIVA.Text), ckbContribuyenteEspecial.Checked, ckbObligadoContabilidad.Checked, TxtAncho.Text, TxtLargo.Text, Convert.ToInt32(TxtNumeroItemsFactura.Text), TxtPie1.Text, TxtPie2.Text, TxtPie3.Text, TxtPie4.Text, Convert.ToInt32(Program.IDEMPRESA),TxtTamañoEncabezadoFact.Text,TxtTamañoPieFact.Text);
+                ParametrosFactura ObjParametrosFactura = new ParametrosFactura(txtMontoMinimoFacturaEmpresa.Text, Convert.ToInt32(cbIVA.Text), ckbContribuyenteEspecial.Checked, ckbObligadoContabilidad.Checked, TxtAncho.Text, TxtLargo.Text, Convert.ToInt32(TxtNumeroItemsFactura.Text), TxtPie1.Text, TxtPie2.Text, TxtPie3.Text, TxtPie4.Text, Convert.ToInt32(Program.IDEMPRESA),TxtTamañoEncabezadoFact.Text,TxtTamañoPieFact.Text,rbPreimpresa.Checked,rbAutorizadoImprimir.Checked);
 
                 if (!Estado_Existe)
                 {

@@ -71,11 +71,16 @@ namespace Comisariato.Formularios.Transacciones
             //De aqui en adelante pueden formar su ticket a su gusto... Les muestro un ejemplo
 
             //Datos de la cabecera del Ticket.
+
+            //c.DatosCliente()
             ticket.TextoCentro("EMPRESA: " + Program.nombreempresa);
             ticket.TextoCentro("RUC: " + Program.rucempresa);
             ticket.TextoIzquierda(Program.direccionempresa);
             ticket.TextoIzquierda("Valido: " + FECHA.ToShortDateString() + " Hasta: " + FECHA.Date.AddYears(1).ToShortDateString());
             ticket.TextoIzquierda("Clave: 4530000");
+
+
+
             ticket.TextoIzquierda("        Factura: " + int.Parse(txtSucursal.Text).ToString("D3") + "-" + int.Parse(txtCaja.Text).ToString("D3") + "-" + int.Parse(txtNumFact.Text).ToString("D9"));
             ticket.TextoIzquierda("         Informacion del Consumidor");//Es el mio por si me quieren contactar ...
             ticket.TextoIzquierda("RUC: " + em.Identificacion);
