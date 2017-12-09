@@ -71,6 +71,12 @@
     <Compile Include="Clases\Proveedor.cs" />
     <Compile Include="Clases\Sucursal.cs" />
     <Compile Include="Clases\Usuario.cs" />
+    <Compile Include="Formularios\Informes\FrmInformesVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Informes\FrmInformesVentas.Designer.cs">
+      <DependentUpon>FrmInformesVentas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Mantenimiento\Empresa\FrmCajasTalonarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -252,6 +258,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Formularios\Informes\FrmInformesVentas.resx">
+      <DependentUpon>FrmInformesVentas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Mantenimiento\Empresa\FrmCajasTalonarios.resx">
       <DependentUpon>FrmCajasTalonarios.cs</DependentUpon>
     </EmbeddedResource>
