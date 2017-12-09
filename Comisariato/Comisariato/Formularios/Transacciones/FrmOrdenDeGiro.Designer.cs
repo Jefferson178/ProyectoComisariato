@@ -106,13 +106,10 @@
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.txtPlazo = new System.Windows.Forms.TextBox();
             this.cbSustentoTributario = new System.Windows.Forms.ComboBox();
-<<<<<<< HEAD
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.CmbTipo = new System.Windows.Forms.ComboBox();
-=======
+            //this.comboBox1 = new System.Windows.Forms.ComboBox();
+            //this.CmbTipo = new System.Windows.Forms.ComboBox();
             this.cbFormaPago = new System.Windows.Forms.ComboBox();
             this.cbTipo = new System.Windows.Forms.ComboBox();
->>>>>>> d4a709284185da524329dbf4e0c5d4cef45394b5
             this.CmbProveedor = new System.Windows.Forms.ComboBox();
             this.CmbTipoDocumento = new System.Windows.Forms.ComboBox();
             this.dtpFechaOrdenGiro = new System.Windows.Forms.DateTimePicker();
@@ -334,10 +331,7 @@
             this.btnContabilizar.TabIndex = 41;
             this.btnContabilizar.Text = "&Contabilizar";
             this.btnContabilizar.UseVisualStyleBackColor = true;
-<<<<<<< HEAD
-=======
             this.btnContabilizar.Click += new System.EventHandler(this.btnContabilizar_Click);
->>>>>>> d4a709284185da524329dbf4e0c5d4cef45394b5
             // 
             // groupBox4
             // 
@@ -1007,22 +1001,20 @@
             this.cbSustentoTributario.Size = new System.Drawing.Size(202, 24);
             this.cbSustentoTributario.TabIndex = 22;
             // 
-<<<<<<< HEAD
             // comboBox1
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Arial", 10F);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "BIEN",
-            "SERVICIO",
-            "AMBAS"});
-            this.comboBox1.Location = new System.Drawing.Point(542, 60);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(159, 24);
-            this.comboBox1.TabIndex = 21;
+            //this.comboBox1.Font = new System.Drawing.Font("Arial", 10F);
+            //this.comboBox1.FormattingEnabled = true;
+            //this.comboBox1.Items.AddRange(new object[] {
+            //"BIEN",
+            //"SERVICIO",
+            //"AMBAS"});
+            //this.comboBox1.Location = new System.Drawing.Point(542, 60);
+            //this.comboBox1.Name = "comboBox1";
+            //this.comboBox1.Size = new System.Drawing.Size(159, 24);
+            //this.comboBox1.TabIndex = 21;
             // 
             // CmbTipo
-=======
             // cbFormaPago
             // 
             this.cbFormaPago.Font = new System.Drawing.Font("Arial", 10F);
@@ -1036,7 +1028,6 @@
             this.cbFormaPago.TabIndex = 21;
             // 
             // cbTipo
->>>>>>> d4a709284185da524329dbf4e0c5d4cef45394b5
             // 
             this.cbTipo.Font = new System.Drawing.Font("Arial", 10F);
             this.cbTipo.FormattingEnabled = true;

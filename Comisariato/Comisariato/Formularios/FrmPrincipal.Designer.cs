@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-<<<<<<< HEAD
             System.Windows.Forms.TreeNode treeNode69 = new System.Windows.Forms.TreeNode("Administrar Clientes");
             System.Windows.Forms.TreeNode treeNode70 = new System.Windows.Forms.TreeNode("Administrar Proveedores");
             System.Windows.Forms.TreeNode treeNode71 = new System.Windows.Forms.TreeNode("Administrar Usuarios");
@@ -92,7 +91,6 @@
             treeNode99,
             treeNode100,
             treeNode101});
-=======
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Administrar Clientes");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Administrar Proveedores");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Administrar Usuarios");
@@ -157,7 +155,6 @@
             treeNode32,
             treeNode33,
             treeNode34});
->>>>>>> d4a709284185da524329dbf4e0c5d4cef45394b5
             this.tvPrincipal = new System.Windows.Forms.TreeView();
             this.msPrincipal = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -194,7 +191,6 @@
             this.tvPrincipal.Location = new System.Drawing.Point(0, 48);
             this.tvPrincipal.Margin = new System.Windows.Forms.Padding(5);
             this.tvPrincipal.Name = "tvPrincipal";
-<<<<<<< HEAD
             treeNode69.Name = "Nodo1";
             treeNode69.Text = "Administrar Clientes";
             treeNode70.Name = "Nodo2";
@@ -275,7 +271,6 @@
             treeNode96,
             treeNode98,
             treeNode102});
-=======
             treeNode1.Name = "Nodo1";
             treeNode1.Text = "Administrar Clientes";
             treeNode2.Name = "Nodo2";
@@ -358,7 +353,6 @@
             treeNode29,
             treeNode31,
             treeNode35});
->>>>>>> d4a709284185da524329dbf4e0c5d4cef45394b5
             this.tvPrincipal.Size = new System.Drawing.Size(239, 592);
             this.tvPrincipal.TabIndex = 0;
             this.tvPrincipal.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvPrincipal_NodeMouseClick);
