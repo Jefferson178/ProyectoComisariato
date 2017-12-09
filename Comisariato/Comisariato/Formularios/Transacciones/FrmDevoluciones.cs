@@ -422,5 +422,10 @@ namespace Comisariato.Formularios.Transacciones.Devolucion_Venta
                 CalcularDevolucion();
             }
         }
+
+        private void FrmDevolucionVenta_Load(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

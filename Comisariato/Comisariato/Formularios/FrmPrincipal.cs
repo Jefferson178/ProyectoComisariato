@@ -68,15 +68,17 @@ namespace Comisariato.Formularios
                 //    int index = panelPrincipal.Controls.GetChildIndex(FrmCliente);
                 //    FrmCliente.BringToFront();
                 //}
+
                 if (FrmCliente == null || FrmCliente.IsDisposed)
                 {
                     FrmCliente = new FrmClientes();
-                    FrmCliente.MdiParent = this;
-                    FrmCliente.BringToFront();
+                    //FrmCliente.BringToFront();
                     FrmCliente.Show();
-
+                    FrmCliente.MdiParent = this;
+                    //FrmCliente.BringToFront();
+                    Asignar(FrmCliente.Name);
                 }
-                else { FrmProducto.BringToFront(); }
+                //else { FrmProducto.BringToFront(); }
             }
             //---------------------Empleado --------------------------------------//
             if (nombre == "Administrar Empleados")
@@ -94,12 +96,13 @@ namespace Comisariato.Formularios
                 if (FrmEmpleado == null || FrmEmpleado.IsDisposed)
                 {
                     FrmEmpleado = new FrmEmpleado();
-                    FrmEmpleado.MdiParent = this;
-                    FrmEmpleado.BringToFront();
+                    //FrmEmpleado.BringToFront();
                     FrmEmpleado.Show();
-
+                    FrmEmpleado.MdiParent = this;
+                    //FrmEmpleado.BringToFront();
+                    Asignar(FrmEmpleado.Name);
                 }
-                else { FrmProducto.BringToFront(); }
+                //else { FrmProducto.BringToFront(); }
             }
             if (nombre == "Administrar Menu")
             {
@@ -116,12 +119,13 @@ namespace Comisariato.Formularios
                 if (FrmAsignarMenu == null || FrmAsignarMenu.IsDisposed)
                 {
                     FrmAsignarMenu = new FrmAsignarMenu();
-                    FrmAsignarMenu.MdiParent = this;
-                    FrmAsignarMenu.BringToFront();
                     FrmAsignarMenu.Show();
+                    FrmAsignarMenu.MdiParent = this;
+                    //FrmAsignarMenu.BringToFront();
+                    Asignar(FrmAsignarMenu.Name);
 
                 }
-                else { FrmProducto.BringToFront(); }
+                //else { FrmProducto.BringToFront(); }
             }
             //--------------------Empresa---------------------------------------//
             else if (nombre == "Cajas/Talonarios")
@@ -139,12 +143,12 @@ namespace Comisariato.Formularios
                 if (FrmCajasTalonario == null || FrmCajasTalonario.IsDisposed)
                 {
                     FrmCajasTalonario = new FrmCajasTalonario();
-                    FrmCajasTalonario.MdiParent = this;
-                    FrmCajasTalonario.BringToFront();
                     FrmCajasTalonario.Show();
-
+                    FrmCajasTalonario.MdiParent = this;
+                    //FrmCajasTalonario.BringToFront();
+                    Asignar(FrmCajasTalonario.Name);
                 }
-                else { FrmProducto.BringToFront(); }
+                //else { FrmProducto.BringToFront(); }
             }
             else if (nombre == "Empresa")
             {
@@ -161,12 +165,12 @@ namespace Comisariato.Formularios
                 if (FrmEmpresa == null || FrmEmpresa.IsDisposed)
                 {
                     FrmEmpresa = new FrmEmpresa();
-                    FrmEmpresa.MdiParent = this;
-                    FrmEmpresa.BringToFront();
                     FrmEmpresa.Show();
-
+                    FrmEmpresa.MdiParent = this;
+                    //FrmEmpresa.BringToFront();
+                    Asignar(FrmEmpresa.Name);
                 }
-                else { FrmProducto.BringToFront(); }
+                //else { FrmProducto.BringToFront(); }
             }
             else if (nombre == "Impresion de Factura")
             {
@@ -183,12 +187,12 @@ namespace Comisariato.Formularios
                 if (FrmParametrosFactura == null || FrmParametrosFactura.IsDisposed)
                 {
                     FrmParametrosFactura = new FrmParametrosFactura();
-                    FrmParametrosFactura.MdiParent = this;
-                    FrmParametrosFactura.BringToFront();
                     FrmParametrosFactura.Show();
-
+                    FrmParametrosFactura.MdiParent = this;
+                    //FrmParametrosFactura.BringToFront();
+                    Asignar(FrmParametrosFactura.Name);
                 }
-                else { FrmProducto.BringToFront(); }
+                //else { FrmProducto.BringToFront(); }
             }
             else if (nombre == "Sucursales")
             {
@@ -205,12 +209,12 @@ namespace Comisariato.Formularios
                 if (FrmSucursal == null || FrmSucursal.IsDisposed)
                 {
                     FrmSucursal = new FrmSucursal();
-                    FrmSucursal.MdiParent = this;
-                    FrmSucursal.BringToFront();
                     FrmSucursal.Show();
-
+                    FrmSucursal.MdiParent = this;
+                    //FrmSucursal.BringToFront();
+                    Asignar(FrmSucursal.Name);
                 }
-                else { FrmProducto.BringToFront(); }
+                //else { FrmProducto.BringToFront(); }
             }
             //--------------------Proveedores---------------------------------------//
             else if (nombre == "Administrar Proveedores")
@@ -228,12 +232,12 @@ namespace Comisariato.Formularios
                 if (FrmProveedor == null || FrmProveedor.IsDisposed)
                 {
                     FrmProveedor = new FrmProveedores();
-                    FrmProveedor.MdiParent = this;
-                    FrmProveedor.BringToFront();
                     FrmProveedor.Show();
-
+                    FrmProveedor.MdiParent = this;
+                    //FrmProveedor.BringToFront();
+                    Asignar(FrmProveedor.Name);
                 }
-                else { FrmProducto.BringToFront(); }
+                //else { FrmProducto.BringToFront(); }
             }
             //--------------------Usuarios---------------------------------------//
             else if (nombre == "Administrar Usuarios")
@@ -251,12 +255,12 @@ namespace Comisariato.Formularios
                 if (FrmUsuario == null || FrmUsuario.IsDisposed)
                 {
                     FrmUsuario = new FrmUsuarios();
-                    FrmUsuario.MdiParent = this;
-                    FrmUsuario.BringToFront();
                     FrmUsuario.Show();
-
+                    FrmUsuario.MdiParent = this;
+                    //FrmUsuario.BringToFront();
+                    Asignar(FrmUsuario.Name);
                 }
-                else { FrmProducto.BringToFront(); }
+                //else { FrmProducto.BringToFront(); }
             }
             //--------------------Inventario---------------------------------------//
             else if (nombre == "Productos")
@@ -274,12 +278,12 @@ namespace Comisariato.Formularios
                 if (FrmProducto == null || FrmProducto.IsDisposed)
                 {
                     FrmProducto = new FrmProductos();
-                    FrmProducto.BringToFront();
-                    FrmProducto.MdiParent = this;
+                    ////FrmProducto.BringToFront();
                     FrmProducto.Show();
-
+                    FrmProducto.MdiParent = this;
+                    Asignar(FrmProducto.Name);
                 }
-                else { FrmProducto.BringToFront(); }
+                //else { FrmProducto.BringToFront(); }
             }
             else if (nombre == "Categoria Producto")
             {
@@ -296,12 +300,12 @@ namespace Comisariato.Formularios
                 if (FrmCategoriaProducto == null || FrmCategoriaProducto.IsDisposed)
                 {
                     FrmCategoriaProducto = new FrmCategoriaProductos();
-                    FrmCategoriaProducto.BringToFront();
-                    FrmCategoriaProducto.MdiParent = this;
+                    //FrmCategoriaProducto.BringToFront();
                     FrmCategoriaProducto.Show();
-
+                    FrmCategoriaProducto.MdiParent = this;
+                    Asignar(FrmCategoriaProducto.Name);
                 }
-                else { FrmCategoriaProducto.BringToFront(); }
+                //else { FrmCategoriaProducto.BringToFront(); }
 
             }
             else if (nombre == "Creacion de Bodega")
@@ -319,12 +323,12 @@ namespace Comisariato.Formularios
                 if (FrmCreacionBodega == null || FrmCreacionBodega.IsDisposed)
                 {
                     FrmCreacionBodega = new FrmCreacionBodega();
-                    FrmCreacionBodega.BringToFront();
-                    FrmCreacionBodega.MdiParent = this;
+                    //FrmCreacionBodega.BringToFront();
                     FrmCreacionBodega.Show();
-
+                    FrmCreacionBodega.MdiParent = this;
+                    Asignar(FrmCreacionBodega.Name);
                 }
-                else { FrmCreacionBodega.BringToFront(); }
+                //else { FrmCreacionBodega.BringToFront(); }
             }
             else if (nombre == "Combo de Productos")
             {
@@ -341,12 +345,12 @@ namespace Comisariato.Formularios
                 if (FrmComboProducto == null || FrmComboProducto.IsDisposed)
                 {
                     FrmComboProducto = new FrmComboProductos();
-                    FrmComboProducto.BringToFront();
-                    FrmComboProducto.MdiParent = this;
+                    //FrmComboProducto.BringToFront();
                     FrmComboProducto.Show();
-
+                    FrmComboProducto.MdiParent = this;
+                    Asignar(FrmComboProducto.Name);
                 }
-                else { FrmCreacionBodega.BringToFront(); }
+                //else { FrmCreacionBodega.BringToFront(); }
             }
             else if (nombre == "Asignacion de Producto por Bodega")
             {
@@ -363,12 +367,12 @@ namespace Comisariato.Formularios
                 if (FrmAsignacionProductoBodega == null || FrmAsignacionProductoBodega.IsDisposed)
                 {
                     FrmAsignacionProductoBodega = new FrmAsignacionProductoBodega();
-                    FrmAsignacionProductoBodega.BringToFront();
-                    FrmAsignacionProductoBodega.MdiParent = this;
+                    //FrmAsignacionProductoBodega.BringToFront();
                     FrmAsignacionProductoBodega.Show();
-
+                    FrmAsignacionProductoBodega.MdiParent = this;
+                    Asignar(FrmAsignacionProductoBodega.Name);
                 }
-                else { FrmAsignacionProductoBodega.BringToFront(); }
+                //else { FrmAsignacionProductoBodega.BringToFront(); }
             }
             //-------------------------------------------------Transacciones---------------------------------------//
             else if (nombre == "Ventas")
@@ -392,11 +396,12 @@ namespace Comisariato.Formularios
                     {
                         FrmClaveUsuario = new FrmClaveUsuario();
                         FrmClaveUsuario.verificarMetodo = 1;
-                        FrmClaveUsuario.BringToFront();
-                        FrmClaveUsuario.MdiParent = this;
+                        //FrmClaveUsuario.BringToFront();
                         FrmClaveUsuario.Show();
+                        FrmClaveUsuario.MdiParent = this;
+                        Asignar(FrmClaveUsuario.Name);
                     }
-                    else { FrmClaveUsuario.BringToFront(); }
+                    //else { FrmClaveUsuario.BringToFront(); }
                 }
             }
             else if (nombre == "Compras")
@@ -416,12 +421,12 @@ namespace Comisariato.Formularios
                     if (FrmCompra == null || FrmCompra.IsDisposed)
                     {
                         FrmCompra = new FrmCompra();
-                        FrmCompra.BringToFront();
-                        FrmCompra.MdiParent = this;
+                        //FrmCompra.BringToFront();
                         FrmCompra.Show();
-
+                        FrmCompra.MdiParent = this;
+                        Asignar(FrmCompra.Name);
                     }
-                    else { FrmCompra.BringToFront(); }
+                    //else { FrmCompra.BringToFront(); }
                 }
                 else
                 {
@@ -443,12 +448,12 @@ namespace Comisariato.Formularios
                 if (FrmOrdenDeGiro == null || FrmOrdenDeGiro.IsDisposed)
                 {
                     FrmOrdenDeGiro = new FrmOrdenDeGiro();
-                    FrmOrdenDeGiro.BringToFront();
-                    FrmOrdenDeGiro.MdiParent = this;
+                    //FrmOrdenDeGiro.BringToFront();
                     FrmOrdenDeGiro.Show();
-
+                    FrmOrdenDeGiro.MdiParent = this;
+                    Asignar(FrmOrdenDeGiro.Name);
                 }
-                else { FrmOrdenDeGiro.BringToFront(); }
+                //else { FrmOrdenDeGiro.BringToFront(); }
             }
             else if (nombre == "Devolución en Venta")
             {
@@ -465,15 +470,20 @@ namespace Comisariato.Formularios
                 if (FrmDevolucionVenta == null || FrmDevolucionVenta.IsDisposed)
                 {
                     FrmDevolucionVenta = new FrmDevolucionVenta();
-                    FrmDevolucionVenta.BringToFront();
-                    FrmDevolucionVenta.MdiParent = this;
+                    //FrmDevolucionVenta.BringToFront();
                     FrmDevolucionVenta.Show();
-
+                    FrmDevolucionVenta.MdiParent = this;
+                    Asignar(FrmDevolucionVenta.Name);
                 }
-                else { FrmDevolucionVenta.BringToFront(); }
+                //else { FrmDevolucionVenta.BringToFront(); }
             }
-
         }
+
+        private void Asignar(string nombreF)
+        {
+            ventanaToolStripMenuItem.DropDownItems.Add(new ToolStripMenuItem(nombreF));
+        }
+
 
         private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -559,6 +569,17 @@ namespace Comisariato.Formularios
             {
                 tvPrincipal.Visible = true;
                 banderaMenuPrincipal = false;
+            }
+        }
+
+        private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.ActiveMdiChild != null)
+                ActiveMdiChild.Close();
+            int a = ventanaToolStripMenuItem.DropDownItems.Count;
+            if (a > 2)
+            {
+                ventanaToolStripMenuItem.DropDownItems.RemoveAt(a - 1);
             }
         }
     }

@@ -38,6 +38,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.gbConsultarModificarEliminarCategoriaProducto = new System.Windows.Forms.GroupBox();
             this.dgvDatosCategoriaProducto = new System.Windows.Forms.DataGridView();
+            this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Deshabilitar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.rbtInactivos = new System.Windows.Forms.RadioButton();
             this.rbtActivos = new System.Windows.Forms.RadioButton();
             this.txtConsultarCategoriaProducto = new System.Windows.Forms.TextBox();
@@ -45,8 +47,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Deshabilitar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.gbRegistrarCategoriaProducto.SuspendLayout();
             this.gbConsultarModificarEliminarCategoriaProducto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatosCategoriaProducto)).BeginInit();
@@ -193,6 +193,20 @@
             this.dgvDatosCategoriaProducto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatosCategoriaProducto_CellClick);
             this.dgvDatosCategoriaProducto.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvDatosCategoriaProducto_CellPainting);
             // 
+            // Modificar
+            // 
+            this.Modificar.HeaderText = "";
+            this.Modificar.Name = "Modificar";
+            this.Modificar.ReadOnly = true;
+            this.Modificar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Modificar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Deshabilitar
+            // 
+            this.Deshabilitar.HeaderText = "";
+            this.Deshabilitar.Name = "Deshabilitar";
+            this.Deshabilitar.ReadOnly = true;
+            // 
             // rbtInactivos
             // 
             this.rbtInactivos.AutoSize = true;
@@ -274,20 +288,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Consultar - Modificar Categoria";
             // 
-            // Modificar
-            // 
-            this.Modificar.HeaderText = "";
-            this.Modificar.Name = "Modificar";
-            this.Modificar.ReadOnly = true;
-            this.Modificar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Modificar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Deshabilitar
-            // 
-            this.Deshabilitar.HeaderText = "";
-            this.Deshabilitar.Name = "Deshabilitar";
-            this.Deshabilitar.ReadOnly = true;
-            // 
             // FrmCategoriaProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -300,6 +300,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.Name = "FrmCategoriaProductos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Administrar Categoria de Productos";
             this.Load += new System.EventHandler(this.FrmCategoriaProductos_Load);
             this.gbRegistrarCategoriaProducto.ResumeLayout(false);

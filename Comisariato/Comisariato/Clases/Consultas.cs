@@ -1129,6 +1129,40 @@ namespace Comisariato.Clases
                 return false;
             }
         }
+
+        public bool EjecutarPROCEDUREMODIFICAR_PARAMETROSFACTURA(ParametrosFactura ObjParametrosFact)
+        {
+            try
+            {
+                Objc.conectar();
+                SqlCommand cmd = new SqlCommand("MODIFICAR_PARAMETROSFACTURA", ConexionBD.connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@MONTO_MINIMO_FACTURA", ObjParametrosFact.MontoMinimoFactura1);
+                cmd.Parameters.AddWithValue("@IVA", ObjParametrosFact.Iva);
+                cmd.Parameters.AddWithValue("@CONTRIBUYENTEESPECIAL", ObjParametrosFact.ContribuyenteEspecial);
+                cmd.Parameters.AddWithValue("@OBLIGADOLLEVARCONTABILIDAD", ObjParametrosFact.ObligadoContabilida);
+                cmd.Parameters.AddWithValue("@IDEMPRESA", ObjParametrosFact.Idempresa);
+                cmd.Parameters.AddWithValue("@ANCHO", ObjParametrosFact.Ancho);
+                cmd.Parameters.AddWithValue("@LARGO", ObjParametrosFact.Largo);
+                cmd.Parameters.AddWithValue("@NUMEROITEMS", ObjParametrosFact.NumeroItems);
+                cmd.Parameters.AddWithValue("@PIE1", ObjParametrosFact.Pie1);
+                cmd.Parameters.AddWithValue("@PIE2", ObjParametrosFact.Pie2);
+                cmd.Parameters.AddWithValue("@PIE3", ObjParametrosFact.Pie3);
+                cmd.Parameters.AddWithValue("@PIE4", ObjParametrosFact.Pie4);
+                int result = cmd.ExecuteNonQuery();
+                Objc.Cerrar();
+                if (result > 0)
+                    return true;
+                else
+                    return false;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public void ObtenerIDCompra(ref int cb, String SQL)
         {
             Objc.conectar();

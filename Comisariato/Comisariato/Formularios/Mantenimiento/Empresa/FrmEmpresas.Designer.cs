@@ -711,7 +711,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(971, 539);
+            this.ClientSize = new System.Drawing.Size(971, 538);
             this.Controls.Add(this.tcEmpresa);
             this.Font = new System.Drawing.Font("Arial", 10F);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -719,7 +719,7 @@
             this.MaximumSize = new System.Drawing.Size(987, 577);
             this.MinimumSize = new System.Drawing.Size(987, 577);
             this.Name = "FrmEmpresa";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Administrar Empresas";
             this.Load += new System.EventHandler(this.FrmEmpresas_Load);
             this.tcEmpresa.ResumeLayout(false);

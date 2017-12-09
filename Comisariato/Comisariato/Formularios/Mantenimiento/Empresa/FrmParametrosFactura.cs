@@ -13,6 +13,10 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
 {
     public partial class FrmParametrosFactura : Form
     {
+
+        Consultas consultas = new Consultas();
+        bool Estado_Existe = false;
+
         public FrmParametrosFactura()
         {
             InitializeComponent();
@@ -33,7 +37,6 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
                 gbPreimpresa.Visible = false;
             }
         }
-        Consultas consultas = new Consultas();
         private void FrmParametrosFactura_Load(object sender, EventArgs e)
         {
             consultas.BoolLlenarComboBox(cbIVA, "select IDIVA as ID, IVA as Texto FROM [dbo].[TbIva]");
@@ -45,23 +48,26 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
             //Verificar si tiene Datos
             if (dt.Rows.Count > 0)
             {
+                Estado_Existe = true;
+                btnGuardarEmpresa.Text = "Modificar";
                 DataRow myRow = dt.Rows[0];
                 ////Cargar los demas Datos
                 txtMontoMinimoFacturaEmpresa.Text = myRow["MONTO_MINIMO_FACTURA"].ToString();
                 cbIVA.SelectedItem = myRow["IVA"].ToString();
                 ckbContribuyenteEspecial.Checked = Convert.ToBoolean(myRow["CONTRIBUYENTEESPECIAL"]);
-                ckbObligadoContabilidad.Checked= Convert.ToBoolean(myRow["OBLIGADOLLEVARCONTABILIDAD"]);
-                
+                ckbObligadoContabilidad.Checked = Convert.ToBoolean(myRow["OBLIGADOLLEVARCONTABILIDAD"]);
+
                 TxtPie1.Text = myRow["PIE1"].ToString();
                 TxtPie2.Text = myRow["PIE2"].ToString();
                 TxtPie3.Text = myRow["PIE3"].ToString();
                 TxtPie4.Text = myRow["PIE4"].ToString();
 
-                TxtAncho.Text = myRow["ANCHO"].ToString();
-                TxtLargo.Text = myRow["LARGO"].ToString();
+                TxtAncho.Text = Funcion.reemplazarcaracter(myRow["ANCHO"].ToString());
+                TxtLargo.Text = Funcion.reemplazarcaracter(myRow["LARGO"].ToString());
                 TxtNumeroItemsFactura.Text = myRow["NUMEROITEMS"].ToString();
 
             }
+            
         }
 
         private void cbIVA_Enter(object sender, EventArgs e)
@@ -89,7 +95,6 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
             TxtAncho.Text = "";
             TxtLargo.Text = "";
             TxtNumeroItemsFactura.Text = "";
-
         }
 
 
@@ -102,20 +107,72 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
         {
             if (txtMontoMinimoFacturaEmpresa.Text!="" && cbIVA.SelectedIndex>=0 )
             {
+                
                 ParametrosFactura ObjParametrosFactura = new ParametrosFactura(txtMontoMinimoFacturaEmpresa.Text, Convert.ToInt32(cbIVA.Text), ckbContribuyenteEspecial.Checked, ckbObligadoContabilidad.Checked, TxtAncho.Text, TxtLargo.Text, Convert.ToInt32(TxtNumeroItemsFactura.Text), TxtPie1.Text, TxtPie2.Text, TxtPie3.Text, TxtPie4.Text, Convert.ToInt32(Program.IDEMPRESA));
+
+                if (!Estado_Existe)
+                {
                     String resultado = ObjParametrosFactura.InsertarParametrosFactura(); // retorna true si esta correcto todo
                     if (resultado == "Datos Guardados")
                     {
                         MessageBox.Show("Datos Registrado Correctamente ", "Exito", MessageBoxButtons.OK);
                         //rbtActivos.Checked = true;
                         inicializarDatos();
+                        Estado_Existe = true;
 
                     }
                     else if (resultado == "Error al Registrar") { MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                     else if (resultado == "Existe") { MessageBox.Show("Ya Exsiten estos Parametros de La factura", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+                }
+                else
+                {
+                    String resultado = ObjParametrosFactura.ModificarParametrosFactura(ObjParametrosFactura); // retorna true si esta correcto todo
+                    if (resultado == "Datos Actualizados")
+                    {
+                        MessageBox.Show("Datos Actualizados Correctamente ", "Exito", MessageBoxButtons.OK);
+                        //rbtActivos.Checked = true;
+                        //inicializarDatos();
 
+                    }
+                    else if (resultado == "Error al Actualizar") { MessageBox.Show("Error al Actualizar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                }
             }
             else { MessageBox.Show("Ingrese los datos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+        }
+
+        private void TxtAncho_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Funcion.SoloValores(e, TxtAncho.Text);
+        }
+
+        private void TxtNumeroItemsFactura_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Funcion.Validar_Numeros(e);
+        }
+
+        private void TxtLargo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Funcion.SoloValores(e, TxtLargo.Text);
+        }
+
+        private void TxtAncho_Enter(object sender, EventArgs e)
+        {
+            TxtAncho.SelectAll();
+        }
+
+        private void TxtLargo_Enter(object sender, EventArgs e)
+        {
+            TxtLargo.SelectAll();
+        }
+
+        private void TxtNumeroItemsFactura_Enter(object sender, EventArgs e)
+        {
+            TxtNumeroItemsFactura.SelectAll();
+        }
+
+        private void txtMontoMinimoFacturaEmpresa_Enter(object sender, EventArgs e)
+        {
+            txtMontoMinimoFacturaEmpresa.SelectAll();
         }
     }
 }

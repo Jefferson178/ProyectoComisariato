@@ -919,13 +919,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(1089, 589);
+            this.ClientSize = new System.Drawing.Size(1089, 588);
             this.Controls.Add(this.tcEmpleado);
             this.Font = new System.Drawing.Font("Arial", 8.25F);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1105, 627);
             this.MinimumSize = new System.Drawing.Size(1105, 627);
             this.Name = "FrmEmpleado";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Administrar Empleados";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmEmpleado_FormClosing);
             this.Load += new System.EventHandler(this.FrmEmpleado_Load);

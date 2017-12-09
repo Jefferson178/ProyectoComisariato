@@ -36,7 +36,7 @@ namespace Comisariato.Formularios.Transacciones
                 if (comprobarvista == 1)
                 {
                     lbltitulo.Text = "Consulta de Datos.";
-                    gbDatosCliente.Visible = false;
+                    //gbDatosCliente.Visible = false;
                     gbBuscar.Visible = true;
                     ObjConsul.boolLlenarDataGridView(dgvDatosUsuario, "Select tbCliente.IDENTIFICACION, tbCliente.NOMBRES, tbCliente.APELLIDOS, tbCliente.EMAIL, tbCliente.RAZONSOCIAL, tbCliente.DIRECCION,tbCliente.IDCLIENTE from tbCliente;");
                     this.Size = new Size(804, 540);
@@ -48,12 +48,12 @@ namespace Comisariato.Formularios.Transacciones
                 else
                 {
                     gbBuscar.Visible = false;
-                    ObjConsul.BoolLlenarComboBox(cbPais, "Select TbPais.IDPAIS as ID, TbPais.NOMBRE AS Texto from TbPais");
-                    gbDatosCliente.Visible = true;
-                    gbDatosCliente.Location = new Point(35, 60);
+                    //ObjConsul.BoolLlenarComboBox(cbPais, "Select TbPais.IDPAIS as ID, TbPais.NOMBRE AS Texto from TbPais");
+                    //gbDatosCliente.Visible = true;
+                    //gbDatosCliente.Location = new Point(35, 60);
                     this.Size = new Size(550, 620);
                     lbltitulo.Left = (this.Width - lbltitulo.Width) / 2;
-                    txtIdentificacion.Focus();
+                    //txtIdentificacion.Focus();
                     btnSalir.Enabled = false;
                     verificar = false;
                 }
@@ -191,57 +191,57 @@ namespace Comisariato.Formularios.Transacciones
 
         private void txtIdentificacion_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (txtIdentificacion.Text != "")
-            {
-                if (e.KeyChar == (char)Keys.Return)
-                {
-                    SendKeys.Send("{TAB}");
-                }
-            }
-            else
-            {
-                txtIdentificacion.Focus();
-            }
+            //if (txtIdentificacion.Text != "")
+            //{
+            //    if (e.KeyChar == (char)Keys.Return)
+            //    {
+            //        SendKeys.Send("{TAB}");
+            //    }
+            //}
+            //else
+            //{
+            //    txtIdentificacion.Focus();
+            //}
         }
 
         private void txtNombres_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (txtNombres.Text != "")
-            {
-                if (e.KeyChar == (char)Keys.Return)
-                {
-                    SendKeys.Send("{TAB}");
-                }
-            }
-            else
-            {
-                txtNombres.Focus();
-            }
+            //if (txtNombres.Text != "")
+            //{
+            //    if (e.KeyChar == (char)Keys.Return)
+            //    {
+            //        SendKeys.Send("{TAB}");
+            //    }
+            //}
+            //else
+            //{
+            //    txtNombres.Focus();
+            //}
         }
 
         private void txtApellidos_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (txtApellidos.Text != "")
-            {
-                if (e.KeyChar == (char)Keys.Return)
-                {
-                    SendKeys.Send("{TAB}");
-                }
-            }
-            else
-            {
-                txtApellidos.Focus();
-            }
+            //if (txtApellidos.Text != "")
+            //{
+            //    if (e.KeyChar == (char)Keys.Return)
+            //    {
+            //        SendKeys.Send("{TAB}");
+            //    }
+            //}
+            //else
+            //{
+            //    txtApellidos.Focus();
+            //}
         }
 
         private void txtEmail_KeyPress(object sender, KeyPressEventArgs e)
         {
             //if (txtEmail.Text != "")
             //{
-                if (e.KeyChar == (char)Keys.Return)
-                {
-                    SendKeys.Send("{TAB}");
-                }
+                //if (e.KeyChar == (char)Keys.Return)
+                //{
+                //    SendKeys.Send("{TAB}");
+                //}
             //}
             //else
             //{
@@ -251,123 +251,123 @@ namespace Comisariato.Formularios.Transacciones
 
         private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (txtTelefono.Text != "")
-            {
-                if (e.KeyChar == (char)Keys.Return)
-                {
-                    SendKeys.Send("{TAB}");
-                }
-            }
-            else
-            {
-                txtTelefono.Focus();
-            }
+            //if (txtTelefono.Text != "")
+            //{
+            //    if (e.KeyChar == (char)Keys.Return)
+            //    {
+            //        SendKeys.Send("{TAB}");
+            //    }
+            //}
+            //else
+            //{
+            //    txtTelefono.Focus();
+            //}
         }
 
         private void txtDireccion_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (txtDireccion.Text != "")
-            {
-                if (e.KeyChar == (char)Keys.Return)
-                {
-                    SendKeys.Send("{TAB}");
-                }
-            }
-            else
-            {
-                txtDireccion.Focus();
-            }
+            //if (txtDireccion.Text != "")
+            //{
+            //    if (e.KeyChar == (char)Keys.Return)
+            //    {
+            //        SendKeys.Send("{TAB}");
+            //    }
+            //}
+            //else
+            //{
+            //    txtDireccion.Focus();
+            //}
         }
 
         private void cbPais_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String ID = cbPais.SelectedValue.ToString();
-            ObjConsul = new Consultas();
-            ObjConsul.BoolLlenarComboBox(cbProvincia, "Select TbProvincia.IDPROVINCIA as ID, TbProvincia.NOMBRE AS Texto from TbProvincia where IDPAIS = " + ID + ";");
+            //String ID = cbPais.SelectedValue.ToString();
+            //ObjConsul = new Consultas();
+            //ObjConsul.BoolLlenarComboBox(cbProvincia, "Select TbProvincia.IDPROVINCIA as ID, TbProvincia.NOMBRE AS Texto from TbProvincia where IDPAIS = " + ID + ";");
         }
 
         private void cbProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String ID = cbProvincia.SelectedValue.ToString();
-            ObjConsul = new Consultas();
-            ObjConsul.BoolLlenarComboBox(cbCanton, "Select TbCanton.IDCANTON as ID, TbCanton.NOMBRE AS Texto from TbCanton where IDPROVINCIA = " + ID + ";");
+            //String ID = cbProvincia.SelectedValue.ToString();
+            //ObjConsul = new Consultas();
+            //ObjConsul.BoolLlenarComboBox(cbCanton, "Select TbCanton.IDCANTON as ID, TbCanton.NOMBRE AS Texto from TbCanton where IDPROVINCIA = " + ID + ";");
         }
 
         private void cbCanton_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String ID = cbCanton.SelectedValue.ToString();
-            ObjConsul = new Consultas();
-            ObjConsul.BoolLlenarComboBox(cbParroquia, "Select TbParroquia.IDPARROQUIA as ID, TbParroquia.NOMBRE AS Texto from TbParroquia where IDCANTON = " + ID + ";");
+            //String ID = cbCanton.SelectedValue.ToString();
+            //ObjConsul = new Consultas();
+            //ObjConsul.BoolLlenarComboBox(cbParroquia, "Select TbParroquia.IDPARROQUIA as ID, TbParroquia.NOMBRE AS Texto from TbParroquia where IDCANTON = " + ID + ";");
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (txtIdentificacion.Text!="")
-            {
-                if (txtNombres.Text!="")
-                {
-                    if (txtApellidos.Text!="")
-                    {
-                        if (verificartelefonos())
-                        {
-                            if (txtDireccion.Text!="")
-                            {
-                                bool result= ObjConsul.Insertar("INSERT INTO TbCliente (TIPOCLIENTE, IDENTIFICACION, NOMBRES, APELLIDOS, EMAIL, DIRECCION, ACTIVO, IDPARROQUIA, ESPECIFICACIONES_CATEGORIA, CONDICIONES_COMERC_CREDITOASIGNADO, CONDICIONES_COMERC_CUPOCREDITO, CONDICIONES_COMERC_DESCUENTO, ACTIVIDADECONOMICA) VALUES ( 'NORMAL','" + txtIdentificacion.Text+"','"+txtNombres.Text.ToUpper()+"','"+txtApellidos.Text.ToUpper() + "','"+txtEmail.Text+"','"+txtDireccion.Text.ToUpper() + "','1'"+",'"+ cbParroquia.SelectedValue.ToString()+"','A','0','0','0','si'" + ");");
-                                if (result)
-                                {
-                                    int idcliente = ObjConsul.ObtenerID("IDCLIENTE", "TbCliente","");
+            //if (txtIdentificacion.Text!="")
+            //{
+            //    if (txtNombres.Text!="")
+            //    {
+            //        if (txtApellidos.Text!="")
+            //        {
+            //            if (verificartelefonos())
+            //            {
+            //                if (txtDireccion.Text!="")
+            //                {
+            //                    bool result= ObjConsul.Insertar("INSERT INTO TbCliente (TIPOCLIENTE, IDENTIFICACION, NOMBRES, APELLIDOS, EMAIL, DIRECCION, ACTIVO, IDPARROQUIA, ESPECIFICACIONES_CATEGORIA, CONDICIONES_COMERC_CREDITOASIGNADO, CONDICIONES_COMERC_CUPOCREDITO, CONDICIONES_COMERC_DESCUENTO, ACTIVIDADECONOMICA) VALUES ( 'NORMAL','" + txtIdentificacion.Text+"','"+txtNombres.Text.ToUpper()+"','"+txtApellidos.Text.ToUpper() + "','"+txtEmail.Text+"','"+txtDireccion.Text.ToUpper() + "','1'"+",'"+ cbParroquia.SelectedValue.ToString()+"','A','0','0','0','si'" + ");");
+            //                    if (result)
+            //                    {
+            //                        int idcliente = ObjConsul.ObtenerID("IDCLIENTE", "TbCliente","");
 
-                                    if (txtTelefono.Text != "" && txtCell.Text != "")
-                                    {
-                                        ObjConsul.Insertar("INSERT INTO TbTelefono (TELEFONO,IDRELACION,TIPO) VALUES ('" + txtTelefono.Text + "','" + idcliente + "','CLIENTE'" + ");");
-                                        ObjConsul.Insertar("INSERT INTO TbTelefono (TELEFONO,IDRELACION,TIPO) VALUES ('" + txtCell.Text + "','" + idcliente + "','CLIENTE'" + ");");
-                                    }
-                                    else
-                                    {
-                                        if (txtCell.Text != "")
-                                        {
-                                            ObjConsul.Insertar("INSERT INTO TbTelefono (TELEFONO,IDRELACION,TIPO) VALUES ('" + txtCell.Text + "','" + idcliente + "','CLIENTE'" + ");");
-                                        }
-                                        else
-                                        {
-                                            ObjConsul.Insertar("INSERT INTO TbTelefono (TELEFONO,IDRELACION,TIPO) VALUES ('" + txtTelefono.Text + "','" + idcliente + "','CLIENTE'" + ");");
-                                        }
-                                    }
+            //                        if (txtTelefono.Text != "" && txtCell.Text != "")
+            //                        {
+            //                            ObjConsul.Insertar("INSERT INTO TbTelefono (TELEFONO,IDRELACION,TIPO) VALUES ('" + txtTelefono.Text + "','" + idcliente + "','CLIENTE'" + ");");
+            //                            ObjConsul.Insertar("INSERT INTO TbTelefono (TELEFONO,IDRELACION,TIPO) VALUES ('" + txtCell.Text + "','" + idcliente + "','CLIENTE'" + ");");
+            //                        }
+            //                        else
+            //                        {
+            //                            if (txtCell.Text != "")
+            //                            {
+            //                                ObjConsul.Insertar("INSERT INTO TbTelefono (TELEFONO,IDRELACION,TIPO) VALUES ('" + txtCell.Text + "','" + idcliente + "','CLIENTE'" + ");");
+            //                            }
+            //                            else
+            //                            {
+            //                                ObjConsul.Insertar("INSERT INTO TbTelefono (TELEFONO,IDRELACION,TIPO) VALUES ('" + txtTelefono.Text + "','" + idcliente + "','CLIENTE'" + ");");
+            //                            }
+            //                        }
 
-                                    if (FrmFactura.DatosCliente.Count > 0)
-                                    {
-                                        FrmFactura.DatosCliente.Clear();
-                                    }
-                                    FrmFactura.verificadorfrm = 0;
-                                    FrmFactura.DatosCliente.Add(txtIdentificacion.Text);
-                                    FrmFactura.DatosCliente.Add(txtNombres.Text.ToUpper()+" " + txtApellidos.Text.ToUpper());
+            //                        if (FrmFactura.DatosCliente.Count > 0)
+            //                        {
+            //                            FrmFactura.DatosCliente.Clear();
+            //                        }
+            //                        FrmFactura.verificadorfrm = 0;
+            //                        FrmFactura.DatosCliente.Add(txtIdentificacion.Text);
+            //                        FrmFactura.DatosCliente.Add(txtNombres.Text.ToUpper()+" " + txtApellidos.Text.ToUpper());
 
-                                    this.Close();
+            //                        this.Close();
 
-                                }
+            //                    }
                                
                                 
-                            }
-                            else
-                            {
-                                txtDireccion.Focus();
-                            }
-                        }
-                    }
-                    else
-                    {
-                        txtApellidos.Focus();
-                    }
-                }
-                else
-                {
-                    txtNombres.Focus();
-                }
-            }
-            else
-            {
-                txtIdentificacion.Focus();
-            }
+            //                }
+            //                else
+            //                {
+            //                    txtDireccion.Focus();
+            //                }
+            //            }
+            //        }
+            //        else
+            //        {
+            //            txtApellidos.Focus();
+            //        }
+            //    }
+            //    else
+            //    {
+            //        txtNombres.Focus();
+            //    }
+            //}
+            //else
+            //{
+            //    txtIdentificacion.Focus();
+            //}
         }
 
         private void txtTelefono_TextChanged(object sender, EventArgs e)
@@ -375,32 +375,32 @@ namespace Comisariato.Formularios.Transacciones
 
         }
 
-        private bool verificartelefonos()
-        {
-            if (txtTelefono.Text!="" && txtCell.Text!="")
-            {
-                return true;
-            }
-            else
-            {
-                if (txtCell.Text!="")
-                {
-                    return true;
-                }
-                else
-                {
-                    if (txtTelefono.Text!="")
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        txtTelefono.Focus();
-                        return false;
-                    }
-                }
-            }
-        }
+        //private bool verificartelefonos()
+        //{
+            //if (txtTelefono.Text!="" && txtCell.Text!="")
+            //{
+            //    return true;
+            //}
+            //else
+            //{
+            //    if (txtCell.Text!="")
+            //    {
+            //        return true;
+            //    }
+            //    else
+            //    {
+            //        if (txtTelefono.Text!="")
+            //        {
+            //            return true;
+            //        }
+            //        else
+            //        {
+            //            txtTelefono.Focus();
+            //            return false;
+            //        }
+            //    }
+            //}
+        //}
 
         private void TxtConsulta_TextChanged(object sender, EventArgs e)
         {

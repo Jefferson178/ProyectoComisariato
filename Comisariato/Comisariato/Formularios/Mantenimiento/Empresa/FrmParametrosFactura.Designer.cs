@@ -84,6 +84,7 @@
             // rbAutorizadoImprimir
             // 
             this.rbAutorizadoImprimir.AutoSize = true;
+            this.rbAutorizadoImprimir.Checked = true;
             this.rbAutorizadoImprimir.Font = new System.Drawing.Font("Arial", 9.75F);
             this.rbAutorizadoImprimir.Location = new System.Drawing.Point(145, 25);
             this.rbAutorizadoImprimir.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -104,7 +105,6 @@
             this.rbPreimpresa.Name = "rbPreimpresa";
             this.rbPreimpresa.Size = new System.Drawing.Size(92, 20);
             this.rbPreimpresa.TabIndex = 4;
-            this.rbPreimpresa.TabStop = true;
             this.rbPreimpresa.Text = "Preimpresa";
             this.rbPreimpresa.UseVisualStyleBackColor = true;
             this.rbPreimpresa.CheckedChanged += new System.EventHandler(this.rbPreimpresa_CheckedChanged_1);
@@ -190,6 +190,7 @@
             this.txtMontoMinimoFacturaEmpresa.Name = "txtMontoMinimoFacturaEmpresa";
             this.txtMontoMinimoFacturaEmpresa.Size = new System.Drawing.Size(201, 22);
             this.txtMontoMinimoFacturaEmpresa.TabIndex = 5;
+            this.txtMontoMinimoFacturaEmpresa.Enter += new System.EventHandler(this.txtMontoMinimoFacturaEmpresa_Enter);
             // 
             // label13
             // 
@@ -221,7 +222,6 @@
             this.gbAutorizadoImprimir.TabIndex = 13;
             this.gbAutorizadoImprimir.TabStop = false;
             this.gbAutorizadoImprimir.Text = "Auorizado para Imprimir";
-            this.gbAutorizadoImprimir.Visible = false;
             // 
             // TxtPie4
             // 
@@ -325,6 +325,8 @@
             this.TxtNumeroItemsFactura.Size = new System.Drawing.Size(203, 22);
             this.TxtNumeroItemsFactura.TabIndex = 2;
             this.TxtNumeroItemsFactura.Text = "0";
+            this.TxtNumeroItemsFactura.Enter += new System.EventHandler(this.TxtNumeroItemsFactura_Enter);
+            this.TxtNumeroItemsFactura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNumeroItemsFactura_KeyPress);
             // 
             // label17
             // 
@@ -362,6 +364,8 @@
             this.TxtLargo.Size = new System.Drawing.Size(116, 22);
             this.TxtLargo.TabIndex = 3;
             this.TxtLargo.Text = "0";
+            this.TxtLargo.Enter += new System.EventHandler(this.TxtLargo_Enter);
+            this.TxtLargo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtLargo_KeyPress);
             // 
             // TxtAncho
             // 
@@ -372,6 +376,8 @@
             this.TxtAncho.Size = new System.Drawing.Size(116, 22);
             this.TxtAncho.TabIndex = 2;
             this.TxtAncho.Text = "0";
+            this.TxtAncho.Enter += new System.EventHandler(this.TxtAncho_Enter);
+            this.TxtAncho.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAncho_KeyPress);
             // 
             // label16
             // 
@@ -440,6 +446,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.Name = "FrmParametrosFactura";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Parámetros de Factura";
             this.Load += new System.EventHandler(this.FrmParametrosFactura_Load);
             this.gbTipoFacturaEmpresa.ResumeLayout(false);

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcCajaTalonario = new System.Windows.Forms.TabControl();
             this.tpNuevaCajaTalonario = new System.Windows.Forms.TabPage();
             this.btnLimpiar = new System.Windows.Forms.Button();
@@ -303,6 +303,7 @@
             this.cbTipoDocumentoCaja.Name = "cbTipoDocumentoCaja";
             this.cbTipoDocumentoCaja.Size = new System.Drawing.Size(190, 24);
             this.cbTipoDocumentoCaja.TabIndex = 7;
+            this.cbTipoDocumentoCaja.Enter += new System.EventHandler(this.cbSucursalCaja_Enter);
             // 
             // label9
             // 
@@ -397,6 +398,7 @@
             this.cbBodegaCaja.Name = "cbBodegaCaja";
             this.cbBodegaCaja.Size = new System.Drawing.Size(333, 24);
             this.cbBodegaCaja.TabIndex = 3;
+            this.cbBodegaCaja.Enter += new System.EventHandler(this.cbSucursalCaja_Enter);
             // 
             // cbSucursalCaja
             // 
@@ -407,6 +409,7 @@
             this.cbSucursalCaja.Name = "cbSucursalCaja";
             this.cbSucursalCaja.Size = new System.Drawing.Size(333, 24);
             this.cbSucursalCaja.TabIndex = 2;
+            this.cbSucursalCaja.Enter += new System.EventHandler(this.cbSucursalCaja_Enter);
             // 
             // label2
             // 
@@ -478,14 +481,14 @@
             this.dgvDatosCaja.AllowUserToOrderColumns = true;
             this.dgvDatosCaja.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDatosCaja.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosCaja.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosCaja.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDatosCaja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosCaja.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Modificar,
@@ -544,6 +547,7 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(795, 561);
             this.Name = "FrmCajasTalonario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Administrar Cajas/Talonarios";
             this.Load += new System.EventHandler(this.FrmCajasTalonario_Load);
             this.tcCajaTalonario.ResumeLayout(false);

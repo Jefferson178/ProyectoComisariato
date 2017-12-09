@@ -376,6 +376,7 @@
             this.MaximumSize = new System.Drawing.Size(1092, 620);
             this.MinimumSize = new System.Drawing.Size(1092, 620);
             this.Name = "FrmAsignacionProductoBodega";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Administrar Asignación de Producto por Bodega";
             this.Load += new System.EventHandler(this.FrmAsignacionProductoBodega_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();

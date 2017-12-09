@@ -111,6 +111,7 @@ namespace Comisariato.Formularios
 
         private void FrmProveedores_Load(object sender, EventArgs e)
         {
+            //this.StartPosition = FormStartPosition.Manual;
             SendKeys.Send("{TAB}"); SendKeys.Send("{TAB}"); SendKeys.Send("{TAB}");
             cbIdentificacionProveedor.SelectedIndex = 0;
             cbNacionalidadProveedor.SelectedIndex = 0;

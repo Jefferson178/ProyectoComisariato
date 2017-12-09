@@ -179,7 +179,7 @@
             this.Anular});
             this.DgvDetalleFact.Location = new System.Drawing.Point(53, 171);
             this.DgvDetalleFact.Name = "DgvDetalleFact";
-            this.DgvDetalleFact.Size = new System.Drawing.Size(775, 363);
+            this.DgvDetalleFact.Size = new System.Drawing.Size(751, 291);
             this.DgvDetalleFact.TabIndex = 5;
             this.DgvDetalleFact.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDetalleFact_CellClick);
             this.DgvDetalleFact.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDetalleFact_CellEndEdit);
@@ -242,7 +242,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(731, 598);
+            this.button1.Location = new System.Drawing.Point(707, 512);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(97, 38);
             this.button1.TabIndex = 6;
@@ -252,7 +252,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(53, 598);
+            this.button2.Location = new System.Drawing.Point(53, 511);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(102, 38);
             this.button2.TabIndex = 7;
@@ -263,7 +263,7 @@
             // txtTotalFactura
             // 
             this.txtTotalFactura.Enabled = false;
-            this.txtTotalFactura.Location = new System.Drawing.Point(494, 552);
+            this.txtTotalFactura.Location = new System.Drawing.Point(473, 483);
             this.txtTotalFactura.Name = "txtTotalFactura";
             this.txtTotalFactura.Size = new System.Drawing.Size(100, 20);
             this.txtTotalFactura.TabIndex = 8;
@@ -271,7 +271,7 @@
             // txtTotalDevolucion
             // 
             this.txtTotalDevolucion.Enabled = false;
-            this.txtTotalDevolucion.Location = new System.Drawing.Point(725, 552);
+            this.txtTotalDevolucion.Location = new System.Drawing.Point(704, 483);
             this.txtTotalDevolucion.Name = "txtTotalDevolucion";
             this.txtTotalDevolucion.Size = new System.Drawing.Size(100, 20);
             this.txtTotalDevolucion.TabIndex = 9;
@@ -279,7 +279,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(633, 555);
+            this.label5.Location = new System.Drawing.Point(612, 486);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(91, 13);
             this.label5.TabIndex = 10;
@@ -288,7 +288,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(421, 555);
+            this.label6.Location = new System.Drawing.Point(400, 486);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(73, 13);
             this.label6.TabIndex = 11;
@@ -298,8 +298,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(873, 665);
+            this.ClientSize = new System.Drawing.Size(873, 563);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtTotalDevolucion);
@@ -309,12 +310,13 @@
             this.Controls.Add(this.DgvDetalleFact);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(889, 602);
+            this.MinimumSize = new System.Drawing.Size(889, 602);
             this.Name = "FrmDevolucionVenta";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Devoluciones";
+            this.Load += new System.EventHandler(this.FrmDevolucionVenta_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvDetalleFact)).EndInit();

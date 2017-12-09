@@ -255,6 +255,17 @@ namespace Comisariato.Clases
             else { return "Error al Registrar"; }
         }
 
-        
+
+        /// FUNCIONES PARA MODIFICAR LOS DATOS
+        public string ModificarParametrosFactura(ParametrosFactura ObjParametrosFact)
+        {
+            ObjConsulta = new Consultas();
+
+            if (ObjConsulta.EjecutarPROCEDUREMODIFICAR_PARAMETROSFACTURA(ObjParametrosFact))
+            {
+                return "Datos Actualizados";
+            }
+            else { return "Error al Actualizar"; }
+        }
     }
 }

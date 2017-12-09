@@ -312,5 +312,10 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
                 txtRUCSucursal.Select(0, txtRUCSucursal.Text.Length);
             }
         }
+
+        private void CmbEmpresa_Enter(object sender, EventArgs e)
+        {
+            consultas.BoolLlenarComboBox(CmbEmpresa, "Select IDEMPRESA as ID , NOMBRE as Texto  from TbEmpresa;");
+        }
     }
 }

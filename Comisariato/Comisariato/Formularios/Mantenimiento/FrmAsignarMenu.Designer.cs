@@ -132,6 +132,7 @@
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MinimumSize = new System.Drawing.Size(423, 532);
             this.Name = "FrmAsignarMenu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Asignar Menu";
             this.Load += new System.EventHandler(this.FrmAsignarMenu_Load);
             this.ResumeLayout(false);

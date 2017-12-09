@@ -879,6 +879,7 @@
             this.MaximumSize = new System.Drawing.Size(1068, 611);
             this.MinimumSize = new System.Drawing.Size(1068, 611);
             this.Name = "FrmProductos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Administrar Productos";
             this.Load += new System.EventHandler(this.FrmProductos_Load);
             this.tcProducto.ResumeLayout(false);

@@ -17,6 +17,7 @@ namespace Comisariato.Formularios.Transacciones
     public partial class FrmFactura : Form
     {
         internal static List<string> DatosCliente = new List<string>();
+        internal static List<string> DatosProducto = new List<string>();
         internal static int  correcta;
         internal static int verificadorfrm;
         private int cantidadanterior = 0, posicion, ivaporcentaje, tipoprecio = 0, cantmayorita = 20, fila,contador=0,factenter, tipoprecio1 = 0, formapago = 0, fr, idcliente,idclienteespe,cantcaja=0;
@@ -606,6 +607,7 @@ namespace Comisariato.Formularios.Transacciones
             FrmDatosClientes f = new FrmDatosClientes();
             f.comprobarvista = 1;
             f.ShowDialog();
+            FrmFactura_Activated(null, null);
             txtCodigo.Focus();
         }
 
@@ -708,6 +710,7 @@ namespace Comisariato.Formularios.Transacciones
             f.VerifiMetodo = 2;
             f.ShowDialog();
             rdbFacturaDatos.Checked = true;
+            FrmFactura_Activated(null, null);
             txtCodigo.Focus();
         }
 
@@ -1550,15 +1553,24 @@ namespace Comisariato.Formularios.Transacciones
                     }
                     break;
                 case Keys.F6:
-                    FrmConsultarProducto p = new FrmConsultarProducto();
-                    p.ShowDialog();
+                    FrmConsultarProducto FrmConsultarProduct = new FrmConsultarProducto();
+                    //if (FrmConsultarProduct == null || FrmConsultarProduct.IsDisposed)
+                    //{
+                    //FrmConsultarProduct = new FrmConsultarProducto();
+                    //FrmConsultarProduct.MdiParent = Program.panelPrincipalVariable;
+                    //FrmConsultarProduct.BringToFront();
+                    FrmConsultarProduct.ShowDialog();
+
+                    //}
+                    
                     if (DatosCliente.Count>0)
                     {
                         txtCantidad.Focus();
-                        //if (DatosCliente.Count > 0)
-                        //{
-                        //    DatosCliente.Clear();
-                        //}
+                        FrmFactura_Activated(null, null);
+                        if (DatosCliente.Count > 0)
+                        {
+                            DatosCliente.Clear();
+                        }
                     }
                     else
                     {
@@ -1591,39 +1603,40 @@ namespace Comisariato.Formularios.Transacciones
             //}
             //else
             //{
-                Program.em = new EmcabezadoFactura();
-                Program.em.Sucursal = int.Parse(txtSucursal.Text);
-                //Program.em.Descuento = Convert.ToSingle(txtDescuento.Text);
-                Program.em.Caja = int.Parse(txtCaja.Text);
-                Program.em.Fecha = DateTime.Now.Date.ToShortDateString();
-                Program.em.Hora = DateTime.Now.TimeOfDay.ToString();
-                //Program.em.Iva = Convert.ToSingle(txtIva.Text);
-                Program.em.Idempleado = int.Parse(Program.IDUsuario);
-                Program.em.Idcliente = idcliente;
-                Program.em.Numfact = numfact;
+            Program.em = new EmcabezadoFactura();
+            Program.em.Sucursal = int.Parse(txtSucursal.Text);
+            //Program.em.Descuento = Convert.ToSingle(txtDescuento.Text);
+            Program.em.Caja = int.Parse(txtCaja.Text);
+            Program.em.Fecha = DateTime.Now.Date.ToShortDateString();
+            Program.em.Hora = DateTime.Now.TimeOfDay.ToString();
+            //Program.em.Iva = Convert.ToSingle(txtIva.Text);
+            Program.em.Idempleado = int.Parse(Program.IDUsuario);
+            Program.em.Idcliente = idcliente;
+            Program.em.Numfact = numfact;
 
-                //Consultas objCns = new Consultas();
-                // objCns.Insertar("INSERT INTO TbEncabezadoFactura (SUCURSAL,CAJA,NFACTURA,FECHA,HORA,DESCUENTO,IVA,IDEMPLEADO,IDCLIENTE) VALUES ('" + txtSucursal.Text + "','" + txtCaja.Text + "','"+txtNumFact.Text+"','"+Program.FecaInicio+"','"+ DateTime.Now.Date.ToShortDateString()+"','"+ DateTime.Now.TimeOfDay.ToString()+"','0','"+txtIva.Text+"','"+Program.IDUsuario+"','"+idcliente+"'"+ ");");
-                //List<>
-                frmcobrar = new FrmCobrar();
-                frmcobrar.nombre = txtConsumidor.Text;
-                frmcobrar.identificacion = txtIdentidicacion.Text;
-                frmcobrar.descuentobd = txtDescuento.Text;
-                frmcobrar.ivabd = txtIva.Text;
-                frmcobrar.subtotal = txtSubTotal.Text;
-                frmcobrar.subtotaconiva = txtSubTotalIva.Text;
-                frmcobrar.descuento = txtDescuento.Text;
-                frmcobrar.totalapagar = txtSubTotal.Text;
-                frmcobrar.ivasuma = txtIva.Text;
+            //Consultas objCns = new Consultas();
+            // objCns.Insertar("INSERT INTO TbEncabezadoFactura (SUCURSAL,CAJA,NFACTURA,FECHA,HORA,DESCUENTO,IVA,IDEMPLEADO,IDCLIENTE) VALUES ('" + txtSucursal.Text + "','" + txtCaja.Text + "','"+txtNumFact.Text+"','"+Program.FecaInicio+"','"+ DateTime.Now.Date.ToShortDateString()+"','"+ DateTime.Now.TimeOfDay.ToString()+"','0','"+txtIva.Text+"','"+Program.IDUsuario+"','"+idcliente+"'"+ ");");
+            //List<>
+            frmcobrar = new FrmCobrar();
+            frmcobrar.nombre = txtConsumidor.Text;
+            frmcobrar.identificacion = txtIdentidicacion.Text;
+            frmcobrar.descuentobd = txtDescuento.Text;
+            frmcobrar.ivabd = txtIva.Text;
+            frmcobrar.subtotal = txtSubTotal.Text;
+            frmcobrar.subtotaconiva = txtSubTotalIva.Text;
+            frmcobrar.descuento = txtDescuento.Text;
+            frmcobrar.totalapagar = txtSubTotal.Text;
+            frmcobrar.ivasuma = txtIva.Text;
 
-                frmcobrar.total = Convert.ToSingle(txtSubTotal.Text);
-                frmcobrar.dg = dgvDetalleProductos;
-                frmcobrar.totalfilas = codigos.Count;
-                ObtenerPedidos();
-                frmcobrar.pedidos = pedidos;
-                frmcobrar.ivas = Ivas;
-                frmcobrar.ShowDialog();
-                //nuevafact();
+            frmcobrar.total = Convert.ToSingle(txtSubTotal.Text);
+            frmcobrar.dg = dgvDetalleProductos;
+            frmcobrar.totalfilas = codigos.Count;
+            ObtenerPedidos();
+            frmcobrar.pedidos = pedidos;
+            frmcobrar.ivas = Ivas;
+            frmcobrar.ShowDialog();
+            FrmFactura_Activated(null, null);
+            //nuevafact();
             //}
 
         }

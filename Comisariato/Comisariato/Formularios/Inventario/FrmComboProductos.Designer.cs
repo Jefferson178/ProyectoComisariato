@@ -534,6 +534,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.Name = "FrmComboProductos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Administrar Combo de Productos";
             this.Load += new System.EventHandler(this.FrmComboProductos_Load);
             this.gbproductosParaCombo.ResumeLayout(false);

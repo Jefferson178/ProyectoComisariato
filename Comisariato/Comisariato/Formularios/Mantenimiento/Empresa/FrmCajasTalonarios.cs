@@ -387,5 +387,12 @@ namespace Comisariato.Formularios.Mantenimiento
             }
 
         }
+
+        private void cbSucursalCaja_Enter(object sender, EventArgs e)
+        {
+            consultas.BoolLlenarComboBox(cbSucursalCaja, "Select IDSUCURSAL as ID, NOMBRESUCURSAL as TEXTO from TbSucursal where ESTADO = 1;");
+            consultas.BoolLlenarComboBox(cbBodegaCaja, "Select IDBODEGA as ID, NOMBRE as TEXTO from TbBodega where ESTADO = 1;");
+            consultas.BoolLlenarComboBox(cbTipoDocumentoCaja, "Select CODIGO as ID, NOMBREDOCUMENTO as TEXTO from TbTipoDocumento;");
+        }
     }
 }
