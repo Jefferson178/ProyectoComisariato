@@ -780,7 +780,7 @@ namespace Comisariato.Clases
             catch (Exception ex)
             {
                 MessageBox.Show("Error al conectarse a la Base De Datos " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
-                throw;
+                return false;
             }
         }
         public Boolean BoolCrearDateTable(DataGridView Tb, String SQL)
@@ -1578,7 +1578,6 @@ namespace Comisariato.Clases
                 cmd.Parameters.AddWithValue("@FECHAORDENGIRO", ObjEncabezadoOrdenGiro.FechaOrdenGiro);
                 cmd.Parameters.AddWithValue("@FECHAVIGENTE", ObjEncabezadoOrdenGiro.FechaVigente1);
                 cmd.Parameters.AddWithValue("@ENCABEZADOCOMPRA", ObjEncabezadoOrdenGiro.EncabezadoCompra);
-                cmd.Parameters.AddWithValue("@TOTAL", ObjEncabezadoOrdenGiro.Total);
                 cmd.Parameters.AddWithValue("@VALORPAGAR", ObjEncabezadoOrdenGiro.ValorPagar);
                 cmd.Parameters.AddWithValue("@SALDO", ObjEncabezadoOrdenGiro.Saldo);
                 cmd.Parameters.AddWithValue("@FECHARETENCION", ObjEncabezadoOrdenGiro.FechaRetencion);
@@ -1589,6 +1588,7 @@ namespace Comisariato.Clases
                 cmd.Parameters.AddWithValue("@AUTORIZACIONRETENCION", ObjEncabezadoOrdenGiro.Autorizacionretencion);
                 cmd.Parameters.AddWithValue("@TOTALDEBE", ObjEncabezadoOrdenGiro.TotalDebe);
                 cmd.Parameters.AddWithValue("@TOTALHABER", ObjEncabezadoOrdenGiro.TotalHaber);
+                cmd.Parameters.AddWithValue("@TIPOAUTORIZACION", ObjEncabezadoOrdenGiro.TotalHaber);
                 int result = cmd.ExecuteNonQuery();
                 Objc.Cerrar();
                 if (result > 0)

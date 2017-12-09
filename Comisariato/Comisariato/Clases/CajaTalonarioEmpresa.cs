@@ -217,7 +217,7 @@ namespace Comisariato.Clases
         {
             ObjConsulta = new Consultas();
 
-            if (!ObjConsulta.Existe("SERIE2 = '"+ serie2 + "' AND SERIE1", serie1, "TbCajasTalonario") )
+            if (!ObjConsulta.Existe("TIPODOCUMENTO = '"+ tipoDocumento +"' and SERIE2 = '" + serie2 + "' AND SERIE1", serie1, "TbCajasTalonario") )
             {
                 if (ObjConsulta.EjecutarSQL("INSERT INTO [dbo].[TbCajasTalonario] ([TIPODOCUMENTO] ,[SERIE1],[SERIE2],[DOCUMENTOINICIAL],[DOCUMENTOFINAL],[DOCUMENTOACTUAL] ,[AUTORIZACION] ,[FECHACADUCIDAD] ,[ESTACION] ,[IPESTACION],[IDSUCURSAL] ,[IDBODEGA] ,[ESTADO])"
                     + " VALUES ('" + tipoDocumento + "','" + serie1 + "','" + serie2 + "','" + documentoInicial + "','" + documentoFinal + "','" + documentoActual + "','" + autorizacion + "','" + fechaCaducidad + "','" + Estacion + "','" + ipEstacion + "'," + IDsucursal + "," + IDBodega + ",'" + estado + "')"))

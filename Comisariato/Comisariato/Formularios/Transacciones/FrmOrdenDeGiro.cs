@@ -22,6 +22,7 @@ namespace Comisariato.Formularios.Transacciones
         }
 
         Consultas ObjConsul = new Consultas();
+        Bitacora bitacora = new Bitacora();
         public void inicializar()
         {
             Funcion.Limpiarobjetos(gbDatosFactura);
@@ -108,6 +109,7 @@ namespace Comisariato.Formularios.Transacciones
 
         private void FrmOrdenDeGiro_Load(object sender, EventArgs e)
         {
+            Program.FormularioOrdenGiro = true;
             for (int i = 0; i < 7; i++)
             {
                 dgvDatosLibroDiario.Rows.Add();
@@ -153,6 +155,7 @@ namespace Comisariato.Formularios.Transacciones
                 ObjConsul.BoolLlenarComboBox(cbSustentoTributario, "Select C.IDCODIGOSRI as ID,  C.DESCRIPCION as Texto from TbProveedor P, TbCodigoSRI C  where  P.CREDITO = C.IDCODIGOSRI and  P.IDPROVEEDOR = " + CmbProveedor.SelectedValue + "");
                 cbSustentoTributario.Enabled = false;                
             }
+            seriesDocumentoRetencion();
         }
 
         private void txtNumero_Leave(object sender, EventArgs e)
@@ -348,10 +351,52 @@ namespace Comisariato.Formularios.Transacciones
         {
             if (txtValorPagar.Text != "" && txtConcepto.Text != "" && cbFormaPago.Text != "" && txtNAutorizacion.Text != "" && cbTipo.Text != "")
             {
-                //EncabezadoOrdenGiro objEncabezadoOG = new EncabezadoOrdenGiro(Convert.ToInt32(txtOrdenGiro.Text), CmbTipoDocumento.SelectedValue, CmbProveedor.SelectedValue, cbTipo.Text, txtPlazo.Text,
-                //    txtConcepto.Text, txtNAutorizacion.Text, txtNumero.Text, Convert.ToInt32(txtSerie1.Text), Convert.ToInt32(txtSerie2.Text), ckbRISE.Checked, ckbDeclaraSRI.Checked, ckbManual.Checked,
-                //    dtpFechaDocumentacion, dtpFechaContabilizacion, dtpFechaOrdenGiro, dtpFechaVigente, ;
+                string idEncabezado = ObjConsul.ObtenerValorCampo("IDEMCABEZADOCOMPRA", "TbEncabezadoyPieCompra", " WHERE SERIE1 ="+ txtSerie1.Text + " AND SERIE2 =" + txtSerie2.Text + " AND NUMERO = " + txtNumero.Text + "");
+                EncabezadoOrdenGiro objEncabezadoOG = new EncabezadoOrdenGiro(Convert.ToInt32(txtOrdenGiro.Text), Convert.ToInt32(CmbTipoDocumento.SelectedValue), Convert.ToInt32(CmbProveedor.SelectedValue), cbTipo.Text, txtPlazo.Text,
+                    txtConcepto.Text, txtNAutorizacion.Text, txtNumero.Text, Convert.ToInt32(txtSerie1.Text), Convert.ToInt32(txtSerie2.Text), ckbRISE.Checked, ckbDeclaraSRI.Checked, ckbManual.Checked,
+                    dtpFechaDocumentacion.Value, dtpFechaContabilizacion.Value, dtpFechaOrdenGiro.Value, dtpFechaVigente.Value, Convert.ToInt32(idEncabezado), Convert.ToSingle(Funcion.reemplazarcaracter(txtValorPagar.Text)),
+                    Convert.ToSingle(Funcion.reemplazarcaracter(txtSaldo.Text)), dtpFechaRetencion.Value, dtpFechaVenceDocumento.Value, Convert.ToInt32(txtSerie1Retencion.Text), Convert.ToInt32(txtSerie2Retencion.Text),
+                    Convert.ToInt32(txtNumeroRetencion.Text), txtAutorizacionRetencion.Text, Convert.ToSingle(Funcion.reemplazarcaracter(txtTotalDebe.Text)), Convert.ToSingle(Funcion.reemplazarcaracter(txtTotalHaber.Text)), 
+                    cbAutorizacionSRI.Text);
+                string resultado =  objEncabezadoOG.InsertarEncabezadoOrden(objEncabezadoOG);
+                if (resultado == "Datos Guardados")
+                {
+                    string numeroRetencion = (Convert.ToInt32(txtNumeroRetencion.Text) + 1).ToString("D9");                    
+                    ObjConsul.EjecutarSQL("UPDATE [dbo].[TbCajasTalonario] SET [DOCUMENTOACTUAL] = '"+ numeroRetencion +"' WHERE SERIE1 = '"+ txtSerie1Retencion.Text + "' and SERIE2 = '" + txtSerie2Retencion.Text + "' and IPESTACION = '" + bitacora.LocalIPAddress() + "' and TIPODOCUMENTO = 'RET'");
+                    MessageBox.Show("Cliente Registrado Correctamente ", "Exito", MessageBoxButtons.OK);
+                    seriesDocumentoRetencion();
+                    txtOrdenGiro.Text = (Convert.ToInt32(ObjConsul.ObtenerID("NUMEROORDENGIRO", "TbEncabezadoOrdenGiro", "")) + 1).ToString();
+                }
+                else if (resultado == "Error al Registrar")
+                {
+                    MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else if (resultado == "Existe") { MessageBox.Show("Ya Existe el Cliente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }
             }
+        }
+        public void seriesDocumentoRetencion()
+        {
+            string numcaja = "", sucursal = "", documentoActual = "", autorizacion = "";
+            string IpMaquina = bitacora.LocalIPAddress();
+            DataTable Dt =  ObjConsul.BoolDataTable("Select TIPODOCUMENTO, SERIE1,SERIE2,DOCUMENTOACTUAL,DOCUMENTOINICIAL,DOCUMENTOFINAL,AUTORIZACION,ESTACION,IPESTACION from TbCajasTalonario where IPESTACION = '" + IpMaquina + "' and ESTADO=1;");
+            if (Dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < Dt.Rows.Count; i++)
+                {
+                    DataRow myRows = Dt.Rows[i];
+                    if (myRows["TIPODOCUMENTO"].ToString() == "RET")
+                    {
+                        sucursal = myRows["SERIE1"].ToString();
+                        numcaja = myRows["SERIE2"].ToString();
+                        documentoActual = myRows["DOCUMENTOACTUAL"].ToString();
+                        autorizacion = myRows["AUTORIZACION"].ToString();
+                    }
+                }
+            }
+            txtNumeroRetencion.Text = documentoActual;
+            txtSerie1Retencion.Text = sucursal;
+            txtSerie2Retencion.Text = numcaja;
+            txtAutorizacionRetencion.Text = autorizacion;
         }
     }
 }

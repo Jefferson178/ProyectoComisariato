@@ -106,8 +106,6 @@
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.txtPlazo = new System.Windows.Forms.TextBox();
             this.cbSustentoTributario = new System.Windows.Forms.ComboBox();
-            //this.comboBox1 = new System.Windows.Forms.ComboBox();
-            //this.CmbTipo = new System.Windows.Forms.ComboBox();
             this.cbFormaPago = new System.Windows.Forms.ComboBox();
             this.cbTipo = new System.Windows.Forms.ComboBox();
             this.CmbProveedor = new System.Windows.Forms.ComboBox();
@@ -1001,20 +999,6 @@
             this.cbSustentoTributario.Size = new System.Drawing.Size(202, 24);
             this.cbSustentoTributario.TabIndex = 22;
             // 
-            // comboBox1
-            // 
-            //this.comboBox1.Font = new System.Drawing.Font("Arial", 10F);
-            //this.comboBox1.FormattingEnabled = true;
-            //this.comboBox1.Items.AddRange(new object[] {
-            //"BIEN",
-            //"SERVICIO",
-            //"AMBAS"});
-            //this.comboBox1.Location = new System.Drawing.Point(542, 60);
-            //this.comboBox1.Name = "comboBox1";
-            //this.comboBox1.Size = new System.Drawing.Size(159, 24);
-            //this.comboBox1.TabIndex = 21;
-            // 
-            // CmbTipo
             // cbFormaPago
             // 
             this.cbFormaPago.Font = new System.Drawing.Font("Arial", 10F);

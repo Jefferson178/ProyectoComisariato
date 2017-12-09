@@ -14,7 +14,7 @@ namespace Comisariato.Clases
         bool rise, declaraSRI, retencionManual;
         DateTime fechaDocumento, fechaContabilizacion, fechaOrdenGiro, FechaVigente;
         int encabezadoCompra;
-        float total, valorPagar, saldo;
+        float valorPagar, saldo;
         DateTime fechaRetencion, fechaVenceDocumento;
         int serie1Retencion, serie2Retencion, numeroRetencion;
         string autorizacionretencion;
@@ -22,8 +22,8 @@ namespace Comisariato.Clases
 
         public EncabezadoOrdenGiro(int numeroOrdenGiro, int tipoDocumento, int proveedor, string tipo, string plazo, string concepto, string atorizacionProveedor, 
             string numeroProveedor, int serie1Proveedor, int serie2Proveedor, bool rise, bool declaraSRI, bool retencionManual, DateTime fechaDocumento, 
-            DateTime fechaContabilizacion, DateTime fechaOrdenGiro, DateTime fechaVigente, int encabezadoCompra, float total, float valorPagar, float saldo, 
-            DateTime fechaRetencion, DateTime fechaVenceDocumento, int serie1Retencion, int serie2Retencion, int numeroRetencion, string autorizacionretencion, float totalDebe, float totalHaber)
+            DateTime fechaContabilizacion, DateTime fechaOrdenGiro, DateTime fechaVigente, int encabezadoCompra, float valorPagar, float saldo, 
+            DateTime fechaRetencion, DateTime fechaVenceDocumento, int serie1Retencion, int serie2Retencion, int numeroRetencion, string autorizacionretencion, float totalDebe, float totalHaber, string tipoAutorizacion)
         {
             this.numeroOrdenGiro = numeroOrdenGiro;
             this.tipoDocumento = tipoDocumento;
@@ -43,7 +43,6 @@ namespace Comisariato.Clases
             this.fechaOrdenGiro = fechaOrdenGiro;
             FechaVigente = fechaVigente;
             this.encabezadoCompra = encabezadoCompra;
-            this.total = total;
             this.valorPagar = valorPagar;
             this.saldo = saldo;
             this.fechaRetencion = fechaRetencion;
@@ -54,6 +53,7 @@ namespace Comisariato.Clases
             this.autorizacionretencion = autorizacionretencion;
             this.totalDebe = totalDebe;
             this.totalHaber = totalHaber;
+            this.TipoAutorizacion = tipoAutorizacion;
         }
 
         public int NumeroOrdenGiro
@@ -290,18 +290,7 @@ namespace Comisariato.Clases
             }
         }
 
-        public float Total
-        {
-            get
-            {
-                return total;
-            }
-
-            set
-            {
-                total = value;
-            }
-        }
+        
 
         public float ValorPagar
         {
@@ -431,12 +420,26 @@ namespace Comisariato.Clases
                 totalHaber = value;
             }
         }
+
+        public string TipoAutorizacion
+        {
+            get
+            {
+                return tipoAutorizacion;
+            }
+
+            set
+            {
+                tipoAutorizacion = value;
+            }
+        }
+
         Consultas ObjConsulta;
         public string InsertarEncabezadoOrden(EncabezadoOrdenGiro objEncabezadoOrdenGiro)
         {
             ObjConsulta = new Consultas();
 
-            if (!ObjConsulta.Existe("IDPROVEEDOR = " + proveedor + " AND NUMEROPROVEEDOR = " + numeroProveedor + " AND SERIE1PROVEEDOR = " + serie1Proveedor + " AND SERIE2PROVEEDOR", serie2Proveedor.ToString(), "TbEncabezadoOrdenGiro"))
+            if (!ObjConsulta.Existe("IDPROVEEDOR = " + proveedor + " AND NUMERODOCUMENTOPROVEEDOR = " + numeroProveedor + " AND SERIE1PROVEEDOR = " + serie1Proveedor + " AND SERIE2PROVEEDOR", serie2Proveedor.ToString(), "TbEncabezadoOrdenGiro"))
             {
                 if (ObjConsulta.EjecutarPROCEDUREEncabezadoOrdenGiro(objEncabezadoOrdenGiro))
                 {

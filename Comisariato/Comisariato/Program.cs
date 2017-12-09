@@ -29,6 +29,7 @@ namespace Comisariato
         public static bool FormularioLlamado = false;
         public static bool FormularioProveedorCompra = false;
         public static bool FormularioVentaAbierto = false;
+        public static bool FormularioOrdenGiro = false;
 
         //datos empresa
         public static string nombreempresa;
