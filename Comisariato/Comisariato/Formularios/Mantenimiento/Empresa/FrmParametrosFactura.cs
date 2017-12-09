@@ -64,6 +64,8 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
 
                 TxtAncho.Text = Funcion.reemplazarcaracter(myRow["ANCHO"].ToString());
                 TxtLargo.Text = Funcion.reemplazarcaracter(myRow["LARGO"].ToString());
+                TxtTamañoEncabezadoFact.Text = Funcion.reemplazarcaracter(myRow["TAMANOENCABEZADOFACTURA"].ToString());
+                TxtTamañoPieFact.Text = Funcion.reemplazarcaracter(myRow["TAMANOPIEFACTURA"].ToString());
                 TxtNumeroItemsFactura.Text = myRow["NUMEROITEMS"].ToString();
 
             }
@@ -108,7 +110,7 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
             if (txtMontoMinimoFacturaEmpresa.Text!="" && cbIVA.SelectedIndex>=0 )
             {
                 
-                ParametrosFactura ObjParametrosFactura = new ParametrosFactura(txtMontoMinimoFacturaEmpresa.Text, Convert.ToInt32(cbIVA.Text), ckbContribuyenteEspecial.Checked, ckbObligadoContabilidad.Checked, TxtAncho.Text, TxtLargo.Text, Convert.ToInt32(TxtNumeroItemsFactura.Text), TxtPie1.Text, TxtPie2.Text, TxtPie3.Text, TxtPie4.Text, Convert.ToInt32(Program.IDEMPRESA));
+                ParametrosFactura ObjParametrosFactura = new ParametrosFactura(txtMontoMinimoFacturaEmpresa.Text, Convert.ToInt32(cbIVA.Text), ckbContribuyenteEspecial.Checked, ckbObligadoContabilidad.Checked, TxtAncho.Text, TxtLargo.Text, Convert.ToInt32(TxtNumeroItemsFactura.Text), TxtPie1.Text, TxtPie2.Text, TxtPie3.Text, TxtPie4.Text, Convert.ToInt32(Program.IDEMPRESA),TxtTamañoEncabezadoFact.Text,TxtTamañoPieFact.Text);
 
                 if (!Estado_Existe)
                 {
@@ -173,6 +175,16 @@ namespace Comisariato.Formularios.Mantenimiento.Empresa
         private void txtMontoMinimoFacturaEmpresa_Enter(object sender, EventArgs e)
         {
             txtMontoMinimoFacturaEmpresa.SelectAll();
+        }
+
+        private void TxtTamañoEncabezadoFact_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Funcion.SoloValores(e, TxtTamañoEncabezadoFact.Text);
+        }
+
+        private void TxtTamañoPieFact_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Funcion.SoloValores(e, TxtTamañoPieFact.Text);
         }
     }
 }

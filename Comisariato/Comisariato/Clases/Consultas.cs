@@ -539,6 +539,7 @@ namespace Comisariato.Clases
                 detallepagoreim = new List<string>();
                 Objc.conectar();
                 string sql = "SELECT U.SUCURSAL, U.CAJA, U.NFACTURA, U.FECHA, U.HORA, U.IDEMPLEADO, U.IDCLIENTE, C.NOMBRES AS NCLIENTE, C.APELLIDOS AS ACLIENTE, C.IDENTIFICACION, A.NOMBRES AS NEMPLEADO, A.APELLIDOS AS AEMPLEADO, P.EFECTIVO, P.CHEQUE, P.CREDITO, P.IVA, P.DESCUENTO, P.CAMBIO, P.RECIBIDO from TbEncabezadoFactura U INNER JOIN TbEmpleado A ON(U.SUCURSAL='" + sucursal + "' and U.CAJA= '" + caja + "' and NFACTURA='" + numfact + "') AND ( A.IDEMPLEADO= U.IDEMPLEADO) INNER JOIN TbCliente C ON( A.IDEMPLEADO= U.IDEMPLEADO and C.IDCLIENTE=U.IDCLIENTE)  INNER JOIN TbDetallePago P ON(U.IDFACTURA=P.IDENCABEZADOFACT)";
+
                 SqlCommand Sentencia = new SqlCommand(sql);
                 Sentencia.Connection = ConexionBD.connection;
                 SqlDataReader dato = Sentencia.ExecuteReader();
@@ -599,7 +600,10 @@ namespace Comisariato.Clases
             {
                 List<Producto> lista = new List<Producto>();
                 Objc.conectar();
-                string sql = " SELECT U.PRECIO, U.CANTDEVUELTA, U.CANTIDAD, U.CODIGOBARRAPRODUCTO, U.ESTADO, U.IVA, P.NOMBREPRODUCTO, P.IVAESTADO from TbDetalleFactura U INNER JOIN TbProducto P  ON(U.NFACTURA = '" + nfact + "') AND(P.CODIGOBARRA = U.CODIGOBARRAPRODUCTO)";
+                //string sql = " SELECT U.PRECIO, U.CANTDEVUELTA, U.CANTIDAD, U.CODIGOBARRAPRODUCTO, U.ESTADO, U.IVA, P.NOMBREPRODUCTO, P.IVAESTADO from TbDetalleFactura U INNER JOIN TbProducto P  ON(U.NFACTURA = '" + nfact + "') AND(P.CODIGOBARRA = U.CODIGOBARRAPRODUCTO)";
+                String sql = "SELECT        dbo.TbDetalleFactura.PRECIO, dbo.TbDetalleFactura.CANTDEVUELTA, dbo.TbDetalleFactura.CANTIDAD, dbo.TbDetalleFactura.CODIGOBARRAPRODUCTO, dbo.TbDetalleFactura.ESTADO, dbo.TbDetalleFactura.IVA, dbo.TbProducto.NOMBREPRODUCTO, dbo.TbProducto.IVAESTADO, dbo.TbEncabezadoFactura.NFACTURA FROM  dbo.TbDetalleFactura INNER JOIN" +
+                         " dbo.TbProducto ON dbo.TbDetalleFactura.CODIGOBARRAPRODUCTO = dbo.TbProducto.CODIGOBARRA INNER JOIN dbo.TbEncabezadoFactura ON dbo.TbDetalleFactura.NFACTURA = dbo.TbEncabezadoFactura.IDFACTURA" +
+                         " WHERE(dbo.TbEncabezadoFactura.NFACTURA = '" + nfact + "')";
                 SqlCommand comando = new SqlCommand(sql);
                 comando.Connection = ConexionBD.connection;
                 SqlDataReader dato = comando.ExecuteReader();
@@ -1144,6 +1148,8 @@ namespace Comisariato.Clases
                 cmd.Parameters.AddWithValue("@IDEMPRESA", ObjParametrosFact.Idempresa);
                 cmd.Parameters.AddWithValue("@ANCHO", ObjParametrosFact.Ancho);
                 cmd.Parameters.AddWithValue("@LARGO", ObjParametrosFact.Largo);
+                cmd.Parameters.AddWithValue("@TAMANOENCABEZADOFACTURA", ObjParametrosFact.TamanoEncabezadoFact1);
+                cmd.Parameters.AddWithValue("@TAMANOPIEFACTURA", ObjParametrosFact.TamanoPieFact1);
                 cmd.Parameters.AddWithValue("@NUMEROITEMS", ObjParametrosFact.NumeroItems);
                 cmd.Parameters.AddWithValue("@PIE1", ObjParametrosFact.Pie1);
                 cmd.Parameters.AddWithValue("@PIE2", ObjParametrosFact.Pie2);

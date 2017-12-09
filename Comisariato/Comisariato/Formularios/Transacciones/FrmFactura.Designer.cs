@@ -1033,6 +1033,7 @@
             this.Name = "FrmFactura";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "VENTAS - Aircontrol";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.FrmFactura_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmFactura_FormClosed);
             this.Load += new System.EventHandler(this.FrmFactura_Load);

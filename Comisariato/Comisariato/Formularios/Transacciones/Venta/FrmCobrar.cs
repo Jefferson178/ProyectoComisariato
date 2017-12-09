@@ -816,7 +816,7 @@ namespace Comisariato.Formularios.Transacciones
             ticket.TextoIzquierda(Program.direccionempresa);
             ticket.TextoIzquierda("Valido: "+ fechactual + " Hasta: " + fechaexpira);
             ticket.TextoIzquierda("Clave: 4530000");
-            ticket.TextoIzquierda("        Factura #: "+sucursal.ToString("D3") + "-"+numcaja.ToString("D3") + "-"+numfac.ToString("D8"));
+            ticket.TextoIzquierda("        Factura #: "+sucursal.ToString("D3") + "-"+numcaja.ToString("D3") + "-"+numfac.ToString("D9"));
             ticket.TextoIzquierda("         Informacion del Consumidor");//Es el mio por si me quieren contactar ...
             ticket.TextoIzquierda("RUC: "+identificacion);
             ticket.TextoIzquierda("Cliente: "+nombre);
@@ -989,11 +989,11 @@ namespace Comisariato.Formularios.Transacciones
             ticket.TextoCentro("¡GRACIAS POR SU COMPRA!");
             ticket.CortaTicket();
 
-            //String ruta = @"\\AIRCONTROL\BodegaPedido";
-            //ticket.ImprimirTicket(ruta);
+            String ruta = @"\\AIRCONTROL\BodegaPedido";
+            ticket.ImprimirTicket(ruta);
 
 
-            ticket.ImprimirTicket("Generic / Text Only");//Nombre de la impresora ticketera
+            //ticket.ImprimirTicket("Generic / Text Only");//Nombre de la impresora ticketera
 
         }
 

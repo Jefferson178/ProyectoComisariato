@@ -66,15 +66,17 @@ namespace Comisariato.Formularios.Transacciones
             //Ya podemos usar todos sus metodos
             ticket.AbreCajon();//Para abrir el cajon de dinero.
 
+
+            DateTime FECHA = Convert.ToDateTime(em.Fecha);
             //De aqui en adelante pueden formar su ticket a su gusto... Les muestro un ejemplo
-           
+
             //Datos de la cabecera del Ticket.
-            ticket.TextoCentro("EMPRESA: COMISARIATO SUPER DOS");
-            ticket.TextoCentro("RUC: 1802114429001");
-            ticket.TextoIzquierda("Direccion: AV LA GUAYAS 207 Y ABDON CALD");
-            ticket.TextoIzquierda("Valido: " + em.Fecha + " Hasta: " + em.Fecha);
+            ticket.TextoCentro("EMPRESA: " + Program.nombreempresa);
+            ticket.TextoCentro("RUC: " + Program.rucempresa);
+            ticket.TextoIzquierda(Program.direccionempresa);
+            ticket.TextoIzquierda("Valido: " + FECHA.ToShortDateString() + " Hasta: " + FECHA.Date.AddYears(1).ToShortDateString());
             ticket.TextoIzquierda("Clave: 4530000");
-            ticket.TextoIzquierda("        Factura: " + int.Parse(txtSucursal.Text).ToString("D4") + "-" + int.Parse(txtCaja.Text).ToString("D4") + "-" + int.Parse(txtNumFact.Text).ToString("D8"));
+            ticket.TextoIzquierda("        Factura: " + int.Parse(txtSucursal.Text).ToString("D3") + "-" + int.Parse(txtCaja.Text).ToString("D3") + "-" + int.Parse(txtNumFact.Text).ToString("D9"));
             ticket.TextoIzquierda("         Informacion del Consumidor");//Es el mio por si me quieren contactar ...
             ticket.TextoIzquierda("RUC: " + em.Identificacion);
             ticket.TextoIzquierda("Cliente: " + em.NombresCliente);
@@ -135,38 +137,40 @@ namespace Comisariato.Formularios.Transacciones
             //Articulos a vender.
             ticket.EncabezadoVenta();//NOMBRE DEL ARTICULO, CANT, PRECIO, IMPORTE
             ticket.lineasAsteriscos();
-            float ivasuma = 0.0f, subtotal = 0.0f, subtotaconiva = 0.0f,  totaapagar = 0.0f;
+            double ivasuma = 0.0f, subtotal = 0.0f, subtotaconiva = 0.0f,  totaapagar = 0.0f, Subtotaltotalpago = 0.0f;
             //Si tiene una DataGridView donde estan sus articulos a vender pueden usar esta manera para agregarlos al ticket.
             for (int i = 0; i < p.Count; i++)//dgvLista es el nombre del datagridview
             {
-                float total = 0.0f,iva=0.0f;
+                double total = 0.0f,iva=0.0f;
                 total = p[i].Preciopublico_sin_iva * p[i].Cantidad;
                 if (p[i].Iva == 12)
                 {
                     iva = ((p[i].Preciopublico_sin_iva * p[i].Cantidad) * p[i].Iva)/100;
-                    ivasuma += iva;
+                    ivasuma = iva;
                     ticket.AgregaArticulo("*" + p[i].Nombreproducto, p[i].Cantidad,
                     Convert.ToSingle(p[i].Preciopublico_sin_iva).ToString("#####0.00"), total.ToString("#####0.00"));
-                    subtotaconiva += total + ivasuma;
+                    //subtotaconiva += total + iva;
+                    subtotaconiva += p[i].Preciopublico_sin_iva;
                 }
                 else
                 {
                     ticket.AgregaArticulo(" "+p[i].Nombreproducto, p[i].Cantidad,
                     Convert.ToSingle(p[i].Preciopublico_sin_iva).ToString("#####0.00"), Convert.ToSingle(total).ToString("#####0.00"));
+                    subtotal += total;
                 }
-                subtotal += total;
-                totaapagar += total + ivasuma;
+                Subtotaltotalpago += total;
+                totaapagar += total + iva;
                
             }
             
             ticket.lineasAsteriscos();
             //Resumen de la venta. Sólo son ejemplos
             //Resumen de la venta. Sólo son ejemplos
-            ticket.AgregarTotales("SUBTOTAL ", Convert.ToSingle(Funcion.reemplazarcaracter(Convert.ToString(subtotal))));
-            ticket.AgregarTotales("SUBTOTAL 12% ", Convert.ToSingle(Funcion.reemplazarcaracter(Convert.ToString(subtotaconiva))));
-            ticket.AgregarTotales("Descuento", Convert.ToSingle(Funcion.reemplazarcaracter(detapago[3])));
-            ticket.AgregarTotales("Iva 12%  ", Convert.ToSingle(Funcion.reemplazarcaracter(detapago[4])));
-            ticket.AgregarTotales("Total a pagar", Convert.ToSingle(Funcion.reemplazarcaracter(Convert.ToString(totaapagar))));
+            ticket.AgregarTotales("SUBTOTAL 0% ", subtotal);
+            ticket.AgregarTotales("SUBTOTAL 12% ", subtotaconiva);
+            ticket.AgregarTotales("Descuento", Convert.ToDouble(detapago[3]));
+            ticket.AgregarTotales("Iva 12%  ", Convert.ToDouble(detapago[4]));
+            ticket.AgregarTotales("Total a pagar", totaapagar);
 
             if (detapago[0] != "0" && detapago[1] != "0" && detapago[2] != "0")
             {
@@ -231,14 +235,21 @@ namespace Comisariato.Formularios.Transacciones
                 }
             }
 
-
+            String PIEFA = Program.piefactura;
+            string[] PIES = PIEFA.Split('\n');
 
             ticket.TextoIzquierda("");
             ticket.TextoIzquierda("ARTICULOS VENDIDOS: " + p.Count);
             ticket.TextoIzquierda("");
+            ticket.TextoCentro(PIES[0]);
+            ticket.TextoCentro(PIES[1]);
+            ticket.TextoCentro(PIES[2]);
+            ticket.TextoCentro(PIES[3]);
             ticket.TextoCentro("¡GRACIAS POR SU COMPRA!");
             ticket.CortaTicket();
-            ticket.ImprimirTicket("Generic / Text Only");//Nombre de la impresora ticketera
+            String ruta = @"\\AIRCONTROL\BodegaPedido";
+            ticket.ImprimirTicket(ruta);
+            //ticket.ImprimirTicket("Generic / Text Only");//Nombre de la impresora ticketera
 
 
 
@@ -319,5 +330,9 @@ namespace Comisariato.Formularios.Transacciones
            
         }
 
+        private void FrmReimprimirFact_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

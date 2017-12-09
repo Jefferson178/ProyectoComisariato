@@ -59,6 +59,10 @@
             this.btnLimpiarEmpresa = new System.Windows.Forms.Button();
             this.btnGuardarEmpresa = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.TxtTamañoEncabezadoFact = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.TxtTamañoPieFact = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.gbTipoFacturaEmpresa.SuspendLayout();
             this.gbSRIEmpresa.SuspendLayout();
             this.gbAutorizadoImprimir.SuspendLayout();
@@ -306,11 +310,11 @@
             this.gbPreimpresa.Controls.Add(this.groupBox8);
             this.gbPreimpresa.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbPreimpresa.ForeColor = System.Drawing.Color.Teal;
-            this.gbPreimpresa.Location = new System.Drawing.Point(22, 100);
+            this.gbPreimpresa.Location = new System.Drawing.Point(24, 100);
             this.gbPreimpresa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbPreimpresa.Name = "gbPreimpresa";
             this.gbPreimpresa.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbPreimpresa.Size = new System.Drawing.Size(418, 131);
+            this.gbPreimpresa.Size = new System.Drawing.Size(418, 138);
             this.gbPreimpresa.TabIndex = 12;
             this.gbPreimpresa.TabStop = false;
             this.gbPreimpresa.Text = "Preimpresa";
@@ -319,7 +323,7 @@
             // TxtNumeroItemsFactura
             // 
             this.TxtNumeroItemsFactura.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.TxtNumeroItemsFactura.Location = new System.Drawing.Point(199, 98);
+            this.TxtNumeroItemsFactura.Location = new System.Drawing.Point(199, 109);
             this.TxtNumeroItemsFactura.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TxtNumeroItemsFactura.Name = "TxtNumeroItemsFactura";
             this.TxtNumeroItemsFactura.Size = new System.Drawing.Size(203, 22);
@@ -332,7 +336,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label17.Location = new System.Drawing.Point(12, 101);
+            this.label17.Location = new System.Drawing.Point(12, 112);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(181, 16);
             this.label17.TabIndex = 1;
@@ -340,6 +344,10 @@
             // 
             // groupBox8
             // 
+            this.groupBox8.Controls.Add(this.TxtTamañoPieFact);
+            this.groupBox8.Controls.Add(this.label3);
+            this.groupBox8.Controls.Add(this.TxtTamañoEncabezadoFact);
+            this.groupBox8.Controls.Add(this.label2);
             this.groupBox8.Controls.Add(this.TxtLargo);
             this.groupBox8.Controls.Add(this.TxtAncho);
             this.groupBox8.Controls.Add(this.label16);
@@ -350,7 +358,7 @@
             this.groupBox8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox8.Size = new System.Drawing.Size(387, 62);
+            this.groupBox8.Size = new System.Drawing.Size(387, 78);
             this.groupBox8.TabIndex = 0;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Tamaño Factura";
@@ -358,10 +366,10 @@
             // TxtLargo
             // 
             this.TxtLargo.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.TxtLargo.Location = new System.Drawing.Point(248, 30);
+            this.TxtLargo.Location = new System.Drawing.Point(283, 18);
             this.TxtLargo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TxtLargo.Name = "TxtLargo";
-            this.TxtLargo.Size = new System.Drawing.Size(116, 22);
+            this.TxtLargo.Size = new System.Drawing.Size(76, 22);
             this.TxtLargo.TabIndex = 3;
             this.TxtLargo.Text = "0";
             this.TxtLargo.Enter += new System.EventHandler(this.TxtLargo_Enter);
@@ -370,10 +378,10 @@
             // TxtAncho
             // 
             this.TxtAncho.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.TxtAncho.Location = new System.Drawing.Point(71, 30);
+            this.TxtAncho.Location = new System.Drawing.Point(106, 18);
             this.TxtAncho.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TxtAncho.Name = "TxtAncho";
-            this.TxtAncho.Size = new System.Drawing.Size(116, 22);
+            this.TxtAncho.Size = new System.Drawing.Size(76, 22);
             this.TxtAncho.TabIndex = 2;
             this.TxtAncho.Text = "0";
             this.TxtAncho.Enter += new System.EventHandler(this.TxtAncho_Enter);
@@ -383,7 +391,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label16.Location = new System.Drawing.Point(198, 33);
+            this.label16.Location = new System.Drawing.Point(233, 21);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(44, 16);
             this.label16.TabIndex = 1;
@@ -393,7 +401,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label15.Location = new System.Drawing.Point(16, 33);
+            this.label15.Location = new System.Drawing.Point(16, 21);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(49, 16);
             this.label15.TabIndex = 0;
@@ -428,6 +436,48 @@
             this.btnGuardarEmpresa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardarEmpresa.UseVisualStyleBackColor = true;
             this.btnGuardarEmpresa.Click += new System.EventHandler(this.btnGuardarEmpresa_Click);
+            // 
+            // TxtTamañoEncabezadoFact
+            // 
+            this.TxtTamañoEncabezadoFact.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.TxtTamañoEncabezadoFact.Location = new System.Drawing.Point(106, 46);
+            this.TxtTamañoEncabezadoFact.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.TxtTamañoEncabezadoFact.Name = "TxtTamañoEncabezadoFact";
+            this.TxtTamañoEncabezadoFact.Size = new System.Drawing.Size(76, 22);
+            this.TxtTamañoEncabezadoFact.TabIndex = 5;
+            this.TxtTamañoEncabezadoFact.Text = "0";
+            this.TxtTamañoEncabezadoFact.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtTamañoEncabezadoFact_KeyPress);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.label2.Location = new System.Drawing.Point(16, 49);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(84, 16);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Encabezado:";
+            // 
+            // TxtTamañoPieFact
+            // 
+            this.TxtTamañoPieFact.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.TxtTamañoPieFact.Location = new System.Drawing.Point(282, 45);
+            this.TxtTamañoPieFact.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.TxtTamañoPieFact.Name = "TxtTamañoPieFact";
+            this.TxtTamañoPieFact.Size = new System.Drawing.Size(76, 22);
+            this.TxtTamañoPieFact.TabIndex = 7;
+            this.TxtTamañoPieFact.Text = "0";
+            this.TxtTamañoPieFact.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtTamañoPieFact_KeyPress);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.label3.Location = new System.Drawing.Point(233, 48);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(31, 16);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Pie:";
             // 
             // FrmParametrosFactura
             // 
@@ -496,5 +546,9 @@
         private System.Windows.Forms.Button btnRegistrarIVA;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbIVA;
+        private System.Windows.Forms.TextBox TxtTamañoPieFact;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox TxtTamañoEncabezadoFact;
+        private System.Windows.Forms.Label label2;
     }
 }
