@@ -167,12 +167,12 @@ namespace Comisariato.Formularios
                 if (FrmInformeVentas == null || FrmInformeVentas.IsDisposed)
                 {
                     FrmInformeVentas = new FrmInformeVentas();
-                    FrmInformeVentas.MdiParent = this;
-                    FrmInformeVentas.BringToFront();
+                    //FrmInformeVentas.BringToFront();
                     FrmInformeVentas.Show();
+                    FrmInformeVentas.MdiParent = this;
 
                 }
-                else { FrmInformeVentas.BringToFront(); }
+                //else { FrmInformeVentas.BringToFront(); }
             }
             else if (nombre == "Empresa")
             {
