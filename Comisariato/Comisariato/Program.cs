@@ -20,7 +20,13 @@ namespace Comisariato
         public static string IDUsuario = "", NOMBRES="",APELLIDOS="", IDTIPOUSUARIO,IDEMPRESA;
         public static int numfact = 0;
         public static bool estado;
+
+        //Parametros Factura
         public static string piefactura="";
+        public static bool BoolPreimpresa = false;
+        public static bool BoolAutorizadoImprimir = false;
+        public static string DatosPreimpresa = "";
+
         //public static string IDUsuarioMenu = "";
         public static EmcabezadoFactura em = new EmcabezadoFactura();
         // ------- Variables Usadas por Andres 

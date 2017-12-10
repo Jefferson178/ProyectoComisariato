@@ -810,12 +810,32 @@ namespace Comisariato.Formularios.Transacciones
             int sucursal= Program.em.Sucursal;
             int numcaja = Program.em.Caja;
             int numfac = Program.em.Numfact;
+
+            int tamañoencabezado = 0, tamañoPie = 0, cantItems = 0;
+
             //Datos de la cabecera del Ticket.
-            ticket.TextoCentro("EMPRESA: "+Program.nombreempresa);
-            ticket.TextoCentro("RUC: "+Program.rucempresa);
-            ticket.TextoIzquierda(Program.direccionempresa);
-            ticket.TextoIzquierda("Valido: "+ fechactual + " Hasta: " + fechaexpira);
-            ticket.TextoIzquierda("Clave: 4530000");
+            if (Program.BoolAutorizadoImprimir)
+            {
+                ticket.TextoCentro("EMPRESA: " + Program.nombreempresa);
+                ticket.TextoCentro("RUC: " + Program.rucempresa);
+                ticket.TextoIzquierda(Program.direccionempresa);
+                ticket.TextoIzquierda("Valido: " + fechactual + " Hasta: " + fechaexpira);
+                ticket.TextoIzquierda("Clave: 4530000");
+            }
+            else if (Program.BoolPreimpresa)
+            {
+                //TAMANOENCABEZADOFACTURA-TAMANOPIEFACTURA-NUMEROITEMS
+                String PreimpresaDatos = Program.DatosPreimpresa;
+                string[] Preimpresa = PreimpresaDatos.Split('-');
+                tamañoencabezado = Convert.ToInt32(Preimpresa[0]);
+                tamañoPie = Convert.ToInt32(Preimpresa[1]);
+                cantItems = Convert.ToInt32(Preimpresa[2]);
+                //((tamañoencabezado * 2) + 1) ---> 2 = 1cm son dos lineas --- 1 = para completar el centimetro
+                for (int i = 1; i <= ((tamañoencabezado * 2) + 1); i++)
+                {
+                    ticket.TextoCentro("");
+                }
+            }
             ticket.TextoIzquierda("        Factura #: "+sucursal.ToString("D3") + "-"+numcaja.ToString("D3") + "-"+numfac.ToString("D9"));
             ticket.TextoIzquierda("         Informacion del Consumidor");//Es el mio por si me quieren contactar ...
             ticket.TextoIzquierda("RUC: "+identificacion);
@@ -976,22 +996,24 @@ namespace Comisariato.Formularios.Transacciones
                    
                 }
             }
-            String PIEFA = Program.piefactura;
-            string[] PIES = PIEFA.Split('\n');
             //Texto final del Ticket.
             ticket.TextoIzquierda("");
             ticket.TextoIzquierda("ARTICULOS VENDIDOS: "+totalfilas);
             ticket.TextoIzquierda("");
-            ticket.TextoCentro(PIES[0]);
-            ticket.TextoCentro(PIES[1]);
-            ticket.TextoCentro(PIES[2]);
-            ticket.TextoCentro(PIES[3]);
+            if (Program.BoolAutorizadoImprimir)
+            {
+                String PIEFA = Program.piefactura;
+                string[] PIES = PIEFA.Split('\n');
+                ticket.TextoCentro(PIES[0]);
+                ticket.TextoCentro(PIES[1]);
+                ticket.TextoCentro(PIES[2]);
+                ticket.TextoCentro(PIES[3]);
+            }
             ticket.TextoCentro("¡GRACIAS POR SU COMPRA!");
             ticket.CortaTicket();
 
             String ruta = @"\\AIRCONTROL\BodegaPedido";
-            ticket.ImprimirTicket(ruta);
-
+            ticket.ImprimirTicket("EPSON L210 Series");
 
             //ticket.ImprimirTicket("Generic / Text Only");//Nombre de la impresora ticketera
 

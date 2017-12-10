@@ -501,15 +501,12 @@ namespace Comisariato.Formularios
                 }
                 else
                 {
-<<<<<<< HEAD
                     MessageBox.Show("Caja no registrada");
-=======
                     FrmOrdenDeGiro = new FrmOrdenDeGiro();
                     //FrmOrdenDeGiro.BringToFront();
                     FrmOrdenDeGiro.Show();
                     FrmOrdenDeGiro.MdiParent = this;
                     Asignar(FrmOrdenDeGiro.Text);
->>>>>>> 4168a908bff03ea3bbce1b3bba4afa3b0879f563
                 }
                 
             }
