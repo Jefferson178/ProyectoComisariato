@@ -80,7 +80,8 @@ namespace Comisariato.Formularios.Transacciones
                                         numcaja = myRows["SERIE2"].ToString();
                                         documentoActual = myRows["DOCUMENTOACTUAL"].ToString();
                                         banderaCaja = false;
-                                        break;
+                                        //break;
+                                        //FrmPrincipal.menuMostrar.Visible = false;
                                     }                                    
                                 }
                                 if (banderaCaja)

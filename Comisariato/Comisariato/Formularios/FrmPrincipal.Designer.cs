@@ -29,70 +29,70 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode176 = new System.Windows.Forms.TreeNode("Administrar Clientes");
-            System.Windows.Forms.TreeNode treeNode177 = new System.Windows.Forms.TreeNode("Administrar Proveedores");
-            System.Windows.Forms.TreeNode treeNode178 = new System.Windows.Forms.TreeNode("Administrar Usuarios");
-            System.Windows.Forms.TreeNode treeNode179 = new System.Windows.Forms.TreeNode("Cajas/Talonarios");
-            System.Windows.Forms.TreeNode treeNode180 = new System.Windows.Forms.TreeNode("Impresion de Factura");
-            System.Windows.Forms.TreeNode treeNode181 = new System.Windows.Forms.TreeNode("Empresa");
-            System.Windows.Forms.TreeNode treeNode182 = new System.Windows.Forms.TreeNode("Sucursales");
-            System.Windows.Forms.TreeNode treeNode183 = new System.Windows.Forms.TreeNode("Administrar Empresas", new System.Windows.Forms.TreeNode[] {
-            treeNode179,
-            treeNode180,
-            treeNode181,
-            treeNode182});
-            System.Windows.Forms.TreeNode treeNode184 = new System.Windows.Forms.TreeNode("Administrar Promociones");
-            System.Windows.Forms.TreeNode treeNode185 = new System.Windows.Forms.TreeNode("Plan de Cuentas");
-            System.Windows.Forms.TreeNode treeNode186 = new System.Windows.Forms.TreeNode("Administrar Descuentos");
-            System.Windows.Forms.TreeNode treeNode187 = new System.Windows.Forms.TreeNode("Administrar Empleados");
-            System.Windows.Forms.TreeNode treeNode188 = new System.Windows.Forms.TreeNode("Administrar Menu");
-            System.Windows.Forms.TreeNode treeNode189 = new System.Windows.Forms.TreeNode("Mantenimiento", new System.Windows.Forms.TreeNode[] {
-            treeNode176,
-            treeNode177,
-            treeNode178,
-            treeNode183,
-            treeNode184,
-            treeNode185,
-            treeNode186,
-            treeNode187,
-            treeNode188});
-            System.Windows.Forms.TreeNode treeNode190 = new System.Windows.Forms.TreeNode("Productos");
-            System.Windows.Forms.TreeNode treeNode191 = new System.Windows.Forms.TreeNode("Categoria Producto");
-            System.Windows.Forms.TreeNode treeNode192 = new System.Windows.Forms.TreeNode("Creacion de Bodega");
-            System.Windows.Forms.TreeNode treeNode193 = new System.Windows.Forms.TreeNode("Combo de Productos");
-            System.Windows.Forms.TreeNode treeNode194 = new System.Windows.Forms.TreeNode("Asignacion de Producto por Bodega");
-            System.Windows.Forms.TreeNode treeNode195 = new System.Windows.Forms.TreeNode("Inventario", new System.Windows.Forms.TreeNode[] {
-            treeNode190,
-            treeNode191,
-            treeNode192,
-            treeNode193,
-            treeNode194});
-            System.Windows.Forms.TreeNode treeNode196 = new System.Windows.Forms.TreeNode("Ventas");
-            System.Windows.Forms.TreeNode treeNode197 = new System.Windows.Forms.TreeNode("Compras");
-            System.Windows.Forms.TreeNode treeNode198 = new System.Windows.Forms.TreeNode("Devolución en Compras");
-            System.Windows.Forms.TreeNode treeNode199 = new System.Windows.Forms.TreeNode("Devolución en Venta");
-            System.Windows.Forms.TreeNode treeNode200 = new System.Windows.Forms.TreeNode("Orden de Giro");
-            System.Windows.Forms.TreeNode treeNode201 = new System.Windows.Forms.TreeNode("Transacciones", new System.Windows.Forms.TreeNode[] {
-            treeNode196,
-            treeNode197,
-            treeNode198,
-            treeNode199,
-            treeNode200});
-            System.Windows.Forms.TreeNode treeNode202 = new System.Windows.Forms.TreeNode("Kardex");
-            System.Windows.Forms.TreeNode treeNode203 = new System.Windows.Forms.TreeNode("Informe Ventas");
-            System.Windows.Forms.TreeNode treeNode204 = new System.Windows.Forms.TreeNode("Informes", new System.Windows.Forms.TreeNode[] {
-            treeNode202,
-            treeNode203});
-            System.Windows.Forms.TreeNode treeNode205 = new System.Windows.Forms.TreeNode("ATS");
-            System.Windows.Forms.TreeNode treeNode206 = new System.Windows.Forms.TreeNode("SRI", new System.Windows.Forms.TreeNode[] {
-            treeNode205});
-            System.Windows.Forms.TreeNode treeNode207 = new System.Windows.Forms.TreeNode("Enviados");
-            System.Windows.Forms.TreeNode treeNode208 = new System.Windows.Forms.TreeNode("Recibidos");
-            System.Windows.Forms.TreeNode treeNode209 = new System.Windows.Forms.TreeNode("Eliminados");
-            System.Windows.Forms.TreeNode treeNode210 = new System.Windows.Forms.TreeNode("Correo Electrónico", new System.Windows.Forms.TreeNode[] {
-            treeNode207,
-            treeNode208,
-            treeNode209});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Administrar Clientes");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Administrar Proveedores");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Administrar Usuarios");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Cajas/Talonarios");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Impresion de Factura");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Empresa");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Sucursales");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Administrar Empresas", new System.Windows.Forms.TreeNode[] {
+            treeNode4,
+            treeNode5,
+            treeNode6,
+            treeNode7});
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Administrar Promociones");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Plan de Cuentas");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Administrar Descuentos");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Administrar Empleados");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Administrar Menu");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Mantenimiento", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode8,
+            treeNode9,
+            treeNode10,
+            treeNode11,
+            treeNode12,
+            treeNode13});
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Productos");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Categoria Producto");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Creacion de Bodega");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Combo de Productos");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Asignacion de Producto por Bodega");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Inventario", new System.Windows.Forms.TreeNode[] {
+            treeNode15,
+            treeNode16,
+            treeNode17,
+            treeNode18,
+            treeNode19});
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Ventas");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Compras");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Devolución en Compras");
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Devolución en Venta");
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Orden de Giro");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Transacciones", new System.Windows.Forms.TreeNode[] {
+            treeNode21,
+            treeNode22,
+            treeNode23,
+            treeNode24,
+            treeNode25});
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Kardex");
+            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Informe Ventas");
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Informes", new System.Windows.Forms.TreeNode[] {
+            treeNode27,
+            treeNode28});
+            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("ATS");
+            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("SRI", new System.Windows.Forms.TreeNode[] {
+            treeNode30});
+            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("Enviados");
+            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("Recibidos");
+            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("Eliminados");
+            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("Correo Electrónico", new System.Windows.Forms.TreeNode[] {
+            treeNode32,
+            treeNode33,
+            treeNode34});
             this.tvPrincipal = new System.Windows.Forms.TreeView();
             this.msPrincipal = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -129,88 +129,88 @@
             this.tvPrincipal.Location = new System.Drawing.Point(0, 48);
             this.tvPrincipal.Margin = new System.Windows.Forms.Padding(5);
             this.tvPrincipal.Name = "tvPrincipal";
-            treeNode176.Name = "Nodo1";
-            treeNode176.Text = "Administrar Clientes";
-            treeNode177.Name = "Nodo2";
-            treeNode177.Text = "Administrar Proveedores";
-            treeNode178.Name = "Nodo15";
-            treeNode178.Text = "Administrar Usuarios";
-            treeNode179.Name = "Nodo1";
-            treeNode179.Text = "Cajas/Talonarios";
-            treeNode180.Name = "Nodo2";
-            treeNode180.Text = "Impresion de Factura";
-            treeNode181.Name = "Nodo3";
-            treeNode181.Text = "Empresa";
-            treeNode182.Name = "Nodo4";
-            treeNode182.Text = "Sucursales";
-            treeNode183.Name = "Nodo16";
-            treeNode183.Text = "Administrar Empresas";
-            treeNode184.Name = "Nodo9";
-            treeNode184.Text = "Administrar Promociones";
-            treeNode185.Name = "Nodo14";
-            treeNode185.Text = "Plan de Cuentas";
-            treeNode186.Name = "Nodo5";
-            treeNode186.Text = "Administrar Descuentos";
-            treeNode187.Name = "Nodo0";
-            treeNode187.Text = "Administrar Empleados";
-            treeNode188.Name = "nodoMenu";
-            treeNode188.Text = "Administrar Menu";
-            treeNode189.Name = "nodoMantenimiento";
-            treeNode189.NodeFont = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode189.Text = "Mantenimiento";
-            treeNode190.Name = "Nodo7";
-            treeNode190.Text = "Productos";
-            treeNode191.Name = "Nodo8";
-            treeNode191.Text = "Categoria Producto";
-            treeNode192.Name = "Nodo9";
-            treeNode192.Text = "Creacion de Bodega";
-            treeNode193.Name = "Nodo10";
-            treeNode193.Text = "Combo de Productos";
-            treeNode194.Name = "Nodo11";
-            treeNode194.Text = "Asignacion de Producto por Bodega";
-            treeNode195.Name = "nodoInventario";
-            treeNode195.NodeFont = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode195.Text = "Inventario";
-            treeNode196.Name = "Nodo3";
-            treeNode196.Text = "Ventas";
-            treeNode197.Name = "Nodo5";
-            treeNode197.Text = "Compras";
-            treeNode198.Name = "Nodo6";
-            treeNode198.Text = "Devolución en Compras";
-            treeNode199.Name = "Nodo1";
-            treeNode199.Text = "Devolución en Venta";
-            treeNode200.Name = "Nodo0";
-            treeNode200.Text = "Orden de Giro";
-            treeNode201.Name = "nodoTransaccion";
-            treeNode201.NodeFont = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode201.Text = "Transacciones";
-            treeNode202.Name = "Nodo14";
-            treeNode202.Text = "Kardex";
-            treeNode203.Name = "Nodo0";
-            treeNode203.Text = "Informe Ventas";
-            treeNode204.Name = "nodoInforme";
-            treeNode204.NodeFont = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode204.Text = "Informes";
-            treeNode205.Name = "Nodo8";
-            treeNode205.Text = "ATS";
-            treeNode206.Name = "nodoSRI";
-            treeNode206.Text = "SRI";
-            treeNode207.Name = "Nodo11";
-            treeNode207.Text = "Enviados";
-            treeNode208.Name = "Nodo12";
-            treeNode208.Text = "Recibidos";
-            treeNode209.Name = "Nodo13";
-            treeNode209.Text = "Eliminados";
-            treeNode210.Name = "nodoCorreoElectronico";
-            treeNode210.NodeFont = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode210.Text = "Correo Electrónico";
+            treeNode1.Name = "Nodo1";
+            treeNode1.Text = "Administrar Clientes";
+            treeNode2.Name = "Nodo2";
+            treeNode2.Text = "Administrar Proveedores";
+            treeNode3.Name = "Nodo15";
+            treeNode3.Text = "Administrar Usuarios";
+            treeNode4.Name = "Nodo1";
+            treeNode4.Text = "Cajas/Talonarios";
+            treeNode5.Name = "Nodo2";
+            treeNode5.Text = "Impresion de Factura";
+            treeNode6.Name = "Nodo3";
+            treeNode6.Text = "Empresa";
+            treeNode7.Name = "Nodo4";
+            treeNode7.Text = "Sucursales";
+            treeNode8.Name = "Nodo16";
+            treeNode8.Text = "Administrar Empresas";
+            treeNode9.Name = "Nodo9";
+            treeNode9.Text = "Administrar Promociones";
+            treeNode10.Name = "Nodo14";
+            treeNode10.Text = "Plan de Cuentas";
+            treeNode11.Name = "Nodo5";
+            treeNode11.Text = "Administrar Descuentos";
+            treeNode12.Name = "Nodo0";
+            treeNode12.Text = "Administrar Empleados";
+            treeNode13.Name = "nodoMenu";
+            treeNode13.Text = "Administrar Menu";
+            treeNode14.Name = "nodoMantenimiento";
+            treeNode14.NodeFont = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode14.Text = "Mantenimiento";
+            treeNode15.Name = "Nodo7";
+            treeNode15.Text = "Productos";
+            treeNode16.Name = "Nodo8";
+            treeNode16.Text = "Categoria Producto";
+            treeNode17.Name = "Nodo9";
+            treeNode17.Text = "Creacion de Bodega";
+            treeNode18.Name = "Nodo10";
+            treeNode18.Text = "Combo de Productos";
+            treeNode19.Name = "Nodo11";
+            treeNode19.Text = "Asignacion de Producto por Bodega";
+            treeNode20.Name = "nodoInventario";
+            treeNode20.NodeFont = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode20.Text = "Inventario";
+            treeNode21.Name = "Nodo3";
+            treeNode21.Text = "Ventas";
+            treeNode22.Name = "Nodo5";
+            treeNode22.Text = "Compras";
+            treeNode23.Name = "Nodo6";
+            treeNode23.Text = "Devolución en Compras";
+            treeNode24.Name = "Nodo1";
+            treeNode24.Text = "Devolución en Venta";
+            treeNode25.Name = "Nodo0";
+            treeNode25.Text = "Orden de Giro";
+            treeNode26.Name = "nodoTransaccion";
+            treeNode26.NodeFont = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode26.Text = "Transacciones";
+            treeNode27.Name = "Nodo14";
+            treeNode27.Text = "Kardex";
+            treeNode28.Name = "Nodo0";
+            treeNode28.Text = "Informe Ventas";
+            treeNode29.Name = "nodoInforme";
+            treeNode29.NodeFont = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode29.Text = "Informes";
+            treeNode30.Name = "Nodo8";
+            treeNode30.Text = "ATS";
+            treeNode31.Name = "nodoSRI";
+            treeNode31.Text = "SRI";
+            treeNode32.Name = "Nodo11";
+            treeNode32.Text = "Enviados";
+            treeNode33.Name = "Nodo12";
+            treeNode33.Text = "Recibidos";
+            treeNode34.Name = "Nodo13";
+            treeNode34.Text = "Eliminados";
+            treeNode35.Name = "nodoCorreoElectronico";
+            treeNode35.NodeFont = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode35.Text = "Correo Electrónico";
             this.tvPrincipal.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode189,
-            treeNode195,
-            treeNode201,
-            treeNode204,
-            treeNode206,
-            treeNode210});
+            treeNode14,
+            treeNode20,
+            treeNode26,
+            treeNode29,
+            treeNode31,
+            treeNode35});
             this.tvPrincipal.Size = new System.Drawing.Size(239, 592);
             this.tvPrincipal.TabIndex = 0;
             this.tvPrincipal.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvPrincipal_NodeMouseClick);
@@ -315,7 +315,7 @@
             this.cerrarToolStripMenuItem,
             this.toolStripSeparator1});
             this.ventanaToolStripMenuItem.Name = "ventanaToolStripMenuItem";
-            this.ventanaToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.ventanaToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.ventanaToolStripMenuItem.Text = "Ventana";
             // 
             // cerrarToolStripMenuItem

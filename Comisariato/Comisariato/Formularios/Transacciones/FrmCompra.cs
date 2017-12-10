@@ -90,7 +90,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             txtFlete.Text = "0.0";
             cbTerminoPago.SelectedIndex = 0;
         }
-        FrmOrdenDeGiro frmOrdenDeGiro = new FrmOrdenDeGiro();
+        //FrmOrdenDeGiro frmOrdenDeGiro = new FrmOrdenDeGiro();
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
             if (txtSerie1.Text != "" && txtSerie2.Text != "" && txtNumero.Text != "")
@@ -152,16 +152,23 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                                         IVA = cbImpuesto.Text;
                                         string condicion = "where SERIE1 = " + Convert.ToInt32(txtSerie1.Text) + " AND SERIE2 = " + Convert.ToInt32(txtSerie2.Text) + " AND NUMERO = " + Convert.ToInt32(txtNumero.Text) + " AND IDPROVEEDOR = " + Convert.ToInt32(cbProveedor.SelectedValue);
                                         IDEncabezadoCompraOG = Convert.ToInt32(consultas.ObtenerValorCampo("IDEMCABEZADOCOMPRA", "TbEncabezadoyPieCompra", condicion));
-                                        if (Program.FormularioOrdenGiro)
+                                        if (FrmPrincipal.FrmOrdenDeGiro == null || FrmPrincipal.FrmOrdenDeGiro.IsDisposed)
                                         {
-                                            frmOrdenDeGiro.Close();
+                                            FrmPrincipal.FrmOrdenDeGiro = new FrmOrdenDeGiro();
+                                            FrmPrincipal.FrmOrdenDeGiro.MdiParent = Program.panelPrincipalVariable;
+                                            FrmPrincipal.FrmOrdenDeGiro.BringToFront();
+                                            FrmPrincipal.FrmOrdenDeGiro.Show();
                                         }
-                                        if (frmOrdenDeGiro == null || frmOrdenDeGiro.IsDisposed)
+                                        else
                                         {
-                                            frmOrdenDeGiro = new FrmOrdenDeGiro();
-                                            frmOrdenDeGiro.MdiParent = Program.panelPrincipalVariable;
-                                            frmOrdenDeGiro.BringToFront();
-                                            frmOrdenDeGiro.Show();
+                                            FrmPrincipal.FrmOrdenDeGiro.Close();
+                                            if (FrmPrincipal.FrmOrdenDeGiro == null || FrmPrincipal.FrmOrdenDeGiro.IsDisposed)
+                                            {
+                                                FrmPrincipal.FrmOrdenDeGiro = new FrmOrdenDeGiro();
+                                                FrmPrincipal.FrmOrdenDeGiro.MdiParent = Program.panelPrincipalVariable;
+                                                FrmPrincipal.FrmOrdenDeGiro.BringToFront();
+                                                FrmPrincipal.FrmOrdenDeGiro.Show();
+                                            }
                                         }
                                     }
                                     else
@@ -310,10 +317,27 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         {
                             if (MessageBox.Show("¿Desea agregar el producto?", "CONFIRMACIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
-                                FrmProductos frmProducto = new FrmProductos();
+                                //FrmProductos frmProducto = new FrmProductos();
                                 Program.FormularioLlamado = true;
                                 FrmProductos.codigo = Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value);
-                                objFuncion.AddFormInPanel(frmProducto/*, Program.panelPrincipalVariable*/);
+                                if (FrmPrincipal.FrmProducto == null || FrmPrincipal.FrmProducto.IsDisposed)
+                                {
+                                    FrmPrincipal.FrmProducto = new FrmProductos();
+                                    FrmPrincipal.FrmProducto.MdiParent = Program.panelPrincipalVariable;
+                                    FrmPrincipal.FrmProducto.BringToFront();
+                                    FrmPrincipal.FrmProducto.Show();
+                                }
+                                else
+                                {
+                                    FrmPrincipal.FrmProducto.Close();
+                                    if (FrmPrincipal.FrmProducto == null || FrmPrincipal.FrmProducto.IsDisposed)
+                                    {
+                                        FrmPrincipal.FrmProducto = new FrmProductos();
+                                        FrmPrincipal.FrmProducto.MdiParent = Program.panelPrincipalVariable;
+                                        FrmPrincipal.FrmProducto.BringToFront();
+                                        FrmPrincipal.FrmProducto.Show();
+                                    }
+                                }
                                 informacionProducto();
                                 datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
                             }
@@ -433,9 +457,11 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     float cantidad = Convert.ToInt32(datosProductoCompra.CurrentRow.Cells[2].Value.ToString());
                     float precioICE = Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.CurrentRow.Cells[5].Value.ToString()));
                     float precioIRBP = Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.CurrentRow.Cells[6].Value.ToString()));
+                    string[] separadorPorcentaje = cbImpuesto.Text.Split('%');
+                    int tipoIva = Convert.ToInt32(separadorPorcentaje[0]);
                     if (tieneIVA)
                     {
-                        iva = (((precioCompra + precioICE) * cantidad) * 12) / 100;
+                        iva = (((precioCompra + precioICE) * cantidad) * tipoIva) / 100;
                     }
                     else
                     {
@@ -521,23 +547,23 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         }
 
 
-        FrmProveedores FrmProveedor;
+        //FrmProveedores FrmProveedor;
         private void btnProveedor_Click(object sender, EventArgs e)
         {
             
             consultas.BoolLlenarComboBox(cbProveedor, "select IDPROVEEDOR AS Id, NOMBRES AS Texto from TbProveedor");
-            if (!Program.FormularioProveedorCompra)
-            {//FrmProveedores frmProveedor = null;
+            //if (!Program.FormularioProveedorCompra)
+            //{//FrmProveedores frmProveedor = null;
                 Program.FormularioLlamado = true;
-                if (FrmProveedor == null || FrmProveedor.IsDisposed)
+                if (FrmPrincipal.FrmProveedor == null || FrmPrincipal.FrmProveedor.IsDisposed)
                 {
-                    FrmProveedor = new FrmProveedores();
-                    FrmProveedor.MdiParent = Program.panelPrincipalVariable;
-                    FrmProveedor.BringToFront();
-                    FrmProveedor.Show();
+                    FrmPrincipal.FrmProveedor = new FrmProveedores();
+                    FrmPrincipal.FrmProveedor.MdiParent = Program.panelPrincipalVariable;
+                    FrmPrincipal.FrmProveedor.BringToFront();
+                    FrmPrincipal.FrmProveedor.Show();
                 }
-                else { FrmProveedor.BringToFront(); }
-            }
+                else { FrmPrincipal.FrmProveedor.BringToFront(); }
+            //}
         }
 
         private void OnlyNumbersdgvcheque_KeyPress(object sender, KeyPressEventArgs e)
@@ -599,6 +625,15 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             Funcion.Validar_Numeros(e);
         }
 
+        private void txtObservacion_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
+            {
+                e.Handled = true;
+                dgvProductosIngresos.Focus();
+            }
+        }
+
         private void txtSerie2_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.Validar_Numeros(e);
@@ -650,78 +685,6 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             }
         }
         private void txtSerie1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
-        }
-
-        private void txtSerie2_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
-        }
-
-        private void txtNumero_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
-        }
-
-        private void cbSucursal_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
-        }
-
-        private void cbProveedor_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
-        }
-
-        private void txtPlazoOC_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
-        }
-
-        private void cbImpuesto_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
-        }
-
-        private void txtObservacion_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
-        }
-
-        private void dtpFechaOC_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {

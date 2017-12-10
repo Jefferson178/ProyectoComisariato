@@ -29,9 +29,28 @@ namespace Comisariato.Formularios.Transacciones
             txtSerie1.Text = "";
             txtSerie2.Text = "";
             txtNumero.Text = "";
+            txtSerie1.ReadOnly = false;
+            txtSerie2.ReadOnly = false;
+            txtNumero.ReadOnly = false;
+            txtConcepto.Text = "";
             cbSustentoTributario.Text = "";
             cbTipo.SelectedIndex = 0;
             cbAutorizacionSRI.SelectedIndex = 0;
+            Funcion.Limpiarobjetos(gbDatosAutorizacion);
+            dgvDatosLibroDiario.Rows.Clear();
+            dgvDatosRetencion.Rows.Clear();
+            for (int i = 0; i < 7; i++)
+            {
+                dgvDatosLibroDiario.Rows.Add();
+            }
+            for (int i = 0; i < 14; i++)
+            {
+                dgvDatosRetencion.Rows.Add();
+            }
+            for (int i = 0; i < 25; i++)
+            {
+                dgvDatosOG.Rows.Add();
+            }
         }
         public string agregra0Decimal(string valor)
         {
@@ -63,6 +82,8 @@ namespace Comisariato.Formularios.Transacciones
             txtNumero.Text = Convert.ToString(datos["NUMERO"]);
             txtSerie1.Text = Convert.ToString(datos["SERIE1"]);
             txtSerie2.Text = Convert.ToString(datos["SERIE2"]);
+            cbIVA.Text = Convert.ToString(datos["IMPUESTO"]);
+            cbIVA.Enabled = false;
             txtBaseImponible.Text = Funcion.reemplazarcaracter(Convert.ToString(datos["SUBTOTAL"]));
             txtBaseImponible.Text = agregra0Decimal(txtBaseImponible.Text);
             txtICE.Text = Funcion.reemplazarcaracter(Convert.ToString(datos["TOTALICE"]));
@@ -79,8 +100,7 @@ namespace Comisariato.Formularios.Transacciones
             txtIVA.Text = agregra0Decimal(txtIVA.Text);
             datos = ObjConsul.obtenerDatos("select PROVEEDORRISE from TbProveedor where IDPROVEEDOR = " + CmbProveedor.SelectedValue + "");
             ckbRISE.Checked = Convert.ToBoolean(datos["PROVEEDORRISE"]);
-            cbIVA.Text = FrmCompra.IVA;
-            cbIVA.Enabled = false;
+
             //objData = ObjConsul.BoolDataTable("select * from TbEncabezadoyPieCompra where IDEMCABEZADOCOMPRA = " + idEncabezadoOG + "");
             //txtNumero.Text = objData.["NUMERO"].ToString();
             DataTable datosRetencion = new DataTable();
@@ -94,7 +114,7 @@ namespace Comisariato.Formularios.Transacciones
                 if (myRow["CODIGO"].ToString() == "COD_RET_FUE")
                 {
                     dgvDatosRetencion.Rows[i].Cells[1].Value = "FUENTE";
-                    
+
                 }
                 else
                 {
@@ -105,24 +125,14 @@ namespace Comisariato.Formularios.Transacciones
                 dgvDatosRetencion.Rows[i].Cells[6].Value = Convert.ToDateTime(myRow["FECHAVALIDODESDE"]).ToShortDateString() + " - " + Convert.ToDateTime(myRow["FECHAVALIDOHASTA"]).ToShortDateString();
 
             }
+
         }
 
         private void FrmOrdenDeGiro_Load(object sender, EventArgs e)
         {
             Program.FormularioOrdenGiro = true;
-            for (int i = 0; i < 7; i++)
-            {
-                dgvDatosLibroDiario.Rows.Add();
-            }
-            for (int i = 0; i < 14; i++)
-            {
-                dgvDatosRetencion.Rows.Add();
-            }
-            for (int i = 0; i < 25; i++)
-            {
-                dgvDatosOG.Rows.Add();
-            }
-
+            
+            inicializar();
             ObjConsul = new Clases.Consultas();
             ObjConsul.BoolLlenarComboBox(CmbProveedor, "Select IDPROVEEDOR AS ID , NOMBRES AS TEXTO from TbProveedor");
             // hacer aparecer un scrollBar, poniendo un limite de item que aparezcan
@@ -162,11 +172,24 @@ namespace Comisariato.Formularios.Transacciones
         {
             try
             {
-                string condicion = "where SERIE1 = " + Convert.ToInt32(txtSerie1.Text) + " AND SERIE2 = " + Convert.ToInt32(txtSerie2.Text) + " AND NUMERO = " + Convert.ToInt32(txtNumero.Text) + " AND IDPROVEEDOR = " + Convert.ToInt32(CmbProveedor.SelectedValue);
-                int IDEncabezadoCompraOG = Convert.ToInt32(ObjConsul.ObtenerValorCampo("IDEMCABEZADOCOMPRA", "TbEncabezadoyPieCompra", condicion));
-                llenarDatosOG(IDEncabezadoCompraOG);
+                if (txtSerie1.Text != "" && txtSerie2.Text != "" && txtNumero.Text != "")
+                {
+                    string condicion = "where SERIE1 = " + Convert.ToInt32(txtSerie1.Text) + " AND SERIE2 = " + Convert.ToInt32(txtSerie2.Text) + " AND NUMERO = " + Convert.ToInt32(txtNumero.Text) + " AND IDPROVEEDOR = " + Convert.ToInt32(CmbProveedor.SelectedValue);
+                    string valor = ObjConsul.ObtenerValorCampo("IDEMCABEZADOCOMPRA", "TbEncabezadoyPieCompra", condicion);
+                    if (valor != "")
+                    {
+                        int IDEncabezadoCompraOG = Convert.ToInt32(valor);
+                        llenarDatosOG(IDEncabezadoCompraOG);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No existe registro para este #factura del proveedor seleccionado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        inicializar();
+                    }
+                }
+                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
             }
         }
@@ -197,6 +220,7 @@ namespace Comisariato.Formularios.Transacciones
         private void txtPlazo_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.Validar_Numeros(e);
+            
         }
 
         private void txtPlazo_TextChanged(object sender, EventArgs e)
@@ -366,12 +390,17 @@ namespace Comisariato.Formularios.Transacciones
                     MessageBox.Show("Cliente Registrado Correctamente ", "Exito", MessageBoxButtons.OK);
                     seriesDocumentoRetencion();
                     txtOrdenGiro.Text = (Convert.ToInt32(ObjConsul.ObtenerID("NUMEROORDENGIRO", "TbEncabezadoOrdenGiro", "")) + 1).ToString();
+                    inicializar();
                 }
                 else if (resultado == "Error al Registrar")
                 {
                     MessageBox.Show("Error al guardar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                else if (resultado == "Existe") { MessageBox.Show("Ya Existe el Cliente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+                else if (resultado == "Existe") { MessageBox.Show("Ya Existe la orden de giro", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+            }
+            else
+            {
+                MessageBox.Show("Ingrese todos los datos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         public void seriesDocumentoRetencion()
@@ -397,6 +426,25 @@ namespace Comisariato.Formularios.Transacciones
             txtSerie1Retencion.Text = sucursal;
             txtSerie2Retencion.Text = numcaja;
             txtAutorizacionRetencion.Text = autorizacion;
+        }
+
+        private void CmbProveedor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void btnSalirCompra_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnLimpiarProveedor_Click(object sender, EventArgs e)
+        {
+            inicializar();
         }
     }
 }

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label13 = new System.Windows.Forms.Label();
             this.cbSucursal = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -130,8 +130,8 @@
             this.cbSucursal.Margin = new System.Windows.Forms.Padding(2);
             this.cbSucursal.Name = "cbSucursal";
             this.cbSucursal.Size = new System.Drawing.Size(214, 24);
-            this.cbSucursal.TabIndex = 6;
-            this.cbSucursal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbSucursal_KeyDown);
+            this.cbSucursal.TabIndex = 5;
+            this.cbSucursal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSerie1_KeyDown);
             // 
             // tabControl1
             // 
@@ -183,7 +183,7 @@
             this.btnSalirCompra.Location = new System.Drawing.Point(20, 385);
             this.btnSalirCompra.Name = "btnSalirCompra";
             this.btnSalirCompra.Size = new System.Drawing.Size(96, 53);
-            this.btnSalirCompra.TabIndex = 59;
+            this.btnSalirCompra.TabIndex = 13;
             this.btnSalirCompra.Text = "Salir";
             this.btnSalirCompra.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSalirCompra.UseVisualStyleBackColor = true;
@@ -206,14 +206,14 @@
             this.dgvProductosIngresos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProductosIngresos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProductosIngresos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvProductosIngresos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductosIngresos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigo,
@@ -229,14 +229,14 @@
             this.subtotal,
             this.iva,
             this.total});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvProductosIngresos.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvProductosIngresos.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvProductosIngresos.Location = new System.Drawing.Point(9, 20);
             this.dgvProductosIngresos.Margin = new System.Windows.Forms.Padding(2);
             this.dgvProductosIngresos.Name = "dgvProductosIngresos";
@@ -508,7 +508,7 @@
             this.BtnLimpiar.Location = new System.Drawing.Point(391, 384);
             this.BtnLimpiar.Name = "BtnLimpiar";
             this.BtnLimpiar.Size = new System.Drawing.Size(135, 77);
-            this.BtnLimpiar.TabIndex = 13;
+            this.BtnLimpiar.TabIndex = 12;
             this.BtnLimpiar.Text = "&Limpiar";
             this.BtnLimpiar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnLimpiar.UseVisualStyleBackColor = true;
@@ -521,7 +521,7 @@
             this.BtnGuardar.Location = new System.Drawing.Point(239, 384);
             this.BtnGuardar.Name = "BtnGuardar";
             this.BtnGuardar.Size = new System.Drawing.Size(135, 77);
-            this.BtnGuardar.TabIndex = 12;
+            this.BtnGuardar.TabIndex = 10;
             this.BtnGuardar.Text = "&Guardar";
             this.BtnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnGuardar.UseVisualStyleBackColor = true;
@@ -569,7 +569,7 @@
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(156, 23);
             this.txtNumero.TabIndex = 4;
-            this.txtNumero.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNumero_KeyDown);
+            this.txtNumero.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSerie1_KeyDown);
             this.txtNumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumero_KeyPress);
             // 
             // txtSerie1
@@ -591,7 +591,7 @@
             this.txtSerie2.Name = "txtSerie2";
             this.txtSerie2.Size = new System.Drawing.Size(56, 23);
             this.txtSerie2.TabIndex = 3;
-            this.txtSerie2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSerie2_KeyDown);
+            this.txtSerie2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSerie1_KeyDown);
             this.txtSerie2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSerie2_KeyPress);
             // 
             // label1
@@ -624,7 +624,6 @@
             this.txtPlazoOC.ReadOnly = true;
             this.txtPlazoOC.Size = new System.Drawing.Size(156, 23);
             this.txtPlazoOC.TabIndex = 8;
-            this.txtPlazoOC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPlazoOC_KeyDown);
             this.txtPlazoOC.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlazoOC_KeyPress);
             // 
             // cbImpuesto
@@ -634,8 +633,8 @@
             this.cbImpuesto.Location = new System.Drawing.Point(770, 77);
             this.cbImpuesto.Name = "cbImpuesto";
             this.cbImpuesto.Size = new System.Drawing.Size(156, 24);
-            this.cbImpuesto.TabIndex = 9;
-            this.cbImpuesto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbImpuesto_KeyDown);
+            this.cbImpuesto.TabIndex = 8;
+            this.cbImpuesto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSerie1_KeyDown);
             // 
             // txtObservacion
             // 
@@ -644,7 +643,7 @@
             this.txtObservacion.Multiline = true;
             this.txtObservacion.Name = "txtObservacion";
             this.txtObservacion.Size = new System.Drawing.Size(774, 44);
-            this.txtObservacion.TabIndex = 10;
+            this.txtObservacion.TabIndex = 9;
             this.txtObservacion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtObservacion_KeyDown);
             // 
             // txtFlete
@@ -755,7 +754,8 @@
             this.cbTerminoPago.Location = new System.Drawing.Point(502, 78);
             this.cbTerminoPago.Name = "cbTerminoPago";
             this.cbTerminoPago.Size = new System.Drawing.Size(174, 24);
-            this.cbTerminoPago.TabIndex = 40;
+            this.cbTerminoPago.TabIndex = 7;
+            this.cbTerminoPago.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSerie1_KeyDown);
             // 
             // cbProveedor
             // 
@@ -764,8 +764,8 @@
             this.cbProveedor.Location = new System.Drawing.Point(502, 50);
             this.cbProveedor.Name = "cbProveedor";
             this.cbProveedor.Size = new System.Drawing.Size(111, 24);
-            this.cbProveedor.TabIndex = 7;
-            this.cbProveedor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbProveedor_KeyDown);
+            this.cbProveedor.TabIndex = 6;
+            this.cbProveedor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSerie1_KeyDown);
             // 
             // label3
             // 
@@ -785,8 +785,8 @@
             this.dtpFechaOC.Location = new System.Drawing.Point(277, 24);
             this.dtpFechaOC.Name = "dtpFechaOC";
             this.dtpFechaOC.Size = new System.Drawing.Size(89, 22);
-            this.dtpFechaOC.TabIndex = 5;
-            this.dtpFechaOC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtpFechaOC_KeyDown);
+            this.dtpFechaOC.TabIndex = 1;
+            this.dtpFechaOC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSerie1_KeyDown);
             // 
             // label4
             // 
@@ -819,14 +819,14 @@
             this.dgvDatosProducto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvDatosProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosProducto.Location = new System.Drawing.Point(17, 132);
             this.dgvDatosProducto.Margin = new System.Windows.Forms.Padding(2);
@@ -841,6 +841,7 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(414, 22);
             this.textBox7.TabIndex = 4;
+            this.textBox7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSerie1_KeyDown);
             // 
             // label8
             // 
@@ -874,6 +875,7 @@
             this.dateTimePicker3.Name = "dateTimePicker3";
             this.dateTimePicker3.Size = new System.Drawing.Size(292, 22);
             this.dateTimePicker3.TabIndex = 20;
+            this.dateTimePicker3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSerie1_KeyDown);
             // 
             // dateTimePicker2
             // 
@@ -882,6 +884,7 @@
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(292, 22);
             this.dateTimePicker2.TabIndex = 19;
+            this.dateTimePicker2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSerie1_KeyDown);
             // 
             // label14
             // 
