@@ -68,17 +68,35 @@ namespace Comisariato.Formularios.Transacciones
 
 
             DateTime FECHA = Convert.ToDateTime(em.Fecha);
+            int tamañoencabezado = 0, tamañoPie = 0, cantItems = 0;
+
             //De aqui en adelante pueden formar su ticket a su gusto... Les muestro un ejemplo
 
             //Datos de la cabecera del Ticket.
 
             //c.DatosCliente()
-            ticket.TextoCentro("EMPRESA: " + Program.nombreempresa);
-            ticket.TextoCentro("RUC: " + Program.rucempresa);
-            ticket.TextoIzquierda(Program.direccionempresa);
-            ticket.TextoIzquierda("Valido: " + FECHA.ToShortDateString() + " Hasta: " + FECHA.Date.AddYears(1).ToShortDateString());
-            ticket.TextoIzquierda("Clave: 4530000");
-
+            if (Program.BoolAutorizadoImprimir)
+            {
+                ticket.TextoCentro("EMPRESA: " + Program.nombreempresa);
+                ticket.TextoCentro("RUC: " + Program.rucempresa);
+                ticket.TextoIzquierda(Program.direccionempresa);
+                ticket.TextoIzquierda("Valido: " + FECHA.ToShortDateString() + " Hasta: " + FECHA.Date.AddYears(1).ToShortDateString());
+                ticket.TextoIzquierda("Clave: 4530000");
+            }
+            else if(Program.BoolPreimpresa)
+            {
+                //TAMANOENCABEZADOFACTURA-TAMANOPIEFACTURA-NUMEROITEMS
+                String PreimpresaDatos = Program.DatosPreimpresa;
+                string[] Preimpresa = PreimpresaDatos.Split('-');
+                tamañoencabezado = Convert.ToInt32(Preimpresa[0]);
+                tamañoPie = Convert.ToInt32(Preimpresa[1]);
+                cantItems = Convert.ToInt32(Preimpresa[2]);
+                //((tamañoencabezado * 2) + 1) ---> 2 = 1cm son dos lineas --- 1 = para completar el centimetro
+                for (int i = 1; i <= ((tamañoencabezado*2)+1); i++)
+                {
+                    ticket.TextoCentro("");
+                }
+            }
 
 
             ticket.TextoIzquierda("        Factura: " + int.Parse(txtSucursal.Text).ToString("D3") + "-" + int.Parse(txtCaja.Text).ToString("D3") + "-" + int.Parse(txtNumFact.Text).ToString("D9"));
@@ -240,20 +258,24 @@ namespace Comisariato.Formularios.Transacciones
                 }
             }
 
-            String PIEFA = Program.piefactura;
-            string[] PIES = PIEFA.Split('\n');
+           
 
             ticket.TextoIzquierda("");
             ticket.TextoIzquierda("ARTICULOS VENDIDOS: " + p.Count);
             ticket.TextoIzquierda("");
-            ticket.TextoCentro(PIES[0]);
-            ticket.TextoCentro(PIES[1]);
-            ticket.TextoCentro(PIES[2]);
-            ticket.TextoCentro(PIES[3]);
+            if (Program.BoolAutorizadoImprimir)
+            {
+                String PIEFA = Program.piefactura;
+                string[] PIES = PIEFA.Split('\n');
+                ticket.TextoCentro(PIES[0]);
+                ticket.TextoCentro(PIES[1]);
+                ticket.TextoCentro(PIES[2]);
+                ticket.TextoCentro(PIES[3]);
+            }
             ticket.TextoCentro("¡GRACIAS POR SU COMPRA!");
             ticket.CortaTicket();
             String ruta = @"\\AIRCONTROL\BodegaPedido";
-            ticket.ImprimirTicket(ruta);
+            ticket.ImprimirTicket("EPSON L210 Series");
             //ticket.ImprimirTicket("Generic / Text Only");//Nombre de la impresora ticketera
 
 
