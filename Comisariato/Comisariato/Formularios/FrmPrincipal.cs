@@ -22,25 +22,25 @@ namespace Comisariato.Formularios
     {
 
 
-        FrmClientes FrmCliente;
-        FrmProveedores FrmProveedor;
-        FrmUsuarios FrmUsuario;
-        FrmEmpresa FrmEmpresa;
-        FrmProductos FrmProducto;
-        FrmCategoriaProductos FrmCategoriaProducto;
-        FrmCreacionBodega FrmCreacionBodega;
-        FrmComboProductos FrmComboProducto;
-        FrmClaveUsuario FrmClaveUsuario;
-        FrmCompra FrmCompra;
-        FrmCajasTalonario FrmCajasTalonario;
-        FrmParametrosFactura FrmParametrosFactura;
-        FrmSucursal FrmSucursal;
-        FrmAsignacionProductoBodega FrmAsignacionProductoBodega;
-        FrmEmpleado FrmEmpleado;
-        FrmOrdenDeGiro FrmOrdenDeGiro;
-        FrmDevolucionVenta FrmDevolucionVenta;
-        FrmAsignarMenu FrmAsignarMenu;
-        FrmInformeVentas FrmInformeVentas;
+        public static FrmClientes FrmCliente;
+        public static FrmProveedores FrmProveedor;
+        public static FrmUsuarios FrmUsuario;
+        public static FrmEmpresa FrmEmpresa;
+        public static FrmProductos FrmProducto;
+        public static FrmCategoriaProductos FrmCategoriaProducto;
+        public static FrmCreacionBodega FrmCreacionBodega;
+        public static FrmComboProductos FrmComboProducto;
+        public static FrmClaveUsuario FrmClaveUsuario;
+        public static FrmCompra FrmCompra;
+        public static FrmCajasTalonario FrmCajasTalonario;
+        public static FrmParametrosFactura FrmParametrosFactura;
+        public static FrmSucursal FrmSucursal;
+        public static FrmAsignacionProductoBodega FrmAsignacionProductoBodega;
+        public static FrmEmpleado FrmEmpleado;
+        public static FrmOrdenDeGiro FrmOrdenDeGiro;
+        public static FrmDevolucionVenta FrmDevolucionVenta;
+        public static FrmAsignarMenu FrmAsignarMenu;
+        public static FrmInformeVentas FrmInformeVentas;
         public static MenuStrip menuMostrar;
         Bitacora  bitacora = new Bitacora();
         //public static void Panel
@@ -501,15 +501,12 @@ namespace Comisariato.Formularios
                 }
                 else
                 {
-<<<<<<< HEAD
                     MessageBox.Show("Caja no registrada");
-=======
                     FrmOrdenDeGiro = new FrmOrdenDeGiro();
                     //FrmOrdenDeGiro.BringToFront();
                     FrmOrdenDeGiro.Show();
                     FrmOrdenDeGiro.MdiParent = this;
                     Asignar(FrmOrdenDeGiro.Text);
->>>>>>> 4168a908bff03ea3bbce1b3bba4afa3b0879f563
                 }
                 
             }

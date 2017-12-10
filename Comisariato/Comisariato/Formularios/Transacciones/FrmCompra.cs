@@ -90,7 +90,7 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             txtFlete.Text = "0.0";
             cbTerminoPago.SelectedIndex = 0;
         }
-        FrmOrdenDeGiro frmOrdenDeGiro = new FrmOrdenDeGiro();
+        //FrmOrdenDeGiro frmOrdenDeGiro = new FrmOrdenDeGiro();
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
             if (txtSerie1.Text != "" && txtSerie2.Text != "" && txtNumero.Text != "")
@@ -152,16 +152,24 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                                         IVA = cbImpuesto.Text;
                                         string condicion = "where SERIE1 = " + Convert.ToInt32(txtSerie1.Text) + " AND SERIE2 = " + Convert.ToInt32(txtSerie2.Text) + " AND NUMERO = " + Convert.ToInt32(txtNumero.Text) + " AND IDPROVEEDOR = " + Convert.ToInt32(cbProveedor.SelectedValue);
                                         IDEncabezadoCompraOG = Convert.ToInt32(consultas.ObtenerValorCampo("IDEMCABEZADOCOMPRA", "TbEncabezadoyPieCompra", condicion));
-                                        if (Program.FormularioOrdenGiro)
+                                        
+                                        if (FrmPrincipal.FrmOrdenDeGiro == null || FrmPrincipal.FrmOrdenDeGiro.IsDisposed)
                                         {
-                                            frmOrdenDeGiro.Close();
+                                            FrmPrincipal.FrmOrdenDeGiro = new FrmOrdenDeGiro();
+                                            FrmPrincipal.FrmOrdenDeGiro.MdiParent = Program.panelPrincipalVariable;
+                                            FrmPrincipal.FrmOrdenDeGiro.BringToFront();
+                                            FrmPrincipal.FrmOrdenDeGiro.Show();
                                         }
-                                        if (frmOrdenDeGiro == null || frmOrdenDeGiro.IsDisposed)
+                                        else
                                         {
-                                            frmOrdenDeGiro = new FrmOrdenDeGiro();
-                                            frmOrdenDeGiro.MdiParent = Program.panelPrincipalVariable;
-                                            frmOrdenDeGiro.BringToFront();
-                                            frmOrdenDeGiro.Show();
+                                            FrmPrincipal.FrmOrdenDeGiro.Close();
+                                            if (FrmPrincipal.FrmOrdenDeGiro == null || FrmPrincipal.FrmOrdenDeGiro.IsDisposed)
+                                            {
+                                                FrmPrincipal.FrmOrdenDeGiro = new FrmOrdenDeGiro();
+                                                FrmPrincipal.FrmOrdenDeGiro.MdiParent = Program.panelPrincipalVariable;
+                                                FrmPrincipal.FrmOrdenDeGiro.BringToFront();
+                                                FrmPrincipal.FrmOrdenDeGiro.Show();
+                                            }
                                         }
                                     }
                                     else
@@ -521,23 +529,23 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
         }
 
 
-        FrmProveedores FrmProveedor;
+        //FrmProveedores FrmProveedor;
         private void btnProveedor_Click(object sender, EventArgs e)
         {
             
             consultas.BoolLlenarComboBox(cbProveedor, "select IDPROVEEDOR AS Id, NOMBRES AS Texto from TbProveedor");
-            if (!Program.FormularioProveedorCompra)
-            {//FrmProveedores frmProveedor = null;
+            //if (!Program.FormularioProveedorCompra)
+            //{//FrmProveedores frmProveedor = null;
                 Program.FormularioLlamado = true;
-                if (FrmProveedor == null || FrmProveedor.IsDisposed)
+                if (FrmPrincipal.FrmProveedor == null || FrmPrincipal.FrmProveedor.IsDisposed)
                 {
-                    FrmProveedor = new FrmProveedores();
-                    FrmProveedor.MdiParent = Program.panelPrincipalVariable;
-                    FrmProveedor.BringToFront();
-                    FrmProveedor.Show();
+                    FrmPrincipal.FrmProveedor = new FrmProveedores();
+                    FrmPrincipal.FrmProveedor.MdiParent = Program.panelPrincipalVariable;
+                    FrmPrincipal.FrmProveedor.BringToFront();
+                    FrmPrincipal.FrmProveedor.Show();
                 }
-                else { FrmProveedor.BringToFront(); }
-            }
+                else { FrmPrincipal.FrmProveedor.BringToFront(); }
+            //}
         }
 
         private void OnlyNumbersdgvcheque_KeyPress(object sender, KeyPressEventArgs e)
