@@ -57,6 +57,7 @@
     <Compile Include="Clases\CajaTalonarioEmpresa.cs" />
     <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\CrearTicket.cs" />
+    <Compile Include="Clases\DetalleOrdenGiro.cs" />
     <Compile Include="Clases\EmcabezadoFactura.cs" />
     <Compile Include="Clases\EncabezadoCompra.cs" />
     <Compile Include="Clases\ConexionBD.cs" />

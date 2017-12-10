@@ -1602,6 +1602,30 @@ namespace Comisariato.Clases
                 return false;
             }
         }
+
+        public bool EjecutarPROCEDUREDetalleOrdenGiro(DetalleOrdenGiro objDetalleOrdenGiro)
+        {
+            try
+            {
+                Objc.conectar();
+                SqlCommand cmd = new SqlCommand("REGISTRAR_DETALLE_OG", ConexionBD.connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                //cmd.Parameters.AddWithValue("@IDENCABEZADOCOMPRA", ObjCompra.IdEncabezadoCompra);
+                cmd.Parameters.AddWithValue("@IDENCABEZADOORDENGIRO", objDetalleOrdenGiro.IdEncabezadoOrdenGiro);
+                cmd.Parameters.AddWithValue("@IDRETENCION", objDetalleOrdenGiro.IdRetencion);
+                int result = cmd.ExecuteNonQuery();
+                Objc.Cerrar();
+                if (result > 0)
+                    return true;
+                else
+                    return false;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
         public void BoolLlenarTreeViewMenu(TreeView menu, String SQL)
         {
             SqlDataAdapter ObjSQLDA = new SqlDataAdapter(SQL, ConexionBD.connection);

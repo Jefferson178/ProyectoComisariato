@@ -473,15 +473,15 @@ namespace Comisariato.Formularios
                 string IpMaquina = bitacora.LocalIPAddress();
                 DataTable Dt = objConsulta.BoolDataTable("Select TIPODOCUMENTO, SERIE1,SERIE2,DOCUMENTOACTUAL,DOCUMENTOINICIAL,DOCUMENTOFINAL,AUTORIZACION,ESTACION,IPESTACION from TbCajasTalonario where IPESTACION = '" + IpMaquina + "' and ESTADO=1;");
                 bool banderaCaja = false;
-                //if (Dt.Rows.Count > 0)
-                //{                    
-                    //for (int i = 0; i < Dt.Rows.Count; i++)
-                    //{
-                    //    banderaCaja = true;
-                    //    DataRow myRows = Dt.Rows[i];
-                    //    if (myRows["TIPODOCUMENTO"].ToString() == "RET")
-                    //    {
-                    //        banderaCaja = false;
+                if (Dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < Dt.Rows.Count; i++)
+                    {
+                        banderaCaja = true;
+                        DataRow myRows = Dt.Rows[i];
+                        if (myRows["TIPODOCUMENTO"].ToString() == "RET")
+                        {
+                            banderaCaja = false;
                             if (FrmOrdenDeGiro == null || FrmOrdenDeGiro.IsDisposed)
                             {
                                 FrmOrdenDeGiro = new FrmOrdenDeGiro();
@@ -491,23 +491,23 @@ namespace Comisariato.Formularios
                                 Asignar(FrmOrdenDeGiro.Name);
                                 
                             }
-                        //}
-                    //}
-                    //if (banderaCaja)
-                    //{
-                    //    MessageBox.Show("Caja no registrada");
-                    //}
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Caja no registrada");
-                //    //FrmOrdenDeGiro = new FrmOrdenDeGiro();
-                //    ////FrmOrdenDeGiro.BringToFront();
-                //    //FrmOrdenDeGiro.Show();
-                //    //FrmOrdenDeGiro.MdiParent = this;
-                //    //Asignar(FrmOrdenDeGiro.Text);
-                //}
-                
+                        }
+                    }
+                    if (banderaCaja)
+                    {
+                        MessageBox.Show("Caja no registrada");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Caja no registrada");
+                    //FrmOrdenDeGiro = new FrmOrdenDeGiro();
+                    ////FrmOrdenDeGiro.BringToFront();
+                    //FrmOrdenDeGiro.Show();
+                    //FrmOrdenDeGiro.MdiParent = this;
+                    //Asignar(FrmOrdenDeGiro.Text);
+                }
+
             }
             else if (nombre == "Devolución en Venta")
             {
