@@ -455,7 +455,7 @@ namespace Comisariato.Formularios
                 }
                 else
                 {
-                    MessageBox.Show("Para realizar un registro de compra debe de tener registrado lo siguiente:\n*Al menos un proveedor.\n*Al menos una sucursal.\n*Parametros para la factura", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Para realizar un registro de compra debe de tener registrado lo siguiente:\n*Al menos un proveedor.\n*Al menos una sucursal.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else if (nombre == "Orden de Giro")
@@ -473,15 +473,15 @@ namespace Comisariato.Formularios
                 string IpMaquina = bitacora.LocalIPAddress();
                 DataTable Dt = objConsulta.BoolDataTable("Select TIPODOCUMENTO, SERIE1,SERIE2,DOCUMENTOACTUAL,DOCUMENTOINICIAL,DOCUMENTOFINAL,AUTORIZACION,ESTACION,IPESTACION from TbCajasTalonario where IPESTACION = '" + IpMaquina + "' and ESTADO=1;");
                 bool banderaCaja = false;
-                if (Dt.Rows.Count > 0)
-                {                    
-                    for (int i = 0; i < Dt.Rows.Count; i++)
-                    {
-                        banderaCaja = true;
-                        DataRow myRows = Dt.Rows[i];
-                        if (myRows["TIPODOCUMENTO"].ToString() == "RET")
-                        {
-                            banderaCaja = false;
+                //if (Dt.Rows.Count > 0)
+                //{                    
+                    //for (int i = 0; i < Dt.Rows.Count; i++)
+                    //{
+                    //    banderaCaja = true;
+                    //    DataRow myRows = Dt.Rows[i];
+                    //    if (myRows["TIPODOCUMENTO"].ToString() == "RET")
+                    //    {
+                    //        banderaCaja = false;
                             if (FrmOrdenDeGiro == null || FrmOrdenDeGiro.IsDisposed)
                             {
                                 FrmOrdenDeGiro = new FrmOrdenDeGiro();
@@ -489,25 +489,24 @@ namespace Comisariato.Formularios
                                 FrmOrdenDeGiro.Show();
                                 FrmOrdenDeGiro.MdiParent = this;
                                 Asignar(FrmOrdenDeGiro.Name);
-                                break;
+                                
                             }
-                            //else { FrmOrdenDeGiro.BringToFront(); }
-                        }
-                    }
-                    if (banderaCaja)
-                    {
-                        MessageBox.Show("Caja no registrada");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Caja no registrada");
-                    FrmOrdenDeGiro = new FrmOrdenDeGiro();
-                    //FrmOrdenDeGiro.BringToFront();
-                    FrmOrdenDeGiro.Show();
-                    FrmOrdenDeGiro.MdiParent = this;
-                    Asignar(FrmOrdenDeGiro.Text);
-                }
+                        //}
+                    //}
+                    //if (banderaCaja)
+                    //{
+                    //    MessageBox.Show("Caja no registrada");
+                    //}
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Caja no registrada");
+                //    //FrmOrdenDeGiro = new FrmOrdenDeGiro();
+                //    ////FrmOrdenDeGiro.BringToFront();
+                //    //FrmOrdenDeGiro.Show();
+                //    //FrmOrdenDeGiro.MdiParent = this;
+                //    //Asignar(FrmOrdenDeGiro.Text);
+                //}
                 
             }
             else if (nombre == "Devolución en Venta")
@@ -618,11 +617,13 @@ namespace Comisariato.Formularios
             if (!banderaMenuPrincipal)
             {
                 tvPrincipal.Visible = false;
+                MenuIzq.Visible = false;
                 banderaMenuPrincipal = true;
             }
             else
             {
                 tvPrincipal.Visible = true;
+                MenuIzq.Visible = true;
                 banderaMenuPrincipal = false;
             }
         }

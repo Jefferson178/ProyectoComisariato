@@ -152,7 +152,6 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                                         IVA = cbImpuesto.Text;
                                         string condicion = "where SERIE1 = " + Convert.ToInt32(txtSerie1.Text) + " AND SERIE2 = " + Convert.ToInt32(txtSerie2.Text) + " AND NUMERO = " + Convert.ToInt32(txtNumero.Text) + " AND IDPROVEEDOR = " + Convert.ToInt32(cbProveedor.SelectedValue);
                                         IDEncabezadoCompraOG = Convert.ToInt32(consultas.ObtenerValorCampo("IDEMCABEZADOCOMPRA", "TbEncabezadoyPieCompra", condicion));
-                                        
                                         if (FrmPrincipal.FrmOrdenDeGiro == null || FrmPrincipal.FrmOrdenDeGiro.IsDisposed)
                                         {
                                             FrmPrincipal.FrmOrdenDeGiro = new FrmOrdenDeGiro();
@@ -318,10 +317,27 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                         {
                             if (MessageBox.Show("¿Desea agregar el producto?", "CONFIRMACIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
-                                FrmProductos frmProducto = new FrmProductos();
+                                //FrmProductos frmProducto = new FrmProductos();
                                 Program.FormularioLlamado = true;
                                 FrmProductos.codigo = Convert.ToString(datosProductoCompra.CurrentRow.Cells[0].Value);
-                                objFuncion.AddFormInPanel(frmProducto/*, Program.panelPrincipalVariable*/);
+                                if (FrmPrincipal.FrmProducto == null || FrmPrincipal.FrmProducto.IsDisposed)
+                                {
+                                    FrmPrincipal.FrmProducto = new FrmProductos();
+                                    FrmPrincipal.FrmProducto.MdiParent = Program.panelPrincipalVariable;
+                                    FrmPrincipal.FrmProducto.BringToFront();
+                                    FrmPrincipal.FrmProducto.Show();
+                                }
+                                else
+                                {
+                                    FrmPrincipal.FrmProducto.Close();
+                                    if (FrmPrincipal.FrmProducto == null || FrmPrincipal.FrmProducto.IsDisposed)
+                                    {
+                                        FrmPrincipal.FrmProducto = new FrmProductos();
+                                        FrmPrincipal.FrmProducto.MdiParent = Program.panelPrincipalVariable;
+                                        FrmPrincipal.FrmProducto.BringToFront();
+                                        FrmPrincipal.FrmProducto.Show();
+                                    }
+                                }
                                 informacionProducto();
                                 datosProductoCompra.CurrentCell = datosProductoCompra.CurrentRow.Cells[2];
                             }
@@ -441,9 +457,11 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
                     float cantidad = Convert.ToInt32(datosProductoCompra.CurrentRow.Cells[2].Value.ToString());
                     float precioICE = Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.CurrentRow.Cells[5].Value.ToString()));
                     float precioIRBP = Convert.ToSingle(Funcion.reemplazarcaracterViceversa(datosProductoCompra.CurrentRow.Cells[6].Value.ToString()));
+                    string[] separadorPorcentaje = cbImpuesto.Text.Split('%');
+                    int tipoIva = Convert.ToInt32(separadorPorcentaje[0]);
                     if (tieneIVA)
                     {
-                        iva = (((precioCompra + precioICE) * cantidad) * 12) / 100;
+                        iva = (((precioCompra + precioICE) * cantidad) * tipoIva) / 100;
                     }
                     else
                     {
@@ -607,6 +625,15 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             Funcion.Validar_Numeros(e);
         }
 
+        private void txtObservacion_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
+            {
+                e.Handled = true;
+                dgvProductosIngresos.Focus();
+            }
+        }
+
         private void txtSerie2_KeyPress(object sender, KeyPressEventArgs e)
         {
             Funcion.Validar_Numeros(e);
@@ -658,78 +685,6 @@ namespace Comisariato.Formularios.Mantenimiento.Inventario
             }
         }
         private void txtSerie1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
-        }
-
-        private void txtSerie2_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
-        }
-
-        private void txtNumero_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
-        }
-
-        private void cbSucursal_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
-        }
-
-        private void cbProveedor_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
-        }
-
-        private void txtPlazoOC_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
-        }
-
-        private void cbImpuesto_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
-        }
-
-        private void txtObservacion_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
-        }
-
-        private void dtpFechaOC_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
