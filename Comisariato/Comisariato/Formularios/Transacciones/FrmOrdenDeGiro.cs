@@ -123,7 +123,7 @@ namespace Comisariato.Formularios.Transacciones
                 dgvDatosRetencion.Rows[i].Cells[3].Value = txtBaseImponible.Text;
                 dgvDatosRetencion.Rows[i].Cells[4].Value = Funcion.reemplazarcaracter(((Convert.ToSingle(Funcion.reemplazarcaracterViceversa(dgvDatosRetencion.Rows[i].Cells[3].Value.ToString())) * Convert.ToSingle(dgvDatosRetencion.Rows[i].Cells[2].Value)) / 100).ToString());
                 dgvDatosRetencion.Rows[i].Cells[6].Value = Convert.ToDateTime(myRow["FECHAVALIDODESDE"]).ToShortDateString() + " - " + Convert.ToDateTime(myRow["FECHAVALIDOHASTA"]).ToShortDateString();
-
+                dgvDatosRetencion.Rows[i].Cells[7].Value = Convert.ToInt32(myRow["IDCODIGOSRI"]);
             }
 
         }
@@ -385,6 +385,24 @@ namespace Comisariato.Formularios.Transacciones
                 string resultado =  objEncabezadoOG.InsertarEncabezadoOrden(objEncabezadoOG);
                 if (resultado == "Datos Guardados")
                 {
+                    if (Convert.ToString(dgvDatosRetencion.Rows[0].Cells[0].Value) != "")
+                    {
+                        string valor = ObjConsul.ObtenerValorCampo("IDORDENGIRO", "TbEncabezadoOrdenGiro", " WHERE IDPROVEEDOR = "+ CmbProveedor.SelectedValue +" AND SERIE1PROVEEDOR = "+ Convert.ToInt32(txtSerie1.Text) + " AND SERIE2PROVEEDOR = "+ Convert.ToInt32(txtSerie2.Text) +" AND NUMERODOCUMENTOPROVEEDOR = "+ Convert.ToInt32(txtNumero.Text) + "");
+                        if (valor != "")
+                        {
+                            int idEncabezadoOrdenGiro = Convert.ToInt32(valor);
+                            for (int i = 0; i < dgvDatosRetencion.RowCount - 1; i++)
+                            {
+                                DetalleOrdenGiro objDetalleOG = new DetalleOrdenGiro(idEncabezadoOrdenGiro, Convert.ToInt32(dgvDatosRetencion.Rows[i].Cells[7].Value));
+                                objDetalleOG.InsertarDetalledoOrden(objDetalleOG);
+                                if (Convert.ToString(dgvDatosRetencion.Rows[i+1].Cells[0].Value) == "")
+                                {
+                                    break;
+                                }
+                            }
+                            
+                        }                        
+                    }
                     string numeroRetencion = (Convert.ToInt32(txtNumeroRetencion.Text) + 1).ToString("D9");                    
                     ObjConsul.EjecutarSQL("UPDATE [dbo].[TbCajasTalonario] SET [DOCUMENTOACTUAL] = '"+ numeroRetencion +"' WHERE SERIE1 = '"+ txtSerie1Retencion.Text + "' and SERIE2 = '" + txtSerie2Retencion.Text + "' and IPESTACION = '" + bitacora.LocalIPAddress() + "' and TIPODOCUMENTO = 'RET'");
                     MessageBox.Show("Cliente Registrado Correctamente ", "Exito", MessageBoxButtons.OK);

@@ -57,6 +57,7 @@
     <Compile Include="Clases\CajaTalonarioEmpresa.cs" />
     <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\CrearTicket.cs" />
+    <Compile Include="Clases\DetalleOrdenGiro.cs" />
     <Compile Include="Clases\EmcabezadoFactura.cs" />
     <Compile Include="Clases\EncabezadoCompra.cs" />
     <Compile Include="Clases\ConexionBD.cs" />
@@ -190,11 +191,6 @@
     </Compile>
     <Compile Include="Formularios\Transacciones\FrmDevoluciones.Designer.cs">
       <DependentUpon>FrmDevoluciones.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Formularios\Transacciones\Reportes\dtOG.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dtOG.xsd</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Transacciones\Venta\FrmAvanse.cs">
       <SubType>Form</SubType>
@@ -358,17 +354,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="Formularios\Transacciones\Reportes\dtOG.xsc">
-      <DependentUpon>dtOG.xsd</DependentUpon>
-    </None>
-    <None Include="Formularios\Transacciones\Reportes\dtOG.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dtOG.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Formularios\Transacciones\Reportes\dtOG.xss">
-      <DependentUpon>dtOG.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

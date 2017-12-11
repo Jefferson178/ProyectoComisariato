@@ -275,7 +275,7 @@ namespace Comisariato.Formularios.Transacciones
             ticket.TextoCentro("¡GRACIAS POR SU COMPRA!");
             ticket.CortaTicket();
             String ruta = @"\\AIRCONTROL\BodegaPedido";
-            ticket.ImprimirTicket("EPSON L210 Series");
+            ticket.ImprimirTicket(ruta);
             //ticket.ImprimirTicket("Generic / Text Only");//Nombre de la impresora ticketera
 
 
