@@ -491,11 +491,7 @@ namespace Comisariato.Formularios
                                 Asignar(FrmOrdenDeGiro.Name);
                                 
                             }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
                             //else { FrmOrdenDeGiro.BringToFront(); }
->>>>>>> 3297bbaa56420aa469a5756852ad0db44f70ed91
                         }
                     }
                     if (banderaCaja)
@@ -506,22 +502,19 @@ namespace Comisariato.Formularios
                 else
                 {
                     MessageBox.Show("Caja no registrada");
-<<<<<<< HEAD
                     //FrmOrdenDeGiro = new FrmOrdenDeGiro();
                     ////FrmOrdenDeGiro.BringToFront();
                     //FrmOrdenDeGiro.Show();
                     //FrmOrdenDeGiro.MdiParent = this;
                     //Asignar(FrmOrdenDeGiro.Text);
-                }
+                //}
 
-=======
-                    FrmOrdenDeGiro = new FrmOrdenDeGiro();
-                    //FrmOrdenDeGiro.BringToFront();
-                    FrmOrdenDeGiro.Show();
-                    FrmOrdenDeGiro.MdiParent = this;
-                    Asignar(FrmOrdenDeGiro.Text);
+                //    FrmOrdenDeGiro = new FrmOrdenDeGiro();
+                //    //FrmOrdenDeGiro.BringToFront();
+                //    FrmOrdenDeGiro.Show();
+                //    FrmOrdenDeGiro.MdiParent = this;
+                //    Asignar(FrmOrdenDeGiro.Text);
                 }
-=======
                         //}
                     //}
                     //if (banderaCaja)
@@ -538,9 +531,7 @@ namespace Comisariato.Formularios
                 //    //FrmOrdenDeGiro.MdiParent = this;
                 //    //Asignar(FrmOrdenDeGiro.Text);
                 //}
->>>>>>> 0d0f01563b3257af385aabaf31728f708122faa3
                 
->>>>>>> 3297bbaa56420aa469a5756852ad0db44f70ed91
             }
             else if (nombre == "Devolución en Venta")
             {
