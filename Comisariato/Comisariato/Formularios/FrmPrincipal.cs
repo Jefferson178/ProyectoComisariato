@@ -507,14 +507,18 @@ namespace Comisariato.Formularios
                     //FrmOrdenDeGiro.Show();
                     //FrmOrdenDeGiro.MdiParent = this;
                     //Asignar(FrmOrdenDeGiro.Text);
-                }
+                //}
 
                 //    FrmOrdenDeGiro = new FrmOrdenDeGiro();
                 //    //FrmOrdenDeGiro.BringToFront();
                 //    FrmOrdenDeGiro.Show();
                 //    FrmOrdenDeGiro.MdiParent = this;
                 //    Asignar(FrmOrdenDeGiro.Text);
+<<<<<<< HEAD
                 //}
+=======
+                }
+>>>>>>> 1deb1fa2569dd7eb56532d559f04058b042302c3
                         //}
                     //}
                     //if (banderaCaja)
