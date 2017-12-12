@@ -289,7 +289,7 @@ namespace Comisariato.Clases
 
 
 
-        public bool GuardarFact(int nfilas, DataGridView dg, List<string> encabezado, List<string> detallepago, List<string> ivas)
+        public bool GuardarFact(int nfilas, DataGridView dg, List<string> encabezado, List<string> detallepago, List<string> ivas, int inicioContador)
         {
             try
             {
@@ -300,12 +300,14 @@ namespace Comisariato.Clases
                 List<string> detalle = detallepago;
                 SqlCommand cmd = null;
                 string idempresa = Program.IDEMPRESA;
-                for (int i = 0; i < nfilas; i++)
+                nfilas = nfilas + inicioContador;
+                int contador = 0;
+                for (int i = inicioContador; i < nfilas; i++)
                 {
                     precio = Funcion.reemplazarcaracter(dg.Rows[i].Cells[4].Value.ToString());
                     cmd = new SqlCommand("REGISTRAR_FACTURA", ConexionBD.connection);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@CONTADOR ", i);
+                    cmd.Parameters.AddWithValue("@CONTADOR ", contador);
                     cmd.Parameters.AddWithValue("@sucursal", Convert.ToInt32(enca[0]));
                     cmd.Parameters.AddWithValue("@caja", Convert.ToInt32(enca[1]));
                     cmd.Parameters.AddWithValue("@numfact", Convert.ToInt32(enca[2]));
@@ -328,6 +330,7 @@ namespace Comisariato.Clases
                     cmd.Parameters.AddWithValue("@idempresa", idempresa);
                     cmd.Parameters.AddWithValue("@cantcaja", dg.Rows[i].Cells[8].Value);
                     result = cmd.ExecuteNonQuery();
+                    contador += 1;
                 }
 
                 Objc.Cerrar();

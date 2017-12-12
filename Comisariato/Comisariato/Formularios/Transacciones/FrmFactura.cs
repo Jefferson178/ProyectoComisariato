@@ -25,6 +25,7 @@ namespace Comisariato.Formularios.Transacciones
         public string numcaja;
         public string sucursal;
         public int numfact=0,IDCLIENTEINICIO;
+        internal static int numfactnuevo = 0;
 
 
         List<String> listatipo = new List<String>();
@@ -1649,14 +1650,14 @@ namespace Comisariato.Formularios.Transacciones
             //MessageBox.Show("" + codigos.Count);
             //if (factEspe == 1)
             //{
-            numfact += 1;
+            //numfact += 1;
                 //DatosCliente.Clear();
                 //Ivas.Clear();
             //}
 
             
 
-            txtNumFact.Text = numfact.ToString("D9");
+            txtNumFact.Text = numfactnuevo.ToString("D9");
             Objconsul.EjecutarSQL("UPDATE [dbo].[TbCajasTalonario] SET [DOCUMENTOACTUAL] = '" + txtNumFact.Text + "'  WHERE  SERIE2 = '" + txtCaja.Text + "' and SERIE1= '" + txtSucursal.Text + "';");
 
             rdbPublico.Checked = true;

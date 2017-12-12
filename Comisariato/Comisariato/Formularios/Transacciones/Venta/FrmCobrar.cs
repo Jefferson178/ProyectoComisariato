@@ -747,54 +747,79 @@ namespace Comisariato.Formularios.Transacciones
                     detallepago.Add(txtCambio.Text);
 
                     /// codigo byron 
+
                     int totalfacturasAGenerar = 1;
+                    int ItemsPermitidos = 0;
+                    int inicioContador = 0;
                     if (Program.BoolPreimpresa)
                     {
                         String PreimpresaDatos = Program.DatosPreimpresa;
                         string[] Preimpresa = PreimpresaDatos.Split('-');
-                        int ItemsPermitidos = Convert.ToInt32(Preimpresa[2]);
+                        ItemsPermitidos = Convert.ToInt32(Preimpresa[2]);
                         totalfacturasAGenerar = obtenercantidadFactura(totalfilas, ItemsPermitidos);
                     }
 
+                    int filasaxuiliar = 0;
+                    int auxiliar = totalfilas;
                     for (int i = 0; i < totalfacturasAGenerar; i++)
                     {
-
-                    }
-
-                    bool b = c.GuardarFact(totalfilas, dg, encabezadofact, detallepago,ivas);
-                    if (b)
-                    {
-                        
-                        string condicion = " where CAJA = '" + caja + "' and SUCURSAL= '" + sucursal+"' and IDEMPRESA='"+ Program.IDEMPRESA +"';";
-                        if (ckbCheque.Checked)
+                        if (auxiliar > ItemsPermitidos)
                         {
-                            int ult = c.ObtenerID("IDFACTURA", "TbEncabezadoFactura",condicion);
-                            bool d = c.RegistrarCheque(dgvCheque, ult);
+                            int aux1 = auxiliar;
+                            auxiliar = auxiliar - ItemsPermitidos;
+
+                            filasaxuiliar = aux1 - auxiliar;
                         }
-                        if (ckbTarjeta.Checked)
+                        else
                         {
-                            int ult = c.ObtenerID("IDFACTURA", "TbEncabezadoFactura",condicion);
-                            bool e = c.RegistrarTarjeta(dgvTarjeta, ult);
+                            filasaxuiliar = auxiliar;
                         }
-                       
-                        if (pedidos.Count > 0)
+                        //total += filasaxuiliar;
+                        if (i == 0)
                         {
-                            ImprimirenRed();
+                            inicioContador = 0;
                         }
+                        bool b = c.GuardarFact(filasaxuiliar, dg, encabezadofact, detallepago, ivas, inicioContador);
+                        inicioContador += (filasaxuiliar);
+                        if (b)
+                        {
 
-                        //Imprimirfact();
-                        totalFacturasAImprimir();
-                        FrmFactura.verificadorfrm = 3;
+                            string condicion = " where CAJA = '" + caja + "' and SUCURSAL= '" + sucursal + "' and IDEMPRESA='" + Program.IDEMPRESA + "';";
+                            if (ckbCheque.Checked)
+                            {
+                                int ult = c.ObtenerID("IDFACTURA", "TbEncabezadoFactura", condicion);
+                                bool d = c.RegistrarCheque(dgvCheque, ult);
+                            }
+                            if (ckbTarjeta.Checked)
+                            {
+                                int ult = c.ObtenerID("IDFACTURA", "TbEncabezadoFactura", condicion);
+                                bool e = c.RegistrarTarjeta(dgvTarjeta, ult);
+                            }
 
-                        this.Close();
+                            if (pedidos.Count > 0)
+                            {
+                                ImprimirenRed();
+                            }
 
+                            //Imprimirfact();
+                            /*totalFacturasAImprimir*/
+                            //();
+                            encabezadofact[2] = (Convert.ToInt32(encabezadofact[2])+1).ToString();
+                            Program.em.Numfact = Convert.ToInt32(encabezadofact[2]);
+
+                            if (i == (totalfacturasAGenerar-1))
+                            {
+                                FrmFactura.verificadorfrm = 3;
+                                FrmFactura.numfactnuevo = Convert.ToInt32(encabezadofact[2]);
+                                Imprimirfact();
+                                this.Close();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error... No se pudo grabar la factura.");
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Error... No se pudo grabar la factura.");
-                    }
-
-
                 }
                 else
                 {
@@ -833,7 +858,7 @@ namespace Comisariato.Formularios.Transacciones
                         ItemsPermitidos += auxiliarCantItem;
                     }
                 }
-                if (16 < cantidadDeFilas)
+                if (auxiliarCantItem < cantidadDeFilas)
                 {
                     cantidad += 1;
                 }
@@ -842,7 +867,7 @@ namespace Comisariato.Formularios.Transacciones
             }
         }
 
-        private void Imprimirfact(int numeroFactura)
+        private void Imprimirfact(/*int numeroFactura*/)
         {
             //Creamos una instancia d ela clase CrearTicket
             CrearTicket ticket = new CrearTicket();
@@ -851,202 +876,6 @@ namespace Comisariato.Formularios.Transacciones
 
 
 
-            ImprimirEncabezadoFact(numeroFactura);
-
-
-            
-            
-            ticket.lineasAsteriscos();
-
-            double imsubtotal=0F, imivasuma=0F,subtotaliva=0F;
-            //Articulos a vender.
-            ticket.EncabezadoVenta();//NOMBRE DEL ARTICULO, CANT, PRECIO, IMPORTE
-            ticket.lineasAsteriscos();
-            //Si tiene una DataGridView donde estan sus articulos a vender pueden usar esta manera para agregarlos al ticket.
-
-            //if (cantItems >= totalfilas)
-            //{
-                for (int i = 0; i < totalfilas; i++)//dgvLista es el nombre del datagridview
-                {
-
-                    double total = Convert.ToDouble(dg.Rows[i].Cells[4].Value.ToString()) * Convert.ToInt32(dg.Rows[i].Cells[2].Value.ToString());
-                    if (Convert.ToSingle(dg.Rows[i].Cells[5].Value.ToString()) != 0)
-                    {
-                        //Double PRECIO_ConIVa = (total + Convert.ToDouble(dg.Rows[i].Cells[5].Value));
-                        //ticket.AgregaArticulo("*" + dg.Rows[i].Cells[1].Value.ToString(), int.Parse(dg.Rows[i].Cells[2].Value.ToString()),
-                        //Convert.ToSingle(dg.Rows[i].Cells[4].Value).ToString("#####0.00"), total.ToString("#####0.00"));
-                        ticket.AgregaArticulo("*" + dg.Rows[i].Cells[1].Value.ToString(), int.Parse(dg.Rows[i].Cells[2].Value.ToString()),
-                        Convert.ToSingle(dg.Rows[i].Cells[4].Value).ToString("#####0.00"), total.ToString("#####0.00"));
-
-                        imivasuma += Convert.ToDouble(dg.Rows[i].Cells[5].Value);
-                        subtotaliva += Convert.ToSingle(dg.Rows[i].Cells[4].Value.ToString());
-                        //subtotaliva += (total + Convert.ToDouble(dg.Rows[i].Cells[5].Value));
-                    }
-                    else
-                    {
-                        ticket.AgregaArticulo(" " + dg.Rows[i].Cells[1].Value.ToString(), int.Parse(dg.Rows[i].Cells[2].Value.ToString()),
-                    Convert.ToSingle(dg.Rows[i].Cells[4].Value).ToString("#####0.00"), total.ToString("#####0.00"));
-
-                        //imsubtotal += Convert.ToSingle(dg.Rows[i].Cells[4].Value.ToString());
-                        imsubtotal += total;
-                    }
-                    //imsubtotal += total;
-                }
-            //}
-            //else
-            //{
-
-        //}
-
-        imsubtotal = Math.Round(imsubtotal, 2);
-            subtotaliva = Math.Round(subtotaliva, 2);
-            imivasuma = Math.Round(imivasuma, 2);
-            ticket.lineasAsteriscos();
-            //Resumen de la venta. Sólo son ejemplos
-            ticket.AgregarTotales("SUBTOTAL  0%",imsubtotal);
-            ticket.AgregarTotales("SUBTOTAL 12% ", subtotaliva);
-            ticket.AgregarTotales("Descuento", Convert.ToSingle(descuento));
-            ticket.AgregarTotales("Iva 12%  ", imivasuma);
-            ticket.AgregarTotales("Total a pagar", Convert.ToSingle(totalapagar));
-            
-            if (ckbCheque.Checked && ckbEfectivo.Checked && ckbTarjeta.Checked)
-            {
-                ticket.TextoIzquierda("Efectivo:  $" + txtEfectivo.Text);
-                ticket.TextoIzquierda("Cheque:    $" + txtCheque.Text);
-                ticket.TextoIzquierda("T. Credito $: " + txtCredito.Text);
-                ticket.TextoIzquierda("Recibido: $" + txtRecibido.Text+ " Cambio: $" +txtCambio.Text);
-            }
-            else
-            {
-                if (ckbCheque.Checked && ckbTarjeta.Checked)
-                {
-                    //ticket.TextoIzquierda("Cheque:  $" + txtEfectivo.Text);
-                    ticket.TextoIzquierda("Cheque:    $" + txtCheque.Text);
-                    ticket.TextoIzquierda("T. Credito $: " + txtCredito.Text);
-                    ticket.TextoIzquierda("Recibido: $" + txtRecibido.Text + " Cambio: $" + txtCambio.Text);
-                }
-                else
-                {
-                    if (ckbTarjeta.Checked && ckbEfectivo.Checked)
-                    {
-                        ticket.TextoIzquierda("Efectivo:  $" + txtEfectivo.Text);
-                        //ticket.TextoIzquierda("Cheque:    $" + txtCheque.Text);
-                        ticket.TextoIzquierda("T. Credito $: " + txtCredito.Text);
-                        ticket.TextoIzquierda("Recibido: $" + txtRecibido.Text + " Cambio: $" + txtCambio.Text);
-                    }
-                    else
-                    {
-                        if (ckbCheque.Checked&& ckbEfectivo.Checked)
-                        {
-                            ticket.TextoIzquierda("Efectivo:  $" + txtEfectivo.Text);
-                            ticket.TextoIzquierda("Cheque:    $" + txtCheque.Text);
-                            // ticket.TextoIzquierda("T. Credito $: " + txtCredito.Text);
-                            ticket.TextoIzquierda("Recibido: $" + txtRecibido.Text + " Cambio: $" + txtCambio.Text);
-                        }
-                        else
-                        {
-                            if (ckbEfectivo.Checked)
-                            {
-                                ticket.TextoIzquierda("Efectivo: $" + txtEfectivo.Text);
-                                ticket.TextoIzquierda("Recibido: $" + txtEfectivo.Text+" Cambio: $"+txtCambio.Text);
-                                //ticket.TextoIzquierda("Recibido: $" + txtRecibido.Text + " Cambio: $" + txtCambio.Text);
-                            }
-                            else
-                            {
-                                if (ckbCheque.Checked)
-                                {
-                                    ticket.TextoIzquierda("Cheque:   $" + txtCheque.Text);
-                                    ticket.TextoIzquierda("Recibido: $" + txtRecibido.Text + " Cambio: $" + txtCambio.Text);
-                                }
-                                else
-                                {
-                                    if (ckbTarjeta.Checked)
-                                    {
-                                        ticket.TextoIzquierda("T. Credito $: " + txtCredito.Text);
-                                        ticket.TextoIzquierda("Recibido: $" + txtRecibido.Text + " Cambio: $" + txtCambio.Text);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                   
-                }
-            }
-            //Texto final del Ticket.
-            ticket.TextoIzquierda("");
-            ticket.TextoIzquierda("ARTICULOS VENDIDOS: "+totalfilas);
-            ticket.TextoIzquierda("");
-            if (Program.BoolAutorizadoImprimir)
-            {
-                String PIEFA = Program.piefactura;
-                string[] PIES = PIEFA.Split('\n');
-                ticket.TextoCentro(PIES[0]);
-                ticket.TextoCentro(PIES[1]);
-                ticket.TextoCentro(PIES[2]);
-                ticket.TextoCentro(PIES[3]);
-            }
-            ticket.TextoCentro("¡GRACIAS POR SU COMPRA!");
-            ticket.CortaTicket();
-
-            String ruta = @"\\AIRCONTROL\BodegaPedido";
-            ticket.ImprimirTicket(ruta);
-
-            //ticket.ImprimirTicket("Generic / Text Only");//Nombre de la impresora ticketera
-
-        }
-
-        private void totalFacturasAImprimir()
-        {
-            int cantItems = 0;
-            if (Program.BoolPreimpresa)
-            {
-                //TAMANOENCABEZADOFACTURA-TAMANOPIEFACTURA-NUMEROITEMS
-                String PreimpresaDatos = Program.DatosPreimpresa;
-                string[] Preimpresa = PreimpresaDatos.Split('-');
-                cantItems = Convert.ToInt32(Preimpresa[2]);
-                int auxiliarCantItem = cantItems;
-                int cantidad = 0; 
-                //si el totaldefilas(Producto) es menor a los item permitidos por los parametros, entonces imprime una factura
-                if (totalfilas <= cantItems)
-                {
-                    Imprimirfact(1);
-                }
-                else
-                {
-                    //si el totaldefilas(Producto) es mayor a los item permitidos por los parametros, recorro las filas
-                    for (int i = 1; i < totalfilas; i++)
-                    {
-                        if (i == cantItems)// si i llega al total de item permitidos, 
-                        {
-                            cantidad += 1;
-                            cantItems += auxiliarCantItem;
-                        }
-                    }
-                    if (auxiliarCantItem < totalfilas)
-                    {
-                        cantidad += 1;
-                    }
-                }
-
-
-                for (int i = 1; i <= cantidad; i++)
-                {
-                    Imprimirfact(i);
-                }
-
-            }
-
-            if (Program.BoolAutorizadoImprimir)
-            {
-                Imprimirfact(1);
-            }
-        }
-        private  void ImprimirEncabezadoFact(int aumentoNumeroFactura)
-        {
-
-            
-
-            CrearTicket ticket = new CrearTicket();
             //De aqui en adelante pueden formar su ticket a su gusto... Les muestro un ejemplo
             string fechactual = DateTime.Now.Date.ToShortDateString();
             //int añoactual = DateTime.Now.Date.Year;
@@ -1055,13 +884,13 @@ namespace Comisariato.Formularios.Transacciones
             int numcaja = Program.em.Caja;
             int numfac = Program.em.Numfact;
 
-            if (aumentoNumeroFactura > 1)
-            {
-                numfac += (aumentoNumeroFactura - 1);
-            }
+            //if (aumentoNumeroFactura > 1)
+            //{
+            //    numfac += (aumentoNumeroFactura - 1);
+            //}
 
             int tamañoencabezado = 0, tamañoPie = 0, cantItems = 0;
-            ticket.lineasAsteriscos();
+            //ticket.lineasAsteriscos();
             //Datos de la cabecera del Ticket.
             if (Program.BoolAutorizadoImprimir)
             {
@@ -1141,7 +970,190 @@ namespace Comisariato.Formularios.Transacciones
 
                 }
             }
+
+            ticket.lineasAsteriscos();
+
+
+            ///////////////////PRUEBA
+
+            int totalfacturasAGenerar = 1;
+            int ItemsPermitidos = 0;
+            int inicioContador = 0;
+            if (Program.BoolPreimpresa)
+            {
+                String PreimpresaDatos = Program.DatosPreimpresa;
+                string[] Preimpresa = PreimpresaDatos.Split('-');
+                ItemsPermitidos = Convert.ToInt32(Preimpresa[2]);
+                totalfacturasAGenerar = obtenercantidadFactura(totalfilas, ItemsPermitidos);
+            }
+
+            int filasaxuiliar = 0;
+            int auxiliar = totalfilas;
+            for (int i = 0; i < totalfacturasAGenerar; i++)
+            {
+                if (auxiliar > ItemsPermitidos)
+                {
+                    int aux1 = auxiliar;
+                    auxiliar = auxiliar - ItemsPermitidos;
+
+                    filasaxuiliar = aux1 - auxiliar;
+                }
+                else
+                {
+                    filasaxuiliar = auxiliar;
+                }
+                //total += filasaxuiliar;
+                if (i == 0)
+                {
+                    inicioContador = 0;
+                }
+
+
+
+                //////////////////PRUEBA
+                double imsubtotal = 0F, imivasuma = 0F, subtotaliva = 0F;
+                //Articulos a vender.
+                ticket.EncabezadoVenta();//NOMBRE DEL ARTICULO, CANT, PRECIO, IMPORTE
+                ticket.lineasAsteriscos();
+                //Si tiene una DataGridView donde estan sus articulos a vender pueden usar esta manera para agregarlos al ticket.
+
+                //if (ItemsPermitidos >= totalfilas)
+                //{
+                for (int J = inicioContador; J < filasaxuiliar; J++)//dgvLista es el nombre del datagridview
+                {
+
+                    double total = Convert.ToDouble(dg.Rows[J].Cells[4].Value.ToString()) * Convert.ToInt32(dg.Rows[J].Cells[2].Value.ToString());
+                    if (Convert.ToSingle(dg.Rows[J].Cells[5].Value.ToString()) != 0)
+                    {
+                        //Double PRECIO_ConIVa = (total + Convert.ToDouble(dg.Rows[i].Cells[5].Value));
+                        //ticket.AgregaArticulo("*" + dg.Rows[i].Cells[1].Value.ToString(), int.Parse(dg.Rows[i].Cells[2].Value.ToString()),
+                        //Convert.ToSingle(dg.Rows[i].Cells[4].Value).ToString("#####0.00"), total.ToString("#####0.00"));
+                        ticket.AgregaArticulo("*" + dg.Rows[J].Cells[1].Value.ToString(), int.Parse(dg.Rows[J].Cells[2].Value.ToString()),
+                        Convert.ToSingle(dg.Rows[J].Cells[4].Value).ToString("#####0.00"), total.ToString("#####0.00"));
+
+                        imivasuma += Convert.ToDouble(dg.Rows[J].Cells[5].Value);
+                        subtotaliva += Convert.ToSingle(dg.Rows[J].Cells[4].Value.ToString());
+                        //subtotaliva += (total + Convert.ToDouble(dg.Rows[i].Cells[5].Value));
+                    }
+                    else
+                    {
+                        ticket.AgregaArticulo(" " + dg.Rows[J].Cells[1].Value.ToString(), int.Parse(dg.Rows[J].Cells[2].Value.ToString()),
+                    Convert.ToSingle(dg.Rows[J].Cells[4].Value).ToString("#####0.00"), total.ToString("#####0.00"));
+
+                        //imsubtotal += Convert.ToSingle(dg.Rows[i].Cells[4].Value.ToString());
+                        imsubtotal += total;
+                    }
+                    //imsubtotal += total;
+                }
+
+                inicioContador += (filasaxuiliar);
+                //else
+                //{
+
+                //}
+
+                imsubtotal = Math.Round(imsubtotal, 2);
+                subtotaliva = Math.Round(subtotaliva, 2);
+                imivasuma = Math.Round(imivasuma, 2);
+                ticket.lineasAsteriscos();
+                //Resumen de la venta. Sólo son ejemplos
+                ticket.AgregarTotales("SUBTOTAL  0%", imsubtotal);
+                ticket.AgregarTotales("SUBTOTAL 12% ", subtotaliva);
+                ticket.AgregarTotales("Descuento", Convert.ToSingle(descuento));
+                ticket.AgregarTotales("Iva 12%  ", imivasuma);
+                ticket.AgregarTotales("Total a pagar", Convert.ToSingle(totalapagar));
+
+                if (ckbCheque.Checked && ckbEfectivo.Checked && ckbTarjeta.Checked)
+                {
+                    ticket.TextoIzquierda("Efectivo:  $" + txtEfectivo.Text);
+                    ticket.TextoIzquierda("Cheque:    $" + txtCheque.Text);
+                    ticket.TextoIzquierda("T. Credito $: " + txtCredito.Text);
+                    ticket.TextoIzquierda("Recibido: $" + txtRecibido.Text + " Cambio: $" + txtCambio.Text);
+                }
+                else
+                {
+                    if (ckbCheque.Checked && ckbTarjeta.Checked)
+                    {
+                        //ticket.TextoIzquierda("Cheque:  $" + txtEfectivo.Text);
+                        ticket.TextoIzquierda("Cheque:    $" + txtCheque.Text);
+                        ticket.TextoIzquierda("T. Credito $: " + txtCredito.Text);
+                        ticket.TextoIzquierda("Recibido: $" + txtRecibido.Text + " Cambio: $" + txtCambio.Text);
+                    }
+                    else
+                    {
+                        if (ckbTarjeta.Checked && ckbEfectivo.Checked)
+                        {
+                            ticket.TextoIzquierda("Efectivo:  $" + txtEfectivo.Text);
+                            //ticket.TextoIzquierda("Cheque:    $" + txtCheque.Text);
+                            ticket.TextoIzquierda("T. Credito $: " + txtCredito.Text);
+                            ticket.TextoIzquierda("Recibido: $" + txtRecibido.Text + " Cambio: $" + txtCambio.Text);
+                        }
+                        else
+                        {
+                            if (ckbCheque.Checked && ckbEfectivo.Checked)
+                            {
+                                ticket.TextoIzquierda("Efectivo:  $" + txtEfectivo.Text);
+                                ticket.TextoIzquierda("Cheque:    $" + txtCheque.Text);
+                                // ticket.TextoIzquierda("T. Credito $: " + txtCredito.Text);
+                                ticket.TextoIzquierda("Recibido: $" + txtRecibido.Text + " Cambio: $" + txtCambio.Text);
+                            }
+                            else
+                            {
+                                if (ckbEfectivo.Checked)
+                                {
+                                    ticket.TextoIzquierda("Efectivo: $" + txtEfectivo.Text);
+                                    ticket.TextoIzquierda("Recibido: $" + txtEfectivo.Text + " Cambio: $" + txtCambio.Text);
+                                    //ticket.TextoIzquierda("Recibido: $" + txtRecibido.Text + " Cambio: $" + txtCambio.Text);
+                                }
+                                else
+                                {
+                                    if (ckbCheque.Checked)
+                                    {
+                                        ticket.TextoIzquierda("Cheque:   $" + txtCheque.Text);
+                                        ticket.TextoIzquierda("Recibido: $" + txtRecibido.Text + " Cambio: $" + txtCambio.Text);
+                                    }
+                                    else
+                                    {
+                                        if (ckbTarjeta.Checked)
+                                        {
+                                            ticket.TextoIzquierda("T. Credito $: " + txtCredito.Text);
+                                            ticket.TextoIzquierda("Recibido: $" + txtRecibido.Text + " Cambio: $" + txtCambio.Text);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+                //Texto final del Ticket.
+                ticket.TextoIzquierda("");
+                ticket.TextoIzquierda("ARTICULOS VENDIDOS: " + totalfilas);
+                ticket.TextoIzquierda("");
+                if (Program.BoolAutorizadoImprimir)
+                {
+                    String PIEFA = Program.piefactura;
+                    string[] PIES = PIEFA.Split('\n');
+                    ticket.TextoCentro(PIES[0]);
+                    ticket.TextoCentro(PIES[1]);
+                    ticket.TextoCentro(PIES[2]);
+                    ticket.TextoCentro(PIES[3]);
+                }
+                ticket.TextoCentro("¡GRACIAS POR SU COMPRA!");
+                ticket.CortaTicket();
+
+                String ruta = @"\\AIRCONTROL\BodegaPedido";
+                ticket.ImprimirTicket(ruta);
+
+                //ticket.ImprimirTicket("Generic / Text Only");//Nombre de la impresora ticketera
+
+
+            }
+
+
+
         }
+
 
         private void ImprimirenRed()
         {
