@@ -163,7 +163,7 @@ namespace Comisariato.Formularios.Transacciones
             {
                 inicializar();
                 ObjConsul.BoolLlenarComboBox(cbSustentoTributario, "Select C.IDCODIGOSRI as ID,  C.DESCRIPCION as Texto from TbProveedor P, TbCodigoSRI C  where  P.CREDITO = C.IDCODIGOSRI and  P.IDPROVEEDOR = " + CmbProveedor.SelectedValue + "");
-                cbSustentoTributario.Enabled = false;                
+                cbSustentoTributario.Enabled = false;            
             }
             seriesDocumentoRetencion();
         }
@@ -471,12 +471,12 @@ namespace Comisariato.Formularios.Transacciones
             //Fijos
             e.Graphics.DrawString("Orden de Giro#:", new Font("Verdana", 14, FontStyle.Bold), Brushes.Black, 25, 25);
             e.Graphics.DrawString(txtOrdenGiro.Text, new Font("Verdana", 14, FontStyle.Italic), Brushes.Black, 200, 25);
-            e.Graphics.DrawString("Empresa: ", new Font("Verdana", 10, FontStyle.Bold), Brushes.Black, 25, 50);
+            e.Graphics.DrawString("Empresa: ", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 25, 50);
             string empresa = ObjConsul.ObtenerValorCampo("NOMBRE", "TbEmpresa", "WHERE IDEMPRESA = " + Program.IDEMPRESA);
-            e.Graphics.DrawString(empresa, new Font("Verdana", 10, FontStyle.Regular), Brushes.Black, 150, 50);
+            e.Graphics.DrawString(empresa, new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 175, 50);
             //Variar
-            e.Graphics.DrawString("Gira A: ", new Font("Verdana", 10, FontStyle.Bold), Brushes.Black, 25, 70);
-            e.Graphics.DrawString("Concepto: ", new Font("Verdana", 10, FontStyle.Bold), Brushes.Black, 25, 90);
+            e.Graphics.DrawString("Gira A: ", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 25, 70);
+            e.Graphics.DrawString("Concepto: ", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 25, 90);
             float lineasConcepto = Convert.ToSingle(txtConcepto.TextLength) / 47;
             string concepto = "";
             int cantidadCaracteres= Convert.ToInt32(txtConcepto.TextLength);
@@ -495,18 +495,18 @@ namespace Comisariato.Formularios.Transacciones
                         concepto = txtConcepto.Text.Substring(posicion, cantidadCaracteres);
                         posicion = cantidadCaracteres;
                     }
-                    e.Graphics.DrawString(concepto, new Font("Verdana", 10, FontStyle.Regular), Brushes.Black, 150, y);
+                    e.Graphics.DrawString(concepto, new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 175, y);
                     y = y + 20;
                 }
             else
             {
-                e.Graphics.DrawString(concepto, new Font("Verdana", 10, FontStyle.Regular), Brushes.Black, 150, y);
+                e.Graphics.DrawString(txtConcepto.Text, new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 175, y);
                 y = y + 20;
             }
-            e.Graphics.DrawString("N° Factura:", new Font("Verdana", 10, FontStyle.Bold), Brushes.Black, 25, y);
-            e.Graphics.DrawString(txtSerie1.Text + "-" + txtSerie2.Text + "-" + txtNumero.Text, new Font("Verdana", 10, FontStyle.Regular), Brushes.Black, 150, y);
+            e.Graphics.DrawString("N° Factura:", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 25, y);
+            e.Graphics.DrawString(txtSerie1.Text + "-" + txtSerie2.Text + "-" + txtNumero.Text, new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 175, y);
             //Mitad
-            e.Graphics.DrawString("Declara SRI:", new Font("Verdana", 10, FontStyle.Bold), Brushes.Black, 350, y);
+            e.Graphics.DrawString("Declara SRI:", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 350, y);
             string declaraSRI = "";
             if (ckbDeclaraSRI.Checked)            
                 declaraSRI = "Sí";
@@ -514,113 +514,175 @@ namespace Comisariato.Formularios.Transacciones
             else            
                 declaraSRI = "No";
             
-            e.Graphics.DrawString(declaraSRI, new Font("Verdana", 10, FontStyle.Regular), Brushes.Black, 450, y);
-            e.Graphics.DrawString("Autorización:", new Font("Verdana", 10, FontStyle.Bold), Brushes.Black, 25, y = y+20);
-            e.Graphics.DrawString(txtAutorizacionRetencion.Text, new Font("Verdana", 10, FontStyle.Regular), Brushes.Black, 150, y);
+            e.Graphics.DrawString(declaraSRI, new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 450, y);
+            e.Graphics.DrawString("Autorización:", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 25, y = y+20);
+            e.Graphics.DrawString(txtAutorizacionRetencion.Text, new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 175, y);
             //Sustento Tributario mas largo q la hoja
-            e.Graphics.DrawString("Sustento Tributario:", new Font("Verdana", 10, FontStyle.Bold), Brushes.Black, 25, y = y + 20);
+            e.Graphics.DrawString("Sustento Tributario:", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 25, y = y + 20);
             string sustento = cbSustentoTributario.Text;
-            lineasConcepto = Convert.ToSingle(sustento.Length) / 90;
+            lineasConcepto = Convert.ToSingle(sustento.Length) / 110;
             string sustentoTributario = "";
             cantidadCaracteres = Convert.ToInt32(sustento.Length);
             posicion = 0;
             if (lineasConcepto > 1)
                 for (int i = 0; i < Math.Ceiling(lineasConcepto); i++)
                 {
-                    if (cantidadCaracteres >= 90)
+                    if (cantidadCaracteres >= 110)
                     {
-                        cantidadCaracteres = Math.Abs(cantidadCaracteres - 90);
-                        sustentoTributario = sustento.Substring(posicion, 90);
-                        posicion = 90 * (i + 1);
+                        cantidadCaracteres = Math.Abs(cantidadCaracteres - 110);
+                        sustentoTributario = sustento.Substring(posicion, 110);
+                        posicion = 110 * (i + 1);
                     }
                     else
                     {
                         sustentoTributario = sustento.Substring(posicion, cantidadCaracteres);
                         posicion = cantidadCaracteres;
                     }
-                    e.Graphics.DrawString(sustentoTributario, new Font("Verdana", 10, FontStyle.Regular), Brushes.Black, 200, y);
+                    e.Graphics.DrawString(sustentoTributario, new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 175, y);
                     y = y + 20;
                 }
             else
             {
-                e.Graphics.DrawString(sustentoTributario, new Font("Verdana", 10, FontStyle.Regular), Brushes.Black, 200, y);
+                e.Graphics.DrawString(sustento, new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 175, y);
                 y = y + 20;
             }
-            e.Graphics.DrawString("Base Imponible:", new Font("Verdana", 10, FontStyle.Bold), Brushes.Black, 25, y);
-            e.Graphics.DrawString(txtBaseImponible.Text, new Font("Verdana", 10, FontStyle.Regular), Brushes.Black, 150, y);
-            e.Graphics.DrawString("Total:", new Font("Verdana", 10, FontStyle.Bold), Brushes.Black, 25, y = y + 20);
-            e.Graphics.DrawString(txtTotal.Text, new Font("Verdana", 10, FontStyle.Regular), Brushes.Black, 150, y);
-            e.Graphics.DrawString("Tipo Transacción:", new Font("Verdana", 10, FontStyle.Bold), Brushes.Black, 500, y);
-            e.Graphics.DrawString(cbTipo.Text, new Font("Verdana", 10, FontStyle.Regular), Brushes.Black, 675, y);
-            e.Graphics.DrawString("Valor a Pagar:", new Font("Verdana", 10, FontStyle.Bold), Brushes.Black, 25, y = y + 20);
-            e.Graphics.DrawString(txtValorPagar.Text, new Font("Verdana", 10, FontStyle.Regular), Brushes.Black, 150, y);
-            e.Graphics.DrawString("Saldo:", new Font("Verdana", 10, FontStyle.Bold), Brushes.Black, 500, y);
-            e.Graphics.DrawString(txtSaldo.Text, new Font("Verdana", 10, FontStyle.Regular), Brushes.Black, 675, y);
+            e.Graphics.DrawString("Base Imponible:", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 25, y);
+            e.Graphics.DrawString(txtBaseImponible.Text, new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 175, y);
+            e.Graphics.DrawString("Total:", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 25, y = y + 20);
+            e.Graphics.DrawString(txtTotal.Text, new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 175, y);
+            e.Graphics.DrawString("Tipo Transacción:", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 500, y);
+            e.Graphics.DrawString(cbTipo.Text, new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 675, y);
+            e.Graphics.DrawString("Valor a Pagar:", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 25, y = y + 20);
+            e.Graphics.DrawString(txtValorPagar.Text, new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 175, y);
+            e.Graphics.DrawString("Saldo:", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 500, y);
+            e.Graphics.DrawString(txtSaldo.Text, new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 675, y);
             //Lado Izquierdo
-            e.Graphics.DrawString("Usuario: ", new Font("Verdana", 10, FontStyle.Bold), Brushes.Gray, 675, 20);
+            e.Graphics.DrawString("Usuario: ", new Font("Verdana", 8, FontStyle.Bold), Brushes.Gray, 675, 20);
             string usurio = ObjConsul.ObtenerValorCampo("USUARIO", "TbUsuario", "WHERE IDUSUARIO = " + Program.IDUsuarioMenu);
-            e.Graphics.DrawString(usurio, new Font("Verdana", 10, FontStyle.Regular), Brushes.Black, 750, 20);
-            e.Graphics.DrawString(Convert.ToString(DateTime.Now), new Font("Verdana", 10, FontStyle.Regular), Brushes.Gray, 675, 35);
-            e.Graphics.DrawString("Fecha Factura:", new Font("Verdana", 10, FontStyle.Bold), Brushes.Black, 500, 70);
-            e.Graphics.DrawString(Convert.ToString(dtpFechaDocumentacion.Value), new Font("Verdana", 10, FontStyle.Regular), Brushes.Black, 675, 70);
-            e.Graphics.DrawString("Fecha Contabilización:", new Font("Verdana", 10, FontStyle.Bold), Brushes.Black, 500, 90);
-            e.Graphics.DrawString(Convert.ToString(dtpFechaContabilizacion.Value), new Font("Verdana", 10, FontStyle.Regular), Brushes.Black, 675, 90);
-            e.Graphics.DrawString("Fecha Vencimiento:", new Font("Verdana", 10, FontStyle.Bold), Brushes.Black, 500, 110);
-            e.Graphics.DrawString(Convert.ToString(dtpFechaVenceDocumento.Value), new Font("Verdana", 10, FontStyle.Regular), Brushes.Black, 675, 110);
+            e.Graphics.DrawString(usurio, new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 750, 20);
+            e.Graphics.DrawString(Convert.ToString(DateTime.Now), new Font("Verdana", 8, FontStyle.Regular), Brushes.Gray, 675, 35);
+            e.Graphics.DrawString("Fecha Factura:", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 500, 70);
+            e.Graphics.DrawString(Convert.ToString(dtpFechaDocumentacion.Value), new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 675, 70);
+            e.Graphics.DrawString("Fecha Contabilización:", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 500, 90);
+            e.Graphics.DrawString(Convert.ToString(dtpFechaContabilizacion.Value), new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 675, 90);
+            e.Graphics.DrawString("Fecha Vencimiento:", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 500, 110);
+            e.Graphics.DrawString(Convert.ToString(dtpFechaVenceDocumento.Value), new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 675, 110);
 
 
             //data grid libro diario
             //Encabezado
+            //dibujarRayas(ref y, 30);
+            //e.Graphics.DrawLine(blackPen, puntoInicio, puntoFinal);
+            //e.Graphics.DrawString("Plan Cuenta", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 50, y + 2);
+            //e.Graphics.DrawString("Centro Costo", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 260, y + 2);
+            //e.Graphics.DrawString("Debe", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 400, y + 2);
+            //e.Graphics.DrawString("Haber", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 475, y + 2);
+            //e.Graphics.DrawString("Concepto", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 650, y + 2);
+            
+            //dibujarRayas(ref y, 20);
+            //e.Graphics.DrawLine(blackPen, puntoInicio, puntoFinal);
+
+            //for (int i = 0; i < dgvDatosLibroDiario.RowCount - 1; i++)
+            //{
+                
+            //    e.Graphics.DrawString(Convert.ToString(dgvDatosLibroDiario.Rows[i].Cells[1].Value), new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 260, y);
+            //    e.Graphics.DrawString(Convert.ToString(dgvDatosLibroDiario.Rows[i].Cells[2].Value), new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 400, y);
+            //    e.Graphics.DrawString(Convert.ToString(dgvDatosLibroDiario.Rows[i].Cells[3].Value), new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 475, y);
+            //    e.Graphics.DrawString(Convert.ToString(dgvDatosLibroDiario.Rows[i].Cells[4].Value), new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 575, y);
+            //    string planCuenta = Convert.ToString(dgvDatosLibroDiario.Rows[i].Cells[0].Value);
+            //    float lineasCuenta = Convert.ToSingle(planCuenta.Length) / 35;
+            //    string plan = "";
+            //    cantidadCaracteres = Convert.ToInt32(planCuenta.Length);
+            //    posicion = 0;
+            //    bool banderaAumento = false;
+            //    if (lineasCuenta > 1)
+            //        for (int j = 0; j < Math.Ceiling(lineasConcepto); j++)
+            //        {
+            //            if (cantidadCaracteres >= 35)
+            //            {
+            //                cantidadCaracteres = Math.Abs(cantidadCaracteres - 35);
+            //                plan = planCuenta.Substring(posicion, 35);
+            //                posicion = 35 * (j + 1);
+            //            }
+            //            else
+            //            {
+            //                plan = planCuenta.Substring(posicion, cantidadCaracteres);
+            //                posicion = cantidadCaracteres;
+            //            }
+            //            e.Graphics.DrawString(plan, new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 25, y);
+            //            y = y + 22;
+            //            banderaAumento = true;
+            //        }
+            //    else
+            //    {
+            //        e.Graphics.DrawString(planCuenta, new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 25, y);
+            //    }
+            //    if (Convert.ToString(dgvDatosLibroDiario.Rows[i+1].Cells[0].Value) == "")
+            //        break;
+            //    if (!banderaAumento)
+            //        y = y + 22;
+            //}
+            //e.Graphics.DrawString("Total: ", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 350, y = y + 22);
+            //e.Graphics.DrawString(txtTotalDebe.Text, new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 400, y);
+            //e.Graphics.DrawString(txtTotalHaber.Text, new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 475, y);
+
+            //DGV Retencion
+
             dibujarRayas(ref y, 30);
             e.Graphics.DrawLine(blackPen, puntoInicio, puntoFinal);
-            e.Graphics.DrawString("Plan Cuenta", new Font("Verdana", 10, FontStyle.Bold), Brushes.Black, 50, y + 2);
-            e.Graphics.DrawString("Centro Costo", new Font("Verdana", 10, FontStyle.Bold), Brushes.Black, 260, y + 2);
-            e.Graphics.DrawString("Debe", new Font("Verdana", 10, FontStyle.Bold), Brushes.Black, 400, y + 2);
-            e.Graphics.DrawString("Haber", new Font("Verdana", 10, FontStyle.Bold), Brushes.Black, 475, y + 2);
-            e.Graphics.DrawString("Concepto", new Font("Verdana", 10, FontStyle.Bold), Brushes.Black, 650, y + 2);
-            
+
+            e.Graphics.DrawString("Retencion SRI", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 50, y + 2);
+            e.Graphics.DrawString("Tipo", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 260, y + 2);
+            e.Graphics.DrawString("%", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 310, y + 2);
+            e.Graphics.DrawString("Monto", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 410, y + 2);
+            e.Graphics.DrawString("Cta. Contable", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black,490, y + 2);
+            e.Graphics.DrawString("fecha Vigente", new Font("Verdana", 8, FontStyle.Bold), Brushes.Black, 650, y + 2);
+
             dibujarRayas(ref y, 20);
             e.Graphics.DrawLine(blackPen, puntoInicio, puntoFinal);
 
-            for (int i = 0; i < dgvDatosLibroDiario.RowCount - 1; i++)
+            for (int i = 0; i < dgvDatosRetencion.RowCount - 1; i++)
             {
-                
-                e.Graphics.DrawString(Convert.ToString(dgvDatosLibroDiario.Rows[i].Cells[1].Value), new Font("Verdana", 9, FontStyle.Regular), Brushes.Black, 260, y);
-                e.Graphics.DrawString(Convert.ToString(dgvDatosLibroDiario.Rows[i].Cells[2].Value), new Font("Verdana", 9, FontStyle.Regular), Brushes.Black, 400, y);
-                e.Graphics.DrawString(Convert.ToString(dgvDatosLibroDiario.Rows[i].Cells[3].Value), new Font("Verdana", 9, FontStyle.Regular), Brushes.Black, 475, y);
-                e.Graphics.DrawString(Convert.ToString(dgvDatosLibroDiario.Rows[i].Cells[4].Value), new Font("Verdana", 9, FontStyle.Regular), Brushes.Black, 550, y);
-                string planCuneta = Convert.ToString(dgvDatosLibroDiario.Rows[i].Cells[0].Value);
-                lineasConcepto = Convert.ToSingle(planCuneta.Length) / 29;
-                //string sustentoTributario = "";
-                cantidadCaracteres = Convert.ToInt32(planCuneta.Length);
+                if (Convert.ToString(dgvDatosRetencion.Rows[i].Cells[1].Value) == "RETENCION")
+                    e.Graphics.DrawString("RTF", new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 260, y);
+                else
+                    e.Graphics.DrawString("IVA", new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 260, y);
+                e.Graphics.DrawString(Convert.ToString(dgvDatosRetencion.Rows[i].Cells[2].Value), new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 310, y);
+                e.Graphics.DrawString(Convert.ToString(dgvDatosRetencion.Rows[i].Cells[4].Value), new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 410, y);
+                e.Graphics.DrawString(Convert.ToString(dgvDatosRetencion.Rows[i].Cells[5].Value), new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 490, y);
+                e.Graphics.DrawString(Convert.ToString(dgvDatosRetencion.Rows[i].Cells[6].Value), new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 625, y);
+                string planCuenta = Convert.ToString(dgvDatosRetencion.Rows[i].Cells[0].Value);
+                float lineasCuenta = Convert.ToSingle(planCuenta.Length) / 35;
+                string plan = "";
+                cantidadCaracteres = Convert.ToInt32(planCuenta.Length);
                 posicion = 0;
-                if (lineasConcepto > 1)
+                bool banderaAumento = false;
+                if (lineasCuenta > 1)
                     for (int j = 0; j < Math.Ceiling(lineasConcepto); j++)
                     {
-                        if (cantidadCaracteres >= 29)
+                        if (cantidadCaracteres >= 35)
                         {
-                            cantidadCaracteres = Math.Abs(cantidadCaracteres - 29);
-                            planCuneta = planCuneta.Substring(posicion, 29);
-                            posicion = 29 * (j + 1);
+                            cantidadCaracteres = Math.Abs(cantidadCaracteres - 35);
+                            plan = planCuenta.Substring(posicion, 35);
+                            posicion = 35 * (j + 1);
                         }
                         else
                         {
-                            planCuneta = planCuneta.Substring(posicion, cantidadCaracteres);
+                            plan = planCuenta.Substring(posicion, cantidadCaracteres);
                             posicion = cantidadCaracteres;
                         }
-                        e.Graphics.DrawString(planCuneta, new Font("Verdana", 10, FontStyle.Regular), Brushes.Black, 200, y);
+                        e.Graphics.DrawString(plan, new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 25, y);
                         y = y + 22;
+                        banderaAumento = true;
                     }
                 else
                 {
-                    e.Graphics.DrawString(planCuneta, new Font("Verdana", 10, FontStyle.Regular), Brushes.Black, 200, y);
-                    y = y + 22;
+                    e.Graphics.DrawString(planCuenta, new Font("Verdana", 8, FontStyle.Regular), Brushes.Black, 25, y);
                 }
-                //e.Graphics.DrawString(Convert.ToString(dgvDatosLibroDiario.Rows[i].Cells[0].Value), new Font("Verdana", 9, FontStyle.Regular), Brushes.Black, 25, y);
-                //29
-                if (Convert.ToString(dgvDatosLibroDiario.Rows[i+1].Cells[0].Value) == "")
+                if (Convert.ToString(dgvDatosRetencion.Rows[i + 1].Cells[0].Value) == "")
                     break;
-                y = y + 22;
+                if (!banderaAumento)
+                    y = y + 22;
             }
 
         }
@@ -642,7 +704,7 @@ namespace Comisariato.Formularios.Transacciones
         public void dibujarRayas(ref int y, int sumar)
         {
             puntoInicio = new Point(25, y = y + sumar);
-            puntoFinal = new Point(825, y);
+            puntoFinal = new Point(800, y);
         }
     }
 }

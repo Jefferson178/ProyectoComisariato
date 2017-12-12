@@ -489,7 +489,7 @@ namespace Comisariato.Formularios
                                 FrmOrdenDeGiro.Show();
                                 FrmOrdenDeGiro.MdiParent = this;
                                 Asignar(FrmOrdenDeGiro.Name);
-                                
+                                break;
                             }
                             //else { FrmOrdenDeGiro.BringToFront(); }
                         }
