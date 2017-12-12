@@ -47,7 +47,7 @@ namespace Comisariato
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmLogin());
+            planCunetaApplication.Run(new FrmLogin());
         }
     }
 }

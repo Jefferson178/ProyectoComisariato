@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnSalirCompra = new System.Windows.Forms.Button();
@@ -77,6 +77,14 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.dgvDatosRetencion = new System.Windows.Forms.DataGridView();
+            this.retencionSRI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.porcentaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.baseImponible = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.montoRetencion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cuentaContable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaVigente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdRetencion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtAutorizacionRetencion = new System.Windows.Forms.TextBox();
             this.dtpFechaVenceDocumento = new System.Windows.Forms.DateTimePicker();
             this.txtSerie2Retencion = new System.Windows.Forms.TextBox();
@@ -139,14 +147,8 @@
             this.dateTimePicker8 = new System.Windows.Forms.DateTimePicker();
             this.label44 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
-            this.retencionSRI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.porcentaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.baseImponible = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.montoRetencion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cuentaContable = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaVigente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdRetencion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImpresionOG = new System.Drawing.Printing.PrintDocument();
+            this.ElegirImpresero = new System.Windows.Forms.PrintDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -307,6 +309,7 @@
             this.btnImprimir.Text = "Imprimir";
             this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             this.btnImprimir.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbProveedor_KeyDown);
             // 
             // txtSerie2
@@ -395,14 +398,14 @@
             // 
             // dgvDatosLibroDiario
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosLibroDiario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosLibroDiario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvDatosLibroDiario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosLibroDiario.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.planCuenta,
@@ -704,14 +707,14 @@
             // 
             // dgvDatosRetencion
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosRetencion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosRetencion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvDatosRetencion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosRetencion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.retencionSRI,
@@ -728,6 +731,62 @@
             this.dgvDatosRetencion.Size = new System.Drawing.Size(996, 221);
             this.dgvDatosRetencion.TabIndex = 20;
             this.dgvDatosRetencion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbProveedor_KeyDown);
+            // 
+            // retencionSRI
+            // 
+            this.retencionSRI.HeaderText = "Retención SRI";
+            this.retencionSRI.Name = "retencionSRI";
+            this.retencionSRI.ReadOnly = true;
+            this.retencionSRI.Width = 155;
+            // 
+            // tipo
+            // 
+            this.tipo.HeaderText = "Tipo";
+            this.tipo.Name = "tipo";
+            this.tipo.ReadOnly = true;
+            this.tipo.Width = 50;
+            // 
+            // porcentaje
+            // 
+            this.porcentaje.HeaderText = "%";
+            this.porcentaje.Name = "porcentaje";
+            this.porcentaje.ReadOnly = true;
+            this.porcentaje.Width = 35;
+            // 
+            // baseImponible
+            // 
+            this.baseImponible.HeaderText = "Base Imponible";
+            this.baseImponible.Name = "baseImponible";
+            this.baseImponible.ReadOnly = true;
+            this.baseImponible.Width = 145;
+            // 
+            // montoRetencion
+            // 
+            this.montoRetencion.HeaderText = "Monto Retención";
+            this.montoRetencion.Name = "montoRetencion";
+            this.montoRetencion.ReadOnly = true;
+            this.montoRetencion.Width = 150;
+            // 
+            // cuentaContable
+            // 
+            this.cuentaContable.HeaderText = "Cuenta Contable";
+            this.cuentaContable.Name = "cuentaContable";
+            this.cuentaContable.ReadOnly = true;
+            this.cuentaContable.Width = 250;
+            // 
+            // fechaVigente
+            // 
+            this.fechaVigente.HeaderText = "Fecha Vigente";
+            this.fechaVigente.Name = "fechaVigente";
+            this.fechaVigente.ReadOnly = true;
+            this.fechaVigente.Width = 150;
+            // 
+            // IdRetencion
+            // 
+            this.IdRetencion.HeaderText = "IDRETENCION";
+            this.IdRetencion.Name = "IdRetencion";
+            this.IdRetencion.ReadOnly = true;
+            this.IdRetencion.Visible = false;
             // 
             // txtAutorizacionRetencion
             // 
@@ -1225,14 +1284,14 @@
             // dgvDatosOG
             // 
             this.dgvDatosOG.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatosOG.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatosOG.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvDatosOG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatosOG.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.numeroOrdenGiro,
@@ -1379,61 +1438,13 @@
             this.label45.TabIndex = 17;
             this.label45.Text = "Desde:";
             // 
-            // retencionSRI
+            // ImpresionOG
             // 
-            this.retencionSRI.HeaderText = "Retención SRI";
-            this.retencionSRI.Name = "retencionSRI";
-            this.retencionSRI.ReadOnly = true;
-            this.retencionSRI.Width = 155;
+            this.ImpresionOG.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.ImpresionOG_PrintPage);
             // 
-            // tipo
+            // ElegirImpresero
             // 
-            this.tipo.HeaderText = "Tipo";
-            this.tipo.Name = "tipo";
-            this.tipo.ReadOnly = true;
-            this.tipo.Width = 50;
-            // 
-            // porcentaje
-            // 
-            this.porcentaje.HeaderText = "%";
-            this.porcentaje.Name = "porcentaje";
-            this.porcentaje.ReadOnly = true;
-            this.porcentaje.Width = 35;
-            // 
-            // baseImponible
-            // 
-            this.baseImponible.HeaderText = "Base Imponible";
-            this.baseImponible.Name = "baseImponible";
-            this.baseImponible.ReadOnly = true;
-            this.baseImponible.Width = 145;
-            // 
-            // montoRetencion
-            // 
-            this.montoRetencion.HeaderText = "Monto Retención";
-            this.montoRetencion.Name = "montoRetencion";
-            this.montoRetencion.ReadOnly = true;
-            this.montoRetencion.Width = 150;
-            // 
-            // cuentaContable
-            // 
-            this.cuentaContable.HeaderText = "Cuenta Contable";
-            this.cuentaContable.Name = "cuentaContable";
-            this.cuentaContable.ReadOnly = true;
-            this.cuentaContable.Width = 250;
-            // 
-            // fechaVigente
-            // 
-            this.fechaVigente.HeaderText = "Fecha Vigente";
-            this.fechaVigente.Name = "fechaVigente";
-            this.fechaVigente.ReadOnly = true;
-            this.fechaVigente.Width = 150;
-            // 
-            // IdRetencion
-            // 
-            this.IdRetencion.HeaderText = "IDRETENCION";
-            this.IdRetencion.Name = "IdRetencion";
-            this.IdRetencion.ReadOnly = true;
-            this.IdRetencion.Visible = false;
+            this.ElegirImpresero.UseEXDialog = true;
             // 
             // FrmOrdenDeGiro
             // 
@@ -1593,5 +1604,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cuentaContable;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaVigente;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdRetencion;
+        private System.Drawing.Printing.PrintDocument ImpresionOG;
+        private System.Windows.Forms.PrintDialog ElegirImpresero;
     }
 }
