@@ -746,6 +746,21 @@ namespace Comisariato.Formularios.Transacciones
                     detallepago.Add(txtRecibido.Text);
                     detallepago.Add(txtCambio.Text);
 
+                    /// codigo byron 
+                    int totalfacturasAGenerar = 1;
+                    if (Program.BoolPreimpresa)
+                    {
+                        String PreimpresaDatos = Program.DatosPreimpresa;
+                        string[] Preimpresa = PreimpresaDatos.Split('-');
+                        int ItemsPermitidos = Convert.ToInt32(Preimpresa[2]);
+                        totalfacturasAGenerar = obtenercantidadFactura(totalfilas, ItemsPermitidos);
+                    }
+
+                    for (int i = 0; i < totalfacturasAGenerar; i++)
+                    {
+
+                    }
+
                     bool b = c.GuardarFact(totalfilas, dg, encabezadofact, detallepago,ivas);
                     if (b)
                     {
@@ -795,7 +810,37 @@ namespace Comisariato.Formularios.Transacciones
            
         }
 
-       
+
+        private int obtenercantidadFactura(int cantidadDeFilas, int ItemsPermitidos)
+        {
+            int cantidad = 0;
+            //int totalfilas = 64;
+            //int cantItems = 16;
+            int auxiliarCantItem = ItemsPermitidos;
+            //si el totaldefilas(Producto) es menor a los item permitidos por los parametros, entonces imprime una factura
+            if (cantidadDeFilas <= ItemsPermitidos)
+            {
+                return 1;
+            }
+            else
+            {
+                //si el totaldefilas(Producto) es mayor a los item permitidos por los parametros, recorro las filas
+                for (int i = 1; i < cantidadDeFilas; i++)
+                {
+                    if (i == ItemsPermitidos)// si i llega al total de item permitidos, 
+                    {
+                        cantidad += 1;
+                        ItemsPermitidos += auxiliarCantItem;
+                    }
+                }
+                if (16 < cantidadDeFilas)
+                {
+                    cantidad += 1;
+                }
+
+                return cantidad;
+            }
+        }
 
         private void Imprimirfact(int numeroFactura)
         {
@@ -959,45 +1004,32 @@ namespace Comisariato.Formularios.Transacciones
                 String PreimpresaDatos = Program.DatosPreimpresa;
                 string[] Preimpresa = PreimpresaDatos.Split('-');
                 cantItems = Convert.ToInt32(Preimpresa[2]);
-                //((tamañoencabezado * 2) + 1) ---> 2 = 1cm son dos lineas --- 1 = para completar el centimetro
-
+                int auxiliarCantItem = cantItems;
                 int cantidad = 0; 
+                //si el totaldefilas(Producto) es menor a los item permitidos por los parametros, entonces imprime una factura
                 if (totalfilas <= cantItems)
                 {
                     Imprimirfact(1);
                 }
                 else
                 {
+                    //si el totaldefilas(Producto) es mayor a los item permitidos por los parametros, recorro las filas
                     for (int i = 1; i < totalfilas; i++)
                     {
-                        if (i == 16)// si es multiplo de 16
+                        if (i == cantItems)// si i llega al total de item permitidos, 
                         {
                             cantidad += 1;
+                            cantItems += auxiliarCantItem;
                         }
                     }
-                }
-
-
-                float obtenerFacturas = (Convert.ToSingle(totalfilas) / Convert.ToSingle(cantItems));
-                string cadena = obtenerFacturas.ToString("#####0.0");
-                string[] valores = cadena.Split(',');
-                int facturasaImprimir = Convert.ToInt32(valores[0]);
-                if (facturasaImprimir < 1)
-                {
-                    facturasaImprimir = 1;
-                }
-                else if (valores.Length == 2)
-                {
-                    if (Convert.ToInt32(valores[1]) >= 5)
+                    if (auxiliarCantItem < totalfilas)
                     {
-                        facturasaImprimir += 1;
+                        cantidad += 1;
                     }
                 }
-                //else
-                //{ Imprimirfact(facturasaImprimir); }
-                //facturasaImprimir = Math.Round(facturasaImprimir);
 
-                for (int i = 1; i <= facturasaImprimir; i++)
+
+                for (int i = 1; i <= cantidad; i++)
                 {
                     Imprimirfact(i);
                 }
@@ -1025,7 +1057,7 @@ namespace Comisariato.Formularios.Transacciones
 
             if (aumentoNumeroFactura > 1)
             {
-                numfac += aumentoNumeroFactura;
+                numfac += (aumentoNumeroFactura - 1);
             }
 
             int tamañoencabezado = 0, tamañoPie = 0, cantItems = 0;
