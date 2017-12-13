@@ -37,6 +37,15 @@ namespace Comisariato.Clases
             }
             return linea.AppendLine(lineasAsterisco).ToString(); //Devolvemos la linea con asteriscos
         }
+        public string lineasEnBlanco()
+        {
+            string lineasAsterisco = "";
+            for (int i = 0; i < maxCar; i++)
+            {
+                lineasAsterisco += " ";//Agregara un asterisco hasta llegar la numero maximo de caracteres.
+            }
+            return linea.AppendLine(lineasAsterisco).ToString(); //Devolvemos la linea con asteriscos
+        }
 
         //Realizamos el mismo procedimiento para dibujar una lineas con el signo igual
         public string lineasIgual()
@@ -144,6 +153,7 @@ namespace Comisariato.Clases
             else
             {
                 string espacios = "";
+
                 //sacamos la cantidad de espacios libres y el resultado lo dividimos entre dos
                 int centrar = (maxCar - texto.Length) / 2;
                 //Obtenemos la longitud del texto restante.

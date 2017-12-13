@@ -1329,6 +1329,7 @@ namespace Comisariato.Formularios.Transacciones
                 s = new FrmClaveSupervisor();
                 s.ShowDialog();
                 txtCodigo.Focus();
+                FrmFactura_Activated(null, null);
             }
             else
             {
