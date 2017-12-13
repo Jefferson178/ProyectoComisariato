@@ -78,6 +78,12 @@
     <Compile Include="Formularios\Informes\FrmInformesVentas.Designer.cs">
       <DependentUpon>FrmInformesVentas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Informes\FrmKardex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Informes\FrmKardex.Designer.cs">
+      <DependentUpon>FrmKardex.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Mantenimiento\Empresa\FrmCajasTalonarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,6 +262,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Formularios\Informes\FrmInformesVentas.resx">
       <DependentUpon>FrmInformesVentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Informes\FrmKardex.resx">
+      <DependentUpon>FrmKardex.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Mantenimiento\Empresa\FrmCajasTalonarios.resx">
       <DependentUpon>FrmCajasTalonarios.cs</DependentUpon>

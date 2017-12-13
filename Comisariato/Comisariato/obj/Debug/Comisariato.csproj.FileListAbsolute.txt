@@ -536,3 +536,4 @@ C:\Users\Byron\Documents\GitHub\ProyectoComisariato\Comisariato\Comisariato\obj\
 C:\Users\Programacion\Documents\GitHub\ProyectoComisariato\Comisariato\Comisariato\obj\Debug\Comisariato.Formularios.Informes.FrmInformeVentas.resources
 C:\Users\MaxDJ\Documents\GitHub\ProyectoComisariato\Comisariato\Comisariato\obj\Debug\Comisariato.Formularios.Informes.FrmInformeVentas.resources
 >>>>>>> 019ac5d27e49cedb01b7a986914f3ddbe00b517c
+C:\Users\Andres\Documents\GitHub\ProyectoComisariato\Comisariato\Comisariato\obj\Debug\Comisariato.Formularios.Informes.FrmKardex.resources

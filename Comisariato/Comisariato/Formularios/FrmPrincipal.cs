@@ -42,6 +42,7 @@ namespace Comisariato.Formularios
         public static FrmAsignarMenu FrmAsignarMenu;
         public static FrmInformeVentas FrmInformeVentas;
         public static MenuStrip menuMostrar;
+        public static FrmKardex FrmKardex;
         Bitacora  bitacora = new Bitacora();
         //public static void Panel
         public FrmPrincipal()
@@ -553,6 +554,28 @@ namespace Comisariato.Formularios
                     FrmDevolucionVenta.Show();
                     FrmDevolucionVenta.MdiParent = this;
                     Asignar(FrmDevolucionVenta.Text);
+                }
+                //else { FrmDevolucionVenta.BringToFront(); }
+            }
+            else if (nombre == "Kardex")
+            {
+                //if (FrmDevolucionVenta == null || FrmDevolucionVenta.IsDisposed)
+                //{
+                //    FrmDevolucionVenta = new FrmDevolucionVenta();
+                //    objFuncion.AddFormInPanel(FrmDevolucionVenta, Program.panelPrincipalVariable);
+                //}
+                //else
+                //{
+                //    int index = panelPrincipal.Controls.GetChildIndex(FrmDevolucionVenta);
+                //    FrmDevolucionVenta.BringToFront();
+                //}
+                if (FrmKardex == null || FrmKardex.IsDisposed)
+                {
+                    FrmKardex = new FrmKardex();
+                    //FrmDevolucionVenta.BringToFront();
+                    FrmKardex.Show();
+                    FrmKardex.MdiParent = this;
+                    Asignar(FrmKardex.Text);
                 }
                 //else { FrmDevolucionVenta.BringToFront(); }
             }
