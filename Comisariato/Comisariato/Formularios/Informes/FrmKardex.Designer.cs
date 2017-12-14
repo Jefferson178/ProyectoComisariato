@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gbEncabezadoKardex = new System.Windows.Forms.GroupBox();
+            this.btnGenerarKardex = new System.Windows.Forms.Button();
             this.cbCategoria = new System.Windows.Forms.ComboBox();
             this.txtProducto = new System.Windows.Forms.TextBox();
             this.dtpHasta = new System.Windows.Forms.DateTimePicker();
@@ -56,7 +57,6 @@
             this.cantidadExistecia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costoExistencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalExistencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnGenerarKardex = new System.Windows.Forms.Button();
             this.gbEncabezadoKardex.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -84,6 +84,16 @@
             this.gbEncabezadoKardex.TabIndex = 0;
             this.gbEncabezadoKardex.TabStop = false;
             this.gbEncabezadoKardex.Text = "Información Necesaria para el Kardex";
+            // 
+            // btnGenerarKardex
+            // 
+            this.btnGenerarKardex.Location = new System.Drawing.Point(898, 21);
+            this.btnGenerarKardex.Name = "btnGenerarKardex";
+            this.btnGenerarKardex.Size = new System.Drawing.Size(133, 86);
+            this.btnGenerarKardex.TabIndex = 6;
+            this.btnGenerarKardex.Text = "Generar";
+            this.btnGenerarKardex.UseVisualStyleBackColor = true;
+            this.btnGenerarKardex.Click += new System.EventHandler(this.btnGenerarKardex_Click);
             // 
             // cbCategoria
             // 
@@ -325,16 +335,6 @@
             this.totalExistencia.Name = "totalExistencia";
             this.totalExistencia.Width = 75;
             // 
-            // btnGenerarKardex
-            // 
-            this.btnGenerarKardex.Location = new System.Drawing.Point(898, 21);
-            this.btnGenerarKardex.Name = "btnGenerarKardex";
-            this.btnGenerarKardex.Size = new System.Drawing.Size(133, 86);
-            this.btnGenerarKardex.TabIndex = 6;
-            this.btnGenerarKardex.Text = "Generar";
-            this.btnGenerarKardex.UseVisualStyleBackColor = true;
-            this.btnGenerarKardex.Click += new System.EventHandler(this.btnGenerarKardex_Click);
-            // 
             // FrmKardex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -347,6 +347,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
             this.Name = "FrmKardex";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Kardex";
             this.Load += new System.EventHandler(this.FrmKardex_Load);
             this.gbEncabezadoKardex.ResumeLayout(false);

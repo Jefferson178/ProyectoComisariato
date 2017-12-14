@@ -862,7 +862,11 @@
             this.label19.BackColor = System.Drawing.Color.Transparent;
             this.label19.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.Teal;
+<<<<<<< HEAD
             this.label19.Location = new System.Drawing.Point(1029, 105);
+=======
+            this.label19.Location = new System.Drawing.Point(941, 96);
+>>>>>>> f311c33bba79b781faae166e9b80834cf4fc45ed
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(52, 68);
             this.label19.TabIndex = 50;
@@ -872,21 +876,36 @@
             // 
             this.BtnCalculadora.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.BtnCalculadora.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< HEAD
             this.BtnCalculadora.Image = global::Comisariato.Properties.Resources.calculadora2;
             this.BtnCalculadora.Location = new System.Drawing.Point(899, 691);
+=======
+            this.BtnCalculadora.Image = global::Comisariato.Properties.Resources.calculadora_1;
+            this.BtnCalculadora.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BtnCalculadora.Location = new System.Drawing.Point(802, 464);
+>>>>>>> f311c33bba79b781faae166e9b80834cf4fc45ed
             this.BtnCalculadora.Name = "BtnCalculadora";
             this.BtnCalculadora.Size = new System.Drawing.Size(119, 135);
             this.BtnCalculadora.TabIndex = 51;
             this.BtnCalculadora.Text = "Calculadora";
             this.BtnCalculadora.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnCalculadora.UseVisualStyleBackColor = true;
+<<<<<<< HEAD
+=======
+            this.BtnCalculadora.Click += new System.EventHandler(this.BtnCalculadora_Click);
+>>>>>>> f311c33bba79b781faae166e9b80834cf4fc45ed
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Image = global::Comisariato.Properties.Resources.bodega1;
+<<<<<<< HEAD
             this.button1.Location = new System.Drawing.Point(774, 691);
+=======
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.Location = new System.Drawing.Point(677, 464);
+>>>>>>> f311c33bba79b781faae166e9b80834cf4fc45ed
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(119, 135);
             this.button1.TabIndex = 49;
@@ -1009,6 +1028,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Bisque;
             this.ClientSize = new System.Drawing.Size(1462, 878);
             this.Controls.Add(this.BtnCalculadora);
@@ -1049,7 +1069,6 @@
             this.Name = "FrmFactura";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "VENTAS - Aircontrol";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.FrmFactura_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmFactura_FormClosed);
             this.Load += new System.EventHandler(this.FrmFactura_Load);

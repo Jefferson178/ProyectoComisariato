@@ -253,6 +253,7 @@ namespace Comisariato.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+<<<<<<< HEAD
         internal static System.Drawing.Bitmap calculadora {
             get {
                 object obj = ResourceManager.GetObject("calculadora", resourceCulture);
@@ -276,6 +277,11 @@ namespace Comisariato.Properties {
         internal static System.Drawing.Bitmap calculadora2 {
             get {
                 object obj = ResourceManager.GetObject("calculadora2", resourceCulture);
+=======
+        internal static System.Drawing.Bitmap calculadora_1 {
+            get {
+                object obj = ResourceManager.GetObject("calculadora-1", resourceCulture);
+>>>>>>> f311c33bba79b781faae166e9b80834cf4fc45ed
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

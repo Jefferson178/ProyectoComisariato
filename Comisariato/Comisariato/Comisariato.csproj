@@ -575,6 +575,7 @@
     <None Include="Resources\LIMPIAR32X32.png" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <None Include="Resources\calculadora.png" />
   </ItemGroup>
   <ItemGroup>
@@ -582,6 +583,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\calculadora2.png" />
+=======
+    <None Include="Resources\calculadora-1.png" />
+>>>>>>> f311c33bba79b781faae166e9b80834cf4fc45ed
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
