@@ -583,7 +583,7 @@ namespace Comisariato.Formularios
 
         private void Asignar(string nombreF)
         {
-            ventanaToolStripMenuItem.DropDownItems.Add(new ToolStripMenuItem(nombreF));
+            //ventanaToolStripMenuItem.DropDownItems.Add(new ToolStripMenuItem(nombreF));
         }
 
 
@@ -618,7 +618,7 @@ namespace Comisariato.Formularios
         }
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
-            menuMostrar = msPrincipal;
+            menuMostrar = msPrincipal1;
             DataTable dt = objConsulta.BoolDataTable("Select FONDOPANTALLA from TbEmpresa where IDEMPRESA = 1");
             byte[] MyData = new byte[0];
             if (dt.Rows.Count > 0)
@@ -685,6 +685,11 @@ namespace Comisariato.Formularios
             {
                 ventanaToolStripMenuItem.DropDownItems.RemoveAt(a - 1);
             }
+        }
+
+        private void msPrincipal1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

@@ -36,12 +36,14 @@ namespace Comisariato.Formularios.Transacciones.Devolucion_Venta
             {
                 if (e.KeyChar == (char)Keys.Return)
                 {
+                    
                     em = c.ConsutarFactura(int.Parse(txtSucursal.Text), int.Parse(txtCaja.Text), int.Parse(txtNumFact.Text),2);
                     if (em != null)
                     {
                         product = c.detalleFact;
                         if (product.Count > 0)
                         {
+                            limpiarDGV();
                             llenarDgV();
                             lblUsuario.Text="Usuario: " +em.NombreUsuario;
                             DgvDetalleFact.CurrentCell = DgvDetalleFact.Rows[0].Cells[0];
@@ -353,6 +355,15 @@ namespace Comisariato.Formularios.Transacciones.Devolucion_Venta
                 DgvDetalleFact.Rows.Add("");
             }
             txtSucursal.Focus();
+        }
+
+        private void limpiarDGV()
+        {
+            DgvDetalleFact.Rows.Clear();
+            for (int i = 0; i < 21; i++)
+            {
+                DgvDetalleFact.Rows.Add("");
+            }
         }
 
         private int posicion = 0;
